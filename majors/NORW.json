@@ -1,0 +1,36 @@
+{
+ 	"NORW": {
+ 		"name": "Norwegian",
+ 		"department": "NORW",
+
+		"requirements": {
+			"basiclanguage": {
+				"description": "Basic Language",
+				"needed": 4,
+				"validCourses": ["NORW 111", "NORW 112", "NORW 231", "NORW 232"]
+			},
+
+			"advancedconversationandcomposition": {
+				"description": "Advanced Conversation and Composition",
+				"needed": 1,
+				"validCourses": ["NORW 253"]
+			},
+
+			"norwegianliterature": {
+				"description": "Norwegian Literature",
+				"needed": 2,
+				"validCourses": ["NORW 371", "NORW 372"]
+			},
+
+			"elective": {
+				"description": "Elective",
+				"needed": 1,
+				"validCourses": [
+					"NORW 224", "NORW 240", "NORW 244", "NORW 282",
+					"NORW 294", "NORW 298", "NORW 394", "NORW 396",
+					"NORW 398", "NORW 399", "HIST 222"
+				]
+			}
+		}
+	}
+}

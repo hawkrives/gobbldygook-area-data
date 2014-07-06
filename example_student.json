@@ -1,0 +1,106 @@
+{
+	"name": "Hawken M. Rives",
+	"studies": [
+		{"name": "Bachelor of Arts", "type": "degree"},
+		{"name": "Computer Science",  "type": "major"},
+		{"name": "Asian Studies", "type": "major"},
+		{"name": "Statistics", "type": "concentration"},
+		{"name": "Mathematics", "type": "concentration"}
+	],
+
+	"credits": 0,
+
+	"schedules": [
+		{
+			"year": "2012",
+			"term": "1",
+			"name": "Schedule 0",
+			"chosen": true,
+			"courses": [82908, 82768, 82792, 83505]
+		},
+		{
+			"year": "2012",
+			"term": "2",
+			"name": "Schedule 0",
+			"chosen": true,
+			"courses": [85898]
+		},
+		{
+			"year": "2012",
+			"term": "3",
+			"name": "Schedule 0",
+			"chosen": true,
+			"courses": [84512, 84461, 84378, 85991]
+		},
+		{
+			"year": "2013",
+			"term": "1",
+			"name": "Schedule 0",
+			"chosen": true,
+			"courses": [89090, 88273, 88681, 88593, 88630]
+		},
+		{
+			"year": "2013",
+			"term": "2",
+			"name": "Schedule 0",
+			"chosen": true,
+			"courses": [89466]
+		},
+		{
+			"year": "2013",
+			"term": "3",
+			"name": "Schedule 0",
+			"chosen": true,
+			"courses": [90719, 89957, 90339, 90172]
+		},
+		{
+			"year": "2014",
+			"term": "1",
+			"name": "Schedule 0",
+			"chosen": true,
+			"courses": [97217, 97120, 97119, 97125]
+		},
+		{
+			"year": "2014",
+			"term": "2",
+			"name": "Schedule 0",
+			"chosen": true,
+			"courses": [97261]
+		},
+		{
+			"year": "2014",
+			"term": "2",
+			"name": "Schedule 1",
+			"chosen": false,
+			"courses": [97174]
+		},
+		{
+			"year": "2014",
+			"term": "3",
+			"name": "Schedule 0",
+			"chosen": true,
+			"courses": [95594, 95842]
+		},
+		{
+			"year": "2015",
+			"term": "1",
+			"name": "Schedule 0",
+			"chosen": true,
+			"courses": [92908, 97122]
+		},
+		{
+			"year": "2015",
+			"term": "2",
+			"name": "Schedule 0",
+			"chosen": true,
+			"courses": []
+		},
+		{
+			"year": "2015",
+			"term": "3",
+			"name": "Schedule 0",
+			"chosen": true,
+			"courses": [91746, 96980]
+		}
+	]
+}

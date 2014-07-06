@@ -1,0 +1,118 @@
+{
+	"PSCI": {
+		"name": "PoliticalScience",
+		"department": "PSCI",
+
+		"requirements": {
+			"electives": {
+				"description": "Electives",
+				"needed": 9,
+				"validCourses": [
+					"PSCI 111", "PSCI 112", "PSCI 113", "PSCI 115",
+					"PSCI 117", "PSCI 119", "PSCI 121", "ES/PS 201",
+					"PSCI 211", "PSCI 220", "ES/PS 225", "PSCI 232",
+					"PSCI 234", "PSCI 240", "PSCI 244", "AS/PS 245",
+					"PSCI 246", "AS/PS 250", "PSCI 252", "AS/PS 254",
+					"PSCI 255", "PSCI 257", "PSCI 258", "PSCI 260",
+					"PSCI 264", "PSCI 272", "ES/PS 276", "PSCI 278",
+					"PSCI 282", "PSCI 283", "PSCI 284", "PSCI 285",
+					"PSCI 294", "PSCI 298", "PSCI 299", "PSCI 311",
+					"PSCI 321", "PSCI 350", "PSCI 367", "PSCI 370",
+					"PSCI 382", "PSCI 384", "PSCI 385", "PSCI 394",
+					"PSCI 396", "PSCI 398", "PSCI 399"
+				]
+			},
+
+			"electivesstrict": {
+				"description": "Electives (Strict)",
+				"needed": 6,
+				"validCourses": [
+					"ES/PS 201", "PSCI 211", "PSCI 220", "ES/PS 225",
+					"PSCI 232", "PSCI 234", "PSCI 240", "PSCI 244",
+					"AS/PS 245", "PSCI 246", "AS/PS 250", "PSCI 252",
+					"AS/PS 254", "PSCI 255", "PSCI 257", "PSCI 258",
+					"PSCI 260", "PSCI 264", "PSCI 272", "ES/PS 276",
+					"PSCI 278", "PSCI 282", "PSCI 283", "PSCI 284",
+					"PSCI 285", "PSCI 294", "PSCI 298", "PSCI 299",
+					"PSCI 311", "PSCI 321", "PSCI 350", "PSCI 367",
+					"PSCI 370", "PSCI 382", "PSCI 384", "PSCI 385",
+					"PSCI 394", "PSCI 396", "PSCI 398", "PSCI 399"
+				]
+			},
+
+			"levelii": {
+				"description": "Level II",
+				"needed": 2,
+				"validCourses": [
+					"ES/PS 201", "PSCI 211", "PSCI 220", "ES/PS 225",
+					"PSCI 232", "PSCI 234", "PSCI 240", "PSCI 244",
+					"AS/PS 245", "PSCI 246", "AS/PS 250", "PSCI 252",
+					"AS/PS 254", "PSCI 255", "PSCI 257", "PSCI 258",
+					"PSCI 260", "PSCI 264", "PSCI 272", "ES/PS 276",
+					"PSCI 278", "PSCI 282", "PSCI 283", "PSCI 284",
+					"PSCI 285", "PSCI 294", "PSCI 298", "PSCI 299"
+				]
+			},
+
+			"researchmethods": {
+				"description": "ResearchMethods",
+				"needed": 1,
+				"validCourses": ["PSCI 220"]
+			}
+		},
+
+		"sets": {
+			"americanpoliticsandpublicpolicy": {
+				"description": "American Politics and Public Policy",
+				"needed": 1,
+				"validCourses": [
+					"PSCI 111", "PSCI 211", "PSCI 244", "PSCI 246",
+					"PSCI 255", "PSCI 272", "PSCI 311", "ES/PS 276"
+				]
+			},
+
+			"comparativepolitics": {
+				"description": "Comparative Politics",
+				"needed": 1,
+				"validCourses": [
+					"PSCI 112", "PSCI 117", "PSCI 240", "PSCI 252",
+					"PSCI 264", "PSCI 282", "PSCI 283", "PSCI 350",
+					"PSCI 367", "PSCI 370", "PSCI 382", "PSCI 385",
+					"AS/PS 245", "AS/PS 250", "AS/PS 254"
+				]
+			},
+
+			"internationalrelations": {
+				"description": "International Relations",
+				"needed": 1,
+				"validCourses": [
+					"PSCI 115", "PSCI 119", "PSCI 121", "PSCI 234",
+					"PSCI 257", "PSCI 258", "PSCI 285", "PSCI 321",
+					"AS/PS 245", "ES/PS 201"
+				]
+			},
+
+			"policytheory": {
+				"description": "Policy Theory",
+				"needed": 1,
+				"validCourses": [
+					"PSCI 113", "PSCI 119", "PSCI 232", "PSCI 260",
+					"PSCI 278", "PSCI 284", "PSCI 384", "ES/PS 225"
+				]
+			}
+		},
+
+		"special": {
+			"perspectives": {
+				"description": "Perspectives",
+				"needed": 4,
+				"validSets": [
+					"americanpoliticsandpublicpolicy",
+					"comparativepolitics",
+					"internationalrelations",
+					"policytheory"
+				]
+			}
+		}
+	}
+}

@@ -1,0 +1,79 @@
+{
+	"ECON": {
+		"name": "Economics",
+		"department": "ECON",
+
+		"requirements": {
+			"calci": {
+				"description": "CalcI",
+				"needed": 1,
+				"validCourses": ["MATH 120"]
+			},
+
+			"micro": {
+				"description": "Micro",
+				"needed": 1,
+				"validCourses": ["ECON 261"]
+			},
+
+			"macro": {
+				"description": "Macro",
+				"needed": 1,
+				"validCourses": ["ECON 262"]
+			},
+
+			"economicanalysis": {
+				"description": "EconomicAnalysis",
+				"needed": 4,
+				"validCourses": [
+					"ECON 200", "AS/EC 218", "ECON 222", "AS/EC 238",
+					"ECON 242", "ECON 243", "ECON 244", "ECON 245",
+					"ECON 247", "ECON 249", "ECON 294", "ECON 298",
+					"ECON 371", "ECON 374", "ECON 376", "ECON 382",
+					"ECON 385"
+				]
+			},
+
+			"levelii": {
+				"description": "LevelII",
+				"needed": 1,
+				"validCourses": [
+					"ECON 200", "AS/EC 218", "ECON 222", "AS/EC 238",
+					"ECON 242", "ECON 243", "ECON 244", "ECON 245",
+					"ECON 247", "ECON 249", "ECON 294", "ECON 298"
+				]
+			},
+
+			"leveliii": {
+				"description": "LevelIII",
+				"needed": 2,
+				"validCourses": [
+					"ECON 371", "ECON 374", "ECON 376", "ECON 382",
+					"ECON 385"
+				]
+			}
+		},
+
+		"sets": {
+			"stat1": {
+				"description": "stat1",
+				"needed": 1,
+				"validCourses": ["STAT 263"]
+			},
+
+			"stat2": {
+				"description": "stat2",
+				"needed": 2,
+				"validCourses": ["STAT 272", "ECON 385"]
+			}
+		},
+
+		"special": {
+			"statistics": {
+				"description": "Statistics",
+				"needed": 1,
+				"validSets": ["stat1", "stat2"]
+			}
+		}
+	}
+}

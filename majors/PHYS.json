@@ -1,0 +1,55 @@
+{
+	"PHYS": {
+	    "name": "Physics",
+	    "dept": "PHYS",
+
+	    "requirements": {
+	        "mathprerequisites": {
+	            "description": "Math Prerequisites",
+	            "needed": 4,
+	            "validCourses": ["MATH 126", "MATH 128", "MATH 220", "MATH 226", "MATH 230"]
+	        },
+
+	        "analyticalphysics": {
+	            "description": "Analytical Physics",
+	            "needed": 3,
+	            "validCourses": ["PHYS 130", "PHYS 131", "PHYS 132", "PHYS 232"]
+	        },
+
+	        "modernphysics": {
+	            "description": "Modern Physics",
+	            "needed": 1,
+	            "validCourses": ["PHYS 244"]
+	        },
+
+	        "classicalmechanics": {
+	            "description": "Classical Mechanics",
+	            "needed": 1,
+	            "validCourses": ["PHYS 374"]
+	        },
+
+	        "maxwellsequations": {
+	            "description": "Maxwell's Equations",
+	            "needed": 1,
+	            "validCourses": ["PHYS 375"]
+	        },
+
+	        "quantummechanics": {
+	            "description": "Quantum Mechanics",
+	            "needed": 2,
+	            "validCourses": ["PHYS 376", "PHYS 386"]
+	        },
+
+	        "elective": {
+	            "description": "Electives",
+	            "needed": 1,
+	            "validCourses": [
+	                "PHYS 123", "PHYS 124", "PHYS 125", "PHYS 154",
+	                "PHYS 245", "PHYS 246", "PHYS 252", "PHYS 294",
+	                "PHYS 298", "PHYS 379", "PHYS 390", "PHYS 392",
+	                "PHYS 394", "PHYS 396", "PHYS 398", "PHYS 399"
+	            ]
+	        }
+	    }
+	}
+}

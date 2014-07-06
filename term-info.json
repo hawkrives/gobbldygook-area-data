@@ -1,0 +1,44 @@
+{
+	"oldTermUrls": [
+		"/data/courses/20081.json",
+		"/data/courses/20082.json",
+		"/data/courses/20083.json",
+		"/data/courses/20084.json",
+		"/data/courses/20085.json",
+
+		"/data/courses/20091.json",
+		"/data/courses/20092.json",
+		"/data/courses/20093.json",
+		"/data/courses/20094.json",
+		"/data/courses/20095.json"
+	],
+	"termUrls": [
+		"/data/courses/20101.json",
+		"/data/courses/20102.json",
+		"/data/courses/20103.json",
+		"/data/courses/20104.json",
+		"/data/courses/20105.json",
+
+		"/data/courses/20111.json",
+		"/data/courses/20112.json",
+		"/data/courses/20113.json",
+		"/data/courses/20114.json",
+		"/data/courses/20115.json",
+
+		"/data/courses/20121.json",
+		"/data/courses/20122.json",
+		"/data/courses/20123.json",
+		"/data/courses/20124.json",
+		"/data/courses/20125.json",
+
+		"/data/courses/20131.json",
+		"/data/courses/20132.json",
+		"/data/courses/20133.json",
+		"/data/courses/20134.json",
+		"/data/courses/20135.json",
+
+		"/data/courses/20141.json",
+		"/data/courses/20142.json",
+		"/data/courses/20143.json"
+	]
+}
