@@ -1,21 +1,17 @@
 # README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
-
-### What is this repository for? ###
-
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+gobbldygook-administration-data is the home of the area of study data for Gobbldygook. As such, while this README would normally document whatever steps are necessary to get your application up and running, you don't need to do anything unless you want to edit the data.
 
 ### How do I get set up? ###
 
 * Summary of set up
+	* `git clone repo`
 * Configuration
+	* If you want to update a file, update it, then run the script. 
 * Dependencies
-* Database configuration
+	* Python 3.4
 * How to run tests
-* Deployment instructions
+	* There aren't any, unfortunately. 
 
 ### Contribution guidelines ###
 
