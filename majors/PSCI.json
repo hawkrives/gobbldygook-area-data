@@ -2,6 +2,7 @@
 	"info": {
 		"name": "PoliticalScience",
 		"department": "PSCI",
+		"type": "major",
 
 		"requirements": {
 			"electives": {

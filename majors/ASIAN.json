@@ -2,6 +2,7 @@
 	"info": {
 		"name": "Asian Studies",
 		"dept": "ASIAN",
+		"type": "major",
 
 		"requirements": {
 			"IDApproachesToAsia": {

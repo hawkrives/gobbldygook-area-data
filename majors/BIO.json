@@ -2,6 +2,7 @@
 	"info": {
 		"name": "Biology",
 		"dept": "BIO",
+		"type": "major",
 
 		"requirements": {
 			"electives": {

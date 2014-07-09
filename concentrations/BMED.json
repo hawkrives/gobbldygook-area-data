@@ -2,6 +2,7 @@
 	"info": {
 		"title": "Biomedical Studies",
 		"dept": "BMED",
+		"type": "concentration",
 
 		"requirements": {
 			"humanbio": {

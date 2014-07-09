@@ -2,6 +2,7 @@
 	"info": {
 		"name": "French",
 		"department": "FREN",
+		"type": "major",
 
 		"requirements": {
 			"basiclanguage": {

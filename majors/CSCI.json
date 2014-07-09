@@ -2,6 +2,7 @@
 	"info": {
 		"name": "Computer Science",
 		"dept": "CSCI",
+		"type": "major",
 
 		"requirements": {
 			"cs": {

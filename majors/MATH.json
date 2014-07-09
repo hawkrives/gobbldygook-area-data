@@ -2,6 +2,7 @@
 	"info": {
 		"name": "Mathematics",
 		"dept": "MATH",
+		"type": "major",
 
 		"requirements": {
 			"calci": {

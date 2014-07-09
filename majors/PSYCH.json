@@ -2,6 +2,7 @@
 	"info": {
 		"name": "Psychology",
 		"department": "PSYCH",
+		"type": "major",
 
 		"requirements": {
 			"principlesofpsychology": {

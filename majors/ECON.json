@@ -2,6 +2,7 @@
 	"info": {
 		"name": "Economics",
 		"department": "ECON",
+		"type": "major",
 
 		"requirements": {
 			"calci": {

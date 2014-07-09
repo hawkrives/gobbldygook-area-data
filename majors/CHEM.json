@@ -2,6 +2,7 @@
 	"info": {
 		"name": "Chemistry",
 		"dept": "CHEM",
+		"type": "major",
 
 		"requirements": {
 			"organicchemistry": {

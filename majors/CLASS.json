@@ -2,6 +2,7 @@
 	"info": {
 		"name": "Classics",
 		"dept": "CLASS",
+		"type": "major",
 
 		"requirements": {
 			"latin": {

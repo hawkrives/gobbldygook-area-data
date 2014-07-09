@@ -2,6 +2,7 @@
 	"info": {
 		"title": "Statistics",
 		"department": "STAT",
+		"type": "concentration",
 
 		"requirements": {
 			"statisticalmodeling": {
