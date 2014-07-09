@@ -1,6 +1,6 @@
 {
-	"BMED": {
-		"name": "Biomedical Studies",
+	"info": {
+		"title": "Biomedical Studies",
 		"dept": "BMED",
 
 		"requirements": {

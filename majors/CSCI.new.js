@@ -1,5 +1,5 @@
 {
-	"Computer Science": {
+	"info": {
 		"name": "Computer Science",
 		"type": "major",
 

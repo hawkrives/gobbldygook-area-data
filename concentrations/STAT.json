@@ -1,6 +1,6 @@
 {
-	"STAT": {
-		"name": "Statistics",
+	"info": {
+		"title": "Statistics",
 		"department": "STAT",
 
 		"requirements": {
