@@ -11,6 +11,9 @@ def json_folder_map(folders, kind):
 		files = os.listdir(folder_name)
 		output[folder_name] = []
 		for filename in files:
+			if filename.split('.')[1] != 'json':
+				continue
+
 			path = folder_name + '/' + filename
 			with open(path, 'rb') as infile:
 				info = {
@@ -18,6 +21,7 @@ def json_folder_map(folders, kind):
 					'hash': hashlib.sha1(infile.read()).hexdigest()
 				}
 				output[folder_name].append(OrderedDict(sorted(info.items())))
+		
 		output[folder_name] = sorted(output[folder_name], key=lambda item: item['path'])
 
 	output = OrderedDict(sorted(
