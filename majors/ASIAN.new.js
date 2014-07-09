@@ -1,5 +1,5 @@
 {
-	"Asian Studies": {
+	"info": {
 		"name": "Asian Studies",
 		"type": "major",
 
