@@ -1,7 +1,8 @@
 {
 	"info": {
-		"name": "Philosophy",
-		"department": "PHIL",
+		"title": "Philosophy",
+		"abbr": "PHIL",
+		"dept": "PHIL",
 		"type": "major",
 
 		"requirements": {

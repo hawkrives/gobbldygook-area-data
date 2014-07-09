@@ -1,7 +1,8 @@
 {
 	"info": {
-		"name": "French",
-		"department": "FREN",
+		"title": "French",
+		"abbr": "FREN",
+		"dept": "FREN",
 		"type": "major",
 
 		"requirements": {

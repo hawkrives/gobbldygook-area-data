@@ -1,7 +1,8 @@
 {
 	"info": {
-		"name": "Economics",
-		"department": "ECON",
+		"title": "Economics",
+		"abbr": "ECON",
+		"dept": "ECON",
 		"type": "major",
 
 		"requirements": {

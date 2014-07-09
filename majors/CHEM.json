@@ -1,6 +1,7 @@
 {
 	"info": {
-		"name": "Chemistry",
+		"title": "Chemistry",
+		"abbr": "CHEM",
 		"dept": "CHEM",
 		"type": "major",
 

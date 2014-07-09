@@ -1,6 +1,8 @@
 {
 	"info": {
-		"name": "Asian Studies",
+		"title": "Asian Studies",
+		"abbr": "ASIAN",
+		"dept": "ASIAN",
 		"type": "major",
 
 		"sets": [

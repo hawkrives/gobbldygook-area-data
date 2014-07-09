@@ -2,91 +2,91 @@
 	"info": {
 		"concentrations": [
 			{
-				"hash": "b313b1bd64610d6370d063a498e1742c3b208931",
+				"hash": "5d17773c9f2578ae6720af9a22c8cda5264c6ecd",
 				"path": "concentrations/BMED.json"
 			},
 			{
-				"hash": "be0509e93ce22e385ba2862b18ab7b84502de41f",
+				"hash": "c5f29f19862addaba899682f48711a1d83d76915",
 				"path": "concentrations/STAT.json"
 			}
 		],
 		"degrees": [
 			{
-				"hash": "3e81554c13020b53d53aafd347dd8a196659a1d5",
+				"hash": "2d7bf77646d3524e88dfefda1563c1f4bc748a61",
 				"path": "degrees/bachelorOfArts.json"
 			},
 			{
-				"hash": "6dabed8fedb32d0f96ea12311b61262d73c45208",
+				"hash": "6c3afccdc6b1f0cb3ab19e7ab2a98751c7154636",
 				"path": "degrees/bachelorOfMusic.json"
 			}
 		],
 		"majors": [
 			{
-				"hash": "23af6b62fc76152fd281fa422d69198aa2e83f60",
+				"hash": "d0e4ca0222bf29378bbf3196b5e5906b09cc23b7",
 				"path": "majors/ARMS.json"
 			},
 			{
-				"hash": "3d57ec52ace93110571507f20443ccf439f7e610",
+				"hash": "76b2b2a2fcc582c53c9c2f9c1daa57a0ef646326",
 				"path": "majors/ASIAN.json"
 			},
 			{
-				"hash": "a42cafd628c8b2ce7b140b0a4212082373c213f4",
+				"hash": "983aea85e532582b244edba06b9e0f7f919be564",
 				"path": "majors/BIO.json"
 			},
 			{
-				"hash": "e5ec8aa85831e5e369595d58f988d0f8918797aa",
+				"hash": "524236d91c34931c0c6c0a73b5f628a322b176af",
 				"path": "majors/CHEM.json"
 			},
 			{
-				"hash": "5c97ade1ed0929e1070cd62d00cca9a0c0977512",
+				"hash": "b2e2d61d8213448d35c21ac52f6db868382cef99",
 				"path": "majors/CLASS.json"
 			},
 			{
-				"hash": "b9d3a7a46f175ca8529d4a43bc68f6a8764a2bad",
+				"hash": "cb0e809d9971cce378e861a70afac901e2cab503",
 				"path": "majors/CSCI.json"
 			},
 			{
-				"hash": "5bdaa3bafc926f28e9323f6aa501488dd7aa816b",
+				"hash": "b0b04afdf46f9ad521931542c79448efd3ecd48b",
 				"path": "majors/ECON.json"
 			},
 			{
-				"hash": "bb43f0cebb3c61bcb0a121e7a5afa13a38d16f9d",
+				"hash": "f30a87e5190e13c1770c8e6ccdd6c8ff7939af4e",
 				"path": "majors/ESTH.json"
 			},
 			{
-				"hash": "37783cd957f5b66b425126e00950469f4aef4ea6",
+				"hash": "961ae85dfd95c8d13868d7abbd8db33ba841d94a",
 				"path": "majors/FREN.json"
 			},
 			{
-				"hash": "b2f3253a53a89e351ec65c46e5c945abc9656c3b",
+				"hash": "0d02d339d6fa4fa984a6c45c3ef3da58c0187917",
 				"path": "majors/GERM.json"
 			},
 			{
-				"hash": "733657721abe0166ddd8b51e7adb714c7af68671",
+				"hash": "1b73bb807a08211898708c6ce9b0dde89bade7bf",
 				"path": "majors/MATH.json"
 			},
 			{
-				"hash": "50ee7311c92f7efd9fe99935231f20cce7f27b7f",
+				"hash": "1b120d98b8072e3dfe6dbd21c3365792b2ed0d16",
 				"path": "majors/NORW.json"
 			},
 			{
-				"hash": "aa1225d2b2d0c418e956b18c85bfb4ad2704cbf9",
+				"hash": "ed68dee42e60d97550b789f31a9995666bed9f2f",
 				"path": "majors/PHIL.json"
 			},
 			{
-				"hash": "61b69c4d0d65a4c7e442c452a8143a5b47bd8b36",
+				"hash": "4301ef96c88b26d7998f6953a2f74e93f6fca086",
 				"path": "majors/PHYS.json"
 			},
 			{
-				"hash": "c181624e5aad36e8a2bb5aec3f6fe40a8ec2aeb1",
+				"hash": "628405a506231ebb04133a29db9b7a5ca25476d9",
 				"path": "majors/PSCI.json"
 			},
 			{
-				"hash": "c0e97d39e999be56ba1e3ea2d73995cc62cdf05d",
+				"hash": "8465d83649f58a335318981d52114b00947b6aa0",
 				"path": "majors/PSYCH.json"
 			},
 			{
-				"hash": "f7c40d8a803c9ed25004a7bec36eabd64cd43feb",
+				"hash": "554dce892fb03358f6b76cb4bf1a2962e274f0b3",
 				"path": "majors/SPAN.json"
 			}
 		]

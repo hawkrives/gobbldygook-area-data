@@ -1,7 +1,8 @@
 {
 	"info": {
-		"name": "Exercise Science",
-		"department": "ESTH",
+		"title": "Exercise Science",
+		"abbr": "ESTH",
+		"dept": "ESTH",
 		"type": "major",
 
 		"requirements": {

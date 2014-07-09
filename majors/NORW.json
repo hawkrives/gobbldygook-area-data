@@ -1,7 +1,8 @@
 {
  	"info": {
- 		"name": "Norwegian",
- 		"department": "NORW",
+ 		"title": "Norwegian",
+ 		"abbr": "NORW",
+ 		"dept": "NORW",
  		"type": "major",
 
 		"requirements": {

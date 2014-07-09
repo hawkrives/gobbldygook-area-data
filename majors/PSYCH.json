@@ -1,7 +1,8 @@
 {
 	"info": {
-		"name": "Psychology",
-		"department": "PSYCH",
+		"title": "Psychology",
+		"abbr": "PSYCH",
+		"dept": "PSYCH",
 		"type": "major",
 
 		"requirements": {

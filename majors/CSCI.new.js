@@ -1,6 +1,8 @@
 {
 	"info": {
-		"name": "Computer Science",
+		"title": "Computer Science",
+		"abbr": "CSCI",
+		"dept": "CSCI",
 		"type": "major",
 
 		"sets": [

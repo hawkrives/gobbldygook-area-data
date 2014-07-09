@@ -1,6 +1,7 @@
 {
 	"info": {
-	    "name": "Physics",
+	    "title": "Physics",
+	    "abbr": "PHYS",
 	    "dept": "PHYS",
 	    "type": "major",
 

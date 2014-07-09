@@ -1,7 +1,8 @@
 {
 	"info": {
-		"name": "German",
-		"department": "GERM",
+		"title": "German",
+		"abbr": "GERM",
+		"dept": "GERM",
 		"type": "major",
 
 		"requirements": {

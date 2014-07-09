@@ -1,7 +1,8 @@
 {
 	"info": {
-		"name": "Spanish",
-		"department": "SPAN",
+		"title": "Spanish",
+		"abbr": "SPAN",
+		"dept": "SPAN",
 		"type": "major",
 
 	    "requirements": {

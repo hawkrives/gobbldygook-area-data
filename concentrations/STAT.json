@@ -1,7 +1,8 @@
 {
 	"info": {
 		"title": "Statistics",
-		"department": "STAT",
+		"abbr": "STAT",
+		"dept": "STAT",
 		"type": "concentration",
 
 		"requirements": {

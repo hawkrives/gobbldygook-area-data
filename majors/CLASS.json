@@ -1,6 +1,7 @@
 {
 	"info": {
-		"name": "Classics",
+		"title": "Classics",
+		"abbr": "CLASS",
 		"dept": "CLASS",
 		"type": "major",
 

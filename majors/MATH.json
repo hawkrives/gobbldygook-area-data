@@ -1,6 +1,7 @@
 {
 	"info": {
-		"name": "Mathematics",
+		"title": "Mathematics",
+		"abbr": "MATH",
 		"dept": "MATH",
 		"type": "major",
 

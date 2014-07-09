@@ -1,6 +1,7 @@
 {
 	"info": {
-		"name": "Biology",
+		"title": "Biology",
+		"abbr": "BIO",
 		"dept": "BIO",
 		"type": "major",
 

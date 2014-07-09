@@ -1,7 +1,8 @@
 {
 	"info": {
-		"name": "PoliticalScience",
-		"department": "PSCI",
+		"title": "PoliticalScience",
+		"abbr": "PHYS",
+		"dept": "PSCI",
 		"type": "major",
 
 		"requirements": {
