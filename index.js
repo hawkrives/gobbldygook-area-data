@@ -11,7 +11,7 @@ var emphases = require('./dist/emphasis')
 var degrees = require('./dist/degree')
 
 var areas = [majors, concentrations, emphases, degrees]
-var allAreas = _.chain(areas)
+var allAreas = chain(areas)
 	.map(toArray)
 	.flatten()
 	.value()
@@ -52,7 +52,7 @@ var findAreaOfStudy = function(id, yearOfGraduation) {
 		return yearIsBetween
 	})
 
-	return area || _.clone(areaNotFound)
+	return area || clone(areaNotFound)
 }
 
 module.exports = findAreaOfStudy
