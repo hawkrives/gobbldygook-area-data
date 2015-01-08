@@ -6,16 +6,16 @@ var _interopRequire = function (obj) {
 
 var _ = _interopRequire(require("lodash"));
 
-var hasDepartment = _interopRequire(require("app/helpers/hasDepartment"));
+var hasDepartment = _interopRequire(require("sto-helpers/lib/hasDepartment"));
 
-var partialNameOrTitle = require("app/helpers/partialTitle").partialNameOrTitle;
-var coursesAtLevel = require("app/helpers/courseLevels").coursesAtLevel;
-var coursesAtOrAboveLevel = require("app/helpers/courseLevels").coursesAtOrAboveLevel;
-var checkCoursesFor = _interopRequire(require("app/helpers/checkCoursesFor"));
+var partialNameOrTitle = require("sto-helpers/lib/partialTitle").partialNameOrTitle;
+var coursesAtLevel = require("sto-helpers/lib/courseLevels").coursesAtLevel;
+var coursesAtOrAboveLevel = require("sto-helpers/lib/courseLevels").coursesAtOrAboveLevel;
+var checkCoursesFor = _interopRequire(require("sto-helpers/lib/checkCoursesFor"));
 
-var isRequiredCourse = _interopRequire(require("sto-areas/lib/isRequiredCourse"));
+var isRequiredCourse = _interopRequire(require("sto-helpers/lib/isRequiredCourse"));
 
-var hasDeptNumBetween = _interopRequire(require("app/helpers/hasDeptNumBetween"));
+var hasDeptNumBetween = _interopRequire(require("sto-helpers/lib/hasDeptNumBetween"));
 
 var ENGLISH_REQUIRED_COURSES = [{ deptnum: "ENGL 185" }];
 

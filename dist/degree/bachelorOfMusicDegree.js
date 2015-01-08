@@ -6,13 +6,13 @@ var _interopRequire = function (obj) {
 
 var _ = _interopRequire(require("lodash"));
 
-var common = _interopRequire(require("sto-areas/lib/commonGraduationRequirements"));
+var common = _interopRequire(require("../lib/commonGraduationRequirements"));
 
-var utilities = _interopRequire(require("sto-areas/lib/commonGraduationUtilities"));
+var utilities = _interopRequire(require("../lib/commonGraduationUtilities"));
 
-var educ = _interopRequire(require("sto-areas/lib/commonEducationRequirements"));
+var educ = _interopRequire(require("../lib/commonEducationRequirements"));
 
-var eduUtilities = _interopRequire(require("sto-areas/lib/commonEducationUtilities"));
+var eduUtilities = _interopRequire(require("../lib/commonEducationUtilities"));
 
 var countGeneds = eduUtilities.countGeneds;
 

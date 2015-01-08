@@ -6,11 +6,11 @@ var _interopRequire = function (obj) {
 
 var _ = _interopRequire(require("lodash"));
 
-var hasDepartment = _interopRequire(require("app/helpers/hasDepartment"));
+var hasDepartment = _interopRequire(require("sto-helpers/lib/hasDepartment"));
 
-var checkCoursesFor = _interopRequire(require("app/helpers/checkCoursesFor"));
+var checkCoursesFor = _interopRequire(require("sto-helpers/lib/checkCoursesFor"));
 
-var isRequiredCourse = _interopRequire(require("sto-areas/lib/isRequiredCourse"));
+var isRequiredCourse = _interopRequire(require("sto-helpers/lib/isRequiredCourse"));
 
 var physDeptRequiredCourses = [{ deptnum: "PHYS 130" }, { deptnum: "PHYS 131" }, { deptnum: "PHYS 232" }, { deptnum: "PHYS 244" }, { deptnum: "PHYS 245" }, { deptnum: "PHYS 374" }, { deptnum: "PHYS 375" }, { deptnum: "PHYS 385" }, { deptnum: "PHYS 376" }, { deptnum: "PHYS 386" }];
 

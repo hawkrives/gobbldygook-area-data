@@ -6,21 +6,21 @@ var _interopRequire = function (obj) {
 
 var _ = _interopRequire(require("lodash"));
 
-var onlyQuarterCreditCoursesCanBePassFail = _interopRequire(require("./onlyQuarterCreditCoursesCanBePassFail"));
+var onlyQuarterCreditCoursesCanBePassFail = _interopRequire(require("sto-helpers/lib/onlyQuarterCreditCoursesCanBePassFail"));
 
-var hasFOL = _interopRequire(require("./hasFOL"));
+var hasFOL = _interopRequire(require("sto-helpers/lib/hasFOL"));
 
-var hasGenEd = _interopRequire(require("./hasGenEd"));
+var hasGenEd = _interopRequire(require("sto-helpers/lib/hasGenEd"));
 
-var countGeneds = _interopRequire(require("./countGeneds"));
+var countGeneds = _interopRequire(require("sto-helpers/lib/countGeneds"));
 
-var getDepartments = _interopRequire(require("./getDepartments"));
+var getDepartments = _interopRequire(require("sto-helpers/lib/getDepartments"));
 
-var acrossAtLeastTwoDepartments = _interopRequire(require("./acrossAtLeastTwoDepartments"));
+var acrossAtLeastTwoDepartments = _interopRequire(require("sto-helpers/lib/acrossAtLeastTwoDepartments"));
 
-var checkThatCoursesSpanDepartmentsAndGeneds = _interopRequire(require("./checkThatCoursesSpanDepartmentsAndGeneds"));
+var checkThatCoursesSpanDepartmentsAndGeneds = _interopRequire(require("sto-helpers/lib/checkThatCoursesSpanDepartmentsAndGeneds"));
 
-var isIntercollegiateSport = _interopRequire(require("./isIntercollegiateSport"));
+var isIntercollegiateSport = _interopRequire(require("sto-helpers/lib/isIntercollegiateSport"));
 
 exports.onlyQuarterCreditCoursesCanBePassFail = onlyQuarterCreditCoursesCanBePassFail;
 exports.hasGenEd = hasGenEd;

@@ -6,9 +6,9 @@ var _interopRequire = function (obj) {
 
 var _ = _interopRequire(require("lodash"));
 
-var hasDepartment = _interopRequire(require("app/helpers/hasDepartment"));
+var hasDepartment = _interopRequire(require("sto-helpers/lib/hasDepartment"));
 
-var checkCoursesFor = _interopRequire(require("app/helpers/checkCoursesFor"));
+var checkCoursesFor = _interopRequire(require("sto-helpers/lib/checkCoursesFor"));
 
 function foundationCourses(courses) {
   /* Foundation courses:

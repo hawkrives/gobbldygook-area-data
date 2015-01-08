@@ -6,12 +6,13 @@ var _interopRequire = function (obj) {
 
 var _ = _interopRequire(require("lodash"));
 
-var hasDeptNumBetween = require("app/helpers/deptNum").hasDeptNumBetween;
-var countCredits = _interopRequire(require("app/helpers/countCredits"));
+var hasDeptNumBetween = _interopRequire(require("sto-helpers/lib/hasDeptNumBetween"));
 
-var hasDepartment = _interopRequire(require("app/helpers/hasDepartment"));
+var countCredits = _interopRequire(require("sto-helpers/lib/countCredits"));
 
-var onlyCoursesAtOrAboveLevel = require("app/helpers/courseLevels").onlyCoursesAtOrAboveLevel;
+var hasDepartment = _interopRequire(require("sto-helpers/lib/hasDepartment"));
+
+var onlyCoursesAtOrAboveLevel = require("sto-helpers/lib/courseLevels").onlyCoursesAtOrAboveLevel;
 var utilities = _interopRequire(require("./commonGraduationUtilities"));
 
 function courses(coursesTaken, creditsNeeded) {

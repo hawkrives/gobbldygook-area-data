@@ -6,15 +6,15 @@ var _interopRequire = function (obj) {
 
 var _ = _interopRequire(require("lodash"));
 
-var hasDepartment = _interopRequire(require("app/helpers/hasDepartment"));
+var hasDepartment = _interopRequire(require("sto-helpers/lib/hasDepartment"));
 
-var partialNameOrTitle = require("app/helpers/partialTitle").partialNameOrTitle;
-var coursesAboveNumber = require("app/helpers/courseLevels").coursesAboveNumber;
-var checkCoursesFor = _interopRequire(require("app/helpers/checkCoursesFor"));
+var partialNameOrTitle = require("sto-helpers/lib/partialTitle").partialNameOrTitle;
+var coursesAboveNumber = require("sto-helpers/lib/courseLevels").coursesAboveNumber;
+var checkCoursesFor = _interopRequire(require("sto-helpers/lib/checkCoursesFor"));
 
-var isAsianCon = _interopRequire(require("sto-areas/lib/isAsianCon"));
+var isAsianCon = _interopRequire(require("sto-helpers/lib/isAsianCon"));
 
-var isRequiredCourse = _interopRequire(require("sto-areas/lib/isRequiredCourse"));
+var isRequiredCourse = _interopRequire(require("sto-helpers/lib/isRequiredCourse"));
 
 var japanStudiesRequiredCourses = [{ deptnum: "ASIAN 275" }, { deptnum: "ASIAN 397" }, { deptnum: "ASIAN 399" }];
 

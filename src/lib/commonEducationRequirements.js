@@ -1,10 +1,10 @@
 import _ from 'lodash'
 
-import hasGenEd from './hasGenEd'
-import countGeneds from './countGeneds'
-import acrossAtLeastTwoDepartments from './acrossAtLeastTwoDepartments'
-import isIntercollegiateSport from './isIntercollegiateSport'
-import checkThatCoursesSpanDepartmentsAndGeneds from './checkThatCoursesSpanDepartmentsAndGeneds'
+import hasGenEd from 'sto-helpers/lib/hasGenEd'
+import countGeneds from 'sto-helpers/lib/countGeneds'
+import acrossAtLeastTwoDepartments from 'sto-helpers/lib/acrossAtLeastTwoDepartments'
+import isIntercollegiateSport from 'sto-helpers/lib/isIntercollegiateSport'
+import checkThatCoursesSpanDepartmentsAndGeneds from 'sto-helpers/lib/checkThatCoursesSpanDepartmentsAndGeneds'
 
 // TODO: Consider returning matches from these functions, in addition to the boolean.
 

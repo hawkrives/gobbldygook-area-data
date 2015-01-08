@@ -6,14 +6,14 @@ var _interopRequire = function (obj) {
 
 var _ = _interopRequire(require("lodash"));
 
-var hasDepartment = _interopRequire(require("app/helpers/hasDepartment"));
+var hasDepartment = _interopRequire(require("sto-helpers/lib/hasDepartment"));
 
-var partialNameOrTitle = require("app/helpers/partialTitle").partialNameOrTitle;
-var checkCoursesFor = _interopRequire(require("app/helpers/checkCoursesFor"));
+var partialNameOrTitle = require("sto-helpers/lib/partialTitle").partialNameOrTitle;
+var checkCoursesFor = _interopRequire(require("sto-helpers/lib/checkCoursesFor"));
 
-var coursesAtLevel = require("app/helpers/courseLevels").coursesAtLevel;
-var coursesAtOrAboveLevel = require("app/helpers/courseLevels").coursesAtOrAboveLevel;
-var isRequiredCourse = _interopRequire(require("sto-areas/lib/isRequiredCourse"));
+var coursesAtLevel = require("sto-helpers/lib/courseLevels").coursesAtLevel;
+var coursesAtOrAboveLevel = require("sto-helpers/lib/courseLevels").coursesAtOrAboveLevel;
+var isRequiredCourse = _interopRequire(require("sto-helpers/lib/isRequiredCourse"));
 
 var chemDeptRequiredCourses = [{ deptnum: "CHEM 121" }, { deptnum: "CHEM 123" }, { deptnum: "CHEM 126" }, { deptnum: "CHEM 125" }, { deptnum: "CHEM 126" }, { deptnum: "CHEM/BIO 125" }, { deptnum: "CHEM/BIO 126" }, { deptnum: "CHEM/BIO 227" }, { deptnum: "CHEM 247" }, { deptnum: "CHEM 248" }, { deptnum: "CHEM 255" }, { deptnum: "CHEM 371" }, { deptnum: "CHEM 253" }, { deptnum: "CHEM 254" }, { deptnum: "CHEM 256" }, { deptnum: "CHEM 357" }];
 

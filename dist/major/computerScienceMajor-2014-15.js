@@ -6,12 +6,12 @@ var _interopRequire = function (obj) {
 
 var _ = _interopRequire(require("lodash"));
 
-var hasDepartment = _interopRequire(require("app/helpers/hasDepartment"));
+var hasDepartment = _interopRequire(require("sto-helpers/lib/hasDepartment"));
 
-var partialNameOrTitle = require("app/helpers/partialTitle").partialNameOrTitle;
-var checkCoursesFor = _interopRequire(require("app/helpers/checkCoursesFor"));
+var partialNameOrTitle = require("sto-helpers/lib/partialTitle").partialNameOrTitle;
+var checkCoursesFor = _interopRequire(require("sto-helpers/lib/checkCoursesFor"));
 
-var isRequiredCourse = _interopRequire(require("sto-areas/lib/isRequiredCourse"));
+var isRequiredCourse = _interopRequire(require("sto-helpers/lib/isRequiredCourse"));
 
 var csDeptRequiredCourses = [{ deptnum: "CSCI 121" }, { deptnum: "CSCI 125" }, { deptnum: "CSCI 241" }, { deptnum: "CSCI 251" }, { deptnum: "CSCI 252" }, { deptnum: "CSCI 231" }, { deptnum: "CSCI 253" }, { deptnum: "CSCI 263" }, { deptnum: "CSCI 276" }, { deptnum: "CSCI 333" }, { deptnum: "CSCI 273" }, { deptnum: "CSCI 284" }, { deptnum: "CSCI 390" },
 

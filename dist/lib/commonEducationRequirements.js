@@ -6,15 +6,15 @@ var _interopRequire = function (obj) {
 
 var _ = _interopRequire(require("lodash"));
 
-var hasGenEd = _interopRequire(require("./hasGenEd"));
+var hasGenEd = _interopRequire(require("sto-helpers/lib/hasGenEd"));
 
-var countGeneds = _interopRequire(require("./countGeneds"));
+var countGeneds = _interopRequire(require("sto-helpers/lib/countGeneds"));
 
-var acrossAtLeastTwoDepartments = _interopRequire(require("./acrossAtLeastTwoDepartments"));
+var acrossAtLeastTwoDepartments = _interopRequire(require("sto-helpers/lib/acrossAtLeastTwoDepartments"));
 
-var isIntercollegiateSport = _interopRequire(require("./isIntercollegiateSport"));
+var isIntercollegiateSport = _interopRequire(require("sto-helpers/lib/isIntercollegiateSport"));
 
-var checkThatCoursesSpanDepartmentsAndGeneds = _interopRequire(require("./checkThatCoursesSpanDepartmentsAndGeneds"));
+var checkThatCoursesSpanDepartmentsAndGeneds = _interopRequire(require("sto-helpers/lib/checkThatCoursesSpanDepartmentsAndGeneds"));
 
 // TODO: Consider returning matches from these functions, in addition to the boolean.
 

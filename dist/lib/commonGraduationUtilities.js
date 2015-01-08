@@ -6,9 +6,9 @@ var _interopRequire = function (obj) {
 
 var _ = _interopRequire(require("lodash"));
 
-var countCredits = _interopRequire(require("app/helpers/countCredits"));
+var countCredits = _interopRequire(require("sto-helpers/lib/countCredits"));
 
-var hasDepartment = _interopRequire(require("app/helpers/hasDepartment"));
+var hasDepartment = _interopRequire(require("sto-helpers/lib/hasDepartment"));
 
 function onlyFullCreditCourses(course) {
   return course.credits >= 1;

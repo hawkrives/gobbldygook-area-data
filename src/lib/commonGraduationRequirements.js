@@ -1,9 +1,9 @@
 import _ from 'lodash'
 
-import {hasDeptNumBetween} from 'app/helpers/deptNum'
-import countCredits from 'app/helpers/countCredits'
-import hasDepartment from 'app/helpers/hasDepartment'
-import {onlyCoursesAtOrAboveLevel} from 'app/helpers/courseLevels'
+import hasDeptNumBetween from 'sto-helpers/lib/hasDeptNumBetween'
+import countCredits from 'sto-helpers/lib/countCredits'
+import hasDepartment from 'sto-helpers/lib/hasDepartment'
+import {onlyCoursesAtOrAboveLevel} from 'sto-helpers/lib/courseLevels'
 import utilities from './commonGraduationUtilities'
 
 function courses(coursesTaken, creditsNeeded) {

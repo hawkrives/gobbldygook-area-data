@@ -6,14 +6,14 @@ var _interopRequire = function (obj) {
 
 var _ = _interopRequire(require("lodash"));
 
-var hasDepartment = _interopRequire(require("app/helpers/hasDepartment"));
+var hasDepartment = _interopRequire(require("sto-helpers/lib/hasDepartment"));
 
-var partialNameOrTitle = require("app/helpers/partialTitle").partialNameOrTitle;
-var checkCoursesFor = _interopRequire(require("app/helpers/checkCoursesFor"));
+var partialNameOrTitle = require("sto-helpers/lib/partialTitle").partialNameOrTitle;
+var checkCoursesFor = _interopRequire(require("sto-helpers/lib/checkCoursesFor"));
 
-var courseMatches = _interopRequire(require("sto-areas/lib/courseMatches"));
+var courseMatches = _interopRequire(require("sto-helpers/lib/courseMatches"));
 
-var isRequiredCourse = _interopRequire(require("sto-areas/lib/isRequiredCourse"));
+var isRequiredCourse = _interopRequire(require("sto-helpers/lib/isRequiredCourse"));
 
 var exerciseScienceRequiredCourses = [{ deptnum: "BIO 143" }, { deptnum: "BIO 243" }, { deptnum: "ESTH 110" }, { deptnum: "ESTH 255" }, { deptnum: "ESTH 374" }, { deptnum: "ESTH 375" }, { deptnum: "ESTH 390" }, { deptnum: "PSYCH 125" }];
 
