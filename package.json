@@ -4,22 +4,18 @@
   "main": "index.js",
   "repository": "hawkrives/gobbldygook-area-data",
   "scripts": {
-    "start": "",
+    "build": "6to5 src --out-dir dist",
+    "watch": "6to5 --watch src --out-dir dist",
     "test-function": "mocha",
     "test-style": "jscs",
     "test": "npm run test-function && npm run test-style"
-  },
-  "browserify": {
-    "transform": [
-      "6to5ify"
-    ]
   },
   "dependencies": {
     "lodash": "^2.4.1",
     "sto-helpers": "1.0.0"
   },
   "devDependencies": {
-    "6to5ify": "^3.1.2",
+    "6to5": "^2.9.0",
     "jscs": "^1.9.0",
     "jscs-jsdoc": "^0.4.0",
     "mocha": "^2.1.0",
