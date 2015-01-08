@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "repository": "hawkrives/gobbldygook-area-data",
+  "files": [
+    "dist",
+    "README.md",
+    "index.js"
+  ],
   "scripts": {
     "build": "6to5 src --out-dir dist",
     "watch": "6to5 --watch src --out-dir dist",
