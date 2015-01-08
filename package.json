@@ -13,7 +13,7 @@
     "watch": "6to5 --watch src --out-dir dist",
     "push": "./bin/publish.sh",
     "test-function": "mocha",
-    "test-style": "jscs",
+    "test-style": "jscs src",
     "test": "npm run test-function && npm run test-style"
   },
   "dependencies": {
