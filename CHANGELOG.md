@@ -1,0 +1,8 @@
+# `sto-areas` changelog
+
+## 2.0.0
+
+- Switch to Browserify
+- Add CHANGELOG
+- Hope that Browserify will automatically transform packages when required
+- **Change:** Areas now expect a `studentData` argument, instead of a `student` argument with a `data()` method. This should allow easier reuse.
