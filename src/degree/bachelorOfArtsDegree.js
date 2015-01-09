@@ -115,8 +115,8 @@ function beyondTheMajor(studies, courses) {
 	}
 }
 
-function checkBachelorOfArtsDegree(student) {
-	return student.data().then((studentPieces) => {
+function checkBachelorOfArtsDegree(studentData) {
+	return studentData.then((studentPieces) => {
 		let {
 			courses,
 			fabrications,

@@ -163,8 +163,8 @@ function dedicatedMusicMajor(studies, courses) {
 	}
 }
 
-function checkBachelorOfMusicDegree(student) {
-	return student.data().then((studentPieces) => {
+function checkBachelorOfMusicDegree(studentData) {
+	return studentData.then((studentPieces) => {
 		let {
 			courses,
 			fabrications,

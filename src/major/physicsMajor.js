@@ -91,8 +91,8 @@ function electiveCourses(courses) {
 	}
 }
 
-function checkPhysicsMajor(student) {
-	return student.data().then((studentPieces) => {
+function checkPhysicsMajor(studentData) {
+	return studentData.then((studentPieces) => {
 		let {courses} = studentPieces
 
 		let physicsMajorRequirements = [

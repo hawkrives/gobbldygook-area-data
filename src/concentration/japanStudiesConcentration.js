@@ -80,8 +80,8 @@ function electives(courses) {
 	}
 }
 
-function checkJapanStudiesConcentration(student) {
-	return student.data().then((studentPieces) => {
+function checkJapanStudiesConcentration(studentData) {
+	return studentData.then((studentPieces) => {
 		let {courses} = studentPieces
 
 		let japanStudiesConcentrationRequirements = [

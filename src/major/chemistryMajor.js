@@ -123,8 +123,8 @@ function beyondChemistry(courses) {
 	}
 }
 
-function checkChemistryMajor(student) {
-	return student.data().then((studentPieces) => {
+function checkChemistryMajor(studentData) {
+	return studentData.then((studentPieces) => {
 		let {courses} = studentPieces
 
 		let chemistryMajorRequirements = [

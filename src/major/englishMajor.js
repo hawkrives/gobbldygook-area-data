@@ -158,8 +158,8 @@ function electives(courses) {
 	}
 }
 
-function checkEnglishMajor(student) {
-	return student.data().then((studentPieces) => {
+function checkEnglishMajor(studentData) {
+	return studentData.then((studentPieces) => {
 		let {courses} = studentPieces
 
 		let englishMajorRequirements = [

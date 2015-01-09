@@ -166,8 +166,8 @@ function capstoneCourse(courses) {
 	}
 }
 
-function checkComputerScienceMajor(student) {
-	return student.data().then((studentPieces) => {
+function checkComputerScienceMajor(studentData) {
+	return studentData.then((studentPieces) => {
 		let {courses} = studentPieces
 
 		let computerScienceMajorRequirements = [

@@ -143,8 +143,8 @@ function language(courses) {
 	}
 }
 
-function checkAsianStudiesMajor(student) {
-	return student.data().then((studentPieces) => {
+function checkAsianStudiesMajor(studentData) {
+	return studentData.then((studentPieces) => {
 		let {courses} = studentPieces
 
 		let asianStudiesMajorRequirements = [
