@@ -4,11 +4,6 @@
   "version": "1.0.3",
   "main": "index.js",
   "repository": "hawkrives/gobbldygook-area-data",
-  "files": [
-    "dist",
-    "README.md",
-    "index.js"
-  ],
   "scripts": {
     "build": "browserify -e index.js -o dist/index.js",
     "watch": "watchify -v -e index.js -o dist/index.js",
