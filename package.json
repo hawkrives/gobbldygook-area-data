@@ -9,8 +9,8 @@
     "index.js"
   ],
   "scripts": {
-    "build": "6to5 src --out-dir dist",
-    "watch": "6to5 --watch src --out-dir dist",
+    "build": "browserify -e index.js -o dist/index.js",
+    "watch": "watchify -v -e index.js -o dist/index.js",
     "push": "./bin/publish.sh",
     "test-function": "mocha",
     "test-style": "jscs src",
