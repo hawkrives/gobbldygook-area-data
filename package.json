@@ -4,6 +4,8 @@
   "version": "2.0.0",
   "main": "index.js",
   "repository": "hawkrives/gobbldygook-area-data",
+  "author": "Hawken M. Rives",
+  "license": "MIT",
   "scripts": {
     "push": "./bin/publish.sh",
     "test-function": "mocha",
@@ -29,5 +31,9 @@
     "jscs-jsdoc": "^0.4.0",
     "mocha": "^2.1.0",
     "nodemon": "^1.2.1"
-  }
+  },
+  "keywords": [
+    "stolaf",
+    "sto-scheduler"
+  ]
 }
