@@ -14,5 +14,3 @@ npm version $version
 npm publish
 
 git push --follow-tags
-
-npm run clean

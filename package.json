@@ -9,6 +9,7 @@
   "scripts": {
     "push": "./bin/publish.sh",
     "prepublish": "./bin/compile.sh",
+    "postpublish": "npm run clean",
     "clean": "rm -rf dist/",
     "deep-clean": "rm -rf dist/ node_modules/",
     "test-function": "mocha",
