@@ -107,14 +107,17 @@ function coreCourses(courses) {
 		{
 			title: 'Ethics',
 			result: ethics,
+			description: '**Ethics:** Computer Science 263 *(Ethics of Software Design)*',
 		},
 		{
 			title: 'Theory',
 			result: theory,
+			description: '**Theory:** Either Computer Science 276 *(Theory of Computation)* or Computer Science 333 *(Operating Systems)*',
 		},
 		{
 			title: 'Options',
 			result: options,
+			description: '**Options:** One of Computer Science 273 *()*, Computer Science 284 *()*, or Computer Science 300 (when it is Parallel and Distributed Computing)',
 		},
 	]
 
