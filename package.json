@@ -7,9 +7,9 @@
   "scripts": {
     "push": "./bin/publish.sh",
     "test-function": "mocha",
-    "test-style": "jscs src/",
+    "test-style": "jscs ./",
     "test": "npm run test-function && npm run test-style",
-    "watch-tests": "nodemon --watch test --exec 'npm run test-function'"
+    "watch-tests": "nodemon --watch test/ --exec 'npm run test-function'"
   },
   "browserify": {
     "transform": [
