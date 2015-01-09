@@ -1,22 +1,17 @@
-var lodash = require('lodash')
-var chain = lodash.chain
-var clone = lodash.clone
-var toArray = lodash.toArray
-var find = lodash.find
-var isNull = lodash.isNull
+import {chain, clone, toArray, find, isNull} from 'lodash'
 
-var majors = require('./dist/major')
-var concentrations = require('./dist/concentration')
-var emphases = require('./dist/emphasis')
-var degrees = require('./dist/degree')
+import majors from './src/major'
+import concentrations from './src/concentration'
+import emphases from './src/emphasis'
+import degrees from './src/degree'
 
-var areas = [majors, concentrations, emphases, degrees]
-var allAreas = chain(areas)
+let areas = [majors, concentrations, emphases, degrees]
+let allAreas = chain(areas)
 	.map(toArray)
 	.flatten()
 	.value()
 
-var areaNotFound = {
+let areaNotFound = {
 	title: 'Not Found',
 	years: [null, null],
 	id: 'a-notfound',
@@ -32,18 +27,17 @@ var areaNotFound = {
  * @param {Number} yearOfGraduation - the year the student matriculated.
  * @returns {Object} - an area of study.
  */
-var findAreaOfStudy = function(id, yearOfGraduation) {
-	var area = find(allAreas, function(area) {
+let findAreaOfStudy = (id, yearOfGraduation) => {
+	let area = find(allAreas, (area) => {
 		if (!area.id || area.id !== id)
 			return false
 
 		if (!area.years)
 			return false
 
-		var startYear = area.years[0]
-		var endYear = area.years[1]
+		let [startYear, endYear] = area.years
 
-		var yearIsBetween = false
+		let yearIsBetween = false
 		if (isNull(endYear) && startYear <= yearOfGraduation)
 			yearIsBetween = true
 		else if (endYear >= yearOfGraduation && startYear <= yearOfGraduation)
@@ -55,4 +49,4 @@ var findAreaOfStudy = function(id, yearOfGraduation) {
 	return area || clone(areaNotFound)
 }
 
-module.exports = findAreaOfStudy
+export default findAreaOfStudy
