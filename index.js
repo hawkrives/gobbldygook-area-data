@@ -1,9 +1,9 @@
 import {chain, clone, toArray, find, isNull} from 'lodash'
 
-import majors from './src/major'
-import concentrations from './src/concentration'
-import emphases from './src/emphasis'
-import degrees from './src/degree'
+import majors from './major'
+import concentrations from './concentration'
+import emphases from './emphasis'
+import degrees from './degree'
 
 let areas = [majors, concentrations, emphases, degrees]
 let allAreas = chain(areas)
