@@ -1,5 +1,11 @@
 # `sto-areas` changelog
 
+## 2.0.1
+
+- Uh, switch away from Browserify
+- Update sto-helpers
+- Only publish the compiled stuff to npm
+
 ## 2.0.0
 
 - Switch to Browserify
