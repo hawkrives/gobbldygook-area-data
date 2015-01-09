@@ -5,8 +5,6 @@
   "main": "index.js",
   "repository": "hawkrives/gobbldygook-area-data",
   "scripts": {
-    "build": "browserify -e index.js -o dist/index.js",
-    "watch": "watchify -v -e index.js -o dist/index.js",
     "push": "./bin/publish.sh",
     "test-function": "mocha",
     "test-style": "jscs src/",
