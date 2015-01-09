@@ -50,14 +50,17 @@ function foundationCourses(courses) {
 		{
 			title: 'CS1',
 			result: cs1,
+			description: '',
 		},
 		{
 			title: 'Design',
 			result: design,
+			description: '',
 		},
 		{
 			title: 'Proof Writing',
 			result: proofWriting,
+			description: '',
 		},
 	]
 
@@ -112,12 +115,12 @@ function coreCourses(courses) {
 		{
 			title: 'Theory',
 			result: theory,
-			description: '**Theory:** Either Computer Science 276 *(Theory of Computation)* or Computer Science 333 *(Operating Systems)*',
+			description: '**Theory:** Either Computer Science 276 *(Programming Languages)* or Computer Science 333 *(Theory of Computation)*',
 		},
 		{
 			title: 'Options',
 			result: options,
-			description: '**Options:** One of Computer Science 273 *()*, Computer Science 284 *()*, or Computer Science 300 (when it is Parallel and Distributed Computing)',
+			description: '**Options:** One of Computer Science 273 *(Operating Systems)*, Computer Science 284 *(Mobile Computing Applications)*, or Computer Science 300 (when it is Parallel and Distributed Computing)',
 		},
 	]
 
