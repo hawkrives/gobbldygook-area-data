@@ -1,5 +1,5 @@
 var chai = require("chai")
 var chaiAsPromised = require("chai-as-promised")
 
-chai.should()
+global.expect = chai.expect
 chai.use(chaiAsPromised)
