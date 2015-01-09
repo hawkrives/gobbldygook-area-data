@@ -1,7 +1,14 @@
 bin/
 node_modules/
 test/
+
 .gitignore
 .jscsrc
 .npmignore
 CHANGELOG.md
+
+concentration/
+emphasis/
+degree/
+major/
+lib/
