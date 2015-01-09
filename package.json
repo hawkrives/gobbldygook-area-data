@@ -16,17 +16,24 @@
     "test-style": "jscs src",
     "test": "npm run test-function && npm run test-style"
   },
+  "browserify": {
+    "transform": [
+      "6to5ify"
+    ]
+  },
   "dependencies": {
     "lodash": "^2.4.1",
     "sto-helpers": "^1.0.2"
   },
   "devDependencies": {
     "6to5": "^2.9.0",
+    "6to5ify": "^3.1.2",
+    "browserify": "^8.0.3",
     "chai": "^1.10.0",
     "chai-as-promised": "^4.1.1",
     "jscs": "^1.9.0",
     "jscs-jsdoc": "^0.4.0",
     "mocha": "^2.1.0",
-    "should": "^4.4.4"
+    "watchify": "^2.2.1"
   }
 }
