@@ -1,6 +1,11 @@
 # `sto-areas` changelog
 
 
+## 2.0.2
+
+- Move cleaning up into a `postpublish` task
+
+
 ## 2.0.1
 
 - Uh, switch away from Browserify
