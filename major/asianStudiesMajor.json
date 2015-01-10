@@ -46,7 +46,7 @@
 						title: "Level II or III",
 						description: "At least two at level II or level III, *taken on campus*",
 						components: {
-							courseCount: ["$gte", 2],
+							courseCount: ["$min", 2],
 							courseQuery: {
 								department: "ASIAN",
 								level: ["$gte", 200],
@@ -58,7 +58,7 @@
 						title: "Level I",
 						description: "No more than two at level I",
 						components: {
-							courseCount: ["$lte", 2],
+							courseCount: ["$max", 2],
 							courseQuery: {
 								department: "ASIAN",
 								level: 100,
@@ -69,7 +69,7 @@
 						title: "Not Too Specialized",
 						description: "No more than four elective courses about any one country",
 						components: {
-							courseCount: ["$lte", 4],
+							courseCount: ["$max", 4],
 							oneOf: [
 								{
 									courseQuery: {
@@ -78,7 +78,6 @@
 									}
 								},
 								{
-									courseCount: ["$lte", 4],
 									courseQuery: {
 										department: "ASIAN",
 										name: ["$in", ["Japan*", "Chin*"]],
