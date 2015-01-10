@@ -1,6 +1,17 @@
 # `sto-areas` changelog
 
 
+## 2.0.4
+
+- Removed demo_student.json
+- Added export of all areas in an array from index.js for easy querying
+
+
+## 2.0.3
+
+- Added fake years to d-ba, m-asian, and a few others.
+
+
 ## 2.0.2
 
 - Move cleaning up into a `postpublish` task

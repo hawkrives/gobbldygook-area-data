@@ -50,3 +50,4 @@ let findAreaOfStudy = (id, yearOfGraduation) => {
 }
 
 export default findAreaOfStudy
+export {allAreas}
