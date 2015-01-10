@@ -114,6 +114,7 @@ let physicsMajor = {
 	type: 'major',
 	id: 'm-phys',
 	departmentAbbr: 'PHYS',
+	years: [2014, null],
 
 	check: checkPhysicsMajor,
 	_requirements: {
