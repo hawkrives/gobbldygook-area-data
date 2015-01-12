@@ -74,6 +74,7 @@ let asianStudiesConcentration = {
 	type: 'concentration',
 	id: 'c-asian',
 	departmentAbbr: 'ASIAN',
+	years: [2011, 2012],
 
 	check: checkAsianStudiesConcentration,
 	_requirements: {
