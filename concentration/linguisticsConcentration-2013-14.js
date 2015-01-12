@@ -1,9 +1,9 @@
 let linguisticsConcentration = {
 	title: 'Linguistics',
 	type: 'concentration',
-	id: undefined,
-	departmentAbbr: undefined,
-	years: [2014, null],
+	id: 'c-linguistics',
+	departmentAbbr: 'LING',
+	years: [2013, 2014],
 
 	check: undefined,
 	_requirements: {

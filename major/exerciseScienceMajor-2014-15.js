@@ -193,6 +193,7 @@ let exerciseScienceMajor = {
 	type: 'major',
 	id: 'm-esth',
 	departmentAbbr: 'ESTH',
+	years: [2014, null],
 
 	check: checkExerciseScienceMajor,
 	_requirements: {

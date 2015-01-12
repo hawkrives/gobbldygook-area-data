@@ -1,8 +1,8 @@
 let middleEasternStudiesConcentration = {
 	title: 'Middle Eastern Studies',
 	type: 'concentration',
-	id: undefined,
-	departmentAbbr: undefined,
+	id: 'c-middleEasterStudies',
+	departmentAbbr: 'MIDDL',
 	years: [2014, null],
 
 	check: undefined,

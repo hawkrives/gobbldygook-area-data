@@ -209,6 +209,7 @@ let englishMajor = {
 	type: 'major',
 	id: 'm-engl',
 	departmentAbbr: 'ENGL',
+	years: [2013, 2014],
 
 	check: checkEnglishMajor,
 	_requirements: {

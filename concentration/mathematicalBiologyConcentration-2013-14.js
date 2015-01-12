@@ -1,8 +1,8 @@
 let mathematicalBiologyConcentration = {
 	title: 'Mathematical Biology',
 	type: 'concentration',
-	id: undefined,
-	departmentAbbr: undefined,
+	id: 'c-mathematicalBiology',
+	departmentAbbr: 'MATH/BIO',
 	years: [2013, 2014],
 
 	check: undefined,

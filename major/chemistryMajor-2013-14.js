@@ -147,6 +147,7 @@ let chemistryMajor = {
 	type: 'major',
 	id: 'm-chem',
 	departmentAbbr: 'CHEM',
+	years: [2013, 2014],
 
 	check: checkChemistryMajor,
 	_requirements: {
