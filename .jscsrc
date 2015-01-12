@@ -5,8 +5,8 @@
     ".es6"
   ],
   "excludeFiles": [
-    "node_modules/**",
-    "app/helpers/uuid.js"
+    "node_modules",
+    "dist"
   ],
   "additionalRules": [
     "node_modules/jscs-jsdoc/lib/rules/*.js"
