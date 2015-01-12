@@ -5,9 +5,19 @@ sto-areas is the home of the area of study data for Gobbldygook. As such, while 
 
 ### How do I get set up? ###
 
-* Summary of set up
-	* `git clone https://github.com/hawkrives/gobbldygook-area-data.git`
-* Configuration
-	* If you want to update a file, update it, then send a pull request.
-* How to run tests
-	* `npm test`
+- Clone: `git clone https://github.com/hawkrives/gobbldygook-area-data.git`
+- Edit: If you want to update a file, update it, then send a pull request.
+
+### To Publish on NPM
+- After committing, run `npm run push` to:
+	- `pull --rebase`
+	- `npm test`
+	- `npm version`
+	- `npm publish`
+	- `git push`
+
+Our [SemVer](http://semver.org/) policy is, in short:
+
+- changing the structure of the exports is a `major` bump.
+- adding a new area or revision of an area merits a `minor` bump.
+- adding a test or fixing a bug is a `patch` bump.
