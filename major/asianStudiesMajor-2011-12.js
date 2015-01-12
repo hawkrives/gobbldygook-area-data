@@ -1,11 +1,11 @@
 import _ from 'lodash'
 
-import hasDepartment from 'app/helpers/hasDepartment'
-import {partialNameOrTitle} from 'app/helpers/partialTitle'
-import {coursesAtLevel, coursesAtOrAboveLevel} from 'app/helpers/courseLevels'
-import checkCoursesFor from 'app/helpers/checkCoursesFor'
+import hasDepartment from 'sto-helpers/lib/hasDepartment'
+import {partialNameOrTitle} from 'sto-helpers/lib/partialTitle'
+import {coursesAtLevel, coursesAtOrAboveLevel} from 'sto-helpers/lib/courseLevels'
+import checkCoursesFor from 'sto-helpers/lib/checkCoursesFor'
 
-import isRequiredCourse from 'sto-areas/lib/isRequiredCourse'
+import isRequiredCourse from 'sto-helpers/lib/isRequiredCourse'
 
 const ASIAN_REQUIRED_COURSES = [
 	{deptnum: 'ASIAN 275'},
@@ -143,8 +143,8 @@ function language(courses) {
 	}
 }
 
-function checkAsianStudiesMajor(student) {
-	return student.data().then((studentPieces) => {
+function checkAsianStudiesMajor(studentData) {
+	return studentData.then((studentPieces) => {
 		let {courses} = studentPieces
 
 		let asianStudiesMajorRequirements = [
@@ -166,6 +166,7 @@ let asianStudiesMajor = {
 	type: 'major',
 	id: 'm-asian',
 	departmentAbbr: 'ASIAN',
+	years: [2011, 2012],
 
 	check: checkAsianStudiesMajor,
 	_requirements: {

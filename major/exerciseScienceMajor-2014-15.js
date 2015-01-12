@@ -1,11 +1,11 @@
 import _ from 'lodash'
 
-import hasDepartment from 'app/helpers/hasDepartment'
-import {partialNameOrTitle} from 'app/helpers/partialTitle'
-import checkCoursesFor from 'app/helpers/checkCoursesFor'
+import hasDepartment from 'sto-helpers/lib/hasDepartment'
+import {partialNameOrTitle} from 'sto-helpers/lib/partialTitle'
+import checkCoursesFor from 'sto-helpers/lib/checkCoursesFor'
 
-import courseMatches from 'sto-areas/lib/courseMatches'
-import isRequiredCourse from 'sto-areas/lib/isRequiredCourse'
+import courseMatches from 'sto-helpers/lib/courseMatches'
+import isRequiredCourse from 'sto-helpers/lib/isRequiredCourse'
 
 const exerciseScienceRequiredCourses = [
 	{deptnum: 'BIO 143'}, {deptnum: 'BIO 243'}, {deptnum: 'ESTH 110'}, {deptnum: 'ESTH 255'},

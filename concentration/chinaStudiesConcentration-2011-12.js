@@ -1,12 +1,12 @@
 import _ from 'lodash'
 
-import hasDepartment from 'app/helpers/hasDepartment'
-import {partialNameOrTitle} from 'app/helpers/partialTitle'
-import {coursesAboveNumber} from 'app/helpers/courseLevels'
-import checkCoursesFor from 'app/helpers/checkCoursesFor'
+import hasDepartment from 'sto-helpers/lib/hasDepartment'
+import {partialNameOrTitle} from 'sto-helpers/lib/partialTitle'
+import {coursesAboveNumber} from 'sto-helpers/lib/courseLevels'
+import checkCoursesFor from 'sto-helpers/lib/checkCoursesFor'
 
-import isAsianCon from 'sto-areas/lib/isAsianCon'
-import isRequiredCourse from 'sto-areas/lib/isRequiredCourse'
+import isAsianCon from 'sto-helpers/lib/isAsianCon'
+import isRequiredCourse from 'sto-helpers/lib/isRequiredCourse'
 
 const chinaStudiesRequiredCourses = [
 	{deptnum: 'ASIAN 275'}, {deptnum: 'ASIAN 397'}, {deptnum: 'ASIAN 399'},

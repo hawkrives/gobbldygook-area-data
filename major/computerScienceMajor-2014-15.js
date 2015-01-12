@@ -1,10 +1,10 @@
 import _ from 'lodash'
 
-import hasDepartment from 'app/helpers/hasDepartment'
-import {partialNameOrTitle} from 'app/helpers/partialTitle'
-import checkCoursesFor from 'app/helpers/checkCoursesFor'
+import hasDepartment from 'sto-helpers/lib/hasDepartment'
+import {partialNameOrTitle} from 'sto-helpers/lib/partialTitle'
+import checkCoursesFor from 'sto-helpers/lib/checkCoursesFor'
 
-import isRequiredCourse from 'sto-areas/lib/isRequiredCourse'
+import isRequiredCourse from 'sto-helpers/lib/isRequiredCourse'
 
 const csDeptRequiredCourses = [
 	{deptnum: 'CSCI 121'}, {deptnum: 'CSCI 125'}, {deptnum: 'CSCI 241'}, {deptnum: 'CSCI 251'},
@@ -163,8 +163,8 @@ function capstoneCourse(courses) {
 	}
 }
 
-function checkComputerScienceMajor(student) {
-	return student.data().then((studentPieces) => {
+function checkComputerScienceMajor(studentData) {
+	return studentData.then((studentPieces) => {
 		let {courses} = studentPieces
 
 		let computerScienceMajorRequirements = [

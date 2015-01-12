@@ -1,7 +1,7 @@
 import _ from 'lodash'
 
-import hasDepartment from 'app/helpers/hasDepartment'
-import isRequiredCourse from 'sto-areas/lib/isRequiredCourse'
+import hasDepartment from 'sto-helpers/lib/hasDepartment'
+import isRequiredCourse from 'sto-helpers/lib/isRequiredCourse'
 
 const asianDeptRequiredCourses = [
 	{deptnum: 'ASIAN 275'}, {deptnum: 'ASIAN 397'}, {deptnum: 'ASIAN 399'},
