@@ -1,10 +1,10 @@
 import _ from 'lodash'
 
-import hasDepartment from 'sto-helpers/lib/hasDepartment'
-import {partialNameOrTitle} from 'sto-helpers/lib/partialTitle'
-import checkCoursesFor from 'sto-helpers/lib/checkCoursesFor'
+import hasDepartment from 'app/helpers/hasDepartment'
+import {partialNameOrTitle} from 'app/helpers/partialTitle'
+import checkCoursesFor from 'app/helpers/checkCoursesFor'
 
-import isRequiredCourse from 'sto-helpers/lib/isRequiredCourse'
+import isRequiredCourse from 'sto-areas/lib/isRequiredCourse'
 
 const csDeptRequiredCourses = [
 	{deptnum: 'CSCI 121'}, {deptnum: 'CSCI 125'}, {deptnum: 'CSCI 241'}, {deptnum: 'CSCI 251'},
@@ -50,17 +50,14 @@ function foundationCourses(courses) {
 		{
 			title: 'CS1',
 			result: cs1,
-			description: '',
 		},
 		{
 			title: 'Design',
 			result: design,
-			description: '',
 		},
 		{
 			title: 'Proof Writing',
 			result: proofWriting,
-			description: '',
 		},
 	]
 
@@ -110,17 +107,14 @@ function coreCourses(courses) {
 		{
 			title: 'Ethics',
 			result: ethics,
-			description: '**Ethics:** Computer Science 263 *(Ethics of Software Design)*',
 		},
 		{
 			title: 'Theory',
 			result: theory,
-			description: '**Theory:** Either Computer Science 276 *(Programming Languages)* or Computer Science 333 *(Theory of Computation)*',
 		},
 		{
 			title: 'Options',
 			result: options,
-			description: '**Options:** One of Computer Science 273 *(Operating Systems)*, Computer Science 284 *(Mobile Computing Applications)*, or Computer Science 300 (when it is Parallel and Distributed Computing)',
 		},
 	]
 
@@ -169,8 +163,8 @@ function capstoneCourse(courses) {
 	}
 }
 
-function checkComputerScienceMajor(studentData) {
-	return studentData.then((studentPieces) => {
+function checkComputerScienceMajor(student) {
+	return student.data().then((studentPieces) => {
 		let {courses} = studentPieces
 
 		let computerScienceMajorRequirements = [

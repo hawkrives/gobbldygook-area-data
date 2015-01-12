@@ -1,19 +1,19 @@
-import asianStudies from './asianStudiesMajor'
-import chemistry from './chemistryMajor'
+import asianStudies201112 from './asianStudiesMajor-2011-12'
+import chemistry201314 from './chemistryMajor-2013-14'
 import computerScience201415 from './computerScienceMajor-2014-15'
-import english from './englishMajor'
-import exerciseScience from './exerciseScienceMajor'
-import math from './mathMajor'
-import physics from './physicsMajor'
-import poliSci from './poliSciMajor'
+import english201314 from './englishMajor-2013-14'
+import exerciseScience from './exerciseScienceMajor-2014-15'
+import math from './mathMajor-2011-12'
+import physics from './physicsMajor-2011-12'
+import poliSci from './poliSciMajor-2014-15'
 
 export {
-	asianStudies,
-	chemistry,
+	asianStudies201112,
+	chemistry201314,
 	computerScience201415,
-	english,
-	exerciseScience,
-	math,
-	physics,
-	poliSci
+	english201314,
+	exerciseScience201415,
+	math201112,
+	physics201112,
+	poliSci201415
 }
