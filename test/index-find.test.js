@@ -1,4 +1,4 @@
-// sto-areas/test/lib-countGeneds.test.js
+// test/lib-countGeneds.test.js
 import findAreaOfStudy from '../index'
 
 describe('findAreaOfStudy', () => {
