@@ -2,10 +2,10 @@ import asianStudies201112 from './asianStudiesMajor-2011-12'
 import chemistry201314 from './chemistryMajor-2013-14'
 import computerScience201415 from './computerScienceMajor-2014-15'
 import english201314 from './englishMajor-2013-14'
-import exerciseScience from './exerciseScienceMajor-2014-15'
-import math from './mathMajor-2011-12'
-import physics from './physicsMajor-2011-12'
-import poliSci from './poliSciMajor-2014-15'
+import exerciseScience201415 from './exerciseScienceMajor-2014-15'
+import math201112 from './mathMajor-2011-12'
+import physics201112 from './physicsMajor-2011-12'
+import poliSci201415 from './poliSciMajor-2014-15'
 
 export {
 	asianStudies201112,
