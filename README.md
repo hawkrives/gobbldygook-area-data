@@ -6,6 +6,8 @@ sto-areas is the home of the area of study data for Gobbldygook. As such, while 
 ### How do I get set up? ###
 
 - Clone: `git clone https://github.com/hawkrives/gobbldygook-area-data.git`
+- Install deps: `npm install`
+	- Clean up from `prepublish`, which gets run for some reason: `npm run clean`
 - Edit: If you want to update a file, update it, then send a pull request.
 
 ### To Publish on NPM
