@@ -170,8 +170,8 @@ function electiveCourses(courses) {
 	}
 }
 
-function checkExerciseScienceMajor(student) {
-	return student.data().then((studentPieces) => {
+function checkExerciseScienceMajor(studentData) {
+	return studentData.then((studentPieces) => {
 		let {courses} = studentPieces
 
 		let exericseScienceMajorRequirements = [

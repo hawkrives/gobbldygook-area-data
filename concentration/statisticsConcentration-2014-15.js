@@ -92,8 +92,8 @@ function electiveCourses(courses) {
 	}
 }
 
-function checkStatisticsConcentration(student) {
-	return student.data().then((studentPieces) => {
+function checkStatisticsConcentration(studentData) {
+	return studentData.then((studentPieces) => {
 		let {courses} = studentPieces
 
 		let statisticsConcentrationRequirements = [

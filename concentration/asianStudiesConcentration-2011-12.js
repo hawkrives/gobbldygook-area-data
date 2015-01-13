@@ -54,8 +54,8 @@ function electives(courses) {
 	}
 }
 
-function checkAsianStudiesConcentration(student) {
-	return student.data().then((studentPieces) => {
+function checkAsianStudiesConcentration(studentData) {
+	return studentData.then((studentPieces) => {
 		let {courses} = studentPieces
 
 		let asianStudiesConcentrationRequirements = [
