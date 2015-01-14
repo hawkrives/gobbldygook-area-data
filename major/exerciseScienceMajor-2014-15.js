@@ -152,7 +152,7 @@ function electiveCourses(courses) {
 		{deptnum:'STAT 212'},
 		{deptnum:'STAT 214'},
 	]
-	let validCourses = _.filter(courses, courseMatches(validDeptNums))
+	let validCourses = _.filter(courses, courseMatches(validCourseQualifiers))
 
 	let numberTaken = _.size(validCourses)
 	let numberNeeded = 2
