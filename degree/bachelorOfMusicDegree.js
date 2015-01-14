@@ -276,4 +276,4 @@ let bachelorOfMusicDegree = {
 	},
 }
 
-export default checkBachelorOfMusicDegree
+export default bachelorOfMusicDegree
