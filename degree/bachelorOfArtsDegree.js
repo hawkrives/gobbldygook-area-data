@@ -222,7 +222,7 @@ let bachelorOfArtsDegree = {
 	type: 'degree',
 	id: 'd-ba',
 	departmentAbbr: 'B.A.',
-	years: [2014, null],
+	revisionYear: 2014,
 
 	check: checkBachelorOfArtsDegree,
 	_requirements: {

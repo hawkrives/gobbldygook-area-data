@@ -264,6 +264,7 @@ let bachelorOfMusicDegree = {
 	type: 'degree',
 	id: 'd-bm',
 	departmentAbbr: 'B.M.',
+	revisionYear: 2014,
 
 	check: checkBachelorOfMusicDegree,
 	_requirements: {

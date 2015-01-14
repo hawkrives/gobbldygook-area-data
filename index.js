@@ -13,7 +13,7 @@ let allAreas = chain(areas)
 
 let areaNotFound = {
 	title: 'Not Found',
-	years: [null, null],
+	revisionYear: null,
 	id: 'a-notfound',
 	type: 'not-found',
 	departmentAbbr: 'NOTFOUND',
