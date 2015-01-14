@@ -3,7 +3,7 @@ let poliSciMajor = {
 	type: 'major',
 	id: 'm-psci',
 	departmentAbbr: 'PSCI',
-	years: [2014, null],
+	revisionYear: 2014,
 
 	check: undefined,
 	_requirements: {

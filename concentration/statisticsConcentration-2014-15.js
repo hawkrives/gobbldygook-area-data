@@ -114,7 +114,7 @@ let statisticsConcentration = {
 	type: 'concentration',
 	id: 'c-stat',
 	departmentAbbr: 'STAT',
-	years: [2014, null],
+	revisionYear: 2014,
 
 	check: checkStatisticsConcentration,
 	_requirements: {

@@ -3,7 +3,7 @@ let womensAndGenderStudiesConcentration = {
 	type: 'concentration',
 	id: 'c-wmgst',
 	departmentAbbr: 'WMGST',
-	years: [2014, null],
+	revisionYear: 2014,
 
 	check: undefined,
 	_requirements: {

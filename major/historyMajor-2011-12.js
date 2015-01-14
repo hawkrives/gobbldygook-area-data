@@ -3,7 +3,7 @@ let historyMajor = {
 	type: 'major',
 	id: 'm-hist',
 	departmentAbbr: 'Histroy',
-	years: [2011, 2012],
+	revisionYear: 2011,
 
 	check: undefined,
 	_requirements: {

@@ -3,7 +3,7 @@ let nursingMajor = {
 	type: 'major',
 	id: 'm-nurs',
 	departmentAbbr: 'NURS',
-	years: [2014, null],
+	revisionYear: 2014,
 
 	check: undefined,
 	_requirements: {

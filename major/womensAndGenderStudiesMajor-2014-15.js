@@ -3,7 +3,7 @@ let womensAndGenderStudiesMajor = {
 	type: 'major',
 	id: 'm-wmgst',
 	departmentAbbr: 'WMGST',
-	years: [2014, null],
+	revisionYear: 2014,
 
 	check: undefined,
 	_requirements: {

@@ -112,51 +112,24 @@ function electives(courses) {
 	// Six electives, with stipulations:
 	// 1. At least three Level II
 	// 2. At least two Level III
-	// 3. At least one level III course must be a literature course
-	// 4. An IS cannot count toward a Level II
-	// 5. An IS, IR, nor English 396 can count for one of a student’s two Level III requirements
+	// 3. An IS cannot count toward a Level II
+	// 4. An IS, IR, nor English 396 can count for one of a student’s two Level III requirements
 	let englishMajorElectives = _(courses)
 		.filter(hasDeptNumBetween({dept: 'ENGL', start: 240, end: 259}))
 		.reject(isRequiredEnglishMajorCourse)
 		.value()
 
 	let levelsTwo = _(englishMajorElectives)
-		.reject({num: 298})
+		.reject({deptnum:'ENGL 298'})
 		.filter(coursesAtOrAboveLevel(200))
 		.size() >= 3
 
-	/*
-	 * checking to see if we have two above Level III
-	 * checking to see if one above Level III is a literature course
-	 */
 	let levelsThree = _(englishMajorElectives)
-		.reject({num: 298})
-		.reject({num: 396})
-		.reject({num: 298})
+		.reject({deptnum:'ENGL 298'})
+		.reject({deptnum:'ENGL 396'})
+		.reject({deptnum:'ENGL 398'})
 		.filter(coursesAtOrAboveLevel(300))
 		.size() >= 2
-
-	let literature345 = _(englishMajorElectives)
-		.filter({num:345})
-		.size() >= 1
-
-	let literature347 = _(englishMajorElectives)
-		.filter({num:347})
-		.size() >= 1
-
-	let numberLiteratureNeeded = 1
-
-	// evaluating how many courses we have fulfilled that are literature 345 or 347
-	let numberLiteratureFulfilled = _([literature345 > 0, literature347 > 0]).compact().size()
-
-	// concat the two results together
-	let fulfilledLiteratureCourses = literature345.concat(literature347)
-
-	console.log('something something something')
-	console.log(literature345)
-	console.log(literature347)
-	console.log(numberLiteratureFulfilled)
-	console.log(fulfilledLiteratureCourses)
 
 	let onlyTwoAtLevelOne = _(englishMajorElectives)
 		.filter(coursesAtLevel(100))
@@ -185,8 +158,8 @@ function electives(courses) {
 	}
 }
 
-function checkEnglishMajor(studentData) {
-	return studentData.then((studentPieces) => {
+function checkEnglishMajor(student) {
+	return student.data().then((studentPieces) => {
 		let {courses} = studentPieces
 
 		let englishMajorRequirements = [
@@ -208,16 +181,15 @@ let englishMajor = {
 	title: 'English',
 	type: 'major',
 	id: 'm-engl',
-	departmentAbbr: 'ENGL',
-	years: [2013, 2014],
+	department_abbr: 'ENGL',
 
 	check: checkEnglishMajor,
 	_requirements: {
-		crossCulturalStudies,
-		literaryHistory,
-		crossDisciplinaryOrGenre,
-		requirement1800,
-		electives,
+		//crossCulturalStudies,
+		//literaryHistory,
+		//crossDisciplinaryOrGenre,
+		//requirement1800,
+		//electives,
 	},
 }
 

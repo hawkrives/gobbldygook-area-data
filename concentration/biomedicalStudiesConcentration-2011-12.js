@@ -3,7 +3,7 @@ let biomedicalStudiesConcentration = {
 	type: 'concentration',
 	id: 'c-bmed',
 	departmentAbbr: 'BMED',
-	years: [2011, 2012],
+	revisionYear: 2011,
 
 	check: undefined,
 	_requirements: {

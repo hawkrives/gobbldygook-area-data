@@ -3,7 +3,7 @@ let frenchMajor = {
 	type: 'major',
 	id: 'm-fren',
 	departmentAbbr: 'FREN',
-	years: [2014, null],
+	revisionYear: 2014,
 
 	check: undefined,
 	_requirements: {

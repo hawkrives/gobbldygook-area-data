@@ -3,7 +3,7 @@ let integrativeStudiesMajor = {
 	type: 'major',
 	id: 'm-is',
 	departmentAbbr: 'IS',
-	years: [2011, 2012],
+	revisionYear: 2011,
 
 	check: undefined,
 	_requirements: {

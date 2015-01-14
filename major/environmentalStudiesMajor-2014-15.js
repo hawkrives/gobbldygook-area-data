@@ -3,7 +3,7 @@ let environmentalStudiesMajor = {
 	type: 'major',
 	id: 'm-envst',
 	departmentAbbr: 'ENVST',
-	years: [2014, null],
+	revisionYear: 2014,
 
 	check: undefined,
 	_requirements: {

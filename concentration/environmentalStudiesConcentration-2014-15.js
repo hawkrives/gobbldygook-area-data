@@ -3,7 +3,7 @@ let environmentalStudiesConcentration = {
 	type: 'concentration',
 	id: 'c-envst',
 	departmentAbbr: 'ENVST',
-	years: [2014, null],
+	revisionYear: 2014,
 
 	check: undefined,
 	_requirements: {

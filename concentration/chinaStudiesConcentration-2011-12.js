@@ -101,7 +101,7 @@ let chinaStudiesConcentration = {
 	type: 'concentration',
 	id: 'c-chin',
 	departmentAbbr: 'CHIN',
-	years: [2011, 2012],
+	revisionYear: 2011,
 
 	check: checkChinaStudiesConcentration,
 	_requirements: {

@@ -3,7 +3,7 @@ let theatreMajor = {
 	type: 'major',
 	id: 'm-theat',
 	departmentAbbr: 'THEAT',
-	years: [2010, 2011],
+	revisionYear: 2010,
 
 	check: undefined,
 	_requirements: {

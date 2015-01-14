@@ -22,4 +22,11 @@ describe('findAreaOfStudy', () => {
 
 		expect(findAreaOfStudy(id, year).type).to.equal('not-found')
 	})
+
+	it('can find the english major', () => {
+		let id = 'm-engl'
+		let year = 2012
+
+		expect(findAreaOfStudy(id, year)).to.be.ok
+	})
 })

@@ -3,7 +3,7 @@ let economicsMajor = {
 	type: 'major',
 	id: 'm-econ',
 	departmentAbbr: 'ECON',
-	years: [2014, null],
+	revisionYear: 2014,
 
 	check: undefined,
 	_requirements: {

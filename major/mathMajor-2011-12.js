@@ -3,7 +3,7 @@ let mathMajor = {
 	type: 'major',
 	id: 'm-math',
 	departmentAbbr: 'MATH',
-	years: [2011, 2012],
+	revisionYear: 2011,
 
 	check: undefined,
 	_requirements: {

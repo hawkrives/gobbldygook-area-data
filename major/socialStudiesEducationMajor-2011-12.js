@@ -3,7 +3,7 @@ let socialStudiesEducationMajor = {
 	type: 'major',
 	id: 'm-socialStudiesEducation',
 	departmentAbbr: 'SSED',
-	years: [2011, 2012],
+	revisionYear: 2011,
 
 	check: undefined,
 	_requirements: {

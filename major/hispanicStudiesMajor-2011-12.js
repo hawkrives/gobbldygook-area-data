@@ -3,7 +3,7 @@ let hispanicStudiesMajor = {
 	type: 'major',
 	id: 'm-hspst',
 	departmentAbbr: 'HSPST',
-	years: [2011, 2012],
+	revisionYear: 2011,
 
 	check: undefined,
 	_requirements: {

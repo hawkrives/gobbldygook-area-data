@@ -24,27 +24,11 @@ let areaNotFound = {
  * Finds an area of study.
  *
  * @param {String} id - the id to find.
- * @param {Number} yearOfGraduation - the year the student matriculated.
+ * @param {Number} yearOfRevision - the year the student matriculated.
  * @returns {Object} - an area of study.
  */
-let findAreaOfStudy = (id, yearOfGraduation) => {
-	let area = find(allAreas, (area) => {
-		if (!area.id || area.id !== id)
-			return false
-
-		if (!area.years)
-			return false
-
-		let [startYear, endYear] = area.years
-
-		let yearIsBetween = false
-		if (isNull(endYear) && startYear <= yearOfGraduation)
-			yearIsBetween = true
-		else if (endYear >= yearOfGraduation && startYear <= yearOfGraduation)
-			yearIsBetween = true
-
-		return yearIsBetween
-	})
+let findAreaOfStudy = (id, yearOfRevision) => {
+	let area = find(allAreas, {id: id, revisionYear: yearOfRevision})
 
 	return area || clone(areaNotFound)
 }

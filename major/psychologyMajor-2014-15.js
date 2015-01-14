@@ -3,7 +3,7 @@ let psychologyMajor = {
 	type: 'major',
 	id: 'm-psych',
 	departmentAbbr: 'PSYCH',
-	years: [2014, null],
+	revisionYear: 2014,
 
 	check: undefined,
 	_requirements: {

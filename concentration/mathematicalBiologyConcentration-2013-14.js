@@ -3,7 +3,7 @@ let mathematicalBiologyConcentration = {
 	type: 'concentration',
 	id: 'c-mathematicalBiology',
 	departmentAbbr: 'MATH/BIO',
-	years: [2013, 2014],
+	revisionYear: 2013,
 
 	check: undefined,
 	_requirements: {

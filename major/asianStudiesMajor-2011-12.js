@@ -166,7 +166,7 @@ let asianStudiesMajor = {
 	type: 'major',
 	id: 'm-asian',
 	departmentAbbr: 'ASIAN',
-	years: [2011, 2012],
+	revisionYear: 2011,
 
 	check: checkAsianStudiesMajor,
 	_requirements: {

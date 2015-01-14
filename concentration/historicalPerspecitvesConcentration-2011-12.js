@@ -3,7 +3,7 @@ let historicalPerspectivesConcentration = {
 	type: 'concentration',
 	id: 'c-hist',
 	departmentAbbr: 'HIST',
-	years: [2011, 2012],
+	revisionYear: 2011,
 
 	check: undefined,
 	_requirements: {

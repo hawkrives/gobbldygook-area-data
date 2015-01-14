@@ -101,7 +101,7 @@ let japanStudiesConcentration = {
 	type: 'concentration',
 	id: 'c-japan',
 	departmentAbbr: 'JAPAN',
-	years: [2014, null],
+	revisionYear: 2014,
 
 	check: checkJapanStudiesConcentration,
 	_requirements: {

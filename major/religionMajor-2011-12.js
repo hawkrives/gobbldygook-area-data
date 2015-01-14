@@ -3,7 +3,7 @@ let religionMajor = {
 	type: 'major',
 	id: 'm-rel',
 	departmentAbbr: 'REL',
-	years: [2011, 2012],
+	revisionYear: 2011,
 
 	check: undefined,
 	_requirements: {

@@ -3,7 +3,7 @@ let biologyMajor = {
 	type: 'major',
 	id: 'm-biology',
 	departmentAbbr: 'BIO',
-	years: [2014, null],
+	revisionYear: 2014,
 
 	check: undefined,
 	_requirements: {

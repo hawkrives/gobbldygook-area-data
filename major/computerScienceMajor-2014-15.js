@@ -186,7 +186,7 @@ let computerScienceMajor = {
 	type: 'major',
 	id: 'm-csci',
 	departmentAbbr: 'CSCI',
-	years: [2014, null],
+	revisionYear: 2014,
 
 	check: checkComputerScienceMajor,
 	_requirements: {

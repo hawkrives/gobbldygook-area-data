@@ -3,7 +3,7 @@ let medievalStudiesMajor = {
 	type: 'major',
 	id: 'm-medvl',
 	departmentAbbr: 'MEDVL',
-	years: [2014, null],
+	revisionYear: 2014,
 
 	check: undefined,
 	_requirements: {

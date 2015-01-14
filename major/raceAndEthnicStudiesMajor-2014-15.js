@@ -3,7 +3,7 @@ let raceAndEthnicStudiesMajor = {
 	type: 'major',
 	id: 'm-race',
 	departmentAbbr: 'RACE',
-	years: [2014, null],
+	revisionYear: 2014,
 
 	check: undefined,
 	_requirements: {

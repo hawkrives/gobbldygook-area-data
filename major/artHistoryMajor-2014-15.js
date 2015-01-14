@@ -3,7 +3,7 @@ let artHistoryMajor = {
 	type: 'major',
 	id: 'm-art',
 	departmentAbbr: 'ART',
-	years: [2014, null],
+	revisionYear: 2014,
 
 	check: undefined,
 	_requirements: {

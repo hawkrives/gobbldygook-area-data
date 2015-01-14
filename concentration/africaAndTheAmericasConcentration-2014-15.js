@@ -3,7 +3,7 @@ let africaAndTheAmericasConcentration = {
 	type: 'concentration',
 	id: 'c-afam',
 	departmentAbbr: 'AFAM',
-	years: [2014, 2015],
+	revisionYear: 2014,
 
 	check: undefined,
 	_requirements: {

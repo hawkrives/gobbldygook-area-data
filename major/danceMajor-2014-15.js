@@ -3,7 +3,7 @@ let danceMajor = {
 	type: 'major',
 	id: 'm-dance',
 	departmentAbbr: 'DANCE',
-	years: [2014, null],
+	revisionYear: 2014,
 
 	check: undefined,
 	_requirements: {

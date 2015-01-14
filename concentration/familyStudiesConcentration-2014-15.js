@@ -3,7 +3,7 @@ let familyStudiesConcentration = {
 	type: 'concentration',
 	id: 'c-famst',
 	departmentAbbr: 'FAMST',
-	years: [2014, null],
+	revisionYear: 2014,
 
 	check: undefined,
 	_requirements: {

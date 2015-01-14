@@ -3,7 +3,7 @@ let filmStudiesConcentration = {
 	type: 'concentration',
 	id: 'c-film',
 	departmentAbbr: 'FILM',
-	years: [2014, null],
+	revisionYear: 2014,
 
 	check: undefined,
 	_requirements: {

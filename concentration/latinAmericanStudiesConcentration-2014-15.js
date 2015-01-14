@@ -3,7 +3,7 @@ let latinAmericanStudiesConcentration = {
 	type: 'concentration',
 	id: 'c-lamst',
 	departmentAbbr: 'LAMST',
-	years: [2014, null],
+	revisionYear: 2014,
 
 	check: undefined,
 	_requirements: {

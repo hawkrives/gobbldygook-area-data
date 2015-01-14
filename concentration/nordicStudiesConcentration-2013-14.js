@@ -3,7 +3,7 @@ let nordicStudiesConcentration = {
 	type: 'concentration',
 	id: 'c-norw',
 	departmentAbbr: 'NORW',
-	years: [2013, 2014],
+	revisionYear: 2013,
 
 	check: undefined,
 	_requirements: {
