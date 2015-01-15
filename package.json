@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "lodash": "^2.4.1",
-    "sto-helpers": "^2.3.0"
+    "sto-helpers": "^3.0.0"
   },
   "devDependencies": {
     "6to5": "^2.12.3",
