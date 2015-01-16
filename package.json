@@ -5,7 +5,6 @@
   "main": "dist/index.js",
   "repository": "hawkrives/gobbldygook-area-data",
   "author": "Hawken M. Rives",
-  "license": "MIT",
   "scripts": {
     "push": "./bin/publish.sh",
     "prepublish": "./bin/compile.sh",
