@@ -1,3 +1,3 @@
 #!/usr/bin/env node
-var package = require('../package.json')
-console.log(package.name + ':', package.version)
+var pkg = require('../package.json')
+console.log(pkg.name + ':', pkg.version)
