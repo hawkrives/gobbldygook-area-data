@@ -5,7 +5,7 @@ import {partialNameOrTitle} from 'sto-helpers/lib/partialTitle'
 import {coursesAboveNumber} from 'sto-helpers/lib/courseLevels'
 import checkCoursesFor from 'sto-helpers/lib/checkCoursesFor'
 
-import isAsianCon from 'sto-helpers/lib/isAsianCon'
+import isAsianCon from '../lib/isAsianCon'
 import isRequiredCourse from 'sto-helpers/lib/isRequiredCourse'
 
 const japanStudiesRequiredCourses = [
