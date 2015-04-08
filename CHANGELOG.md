@@ -1,5 +1,10 @@
 # `sto-areas` changelog
 
+## 2.3.11
+- Fix imports
+	- `import x from 'y'` imports the 'default' export from y.
+	- `import * as x from 'y'` imports all of the named exports from y.
+
 ## 2.3.9
 - Stopped pinning package versions in package.json
 
