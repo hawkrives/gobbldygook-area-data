@@ -1,15 +1,17 @@
-import {chain, clone, toArray, find, isNull} from 'lodash'
+import clone from 'lodash/lang/clone'
+import find from 'lodash/collection/find'
+import flatten from 'lodash/array/flatten'
+import isNull from 'lodash/lang/isNull'
+import map from 'lodash/collection/map'
+import toArray from 'lodash/lang/toArray'
 
 import majors from './major'
 import concentrations from './concentration'
 import emphases from './emphasis'
 import degrees from './degree'
 
-let areas = [majors, concentrations, emphases, degrees]
-let allAreas = chain(areas)
-	.map(toArray)
-	.flatten()
-	.value()
+const areas = [majors, concentrations, emphases, degrees]
+const allAreas = flatten(map(areas, toArray))
 
 let areaNotFound = {
 	title: 'Not Found',
@@ -27,8 +29,8 @@ let areaNotFound = {
  * @param {Number} yearOfRevision - the year the student matriculated.
  * @returns {Object} - an area of study.
  */
-let findAreaOfStudy = (id, yearOfRevision) => {
-	let area = find(allAreas, {id: id, revisionYear: yearOfRevision})
+function findAreaOfStudy(id, yearOfRevision) {
+	const area = find(allAreas, {id: id, revisionYear: yearOfRevision})
 
 	return area || clone(areaNotFound)
 }
