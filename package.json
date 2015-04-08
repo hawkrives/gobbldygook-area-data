@@ -11,10 +11,10 @@
     "postpublish": "npm run clean",
     "clean": "rm -rf dist/",
     "deep-clean": "rm -rf dist/ node_modules/",
-    "test-function": "mocha",
-    "test-style": "jscs ./",
-    "test": "npm run test-function && npm run test-style",
-    "watch-tests": "nodemon --watch test/ --exec 'npm run test-function'"
+    "mocha": "mocha",
+    "jscs": "jscs concentration degree emphasis lib major",
+    "test": "npm run mocha && npm run jscs",
+    "watch-tests": "nodemon --watch test/ --exec 'npm run mocha'"
   },
   "dependencies": {
     "lodash": "3.6.0",
