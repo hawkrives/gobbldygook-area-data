@@ -1,5 +1,8 @@
 # `sto-areas` changelog
 
+## 2.3.12
+- fix import in commonGraduationUtilities
+
 ## 2.3.11
 - Fix imports
 	- `import x from 'y'` imports the 'default' export from y.
