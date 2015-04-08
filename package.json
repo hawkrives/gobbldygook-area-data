@@ -1,7 +1,7 @@
 {
   "name": "sto-areas",
   "description": "Area of Study data for St. Olaf college",
-  "version": "2.3.9",
+  "version": "2.3.10",
   "main": "dist/index.js",
   "repository": "hawkrives/gobbldygook-area-data",
   "author": "Hawken M. Rives",
