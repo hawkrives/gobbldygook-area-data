@@ -5,10 +5,10 @@ import isNull from 'lodash/lang/isNull'
 import map from 'lodash/collection/map'
 import toArray from 'lodash/lang/toArray'
 
-import majors from './major'
-import concentrations from './concentration'
-import emphases from './emphasis'
-import degrees from './degree'
+import * as majors from './major'
+import * as concentrations from './concentration'
+import * as emphases from './emphasis'
+import * as degrees from './degree'
 
 const areas = [majors, concentrations, emphases, degrees]
 const allAreas = flatten(map(areas, toArray))
