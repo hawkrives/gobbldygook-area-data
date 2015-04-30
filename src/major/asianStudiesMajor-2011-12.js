@@ -124,7 +124,7 @@ function language(courses) {
 		.filter(partialNameOrTitle('Chinese'))
 		.value()
 
-	let fulfilledLanguages = _.filter([japaneseLanguage, chineseLanguage], (courses) => _.size(courses) >= 2)
+	let fulfilledLanguages = _.filter([japaneseLanguage, chineseLanguage], (crs) => _.size(crs) >= 2)
 	let fulfilledLanguageCourses = _.flatten(fulfilledLanguages)
 
 	let numberFulfilled = _.size(fulfilledLanguages)

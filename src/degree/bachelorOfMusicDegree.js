@@ -16,7 +16,7 @@ function onlyMusicMajors(major) {
 	])
 }
 
-function foreignLanguage(courses) {
+function foreignLanguage() {
 	// Foreign Language [FOL] -- 0-2 courses
 	// Vocal Performance: 0-2 courses in each of 2 languages; one must be French or German)
 	return {

@@ -17,7 +17,7 @@ function crossCulturalStudies(courses) {
 		.filter(hasDeptNumBetween({dept: 'ENGL', start: 200, end: 219}))
 		.value()
 
-	let fulfilledCrossCulturalStudies = _.filter(subsetOfCourses, (courses) => _.size(courses) >= 1)
+	let fulfilledCrossCulturalStudies = _.filter(subsetOfCourses, (crs) => _.size(crs) >= 1)
 
 	let numberFulfilled = _.size(fulfilledCrossCulturalStudies)
 	let numberNeeded = 1
@@ -44,7 +44,7 @@ function literaryHistory(courses) {
 		.filter(hasDeptNumBetween({dept: 'ENGL', start: 220, end: 239}))
 		.value()
 
-	let fulfilledLiteraryHistory = _.filter(subsetOfCourses, (courses) => _.size(courses) >= 1)
+	let fulfilledLiteraryHistory = _.filter(subsetOfCourses, (crs) => _.size(crs) >= 1)
 
 	let numberFulfilled = _.size(fulfilledLiteraryHistory)
 	let numberNeeded = 1
@@ -97,8 +97,8 @@ function crossDisciplinaryOrGenre(courses) {
 	}
 }
 
-function requirement1800(courses) {
-	// Fix me
+function requirement1800() {
+	// FIXME: Not implemented
 	// Among all level II courses (category-specific and elective)
 	// 1. One must be in literature before 1800
 	// 2. One must be in literature after 1800
@@ -135,12 +135,6 @@ function electives(courses) {
 	let electivesAreGood = _.all([levelsTwo, levelsThree, onlyTwoAtLevelOne])
 	let matching = _.size(englishMajorElectives)
 	let needs = 6
-
-	let details = [
-		levelsTwo,
-		levelsThree,
-		onlyTwoAtLevelOne,
-	]
 
 	return {
 		title: 'Electives',

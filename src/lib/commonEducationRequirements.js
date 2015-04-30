@@ -2,7 +2,7 @@ import _ from 'lodash'
 
 import hasGenEd from 'sto-helpers/lib/hasGenEd'
 import countGeneds from 'sto-helpers/lib/countGeneds'
-import acrossAtLeastTwoDepartments from 'sto-helpers/lib/acrossAtLeastTwoDepartments'
+// import acrossAtLeastTwoDepartments from 'sto-helpers/lib/acrossAtLeastTwoDepartments'
 import isIntercollegiateSport from 'sto-helpers/lib/isIntercollegiateSport'
 import checkThatCoursesSpanDepartmentsAndGeneds from 'sto-helpers/lib/checkThatCoursesSpanDepartmentsAndGeneds'
 
@@ -210,15 +210,15 @@ function integratedScientificTopics(courses) {
 
 function studiesInHumanBehaviorAndSociety(courses) {
 	// HBS - 2 courses, from different departments/programs
-	let hbsCourses = _.filter(courses, hasGenEd('HBS'))
+	// let hbsCourses = _.filter(courses, hasGenEd('HBS'))
 
-	let matchingCourses = _.uniq(hbsCourses, 'crsid')
-	let coversTwoDepartments = acrossAtLeastTwoDepartments(matchingCourses)
+	// let matchingCourses = _.uniq(hbsCourses, 'crsid')
+	// let coversTwoDepartments = acrossAtLeastTwoDepartments(matchingCourses)
 
-	let result = _.all([
-		countGeneds(courses, 'HBS') >= 2,
-		coversTwoDepartments,
-	])
+	// let result = _.all([
+	// 	countGeneds(courses, 'HBS') >= 2,
+	// 	coversTwoDepartments,
+	// ])
 
 	return {
 		title: 'Studies in Human Behavior and Society',
@@ -254,18 +254,6 @@ function ethicalIssuesAndNormativePerspectives(courses) {
 		title: 'Ethical Issues and Normative Perspectives',
 		abbr: 'EIN',
 		result: result,
-	}
-}
-
-function integrativeCourses(courses) {
-	let results = [
-		ethicalIssuesAndNormativePerspectives(courses),
-	]
-
-	return {
-		title: 'Integrative',
-		result: _.all(results),
-		details: results,
 	}
 }
 

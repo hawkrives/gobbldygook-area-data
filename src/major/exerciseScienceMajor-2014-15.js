@@ -3,15 +3,6 @@ import _ from 'lodash'
 import checkCoursesFor from 'sto-helpers/lib/checkCoursesFor'
 
 import courseMatches from 'sto-helpers/lib/courseMatches'
-import isRequiredCourse from 'sto-helpers/lib/isRequiredCourse'
-
-const exerciseScienceRequiredCourses = [
-	{deptnum: 'BIO 143'}, {deptnum: 'BIO 243'}, {deptnum: 'ESTH 110'}, {deptnum: 'ESTH 255'},
-	{deptnum: 'ESTH 374'}, {deptnum: 'ESTH 375'}, {deptnum: 'ESTH 390'}, {deptnum: 'PSYCH 125'},
-]
-
-let isRequiredExerciseScienceCourse = _.curry(isRequiredCourse(exerciseScienceRequiredCourses))
-
 
 function coreBiologyCourses(courses) {
 	/*

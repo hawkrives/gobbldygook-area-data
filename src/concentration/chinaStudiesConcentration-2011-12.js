@@ -35,7 +35,7 @@ function language(courses) {
 		title: 'Language',
 		type: 'object/number',
 		description: 'Two courses in Chinese or Japanese above 112 or its equivalent',
-		result: numberFulfilled >= numberNeeded,
+		result: hasEnoughChinese,
 		details: {
 			has: numberFulfilled,
 			needs: numberNeeded,

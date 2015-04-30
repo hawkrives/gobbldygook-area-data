@@ -6,7 +6,7 @@ import hasDepartment from 'sto-helpers/lib/hasDepartment'
 import {onlyCoursesAtOrAboveLevel} from 'sto-helpers/lib/courseLevels'
 import * as utilities from './commonGraduationUtilities'
 
-function courses(coursesTaken, creditsNeeded) {
+function credits(coursesTaken, creditsNeeded) {
 	// Students must take the equivalent of 35 St. Olaf credits through a
 	// combination of full-credit and fractional-credit courses.
 
@@ -119,7 +119,7 @@ function interim(courses, fabrications, graduation) {
 	}
 }
 
-function gpa(courses) {
+function gpa() {
 	// An average grade of C (2.00 on a 4.00 system) for all courses taken for
 	// the usual letter grades. See GRADE POINT AVERAGE for details.
 
@@ -204,7 +204,7 @@ function finalTwoYearsInResidence(courses, fabrications) {
 		let finalYear = sortedYears[0]
 		let secondFinalYear = sortedYears[1]
 		let finalYearFabrications = _.filter(fabrications, {year: finalYear})
-		let secondFinalYearFabrications = _.filter(fabrications, {year: finalYear})
+		let secondFinalYearFabrications = _.filter(fabrications, {year: secondFinalYear})
 
 		let hasFabricationsInFinalYears = _.every([
 			_.isEmpty(finalYearFabrications),
@@ -285,7 +285,7 @@ function artsAndMusicDoubleMajor(courses, studies, fabrications) {
 		return _.merge(baseResult, {result: true})
 	}
 
-	let majors = _.filter(studies, {type: 'major'})
+	// let majors = _.filter(studies, {type: 'major'})
 	if (utilities.isBachelorOfBoth(studies) && utilities.isMajoringIn('Music', studies)) {
 		// there's a double-ba/bm trying to major in Music -- no.
 		return _.merge(baseResult, {result: false})
@@ -307,7 +307,7 @@ function artsAndMusicDoubleMajor(courses, studies, fabrications) {
 
 // Requirements
 export {
-	courses,
+	credits,
 	ensureLimitedOffCampusCoursesDuringFinalYear,
 	residency,
 	interim,
