@@ -19,9 +19,8 @@ function coreBiologyCourses(courses) {
 		- Biology 243
 	*/
 
-	let anatAndPhys1 = checkCoursesFor(courses, {deptnum:'BIO 143'})
-
-	let anatAndPhys2 = checkCoursesFor(courses, {deptnum:'BIO 243'})
+	let anatAndPhys1 = checkCoursesFor(courses, {deptnum: 'BIO 143'})
+	let anatAndPhys2 = checkCoursesFor(courses, {deptnum: 'BIO 243'})
 
 	let requirements = [
 		{
@@ -50,7 +49,7 @@ function corePsychologyCourses(courses) {
 		- Psychology 125
 	*/
 
-	let principlesOfPsych = checkCoursesFor(courses, {deptnum:'PSYCH 125'})
+	let principlesOfPsych = checkCoursesFor(courses, {deptnum: 'PSYCH 125'})
 
 	let requirements = [
 		{
@@ -78,15 +77,15 @@ function coreCourses(courses) {
 		- Exercise Science Theory 390
 	*/
 
-	let nutrition = checkCoursesFor(courses, {deptnum:'ESTH 110'})
+	let nutrition = checkCoursesFor(courses, {deptnum: 'ESTH 110'})
 
-	let preventionAndCare = checkCoursesFor(courses, {deptnum:'ESTH 255'})
+	let preventionAndCare = checkCoursesFor(courses, {deptnum: 'ESTH 255'})
 
-	let biomechanics = checkCoursesFor(courses, {deptnum:'ESTH 374'})
+	let biomechanics = checkCoursesFor(courses, {deptnum: 'ESTH 374'})
 
-	let physOfExercise = checkCoursesFor(courses, {deptnum:'ESTH 375'})
+	let physOfExercise = checkCoursesFor(courses, {deptnum: 'ESTH 375'})
 
-	let exerciseScienceSeminar = checkCoursesFor(courses, {deptnum:'ESTH 390'})
+	let exerciseScienceSeminar = checkCoursesFor(courses, {deptnum: 'ESTH 390'})
 
 	let requirements = [
 		{
@@ -140,15 +139,15 @@ function electiveCourses(courses) {
 	*/
 
 	let validCourseQualifiers = [
-		{deptnum:'NEURO 239'},
-		{deptnum:'ESTH 290'},
-		{deptnum:'ESTH 376'},
-		{deptnum:'PSYCH 230'},
-		{deptnum:'PSYCH 241'},
-		{deptnum:'PSYCH 247'},
-		{deptnum:'STAT 110'},
-		{deptnum:'STAT 212'},
-		{deptnum:'STAT 214'},
+		{deptnum: 'NEURO 239'},
+		{deptnum: 'ESTH 290'},
+		{deptnum: 'ESTH 376'},
+		{deptnum: 'PSYCH 230'},
+		{deptnum: 'PSYCH 241'},
+		{deptnum: 'PSYCH 247'},
+		{deptnum: 'STAT 110'},
+		{deptnum: 'STAT 212'},
+		{deptnum: 'STAT 214'},
 	]
 	let validCourses = _.filter(courses, courseMatches(validCourseQualifiers))
 

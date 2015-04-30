@@ -21,7 +21,7 @@ function interdisciplinaryApproachesToAsia(courses) {
 		title: 'Interdisciplinary Approaches to Asia',
 		type: 'boolean',
 		description: 'Asian Studies 275: Interdisciplinary Approaches to Asia',
-		result: checkCoursesFor(courses, {deptnum:'ASIAN 275'}),
+		result: checkCoursesFor(courses, {deptnum: 'ASIAN 275'}),
 	}
 }
 
@@ -86,8 +86,8 @@ function seniorSeminar(courses) {
 	// Senior Seminar: One of:
 	// - Asian Studies 397: Human Rights/Asian Context, or
 	// - Asian Studies 399: Asian Studies Seminar
-	let humanRights = checkCoursesFor(courses, {deptnum:'ASIAN 397'})
-	let asiaSeminar = checkCoursesFor(courses, {deptnum:'ASIAN 399'})
+	let humanRights = checkCoursesFor(courses, {deptnum: 'ASIAN 397'})
+	let asiaSeminar = checkCoursesFor(courses, {deptnum: 'ASIAN 399'})
 
 	let seminars = [
 		humanRights,

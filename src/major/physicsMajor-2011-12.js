@@ -6,25 +6,25 @@ import checkCoursesFor from 'sto-helpers/lib/checkCoursesFor'
 import isRequiredCourse from 'sto-helpers/lib/isRequiredCourse'
 
 const physDeptRequiredCourses = [
-	{deptnum:'PHYS 130'},
-	{deptnum:'PHYS 131'},
-	{deptnum:'PHYS 232'},
-	{deptnum:'PHYS 244'},
-	{deptnum:'PHYS 245'},
-	{deptnum:'PHYS 374'},
-	{deptnum:'PHYS 375'},
-	{deptnum:'PHYS 385'},
-	{deptnum:'PHYS 376'},
-	{deptnum:'PHYS 386'},
+	{deptnum: 'PHYS 130'},
+	{deptnum: 'PHYS 131'},
+	{deptnum: 'PHYS 232'},
+	{deptnum: 'PHYS 244'},
+	{deptnum: 'PHYS 245'},
+	{deptnum: 'PHYS 374'},
+	{deptnum: 'PHYS 375'},
+	{deptnum: 'PHYS 385'},
+	{deptnum: 'PHYS 376'},
+	{deptnum: 'PHYS 386'},
 ]
 
 let isRequiredPhysicsCourse = _.curry(isRequiredCourse(physDeptRequiredCourses))
 
 function analyticsCourses(courses) {
 	let requirements = [
-		{title: 'PHYS 130', result: checkCoursesFor(courses, {deptnum:'PHYS 130'})},
-		{title: 'PHYS 131', result: checkCoursesFor(courses, {deptnum:'PHYS 131'})},
-		{title: 'PHYS 232', result: checkCoursesFor(courses, {deptnum:'PHYS 232'})},
+		{title: 'PHYS 130', result: checkCoursesFor(courses, {deptnum: 'PHYS 130'})},
+		{title: 'PHYS 131', result: checkCoursesFor(courses, {deptnum: 'PHYS 131'})},
+		{title: 'PHYS 232', result: checkCoursesFor(courses, {deptnum: 'PHYS 232'})},
 	]
 
 	return {
@@ -38,8 +38,8 @@ function analyticsCourses(courses) {
 
 function transitionsCourses(courses) {
 	let requirements = [
-		{title: 'PHYS 244', result: checkCoursesFor(courses, {deptnum:'PHYS 244'})},
-		{title: 'PHYS 245', result: checkCoursesFor(courses, {deptnum:'PHYS 245'})},
+		{title: 'PHYS 244', result: checkCoursesFor(courses, {deptnum: 'PHYS 244'})},
+		{title: 'PHYS 245', result: checkCoursesFor(courses, {deptnum: 'PHYS 245'})},
 	]
 
 	return {

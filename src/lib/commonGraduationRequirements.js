@@ -47,7 +47,7 @@ function ensureLimitedOffCampusCoursesDuringFinalYear(courses, fabrications) {
 		.reject(hasDepartment('MUSPF')) // this might do it
 		.value()
 
-	let finalYearCourses = _.filter(courses, {year: finalYear})
+	// let finalYearCourses = _.filter(courses, {year: finalYear})
 
 	return _.any([
 		_.isEmpty(finalYearFabrications),

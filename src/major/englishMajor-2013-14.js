@@ -117,14 +117,14 @@ function electives(courses) {
 		.value()
 
 	let levelsTwo = _(englishMajorElectives)
-		.reject({deptnum:'ENGL 298'})
+		.reject({deptnum: 'ENGL 298'})
 		.filter(coursesAtOrAboveLevel(200))
 		.size() >= 3
 
 	let levelsThree = _(englishMajorElectives)
-		.reject({deptnum:'ENGL 298'})
-		.reject({deptnum:'ENGL 396'})
-		.reject({deptnum:'ENGL 398'})
+		.reject({deptnum: 'ENGL 298'})
+		.reject({deptnum: 'ENGL 396'})
+		.reject({deptnum: 'ENGL 398'})
 		.filter(coursesAtOrAboveLevel(300))
 		.size() >= 2
 
