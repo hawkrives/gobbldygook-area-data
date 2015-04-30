@@ -1,7 +1,5 @@
 import _ from 'lodash'
 
-import hasDepartment from 'sto-helpers/lib/hasDepartment'
-import {partialNameOrTitle} from 'sto-helpers/lib/partialTitle'
 import checkCoursesFor from 'sto-helpers/lib/checkCoursesFor'
 
 import courseMatches from 'sto-helpers/lib/courseMatches'

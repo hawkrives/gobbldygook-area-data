@@ -1,6 +1,5 @@
 import _ from 'lodash'
 
-import hasDepartment from 'sto-helpers/lib/hasDepartment'
 import checkCoursesFor from 'sto-helpers/lib/checkCoursesFor'
 
 function foundationCourses(courses) {

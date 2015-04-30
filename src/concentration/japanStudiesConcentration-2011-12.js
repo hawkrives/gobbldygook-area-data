@@ -3,7 +3,6 @@ import _ from 'lodash'
 import hasDepartment from 'sto-helpers/lib/hasDepartment'
 import {partialNameOrTitle} from 'sto-helpers/lib/partialTitle'
 import {coursesAboveNumber} from 'sto-helpers/lib/courseLevels'
-import checkCoursesFor from 'sto-helpers/lib/checkCoursesFor'
 
 import isAsianCon from '../lib/isAsianCon'
 import isRequiredCourse from 'sto-helpers/lib/isRequiredCourse'

@@ -1,5 +1,3 @@
-import _ from 'lodash'
-
 import onlyQuarterCreditCoursesCanBePassFail from 'sto-helpers/lib/onlyQuarterCreditCoursesCanBePassFail'
 import hasFOL from 'sto-helpers/lib/hasFOL'
 import hasGenEd from 'sto-helpers/lib/hasGenEd'
