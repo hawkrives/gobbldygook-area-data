@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "babel": "5.0.10",
+    "babel-eslint": "^3.0.1",
     "chai": "2.2.0",
     "chai-as-promised": "4.3.0",
     "eslint": "0.20.0",
