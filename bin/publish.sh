@@ -4,12 +4,9 @@ git pull --rebase
 
 npm test
 
-echo ""
-node ./bin/version.js
-echo ""
-
+version=''
 read -p "New Version [major|minor|patch]: " version
-npm version $version
+npm version "$version"
 
 npm publish
 
