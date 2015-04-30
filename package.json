@@ -13,7 +13,7 @@
     "clean": "rm -rf dist/",
     "deep-clean": "rm -rf dist/ node_modules/",
     "mocha": "mocha",
-    "eslint": "eslint",
+    "eslint": "eslint src/",
     "test": "npm run mocha && npm run eslint",
     "watch-tests": "nodemon --watch test/ --exec 'npm run mocha'"
   },
