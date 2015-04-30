@@ -11,4 +11,4 @@ let artHistoryMajor = {
 	},
 }
 
-export default ancientStudiesMajor
+export default artHistoryMajor
