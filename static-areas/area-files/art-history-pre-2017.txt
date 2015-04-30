@@ -1,0 +1,36 @@
+# Art History (Pre-2017)
+
+Intro:
+	Art 150 & 151
+
+History:
+	note: A maximum of two courses in art history taken in off-campus programs may, upon approval of the department, be applied to the major.
+
+	Five:
+		five of ( ART 250 .. 275, 370, AR/AS 270, 310, ENVST 270, PHIL 243 )
+
+	European:
+	North American:
+	Asian:
+	African:
+	Latin American:
+
+	result: Five & ( European | North American ) & ( Asian | African | Latin American )
+
+Studio Art:
+	one of: ART 102, 103, 104, 106, 205, 207, 221, 222, 223, 224, 225, 226, 227, 228, 229, 232, 233, 234, 236, 238, 240, 246, 294, 298, 340, 343, 394, 398
+
+Methods:
+	ART 350
+
+Lasting Legacy:
+	message: Majors must also successfully complete the non-credit, senior "lasting legacy" project or its equivalent.
+
+Art Credits:
+	filter: only courses where {department=ART}
+	result: nine credits
+
+title: Art History (Pre-2017)
+type: Major
+revision: 2014-15
+result: Studio Art & Art History & Art Credits

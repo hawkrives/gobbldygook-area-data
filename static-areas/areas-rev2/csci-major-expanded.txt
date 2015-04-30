@@ -1,0 +1,23 @@
+Foundation:
+	CSCI 121 | 125 # cs1
+	&
+	CSCI 241 & 251 & 252 # design
+	&
+	MATH 282.*.2014.1 | 244 | 252 # proof-writing
+
+Core:
+	CSCI 253 # algorithms
+	&
+	CSCI 263 # ethics
+	&
+	CSCI 276 | 333 # theory
+	&
+	CSCI 273 | 284 | 300.*.2014.2 | 300.*.2012.3 # systems
+
+Electives:
+	two of (
+		CSCI 300.*.2014.1, 315, 336, 350
+	)
+
+Capstone:
+	CSCI 390

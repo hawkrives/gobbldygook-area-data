@@ -1,0 +1,29 @@
+Level I: ENGL 185
+
+Level II:
+	description: 3 courses: one from cross-cultural studies, one from literary history, and one from either cross-disciplinary studies or genre.
+
+	Cross-Cultural Studies: one of()
+	Literary History: one of()
+	Cross-Disciplinary Studies: one of()
+	Genre Studies: one of()
+
+	result: all of(Cross-Cultural Studies, Literary History) & one of(Cross-Disciplinary Studies, Genre Studies)
+
+1800s:
+	description: Among all courses taken at level II (category-specific and elective), one must be in literature before 1800; one must be in literature after 1800.
+
+	Pre-1800: one of()
+	Post-1800: one of()
+
+	result: Pre-1800 & Post-1800
+
+Electives:
+	description: Six electives, two of which must be at level III. At least one level III course must be a literature course.
+	Literature: one of()
+	result: six of() & two at level(3) & Literature
+
+title: English
+type: Major
+revision: 2014
+result: all of(Level I, Level II, 1800s, Electives)
