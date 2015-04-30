@@ -1,7 +1,6 @@
 import clone from 'lodash/lang/clone'
 import find from 'lodash/collection/find'
 import flatten from 'lodash/array/flatten'
-import isNull from 'lodash/lang/isNull'
 import map from 'lodash/collection/map'
 import toArray from 'lodash/lang/toArray'
 
