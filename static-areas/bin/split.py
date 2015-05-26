@@ -124,16 +124,23 @@ pattern = r'''
     (?P<whitespace> \s+ ) |
     (?P<eof> $ )
 '''
-scan = re.compile(pattern=pattern, flags=re.VERBOSE).finditer
 
 
 def tokenize_result(text, requirement_names=[]):
+    if requirement_names:
+        rex_req_names = [re.escape(name) for name in requirement_names]
+        this_pattern = '(?P<requirement> (' + ' | '.join(rex_req_names) + ')) |\n' + pattern
+        # print(this_pattern)
+    else:
+        this_pattern = pattern
+
     stack = [[]]
 
     dept = ''
-    for match in scan(text):
+    for match in re.compile(pattern=this_pattern, flags=re.VERBOSE).finditer(text):
         token_type = match.lastgroup
         token = match.group(0)
+        # print(match.groupdict())
         # print(token_type, token)
 
         if token_type == 'open_paren':
@@ -150,11 +157,12 @@ def tokenize_result(text, requirement_names=[]):
             top = stack.pop()
             stack[-1].append(top)
 
-        elif token_type == 'req_title':
-            stack[-1].append({'type': token_type, 'text': token})
+        elif token_type == 'requirement':
+            # print(token)
+            stack[-1].append(token)
 
         elif token_type == 'identifier':
-            if is_dept(token) and token not in requirement_names:
+            if is_dept(token):
                 dept = token
 
             elif is_num(token):
