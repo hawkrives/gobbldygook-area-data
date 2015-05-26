@@ -14,10 +14,20 @@ Art History:
     ART 394, ART 396, ART 398, AR/AS 259, AR/AS 260, AR/AS 262, AR/AS 270, AR/AS 310,
     ENVST 270, PHIL 243, RACE 253]
 Studio Art:
-  2D Media: {Drawing: ART 225 | 232 | 233, Painting: ART 221 | 222, Printmaking: ART
-      226 | 227, result: Drawing & Painting & Printmaking}
-  3D Media: {Ceramics: ART 207 | 234, Sculpture: ART 223 | 224, result: Ceramics |
-      Sculpture}
+  2D Media:
+    Drawing:
+      result: [ART 225, $OR, ART 232, $OR, ART 233]
+    Painting:
+      result: [ART 221, $OR, ART 222]
+    Printmaking:
+      result: [ART 226, $OR, ART 227]
+    result: [Drawing, $AND, Painting, $AND, Printmaking]
+  3D Media:
+    Ceramics:
+      result: [ART 207, $OR, ART 234]
+    Sculpture:
+      result: [ART 223, $OR, ART 224]
+    result: [Ceramics, $OR, Sculpture]
   Foundations:
     result: [ART 102, $AND, ART 103, $AND, ART 104]
   Juried Show: {message: 'To fulfill the requirements of the Studio Art major, you
@@ -48,8 +58,8 @@ Studio Art:
         223, ART 224, ART 225, ART 226, ART 227, ART 228, ART 229, ART 232, ART 233,
       ART 234, ART 236, ART 238, ART 240, ART 246, ART 294, ART 298, ART 340, ART
         343, ART 394, ART 398]
-  result: [Foundations, $AND, 2D, $AND, 3D, $AND, New Media, $AND, Juried Show, $AND,
-    Senior Studies in Studio Art, $AND, Studio Art Courses]
+  result: [Foundations, $AND, 2D Media, $AND, 3D Media, $AND, New Media, $AND, Juried
+      Show, $AND, Senior Studies in Studio Art, $AND, Studio Art Courses]
 result: [Studio Art, $AND, Art History, $AND, Art Credits]
 revision: 2014-15
 title: Studio Art
