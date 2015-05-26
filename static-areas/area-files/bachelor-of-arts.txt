@@ -2,86 +2,86 @@
 # Now expanded to attempt to encompass the B.A. requirements
 
 Foundation:
-	First-Year Writing (FYW):
-		result: one course where {gereqs=FYW}
+    First-Year Writing (FYW):
+        result: one course where {gereqs=FYW}
 
-	Writing in Context (WRI):
-		result: four courses where {gereqs=WRI}
+    Writing in Context (WRI):
+        result: four courses where {gereqs=WRI}
 
-	Foreign Language (FOL):
-		French:    one course where {gereqs=FOL-F}
-		German:    one course where {gereqs=FOL-G}
-		Spanish:   one course where {gereqs=FOL-S}
-		Chinese:   one course where {gereqs=FOL-C}
-		Greek:     one course where {gereqs=FOL-K}
-		Latin:     one course where {gereqs=FOL-L}
-		Japanese:  one course where {gereqs=FOL-J}
-		Norwegian: one course where {gereqs=FOL-N}
-		Russian:   one course where {gereqs=FOL-R}
+    Foreign Language (FOL):
+        French:    one course where {gereqs=FOL-F}
+        German:    one course where {gereqs=FOL-G}
+        Spanish:   one course where {gereqs=FOL-S}
+        Chinese:   one course where {gereqs=FOL-C}
+        Greek:     one course where {gereqs=FOL-K}
+        Latin:     one course where {gereqs=FOL-L}
+        Japanese:  one course where {gereqs=FOL-J}
+        Norwegian: one course where {gereqs=FOL-N}
+        Russian:   one course where {gereqs=FOL-R}
 
-		result: French | German | Spanish | Chinese | Greek | Latin | Japanese | Norwegian | Russian
+        result: French | German | Spanish | Chinese | Greek | Latin | Japanese | Norwegian | Russian
 
-	Oral Communication (ORC):
-		result: one course where {gereqs=ORC}
+    Oral Communication (ORC):
+        result: one course where {gereqs=ORC}
 
-	Abstract and Quantitative Reasoning (AQR):
-		result: one course where {gereqs=AQR}
+    Abstract and Quantitative Reasoning (AQR):
+        result: one course where {gereqs=AQR}
 
-	Studies in Physical Movement (SPM):
-		result: two courses where {gereqs=SPM}
+    Studies in Physical Movement (SPM):
+        result: two courses where {gereqs=SPM}
 
-	result: &
+    result: &
 
 
 Core:
-	Historical Studies in Western Culture (HWC):
-		result: two courses where {gereqs=HWC}
+    Historical Studies in Western Culture (HWC):
+        result: two courses where {gereqs=HWC}
 
-	Multicultural Studies:
-		Domestic (MCD):
-			result: one course where {gereqs=MCD}
-		Global (MCG):
-			result: one course where {gereqs=MCG}
+    Multicultural Studies:
+        Domestic (MCD):
+            result: one course where {gereqs=MCD}
+        Global (MCG):
+            result: one course where {gereqs=MCG}
 
-		result: two courses & two departments & Domestic & Global
+        result: two courses & two departments & Domestic & Global
 
-	Artistic and Literary Studies:
-		Art (ALS-A):
-			result: one course where {gereqs=ALS-A}
-		Literature (ALS-L):
-			result: one course where {gereqs=ALS-L}
+    Artistic and Literary Studies:
+        Art (ALS-A):
+            result: one course where {gereqs=ALS-A}
+        Literature (ALS-L):
+            result: one course where {gereqs=ALS-L}
 
-		result: two courses & Art & Literature
+        result: two courses & Art & Literature
 
-	Biblical and Theological Studies:
-		Biblical (BTS-B):
-			result: one course where {gereqs=BTS-B}
-		Theological (BTS-T):
-			result: one course where {gereqs=BTS-T}
+    Biblical and Theological Studies:
+        Biblical (BTS-B):
+            result: one course where {gereqs=BTS-B}
+        Theological (BTS-T):
+            result: one course where {gereqs=BTS-T}
 
-		result: Biblical & Theological
+        result: Biblical & Theological
 
-	Studies in Natural Science:
-		Scientific Exploration and Discovery (SED):
-			result: one course where {gereqs=SED}
-		Integrated Scientific Topics (IST):
-			result: one course where {gereqs=IST}
+    Studies in Natural Science:
+        Scientific Exploration and Discovery (SED):
+            result: one course where {gereqs=SED}
+        Integrated Scientific Topics (IST):
+            result: one course where {gereqs=IST}
 
-		result: two courses & two departments & Scientific Exploration and Discovery & Integrated Scientific Topics
+        result: two courses & two departments & Scientific Exploration and Discovery & Integrated Scientific Topics
 
-	Studies in Human Behavior and Society (HBS):
-		result: two departments & two gereqs (HBS)
+    Studies in Human Behavior and Society (HBS):
+        result: two departments & two gereqs (HBS)
 
-	result: &
+    result: &
 
 Integrative:
-	Ethical Issues and Normative Perspectives (EIN):
-		let theologicalCourses = filter courses where {gereq=BTS-T}
-		let tyear = highest {year} from theologialCourses
-		filter: only courses where {year=tyear..graduation}
-		result: one gereq (EIN)
+    Ethical Issues and Normative Perspectives (EIN):
+        let theologicalCourses = filter courses where {gereq=BTS-T}
+        let tyear = highest {year} from theologialCourses
+        filter: only courses where {year=tyear..graduation}
+        result: one gereq (EIN)
 
-	result: &
+    result: &
 
 title: Bachelor of Arts
 type: Degree
