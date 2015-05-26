@@ -22,7 +22,7 @@ Foundation:
     result: [CSCI 241, $AND, CSCI 251, $AND, CSCI 252]
   Proof-Writing:
     result: [MATH 282.*.2014.1, $OR, MATH 244, $OR, MATH 252]
-  result: [CS1, $AND, Design, $AND]
+  result: [CS1, $AND, Design, $AND, Proof-Writing]
 result: [Foundation, $AND, Core, $AND, Electives, $AND, Capstone]
 revision: 2014-15
 title: Computer Science

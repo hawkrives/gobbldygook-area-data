@@ -17,23 +17,16 @@ Electives:
     - of
     - [ASIAN 121, ASIAN 123, ASIAN 126, ASIAN 130, ASIAN 156]
   note: At least two of the level II and III courses must be taken on-campus.
-  result: [6, courses, $AND, I, $AND, I]
+  result: [6, courses, $AND, Level I, $AND, Above I]
 Interdisciplinary:
   result: [ASIAN 275]
 Language:
-  Chinese:
-    result:
-    - 2
-    - of
-    - [CHIN 231, CHIN 232, CHIN 294, CHIN 298, CHIN 301, CHIN 302, CHIN 320, CHIN
-        351, CHIN 394, CHIN 398]
-  Japanese:
-    result:
-    - 2
-    - of
-    - [JAPAN 231, JAPAN 232, JAPAN 294, JAPAN 298, JAPAN 301, JAPAN 302, JAPAN 320,
-      JAPAN 394, JAPAN 398]
-  result: [Chinese, $OR, Japanese]
+  result:
+  - 2
+  - of
+  - [CHIN 231, CHIN 232, CHIN 294, CHIN 298, CHIN 301, CHIN 302, CHIN 320, CHIN 351,
+    CHIN 394, CHIN 398, JAPAN 231, JAPAN 232, JAPAN 294, JAPAN 298, JAPAN 301, JAPAN
+      302, JAPAN 320, JAPAN 394, JAPAN 398]
 Seminar:
   result: [ASIAN 397, $OR, ASIAN 399]
 result: [Language, $AND, Interdisciplinary, $AND, Seminar, $AND, Electives]
