@@ -1,5 +1,5 @@
 Foundation:
-    Intro:         CSCI 121 | 125
+    CS1:           CSCI 121 | 125
     Design:        CSCI 241 & 251 & 252
     Proof-Writing: MATH 282.*.2014.1 | 244 | 252
 
