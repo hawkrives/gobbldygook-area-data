@@ -110,6 +110,17 @@ def tokenize_where(clause):
     }
 
 
+def begin_level(stack, level):
+    stack.append([])
+    level += 1
+
+
+def end_level(stack, level):
+    top = stack.pop()
+    (stack[-1] if len(stack) else stack).append(top)
+    level -= 1
+
+
 pattern = r'''
     (?P<open_paren> \( ) |
     (?P<close_paren> \) ) |
@@ -141,24 +152,23 @@ def tokenize_result(text, requirement_names=[]):
     stack = [[]]
 
     dept = ''
+    level = 0
     for match in re.compile(pattern=this_pattern, flags=re.VERBOSE).finditer(text):
         token_type = match.lastgroup
         token = match.group(0)
         # print(token_type, token)
 
         if token_type == 'open_paren':
-            stack.append([])
+            begin_level(stack, level)
 
         elif token_type == 'close_paren':
-            top = stack.pop()
-            stack[-1].append(top)
+            end_level(stack, level)
 
         elif token_type == 'open_brace':
-            stack.append([])
+            begin_level(stack, level)
 
         elif token_type == 'close_brace':
-            top = stack.pop()
-            stack[-1].append(top)
+            end_level(stack, level)
 
         elif token_type == 'requirement':
             # print(token)
@@ -203,6 +213,11 @@ def tokenize_result(text, requirement_names=[]):
             pass
 
         elif token_type == 'eof':
+            # print(stack, file=sys.stderr)
+            # if level != 0:
+            #     for _ in range(0, level):
+            #         end_level(stack, level)
+
             break
 
         else:
