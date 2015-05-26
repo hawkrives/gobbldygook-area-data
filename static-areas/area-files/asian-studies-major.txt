@@ -10,7 +10,7 @@ Interdisciplinary: ASIAN 275
 
 
 Seminar:
-    result: one of ( ASIAN 397, 399 )
+    result: ASIAN 397 | 399
 
 
 Electives:
