@@ -15,7 +15,9 @@ save:
 	python3 bin/split.py area-files/theater.txt > stage-1/theat-m.txt
 
 examine:
-	python3 bin/split.py area-files/asian-studies-major.txt
+	# python3 bin/split.py area-files/computer-science-major.txt
+	# python3 bin/split.py area-files/asian-studies-major.txt
+	# python3 bin/split.py area-files/theater.txt
 
 test:
 	python3 bin/split.py area-files/computer-science-major.txt > tmp.txt
@@ -23,6 +25,9 @@ test:
 
 	python3 bin/split.py area-files/asian-studies-major.txt > tmp.txt
 	diff tmp.txt stage-1/asian-m.txt
+
+	python3 bin/split.py area-files/theater.txt > tmp.txt
+	diff tmp.txt stage-1/theat-m.txt
 
 	rm tmp.txt
 
