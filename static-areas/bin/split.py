@@ -227,7 +227,7 @@ def tokenize_result(text, requirement_names=[]):
 
 
 def is_req_name(name):
-    return re.match(r'^[A-Z]', name)
+    return re.match(r'^[A-Z0-9]', name)
 
 
 def find_req_names(requirement):
