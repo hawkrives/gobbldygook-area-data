@@ -144,7 +144,6 @@ def tokenize_result(text, requirement_names=[]):
     for match in re.compile(pattern=this_pattern, flags=re.VERBOSE).finditer(text):
         token_type = match.lastgroup
         token = match.group(0)
-        # print(match.groupdict())
         # print(token_type, token)
 
         if token_type == 'open_paren':
