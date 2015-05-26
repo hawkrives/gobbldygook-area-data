@@ -13,11 +13,13 @@ save:
 	python3 bin/split.py area-files/computer-science-major.txt > stage-1/csci-m.txt
 	python3 bin/split.py area-files/asian-studies-major.txt > stage-1/asian-m.txt
 	python3 bin/split.py area-files/theater.txt > stage-1/theat-m.txt
+	python3 bin/split.py area-files/chemistry-major.txt > stage-1/chem-m.txt
 
 examine:
 	# python3 bin/split.py area-files/computer-science-major.txt
 	# python3 bin/split.py area-files/asian-studies-major.txt
 	# python3 bin/split.py area-files/theater.txt
+	# python3 bin/split.py area-files/chemistry-major.txt
 
 test:
 	python3 bin/split.py area-files/computer-science-major.txt > tmp.txt
@@ -28,6 +30,9 @@ test:
 
 	python3 bin/split.py area-files/theater.txt > tmp.txt
 	diff tmp.txt stage-1/theat-m.txt
+
+	python3 bin/split.py area-files/chemistry-major.txt > tmp.txt
+	diff tmp.txt stage-1/chem-m.txt
 
 	rm tmp.txt
 
