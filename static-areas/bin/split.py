@@ -3,7 +3,7 @@ import re
 import sys
 import yaml
 
-dept_rex = re.compile(r'[A-Za-z]{2,5}')
+dept_rex = re.compile(r'[A-Za-z]{2,5}(/[A-Za-z]{2})?')
 num_rex = re.compile(r'''
     \d(\d|\*){2}       # course number
     [I]?               # optional off-campus indicator
