@@ -228,31 +228,32 @@ def add_result(requirement, key):
 
 def test():
     inputs = [
-        ('CHEM 398 && CS 250', ''),
-        ('Algorithms & Ethics & Theory & Systems', ['Algorithms', 'Ethics', 'Theory', 'Systems']),
-        ('CHEM 398 && (CS 250)', ''),
-        ('CHEM 398 && (390 || CSCI 250)', ''),
-        ('CS 121 && (CS 241 || (CS 289 && (CS 190)))', ''),
-        ('one of (CS 121 && CS 241, CHEM 390)', ''),
-        ('one of ( CHEM 398, 397, 390 )', ''),
-        ('CHEM ${398} && 399', ''),
-        ('CHEM 354 && (CS 657 || 432)', ''),
-        ('one of ( CHEM 398, 397, 390 )', ''),
-        ('three of (CHEM 271, 540, PSYCH 397, RUSSN 350, 360)', ''),
-        ('three courses where { gereq=HWC }', ''),
-        ('IST && SED && two courses', ['IST', 'SED']),
-        ('one course where {gereq = EIN && year <= tyear}', ''),
-        ('MATH 282.*.2014.1 | 244 | 252', ''),
-        ('two of ( CSCI 315, 336, 300.*.2014.1, 350 )', ''),
-        ('three occurrences of (THEAT 253)', '')
+        ['ten credits'],
+        ['CHEM 398 && CS 250'],
+        ['Algorithms & Ethics & Theory & Systems', ['Algorithms', 'Ethics', 'Theory', 'Systems']],
+        ['CHEM 398 && (CS 250)'],
+        ['CHEM 398 && (390 || CSCI 250)'],
+        ['CS 121 && (CS 241 || (CS 289 && (CS 190)))'],
+        ['one of (CS 121 && CS 241, CHEM 390)'],
+        ['one of ( CHEM 398, 397, 390 )'],
+        ['CHEM ${398} && 399'],
+        ['CHEM 354 && (CS 657 || 432)'],
+        ['one of ( CHEM 398, 397, 390 )'],
+        ['three of (CHEM 271, 540, PSYCH 397, RUSSN 350, 360)'],
+        ['three courses where { gereq=HWC }'],
+        ['IST && SED && two courses', ['IST', 'SED']],
+        ['one course where {gereq = EIN && year <= tyear}'],
+        ['MATH 282.*.2014.1 | 244 | 252'],
+        ['two of ( CSCI 315, 336, 300.*.2014.1, 350 )'],
+        ['three occurrences of (THEAT 253)'],
     ]
 
-    for req, req_names in inputs:
-        print(req)
-        print(tokenize_result(req, req_names))
+    for req in inputs:
+        print(req[0])
+        print(tokenize_result(*req))
 
 
-def parse():
+def parse(files):
     for file in sys.argv[1:]:
         with open(file, 'r') as infile:
             file = yaml.load(infile.read())
@@ -278,8 +279,10 @@ def parse():
 
 
 def main():
-    # test()
-    parse()
+    if len(sys.argv) > 1:
+        parse(sys.argv[1:])
+    else:
+        test()
 
 
 if __name__ == '__main__':
