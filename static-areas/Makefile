@@ -23,16 +23,16 @@ examine:
 
 test:
 	python3 bin/split.py area-files/computer-science-major.txt > tmp.txt
-	diff tmp.txt stage-1/csci-m.txt
+	diff stage-1/csci-m.txt tmp.txt
 
 	python3 bin/split.py area-files/asian-studies-major.txt > tmp.txt
-	diff tmp.txt stage-1/asian-m.txt
+	diff stage-1/asian-m.txt tmp.txt
 
 	python3 bin/split.py area-files/theater.txt > tmp.txt
-	diff tmp.txt stage-1/theat-m.txt
+	diff stage-1/theat-m.txt tmp.txt
 
 	python3 bin/split.py area-files/chemistry-major.txt > tmp.txt
-	diff tmp.txt stage-1/chem-m.txt
+	diff stage-1/chem-m.txt tmp.txt
 
 	rm tmp.txt
 
