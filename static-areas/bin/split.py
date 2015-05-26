@@ -220,8 +220,9 @@ def add_result(requirement, key):
                         for req, content in requirement.items()
                         if is_req_name(req)})
 
-    if 'result' in requirement:
-        requirement['result'] = tokenize_result(requirement['result'], find_req_names(requirement))
+    for key in ['result', 'filter']:
+        if key in requirement:
+            requirement[key] = tokenize_result(requirement[key], find_req_names(requirement))
 
     return requirement
 
