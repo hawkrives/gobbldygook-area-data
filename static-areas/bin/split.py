@@ -47,6 +47,8 @@ def to_number(token):
         return 8
     elif token.lower() == 'nine':
         return 9
+    elif token.lower() == 'ten':
+        return 10
 
 
 def mongoize_operator(token):
@@ -115,7 +117,7 @@ pattern = r'''
     (?P<close_brace> \} ) |
     (?P<comma> \, ) |
     (?P<count>
-        (all|any|none|zero|one|two|three|four|five|six|seven|eight|nine) ) |
+        (all|any|none|zero|one|two|three|four|five|six|seven|eight|nine|ten) ) |
     (?P<occurrence_expr> occurrences?\ of) |
     (?P<of_expr> (of|(course(s)? (\ where)?))) |
     (?P<where_expr> \w*\ ?([<=>]{1,2})\ ?\w* ) |
