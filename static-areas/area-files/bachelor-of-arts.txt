@@ -42,6 +42,7 @@ Core:
 			result: one course where {gereqs=MCD}
 		Global (MCG):
 			result: one course where {gereqs=MCG}
+
 		result: two courses & two departments & Domestic & Global
 
 	Artistic and Literary Studies:
@@ -49,6 +50,7 @@ Core:
 			result: one course where {gereqs=ALS-A}
 		Literature (ALS-L):
 			result: one course where {gereqs=ALS-L}
+
 		result: two courses & Art & Literature
 
 	Biblical and Theological Studies:
@@ -56,6 +58,7 @@ Core:
 			result: one course where {gereqs=BTS-B}
 		Theological (BTS-T):
 			result: one course where {gereqs=BTS-T}
+
 		result: Biblical & Theological
 
 	Studies in Natural Science:
@@ -63,6 +66,7 @@ Core:
 			result: one course where {gereqs=SED}
 		Integrated Scientific Topics (IST):
 			result: one course where {gereqs=IST}
+
 		result: two courses & two departments & Scientific Exploration and Discovery & Integrated Scientific Topics
 
 	Studies in Human Behavior and Society (HBS):
@@ -72,7 +76,7 @@ Core:
 
 Integrative:
 	Ethical Issues and Normative Perspectives (EIN):
-		let theologicalCourses = filter courses where {gereq|=BTS-T}
+		let theologicalCourses = filter courses where {gereq=BTS-T}
 		let tyear = highest {year} from theologialCourses
 		filter: only courses where {year=tyear..graduation}
 		result: one gereq (EIN)
