@@ -1,26 +1,22 @@
 'use strict';
 
-var _interopRequireWildcard = require('babel-runtime/helpers/interop-require-wildcard')['default'];
+var _interopRequireDefault = require('babel-runtime/helpers/interop-require-default')['default'];
 
 var _yaml = require('js-yaml');
 
-var _yaml2 = _interopRequireWildcard(_yaml);
-
-var _process = require('process');
-
-var _process2 = _interopRequireWildcard(_process);
+var _yaml2 = _interopRequireDefault(_yaml);
 
 var _fsLib = require('fs');
 
-var _fsLib2 = _interopRequireWildcard(_fsLib);
+var _fsLib2 = _interopRequireDefault(_fsLib);
 
 var _Promise = require('bluebird');
 
-var _Promise2 = _interopRequireWildcard(_Promise);
+var _Promise2 = _interopRequireDefault(_Promise);
 
 var _import = require('lodash');
 
-var _import2 = _interopRequireWildcard(_import);
+var _import2 = _interopRequireDefault(_import);
 
 var fs = _Promise2['default'].promisifyAll(_fsLib2['default']);
 
@@ -36,34 +32,8 @@ function checkForRequiredBaseKeys(rawFile) {
 	});
 }
 
-function expandResults(_ref) {
-	var areaType = _ref.areaType;
-	var areaTitle = _ref.areaTitle;
-	var setTitle = _ref.setTitle;
-	var reqTitle = _ref.reqTitle;
-	var resultString = _ref.resultString;
-
-	var overridePath = [areaType, areaTitle].concat(setTitle ? [setTitle] : []).concat(reqTitle ? [reqTitle] : []);
-
-	var overridePathString = _import2['default'].map(overridePath, function (segment) {
-		return '\'' + segment + '\'';
-	}).join(', ');
-	// console.log(overridePathString)
-
-	// const js = `const override = o('${areaType}', '${areaTitle}', '${setTitle}', '${reqTitle}')
-	// const matches = [c({dept: 'CSCI', num: 121}), c({dept: 'CSCI', num: 125})]
-
-	// let result = false
-	// if (!override) {
-	// 	const results = map(matches, (m) => Boolean(size(m)))
-	// 	result = results[0] || results[1]
-	// }`
-
-	return resultString;
-}
-
 function addResult(requirement, key) {
-	if (typeof requirement == 'string' && key != 'result') {
+	if (typeof requirement === 'string' && key !== 'result') {
 		requirement = { result: requirement };
 	}
 
@@ -78,10 +48,10 @@ function addResult(requirement, key) {
 	return requirement;
 }
 
-function processFile(rawFile, _ref2) {
-	var title = _ref2.title;
-	var type = _ref2.type;
-	var revision = _ref2.revision;
+function processFile(rawFile, _ref) {
+	var title = _ref.title;
+	var type = _ref.type;
+	var revision = _ref.revision;
 
 	if (!checkForRequiredBaseKeys(rawFile)) {
 		console.error('you don\'t have all of the required keys!');
@@ -131,8 +101,8 @@ function autoFillDepartments(data) {
 }
 
 function main() {
-	var argv = _process2['default'].argv;
-	if (_process2['default'].argv.length < 3) {
+	var argv = process.argv;
+	if (process.argv.length < 3) {
 		console.info('' + argv[1] + ' inputFile [outputFile]');
 	}
 

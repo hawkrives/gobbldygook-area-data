@@ -1,5 +1,4 @@
 import yaml from 'js-yaml'
-import process from 'process'
 import fsLib from 'fs'
 import Promise from 'bluebird'
 import _ from 'lodash'
@@ -14,26 +13,6 @@ function loadFile(path) {
 function checkForRequiredBaseKeys(rawFile) {
 	const requiredKeys = ['title', 'type', 'revision', 'result']
 	return _.all(requiredKeys, (key) => _.has(rawFile, key))
-}
-
-function expandResults({areaType, areaTitle, setTitle, reqTitle, resultString}) {
-	const overridePath = [areaType, areaTitle]
-		.concat(setTitle ? [setTitle] : [])
-		.concat(reqTitle ? [reqTitle] : [])
-
-	const overridePathString = _.map(overridePath, (segment) => `'${segment}'`).join(', ')
-	// console.log(overridePathString)
-
-	// const js = `const override = o('${areaType}', '${areaTitle}', '${setTitle}', '${reqTitle}')
-	// const matches = [c({dept: 'CSCI', num: 121}), c({dept: 'CSCI', num: 125})]
-
-	// let result = false
-	// if (!override) {
-	// 	const results = map(matches, (m) => Boolean(size(m)))
-	// 	result = results[0] || results[1]
-	// }`
-
-	return resultString
 }
 
 function addResult(requirement, key) {
