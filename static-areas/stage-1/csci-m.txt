@@ -1,0 +1,30 @@
+Capstone:
+  result: [CSCI 390]
+Core:
+  Algorithms:
+    result: [CSCI 253]
+  Ethics:
+    result: [CSCI 263]
+  Systems:
+    result: [CSCI 273, $OR, CSCI 284, $OR, CSCI 300.*.2014.2, $OR, CSCI 300.*.2012.3]
+  Theory:
+    result: [CSCI 276, $OR, CSCI 333]
+  result: [Algorithms, $AND, Ethics, $AND, Theory, $AND, Systems]
+Electives:
+  result:
+  - 2
+  - of
+  - [CSCI 300.*.2014.1, CSCI 315, CSCI 336, CSCI 350]
+Foundation:
+  CS1:
+    result: [CSCI 121, $OR, CSCI 125]
+  Design:
+    result: [CSCI 241, $AND, CSCI 251, $AND, CSCI 252]
+  Proof-Writing:
+    result: [MATH 282.*.2014.1, $OR, MATH 244, $OR, MATH 252]
+  result: [CS1, $AND, Design, $AND]
+result: [Foundation, $AND, Core, $AND, Electives, $AND, Capstone]
+revision: 2014-15
+title: Computer Science
+type: major
+
