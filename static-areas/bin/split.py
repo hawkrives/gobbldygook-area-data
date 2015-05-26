@@ -116,7 +116,7 @@ pattern = r'''
     (?P<comma> \, ) |
     (?P<count>
         (all|any|none|zero|one|two|three|four|five|six|seven|eight|nine) ) |
-    (?P<occurrence_expr> occurrence(s\ )? of) |
+    (?P<occurrence_expr> occurrences?\ of) |
     (?P<of_expr> (of|(course(s)? (\ where)?))) |
     (?P<where_expr> \w*\ ?([<=>]{1,2})\ ?\w* ) |
     (?P<identifier> [A-Za-z0-9.*/]+ ) |
