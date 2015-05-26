@@ -118,8 +118,9 @@ pattern = r'''
     (?P<comma> \, ) |
     (?P<counter>
         (all|any|none|zero|one|two|three|four|five|six|seven|eight|nine|ten) ) |
+    (?P<qualifier> (only\ )? courses\ where ) |
     (?P<occurrence_expr> occurrences?\ of) |
-    (?P<of_expr> (of|(course(s)? (\ where)?))) |
+    (?P<of_expr> of ) |
     (?P<where_expr> \w*\ ?([<=>]{1,2})\ ?\w* ) |
     (?P<identifier> [A-Za-z0-9.*/]+ ) |
     (?P<operator> (\&|\|){1,2} ) |
@@ -178,6 +179,9 @@ def tokenize_result(text, requirement_names=[]):
 
         elif token_type == 'counter':
             stack[-1].append(to_number(token))
+
+        elif token_type == 'qualifier':
+            stack[-1].append(token)
 
         elif token_type == 'of_expr':
             stack[-1].append(token)
