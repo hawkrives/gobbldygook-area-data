@@ -20,7 +20,7 @@ Physical:
     CHEM 357 & 371
 
 Elective:
-    one of: CHEM 252, 260, 298, 379, (382 & 378), 384, 386, 388, 391, 398
+    one of (CHEM 252, 260, 298, 379, (382 & 378), 384, 386, 388, 391, 398)
 
 Physics:
     Non-Majors:
@@ -31,9 +31,12 @@ Physics:
     result: Non-Majors | Majors
 
 Calculus:
-    one of: MATH 126, 128
+    one of (MATH 126, 128)
 
 Seminars:
     message: You are required to attend at least 12 departmental seminars.
 
+title: Chemistry
+type: Major
+revision: 2014-15
 result: Intro & Organic & Analytical & Physical & Elective & Physics & Calculus & Seminars
