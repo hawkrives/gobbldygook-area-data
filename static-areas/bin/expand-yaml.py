@@ -158,20 +158,13 @@ def tokenize_result(text, requirement_names=[]):
         token = match.group(0)
         # print(token_type, token)
 
-        if token_type == 'open_paren':
+        if token_type in ['open_paren', 'open_brace']:
             begin_level(stack, level)
 
-        elif token_type == 'close_paren':
-            end_level(stack, level)
-
-        elif token_type == 'open_brace':
-            begin_level(stack, level)
-
-        elif token_type == 'close_brace':
+        elif token_type in ['close_paren', 'close_brace']:
             end_level(stack, level)
 
         elif token_type == 'requirement':
-            # print(token)
             stack[-1].append(token)
 
         elif token_type == 'identifier':
@@ -183,9 +176,6 @@ def tokenize_result(text, requirement_names=[]):
 
             else:
                 stack[-1].append(token)
-
-        elif token_type == 'comma':
-            pass
 
         elif token_type == 'counter':
             stack[-1].append(to_number(token))
@@ -206,18 +196,12 @@ def tokenize_result(text, requirement_names=[]):
             stack[-1].append(tokenize_where(token))
 
         elif token_type == 'operator':
-            token = mongoize_operator(token)
-            stack[-1].append(token)
+            stack[-1].append(mongoize_operator(token))
 
-        elif token_type == 'whitespace':
+        elif token_type in ['comma', 'whitespace']:
             pass
 
         elif token_type == 'eof':
-            # print(stack, file=sys.stderr)
-            # if level != 0:
-            #     for _ in range(0, level):
-            #         end_level(stack, level)
-
             break
 
         else:
@@ -238,9 +222,14 @@ def add_result(requirement, key):
     if type(requirement) is str and key != 'result':
         requirement = {'result': requirement}
 
-    requirement.update({req: add_result(content, req)
-                        for req, content in requirement.items()
-                        if is_req_name(req)})
+    expanded = {req: add_result(content, req)
+                for req, content in requirement.items()
+                if is_req_name(req)}
+    requirement.update(expanded)
+    if expanded:
+        requirement['type'] = 'requirement-set'
+    else:
+        requirement['type'] = 'requirement'
 
     for key in ['result', 'filter']:
         if key in requirement:
@@ -269,6 +258,8 @@ def test():
         ['MATH 282.*.2014.1 | 244 | 252'],
         ['two of ( CSCI 315, 336, 300.*.2014.1, 350 )'],
         ['three occurrences of (THEAT 253)'],
+        ['Five & ( European | North American ) & ( Asian | African | Latin American )',
+            ['Five', 'European', 'North American', 'Asian', 'African', 'Latin American']]
     ]
 
     for req in inputs:
