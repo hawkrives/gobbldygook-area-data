@@ -11,15 +11,19 @@ Electives:
       AS/HI 345, ASIAN 384, ASIAN 396, ASIAN 398, CHIN 301, CHIN 302, CHIN 320, CHIN
         351, CHIN 394, CHIN 398, JAPAN 301, JAPAN 302, JAPAN 320, JAPAN 394, JAPAN
         398, ECON 218, ECON 238, HIST 240, PHIL 127]
+    type: requirement
   Level I:
     result:
     - 2
     - of
     - [ASIAN 121, ASIAN 123, ASIAN 126, ASIAN 130, ASIAN 156]
+    type: requirement
   note: At least two of the level II and III courses must be taken on-campus.
   result: [6, courses, $AND, Level I, $AND, Above I]
+  type: requirement-set
 Interdisciplinary:
   result: [ASIAN 275]
+  type: requirement
 Language:
   result:
   - 2
@@ -27,8 +31,10 @@ Language:
   - [CHIN 231, CHIN 232, CHIN 294, CHIN 298, CHIN 301, CHIN 302, CHIN 320, CHIN 351,
     CHIN 394, CHIN 398, JAPAN 231, JAPAN 232, JAPAN 294, JAPAN 298, JAPAN 301, JAPAN
       302, JAPAN 320, JAPAN 394, JAPAN 398]
+  type: requirement
 Seminar:
   result: [ASIAN 397, $OR, ASIAN 399]
+  type: requirement
 result: [Language, $AND, Interdisciplinary, $AND, Seminar, $AND, Electives]
 revision: 2014-15
 title: Asian Studies

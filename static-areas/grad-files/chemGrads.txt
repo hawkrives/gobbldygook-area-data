@@ -1,125 +1,120 @@
 These are all complete for Chemistry, I think.
 
-CHEM	125	Struct Chem & Equilib Lab
-CHEM	125	Struct Chem & Equilib
-CHEM	126	Chemical Reactions
-CHEM	126	Chem Reactions/Lab
-CHEM	247	Organic Chemistry I
-CHEM	248	Organic Chemistry II
-CHEM	253	Synthesis Lab I
-CHEM	254	Synthesis Lab II
-CHEM	255	Analytical Chem
-CHEM	256	Analytical Lab
-CHEM	357	Physical Lab
-CHEM	371	Physical Chemistry
-CHEM	379	Biochemistry I
-MATH		AP Calculus I
-MATH	126	Calculus II
-PHYS	124	Prin Physics I/Lab
-PHYS	124	Principles Physics I
-PHYS	125	Principles Physics II
-PHYS	125	Prin Physics II/Lab
+CHEM    125    Struct Chem & Equilib Lab
+CHEM    125    Struct Chem & Equilib
+CHEM    126    Chemical Reactions
+CHEM    126    Chem Reactions/Lab
+CHEM    247    Organic Chemistry I
+CHEM    248    Organic Chemistry II
+CHEM    253    Synthesis Lab I
+CHEM    254    Synthesis Lab II
+CHEM    255    Analytical Chem
+CHEM    256    Analytical Lab
+CHEM    357    Physical Lab
+CHEM    371    Physical Chemistry
+CHEM    379    Biochemistry I
+MATH           AP Calculus I
+MATH    126    Calculus II
+PHYS    124    Prin Physics I/Lab
+PHYS    124    Principles Physics I
+PHYS    125    Principles Physics II
+PHYS    125    Prin Physics II/Lab
 
 
-CHEM	125	Struct Chem & Equilib Lab
-CHEM	125	Struct Chem & Equilib
-CHEM	126	Chemical Reactions
-CHEM	126	Chem Reactions/Lab
-CHEM	247	Organic Chemistry I
-CHEM	248	Organic Chemistry II
-CHEM	253	Synthesis Lab I
-CHEM	254	Synthesis Lab II
-CHEM	255	Analytical Chem
-CHEM	256	Analytical Lab
-CHEM	357	Physical Lab
-CHEM	371	Physical Chemistry
-CHEM	379	Biochemistry I
-MATH		AP Calculus I
-MATH	128	Honors Calculus II
-PHYS	124	Prin Physics I/Lab
-PHYS	124	Principles Physics I
-PHYS	125	Principles Physics II
-PHYS	125	Prin Physics II/Lab
+CHEM    125    Struct Chem & Equilib Lab
+CHEM    125    Struct Chem & Equilib
+CHEM    126    Chemical Reactions
+CHEM    126    Chem Reactions/Lab
+CHEM    247    Organic Chemistry I
+CHEM    248    Organic Chemistry II
+CHEM    253    Synthesis Lab I
+CHEM    254    Synthesis Lab II
+CHEM    255    Analytical Chem
+CHEM    256    Analytical Lab
+CHEM    357    Physical Lab
+CHEM    371    Physical Chemistry
+CHEM    379    Biochemistry I
+MATH           AP Calculus I
+MATH    128    Honors Calculus II
+PHYS    124    Prin Physics I/Lab
+PHYS    124    Principles Physics I
+PHYS    125    Principles Physics II
+PHYS    125    Prin Physics II/Lab
 
 
-CH/BI	125	Integrated Chem/Bio I Lab
-CH/BI	125	Integrated Chem/Bio I
-CH/BI	126	Integrate Chem/Bio II Lab
-CH/BI	126	Integrated Chem/Bio II
-CH/BI	127	Integrated Chem/Bio III
-CH/BI	127	Integr Chem/Bio III Lab
-CHEM	247	Organic Chemistry I
-CHEM	248	Organic Chemistry II
-CHEM	253	Synthesis Lab I
-CHEM	254	Synthesis Lab II
-CHEM	255	Analytical Chem
-CHEM	256	Analytical Lab
-CHEM	357	Physical Lab
-CHEM	371	Physical Chemistry
-CHEM	373	Experimental Biochem
-CHEM	379	Biochemistry I
-MATH		AP Calculus I and II
-PHYS	124	Prin Physics I/Lab
-PHYS	124	Principles Physics I
-PHYS	125	Principles Physics II
-PHYS	125	Prin Physics II/Lab
+CH/BI   125    Integrated Chem/Bio I Lab
+CH/BI   125    Integrated Chem/Bio I
+CH/BI   126    Integrate Chem/Bio II Lab
+CH/BI   126    Integrated Chem/Bio II
+CH/BI   127    Integrated Chem/Bio III
+CH/BI   127    Integr Chem/Bio III Lab
+CHEM    247    Organic Chemistry I
+CHEM    248    Organic Chemistry II
+CHEM    253    Synthesis Lab I
+CHEM    254    Synthesis Lab II
+CHEM    255    Analytical Chem
+CHEM    256    Analytical Lab
+CHEM    357    Physical Lab
+CHEM    371    Physical Chemistry
+CHEM    373    Experimental Biochem
+CHEM    379    Biochemistry I
+MATH           AP Calculus I and II
+PHYS    124    Prin Physics I/Lab
+PHYS    124    Principles Physics I
+PHYS    125    Principles Physics II
+PHYS    125    Prin Physics II/Lab
 
-CHEM	121	Gen Chemistry/Lab
-CHEM	121	General Chemistry
-CHEM	123	Atom/Molec Structure
-CHEM	126	Chem Reactions/Lab
-CHEM	126	Chemical Reactions
-CHEM	247	Organic Chemistry I
-CHEM	248	Organic Chemistry II
-CHEM	252	Organometallic Chem
-CHEM	253	Synthesis Lab I
-CHEM	254	Synthesis Lab II
-CHEM	255	Analytical Chem
-CHEM	255	Analytical Chem
-CHEM	256	Analytical Lab
-CHEM	357	Physical Lab
-CHEM	371	Physical Chemistry
-CHEM	379	Biochemistry I
-CHEM	398	IR/
-MATH	120	Calculus I
-MATH	126	Calculus II
-PHYS	124	Principles Physics I
-PHYS	124	Prin Physics I/Lab
-PHYS	125	Prin Physics II/Lab
-PHYS	125	Principles Physics II
+CHEM    121    Gen Chemistry/Lab
+CHEM    121    General Chemistry
+CHEM    123    Atom/Molec Structure
+CHEM    126    Chem Reactions/Lab
+CHEM    126    Chemical Reactions
+CHEM    247    Organic Chemistry I
+CHEM    248    Organic Chemistry II
+CHEM    252    Organometallic Chem
+CHEM    253    Synthesis Lab I
+CHEM    254    Synthesis Lab II
+CHEM    255    Analytical Chem
+CHEM    255    Analytical Chem
+CHEM    256    Analytical Lab
+CHEM    357    Physical Lab
+CHEM    371    Physical Chemistry
+CHEM    379    Biochemistry I
+CHEM    398    IR/
+MATH    120    Calculus I
+MATH    126    Calculus II
+PHYS    124    Principles Physics I
+PHYS    124    Prin Physics I/Lab
+PHYS    125    Prin Physics II/Lab
+PHYS    125    Principles Physics II
 
-CHEM	125	Struct Chem & Equilib
-CHEM	125	Struct Chem & Equilib Lab
-CHEM	126	Chem Reactions/Lab
-CHEM	126	Chemical Reactions
-CHEM	247	Organic Chemistry I
-CHEM	248	Organic Chemistry II
-CHEM	253	Synthesis Lab I
-CHEM	254	Synthesis Lab II
-CHEM	255	Analytical Chem
-CHEM	256	Analytical Lab
-CHEM	357	Physical Lab
-CHEM	371	Physical Chemistry
-CHEM	378	Instr Analysis Lab
-CHEM	379	Biochemistry I
-CHEM	380	Organic Analys/Theory
-CHEM	380	Organic Analys/Theory Lab
-CHEM	382	Instrumental Analysis
-CHEM	384	Bioanalytic Chemistry
-CHEM	386	Adv Inorganic Chem
-CHEM	388	Adv Organic Chemistry
-CHEM	398	IR/MS Thread Analysis
-MATH		AP Calculus I
-MATH	128	Honors Calculus II
-MATH	220	Elem Linear Algebra
-MATH	226	Multivariable Calc
-MATH	230	Differential Equations I
-PHYS	124	Principles Physics I
-PHYS	124	Prin Physics I/Lab
-PHYS	125	Principles Physics II
-PHYS	125	Prin Physics II/Lab
-
-
-
-
-
+CHEM    125    Struct Chem & Equilib
+CHEM    125    Struct Chem & Equilib Lab
+CHEM    126    Chem Reactions/Lab
+CHEM    126    Chemical Reactions
+CHEM    247    Organic Chemistry I
+CHEM    248    Organic Chemistry II
+CHEM    253    Synthesis Lab I
+CHEM    254    Synthesis Lab II
+CHEM    255    Analytical Chem
+CHEM    256    Analytical Lab
+CHEM    357    Physical Lab
+CHEM    371    Physical Chemistry
+CHEM    378    Instr Analysis Lab
+CHEM    379    Biochemistry I
+CHEM    380    Organic Analys/Theory
+CHEM    380    Organic Analys/Theory Lab
+CHEM    382    Instrumental Analysis
+CHEM    384    Bioanalytic Chemistry
+CHEM    386    Adv Inorganic Chem
+CHEM    388    Adv Organic Chemistry
+CHEM    398    IR/MS Thread Analysis
+MATH           AP Calculus I
+MATH    128    Honors Calculus II
+MATH    220    Elem Linear Algebra
+MATH    226    Multivariable Calc
+MATH    230    Differential Equations I
+PHYS    124    Principles Physics I
+PHYS    124    Prin Physics I/Lab
+PHYS    125    Principles Physics II
+PHYS    125    Prin Physics II/Lab

@@ -3,11 +3,14 @@ Electives:
   - 1
   - of
   - [THEAT 338, THEAT 352, THEAT 379, THEAT 380, THEAT 394, THEAT 398]
+  type: requirement
 Practicum:
   Acting:
     result: [1, occurrence of, THEAT 233]
+    type: requirement
   Tech:
     result: [2, occurrences of, THEAT 253]
+    type: requirement
   result:
   - Acting
   - $AND
@@ -20,6 +23,7 @@ Practicum:
     - - {key: num, operator: $EQ, value: '233'}
       - $OR
       - {key: num, operator: $EQ, value: '253'}
+  type: requirement-set
 Theater:
   result:
   - $ALL
@@ -32,6 +36,7 @@ Theater:
     - THEAT 270
     - THEAT 271
     - THEAT 360
+  type: requirement
 result: [Theater, $AND, Electives, $AND, Practicum]
 revision: 2014-15
 title: Theater

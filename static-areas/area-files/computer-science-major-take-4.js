@@ -90,9 +90,9 @@ function Foundation({courses, overrides}) {
 		result: override || result,
 		overridden: override,
 		requirements: [
-			Intro,
-			Design,
-			ProofWriting,
+			IntroResult,
+			DesignResult,
+			ProofWritingResult,
 		]
 	}
 }
@@ -196,10 +196,10 @@ function Core({courses, overrides}) {
 		result: override || result,
 		overridden: override,
 		requirements: [
-			Algorithms,
-			Ethics,
-			Theory,
-			Systems,
+			AlgorithmsResult,
+			EthicsResult,
+			TheoryResult,
+			SystemsResult,
 		]
 	}
 }
