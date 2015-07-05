@@ -45,20 +45,14 @@ expr "expression"
   = _ e:(
       not
     / parenthetical
-    / primitive
+    / course
+    / where
+    / occurrence
+    / reference
     / of
     / modifier
   ) _
   { return e }
-
-primitive
-  = _ p:(
-      course
-    / where
-    / occurrence
-    / reference
-  ) _
-  { return p }
 
 
 // Primitives
