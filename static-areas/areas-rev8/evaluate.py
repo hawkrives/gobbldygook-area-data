@@ -5,11 +5,9 @@ import pprint
 from functools import reduce
 from data import data, overrides
 
-# - support where queries
-#   - [ ] basic queries
-#   - [ ] boolean sets of queries
-#   - [ ] nested queries
-# - write tests
+# - [x] support where queries
+# - [ ] support "x from children" modifier
+# - [ ] write tests
 
 class RequiredKeyException(Exception):
   def __init__(self, keys=[], msg='', data={}):
