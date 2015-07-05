@@ -1,8 +1,0 @@
-{
-  "dependencies": {
-    "babel": "^5.1.13",
-    "babel-runtime": "^5.1.13",
-    "bluebird": "^2.9.25",
-    "js-yaml": "^3.3.0"
-  }
-}
