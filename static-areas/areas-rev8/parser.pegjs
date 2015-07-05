@@ -1,11 +1,10 @@
 // # hanson.pegjs (take 8)
 
-/* TODO:
-- [ ] ensure that of-statements require commas between items
-- [X?] embed types into expressions
+/*
+  - [ ] ensure that of-statements require commas between items
 */
 
-/*
+/* example:
 one of (
   CHEM 110 & 115,
   CSCI 121,
@@ -46,7 +45,7 @@ where
   = count:counter _ "course""s"? _ "where" _ where:qualifier
   { return {
       $type: 'where',
-      $count: count, 
+      $count: count,
       $where: where,
   } }
 
@@ -54,8 +53,8 @@ occurrence
   = count:counter _ "occurrence""s"? _ "of" _ course:course
     { return {
         $type: 'occurrence',
-        $count: count, 
-        course
+        $count: count,
+        course,
     } }
 
 // Primitive Components
@@ -73,35 +72,48 @@ qualifier
 //  = "(" _ q:(or_q)+ _ ")"
 //    { return q }
 
-or_q
+or_q "qualification-or"
   = lhs:and_q _ "|" _ rhs:or_q
-    { return {$type: "boolean", $or: [lhs].concat('$or' in rhs ? rhs.$or : [rhs])} }
+    { return {
+      $type: "boolean",
+      $or: [lhs].concat('$or' in rhs ? rhs.$or : [rhs]),
+    } }
   / and_q
 
-and_q
-  = lhs:(parenthetical_q / qualification) _ "&" _ rhs:and_q
-    { return {$type: "boolean", $and: [lhs].concat('$and' in rhs ? rhs.$and : [rhs])} }
-  / parenthetical_q
+and_q "qualification-and"
+  = lhs:qualification _ "&" _ rhs:and_q
+    { return {
+      $type: "boolean",
+      $and: [lhs].concat('$and' in rhs ? rhs.$and : [rhs]),
+    } }
   / qualification
 
 qualification
-  = key:word _ 
-    op:operator _ 
+  = key:word _
+    op:operator _
     value:(
         word:[a-z0-9_\-]i+ !("(")
          { return word.join("") }
       / f:func _ "from" _ "courses" _ "where" _ q:qualifier
          { return Object.assign(f, {$where: q}) }
     )
-    { return {$type: "qualification", $key: key, $value: {[op]: value, $type: "operator"}} }
+    { return {
+      $type: "qualification",
+      $key: key,
+      $value: { [op]: value, $type: "operator" },
+    } }
 
 word
-  = chars:[a-z]i+ 
+  = chars:[a-z]i+
     { return chars.join("") }
 
-func
+func "function"
   = name:word _ "(" _ prop:word _ ")"
-    { return {$name: name, $prop: prop, $type: "function"} }
+    { return {
+      $name: name,
+      $prop: prop,
+      $type: "function",
+    } }
 
 operator
   = ("<=")       { return "$lte" }
@@ -117,7 +129,7 @@ _ "whitespace"
 counter
   = english_integer
   / numeric_integer
- 
+
 english_integer
   = "zero"  { return 0 }
   / "one"   { return 1 }
@@ -142,7 +154,7 @@ english_integer
   / "twenty"    { return 20 }
 
 numeric_integer
-  = num:[0-9]+ 
+  = num:[0-9]+
     { return parseInt(num.join(""), 10) }
 
 
@@ -150,7 +162,10 @@ numeric_integer
 
 not
   = "!" _ value:expr
-    { return {$type: 'boolean', $not: value} }
+    { return {
+      $type: 'boolean',
+      $not: value
+    } }
 
 parenthetical
   = "(" _ value:start _ ")"
@@ -158,26 +173,35 @@ parenthetical
 
 or
   = lhs:and _ "|" _ rhs:or
-    { return {$type: 'boolean', $or: [lhs].concat('$or' in rhs ? rhs.$or : [rhs])} }
+    { return {
+      $type: 'boolean',
+      $or: [lhs].concat('$or' in rhs ? rhs.$or : [rhs]),
+    } }
   / and
 
 and
   = lhs:expr _ "&" _ rhs:and
-    { return {$type: 'boolean', $and: [lhs].concat('$and' in rhs ? rhs.$and : [rhs])} }
+    { return {
+      $type: 'boolean',
+      $and: [lhs].concat('$and' in rhs ? rhs.$and : [rhs]),
+    } }
   / expr
 
 of
   = count:(counter / "all" / "none" { return 0 } / "any" { return 1 }) _ "of" _ "(" _ of:(
-      val:start 
+      val:start
       rest:( _ "," _ second:start { return second } )* ","?
       { return [val].concat(rest) }
     )+ _ ")"
     {
       var flattened = Array.prototype.concat.apply([], of)
+
       if (count === "all")
         count = flattened.length
+
       if (count && flattened.length < count)
         throw new Error(`this of-statement will never succeed; you requested ${count} items, but only input ${flattened.length} options (${JSON.stringify(flattened)}).`)
+
       return {
         $type: 'of',
         $count: count,
@@ -186,10 +210,13 @@ of
     }
 
 modifier
-  = count:counter _ 
-    what:("course" / "credit" / "department" & ("from" _ "children")) "s"? _ 
-    "from" _ from:(
-        "children" { return { $from: "children"}} 
+  = count:counter _
+    what:(
+        "course"
+      / "credit"
+      / "department" & ("from" _ "children")
+    ) "s"? _ "from" _ from:(
+        "children" { return { $from: "children"}}
       / "courses" _ "where" _ where:qualifier { return {$from: "where", $where: where} }
     )
     { return Object.assign({
@@ -206,7 +233,7 @@ course
     num:c_num
     info:("." section:c_sect
       y_s:("." year:c_year
-        sem:("." semester:c_sem 
+        sem:("." semester:c_sem
           { return {semester} } )?
         { return Object.assign(sem || {}, {year}) } )?
       { return Object.assign(y_s || {}, {section}) } )?
@@ -218,7 +245,7 @@ c_dept
   = dept1:(c1:[A-Z] c2:[A-Z] { return c1 + c2 })
     part2:(
         chars:[A-Z]+ { return {dept: chars.join(''), type: "join"} }
-      / "/" l1:[A-Z] l2:[A-Z] { return {dept: l1 + l2, type: "seperate"} } 
+      / "/" l1:[A-Z] l2:[A-Z] { return {dept: l1 + l2, type: "seperate"} }
     )
     {
       var {type, dept: dept2} = part2
@@ -232,8 +259,8 @@ c_dept
     }
 
 c_num "course number"
-  = p1:[0-9] 
-    p2:(n2:[0-9] n3:[0-9] {return n2 + n3} / "XX") 
+  = p1:[0-9]
+    p2:(n2:[0-9] n3:[0-9] {return n2 + n3} / "XX")
     international:"I"?
     _ lab:"L"?
     {
@@ -268,6 +295,9 @@ c_sem
   = [1-5*]
 
 requirement
-  = title:(initial:[A-Z0-9] rest:[0-9a-z\- ]i+ 
+  = title:(initial:[A-Z0-9] rest:[0-9a-z\- ]i+
       { return initial + rest.join("") } )
-    { return { $type: 'requirement', $requirement: title.trim() } }
+    { return {
+      $type: 'requirement',
+      $requirement: title.trim()
+    } }
