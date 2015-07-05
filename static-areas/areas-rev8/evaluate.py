@@ -133,7 +133,7 @@ def compareCourseAgainstOperator(course, key, operator):
     #       "$prop": "year",
     #       "$type": "function",
     #       "$where": [{
-    #         "$type": "qualification", "gereqs": {
+    #         "$type": "qualifier", "gereqs": {
     #           "$type": "operator", "$eq": "BTS-T"
     #         }
     #       }]
@@ -144,7 +144,7 @@ def compareCourseAgainstOperator(course, key, operator):
 
     if type(operator[kind]) is dict:
         # we compute the value of the function-over-where-query style operators
-        # earlier, in the filterByQualification function.
+        # earlier, in the filterByQualifier function.
         assertKeys(operator[kind], '$computed-value')
         simplifiedOperator = {kind: operator[kind]['$computed-value']}
         return compareCourseAgainstOperator(course, key, simplifiedOperator)
@@ -172,23 +172,23 @@ def compareCourseAgainstOperator(course, key, operator):
             return course[key] >= operator[kind]
 
 
-def filterByQualification(list, qualification):
-    # { "$type":"qualification", $key: "gereqs", $value: {"$type": "operator", "$eq": "EIN"} }
-    # { "$type":"qualification", $key: "year", value: {
+def filterByQualifier(list, qualifier):
+    # { "$type":"qualifier", $key: "gereqs", $value: {"$type": "operator", "$eq": "EIN"} }
+    # { "$type":"qualifier", $key: "year", value: {
     #     "$type": "operator",
     #     "$lte": {
     #       "$name": "max",
     #       "$prop": "year",
     #       "$type": "function",
     #       "$where": {
-    #         "$type": "qualification", $key: "gereqs", $value: {
+    #         "$type": "qualifier", $key: "gereqs", $value: {
     #           "$type": "operator", "$eq": "BTS-T"
     #         }
     #       }
     #     }
     # } }
 
-    operator = qualification['$value']
+    operator = qualifier['$value']
     kind = findOperatorType(operator)
 
     if type(operator[kind]) is dict:
@@ -204,9 +204,9 @@ def filterByQualification(list, qualification):
             computed = func(items)
             value['$computed-value'] = computed
 
-    print qualification
-    key = qualification['$key']
-    operator = qualification['$value']
+    print qualifier
+    key = qualifier['$key']
+    operator = qualifier['$value']
     filtered = [course
                 for course in list
                 if compareCourseAgainstOperator(course, key, operator)]
@@ -220,15 +220,15 @@ def filterByWhereClause(list, clause):
     # {
     #    "$type": "boolean",
     #    "$and": [
-    #      { "$type":"qualification", $key: "gereqs", $value: {"$type": "operator", "$eq": "EIN"} },
-    #      { "$type":"qualification", $key: "year", $value: {
+    #      { "$type":"qualifier", $key: "gereqs", $value: {"$type": "operator", "$eq": "EIN"} },
+    #      { "$type":"qualifier", $key: "year", $value: {
     #          "$type": "operator",
     #          "$lte": {
     #            "$name": "max",
     #            "$prop": "year",
     #            "$type": "function",
     #            "$where": {
-    #              "$type": "qualification", $key: "gereqs", $value: {
+    #              "$type": "qualifier", $key: "gereqs", $value: {
     #                "$type": "operator", "$eq": "BTS-T"
     #              }
     #            }
@@ -238,7 +238,7 @@ def filterByWhereClause(list, clause):
     #  }
 
     if clause['$type'] == 'qualifier':
-        return filterByQualification(list, clause)
+        return filterByQualifier(list, clause)
 
     elif clause['$type'] == 'boolean':
         if '$and' in clause:
@@ -378,7 +378,8 @@ def compute_chunk(expr, ctx, courses):
     return computed
 
 
-# The overall computation is done by compute, which is in charge of computing sub-requirements and such.
+# The overall computation is done by compute, which is in charge of computing
+# sub-requirements and such.
 
 def compute(requirement, path, courses=[], overrides={}):
     this_name = path[-1]
