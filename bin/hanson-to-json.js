@@ -1,7 +1,12 @@
+#!/usr/bin/env node
+
+import 'babel/polyfill'
+
 import yaml from 'js-yaml'
 import fs from 'graceful-fs'
-import {parse} from './hanson-peg.js'
+import {parse} from 'parse-hanson-string'
 import _ from 'lodash'
+import humanizeList from 'humanize-list'
 
 function isReqName(name) {
     return /^([A-Z]|[0-9][A-Z\- ])/.test(name)
@@ -29,7 +34,7 @@ export function enhanceFile(data, {topLevel=false}={}) {
 
     keys.forEach(key => {
         if (!isReqName(key) && !whitelist.includes(key)) {
-            console.warn(`only ${whitelist.join(', ')} keys are allowed, and ${key} is not one of them. all requirements must begin with an uppercase letter or a number.`)
+            console.warn(`only ${humanizeList(whitelist)} keys are allowed, and "${key}" is not one of them. all requirements must begin with an uppercase letter or a number.`)
         }
     })
 
@@ -39,7 +44,7 @@ export function enhanceFile(data, {topLevel=false}={}) {
         }
 
         if (isReqName(key)) {
-            value = enhanceFile(value)
+            value = enhanceFile(value, {topLevel: false})
             value["$type"] = "requirement"
         }
         else if (key === 'result' || key === 'filter') {
@@ -53,9 +58,14 @@ export function enhanceFile(data, {topLevel=false}={}) {
 
 function main() {
     const filename = process.argv[2]
+    const outfile = process.argv[3] || filename.replace(/.yaml$/, '.json')
+    if (!filename) {
+        console.log(`usage: ${process.argv[1].split('/').slice(-1)} infile [outfile]`)
+        return
+    }
     const data = loadFile(filename)
     const mutated = enhanceFile(data, {topLevel: true})
-    writeFile(filename + '.json', JSON.stringify(mutated, null, 2))
+    writeFile(outfile, JSON.stringify(mutated, null, 2))
 }
 
 main()

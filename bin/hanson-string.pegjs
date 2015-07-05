@@ -26,7 +26,6 @@ one of (
   }
 
   function expandDepartment(dept) {
-    console.log(dept)
     if (dept === 'AR')
       return 'ART'
     else if (dept === 'AS')

@@ -1,7 +1,0 @@
-to go from hanson to json:
-
-`hanson-to-json < input.hanson > output.json`
-
-to evaluate against a student:
-
-`evaluate-student [student.json [area.json]]`
