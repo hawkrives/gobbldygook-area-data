@@ -206,7 +206,7 @@ def filterByQualifier(list, qualifier):
                 func = max
             elif value['$name'] == 'min':
                 func = min
-            filtered = filterfilterByWhereClause(value['$where'])
+            filtered = filterByWhereClause(value['$where'])
             items = pluck(value['$prop'], filtered)
             computed = func(items)
             value['$computed-value'] = computed
