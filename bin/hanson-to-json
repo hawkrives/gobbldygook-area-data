@@ -73,7 +73,12 @@ function enhanceFile(data) {
             value = enhanceFile(value, { topLevel: false });
             value['$type'] = 'requirement';
         } else if (key === 'result' || key === 'filter') {
-            value = (0, _parseHansonString.parse)(value);
+            try {
+                value = (0, _parseHansonString.parse)(value);
+            } catch (e) {
+                console.error(e.message);
+                console.error('(in "' + value + '")');
+            }
         }
         return value;
     });
