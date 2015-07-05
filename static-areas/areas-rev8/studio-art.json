@@ -1,6 +1,4 @@
-# data.py
-# coding: utf-8
-data = {
+{
   "Studio Art": {
     "$type": "requirement",
     "Studio Art Courses": {
@@ -131,15 +129,29 @@ data = {
       "Photography": {
         "$type": "requirement",
         "result": {
-          "$type": "boolean", 
+          "$type": "boolean",
           "$or": [
-            {"$type": "course", "department": ["ART"], "number": 205}, 
+            {"$type": "course", "department": ["ART"], "number": 205},
             {"$type": "course", "department": ["ART"], "number": 238}
-      ]} },
-      "Interactive Image": {"$type": "requirement", "result": {"$type": "course", "department": ["ART"], "number": 228} },
-      "Digital Video":     {"$type": "requirement", "result": {"$type": "course", "department": ["ART"], "number": 229} },
-      "Performance":       {"$type": "requirement", "result": {"$type": "course", "department": ["ART"], "number": 240} },
-      "Graphic Design":    {"$type": "requirement", "result": {"$type": "course", "department": ["ART"], "number": 236} },
+          ]
+        }
+      },
+      "Interactive Image": {
+        "$type": "requirement",
+        "result": {"$type": "course", "department": ["ART"], "number": 228}
+      },
+      "Digital Video":     {
+        "$type": "requirement",
+        "result": {"$type": "course", "department": ["ART"], "number": 229}
+      },
+      "Performance":       {
+        "$type": "requirement",
+        "result": {"$type": "course", "department": ["ART"], "number": 240}
+      },
+      "Graphic Design":    {
+        "$type": "requirement",
+        "result": {"$type": "course", "department": ["ART"], "number": 236}
+      },
       "result": {
         "$count": 1,
         "$type": "of",
@@ -148,12 +160,18 @@ data = {
           {"$type": "reference", "$requirement": "Interactive Image"},
           {"$type": "reference", "$requirement": "Digital Video"},
           {"$type": "reference", "$requirement": "Performance"},
-          {"$type": "reference", "$requirement": "Graphic Design"},
+          {"$type": "reference", "$requirement": "Graphic Design"}
         ]
       }
     },
-    "Juried Show": {"$type": "requirement", "message": "To fulfill the requirements of the Studio Art major, you must enter at least two juried art exhibitions on or off campus by the beginning of your senior year."},
-    "Senior Thing": {"$type": "requirement", "result": {"$type": "course", "department": ["ART"], "number": 343}},
+    "Juried Show": {
+      "$type": "requirement",
+      "message": "To fulfill the requirements of the Studio Art major, you must enter at least two juried art exhibitions on or off campus by the beginning of your senior year."
+    },
+    "Senior Thing": {
+      "$type": "requirement",
+      "result": {"$type": "course", "department": ["ART"], "number": 343}
+    },
     "result": {
       "$count": 7,
       "$type": "of",
@@ -216,12 +234,12 @@ data = {
       "$what": "credit",
       "$from": "where",
       "$where": {
-        "$type": "qualifier", 
+        "$type": "qualifier",
         "$key": "department",
         "$value": {
-          "$type": "operator", 
+          "$type": "operator",
           "$eq": "ART"
-        } 
+        }
       }
     }
   },
@@ -236,8 +254,4 @@ data = {
       { "$type": "reference", "$requirement": "Art Credits" }
     ]
   }
-}
-
-overrides = {
-  "major.studio art.studio art.juried show": True
 }
