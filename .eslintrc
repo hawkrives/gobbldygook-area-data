@@ -1,13 +1,15 @@
 ---
 ecmaFeatures:
-  globalReturn: true  # allow return statements in the global scope
-  jsx: true  # enable JSX
-  modules: true  # enable modules
+  # allow return statements in the global scope
+  globalReturn: true
+  # enable modules
+  modules: true
 
 parser: babel-eslint
 
 env:
-  browser: true
+  browser: false
+  node: false
   es6: true
 
 # 1 means warning
@@ -35,7 +37,7 @@ rules:
 
   # stylistic issues
   new-cap: 0
-  indent: [1, tab]
+  indent: [1, 2]
   camelcase: 2
   comma-style: [1, last]
   comma-spacing: [1, {before: false, after: true}]
