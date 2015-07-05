@@ -205,10 +205,43 @@ function Core({courses, overrides}) {
 }
 
 function Electives({courses, overrides}) {
+	// result: 2 of [CSCI 300.*.2014.1, CSCI 315, CSCI 336, CSCI 350]
 	const c = partial(checkCoursesFor, courses)
 
 	const override = checkOverridesFor(overrides, 'majors', 'Computer Science', 'Electives')
 	const matches = [c({dept: 'CSCI', num: 300, year: 2014, semester: 1}), c({dept: 'CSCI', num: 315}), c({dept: 'CSCI', num: 336}), c({dept: 'CSCI', num: 350})]
+
+	let result = false
+	if (!override) {
+		const results = map(matches, (m) => Boolean(size(m)))
+		result = size(results) >= 2
+	}
+
+	return {
+		title: 'Electives',
+		description: 'One of <these courses>',
+		result: override || result,
+		overridden: override,
+		matches: matches,
+	}
+}
+
+function Electives({courses, overrides}) {
+	// result: 2 of [CSCI 300.*.2014.1, [CSCI 315 || CSCI 336], 1 of [CSCI 350, CSCI 2xx]]
+	const c = partial(checkCoursesFor, courses)
+
+	const override = checkOverridesFor(overrides, 'majors', 'Computer Science', 'Electives')
+	const matches = [
+		c({dept: 'CSCI', num: 300, year: 2014, semester: 1}),
+		[
+			c({dept: 'CSCI', num: 315}),
+			c({dept: 'CSCI', num: 336}),
+		],
+		[
+			c({dept: 'CSCI', num: 350}),
+			c({dept: 'CSCI', num: '3XX'})
+		]
+	]
 
 	let result = false
 	if (!override) {

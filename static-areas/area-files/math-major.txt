@@ -11,23 +11,29 @@ Transitions:
 Perspectives:
     note: One course from three of the four perspectives.
 
-    A:
-        result: one of (MATH 252, 352, 356)
-    C:
-        result: one of (MATH 244, 226, 230, 262, 340, 344)
-    D:
-        result: one of (MATH 232, (238 | 239), 262, CS 231, MATH 264)
-    M:
-        result: one of (MATH 242, 230, 236, 262, 266, (STAT 212 | 214 | 272), STAT 316, MATH 330)
+    A: one of (MATH 252, 352, 356)
+    C: one of (MATH 244, 226, 230, 262, 340, 344)
+    D: one of (MATH 232, (238 | 239), 262, CS 231, MATH 264)
+    M: one of (MATH 242, 230, 236, 262, 266, (STAT 212 | 214 | 272), STAT 316, MATH 330)
 
     result: three of (A, C, D, M)
 
 Level III:
     note: Two Level III courses, at least one of which must be a Mathematics course.
 
-    filter: only these courses (MATH 330, 340, 344, 348, 351, 356, 364, 382, 384, 390, 396, 398, STAT 322, CSCI 315, CSCI 333)
+    filter: only (
+        MATH 330, 340, 344, 348, 351, 356, 364, 382, 384, 390, 396, 398,
+        STAT 322,
+        CSCI 315, CSCI 333)
 
     result: two courses & one course where {department=MATH}
+    {
+        $and: [
+            {$where: {gereqs: {$eq: HBS}}, $count: 2},
+            {$prop: 'crsid', $count: 2},
+        ],
+        $filter: {$in: [MATH 330, MATH 340, MATH 344, MATH 348, MATH 351, MATH 356, MATH 364, MATH 382, MATH 384, MATH 390, MATH 396, MATH 398, STAT 322, CSCI 315, CSCI 333]}
+    }
 
 Sequence:
     note: A 200-300-level sequence of two courses, at least one of which must be a Mathematics course.
@@ -47,7 +53,7 @@ Sequence:
     Combinatorics:
         MATH 232 & 364
 
-    result: one of (Differential Equations, Complex Analysis, Real Analysis, Topology, Abstract Algebra, Geometry, Combinatorics)
+    result: Differential Equations | Complex Analysis | Real Analysis | Topology | Abstract Algebra | Geometry | Combinatorics
 
 
 Math Courses:
@@ -56,6 +62,6 @@ Math Courses:
 title: Mathematics
 type: Major
 revision: 2014
-result: all of (Basic, Transitions, Perspectives, Level III, Sequence, Math Courses)
+result: Basic & Transitions & Perspectives & Level III & Sequence & Math Courses
 
 [major, Mathematics, 2014, Sequence, Differential Equations] = true

@@ -259,7 +259,8 @@ def test():
         ['two of ( CSCI 315, 336, 300.*.2014.1, 350 )'],
         ['three occurrences of (THEAT 253)'],
         ['Five & ( European | North American ) & ( Asian | African | Latin American )',
-            ['Five', 'European', 'North American', 'Asian', 'African', 'Latin American']]
+            ['Five', 'European', 'North American', 'Asian', 'African', 'Latin American']],
+        ['one course where {gereqs = EIN, year <= max (year) from courses where {gereq=BTS-T}}']
     ]
 
     for req in inputs:

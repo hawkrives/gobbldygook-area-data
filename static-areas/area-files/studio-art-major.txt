@@ -44,8 +44,7 @@ Art History:
 
 
 Art Credits:
-    filter: only courses where {department=ART}
-    result: ten credits
+    result: ten credits where {department=ART}
 
 
 title: Studio Art

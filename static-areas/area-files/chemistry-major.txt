@@ -21,6 +21,21 @@ Physical:
 
 Elective:
     one of (CHEM 252, 260, 298, 379, (382 & 378), 384, 386, 388, 391, 398)
+    {
+        $from: [
+            CHEM 252,
+            CHEM 260,
+            CHEM 298,
+            CHEM 379,
+            {$and: [CHEM 382, CHEM 378]},
+            CHEM 384,
+            CHEM 386,
+            CHEM 388,
+            CHEM 391,
+            CHEM 398,
+        ],
+        $count: 2,
+    }
 
 Physics:
     Non-Majors:
@@ -31,7 +46,8 @@ Physics:
     result: Non-Majors | Majors
 
 Calculus:
-    one of (MATH 126, 128)
+    MATH 126 | 128
+    {$or: [MATH 126, MATH 128]}
 
 Seminars:
     message: You are required to attend at least 12 departmental seminars.

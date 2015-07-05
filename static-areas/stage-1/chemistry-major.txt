@@ -35,7 +35,15 @@ Intro:
   First Year 2:
     result: [CHEM 125, $AND, CHEM 126]
     type: requirement
-  result: [First Year 1, $OR, First Year 2, $OR, CH/BI (Old), $OR, CH/BI]
+  result:
+  - First Year 1
+  - $OR
+  - First Year 2
+  - $OR
+  - CH/BI
+  - []
+  - $OR
+  - CH/BI
   type: requirement-set
 Organic:
   result: [CHEM 247, $AND, CHEM 253, $AND, CHEM 248, $AND, CHEM 254]

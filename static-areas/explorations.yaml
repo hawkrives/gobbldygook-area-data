@@ -1,0 +1,226 @@
+or: CS 121 | 125
+
+$or:
+  - {course: CS 121}
+  - {course: CS 125}
+
+---
+
+and: ART 150 & 151
+
+$and:
+  - {course: ART 150}
+  - {course: ART 151}
+
+---
+
+and: ART 150 & 151 | 160
+# should log an error, asking for clarifying parentheses
+
+$or:
+  - $and:
+    - {course: ART 150}
+    - {course: ART 151}
+  - {course: ART 160}
+
+---
+
+and: ART 150 | 151 & 160
+# should log an error, asking for clarifying parentheses
+
+$and:
+  - $or:
+    - {course: ART 150}
+    - {course: ART 151}
+  - {course: ART 160}
+
+---
+
+of: one of (ART 101, 102, 103)
+
+$and:
+  - of:
+    - {course: ART 101}
+    - {course: ART 102}
+    - {course: ART 103}
+    count: [1, course]
+
+---
+
+of: one of (ART 101, 102, (CHEM 103 | 130))
+
+$and:
+  - of:
+    - {course: ART 101}
+    - {course: ART 102}
+    - $or:
+      - {course: CHEM 103}
+      - {course: CHEM 130}
+    count: [1, course]
+
+---
+
+where: one course where {gereqs = FYW}
+
+$and:
+  - qualifier:
+      $and:
+        - gereqs: {$eq: FYW}
+    count: [1, course]
+
+---
+
+where: one credit where {gereqs = FYW & (year = (1650 | 1670) | semester > 0)}
+
+$and:
+  - qualifier:
+      $and:
+        - gereqs: {$eq: FYW}
+        - $or:
+          - year:
+            - $or: [{$eq: 1650}, {$eq: 1670}]
+          - semester: {$gt: 0}
+    count: [1, credit]
+
+---
+
+occurrence: two occurrences of ART 101B
+
+$and:
+  - course: ART 101B
+    count: [2, occurrence]
+
+---
+
+x: two courses & two departments & SED & IST
+
+$and:
+  - {requirement: SED}
+  - {requirement: IST}
+  - count: [2, course]
+  - count: [2, {property: department}]
+
+---
+
+y: (two courses & two departments) & (SED & IST)
+
+$and:
+  - $and:
+    - {requirement: SED}
+    - {requirement: IST}
+  - $and:
+    - count: [2, course]
+    - count: [2, {property: department}]
+
+---
+
+adv: one course where {gereqs = EIN & year <= max (year) from courses where {gereqs=BTS-T}}
+
+$and:
+  - qualifier:
+      $and:
+        - gereqs: {$eq: EIN}
+        - year:
+            $lte:
+              function: max
+              property: year
+              qualifier:
+                $and:
+                  - gereqs: {$eq: BTS-T}
+    count: [1, course]
+
+---
+
+filter: only (
+  MATH 330, 340, 344, 348, 351, 356, 364, 382, 384, 390, 396, 398,
+  STAT 322,
+  CSCI 315, CSCI 333)
+result: two courses & one course where {dept=MATH}
+
+$and:
+  - count: [2, courses]
+    of:
+    - {course: MATH 330}
+    - {course: MATH 340}
+    - {course: MATH 344}
+    - {course: MATH 348}
+    - {course: MATH 351}
+    - {course: MATH 356}
+    - {course: MATH 364}
+    - {course: MATH 382}
+    - {course: MATH 384}
+    - {course: MATH 390}
+    - {course: MATH 396}
+    - {course: MATH 398}
+    - {course: STAT 322}
+    - {course: CSCI 315}
+    - {course: CSCI 333}
+  - of:
+    - {course: MATH 330}
+    - {course: MATH 340}
+    - {course: MATH 344}
+    - {course: MATH 348}
+    - {course: MATH 351}
+    - {course: MATH 356}
+    - {course: MATH 364}
+    - {course: MATH 382}
+    - {course: MATH 384}
+    - {course: MATH 390}
+    - {course: MATH 396}
+    - {course: MATH 398}
+    - {course: STAT 322}
+    - {course: CSCI 315}
+    - {course: CSCI 333}
+    qualifier:
+      $and:
+        department: {$eq: MATH}
+    count: [2, courses]
+
+---
+
+more:
+  CS 121
+  &
+  one of (
+    ART 101,
+    (
+      (CHEM 301.B & 302.B) |
+      (CSCI 251 & 252.*.2014.3) |
+      two of (ASIAN 130, 230, 399)
+    ),
+    one course where {gereq = EIN},
+  )
+  &
+  (
+    two occurrences of THEAT 235 &
+    ten credits from courses where {department = ART}
+  )
+
+$and:
+  - {course: CS 121}
+  - of:
+      - {course: ART 101}
+      - $or:
+        - $and:
+          - {course: CHEM 301, section: B}
+          - {course: CHEM 302, section: B}
+        - $and:
+          - {course: CSCI 251}
+          - {course: CSCI 252, section: '*', year: 2014, semester: 3}
+        - of:
+          - {course: ASIAN 130}
+          - {course: ASIAN 230}
+          - {course: ASIAN 399}
+          count: [2, course]
+      - qualifier:
+          $and:
+            gereq: {$eq: EIN}
+        count: [1, course]
+    count: [1, course]
+  - $and:
+    - count: [2, occurrence]
+      course: THEAT 235
+    - count: [10, credit]
+      qualifier:
+        $and:
+          department: {$eq: ART}
