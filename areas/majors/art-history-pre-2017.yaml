@@ -18,11 +18,11 @@ History:
             ENVST 270,
             PHIL 243, )
 
-    European:
-    North American:
-    Asian:
-    African:
-    Latin American:
+    European: ''
+    North American: ''
+    Asian: ''
+    African: ''
+    Latin American: ''
 
     result: Five & ( European | North American ) & ( Asian | African | Latin American )
 
