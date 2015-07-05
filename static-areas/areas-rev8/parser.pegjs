@@ -1,9 +1,9 @@
 // # hanson.pegjs (take 8)
 
-// # TODO:
-// # - ensure that of-statements require commas between items
-// # - embed types into expressions
-// # - [x] make occurrence return "$course", instead of just "course"
+/* TODO:
+- [ ] ensure that of-statements require commas between items
+- [X?] embed types into expressions
+*/
 
 /*
 one of (
