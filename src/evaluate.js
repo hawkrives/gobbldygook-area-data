@@ -1,4 +1,7 @@
+#!/usr/bin/env node
+
 /* @flow */
+
 import all from 'lodash/collection/all'
 import any from 'lodash/collection/any'
 import filter from 'lodash/collection/filter'
@@ -23,7 +26,7 @@ import fs from 'graceful-fs'
 
 
 class RequiredKeyError extends Error {
-    constructor(keys=[], msg='', data={}) {
+    constructor({keys=[], msg='', data={}}) {
         super()
         this.value = keys || msg
         this.data = data
@@ -48,8 +51,8 @@ class UnknownPropertyError extends Error {
 
 
 class BadTypeError extends Error {
-    constructor(msg, data) {
-        super()
+    constructor({msg='', data={}}) {
+        super(msg)
         this.value = msg
         this.data = data
     }
@@ -88,7 +91,7 @@ function getOccurrences(course: Object, courses: Array<Object>) {
 
 
 function assertKeys(dict: Object, ...keys): void {
-    const missingKeys = reject(keys, key => Object.keys(dict).includes(key))
+    const missingKeys = reject(keys, key => includes(Object.keys(dict), key))
     if (missingKeys.length) {
         throw new RequiredKeyError({keys: missingKeys, data: dict})
     }
@@ -108,6 +111,7 @@ function countDepartments(courses: Array<Object>): number {
 
 
 function countCredits(courses: Array<Object>): number {
+    console.log('counting credits')
     return sum(pluck(courses, 'credits'))
 }
 
@@ -307,6 +311,7 @@ function filterByWhereClause(list: Array<Object>, clause: Object) {
     }
 
     else {
+        console.log(clause)
         throw new BadTypeError({msg:'wth kind of type is this clause?', data:clause})
     }
 }
@@ -514,7 +519,7 @@ function main() {
     const result = evaluate({courses, overrides}, loadFile(areaFile))
     // evaluate('', '')
 
-    console.log(result)
+    console.log(JSON.stringify(result, null, 2))
     console.log('outcome:', result['computed'])
 }
 
