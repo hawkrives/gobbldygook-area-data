@@ -2,6 +2,7 @@
 import all from 'lodash/collection/all'
 import any from 'lodash/collection/any'
 import filter from 'lodash/collection/filter'
+import includes from 'lodash/collection/includes'
 import identity from 'lodash/utility/identity'
 import map from 'lodash/collection/map'
 import mapValues from 'lodash/object/mapValues'
@@ -70,7 +71,7 @@ function compareCourse(course: Object, to: Object): boolean {
     // course might have more keys than the dict we're comparing it to
     // 'to' will have some combination of 'year', 'semester', 'department', 'number', and 'section'
     for (const key of ['year', 'semester', 'department', 'number', 'section'])
-        if (to.includes(key) && course[key] !== to[key])
+        if (includes(to, key) && course[key] !== to[key])
             return false
     return true
 }
@@ -195,11 +196,11 @@ function compareCourseAgainstOperator(course: Object, key: string, operator: Obj
         if (kind === '$eq' || kind === '$ne')
             return (typeof course[key] === 'array'
                     ? course[key] === operator[kind]
-                    : course[key].includes(operator[kind]))
+                    : includes(course[key], operator[kind]))
         else if (kind === '$ne')
             return (typeof course[key] === 'array'
                     ? course[key] !== operator[kind]
-                    : !course[key].includes(operator[kind]))
+                    : !includes(course[key], operator[kind]))
         else if (kind === '$lt')
             return course[key] < operator[kind]
         else if (kind === '$lte')
@@ -387,7 +388,7 @@ function computeModifier(expr: Object, ctx: Object, courses: Array<Object>): boo
     assertKeys(expr, '$what', '$count', '$from')
     const what = expr['$what']
 
-    if (!(['course', 'department', 'credit'].includes(what)))
+    if (!includes(['course', 'department', 'credit'], what))
         throw new UnknownPropertyError(what)
 
     if (expr['$from'] === 'children') {
