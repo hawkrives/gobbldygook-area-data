@@ -8,6 +8,7 @@ areas-of-study: bin/hanson-to-json areas/**/*.yaml
 	rm -rf dist/
 	cp -r areas/ dist/
 	@for file in dist/**/*.yaml; do \
+		echo; \
 		echo $$file; \
 		$(hanson) $$file; \
 	done
