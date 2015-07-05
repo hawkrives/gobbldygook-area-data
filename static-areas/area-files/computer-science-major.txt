@@ -3,7 +3,7 @@ Foundation:
     Design:        CSCI 241 & 251 & 252
     Proof-Writing: MATH 282.*.2014.1 | 244 | 252
 
-    result: CS1 & Design & Proof-Writing
+    result: all of ( CS1, Design, Proof-Writing )
 
 Core:
     Algorithms: CSCI 253
@@ -11,10 +11,12 @@ Core:
     Theory:     CSCI 276 | 333
     Systems:    CSCI 273 | 284 | 300.*.2014.2 | 300.*.2012.3
 
-    result: Algorithms & Ethics & Theory & Systems
+    result: all of ( Algorithms, Ethics, Theory, Systems )
 
 Electives:
-    result: two of ( CSCI 300.*.2014.1, 315, 336, 350 )
+    two of (
+        350, 315, 336,
+        CSCI 300.*.2014.1 )
 
 Capstone:
     CSCI 390

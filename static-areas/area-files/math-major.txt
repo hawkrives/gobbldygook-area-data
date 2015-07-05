@@ -3,13 +3,13 @@ Basic:
     Calculus II: MATH 128 | 128
     Linear Algebra: MATH 220
 
-    result: all of (Calculus I, Calculus II, Linear Algebra)
+    result: all of ( Calculus I, Calculus II, Linear Algebra )
 
 Transitions:
-    result: two of (MATH 242, 244, 252)
+    two of ( MATH 242, 244, 252 )
 
 Perspectives:
-    note: One course from three of the four perspectives.
+    description: One course from three of the four perspectives.
 
     A: one of (MATH 252, 352, 356)
     C: one of (MATH 244, 226, 230, 262, 340, 344)
@@ -19,49 +19,44 @@ Perspectives:
     result: three of (A, C, D, M)
 
 Level III:
-    note: Two Level III courses, at least one of which must be a Mathematics course.
+    description: Two Level III courses, at least one of which must be a Mathematics course.
 
-    filter: only (
-        MATH 330, 340, 344, 348, 351, 356, 364, 382, 384, 390, 396, 398,
-        STAT 322,
-        CSCI 315, CSCI 333)
+    declare:
+        math-level-3: MATH 330, 340, 344, 348, 351, 356, 364, 382, 384, 390, 396, 398
 
-    result: two courses & one course where {department=MATH}
-    {
-        $and: [
-            {$where: {gereqs: {$eq: HBS}}, $count: 2},
-            {$prop: 'crsid', $count: 2},
-        ],
-        $filter: {$in: [MATH 330, MATH 340, MATH 344, MATH 348, MATH 351, MATH 356, MATH 364, MATH 382, MATH 384, MATH 390, MATH 396, MATH 398, STAT 322, CSCI 315, CSCI 333]}
-    }
+    result: two of ( $math-level-3, STAT 322, CSCI 315, CSCI 333 ) &
+            one of ( $math-level-3 )
+
 
 Sequence:
-    note: A 200-300-level sequence of two courses, at least one of which must be a Mathematics course.
+    description: A 200-300-level sequence of two courses, at least one of which must be a Mathematics course.
 
-    Differential Equations:
-        MATH 230 & 330
-    Complex Analysis:
-        MATH 226 & 340
-    Real Analysis:
-        MATH 244 & 344
-    Topology:
-        MATH 224 & 348
-    Abstract Algebra:
-        MATH 252 & 352
-    Geometry:
-        MATH 220 & 356
-    Combinatorics:
-        MATH 232 & 364
+    Differential Equations: MATH 230 & 330
+    Complex Analysis:       MATH 226 & 340
+    Real Analysis:          MATH 244 & 344
+    Topology:               MATH 224 & 348
+    Abstract Algebra:       MATH 252 & 352
+    Geometry:               MATH 220 & 356
+    Combinatorics:          MATH 232 & 364
 
-    result: Differential Equations | Complex Analysis | Real Analysis | Topology | Abstract Algebra | Geometry | Combinatorics
+    result: one of (
+        Differential Equations,
+        Complex Analysis,
+        Real Analysis,
+        Topology,
+        Abstract Algebra,
+        Geometry,
+        Combinatorics )
 
 
 Math Courses:
-    result: six of (MATH 120, 126, 128, 220, 242, 244, 252, 226, 230, 232, 236, 238, 239, 262, 266, 2**, STAT)
+    six of (
+        MATH 120, 126, 128, 220, 242,
+             244, 252, 226, 230, 232,
+             236, 238, 239, 262, 266,
+             STAT 2XX)
 
 title: Mathematics
 type: Major
-revision: 2014
-result: Basic & Transitions & Perspectives & Level III & Sequence & Math Courses
-
-[major, Mathematics, 2014, Sequence, Differential Equations] = true
+revision: 2014-15
+result: all of (Basic, Transitions, Perspectives, Level III, Sequence, Math Courses)

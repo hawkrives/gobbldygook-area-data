@@ -4,23 +4,27 @@
 
 Theater:
     # Course requirements: Theater 130, 140, 180, 232, 240 or 250, 270, 271, 360,
-    result: all of (THEAT 130, 140, 180, 232, (240 | 250), 270, 271, 360)
+    all of (
+        THEAT 130, 140, 180, 232,
+              (240 | 250),
+              270, 271, 360)
 
 Electives:
     # plus one additional course selected from: Theater 338, 352, 379, 380, 394, 398.
-    result: one of (THEAT 338, 352, 379, 380, 394, 398)
+    one of (THEAT 338, 352, 379, 380, 394, 398)
 
 Practicum:
-    # All students must enroll in four practicum classes, of which at least
-    # one must be Theater 233 and at least two must be Theater 253, the fourth
-    # practicum class being a choice of either 233 or 253.
+    description:
+        All students must enroll in four practicum classes, of which at least
+        one must be Theater 233 and at least two must be Theater 253, the fourth
+        practicum class being a choice of either 233 or 253.
 
     Acting:
         one occurrence of THEAT 233
     Tech:
         two occurrences of THEAT 253
 
-    result: Acting & Tech & four courses where {dept=THEAT & {num=233 | num=253}}
+    result: Acting & Tech & four courses where { dept = THEAT & {num = 233 | num = 253} }
 
 title: Theater
 type: Major

@@ -19,7 +19,10 @@ History:
     todo: I only count five courses required in the original wording. Ask Gwen about that.
 
     Six Courses:
-        result: six of ( ART 161, 251, 252, 253, 254, 255, 256, AS/AR 259, 260 262, ART 263, 269, AR/AS 270, ART 271, 275, 277, 280 )
+        six of (
+            ART 161, 251, 252, 253, 254, 255, 256,
+            AS/AR 259, 260 262, ART 263, 269, AR/AS 270,
+            ART 271, 275, 277, 280 )
 
     History of Architecture:
         ART 161
@@ -37,7 +40,10 @@ History:
     result: History of Architecture & Non-Western Traditions & Before 1600 & After 1600
 
 Studio Art:
-    result: one of ( ART 102, 103, 104, 106, 205, 207, 221, 222, 223, 224, 225, 226, 227, 228, 229, 232, 233, 234, 236, 238, 240, 246, 294, 298, 340, 343, 394, 398 )
+    one of (
+        ART 102, 103, 104, 106, 205, 207, 221, 222, 223,
+        224, 225, 226, 227, 228, 229, 232, 233, 234, 236,
+        238, 240, 246, 294, 298, 340, 343, 394, 398 )
 
 Methods:
     ART 350
@@ -46,10 +52,9 @@ Lasting Legacy:
     message: Majors must also successfully complete the non-credit, senior "lasting legacy" project or its equivalent.
 
 Art Credits:
-    filter: only courses where {department=ART}
-    result: nine credits
+    result: nine credits from courses where { department = ART }
 
 title: Art History (Post-2018)
 type: Major
 revision: 2014-15
-result: Studio Art & Art History & Art Credits
+result: all of ( Studio Art, Art History, Art Credits )

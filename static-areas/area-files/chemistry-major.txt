@@ -8,7 +8,7 @@ Intro:
     CH/BI:
         CH/BI 125 & 126 & 227
 
-    result: First Year 1 | First Year 2 | CH/BI (Old) | CH/BI
+    result: one of (First Year 1, First Year 2, CH/BI (Old), CH/BI)
 
 Organic:
     CHEM 247 & 253 & 248 & 254
@@ -21,21 +21,6 @@ Physical:
 
 Elective:
     one of (CHEM 252, 260, 298, 379, (382 & 378), 384, 386, 388, 391, 398)
-    {
-        $from: [
-            CHEM 252,
-            CHEM 260,
-            CHEM 298,
-            CHEM 379,
-            {$and: [CHEM 382, CHEM 378]},
-            CHEM 384,
-            CHEM 386,
-            CHEM 388,
-            CHEM 391,
-            CHEM 398,
-        ],
-        $count: 2,
-    }
 
 Physics:
     Non-Majors:
@@ -47,7 +32,6 @@ Physics:
 
 Calculus:
     MATH 126 | 128
-    {$or: [MATH 126, MATH 128]}
 
 Seminars:
     message: You are required to attend at least 12 departmental seminars.
@@ -55,4 +39,7 @@ Seminars:
 title: Chemistry
 type: Major
 revision: 2014-15
-result: Intro & Organic & Analytical & Physical & Elective & Physics & Calculus & Seminars
+result: all of (
+    Intro, Organic,
+    Analytical, Physical,
+    Elective, Physics, Calculus, Seminars )
