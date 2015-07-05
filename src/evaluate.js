@@ -5,8 +5,9 @@
 import all from 'lodash/collection/all'
 import any from 'lodash/collection/any'
 import filter from 'lodash/collection/filter'
-import includes from 'lodash/collection/includes'
 import identity from 'lodash/utility/identity'
+import includes from 'lodash/collection/includes'
+import isEqual from 'lodash/lang/isEqual'
 import map from 'lodash/collection/map'
 import mapValues from 'lodash/object/mapValues'
 import max from 'lodash/math/max'
@@ -73,9 +74,11 @@ function isRequirement(name: string): boolean {
 function compareCourse(course: Object, to: Object): boolean {
     // course might have more keys than the dict we're comparing it to
     // 'to' will have some combination of 'year', 'semester', 'department', 'number', and 'section'
-    for (const key of ['year', 'semester', 'department', 'number', 'section'])
-        if (includes(to, key) && course[key] !== to[key])
+    for (const key of ['year', 'semester', 'department', 'number', 'section']) {
+        if (!isEqual(course[key],  to[key])) {
             return false
+        }
+    }
     return true
 }
 
