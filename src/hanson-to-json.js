@@ -9,7 +9,7 @@ import _ from 'lodash'
 import humanizeList from 'humanize-list'
 
 function isReqName(name) {
-    return /^([A-Z]|[0-9][A-Z\- ])/.test(name)
+    return /^([A-Z]|[0-9][A-Z0-9\- ])/.test(name)
 }
 
 function loadFile(filename) {
