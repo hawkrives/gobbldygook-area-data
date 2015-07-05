@@ -4,7 +4,7 @@ Electives:
     message: At least two of the courses must be taken on-campus.
 
     Courses:
-        result: two of (
+        two of (
             ASIAN 121, 123, 126, 130, 156, 200,
                   210, 215, 216, 220, 230, 235,
                   236, 237,
