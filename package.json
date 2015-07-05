@@ -1,7 +1,7 @@
 {
   "name": "sto-areas",
   "description": "Area of Study data for St. Olaf college",
-  "version": "2.3.12",
+  "version": "3.0.0-beta.0",
   "main": "dist/index.js",
   "repository": "hawkrives/gobbldygook-area-data",
   "author": "Hawken M. Rives",
@@ -11,15 +11,13 @@
     "postpublish": "npm run clean",
     "build": "babel src/ --out-dir dist/",
     "clean": "rm -rf dist/",
-    "deep-clean": "rm -rf dist/ node_modules/",
     "mocha": "mocha",
     "eslint": "eslint src/",
     "test": "npm run mocha && npm run eslint",
     "watch-tests": "nodemon --watch test/ --exec 'npm run mocha'"
   },
   "dependencies": {
-    "lodash": "^3.7.0",
-    "sto-helpers": "^4.2.11"
+    "lodash": "^3.7.0"
   },
   "devDependencies": {
     "babel": "5.1.13",
