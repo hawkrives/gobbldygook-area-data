@@ -49,7 +49,12 @@ export function enhanceFile(data, {topLevel=false}={}) {
             value["$type"] = "requirement"
         }
         else if (key === 'result' || key === 'filter') {
-            value = parse(value)
+            try {
+                value = parse(value)
+            } catch(e) {
+                console.error(e.message)
+                console.error(`(in "${value}")`)
+            }
         }
         return value
     })
