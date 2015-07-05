@@ -56,7 +56,7 @@ primitive
       course
     / where
     / occurrence
-    / requirement
+    / reference
   ) _
   { return p }
 
@@ -319,10 +319,10 @@ c_year
 c_sem
   = [1-5*]
 
-requirement
+reference "requirement reference"
   = title:(initial:[A-Z0-9] rest:[0-9a-z\- ]i+
       { return initial + rest.join("") } )
     { return {
-      $type: 'requirement',
+      $type: 'reference',
       $requirement: title.trim()
     } }

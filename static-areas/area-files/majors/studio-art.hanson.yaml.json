@@ -310,17 +310,17 @@
       },
       "result": {
         "$type": "boolean",
-        "$and": [
+        "$or": [
           {
-            "$type": "requirement",
+            "$type": "reference",
             "$requirement": "Drawing"
           },
           {
-            "$type": "requirement",
+            "$type": "reference",
             "$requirement": "Painting"
           },
           {
-            "$type": "requirement",
+            "$type": "reference",
             "$requirement": "Printmaking"
           }
         ]
@@ -376,11 +376,11 @@
         "$type": "boolean",
         "$or": [
           {
-            "$type": "requirement",
+            "$type": "reference",
             "$requirement": "Ceramics"
           },
           {
-            "$type": "requirement",
+            "$type": "reference",
             "$requirement": "Sculpture"
           }
         ]
@@ -455,23 +455,23 @@
         "$count": 1,
         "$of": [
           {
-            "$type": "requirement",
+            "$type": "reference",
             "$requirement": "Photography"
           },
           {
-            "$type": "requirement",
+            "$type": "reference",
             "$requirement": "Interactive Image"
           },
           {
-            "$type": "requirement",
+            "$type": "reference",
             "$requirement": "Digital Video"
           },
           {
-            "$type": "requirement",
+            "$type": "reference",
             "$requirement": "Performance"
           },
           {
-            "$type": "requirement",
+            "$type": "reference",
             "$requirement": "Graphic Design"
           }
         ]
@@ -497,31 +497,31 @@
       "$count": 7,
       "$of": [
         {
-          "$type": "requirement",
+          "$type": "reference",
           "$requirement": "Foundations"
         },
         {
-          "$type": "requirement",
+          "$type": "reference",
           "$requirement": "2D Media"
         },
         {
-          "$type": "requirement",
+          "$type": "reference",
           "$requirement": "3D Media"
         },
         {
-          "$type": "requirement",
+          "$type": "reference",
           "$requirement": "New Media"
         },
         {
-          "$type": "requirement",
+          "$type": "reference",
           "$requirement": "Juried Show"
         },
         {
-          "$type": "requirement",
+          "$type": "reference",
           "$requirement": "Senior Studies in Studio Art"
         },
         {
-          "$type": "requirement",
+          "$type": "reference",
           "$requirement": "Studio Art Courses"
         }
       ]
@@ -770,15 +770,15 @@
     "$type": "boolean",
     "$and": [
       {
-        "$type": "requirement",
+        "$type": "reference",
         "$requirement": "Studio Art"
       },
       {
-        "$type": "requirement",
+        "$type": "reference",
         "$requirement": "Art History"
       },
       {
-        "$type": "requirement",
+        "$type": "reference",
         "$requirement": "Art Credits"
       }
     ]
