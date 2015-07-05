@@ -28,8 +28,9 @@ export function enhanceFile(data, {topLevel=false}={}) {
     // 3. warns if it encounters any lowercase keys not in the whitelist
 
     const keys = Object.keys(data)
-    const topLevelWhitelist = ['result', 'name', 'revision', 'type']
-    const lowerLevelWhitelist = ['result', 'filter', 'message', 'description']
+    const baseWhitelist = ['result', 'message']
+    const topLevelWhitelist = baseWhitelist.concat(['name', 'revision', 'type'])
+    const lowerLevelWhitelist = baseWhitelist.concat(['filter', 'message', 'description'])
     const whitelist = topLevel ? topLevelWhitelist : lowerLevelWhitelist
 
     keys.forEach(key => {
