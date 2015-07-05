@@ -1,0 +1,32 @@
+{
+    "courses": [
+        {"department": ["ART"], "number": 102},
+        {"department": ["ART"], "number": 103},
+        {"department": ["ART"], "number": 104},
+        {"department": ["ART"], "number": 106},
+        {"department": ["ART"], "number": 205},
+        {"department": ["ART"], "number": 207},
+        {"department": ["ART"], "number": 221},
+        {"department": ["ART"], "number": 222},
+        {"department": ["ART"], "number": 223},
+        {"department": ["ART"], "number": 224},
+        {"department": ["ART"], "number": 225},
+        {"department": ["ART"], "number": 226},
+        {"department": ["ART"], "number": 227},
+        {"department": ["ART"], "number": 228},
+        {"department": ["ART"], "number": 229},
+        {"department": ["ART"], "number": 232},
+        {"department": ["ART"], "number": 233},
+        {"department": ["ART"], "number": 234},
+        {"department": ["ART"], "number": 236},
+        {"department": ["ART"], "number": 238},
+        {"department": ["ART"], "number": 343},
+        {"department": ["ART"], "number": 398},
+        {"department": ["ART", "ASIAN"], "number": 259},
+        {"department": ["CSCI"], "number": 241},
+    ]
+
+    "overrides": {
+        "major.studio art.studio art.juried show": true
+    }
+}
