@@ -16,7 +16,7 @@ Studio Art:
         Painting:    ART 221 | 222
         Printmaking: ART 226 | 227
 
-        result: Drawing & Painting & Printmaking
+        result: Drawing | Painting | Printmaking
 
     3D Media:
         Ceramics:  ART 207 | 234
@@ -51,7 +51,9 @@ Studio Art:
 
 
 Art History:
-    message: The department strongly recommends that you take ART 252 or 253 as one of your art history courses.
+    message:
+        The department strongly recommends that you take
+        ART 252 or 253 as one of your art history courses.
 
     result: two of (
         ART 153, 161, 251, 252, 253,
