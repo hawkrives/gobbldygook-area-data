@@ -1,0 +1,97 @@
+#!/usr/bin/env node
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+exports.enhanceFile = enhanceFile;
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+require('babel/polyfill');
+
+var _jsYaml = require('js-yaml');
+
+var _jsYaml2 = _interopRequireDefault(_jsYaml);
+
+var _gracefulFs = require('graceful-fs');
+
+var _gracefulFs2 = _interopRequireDefault(_gracefulFs);
+
+var _parseHansonString = require('parse-hanson-string');
+
+var _lodash = require('lodash');
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
+var _humanizeList = require('humanize-list');
+
+var _humanizeList2 = _interopRequireDefault(_humanizeList);
+
+function isReqName(name) {
+    return /^([A-Z]|[0-9][A-Z0-9\- ])/.test(name);
+}
+
+function loadFile(filename) {
+    var data = _gracefulFs2['default'].readFileSync(filename, 'utf-8');
+    var object = _jsYaml2['default'].safeLoad(data);
+    return object;
+}
+
+function writeFile(filename, data) {
+    _gracefulFs2['default'].writeFileSync(filename, data);
+}
+
+function enhanceFile(data) {
+    var _ref = arguments[1] === undefined ? {} : arguments[1];
+
+    var _ref$topLevel = _ref.topLevel;
+    var topLevel = _ref$topLevel === undefined ? false : _ref$topLevel;
+
+    // 1. adds 'result' key, if missing
+    // 2. parses the 'result' and 'filter' keys
+    // 3. warns if it encounters any lowercase keys not in the whitelist
+
+    var keys = Object.keys(data);
+    var baseWhitelist = ['result', 'message'];
+    var topLevelWhitelist = baseWhitelist.concat(['name', 'revision', 'type']);
+    var lowerLevelWhitelist = baseWhitelist.concat(['filter', 'message', 'description']);
+    var whitelist = topLevel ? topLevelWhitelist : lowerLevelWhitelist;
+
+    keys.forEach(function (key) {
+        if (!isReqName(key) && !whitelist.includes(key)) {
+            console.warn('only ' + (0, _humanizeList2['default'])(whitelist) + ' keys are allowed, and "' + key + '" is not one of them. all requirements must begin with an uppercase letter or a number.');
+        }
+    });
+
+    var mutated = _lodash2['default'].mapValues(data, function (value, key) {
+        if (typeof value === 'string' && isReqName(key)) {
+            value = { result: value };
+        }
+
+        if (isReqName(key)) {
+            value = enhanceFile(value, { topLevel: false });
+            value['$type'] = 'requirement';
+        } else if (key === 'result' || key === 'filter') {
+            value = (0, _parseHansonString.parse)(value);
+        }
+        return value;
+    });
+
+    return mutated;
+}
+
+function main() {
+    var filename = process.argv[2];
+    var outfile = process.argv[3] || filename.replace(/.yaml$/, '.json');
+    if (!filename) {
+        console.log('usage: ' + process.argv[1].split('/').slice(-1) + ' infile [outfile]');
+        return;
+    }
+    var data = loadFile(filename);
+    var mutated = enhanceFile(data, { topLevel: true });
+    writeFile(outfile, JSON.stringify(mutated, null, 2));
+}
+
+main();
+
