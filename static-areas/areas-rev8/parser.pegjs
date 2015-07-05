@@ -1,7 +1,7 @@
 // # hanson.pegjs (take 8)
 
 /*
-  - [ ] ensure that of-statements require commas between items
+- [ ] ensure that of-statements require commas between items
 */
 
 /* example:
