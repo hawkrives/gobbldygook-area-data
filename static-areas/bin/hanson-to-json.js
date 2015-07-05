@@ -17,7 +17,7 @@ function writeFile(filename, data) {
     fs.writeFileSync(filename, data)
 }
 
-function enhanceFile(data, {topLevel=false}={}) {
+export function enhanceFile(data, {topLevel=false}={}) {
     // 1. adds 'result' key, if missing
     // 2. parses the 'result' and 'filter' keys
     // 3. warns if it encounters any lowercase keys not in the whitelist

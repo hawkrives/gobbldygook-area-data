@@ -1,9 +1,9 @@
 PATH := ./node_modules/:$(PATH)
 
-static-areas/bin/hanson-peg.js: static-areas/bin/hanson-peg.pegjs
-	pegjs < static-areas/bin/hanson-peg.pegjs | babel > static-areas/bin/hanson-peg.js
+static-areas/bin/parse-hanson-string.js: static-areas/bin/hanson-string.pegjs
+	pegjs < $(<) | babel > $(@)
 
 clean:
-	$(RM) static-areas/bin/hanson-peg.js
+	$(RM) static-areas/bin/parse-hanson-string.js
 
 .PHONY: clean
