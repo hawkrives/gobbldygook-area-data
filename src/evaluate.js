@@ -163,7 +163,7 @@ function compareCourseAgainstOperator(course: Object, key: string, operator: Obj
     //       "$prop": "year",
     //       "$type": "function",
     //       "$where": [{
-    //         "$type": "qualifier", "gereqs": {
+    //         "$type": "qualification", "gereqs": {
     //           "$type": "operator", "$eq": "BTS-T"
     //         }
     //       }]
@@ -174,7 +174,7 @@ function compareCourseAgainstOperator(course: Object, key: string, operator: Obj
 
     if (typeof operator[kind] === 'object') {
         // we compute the value of the function-over-where-query style operators
-        // earlier, in the filterByQualifier function.
+        // earlier, in the filterByQualification function.
         assertKeys(operator[kind], '$computed-value')
         const simplifiedOperator = {kind: operator[kind]['$computed-value']}
         return compareCourseAgainstOperator(course, key, simplifiedOperator)
@@ -213,23 +213,23 @@ function compareCourseAgainstOperator(course: Object, key: string, operator: Obj
 }
 
 
-function filterByQualifier(list: Array<Object>, qualifier: Object) {
-    // { "$type":"qualifier", $key: "gereqs", $value: {"$type": "operator", "$eq": "EIN"} }
-    // { "$type":"qualifier", $key: "year", value: {
+function filterByQualification(list: Array<Object>, qualification: Object) {
+    // { "$type":"qualification", $key: "gereqs", $value: {"$type": "operator", "$eq": "EIN"} }
+    // { "$type":"qualification", $key: "year", value: {
     //     "$type": "operator",
     //     "$lte": {
     //       "$name": "max",
     //       "$prop": "year",
     //       "$type": "function",
     //       "$where": {
-    //         "$type": "qualifier", $key: "gereqs", $value: {
+    //         "$type": "qualification", $key: "gereqs", $value: {
     //           "$type": "operator", "$eq": "BTS-T"
     //         }
     //       }
     //     }
     // } }
 
-    const operator = qualifier['$value']
+    const operator = qualification['$value']
     const kind = findOperatorType(operator)
 
     if (typeof operator[kind] === 'object') {
@@ -249,8 +249,8 @@ function filterByQualifier(list: Array<Object>, qualifier: Object) {
         }
     }
 
-    console.log(qualifier)
-    const key = qualifier['$key']
+    console.log(qualification)
+    const key = qualification['$key']
     const filtered = filter(list, course => compareCourseAgainstOperator(course, key, operator))
 
     console.log(list.length, filtered.length)
@@ -263,15 +263,15 @@ function filterByWhereClause(list: Array<Object>, clause: Object) {
     // {
     //    "$type": "boolean",
     //    "$and": [
-    //      { "$type":"qualifier", $key: "gereqs", $value: {"$type": "operator", "$eq": "EIN"} },
-    //      { "$type":"qualifier", $key: "year", $value: {
+    //      { "$type":"qualification", $key: "gereqs", $value: {"$type": "operator", "$eq": "EIN"} },
+    //      { "$type":"qualification", $key: "year", $value: {
     //          "$type": "operator",
     //          "$lte": {
     //            "$name": "max",
     //            "$prop": "year",
     //            "$type": "function",
     //            "$where": {
-    //              "$type": "qualifier", $key: "gereqs", $value: {
+    //              "$type": "qualification", $key: "gereqs", $value: {
     //                "$type": "operator", "$eq": "BTS-T"
     //              }
     //            }
@@ -280,8 +280,8 @@ function filterByWhereClause(list: Array<Object>, clause: Object) {
     //    ]
     //  }
 
-    if (clause['$type'] === 'qualifier') {
-        return filterByQualifier(list, clause)
+    if (clause['$type'] === 'qualification') {
+        return filterByQualification(list, clause)
     }
 
     else if (clause['$type'] === 'boolean') {
