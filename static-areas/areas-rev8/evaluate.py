@@ -121,7 +121,9 @@ def findOperatorType(operator):
     elif '$gte' in operator:
         return '$gte'
     else:
-        raise RequiredKeyException(msg='no valid operators ($eq, $ne, $lt, $lte, $gt, $gte) could be found', data=operator)
+        raise RequiredKeyException(
+            msg='no valid operators ($eq, $ne, $lt, $lte, $gt, $gte) could be found',
+            data=operator)
 
 
 def compareCourseAgainstOperator(course, key, operator):
@@ -150,7 +152,12 @@ def compareCourseAgainstOperator(course, key, operator):
         return compareCourseAgainstOperator(course, key, simplifiedOperator)
 
     elif type(operator[kind]) is list:
-        raise BadTypeException(msg='what would a comparison to a list even do? oh, wait; i suppose it could compare against one of several values... well, im not doing that right now. if you want it, edit the PEG and stick appropriate stuff in here (probably simplest to just call this function again with each possible value and return true if any are true.)')
+        raise BadTypeException(msg='''what would a comparison to a list even
+        do? oh, wait; i suppose it could compare against one of several
+        values... well, im not doing that right now. if you want it, edit the
+        PEG and stick appropriate stuff in here (probably simplest to just
+        call this function again with each possible value and return true if
+        any are true.)''')
 
     else:
         # it's a static value; a number or string
@@ -261,7 +268,8 @@ def filterByWhereClause(list, clause):
 
 
 # Compute Functions:
-# There are two types of compute functions: those that need the surrounding context, and those that don't.
+# There are two types of compute functions: those that need the surrounding
+# context, and those that don't.
 
 
 # Contained Computes:
