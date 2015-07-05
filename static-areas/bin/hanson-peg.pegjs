@@ -16,6 +16,28 @@ one of (
 )
 */
 
+{
+  var globalLastDept
+  function storeDept(dept) {
+    globalLastDept = dept
+  }
+  function fetchDept(dept) {
+    return globalLastDept
+  }
+
+  function expandDepartment(dept) {
+    console.log(dept)
+    if (dept === 'AR')
+      return 'ART'
+    else if (dept === 'AS')
+      return 'ASIAN'
+    else if (dept === 'ES')
+      return 'ENVST'
+    else
+      return dept
+  }
+}
+
 start
   = or
 
@@ -98,9 +120,9 @@ qualification
          { return Object.assign(f, {$where: q}) }
     )
     { return {
-      $type: "qualification",
-      $key: key,
-      $value: { [op]: value, $type: "operator" },
+        $type: "qualification",
+        $key: key,
+        $value: { [op]: value, $type: "operator" },
     } }
 
 word
@@ -239,23 +261,26 @@ course
       { return Object.assign(y_s || {}, {section}) } )?
     { return Object.assign({$type: 'course'},
         Object.assign(info || {},
-        Object.assign(dept || window.lastDept || {}, num))) }
+        Object.assign(dept || fetchDept() || {}, num))) }
 
 c_dept
   = dept1:(c1:[A-Z] c2:[A-Z] { return c1 + c2 })
     part2:(
-        chars:[A-Z]+ { return {dept: chars.join(''), type: "join"} }
+        chars:[A-Z]+ { return {dept: chars.join(''), type: "joined"} }
       / "/" l1:[A-Z] l2:[A-Z] { return {dept: l1 + l2, type: "seperate"} }
     )
     {
       var {type, dept: dept2} = part2
       var department
-      if (type === "join")
-        dept = {department: [dept1 + dept2]}
-      else if (type === "seperate")
-        dept = {department: [dept1, dept2]}
-      window.lastDept = dept
-      return dept
+      if (type === "joined")
+        department = {department: [dept1 + dept2]}
+      else if (type === "seperate") {
+        dept1 = expandDepartment(dept1)
+        dept2 = expandDepartment(dept2)
+        department = {department: [dept1, dept2]}
+      }
+      storeDept(department)
+      return department
     }
 
 c_num "course number"
