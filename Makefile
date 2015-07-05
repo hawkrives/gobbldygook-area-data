@@ -1,7 +1,5 @@
 PATH := ./node_modules/:$(PATH)
 
-hanson := ./bin/hanson-to-json
-
 all: bin/hanson-to-json lib/parse-hanson-string.js
 
 areas-of-study: bin/hanson-to-json areas/**/*.yaml
@@ -10,7 +8,7 @@ areas-of-study: bin/hanson-to-json areas/**/*.yaml
 	@for file in dist/**/*.yaml; do \
 		echo; \
 		echo $$file; \
-		$(hanson) $$file; \
+		./bin/hanson-to-json $$file; \
 	done
 
 bin/hanson-to-json: src/hanson-to-json.js lib/parse-hanson-string.js
@@ -22,10 +20,17 @@ lib/parse-hanson-string.js: lib/hanson-string.pegjs
 	mkdir -p ./node_modules/parse-hanson-string/
 	cp -f $(@) node_modules/parse-hanson-string/index.js
 
+test: bin/evaluate
+	./bin/evaluate ./dist/majors/studio-art.json ./student.json
+
+bin/evaluate: src/evaluate.js student.json
+	babel < $(<) > $(@)
+	chmod +x $(@)
+
 clean:
 	$(RM) \
 		node_modules/parse-hanson-string/index.js \
 		lib/parse-hanson-string.js \
 		bin/hanson-to-json
 
-.PHONY: clean
+.PHONY: clean test areas-of-study all
