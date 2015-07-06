@@ -7,7 +7,9 @@
   "author": "Hawken M. Rives",
   "license": "MIT",
   "scripts": {
-    "eslint": "eslint src/"
+    "eslint": "eslint src/",
+    "mocha": "mocha",
+    "test": "npm run eslint && npm run mocha"
   },
   "devDependencies": {
     "babel": "5.6.14",
