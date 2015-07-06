@@ -235,7 +235,7 @@ export function filterByQualification(list, qualification) {
                 throw new RequiredKeyError(`${value.$name} is not a valid function to call.`)
             }
             const filtered = filterByWhereClause(list, value.$where)
-            const items = pluck(value.$prop, filtered)
+            const items = pluck(filtered, value.$prop)
             const computed = func(items)
             value['$computed-value'] = computed
         }
