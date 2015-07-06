@@ -21,42 +21,9 @@ import uniq from 'lodash/array/uniq'
 // - [ ] write tests
 
 
-class RequiredKeyError extends Error {
-    constructor({keys=[], msg='', data={}}) {
-        super()
-        this.value = keys || msg
-        this.data = data
-    }
-
-    toString() {
-        return `missing keys: ${this.value} (from ${this.data})`
-    }
-}
-
-
-class UnknownPropertyError extends Error {
-    constructor(value) {
-        super()
-        this.value = value
-    }
-
-    toString() {
-        return `unknown value: ${this.value}`
-    }
-}
-
-
-class BadTypeError extends Error {
-    constructor({msg='', data={}}) {
-        super(msg)
-        this.value = msg
-        this.data = data
-    }
-
-    toString() {
-        return `${this.value} ${this.data}`
-    }
-}
+export class RequiredKeyError extends Error {}
+export class UnknownPropertyError extends Error {}
+export class BadTypeError extends Error {}
 
 
 // Helper Functions
