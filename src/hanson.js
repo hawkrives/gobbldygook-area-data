@@ -1,28 +1,13 @@
-#!/usr/bin/env node
-
-import 'babel/polyfill'
-
-import yaml from 'js-yaml'
-import fs from 'graceful-fs'
 import {parse} from '../lib/parse-hanson-string'
-import mapValues from 'lodash/object/mapValues'
 import forEach from 'lodash/collection/forEach'
-import keys from 'lodash/object/keys'
-import includes from 'lodash/collection/includes'
 import humanizeList from 'humanize-list'
+import includes from 'lodash/collection/includes'
+import isString from 'lodash/lang/isString'
+import keys from 'lodash/object/keys'
+import mapValues from 'lodash/object/mapValues'
 
 function isReqName(name) {
     return /^([A-Z]|[0-9][A-Z0-9\- ])/.test(name)
-}
-
-function loadFile(filename) {
-    const data = fs.readFileSync(filename, 'utf-8')
-    const object = yaml.safeLoad(data)
-    return object
-}
-
-function writeFile(filename, data) {
-    fs.writeFileSync(filename, data)
 }
 
 let declaredVariables = {}
@@ -50,7 +35,7 @@ export function enhanceFile(data, {topLevel=false}={}) {
     }
 
     const mutated = mapValues(data, (value, key) => {
-        if (typeof value === 'string' && isReqName(key)) {
+        if (isString(value) && isReqName(key)) {
             value = {result: value}
         }
 
@@ -88,17 +73,3 @@ export function enhanceFile(data, {topLevel=false}={}) {
 
     return mutated
 }
-
-function main() {
-    const filename = process.argv[2]
-    const outfile = process.argv[3] || filename.replace(/.yaml$/, '.json')
-    if (!filename) {
-        console.log(`usage: ${process.argv[1].split('/').slice(-1)} infile [outfile]`)
-        return
-    }
-    const data = loadFile(filename)
-    const mutated = enhanceFile(data, {topLevel: true})
-    writeFile(outfile, JSON.stringify(mutated, null, 2))
-}
-
-main()
