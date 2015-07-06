@@ -64,6 +64,77 @@ describe('parse hanson-string', () => {
                 semester: 1,
             })
         })
+
+        it('requires section to be present if year is', () => {
+            expect(() => parse('CSCI 121.2014')).to.throw('Expected "&", "|" or end of input but "." found.')
+        })
+
+        it('requires section and year to be present if semester is', () => {
+            expect(() => parse('CSCI 121.A.5')).to.throw('Expected "&", "|" or end of input but "." found.')
+            expect(() => parse('CSCI 121.5')).to.throw('Expected "&", "|" or end of input but "." found.')
+        })
+
+        it('supports wildcard sections', () => {
+            expect(parse('CSCI 121.*')).to.deep.equal({
+                $type: 'course',
+                department: ['CSCI'],
+                number: 121,
+                section: '*',
+            })
+        })
+
+        it('supports wildcard years', () => {
+            expect(parse('CSCI 121.*.*')).to.deep.equal({
+                $type: 'course',
+                department: ['CSCI'],
+                number: 121,
+                section: '*',
+                year: '*',
+            })
+        })
+
+        it('supports wildcard semesters', () => {
+            expect(parse('CSCI 121.*.*.*')).to.deep.equal({
+                $type: 'course',
+                department: ['CSCI'],
+                number: 121,
+                section: '*',
+                year: '*',
+                semester: '*',
+            })
+        })
+
+        it('supports international courses', () => {
+            expect(parse('CSCI 121I')).to.deep.equal({
+                $type: 'course',
+                department: ['CSCI'],
+                number: 121,
+                international: true,
+            })
+        })
+
+        it('supports labs', () => {
+            expect(parse('CSCI 121L')).to.deep.equal({
+                $type: 'course',
+                department: ['CSCI'],
+                number: 121,
+                lab: true,
+            })
+        })
+
+        it('supports international labs', () => {
+            expect(parse('CSCI 121IL')).to.deep.equal({
+                $type: 'course',
+                department: ['CSCI'],
+                number: 121,
+                international: true,
+                lab: true,
+            })
+        })
+
+        it('requires international labs to be in IL order', () => {
+            expect(() => parse('CSCI 121LI')).to.throw('Expected "&", "|" or end of input but "I" found.')
+        })
     })
 
     describe('boolean parsing', () => {
