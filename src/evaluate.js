@@ -1,6 +1,8 @@
 import all from 'lodash/collection/all'
 import any from 'lodash/collection/any'
+import compact from 'lodash/array/compact'
 import filter from 'lodash/collection/filter'
+import flatten from 'lodash/array/flatten'
 import forEach from 'lodash/collection/forEach'
 import identity from 'lodash/utility/identity'
 import includes from 'lodash/collection/includes'
@@ -79,9 +81,14 @@ export function countCourses(courses) {
 }
 
 
+export function getDepartments(courses) {
+    return uniq(flatten(pluck(courses, 'department')))
+}
+
+
 export function countDepartments(courses) {
     // courses::pluck('departments')::sum()
-    return sum(pluck(courses, 'departments'))
+    return compact(getDepartments(courses)).length
 }
 
 
