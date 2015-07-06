@@ -67,7 +67,7 @@ export function getOccurrences(course, courses) {
 export function assertKeys(dict, ...keys): void {
     const missingKeys = reject(keys, key => includes(Object.keys(dict), key))
     if (missingKeys.length) {
-        throw new RequiredKeyError({keys: missingKeys, data: dict})
+        throw new RequiredKeyError(`missing ${missingKeys.join(', ')} from ${dict}`)
     }
 }
 
@@ -124,10 +124,7 @@ export function findOperatorType(operator) {
         return '$gte'
     }
     else {
-        throw new RequiredKeyError({
-            msg: 'no valid operators ($eq, $ne, $lt, $lte, $gt, $gte) could be found',
-            data: operator,
-        })
+        throw new RequiredKeyError(`no valid operators ($eq, $ne, $lt, $lte, $gt, $gte) could be found`)
     }
 }
 
@@ -227,7 +224,7 @@ export function filterByQualification(list, qualification) {
                 func = min
             }
             else {
-                throw new RequiredKeyError({msg: `${value.$name} is not a valid function to call.`})
+                throw new RequiredKeyError(`${value.$name} is not a valid function to call.`)
             }
             const filtered = filterByWhereClause(list, value.$where)
             const items = pluck(value.$prop, filtered)
@@ -288,19 +285,13 @@ export function filterByWhereClause(list, clause) {
         }
 
         else {
-            throw new RequiredKeyError({
-                msg: 'neither $or nor $and could be found',
-                data: clause,
-            })
+            throw new RequiredKeyError('neither $or nor $and could be found in ${clause}')
         }
     }
 
     else {
         console.log(clause)
-        throw new BadTypeError({
-            msg: 'wth kind of type is this clause?',
-            data: clause,
-        })
+        throw new BadTypeError('wth kind of type is a "${clause.$type}" clause?')
     }
 }
 
@@ -353,9 +344,7 @@ export function computeBoolean(expr, ctx, courses) {
         return !(computeChunk(expr.$not, ctx, courses))
     }
     else {
-        console.log()
-        console.log(expr)
-        throw new RequiredKeyError({msg: 'none of $or, $and, or $not could be found'})
+        throw new RequiredKeyError(`none of $or, $and, or $not could be found in ${expr}`)
     }
 }
 
