@@ -1,6 +1,7 @@
 import all from 'lodash/collection/all'
 import any from 'lodash/collection/any'
 import filter from 'lodash/collection/filter'
+import forEach from 'lodash/collection/forEach'
 import identity from 'lodash/utility/identity'
 import includes from 'lodash/collection/includes'
 import isArray from 'lodash/lang/isArray'
@@ -270,7 +271,7 @@ export function filterByWhereClause(list, clause) {
     else if (clause.$type === 'boolean') {
         if ('$and' in clause) {
             let filtered = list
-            clause.$and.forEach(q => {
+            forEach(clause.$and, q => {
                 filtered = filterByWhereClause(filtered, q)
             })
             return filtered
@@ -278,7 +279,7 @@ export function filterByWhereClause(list, clause) {
 
         else if ('$or' in clause) {
             let filtrations = []
-            clause.$or.forEach(q => {
+            forEach(clause.$or, q => {
                 filtrations = union(filtrations, filterByWhereClause(list, q))
             })
             return uniq(filtrations, 'crsid')
