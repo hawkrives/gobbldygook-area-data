@@ -33,7 +33,7 @@ build/evaluate.js: src/evaluate.js
 
 
 test: bin/check
-	$(<) ./dist/majors/studio-art.json ./student.json
+	$(<) --json ./dist/majors/studio-art.json ./student.json
 
 mocha:
 	mocha

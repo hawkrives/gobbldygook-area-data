@@ -17,6 +17,8 @@
     "bluebird": "2.9.32",
     "chai": "3.0.0",
     "chai-as-promised": "5.1.0",
+    "chalk": "1.1.0",
+    "commander": "2.8.1",
     "eslint": "0.24.0",
     "flow": "0.2.3",
     "graceful-fs": "4.1.2",
