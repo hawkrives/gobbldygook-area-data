@@ -170,7 +170,7 @@ export function compareCourseAgainstOperator(course, key, operator) {
         // we compute the value of the function-over-where-query style operators
         // earlier, in the filterByQualification function.
         assertKeys(operator[kind], '$computed-value')
-        const simplifiedOperator = {kind: operator[kind]['$computed-value']}
+        const simplifiedOperator = {[kind]: operator[kind]['$computed-value']}
         return compareCourseAgainstOperator(course, key, simplifiedOperator)
     }
 
