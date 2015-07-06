@@ -26,9 +26,11 @@ lib/parse-hanson-string.js: lib/hanson-string.pegjs
 	pegjs < $(<) | babel > $(@)
 
 build/hanson.js: src/hanson.js lib/parse-hanson-string.js
+	mkdir -p build
 	babel < $(<) > $(@)
 
 build/evaluate.js: src/evaluate.js
+	mkdir -p build
 	babel < $(<) > $(@)
 
 
