@@ -28,12 +28,12 @@ export class BadTypeError extends Error {}
 
 // Helper Functions
 
-function isRequirement(name) {
+export function isRequirement(name) {
     return /^[A-Z]|[0-9][A-Z\- ]/.test(name)
 }
 
 
-function compareCourse(course, to) {
+export function compareCourse(course, to) {
     // course might have more keys than the dict we're comparing it to
     // 'to' will have some combination of 'year', 'semester', 'department', 'number', and 'section'
     const notEqual = any(
@@ -46,17 +46,17 @@ function compareCourse(course, to) {
 }
 
 
-function checkForCourse(course, courses) {
+export function checkForCourse(course, courses) {
     return any(courses, (c) => compareCourse(c, course))
 }
 
 
-function getOccurrences(course, courses) {
+export function getOccurrences(course, courses) {
     return filter(courses, (c) => compareCourse(c, filter))
 }
 
 
-function assertKeys(dict, ...keys): void {
+export function assertKeys(dict, ...keys): void {
     const missingKeys = reject(keys, key => includes(Object.keys(dict), key))
     if (missingKeys.length) {
         throw new RequiredKeyError({keys: missingKeys, data: dict})
@@ -64,39 +64,39 @@ function assertKeys(dict, ...keys): void {
 }
 
 
-function countCourses(courses) {
+export function countCourses(courses) {
     // courses::pluck('crsid')::uniq()::len()
     return size(uniq(pluck(courses, 'crsid')))
 }
 
 
-function countDepartments(courses) {
+export function countDepartments(courses) {
     // courses::pluck('departments')::sum()
     return sum(pluck(courses, 'departments'))
 }
 
 
-function countCredits(courses) {
+export function countCredits(courses) {
     return sum(pluck(courses, 'credits'))
 }
 
 
-function pathToOverride(path) {
+export function pathToOverride(path) {
     return path.join('.').toLowerCase()
 }
 
 
-function hasOverride(path, overrides) {
+export function hasOverride(path, overrides) {
     return pathToOverride(path) in overrides
 }
 
 
-function getOverride(path, overrides) {
+export function getOverride(path, overrides) {
     return overrides[pathToOverride(path)]
 }
 
 
-function findOperatorType(operator) {
+export function findOperatorType(operator) {
     if ('$eq' in operator) {
         return '$eq'
     }
@@ -124,7 +124,7 @@ function findOperatorType(operator) {
 }
 
 
-function compareCourseAgainstOperator(course, key, operator) {
+export function compareCourseAgainstOperator(course, key, operator) {
     // key: gereqs, operator: {$eq: "EIN"}
     // key: year, operator: {
     //     "$type": "operator",
@@ -189,7 +189,7 @@ function compareCourseAgainstOperator(course, key, operator) {
 }
 
 
-function filterByQualification(list, qualification) {
+export function filterByQualification(list, qualification) {
     // { "$type":"qualification", $key: "gereqs", $value: {"$type": "operator", "$eq": "EIN"} }
     // { "$type":"qualification", $key: "year", value: {
     //     "$type": "operator",
@@ -236,7 +236,7 @@ function filterByQualification(list, qualification) {
 }
 
 
-function filterByWhereClause(list, clause) {
+export function filterByWhereClause(list, clause) {
     // {gereqs = EIN & year <= max(year) from {gereqs = BTS-T}}
     // {
     //    "$type": "boolean",
@@ -305,14 +305,14 @@ function filterByWhereClause(list, clause) {
 // Contained Computes:
 // course, occurrence, where
 
-function computeCourse(expr, courses) {
+export function computeCourse(expr, courses) {
     const query = expr
     delete query.$type
     return checkForCourse(query, courses)
 }
 
 
-function computeOccurrence(expr, courses) {
+export function computeOccurrence(expr, courses) {
     assertKeys(expr, '$course', '$count')
     const clause = expr
     delete clause.department
@@ -323,7 +323,7 @@ function computeOccurrence(expr, courses) {
 }
 
 
-function computeWhere(expr, courses) {
+export function computeWhere(expr, courses) {
     assertKeys(expr, '$where', '$count')
     const filtered = filterByWhereClause(courses, expr.$where)
     expr._matches = filtered
@@ -334,7 +334,7 @@ function computeWhere(expr, courses) {
 // Contextual Computes:
 // boolean, modifier, of, reference
 
-function computeBoolean(expr, ctx, courses) {
+export function computeBoolean(expr, ctx, courses) {
     if ('$or' in expr) {
         return any(map(expr.$or, req => computeChunk(req, ctx, courses)))
     }
@@ -352,7 +352,7 @@ function computeBoolean(expr, ctx, courses) {
 }
 
 
-function computeOf(expr, ctx, courses) {
+export function computeOf(expr, ctx, courses) {
     assertKeys(expr, '$of', '$count')
 
     const evaluated = map(expr.$of, req =>
@@ -365,7 +365,7 @@ function computeOf(expr, ctx, courses) {
 }
 
 
-function computeReference(expr, ctx) {
+export function computeReference(expr, ctx) {
     assertKeys(expr, '$requirement')
     if (expr.$requirement in ctx ){
         const target = ctx[expr.$requirement]
@@ -377,7 +377,7 @@ function computeReference(expr, ctx) {
 }
 
 
-function computeModifier(expr, ctx, courses) {
+export function computeModifier(expr, ctx, courses) {
     assertKeys(expr, '$what', '$count', '$from')
     const what = expr.$what
 
@@ -451,7 +451,7 @@ function computeChunk(expr, ctx, courses) {
 // The overall computation is done by compute, which is in charge of computing
 // sub-requirements and such.
 
-function compute(requirement, path, courses=[], overrides={}) {
+export function compute(requirement, path, courses=[], overrides={}) {
     requirement = mapValues(requirement, (req, name) => {
         return isRequirement(name)
             ? compute(req, path.concat([name]), courses, overrides)
@@ -485,7 +485,7 @@ function compute(requirement, path, courses=[], overrides={}) {
 }
 
 
-export function evaluate(student, area) {
+export default function evaluate(student, area) {
     assertKeys(area, 'name', 'result', 'type', 'revision')
     const {courses, overrides} = student
     const {name, type} = area
