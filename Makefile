@@ -1,6 +1,7 @@
 PATH := ./node_modules/.bin/:$(PATH)
 
-all: bin/hanson-to-json bin/evaluate
+all: bin/hanson bin/check
+
 
 areas-of-study: bin/hanson-to-json areas/**/*.yaml
 	rm -rf dist/
@@ -8,26 +9,43 @@ areas-of-study: bin/hanson-to-json areas/**/*.yaml
 	@for file in dist/**/*.yaml; do \
 		echo; \
 		echo $$file; \
-		./bin/hanson-to-json $$file; \
+		./bin/hanson $$file; \
 	done
 
-bin/hanson-to-json: src/hanson-to-json.js lib/parse-hanson-string.js
-	babel $(<) > $(@)
+
+bin/check: bin/check.js build/evaluate.js
+	babel < $(<) > $(@)
 	chmod +x $(@)
+
+bin/hanson: bin/hanson.js build/hanson.js
+	babel < $(<) > $(@)
+	chmod +x $(@)
+
 
 lib/parse-hanson-string.js: lib/hanson-string.pegjs
 	pegjs < $(<) | babel > $(@)
 
-test: bin/evaluate
-	./bin/evaluate ./dist/majors/studio-art.json ./student.json
-
-bin/evaluate: src/evaluate.js student.json
+build/hanson.js: src/hanson.js lib/parse-hanson-string.js
 	babel < $(<) > $(@)
-	chmod +x $(@)
+
+build/evaluate.js: src/evaluate.js
+	babel < $(<) > $(@)
+
+
+test: bin/check
+	$(<) ./dist/majors/studio-art.json ./student.json
+
+mocha:
+	mocha
+
+lint:
+	eslint src/
+
 
 clean:
 	$(RM) \
 		lib/parse-hanson-string.js \
-		bin/hanson-to-json
+		bin/hanson \
+		bin/check
 
 .PHONY: clean test areas-of-study all
