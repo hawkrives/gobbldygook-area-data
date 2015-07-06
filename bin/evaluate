@@ -179,13 +179,9 @@ function isRequirement(name) {
 function compareCourse(course, to) {
     // course might have more keys than the dict we're comparing it to
     // 'to' will have some combination of 'year', 'semester', 'department', 'number', and 'section'
-    var _arr = ['year', 'semester', 'department', 'number', 'section'];
-    for (var _i = 0; _i < _arr.length; _i++) {
-        var key = _arr[_i];
-        if (!(0, _lodashLangIsEqual2['default'])(course[key], to[key])) {
-            return false;
-        }
-    }
+    if ((0, _lodashCollectionAny2['default'])(['year', 'semester', 'department', 'number', 'section'], function (key) {
+        return !(0, _lodashLangIsEqual2['default'])(course[key], to[key]);
+    })) return false;
     return true;
 }
 
@@ -442,11 +438,17 @@ function computeWhere(expr, courses) {
 // boolean, modifier, of, reference
 
 function computeBoolean(expr, ctx, courses) {
-    if ('$or' in expr) return (0, _lodashCollectionAny2['default'])((0, _lodashCollectionMap2['default'])(expr['$or'], function (req) {
-        return computeChunk(req, ctx, courses);
-    }));else if ('$and' in expr) return (0, _lodashCollectionAll2['default'])((0, _lodashCollectionMap2['default'])(expr['$and'], function (req) {
-        return computeChunk(req, ctx, courses);
-    }));else if ('$not' in expr) return !computeChunk(expr['$not'], ctx, courses);else {
+    if ('$or' in expr) {
+        return (0, _lodashCollectionAny2['default'])((0, _lodashCollectionMap2['default'])(expr['$or'], function (req) {
+            return computeChunk(req, ctx, courses);
+        }));
+    } else if ('$and' in expr) {
+        return (0, _lodashCollectionAll2['default'])((0, _lodashCollectionMap2['default'])(expr['$and'], function (req) {
+            return computeChunk(req, ctx, courses);
+        }));
+    } else if ('$not' in expr) {
+        return !computeChunk(expr['$not'], ctx, courses);
+    } else {
         console.log();
         console.log(expr);
         throw new RequiredKeyError({ msg: 'none of $or, $and, or $not could be found' });
@@ -459,6 +461,7 @@ function computeOf(expr, ctx, courses) {
     var evaluated = (0, _lodashCollectionMap2['default'])(expr['$of'], function (req) {
         return computeChunk(req, ctx, courses);
     });
+
     var truthy = (0, _lodashCollectionFilter2['default'])(evaluated, _lodashUtilityIdentity2['default']);
     return truthy.length >= expr['$count'];
 }
@@ -475,7 +478,9 @@ function computeModifier(expr, ctx, courses) {
     assertKeys(expr, '$what', '$count', '$from');
     var what = expr['$what'];
 
-    if (!(0, _lodashCollectionIncludes2['default'])(['course', 'department', 'credit'], what)) throw new UnknownPropertyError(what);
+    if (!(0, _lodashCollectionIncludes2['default'])(['course', 'department', 'credit'], what)) {
+        throw new UnknownPropertyError(what);
+    }
 
     if (expr['$from'] === 'children') {
         console.error('not yet implemented');
@@ -494,9 +499,9 @@ function computeModifier(expr, ctx, courses) {
 // And, of course, the function that dispatches the appropriate compute:
 
 function computeChunk(expr, ctx, courses) {
-    // print
-    // print 'expression:', expr
-    // print 'context:', ctx
+    // console.log()
+    // console.log('expression:', expr)
+    // console.log('context:', ctx)
 
     assertKeys(expr, '$type');
     var type = expr['$type'];
@@ -508,16 +513,12 @@ function computeChunk(expr, ctx, courses) {
     return computed;
 }
 
-// The overall computation === done by compute, which === in charge of computing
+// The overall computation is done by compute, which is in charge of computing
 // sub-requirements and such.
 
 function compute(requirement, path) {
     var courses = arguments[2] === undefined ? [] : arguments[2];
     var overrides = arguments[3] === undefined ? {} : arguments[3];
-
-    // this_name = path[-1]
-    // print ''
-    // print requirement, this_name
 
     requirement = (0, _lodashObjectMapValues2['default'])(requirement, function (req, name) {
         return isRequirement(name) ? compute(req, path.concat([name]), courses, overrides) : req;
@@ -561,7 +562,7 @@ function loadFile(filename) {
     return JSON.parse(data);
 }
 
-function main() {
+function cli() {
     if (process.argv.length < 3) {
         console.log('usage: evaluate areaFile [student]');
         return;
@@ -586,5 +587,5 @@ function main() {
     console.log('outcome:', result['computed']);
 }
 
-main();
+cli();
 

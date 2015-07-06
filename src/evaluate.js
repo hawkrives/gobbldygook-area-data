@@ -66,34 +66,32 @@ class BadTypeError extends Error {
 
 // Helper Functions
 
-function isRequirement(name: string): boolean {
+function isRequirement(name) {
     return /^[A-Z]|[0-9][A-Z\- ]/.test(name)
 }
 
 
-function compareCourse(course: Object, to: Object): boolean {
+function compareCourse(course, to) {
     // course might have more keys than the dict we're comparing it to
     // 'to' will have some combination of 'year', 'semester', 'department', 'number', and 'section'
-    for (const key of ['year', 'semester', 'department', 'number', 'section']) {
-        if (!isEqual(course[key],  to[key])) {
-            return false
-        }
-    }
+    if (any(['year', 'semester', 'department', 'number', 'section'],
+        key => !isEqual(course[key], to[key])))
+        return false
     return true
 }
 
 
-function checkForCourse(filter: Object, courses: Array<Object>): boolean {
+function checkForCourse(filter, courses) {
     return any(courses, (c) => compareCourse(c, filter))
 }
 
 
-function getOccurrences(course: Object, courses: Array<Object>) {
+function getOccurrences(course, courses) {
     return filter(courses, (c) => compareCourse(c, filter))
 }
 
 
-function assertKeys(dict: Object, ...keys): void {
+function assertKeys(dict, ...keys): void {
     const missingKeys = reject(keys, key => includes(Object.keys(dict), key))
     if (missingKeys.length) {
         throw new RequiredKeyError({keys: missingKeys, data: dict})
@@ -101,40 +99,40 @@ function assertKeys(dict: Object, ...keys): void {
 }
 
 
-function countCourses(courses: Array<Object>): number {
+function countCourses(courses) {
     // courses::pluck('crsid')::uniq()::len()
     return size(uniq(pluck(courses, 'crsid')))
 }
 
 
-function countDepartments(courses: Array<Object>): number {
+function countDepartments(courses) {
     // courses::pluck('departments')::sum()
     return sum(pluck(courses, 'departments'))
 }
 
 
-function countCredits(courses: Array<Object>): number {
+function countCredits(courses) {
     console.log('counting credits')
     return sum(pluck(courses, 'credits'))
 }
 
 
-function pathToOverride(path: Array<string>): string {
+function pathToOverride(path) {
     return path.join('.').toLowerCase()
 }
 
 
-function hasOverride(path: Array<string>, overrides: Object): boolean {
+function hasOverride(path, overrides) {
     return pathToOverride(path) in overrides
 }
 
 
-function getOverride(path: Array<string>, overrides: Object): any {
+function getOverride(path, overrides) {
     return overrides[pathToOverride(path)]
 }
 
 
-function findOperatorType(operator: Object): string {
+function findOperatorType(operator) {
     if ('$eq' in operator) {
         return '$eq'
     }
@@ -161,7 +159,7 @@ function findOperatorType(operator: Object): string {
 }
 
 
-function compareCourseAgainstOperator(course: Object, key: string, operator: Object): boolean {
+function compareCourseAgainstOperator(course, key, operator) {
     // key: gereqs, operator: {$eq: "EIN"}
     // key: year, operator: {
     //     "$type": "operator",
@@ -220,7 +218,7 @@ function compareCourseAgainstOperator(course: Object, key: string, operator: Obj
 }
 
 
-function filterByQualification(list: Array<Object>, qualification: Object) {
+function filterByQualification(list, qualification) {
     // { "$type":"qualification", $key: "gereqs", $value: {"$type": "operator", "$eq": "EIN"} }
     // { "$type":"qualification", $key: "year", value: {
     //     "$type": "operator",
@@ -258,14 +256,15 @@ function filterByQualification(list: Array<Object>, qualification: Object) {
 
     console.log(qualification)
     const key = qualification['$key']
-    const filtered = filter(list, course => compareCourseAgainstOperator(course, key, operator))
+    const filtered = filter(list,
+        course => compareCourseAgainstOperator(course, key, operator))
 
     console.log(list.length, filtered.length)
     return filtered
 }
 
 
-function filterByWhereClause(list: Array<Object>, clause: Object) {
+function filterByWhereClause(list, clause) {
     // {gereqs = EIN & year <= max(year) from {gereqs = BTS-T}}
     // {
     //    "$type": "boolean",
@@ -328,14 +327,14 @@ function filterByWhereClause(list: Array<Object>, clause: Object) {
 // Contained Computes:
 // course, occurrence, where
 
-function computeCourse(expr: Object, courses: Array<Object>): boolean {
+function computeCourse(expr, courses) {
     const query = expr
     delete query['$type']
     return checkForCourse(query, courses)
 }
 
 
-function computeOccurrence(expr: Object, courses: Array<Object>): boolean {
+function computeOccurrence(expr, courses) {
     assertKeys(expr, '$course', '$count')
     const clause = expr
     delete clause['department']
@@ -346,7 +345,7 @@ function computeOccurrence(expr: Object, courses: Array<Object>): boolean {
 }
 
 
-function computeWhere(expr: Object, courses: Array<Object>): boolean {
+function computeWhere(expr, courses) {
     assertKeys(expr, '$where', '$count')
     const filtered = filterByWhereClause(courses, expr['$where'])
     expr['_matches'] = filtered
@@ -357,13 +356,16 @@ function computeWhere(expr: Object, courses: Array<Object>): boolean {
 // Contextual Computes:
 // boolean, modifier, of, reference
 
-function computeBoolean(expr: Object, ctx: Object, courses: Array<Object>): boolean {
-    if ('$or' in expr)
+function computeBoolean(expr, ctx, courses) {
+    if ('$or' in expr) {
         return any(map(expr['$or'], req => computeChunk(req, ctx, courses)))
-    else if ('$and' in expr)
+    }
+    else if ('$and' in expr) {
         return all(map(expr['$and'], req => computeChunk(req, ctx, courses)))
-    else if ('$not' in expr)
+    }
+    else if ('$not' in expr) {
         return !(computeChunk(expr['$not'], ctx, courses))
+    }
     else {
         console.log()
         console.log(expr)
@@ -372,16 +374,18 @@ function computeBoolean(expr: Object, ctx: Object, courses: Array<Object>): bool
 }
 
 
-function computeOf(expr: Object, ctx: Object, courses: Array<Object>): boolean {
+function computeOf(expr, ctx, courses) {
     assertKeys(expr, '$of', '$count')
 
-    const evaluated = map(expr['$of'], req => computeChunk(req, ctx, courses))
+    const evaluated = map(expr['$of'], req =>
+        computeChunk(req, ctx, courses))
+
     const truthy = filter(evaluated, identity)
     return truthy.length >= expr['$count']
 }
 
 
-function computeReference(expr: Object, ctx: Object, courses: Array<Object>): boolean {
+function computeReference(expr, ctx, courses) {
     assertKeys(expr, '$requirement')
     if (expr['$requirement'] in ctx ){
         const target = ctx[expr['$requirement']]
@@ -392,12 +396,13 @@ function computeReference(expr: Object, ctx: Object, courses: Array<Object>): bo
 }
 
 
-function computeModifier(expr: Object, ctx: Object, courses: Array<Object>): boolean {
+function computeModifier(expr, ctx, courses) {
     assertKeys(expr, '$what', '$count', '$from')
     const what = expr['$what']
 
-    if (!includes(['course', 'department', 'credit'], what))
+    if (!includes(['course', 'department', 'credit'], what)) {
         throw new UnknownPropertyError(what)
+    }
 
     if (expr['$from'] === 'children') {
         console.error('not yet implemented')
@@ -423,10 +428,10 @@ function computeModifier(expr: Object, ctx: Object, courses: Array<Object>): boo
 
 // And, of course, the function that dispatches the appropriate compute:
 
-function computeChunk(expr: Object, ctx: Object, courses: Array<Object>): boolean {
-    // print
-    // print 'expression:', expr
-    // print 'context:', ctx
+function computeChunk(expr, ctx, courses) {
+    // console.log()
+    // console.log('expression:', expr)
+    // console.log('context:', ctx)
 
     assertKeys(expr, '$type')
     const type = expr['$type']
@@ -452,14 +457,10 @@ function computeChunk(expr: Object, ctx: Object, courses: Array<Object>): boolea
 }
 
 
-// The overall computation === done by compute, which === in charge of computing
+// The overall computation is done by compute, which is in charge of computing
 // sub-requirements and such.
 
-function compute(requirement: Object, path: Array<string>, courses=[], overrides={}): Object {
-    // this_name = path[-1]
-    // print ''
-    // print requirement, this_name
-
+function compute(requirement, path, courses=[], overrides={}) {
     requirement = mapValues(requirement, (req, name) => {
         return isRequirement(name)
             ? compute(req, path.concat([name]), courses, overrides)
@@ -493,7 +494,7 @@ function compute(requirement: Object, path: Array<string>, courses=[], overrides
 }
 
 
-export function evaluate(student: Object, area: Object): Object {
+export function evaluate(student, area) {
     assertKeys(area, 'name', 'result', 'type', 'revision')
     const {courses, overrides} = student
     const {name, type} = area
@@ -505,7 +506,7 @@ function loadFile(filename) {
     return JSON.parse(data)
 }
 
-function main() {
+function cli() {
     if (process.argv.length < 3) {
         console.log('usage: evaluate areaFile [student]')
         return
@@ -526,4 +527,4 @@ function main() {
     console.log('outcome:', result['computed'])
 }
 
-main()
+cli()
