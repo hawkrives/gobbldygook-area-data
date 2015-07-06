@@ -392,7 +392,9 @@ function computeOf(expr, ctx, courses) {
         computeChunk(req, ctx, courses))
 
     const truthy = filter(evaluated, identity)
-    return truthy.length >= expr.$count
+    expr.$has = truthy.length
+
+    return expr.$has >= expr.$count
 }
 
 
