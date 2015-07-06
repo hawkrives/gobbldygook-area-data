@@ -1,3 +1,6 @@
 node_modules/
-dist/
+dist/*
 *.log
+bin/check
+bin/hanson
+build/*
