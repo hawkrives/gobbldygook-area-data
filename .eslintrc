@@ -8,9 +8,9 @@ ecmaFeatures:
 parser: babel-eslint
 
 env:
-  browser: false
-  node: false
+  node: true
   es6: true
+  mocha: true
 
 # 1 means warning
 # 2 means error
