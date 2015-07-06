@@ -39,7 +39,10 @@ Studio Art:
             Graphic Design)
 
     Juried Show:
-        message: To fulfill the requirements of the Studio Art major, you must enter at least two juried art exhibitions on or off campus by the beginning of your senior year.
+        message:
+            To fulfill the requirements of the Studio Art major,
+            you must enter at least two juried art exhibitions on
+            or off campus by the beginning of your senior year.
 
     Senior Studies in Studio Art:
         ART 343
