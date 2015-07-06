@@ -49,3 +49,8 @@ rules:
   consistent-this: [1, self]
   brace-style: [1, stroustrup]
   semi: [2, never]
+
+  # node things
+  no-process-exit: 0
+  # mocha setting
+  no-unused-expressions: 0
