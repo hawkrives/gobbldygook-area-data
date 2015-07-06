@@ -15,7 +15,7 @@ them somewhere that the modifier can find them. Maybe on a "_matches" prop?
 Full Support of 12 Areas:
 - in peg
   - "filter" key
-  - "declare" key (for variables)
+  - [x] "declare" key (for variables)
   - parentheses in "where" qualifiers
 - in evaluate
   - "n things from children"
