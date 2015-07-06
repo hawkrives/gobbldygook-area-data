@@ -221,7 +221,7 @@ export function filterByQualification(list, qualification) {
     const operator = qualification.$value
     const kind = findOperatorType(operator)
 
-    if (typeof operator[kind] === 'object') {
+    if (isObject(operator[kind])) {
         const value = operator[kind]
         if (value.$type === 'function') {
             let func = undefined
