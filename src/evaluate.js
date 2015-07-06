@@ -35,9 +35,17 @@ export function isRequirement(name) {
 
 export function compareCourse(course, to) {
     // course might have more keys than the dict we're comparing it to
-    // 'to' will have some combination of 'year', 'semester', 'department', 'number', and 'section'
+    // 'to' will have some combination of:
+    // - 'year'
+    // - 'semester'
+    // - 'department'
+    // - 'number'
+    // - 'level'
+    // - 'international'
+    // - 'lab'
+    // - 'section'
     const notEqual = any(
-        ['year', 'semester', 'department', 'number', 'section'],
+        ['year', 'semester', 'department', 'number', 'section', 'level', 'international', 'lab'],
         key => !isEqual(course[key], to[key]))
     if (notEqual) {
         return false
