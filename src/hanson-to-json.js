@@ -4,9 +4,10 @@ import 'babel/polyfill'
 
 import yaml from 'js-yaml'
 import fs from 'graceful-fs'
-import {parse} from 'parse-hanson-string'
+import {parse} from '../lib/parse-hanson-string'
 import mapValues from 'lodash/object/mapValues'
 import forEach from 'lodash/collection/forEach'
+import keys from 'lodash/object/keys'
 import includes from 'lodash/collection/includes'
 import humanizeList from 'humanize-list'
 
@@ -31,7 +32,7 @@ export function enhanceFile(data, {topLevel=false}={}) {
     // 2. parses the 'result' and 'filter' keys
     // 3. warns if it encounters any lowercase keys not in the whitelist
 
-    const keys = Object.keys(data)
+    const keys = keys(data)
     const baseWhitelist = ['result', 'message', 'declare']
     const topLevelWhitelist = baseWhitelist.concat(['name', 'revision', 'type'])
     const lowerLevelWhitelist = baseWhitelist.concat(['filter', 'message', 'description'])

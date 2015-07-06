@@ -18,7 +18,7 @@ var _gracefulFs = require('graceful-fs');
 
 var _gracefulFs2 = _interopRequireDefault(_gracefulFs);
 
-var _parseHansonString = require('parse-hanson-string');
+var _libParseHansonString = require('../lib/parse-hanson-string');
 
 var _lodashObjectMapValues = require('lodash/object/mapValues');
 
@@ -27,6 +27,10 @@ var _lodashObjectMapValues2 = _interopRequireDefault(_lodashObjectMapValues);
 var _lodashCollectionForEach = require('lodash/collection/forEach');
 
 var _lodashCollectionForEach2 = _interopRequireDefault(_lodashCollectionForEach);
+
+var _lodashObjectKeys = require('lodash/object/keys');
+
+var _lodashObjectKeys2 = _interopRequireDefault(_lodashObjectKeys);
 
 var _lodashCollectionIncludes = require('lodash/collection/includes');
 
@@ -62,7 +66,7 @@ function enhanceFile(data) {
     // 2. parses the 'result' and 'filter' keys
     // 3. warns if it encounters any lowercase keys not in the whitelist
 
-    var keys = Object.keys(data);
+    var keys = keys(data);
     var baseWhitelist = ['result', 'message', 'declare'];
     var topLevelWhitelist = baseWhitelist.concat(['name', 'revision', 'type']);
     var lowerLevelWhitelist = baseWhitelist.concat(['filter', 'message', 'description']);
@@ -98,7 +102,7 @@ function enhanceFile(data) {
             });
 
             try {
-                value = (0, _parseHansonString.parse)(value);
+                value = (0, _libParseHansonString.parse)(value);
             } catch (e) {
                 console.error(e.message);
                 console.error('(in "' + value + '")');
