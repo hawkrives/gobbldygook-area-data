@@ -364,4 +364,61 @@ describe('parse hanson-string', () => {
         })
     })
 
+    xdescribe('counters', () => {
+        xit('n may be in english from "zero" to "twenty"', () => {})
+        xit('n may be a number from 0 to (at least) 999', () => {})
+    })
+
+    xdescribe('of-statements', () => {
+        xit('supports of statements of the form "n of ()"', () => {})
+        xit('allows "n" to be a number', () => {})
+        xit('allows "n" to be a counter', () => {})
+        xit('allows "n" to be "all"', () => {})
+        xit('if n is "all", it is the number of items in the of-parens', () => {})
+        xit('allows "n" to be "any"', () => {})
+        xit('allows "n" to be "none"', () => {})
+
+        xit('supports boolean statements within the parens', () => {})
+        xit('supports courses within the parens', () => {})
+        xit('supports where-clauses within the parens', () => {})
+        xit('supports occurrences within the parens', () => {})
+        xit('supports references within the parens', () => {})
+        xit('supports modifiers within the parens', () => {})
+
+        xit('items must be seperated by commas', () => {})
+
+        xit('throws an error if more items are required than are provided', () => {})
+    })
+    xdescribe('where-statements', () => {
+        xdescribe('qualifications', () => {
+            xit('can be separated by &', () => {})
+            xit('can be separated by |', () => {})
+            xit('can used in boolean logic: a & b | c', () => {})
+            xit('can used in boolean logic: a | b & c', () => {})
+            xit('boolean logic can be overridden by parens: (a | b) & c', () => {})
+            xit('key must be a string', () => {})
+            xit('value may include numbers', () => {})
+            xit('value may include hyphens', () => {})
+            xit('value may include underscores', () => {})
+
+            xit('value may rely on a nested qualifier', () => {})
+            xit('value may be compared by any of =, ==, !=, <, <=, >, or >=', () => {})
+        })
+    })
+    xdescribe('occurrences', () => {
+        xit('requires a course to check for occurrences of', () => {})
+    })
+    xdescribe('references', () => {
+        xit('can reference a requirement', () => {})
+        xit('requirement titles may include [A-Z], [0-9], [-_], and ()', () => {})
+    })
+    xdescribe('modifiers', () => {
+        xit('can count courses', () => {})
+        xit('can count credits', () => {})
+        xit('can count departments', () => {})
+        xit('will only count departments from children', () => {})
+        xit('can count from children', () => {})
+        xit('can count from filter', () => {})
+        xit('can count from where-statement', () => {})
+    })
 })
