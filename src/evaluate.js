@@ -299,6 +299,42 @@ export function filterByWhereClause(list, clause) {
 // Compute Functions:
 // There are two types of compute functions: those that need the surrounding
 // context, and those that don't.
+// And, of course, the function that dispatches the appropriate compute:
+
+export function computeChunk(expr, ctx, courses) {
+    // console.log()
+    // console.log('expression:', expr)
+    // console.log('context:', ctx)
+
+    assertKeys(expr, '$type')
+    const type = expr.$type
+
+    let computed = false
+    if (type === 'boolean') {
+        computed = computeBoolean(expr, ctx, courses)
+    }
+    else if (type === 'course') {
+        computed = computeCourse(expr, courses)
+    }
+    else if (type === 'modifier') {
+        computed = computeModifier(expr, ctx, courses)
+    }
+    else if (type === 'occurrence') {
+        computed = computeOccurrence(expr, courses)
+    }
+    else if (type === 'of') {
+        computed = computeOf(expr, ctx, courses)
+    }
+    else if (type === 'reference') {
+        computed = computeReference(expr, ctx)
+    }
+    else if (type === 'where') {
+        computed = computeWhere(expr, courses)
+    }
+
+    expr._result = computed
+    return computed
+}
 
 
 // Contained Computes:
@@ -406,43 +442,6 @@ export function computeModifier(expr, ctx, courses) {
     }
 }
 
-
-// And, of course, the function that dispatches the appropriate compute:
-
-function computeChunk(expr, ctx, courses) {
-    // console.log()
-    // console.log('expression:', expr)
-    // console.log('context:', ctx)
-
-    assertKeys(expr, '$type')
-    const type = expr.$type
-
-    let computed = false
-    if (type === 'boolean') {
-        computed = computeBoolean(expr, ctx, courses)
-    }
-    else if (type === 'course') {
-        computed = computeCourse(expr, courses)
-    }
-    else if (type === 'modifier') {
-        computed = computeModifier(expr, ctx, courses)
-    }
-    else if (type === 'occurrence') {
-        computed = computeOccurrence(expr, courses)
-    }
-    else if (type === 'of') {
-        computed = computeOf(expr, ctx, courses)
-    }
-    else if (type === 'reference') {
-        computed = computeReference(expr, ctx)
-    }
-    else if (type === 'where') {
-        computed = computeWhere(expr, courses)
-    }
-
-    expr._result = computed
-    return computed
-}
 
 
 // The overall computation is done by compute, which is in charge of computing
