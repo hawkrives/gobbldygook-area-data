@@ -12,6 +12,9 @@ env:
   es6: true
   mocha: true
 
+globals:
+  expect: false
+
 # 1 means warning
 # 2 means error
 rules:
