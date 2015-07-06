@@ -7,21 +7,11 @@
   "author": "Hawken M. Rives",
   "license": "MIT",
   "scripts": {
-    "update-peg": "pegjs < static-areas/bin/hanson-peg.pegjs | babel > static-areas/bin/hanson-peg.js",
-    "try": "babel-node static-areas/bin/hanson-to-js.js static-areas/area-files/majors/studio-art.hanson.yaml",
-    "push": "./bin/publish.sh",
-    "prepublish": "npm run build",
-    "postpublish": "npm run clean",
-    "build": "babel src/ --out-dir dist/",
-    "clean": "rm -rf dist/",
-    "mocha": "mocha",
-    "eslint": "eslint src/",
-    "test": "npm run mocha && npm run eslint",
-    "watch-tests": "nodemon --watch test/ --exec 'npm run mocha'"
+    "eslint": "eslint src/"
   },
   "devDependencies": {
     "babel": "5.6.14",
-    "babel-eslint": "3.1.20",
+    "babel-eslint": "3.1.21",
     "bluebird": "2.9.32",
     "chai": "3.0.0",
     "chai-as-promised": "5.1.0",
