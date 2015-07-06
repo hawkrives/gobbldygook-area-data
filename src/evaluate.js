@@ -176,7 +176,7 @@ export function compareCourseAgainstOperator(course, key, operator) {
 
     else {
         // it's a static value; a number or string
-        if (kind === '$eq' || kind === '$ne') {
+        if (kind === '$eq') {
             return (isArray(course[key])
                     ? includes(course[key], operator[kind])
                     : course[key] === operator[kind])
