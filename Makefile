@@ -1,4 +1,4 @@
-PATH := ./node_modules/:$(PATH)
+PATH := ./node_modules/.bin/:$(PATH)
 
 all: bin/hanson-to-json lib/parse-hanson-string.js
 
