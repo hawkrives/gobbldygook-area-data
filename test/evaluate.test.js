@@ -314,7 +314,17 @@ describe('filterByWhereClause', () => {
     let clause
     let courses
     beforeEach(() => {
-        // {gereqs = EIN & year <= max(year) from {gereqs = BTS-T}}
+        // {gereqs = EIN & year <= max(year) from courses where {gereqs = BTS-T}}
+        /*
+            {
+                gereqs = EIN &
+                year = max(year) from courses where {
+                    gereqs = BTS-T &
+                    semester = min(semester) from courses where {
+                        level = 300
+                    }
+                }}
+        */
         clause = {
             $type: 'boolean',
             $and: [

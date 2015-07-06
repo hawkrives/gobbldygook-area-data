@@ -202,7 +202,7 @@ export function compareCourseAgainstOperator(course, key, operator) {
 }
 
 
-export function filterByQualification(list, qualification) {
+export function filterByQualification(list, qualification, fullList) {
     // { "$type":"qualification", $key: "gereqs", $value: {"$type": "operator", "$eq": "EIN"} }
     // { "$type":"qualification", $key: "year", value: {
     //     "$type": "operator",
@@ -234,9 +234,13 @@ export function filterByQualification(list, qualification) {
             else {
                 throw new RequiredKeyError(`${value.$name} is not a valid function to call.`)
             }
-            const filtered = filterByWhereClause(list, value.$where)
+            const complete = fullList || list
+            const filtered = filterByWhereClause(complete, value.$where)
             const items = pluck(filtered, value.$prop)
             const computed = func(items)
+            // console.log('looked at', complete)
+            // console.log('reduced to', filtered)
+            // console.log('came up with', computed)
             value['$computed-value'] = computed
         }
         else {
@@ -252,7 +256,7 @@ export function filterByQualification(list, qualification) {
 }
 
 
-export function filterByWhereClause(list, clause) {
+export function filterByWhereClause(list, clause, fullList) {
     // {gereqs = EIN & year <= max(year) from {gereqs = BTS-T}}
     // {
     //    "$type": "boolean",
@@ -273,16 +277,25 @@ export function filterByWhereClause(list, clause) {
     //      } }
     //    ]
     //  }
+    if (!fullList) {
+        fullList = list
+    }
 
     if (clause.$type === 'qualification') {
-        return filterByQualification(list, clause)
+        return filterByQualification(list, clause, fullList)
     }
 
     else if (clause.$type === 'boolean') {
         if ('$and' in clause) {
             let filtered = list
             forEach(clause.$and, q => {
-                filtered = filterByWhereClause(filtered, q)
+                // console.log('courses', filtered)
+                // console.log('all courses', fullList)
+                // console.log('query', q)
+                filtered = filterByWhereClause(filtered, q, fullList)
+                // console.log('courses', filtered)
+                // console.log('all courses', fullList)
+                // console.log('query', q)
             })
             return filtered
         }
