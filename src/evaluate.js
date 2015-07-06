@@ -239,6 +239,9 @@ export function filterByQualification(list, qualification) {
             const computed = func(items)
             value['$computed-value'] = computed
         }
+        else {
+            throw new BadTypeError(`${value.$type} is not a valid type for a query.`)
+        }
     }
 
     const key = qualification.$key
