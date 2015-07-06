@@ -16,7 +16,7 @@ env:
 # 2 means error
 rules:
   # possible errors
-  comma-dangle: 'always-multiline'
+  comma-dangle: [2, 'always-multiline']
   valid-jsdoc: 1
 
   # best practices
@@ -37,7 +37,7 @@ rules:
 
   # stylistic issues
   new-cap: 0
-  indent: [1, 2]
+  indent: [1, 4]
   camelcase: 2
   comma-style: [1, last]
   comma-spacing: [1, {before: false, after: true}]
