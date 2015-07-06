@@ -32,15 +32,14 @@ export function enhanceFile(data, {topLevel=false}={}) {
     // 2. parses the 'result' and 'filter' keys
     // 3. warns if it encounters any lowercase keys not in the whitelist
 
-    const keys = keys(data)
     const baseWhitelist = ['result', 'message', 'declare']
     const topLevelWhitelist = baseWhitelist.concat(['name', 'revision', 'type'])
     const lowerLevelWhitelist = baseWhitelist.concat(['filter', 'message', 'description'])
     const whitelist = topLevel ? topLevelWhitelist : lowerLevelWhitelist
 
-    keys.forEach(key => {
+    keys(data).forEach(key => {
         if (!isReqName(key) && !whitelist.includes(key)) {
-            console.warn(`only ${humanizeList(whitelist)} keys are allowed, and "${key}" is not one of them. all requirements must begin with an uppercase letter or a number.`)
+            console.warn(`only ${humanizeList(whitelist)} keys are allowed, and '${key}' is not one of them. all requirements must begin with an uppercase letter or a number.`)
         }
     })
 
@@ -57,7 +56,7 @@ export function enhanceFile(data, {topLevel=false}={}) {
 
         if (isReqName(key)) {
             value = enhanceFile(value, {topLevel: false})
-            value["$type"] = "requirement"
+            value.$type = 'requirement'
         }
 
         else if (key === 'result' || key === 'filter') {
@@ -71,9 +70,10 @@ export function enhanceFile(data, {topLevel=false}={}) {
 
             try {
                 value = parse(value)
-            } catch(e) {
+            }
+            catch (e) {
                 console.error(e.message)
-                console.error(`(in "${value}")`)
+                console.error(`(in '${value}')`)
             }
         }
 

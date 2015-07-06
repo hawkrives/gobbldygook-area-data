@@ -41,6 +41,14 @@ var _lodashCollectionIncludes = require('lodash/collection/includes');
 
 var _lodashCollectionIncludes2 = _interopRequireDefault(_lodashCollectionIncludes);
 
+var _lodashLangIsArray = require('lodash/lang/isArray');
+
+var _lodashLangIsArray2 = _interopRequireDefault(_lodashLangIsArray);
+
+var _lodashLangIsObject = require('lodash/lang/isObject');
+
+var _lodashLangIsObject2 = _interopRequireDefault(_lodashLangIsObject);
+
 var _lodashLangIsEqual = require('lodash/lang/isEqual');
 
 var _lodashLangIsEqual2 = _interopRequireDefault(_lodashLangIsEqual);
@@ -64,10 +72,6 @@ var _lodashMathMin2 = _interopRequireDefault(_lodashMathMin);
 var _lodashCollectionPluck = require('lodash/collection/pluck');
 
 var _lodashCollectionPluck2 = _interopRequireDefault(_lodashCollectionPluck);
-
-var _lodashCollectionReduce = require('lodash/collection/reduce');
-
-var _lodashCollectionReduce2 = _interopRequireDefault(_lodashCollectionReduce);
 
 var _lodashCollectionReject = require('lodash/collection/reject');
 
@@ -117,7 +121,7 @@ var RequiredKeyError = (function (_Error) {
     _createClass(RequiredKeyError, [{
         key: 'toString',
         value: function toString() {
-            return 'missing keys: ' + this.value + ' (from ' + self.data + ')';
+            return 'missing keys: ' + this.value + ' (from ' + this.data + ')';
         }
     }]);
 
@@ -179,15 +183,18 @@ function isRequirement(name) {
 function compareCourse(course, to) {
     // course might have more keys than the dict we're comparing it to
     // 'to' will have some combination of 'year', 'semester', 'department', 'number', and 'section'
-    if ((0, _lodashCollectionAny2['default'])(['year', 'semester', 'department', 'number', 'section'], function (key) {
+    var notEqual = (0, _lodashCollectionAny2['default'])(['year', 'semester', 'department', 'number', 'section'], function (key) {
         return !(0, _lodashLangIsEqual2['default'])(course[key], to[key]);
-    })) return false;
+    });
+    if (notEqual) {
+        return false;
+    }
     return true;
 }
 
-function checkForCourse(filter, courses) {
+function checkForCourse(course, courses) {
     return (0, _lodashCollectionAny2['default'])(courses, function (c) {
-        return compareCourse(c, filter);
+        return compareCourse(c, course);
     });
 }
 
@@ -221,7 +228,6 @@ function countDepartments(courses) {
 }
 
 function countCredits(courses) {
-    console.log('counting credits');
     return (0, _lodashMathSum2['default'])((0, _lodashCollectionPluck2['default'])(courses, 'credits'));
 }
 
@@ -253,7 +259,8 @@ function findOperatorType(operator) {
     } else {
         throw new RequiredKeyError({
             msg: 'no valid operators ($eq, $ne, $lt, $lte, $gt, $gte) could be found',
-            data: operator });
+            data: operator
+        });
     }
 }
 
@@ -284,7 +291,11 @@ function compareCourseAgainstOperator(_x6, _x7, _x8) {
 
         var kind = findOperatorType(operator);
 
-        if (typeof operator[kind] === 'object') {
+        if ((0, _lodashLangIsArray2['default'])(operator[kind])) {
+            throw new BadTypeError({
+                msg: 'what would a comparison to a list even do? oh, wait; i\n            suppose it could compare against one of several values... well, im\n            not doing that right now. if you want it, edit the PEG and stick\n            appropriate stuff in here (probably simplest to just call this\n            function again with each possible value and return true if any are\n            true.)'
+            });
+        } else if ((0, _lodashLangIsObject2['default'])(operator[kind])) {
             // we compute the value of the function-over-where-query style operators
             // earlier, in the filterByQualification function.
             assertKeys(operator[kind], '$computed-value');
@@ -294,13 +305,21 @@ function compareCourseAgainstOperator(_x6, _x7, _x8) {
             _x8 = simplifiedOperator;
             _again2 = true;
             continue _function2;
-        } else if (typeof operator[kind] === 'array') {
-            throw new BadTypeError({
-                msg: 'what would a comparison to a list even do? oh, wait; i\n            suppose it could compare against one of several values... well, im\n            not doing that right now. if you want it, edit the PEG and stick\n            appropriate stuff in here (probably simplest to just call this\n            function again with each possible value and return true if any are\n            true.)'
-            });
         } else {
             // it's a static value; a number or string
-            if (kind === '$eq' || kind === '$ne') return typeof course[key] === 'array' ? course[key] === operator[kind] : (0, _lodashCollectionIncludes2['default'])(course[key], operator[kind]);else if (kind === '$ne') return typeof course[key] === 'array' ? course[key] !== operator[kind] : !(0, _lodashCollectionIncludes2['default'])(course[key], operator[kind]);else if (kind === '$lt') return course[key] < operator[kind];else if (kind === '$lte') return course[key] <= operator[kind];else if (kind === '$gt') return course[key] > operator[kind];else if (kind === '$gte') return course[key] >= operator[kind];
+            if (kind === '$eq' || kind === '$ne') {
+                return (0, _lodashLangIsArray2['default'])(course[key]) ? course[key] === operator[kind] : (0, _lodashCollectionIncludes2['default'])(course[key], operator[kind]);
+            } else if (kind === '$ne') {
+                return (0, _lodashLangIsArray2['default'])(course[key]) ? course[key] !== operator[kind] : !(0, _lodashCollectionIncludes2['default'])(course[key], operator[kind]);
+            } else if (kind === '$lt') {
+                return course[key] < operator[kind];
+            } else if (kind === '$lte') {
+                return course[key] <= operator[kind];
+            } else if (kind === '$gt') {
+                return course[key] > operator[kind];
+            } else if (kind === '$gte') {
+                return course[key] >= operator[kind];
+            }
         }
     }
 }
@@ -321,28 +340,32 @@ function filterByQualification(list, qualification) {
     //     }
     // } }
 
-    var operator = qualification['$value'];
+    var operator = qualification.$value;
     var kind = findOperatorType(operator);
 
     if (typeof operator[kind] === 'object') {
         var value = operator[kind];
-        if (value['$type'] === 'function') {
+        if (value.$type === 'function') {
             var func = undefined;
-            if (value['$name'] === 'max') func = _lodashMathMax2['default'];else if (value['$name'] === 'min') func = _lodashMathMin2['default'];else throw new RequiredKeyError({ msg: value['$name'] + ' is not a valid function to call.' });
-            var _filtered = filterByWhereClause(list, value['$where']);
-            var items = (0, _lodashCollectionPluck2['default'])(value['$prop'], _filtered);
+            if (value.$name === 'max') {
+                func = _lodashMathMax2['default'];
+            } else if (value.$name === 'min') {
+                func = _lodashMathMin2['default'];
+            } else {
+                throw new RequiredKeyError({ msg: value.$name + ' is not a valid function to call.' });
+            }
+            var _filtered = filterByWhereClause(list, value.$where);
+            var items = (0, _lodashCollectionPluck2['default'])(value.$prop, _filtered);
             var computed = func(items);
             value['$computed-value'] = computed;
         }
     }
 
-    console.log(qualification);
-    var key = qualification['$key'];
+    var key = qualification.$key;
     var filtered = (0, _lodashCollectionFilter2['default'])(list, function (course) {
         return compareCourseAgainstOperator(course, key, operator);
     });
 
-    console.log(list.length, filtered.length);
     return filtered;
 }
 
@@ -368,13 +391,13 @@ function filterByWhereClause(list, clause) {
     //    ]
     //  }
 
-    if (clause['$type'] === 'qualification') {
+    if (clause.$type === 'qualification') {
         return filterByQualification(list, clause);
-    } else if (clause['$type'] === 'boolean') {
+    } else if (clause.$type === 'boolean') {
         if ('$and' in clause) {
             var _ret = (function () {
                 var filtered = list;
-                clause['$and'].forEach(function (q) {
+                clause.$and.forEach(function (q) {
                     filtered = filterByWhereClause(filtered, q);
                 });
                 return {
@@ -386,7 +409,7 @@ function filterByWhereClause(list, clause) {
         } else if ('$or' in clause) {
             var _ret2 = (function () {
                 var filtrations = [];
-                clause['$or'].forEach(function (q) {
+                clause.$or.forEach(function (q) {
                     filtrations = (0, _lodashArrayUnion2['default'])(filtrations, filterByWhereClause(list, q));
                 });
                 return {
@@ -396,11 +419,17 @@ function filterByWhereClause(list, clause) {
 
             if (typeof _ret2 === 'object') return _ret2.v;
         } else {
-            throw new RequiredKeyError({ msg: 'neither $or nor $and could be found', data: clause });
+            throw new RequiredKeyError({
+                msg: 'neither $or nor $and could be found',
+                data: clause
+            });
         }
     } else {
         console.log(clause);
-        throw new BadTypeError({ msg: 'wth kind of type is this clause?', data: clause });
+        throw new BadTypeError({
+            msg: 'wth kind of type is this clause?',
+            data: clause
+        });
     }
 }
 
@@ -413,25 +442,25 @@ function filterByWhereClause(list, clause) {
 
 function computeCourse(expr, courses) {
     var query = expr;
-    delete query['$type'];
+    delete query.$type;
     return checkForCourse(query, courses);
 }
 
 function computeOccurrence(expr, courses) {
     assertKeys(expr, '$course', '$count');
     var clause = expr;
-    delete clause['department'];
-    delete clause['number'];
-    delete clause['section'];
+    delete clause.department;
+    delete clause.number;
+    delete clause.section;
     var filtered = getOccurrences(clause, courses);
-    return filtered.length >= expr['$count'];
+    return filtered.length >= expr.$count;
 }
 
 function computeWhere(expr, courses) {
     assertKeys(expr, '$where', '$count');
-    var filtered = filterByWhereClause(courses, expr['$where']);
-    expr['_matches'] = filtered;
-    return filtered.length >= expr['$count'];
+    var filtered = filterByWhereClause(courses, expr.$where);
+    expr._matches = filtered;
+    return filtered.length >= expr.$count;
 }
 
 // Contextual Computes:
@@ -439,15 +468,15 @@ function computeWhere(expr, courses) {
 
 function computeBoolean(expr, ctx, courses) {
     if ('$or' in expr) {
-        return (0, _lodashCollectionAny2['default'])((0, _lodashCollectionMap2['default'])(expr['$or'], function (req) {
+        return (0, _lodashCollectionAny2['default'])((0, _lodashCollectionMap2['default'])(expr.$or, function (req) {
             return computeChunk(req, ctx, courses);
         }));
     } else if ('$and' in expr) {
-        return (0, _lodashCollectionAll2['default'])((0, _lodashCollectionMap2['default'])(expr['$and'], function (req) {
+        return (0, _lodashCollectionAll2['default'])((0, _lodashCollectionMap2['default'])(expr.$and, function (req) {
             return computeChunk(req, ctx, courses);
         }));
     } else if ('$not' in expr) {
-        return !computeChunk(expr['$not'], ctx, courses);
+        return !computeChunk(expr.$not, ctx, courses);
     } else {
         console.log();
         console.log(expr);
@@ -458,41 +487,49 @@ function computeBoolean(expr, ctx, courses) {
 function computeOf(expr, ctx, courses) {
     assertKeys(expr, '$of', '$count');
 
-    var evaluated = (0, _lodashCollectionMap2['default'])(expr['$of'], function (req) {
+    var evaluated = (0, _lodashCollectionMap2['default'])(expr.$of, function (req) {
         return computeChunk(req, ctx, courses);
     });
 
     var truthy = (0, _lodashCollectionFilter2['default'])(evaluated, _lodashUtilityIdentity2['default']);
-    return truthy.length >= expr['$count'];
+    return truthy.length >= expr.$count;
 }
 
-function computeReference(expr, ctx, courses) {
+function computeReference(expr, ctx) {
     assertKeys(expr, '$requirement');
-    if (expr['$requirement'] in ctx) {
-        var target = ctx[expr['$requirement']];
-        return target['computed'];
-    } else return false;
+    if (expr.$requirement in ctx) {
+        var target = ctx[expr.$requirement];
+        return target.computed;
+    } else {
+        return false;
+    }
 }
 
 function computeModifier(expr, ctx, courses) {
     assertKeys(expr, '$what', '$count', '$from');
-    var what = expr['$what'];
+    var what = expr.$what;
 
     if (!(0, _lodashCollectionIncludes2['default'])(['course', 'department', 'credit'], what)) {
         throw new UnknownPropertyError(what);
     }
 
-    if (expr['$from'] === 'children') {
+    if (expr.$from === 'children') {
         console.error('not yet implemented');
         return false;
-    } else if (expr['$from'] === 'where') {
+    } else if (expr.$from === 'where') {
         assertKeys(expr, '$where', '$count');
-        var filtered = filterByWhereClause(courses, expr['$where']);
+        var filtered = filterByWhereClause(courses, expr.$where);
         var num = undefined;
 
-        if (what === 'course') num = countCourses(filtered);else if (what === 'department') num = countDepartments(filtered);else if (what === 'credit') num = countCredits(filtered);
+        if (what === 'course') {
+            num = countCourses(filtered);
+        } else if (what === 'department') {
+            num = countDepartments(filtered);
+        } else if (what === 'credit') {
+            num = countCredits(filtered);
+        }
 
-        return num >= expr['$count'];
+        return num >= expr.$count;
     }
 }
 
@@ -504,12 +541,26 @@ function computeChunk(expr, ctx, courses) {
     // console.log('context:', ctx)
 
     assertKeys(expr, '$type');
-    var type = expr['$type'];
+    var type = expr.$type;
 
     var computed = false;
-    if (type === 'boolean') computed = computeBoolean(expr, ctx, courses);else if (type === 'course') computed = computeCourse(expr, courses);else if (type === 'modifier') computed = computeModifier(expr, ctx, courses);else if (type === 'occurrence') computed = computeOccurrence(expr, courses);else if (type === 'of') computed = computeOf(expr, ctx, courses);else if (type === 'reference') computed = computeReference(expr, ctx, courses);else if (type === 'where') computed = computeWhere(expr, courses);
+    if (type === 'boolean') {
+        computed = computeBoolean(expr, ctx, courses);
+    } else if (type === 'course') {
+        computed = computeCourse(expr, courses);
+    } else if (type === 'modifier') {
+        computed = computeModifier(expr, ctx, courses);
+    } else if (type === 'occurrence') {
+        computed = computeOccurrence(expr, courses);
+    } else if (type === 'of') {
+        computed = computeOf(expr, ctx, courses);
+    } else if (type === 'reference') {
+        computed = computeReference(expr, ctx);
+    } else if (type === 'where') {
+        computed = computeWhere(expr, courses);
+    }
 
-    expr['_result'] = computed;
+    expr._result = computed;
     return computed;
 }
 
@@ -527,21 +578,21 @@ function compute(requirement, path) {
     var computed = false;
 
     if ('result' in requirement) {
-        computed = computeChunk(requirement['result'], requirement, courses);
+        computed = computeChunk(requirement.result, requirement, courses);
     } else if ('message' in requirement) {
         computed = false
         // show a button to toggle overriding
         ;
     } else {
         // throw new RequiredKeyError(msg='one of message or result === required')
-        print('one of message or result === required');
+        console.log('one of message or result === required');
     }
 
-    requirement['computed'] = computed;
+    requirement.computed = computed;
 
     if (hasOverride(path, overrides)) {
-        requirement['overridden'] = true;
-        requirement['computed'] = getOverride(path, overrides);
+        requirement.overridden = true;
+        requirement.computed = getOverride(path, overrides);
     }
 
     return requirement;
@@ -584,7 +635,7 @@ function cli() {
     // evaluate('', '')
 
     console.log(JSON.stringify(result, null, 2));
-    console.log('outcome:', result['computed']);
+    console.log('outcome:', result.computed);
 }
 
 cli();

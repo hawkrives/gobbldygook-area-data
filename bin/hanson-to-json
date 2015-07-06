@@ -66,15 +66,14 @@ function enhanceFile(data) {
     // 2. parses the 'result' and 'filter' keys
     // 3. warns if it encounters any lowercase keys not in the whitelist
 
-    var keys = keys(data);
     var baseWhitelist = ['result', 'message', 'declare'];
     var topLevelWhitelist = baseWhitelist.concat(['name', 'revision', 'type']);
     var lowerLevelWhitelist = baseWhitelist.concat(['filter', 'message', 'description']);
     var whitelist = topLevel ? topLevelWhitelist : lowerLevelWhitelist;
 
-    keys.forEach(function (key) {
+    (0, _lodashObjectKeys2['default'])(data).forEach(function (key) {
         if (!isReqName(key) && !whitelist.includes(key)) {
-            console.warn('only ' + (0, _humanizeList2['default'])(whitelist) + ' keys are allowed, and "' + key + '" is not one of them. all requirements must begin with an uppercase letter or a number.');
+            console.warn('only ' + (0, _humanizeList2['default'])(whitelist) + ' keys are allowed, and \'' + key + '\' is not one of them. all requirements must begin with an uppercase letter or a number.');
         }
     });
 
@@ -91,7 +90,7 @@ function enhanceFile(data) {
 
         if (isReqName(key)) {
             value = enhanceFile(value, { topLevel: false });
-            value['$type'] = 'requirement';
+            value.$type = 'requirement';
         } else if (key === 'result' || key === 'filter') {
             (0, _lodashCollectionForEach2['default'])(declaredVariables, function (contents, name) {
                 if ((0, _lodashCollectionIncludes2['default'])(value, '$' + name)) {
@@ -105,7 +104,7 @@ function enhanceFile(data) {
                 value = (0, _libParseHansonString.parse)(value);
             } catch (e) {
                 console.error(e.message);
-                console.error('(in "' + value + '")');
+                console.error('(in \'' + value + '\')');
             }
         }
 

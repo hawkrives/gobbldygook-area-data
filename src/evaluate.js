@@ -7,6 +7,8 @@ import any from 'lodash/collection/any'
 import filter from 'lodash/collection/filter'
 import identity from 'lodash/utility/identity'
 import includes from 'lodash/collection/includes'
+import isArray from 'lodash/lang/isArray'
+import isObject from 'lodash/lang/isObject'
 import isEqual from 'lodash/lang/isEqual'
 import map from 'lodash/collection/map'
 import mapValues from 'lodash/object/mapValues'
@@ -33,7 +35,7 @@ class RequiredKeyError extends Error {
     }
 
     toString() {
-        return `missing keys: ${this.value} (from ${self.data})`
+        return `missing keys: ${this.value} (from ${this.data})`
     }
 }
 
@@ -73,15 +75,18 @@ function isRequirement(name) {
 function compareCourse(course, to) {
     // course might have more keys than the dict we're comparing it to
     // 'to' will have some combination of 'year', 'semester', 'department', 'number', and 'section'
-    if (any(['year', 'semester', 'department', 'number', 'section'],
-        key => !isEqual(course[key], to[key])))
+    const notEqual = any(
+        ['year', 'semester', 'department', 'number', 'section'],
+        key => !isEqual(course[key], to[key]))
+    if (notEqual) {
         return false
+    }
     return true
 }
 
 
-function checkForCourse(filter, courses) {
-    return any(courses, (c) => compareCourse(c, filter))
+function checkForCourse(course, courses) {
+    return any(courses, (c) => compareCourse(c, course))
 }
 
 
@@ -111,7 +116,6 @@ function countDepartments(courses) {
 
 
 function countCredits(courses) {
-    console.log('counting credits')
     return sum(pluck(courses, 'credits'))
 }
 
@@ -152,8 +156,9 @@ function findOperatorType(operator) {
     }
     else {
         throw new RequiredKeyError({
-            msg:'no valid operators ($eq, $ne, $lt, $lte, $gt, $gte) could be found',
-            data:operator})
+            msg: 'no valid operators ($eq, $ne, $lt, $lte, $gt, $gte) could be found',
+            data: operator,
+        })
     }
 }
 
@@ -176,7 +181,18 @@ function compareCourseAgainstOperator(course, key, operator) {
 
     const kind = findOperatorType(operator)
 
-    if (typeof operator[kind] === 'object') {
+    if (isArray(operator[kind])) {
+        throw new BadTypeError({
+            msg: `what would a comparison to a list even do? oh, wait; i
+            suppose it could compare against one of several values... well, im
+            not doing that right now. if you want it, edit the PEG and stick
+            appropriate stuff in here (probably simplest to just call this
+            function again with each possible value and return true if any are
+            true.)`,
+        })
+    }
+
+    else if (isObject(operator[kind])) {
         // we compute the value of the function-over-where-query style operators
         // earlier, in the filterByQualification function.
         assertKeys(operator[kind], '$computed-value')
@@ -184,35 +200,30 @@ function compareCourseAgainstOperator(course, key, operator) {
         return compareCourseAgainstOperator(course, key, simplifiedOperator)
     }
 
-    else if (typeof operator[kind] === 'array') {
-        throw new BadTypeError({
-            msg: `what would a comparison to a list even do? oh, wait; i
-            suppose it could compare against one of several values... well, im
-            not doing that right now. if you want it, edit the PEG and stick
-            appropriate stuff in here (probably simplest to just call this
-            function again with each possible value and return true if any are
-            true.)`
-        })
-    }
-
     else {
         // it's a static value; a number or string
-        if (kind === '$eq' || kind === '$ne')
-            return (typeof course[key] === 'array'
+        if (kind === '$eq' || kind === '$ne') {
+            return (isArray(course[key])
                     ? course[key] === operator[kind]
                     : includes(course[key], operator[kind]))
-        else if (kind === '$ne')
-            return (typeof course[key] === 'array'
+        }
+        else if (kind === '$ne') {
+            return (isArray(course[key])
                     ? course[key] !== operator[kind]
                     : !includes(course[key], operator[kind]))
-        else if (kind === '$lt')
+        }
+        else if (kind === '$lt') {
             return course[key] < operator[kind]
-        else if (kind === '$lte')
+        }
+        else if (kind === '$lte') {
             return course[key] <= operator[kind]
-        else if (kind === '$gt')
+        }
+        else if (kind === '$gt') {
             return course[key] > operator[kind]
-        else if (kind === '$gte')
+        }
+        else if (kind === '$gte') {
             return course[key] >= operator[kind]
+        }
     }
 }
 
@@ -233,32 +244,33 @@ function filterByQualification(list, qualification) {
     //     }
     // } }
 
-    const operator = qualification['$value']
+    const operator = qualification.$value
     const kind = findOperatorType(operator)
 
     if (typeof operator[kind] === 'object') {
         const value = operator[kind]
-        if (value['$type'] === 'function') {
+        if (value.$type === 'function') {
             let func = undefined
-            if (value['$name'] === 'max')
+            if (value.$name === 'max') {
                 func = max
-            else if (value['$name'] === 'min')
+            }
+            else if (value.$name === 'min') {
                 func = min
-            else
-                throw new RequiredKeyError({msg:`${value['$name']} is not a valid function to call.`})
-            const filtered = filterByWhereClause(list, value['$where'])
-            const items = pluck(value['$prop'], filtered)
+            }
+            else {
+                throw new RequiredKeyError({msg: `${value.$name} is not a valid function to call.`})
+            }
+            const filtered = filterByWhereClause(list, value.$where)
+            const items = pluck(value.$prop, filtered)
             const computed = func(items)
             value['$computed-value'] = computed
         }
     }
 
-    console.log(qualification)
-    const key = qualification['$key']
+    const key = qualification.$key
     const filtered = filter(list,
         course => compareCourseAgainstOperator(course, key, operator))
 
-    console.log(list.length, filtered.length)
     return filtered
 }
 
@@ -285,14 +297,14 @@ function filterByWhereClause(list, clause) {
     //    ]
     //  }
 
-    if (clause['$type'] === 'qualification') {
+    if (clause.$type === 'qualification') {
         return filterByQualification(list, clause)
     }
 
-    else if (clause['$type'] === 'boolean') {
+    else if (clause.$type === 'boolean') {
         if ('$and' in clause) {
             let filtered = list
-            clause['$and'].forEach(q => {
+            clause.$and.forEach(q => {
                 filtered = filterByWhereClause(filtered, q)
             })
             return filtered
@@ -300,20 +312,26 @@ function filterByWhereClause(list, clause) {
 
         else if ('$or' in clause) {
             let filtrations = []
-            clause['$or'].forEach(q => {
+            clause.$or.forEach(q => {
                 filtrations = union(filtrations, filterByWhereClause(list, q))
             })
             return uniq(filtrations, 'crsid')
         }
 
         else {
-            throw new RequiredKeyError({msg:'neither $or nor $and could be found', data:clause})
+            throw new RequiredKeyError({
+                msg: 'neither $or nor $and could be found',
+                data: clause,
+            })
         }
     }
 
     else {
         console.log(clause)
-        throw new BadTypeError({msg:'wth kind of type is this clause?', data:clause})
+        throw new BadTypeError({
+            msg: 'wth kind of type is this clause?',
+            data: clause,
+        })
     }
 }
 
@@ -328,7 +346,7 @@ function filterByWhereClause(list, clause) {
 
 function computeCourse(expr, courses) {
     const query = expr
-    delete query['$type']
+    delete query.$type
     return checkForCourse(query, courses)
 }
 
@@ -336,19 +354,19 @@ function computeCourse(expr, courses) {
 function computeOccurrence(expr, courses) {
     assertKeys(expr, '$course', '$count')
     const clause = expr
-    delete clause['department']
-    delete clause['number']
-    delete clause['section']
+    delete clause.department
+    delete clause.number
+    delete clause.section
     const filtered = getOccurrences(clause, courses)
-    return filtered.length >= expr['$count']
+    return filtered.length >= expr.$count
 }
 
 
 function computeWhere(expr, courses) {
     assertKeys(expr, '$where', '$count')
-    const filtered = filterByWhereClause(courses, expr['$where'])
-    expr['_matches'] = filtered
-    return filtered.length >= expr['$count']
+    const filtered = filterByWhereClause(courses, expr.$where)
+    expr._matches = filtered
+    return filtered.length >= expr.$count
 }
 
 
@@ -357,18 +375,18 @@ function computeWhere(expr, courses) {
 
 function computeBoolean(expr, ctx, courses) {
     if ('$or' in expr) {
-        return any(map(expr['$or'], req => computeChunk(req, ctx, courses)))
+        return any(map(expr.$or, req => computeChunk(req, ctx, courses)))
     }
     else if ('$and' in expr) {
-        return all(map(expr['$and'], req => computeChunk(req, ctx, courses)))
+        return all(map(expr.$and, req => computeChunk(req, ctx, courses)))
     }
     else if ('$not' in expr) {
-        return !(computeChunk(expr['$not'], ctx, courses))
+        return !(computeChunk(expr.$not, ctx, courses))
     }
     else {
         console.log()
         console.log(expr)
-        throw new RequiredKeyError({msg:'none of $or, $and, or $not could be found'})
+        throw new RequiredKeyError({msg: 'none of $or, $and, or $not could be found'})
     }
 }
 
@@ -376,51 +394,55 @@ function computeBoolean(expr, ctx, courses) {
 function computeOf(expr, ctx, courses) {
     assertKeys(expr, '$of', '$count')
 
-    const evaluated = map(expr['$of'], req =>
+    const evaluated = map(expr.$of, req =>
         computeChunk(req, ctx, courses))
 
     const truthy = filter(evaluated, identity)
-    return truthy.length >= expr['$count']
+    return truthy.length >= expr.$count
 }
 
 
-function computeReference(expr, ctx, courses) {
+function computeReference(expr, ctx) {
     assertKeys(expr, '$requirement')
-    if (expr['$requirement'] in ctx ){
-        const target = ctx[expr['$requirement']]
-        return target['computed']
+    if (expr.$requirement in ctx ){
+        const target = ctx[expr.$requirement]
+        return target.computed
     }
-    else
+    else {
         return false
+    }
 }
 
 
 function computeModifier(expr, ctx, courses) {
     assertKeys(expr, '$what', '$count', '$from')
-    const what = expr['$what']
+    const what = expr.$what
 
     if (!includes(['course', 'department', 'credit'], what)) {
         throw new UnknownPropertyError(what)
     }
 
-    if (expr['$from'] === 'children') {
+    if (expr.$from === 'children') {
         console.error('not yet implemented')
         return false
     }
 
-    else if (expr['$from'] === 'where') {
+    else if (expr.$from === 'where') {
         assertKeys(expr, '$where', '$count')
-        const filtered = filterByWhereClause(courses, expr['$where'])
+        const filtered = filterByWhereClause(courses, expr.$where)
         let num = undefined
 
-        if (what === 'course')
+        if (what === 'course') {
             num = countCourses(filtered)
-        else if (what === 'department')
+        }
+        else if (what === 'department') {
             num = countDepartments(filtered)
-        else if (what === 'credit')
+        }
+        else if (what === 'credit') {
             num = countCredits(filtered)
+        }
 
-        return num >= expr['$count']
+        return num >= expr.$count
     }
 }
 
@@ -433,25 +455,32 @@ function computeChunk(expr, ctx, courses) {
     // console.log('context:', ctx)
 
     assertKeys(expr, '$type')
-    const type = expr['$type']
+    const type = expr.$type
 
     let computed = false
-    if (type === 'boolean')
+    if (type === 'boolean') {
         computed = computeBoolean(expr, ctx, courses)
-    else if (type === 'course')
+    }
+    else if (type === 'course') {
         computed = computeCourse(expr, courses)
-    else if (type === 'modifier')
+    }
+    else if (type === 'modifier') {
         computed = computeModifier(expr, ctx, courses)
-    else if (type === 'occurrence')
+    }
+    else if (type === 'occurrence') {
         computed = computeOccurrence(expr, courses)
-    else if (type === 'of')
+    }
+    else if (type === 'of') {
         computed = computeOf(expr, ctx, courses)
-    else if (type === 'reference')
-        computed = computeReference(expr, ctx, courses)
-    else if (type === 'where')
+    }
+    else if (type === 'reference') {
+        computed = computeReference(expr, ctx)
+    }
+    else if (type === 'where') {
         computed = computeWhere(expr, courses)
+    }
 
-    expr['_result'] = computed
+    expr._result = computed
     return computed
 }
 
@@ -469,7 +498,7 @@ function compute(requirement, path, courses=[], overrides={}) {
     let computed = false
 
     if ('result' in requirement) {
-        computed = computeChunk(requirement['result'], requirement, courses)
+        computed = computeChunk(requirement.result, requirement, courses)
     }
 
     else if ('message' in requirement) {
@@ -479,14 +508,14 @@ function compute(requirement, path, courses=[], overrides={}) {
 
     else {
         // throw new RequiredKeyError(msg='one of message or result === required')
-        print('one of message or result === required')
+        console.log('one of message or result === required')
     }
 
-    requirement['computed'] = computed
+    requirement.computed = computed
 
     if (hasOverride(path, overrides)) {
-        requirement['overridden'] = true
-        requirement['computed'] = getOverride(path, overrides)
+        requirement.overridden = true
+        requirement.computed = getOverride(path, overrides)
     }
 
     return requirement
@@ -523,7 +552,7 @@ function cli() {
     // evaluate('', '')
 
     console.log(JSON.stringify(result, null, 2))
-    console.log('outcome:', result['computed'])
+    console.log('outcome:', result.computed)
 }
 
 cli()
