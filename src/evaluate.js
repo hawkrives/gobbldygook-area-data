@@ -355,6 +355,9 @@ export function computeChunk(expr, ctx, courses) {
     else if (type === 'where') {
         computed = computeWhere(expr, courses)
     }
+    else if (type === 'filter') {
+        computeFilter(expr, courses)
+    }
 
     expr._result = computed
     return computed
@@ -387,6 +390,13 @@ export function computeWhere(expr, courses) {
     const filtered = filterByWhereClause(courses, expr.$where)
     expr._matches = filtered
     return filtered.length >= expr.$count
+}
+
+
+export function computeFilter(expr, courses) {
+    assertKeys(expr, '$where')
+    const filtered = filterByWhereClause(courses, expr.$where)
+    expr._matches = filtered
 }
 
 
