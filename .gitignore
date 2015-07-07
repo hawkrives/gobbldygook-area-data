@@ -1,6 +1,9 @@
 node_modules/
-dist/*
+
+dist/
+build/
+bin/*
+!bin/*.*
+
 *.log
-bin/check
-bin/hanson
-build/*
+.DS_Store
