@@ -112,6 +112,12 @@ describe('parse hanson-string', () => {
             })
         })
 
+        it('requires the lab to be immediately after the number', () => {
+            expect(() => parse('CHEM 125 L')).to.throw('Expected "&", "|" or end of input but "L" found.')
+            expect(() => parse('CHEM 125IL')).to.not.throw()
+            expect(() => parse('CHEM 125L')).to.not.throw()
+        })
+
         it('supports international labs', () => {
             expect(parse('CSCI 121IL')).to.deep.equal({
                 $type: 'course',
@@ -369,7 +375,7 @@ describe('parse hanson-string', () => {
         xit('n may be a number from 0 to (at least) 999', () => {})
     })
 
-    xdescribe('of-statements', () => {
+    describe('of-statements', () => {
         xit('supports of statements of the form "n of ()"', () => {})
         xit('allows "n" to be a number', () => {})
         xit('allows "n" to be a counter', () => {})
@@ -379,13 +385,37 @@ describe('parse hanson-string', () => {
         xit('allows "n" to be "none"', () => {})
 
         xit('supports boolean statements within the parens', () => {})
-        xit('supports courses within the parens', () => {})
+        it('supports courses within the parens', () => {
+            expect(parse('one of (CSCI 121)')).to.deep.equal({
+                $type: 'of',
+                $count: 1,
+                $of: [
+                    {
+                        $type: 'course',
+                        department: ['CSCI'],
+                        number: 121,
+                    },
+                ],
+            })
+        })
         xit('supports where-clauses within the parens', () => {})
         xit('supports occurrences within the parens', () => {})
         xit('supports references within the parens', () => {})
         xit('supports modifiers within the parens', () => {})
 
-        xit('items must be seperated by commas', () => {})
+        xit('requires that items be seperated by commas', () => {})
+        it('supports trailing commas', () => {
+            expect(parse('one of (121,)')).to.deep.equal({
+                $type: 'of',
+                $count: 1,
+                $of: [
+                    {
+                        $type: 'course',
+                        number: 121,
+                    },
+                ],
+            })
+        })
 
         xit('throws an error if more items are required than are provided', () => {})
     })
