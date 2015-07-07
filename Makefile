@@ -38,10 +38,14 @@ build/evaluate.js: src/evaluate.js
 	babel < $(<) > $(@)
 
 
-test: bin/check
+test-sa: bin/check
 	$(<) --json ./dist/majors/studio-art.json ./student.json
 
-mocha:
+test-ba: bin/check
+	$(<) --json ./dist/degrees/bachelor-of-arts.json ./student-ba.json
+
+
+test:
 	mocha
 
 lint:
