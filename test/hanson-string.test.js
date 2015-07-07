@@ -417,7 +417,9 @@ describe('parse hanson-string', () => {
             })
         })
 
-        xit('throws an error if more items are required than are provided', () => {})
+        it('throws an error if more items are required than are provided', () => {
+            expect(() => parse('three of (CSCI 121, 125)')).to.throw('you requested 3 items, but only listed 2 options ([{"$type":"course","department":["CSCI"],"number":121},{"$type":"course","department":["CSCI"],"number":125}])')
+        })
     })
     xdescribe('where-statements', () => {
         xdescribe('qualifications', () => {
@@ -425,13 +427,104 @@ describe('parse hanson-string', () => {
             xit('can be separated by |', () => {})
             xit('can used in boolean logic: a & b | c', () => {})
             xit('can used in boolean logic: a | b & c', () => {})
-            xit('boolean logic can be overridden by parens: (a | b) & c', () => {})
+            it('boolean logic can be overridden by parens: (a | b) & c', () => {
+                expect(parse('four courses where { dept = THEAT & (num = 233 | num = 253) }')).to.deep.equal({
+                    $type: 'where',
+                    $count: 4,
+                    $where: {
+                        $type: 'boolean',
+                        $and: [
+                            {
+                                $type: 'qualification',
+                                $key: 'dept',
+                                $value: {
+                                    $eq: 'THEAT',
+                                    $type: 'operator',
+                                },
+                            },
+                            {
+                                $type: 'boolean',
+                                $or: [
+                                    {
+                                        $type: 'qualification',
+                                        $key: 'num',
+                                        $value: {
+                                            $eq: '233',
+                                            $type: 'operator',
+                                        },
+                                    },
+                                    {
+                                        $type: 'qualification',
+                                        $key: 'num',
+                                        $value: {
+                                            $eq: '253',
+                                            $type: 'operator',
+                                        },
+                                    },
+                                ],
+                            },
+                        ],
+                    },
+                })
+            })
             xit('key must be a string', () => {})
             xit('value may include numbers', () => {})
             xit('value may include hyphens', () => {})
             xit('value may include underscores', () => {})
 
             xit('value may rely on a nested qualifier', () => {})
+            it('function may include a space between the name and the paren', () => {
+                expect(parse('one course where { year = max (year) from courses where {gereqs=year} }')).to.deep.equal({
+                    $type: 'where',
+                    $count: 1,
+                    $where: {
+                        $type: 'qualification',
+                            $key: 'year',
+                            $value: {
+                            $eq: {
+                                $name: 'max',
+                                $prop: 'year',
+                                $type: 'function',
+                                $where: {
+                                    $type: 'qualification',
+                                    $key: 'gereqs',
+                                    $value: {
+                                        $eq: 'year',
+                                        $type: 'operator',
+                                    },
+                                },
+                            },
+                            $type: 'operator',
+                        },
+                    },
+                })
+            })
+            it('function may not include a space between the name and the paren', () => {
+                expect(parse('one course where { year = max(year) from courses where {gereqs=year} }')).to.deep.equal({
+                    $type: 'where',
+                    $count: 1,
+                    $where: {
+                        $type: 'qualification',
+                            $key: 'year',
+                            $value: {
+                            $eq: {
+                                $name: 'max',
+                                $prop: 'year',
+                                $type: 'function',
+                                $where: {
+                                    $type: 'qualification',
+                                    $key: 'gereqs',
+                                    $value: {
+                                        $eq: 'year',
+                                        $type: 'operator',
+                                    },
+                                },
+                            },
+                            $type: 'operator',
+                        },
+                    },
+                })
+            })
             xit('value may be compared by any of =, ==, !=, <, <=, >, or >=', () => {})
         })
     })
