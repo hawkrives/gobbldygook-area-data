@@ -323,7 +323,8 @@ describe('filterByWhereClause', () => {
                     semester = min(semester) from courses where {
                         level = 300
                     }
-                }}
+                }
+            }
         */
         clause = {
             $type: 'boolean',
