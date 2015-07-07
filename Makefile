@@ -1,6 +1,6 @@
 PATH := ./node_modules/.bin/:$(PATH)
 
-all: bin/hanson bin/check
+all: bin/hanson bin/check bin/parse
 
 
 areas-of-study: bin/hanson-to-json areas/**/*.yaml
@@ -18,6 +18,10 @@ bin/check: bin/check.js build/evaluate.js
 	chmod +x $(@)
 
 bin/hanson: bin/hanson.js build/hanson.js
+	babel < $(<) > $(@)
+	chmod +x $(@)
+
+bin/parse: bin/parse.js lib/parse-hanson-string.js
 	babel < $(<) > $(@)
 	chmod +x $(@)
 
