@@ -23,7 +23,7 @@ export function enhanceFile(data, {topLevel=false}={}) {
     const whitelist = topLevel ? topLevelWhitelist : lowerLevelWhitelist
 
     keys(data).forEach(key => {
-        if (!isReqName(key) && !whitelist.includes(key)) {
+        if (!isReqName(key) && !includes(whitelist, key)) {
             console.warn(`only ${humanizeList(whitelist)} keys are allowed, and '${key}' is not one of them. all requirements must begin with an uppercase letter or a number.`)
         }
     })
