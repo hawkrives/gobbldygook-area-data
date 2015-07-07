@@ -355,9 +355,6 @@ export function computeChunk(expr, ctx, courses) {
     else if (type === 'where') {
         computed = computeWhere(expr, courses)
     }
-    else if (type === 'filter') {
-        computeFilter(expr, courses)
-    }
 
     expr._result = computed
     return computed
@@ -393,10 +390,11 @@ export function computeWhere(expr, courses) {
 }
 
 
-export function computeFilter(expr, courses) {
+export function applyFilter(expr, courses) {
     assertKeys(expr, '$where')
     const filtered = filterByWhereClause(courses, expr.$where)
-    expr._matches = filtered
+    // expr._matches = filtered
+    return filtered
 }
 
 
@@ -489,6 +487,10 @@ export function compute(requirement, path, courses=[], overrides={}) {
     })
 
     let computed = false
+
+    if ('filter' in requirement) {
+        courses = applyFilter(requirement.filter, requirement, courses)
+    }
 
     if ('result' in requirement) {
         computed = computeChunk(requirement.result, requirement, courses)
