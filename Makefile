@@ -3,7 +3,7 @@ PATH := ./node_modules/.bin/:$(PATH)
 all: bin/hanson bin/check bin/parse
 
 
-areas-of-study: bin/hanson-to-json areas/**/*.yaml
+areas-of-study: bin/hanson areas/**/*.yaml
 	rm -rf dist/
 	cp -r areas/ dist/
 	@for file in dist/**/*.yaml; do \
