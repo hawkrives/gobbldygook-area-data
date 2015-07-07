@@ -20,10 +20,6 @@ import sum from 'lodash/math/sum'
 import union from 'lodash/array/union'
 import uniq from 'lodash/array/uniq'
 
-// - [ ] support "x from children" modifier
-// - [ ] write tests
-
-
 export class RequiredKeyError extends Error {}
 export class UnknownPropertyError extends Error {}
 export class BadTypeError extends Error {}
