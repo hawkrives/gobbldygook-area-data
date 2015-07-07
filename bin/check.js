@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import {evaluate} from '../build/evaluate'
+import evaluate from '../build/evaluate'
 import fs from 'graceful-fs'
 import commander from 'commander'
 import {version} from '../package.json'
@@ -10,7 +10,6 @@ function loadFile(filename) {
     return JSON.parse(data)
 }
 
-import map from 'lodash/object/map'
 const arrow = ' > '
 function summarizeItem(data, path=[]) {
     return map(data, value => {
@@ -24,6 +23,7 @@ function summarizeItem(data, path=[]) {
         }
     })
 }
+import map from 'lodash/collection/map'
 
 function summarize(data) {
     return data
