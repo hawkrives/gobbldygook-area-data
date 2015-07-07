@@ -1,10 +1,13 @@
 import {parse} from '../lib/parse-hanson-string'
+import filter from 'lodash/collection/filter'
 import forEach from 'lodash/collection/forEach'
 import humanizeList from 'humanize-list'
 import includes from 'lodash/collection/includes'
 import isString from 'lodash/lang/isString'
 import keys from 'lodash/object/keys'
 import mapValues from 'lodash/object/mapValues'
+import map from 'lodash/collection/map'
+import zipObject from 'lodash/array/zipObject'
 
 function isReqName(name) {
     return /^([A-Z]|[0-9][A-Z0-9\- ])/.test(name)
@@ -28,6 +31,12 @@ export function enhanceFile(data, {topLevel=false}={}) {
         }
     })
 
+    const requirements = filter(keys(data), isReqName)
+    const abbreviations = zipObject(map(requirements,
+        req => [req.replace(/.* \(([A-Z\-]+)\)$|.*$/, '$1'), req]))
+    const titles = zipObject(map(requirements,
+        req => [req.replace(/(.*) \([A-Z\-]+\)$|.*$/, '$1'), req]))
+
     if ('declare' in data) {
         forEach(data.declare, (value, key) => {
             declaredVariables[key] = value
@@ -48,13 +57,12 @@ export function enhanceFile(data, {topLevel=false}={}) {
             forEach(declaredVariables, (contents, name) => {
                 if (includes(value, '$' + name)) {
                     console.log(`replacing ${'$' + name} with ${contents}`)
-                    // const rex = new RegExp(, 'g')
                     value = value.split(`$${name}`).join(contents)
                 }
             })
 
             try {
-                value = parse(value)
+                value = parse(value, {abbreviations, titles})
             }
             catch (e) {
                 console.error(e.message)
