@@ -24,7 +24,7 @@ Practicum:
     Tech:
         two occurrences of THEAT 253
 
-    result: Acting & Tech & four courses where { dept = THEAT & {num = 233 | num = 253} }
+    result: Acting & Tech & four courses where { dept = THEAT & (num = 233 | num = 253) }
 
 name: Theater
 type: Major
