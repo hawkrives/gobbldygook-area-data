@@ -23,22 +23,25 @@ Full Support of 12 Areas:
 
 Flags: `--json`, `--prose`, `--summary` [default], `--status`
 
-`--json` will return the json object, pretty-printed by JSON.parse
-`--prose` details each segment of the area, both successes and failures
-`--summary` will only chatter about the failures
-`--status` reports solely by way of status code: 0 = success, 1 = failure
+- `--json` will return the json object, pretty-printed by JSON.parse
+- `--prose` details each segment of the area, both successes and failures
+- `--summary` will only chatter about the failures
+- `--status` reports solely by way of status code: 0 = success, 1 = failure
 
 -----
 
+```
 Name: Hawken MacKay Rives
 Area: Studio Art
 Revision: 2014-15
 Failed: Studio Art > Senior Lasting Legacy Project (no override)
 Failed: Art History Courses (0 of 10)
 Failed: Studio Art > Studio Art Courses (4 of 10)
+```
 
 -----
 
+```
 Hawken MacKay Rives, against the Studio Art major (2014-15 revision): fight!
 
 Winner: Studio Art; better luck next time, Hawken!
@@ -89,4 +92,4 @@ Winner: Studio Art; better luck next time, Hawken!
   ├─ ten credits from courses where {department=ART}
   ├─ <<list matches here>>
   └─ (in case of credits, show credit value of each)
-
+```
