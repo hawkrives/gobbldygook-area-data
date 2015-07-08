@@ -502,9 +502,15 @@ describe('parse hanson-string', () => {
                 expect(() => parse('one course where {a = b}')).not.to.throw()
                 expect(() => parse('one course where {1 = b}')).to.throw()
             })
-            xit('value may include numbers', () => {})
-            xit('value may include hyphens', () => {})
-            xit('value may include underscores', () => {})
+            it('value may include numbers', () => {
+                expect(() => parse('one course where {a = 1}')).not.to.throw()
+            })
+            it('value may include hyphens', () => {
+                expect(() => parse('one course where {a = BTS-B}')).not.to.throw()
+            })
+            it('value may include underscores', () => {
+                expect(() => parse('one course where {a = BTS_B}')).not.to.throw()
+            })
 
             xit('value may rely on a nested qualifier', () => {})
             it('function may include a space between the name and the paren', () => {
@@ -559,7 +565,36 @@ describe('parse hanson-string', () => {
                     },
                 })
             })
-            xit('value may be compared by any of =, ==, !=, <, <=, >, or >=', () => {})
+            describe('value may be compared by', () => {
+                it('= (single equals)', () => {
+                    expect(parse('one course where {a = b}')).to
+                        .have.deep.property('$where.$value.$eq')
+                })
+                it('== (double equals)', () => {
+                    expect(parse('one course where {a == b}')).to
+                        .have.deep.property('$where.$value.$eq')
+                })
+                it('!= (not equal to)', () => {
+                    expect(parse('one course where {a != b}')).to
+                        .have.deep.property('$where.$value.$ne')
+                })
+                it('< (less than)', () => {
+                    expect(parse('one course where {a < b}')).to
+                        .have.deep.property('$where.$value.$lt')
+                })
+                it('<= (less than or equal to)', () => {
+                    expect(parse('one course where {a <= b}')).to
+                        .have.deep.property('$where.$value.$lte')
+                })
+                it('> (greater than)', () => {
+                    expect(parse('one course where {a > b}')).to
+                        .have.deep.property('$where.$value.$gt')
+                })
+                it('=> (greater than or equal to)', () => {
+                    expect(parse('one course where {a >= b}')).to
+                        .have.deep.property('$where.$value.$gte')
+                })
+            })
         })
     })
     describe('occurrences', () => {
@@ -626,13 +661,67 @@ describe('parse hanson-string', () => {
             })
         })
     })
-    xdescribe('modifiers', () => {
-        xit('can count courses', () => {})
-        xit('can count credits', () => {})
-        xit('can count departments', () => {})
-        xit('will only count departments from children', () => {})
-        xit('can count from children', () => {})
-        xit('can count from filter', () => {})
-        xit('can count from where-statement', () => {})
+    describe('modifiers', () => {
+        it('can count courses', () => {
+            expect(parse('one course from children')).to.deep.equal({
+                $type: 'modifier',
+                $count: 1,
+                $what: 'course',
+                $from: 'children',
+            })
+        })
+        it('can count credits', () => {
+            expect(parse('one credit from children')).to.deep.equal({
+                $type: 'modifier',
+                $count: 1,
+                $what: 'credit',
+                $from: 'children',
+            })
+        })
+        it('can count departments', () => {
+            expect(parse('one department from children')).to.deep.equal({
+                $type: 'modifier',
+                $count: 1,
+                $what: 'department',
+                $from: 'children',
+            })
+        })
+        it('will not count departments from courses-where', () => {
+            expect(() => parse('one department from children')).not.to.throw()
+            expect(() => parse('one department from filter')).not.to.throw()
+            expect(() => parse('one department from courses where {a = b}')).to.throw()
+        })
+        it('can count from children', () => {
+            expect(parse('one course from children')).to.deep.equal({
+                $type: 'modifier',
+                $count: 1,
+                $what: 'course',
+                $from: 'children',
+            })
+        })
+        it('can count from filter', () => {
+            expect(parse('one course from filter')).to.deep.equal({
+                $type: 'modifier',
+                $count: 1,
+                $what: 'course',
+                $from: 'filter',
+            })
+        })
+        it('can count from where-statement', () => {
+            expect(parse('one course from courses where {a = b}')).to.deep.equal({
+                $type: 'modifier',
+                $count: 1,
+                $what: 'course',
+                $from: 'where',
+                $where: {
+                    $type: 'qualification',
+                    $key: 'a',
+                    $value: {
+                        $eq: 'b',
+                        $type: 'operator',
+                    },
+                },
+            })
+        })
     })
 })
