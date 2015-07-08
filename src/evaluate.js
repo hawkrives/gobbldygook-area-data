@@ -415,7 +415,7 @@ export function computeOf(expr, ctx, courses) {
     const evaluated = map(expr.$of, req =>
         computeChunk(req, ctx, courses))
 
-    const truthy = filter(evaluated, identity)
+    const truthy = compact(evaluated)
     expr.$has = truthy.length
 
     return expr.$has >= expr.$count
