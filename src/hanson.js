@@ -1,4 +1,5 @@
 import {parse} from '../lib/parse-hanson-string'
+import cloneDeep from 'lodash/lang/cloneDeep'
 import filter from 'lodash/collection/filter'
 import forEach from 'lodash/collection/forEach'
 import humanizeList from 'humanize-list'
@@ -34,11 +35,12 @@ export function enhanceFile(data, {topLevel=false}={}) {
     const titles = zipObject(map(requirements,
         req => [req.replace(/(.*) \([A-Z\-]+\)$|.*$/, '$1'), req]))
 
-    if ('declare' in data) {
-        forEach(data.declare, (value, key) => {
-            declaredVariables[key] = value
-        })
-    }
+    const oldVariables = cloneDeep(declaredVariables)
+    declaredVariables = {}
+
+    forEach(data.declare || [], (value, key) => {
+        declaredVariables[key] = value
+    })
 
     const mutated = mapValues(data, (value, key) => {
         if (isString(value) && isRequirementName(key)) {
@@ -70,11 +72,10 @@ export function enhanceFile(data, {topLevel=false}={}) {
         return value
     })
 
-    if ('declare' in data) {
-        forEach(data.declare, (value, key) => {
-            delete declaredVariables[key]
-        })
-    }
+    forEach(data.declare || [], (value, key) => {
+        delete declaredVariables[key]
+    })
+    declaredVariables = oldVariables
 
     return mutated
 }
