@@ -376,34 +376,63 @@ describe('parse hanson-string', () => {
     })
 
     describe('of-statements', () => {
-        xit('supports of statements of the form "n of ()"', () => {})
-        xit('allows "n" to be a number', () => {})
-        xit('allows "n" to be a counter', () => {})
-        xit('allows "n" to be "all"', () => {})
+        it('supports of statements of the form "n of ()"', () => {
+            expect(() => parse('one of (CHEM 121)')).to.not.throw()
+        })
+        xit('allows "n" to be a number', () => {
+            expect(() => parse('1 of (A, B, C)')).to.not.throw()
+        })
+        it('allows "n" to be a counter', () => {
+            expect(() => parse('three of (A, B, C)')).to.not.throw()
+        })
+        it('allows "n" to be "all"', () => {
+            expect(() => parse('all of (A, B, C)')).to.not.throw()
+        })
         it('if n is "all", it is the number of items in the of-parens', () => {
-            expect(parse('all of (A, B, C)')).to.deep.equal({
-              "$type": "of",
-              "$count": 3,
-              "$of": [
-                {
-                  "$type": "reference",
-                  "$requirement": "A"
-                },
-                {
-                  "$type": "reference",
-                  "$requirement": "B"
-                },
-                {
-                  "$type": "reference",
-                  "$requirement": "C"
-                }
-              ]
+            expect(parse('all of (A, B, C)')).to
+                .have.property('$count').and.equal(3)
+        })
+        it('allows "n" to be "any"', () => {
+            expect(() => parse('any of (A, B, C)')).to.not.throw()
+        })
+        it('allows "n" to be "none"', () => {
+            expect(() => parse('none of (A, B, C)')).to.not.throw()
+        })
+
+        it('supports boolean statements within the parens', () => {
+            expect(parse('one of (A | B & C, D)')).to.deep.equal({
+                $type: 'of',
+                $count: 1,
+                $of: [
+                    {
+                        $type: 'boolean',
+                        $or: [
+                            {
+                                $type: 'reference',
+                                $requirement: 'A',
+                            },
+                            {
+                                $type: 'boolean',
+                                $and: [
+                                    {
+                                        $type: 'reference',
+                                        $requirement: 'B',
+                                    },
+                                    {
+                                        $type: 'reference',
+                                        $requirement: 'C',
+                                    },
+                                ],
+                            },
+                        ],
+                    },
+                    {
+                        $type: 'reference',
+                        $requirement: 'D',
+                    },
+                ],
             })
         })
-        xit('allows "n" to be "any"', () => {})
-        xit('allows "n" to be "none"', () => {})
-
-        xit('supports boolean statements within the parens', () => {})
         it('supports courses within the parens', () => {
             expect(parse('one of (CSCI 121)')).to.deep.equal({
                 $type: 'of',
@@ -417,10 +446,22 @@ describe('parse hanson-string', () => {
                 ],
             })
         })
-        xit('supports where-clauses within the parens', () => {})
-        xit('supports occurrences within the parens', () => {})
-        xit('supports references within the parens', () => {})
-        xit('supports modifiers within the parens', () => {})
+        it('supports where-clauses within the parens', () => {
+            expect(parse('one of (CSSCI 121, one course where {gereqs = WRI})')).to
+                .have.property('$of').and.length(2)
+        })
+        it('supports occurrences within the parens', () => {
+            expect(parse('one of (two occurrences of CSCI 121, CSCI 308)')).to
+                .have.property('$of').and.length(2)
+        })
+        it('supports references within the parens', () => {
+            expect(parse('one of (A, B, C, D)')).to
+                .have.property('$of').and.length(4)
+        })
+        it('supports modifiers within the parens', () => {
+            expect(parse('one of (two courses from children, two courses from filter, two credits from courses where {year <= 2016})')).to
+                .have.property('$of').and.length(3)
+        })
 
         xit('requires that items be seperated by commas', () => {})
         it('supports trailing commas', () => {
@@ -440,53 +481,27 @@ describe('parse hanson-string', () => {
             expect(() => parse('three of (CSCI 121, 125)')).to.throw('you requested 3 items, but only listed 2 options ([{"$type":"course","department":["CSCI"],"number":121},{"$type":"course","department":["CSCI"],"number":125}])')
         })
     })
-    xdescribe('where-statements', () => {
-        xdescribe('qualifications', () => {
-            xit('can be separated by &', () => {})
-            xit('can be separated by |', () => {})
-            xit('can used in boolean logic: a & b | c', () => {})
-            xit('can used in boolean logic: a | b & c', () => {})
-            it('boolean logic can be overridden by parens: (a | b) & c', () => {
-                expect(parse('four courses where { dept = THEAT & (num = 233 | num = 253) }')).to.deep.equal({
-                    $type: 'where',
-                    $count: 4,
-                    $where: {
-                        $type: 'boolean',
-                        $and: [
-                            {
-                                $type: 'qualification',
-                                $key: 'dept',
-                                $value: {
-                                    $eq: 'THEAT',
-                                    $type: 'operator',
-                                },
-                            },
-                            {
-                                $type: 'boolean',
-                                $or: [
-                                    {
-                                        $type: 'qualification',
-                                        $key: 'num',
-                                        $value: {
-                                            $eq: '233',
-                                            $type: 'operator',
-                                        },
-                                    },
-                                    {
-                                        $type: 'qualification',
-                                        $key: 'num',
-                                        $value: {
-                                            $eq: '253',
-                                            $type: 'operator',
-                                        },
-                                    },
-                                ],
-                            },
-                        ],
-                    },
-                })
+    describe('where-statements', () => {
+        describe('qualifications', () => {
+            it('can be separated by &', () => {
+                expect(() => parse('one course where {a = b & c = d}')).not.to.throw()
             })
-            xit('key must be a string', () => {})
+            it('can be separated by |', () => {
+                expect(() => parse('one course where {a = b | c = d}')).not.to.throw()
+            })
+            it('can used in boolean logic: a & b | c', () => {
+                expect(() => parse('one course where {a = b & c = d | c = e}')).not.to.throw()
+            })
+            it('can used in boolean logic: a | b & c', () => {
+                expect(() => parse('one course where {a = b | c = d & c = e}')).not.to.throw()
+            })
+            it('boolean logic can be overridden by parens: (a | b) & c', () => {
+                expect(() => parse('four courses where { dept = THEAT & (num = 233 | num = 253) }')).not.to.throw()
+            })
+            it('key must be a string', () => {
+                expect(() => parse('one course where {a = b}')).not.to.throw()
+                expect(() => parse('one course where {1 = b}')).to.throw()
+            })
             xit('value may include numbers', () => {})
             xit('value may include hyphens', () => {})
             xit('value may include underscores', () => {})
@@ -547,12 +562,69 @@ describe('parse hanson-string', () => {
             xit('value may be compared by any of =, ==, !=, <, <=, >, or >=', () => {})
         })
     })
-    xdescribe('occurrences', () => {
-        xit('requires a course to check for occurrences of', () => {})
+    describe('occurrences', () => {
+        it('requires a course to check for occurrences of', () => {
+            expect(parse('one occurrence of CSCI 121')).to.deep.equal({
+                $type: 'occurrence',
+                $count: 1,
+                course: {
+                    $type: 'course',
+                    department: [
+                        'CSCI',
+                    ],
+                    number: 121,
+                },
+            })
+        })
     })
-    xdescribe('references', () => {
-        xit('can reference a requirement', () => {})
-        xit('requirement titles may include [A-Z], [0-9], [-_], and ()', () => {})
+    describe('references', () => {
+        it('can reference a requirement', () => {
+            expect(parse('BTS-B')).to.deep.equal({
+                $type: 'reference',
+                $requirement: 'BTS-B',
+            })
+        })
+        it('handles a full requirement title', () => {
+
+            expect(parse('Biblical Studies (BTS-B)')).to
+                .have.property('$requirement', 'Biblical Studies (BTS-B)')
+        })
+        it('returns a full requirement title when given an abbreviation', () => {
+            expect(parse('BTS-B', {abbreviations: {'BTS-B': 'Biblical Studies (BTS-B)'}})).to
+                .have.property('$requirement', 'Biblical Studies (BTS-B)')
+        })
+        it('returns a full requirement title when given the title-minus-abbreviation', () => {
+            expect(parse('Biblical Studies', {titles: {'Biblical Studies': 'Biblical Studies (BTS-B)'}})).to
+                .have.property('$requirement', 'Biblical Studies (BTS-B)')
+        })
+        describe('titles may include', () => {
+            it('letters "A-Z"', () => {
+                expect(() => parse('ABC')).not.to.throw()
+                expect(() => parse('A')).not.to.throw()
+            })
+            it('numbers "0-9"', () => {
+                expect(() => parse('A0')).not.to.throw()
+                expect(() => parse('0')).not.to.throw()
+                expect(() => parse('0A')).not.to.throw()
+            })
+            it('hyphen "-"', () => {
+                expect(() => parse('ABC-D')).not.to.throw()
+            })
+            it('underscore "_"', () => {
+                expect(() => parse('ABC_D')).not.to.throw()
+            })
+            it('parentheses "()"', () => {
+                expect(() => parse('A0 (B)')).not.to.throw()
+                expect(() => parse('A0 (B-B)')).not.to.throw()
+            })
+            it('may only begin with a letter or number', () => {
+                expect(() => parse('0A')).not.to.throw()
+                expect(() => parse('A0')).not.to.throw()
+                expect(() => parse('_A0')).to.throw()
+                expect(() => parse('-A0')).to.throw()
+                expect(parse('(A0)')).to.have.property('$type', 'reference')
+            })
+        })
     })
     xdescribe('modifiers', () => {
         xit('can count courses', () => {})
