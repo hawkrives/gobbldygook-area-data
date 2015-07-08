@@ -310,7 +310,10 @@ export function collectMatches(expr) {
     const type = expr.$type
 
     let matches = []
-    if (type === 'boolean') {
+    if (type === 'requirement') {
+        matches = collectMatches(expr.result)
+    }
+    else if (type === 'boolean') {
         matches = flatten(map(expr.$and || expr.$or || [], collectMatches))
     }
     else if (type === 'course') {
