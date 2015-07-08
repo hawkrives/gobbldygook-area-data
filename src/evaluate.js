@@ -68,7 +68,6 @@ export function assertKeys(dict, ...listOfKeys) {
 
 
 export function countCourses(courses) {
-    // courses::pluck('crsid')::uniq()::len()
     return size(uniq(pluck(courses, 'crsid')))
 }
 
@@ -79,7 +78,6 @@ export function getDepartments(courses) {
 
 
 export function countDepartments(courses) {
-    // courses::pluck('departments')::sum()
     return compact(getDepartments(courses)).length
 }
 
@@ -281,13 +279,7 @@ export function filterByWhereClause(list, clause, fullList) {
         if ('$and' in clause) {
             let filtered = list
             forEach(clause.$and, q => {
-                // console.log('courses', filtered)
-                // console.log('all courses', fullList)
-                // console.log('query', q)
                 filtered = filterByWhereClause(filtered, q, fullList)
-                // console.log('courses', filtered)
-                // console.log('all courses', fullList)
-                // console.log('query', q)
             })
             return filtered
         }
@@ -353,10 +345,6 @@ export function collectMatches(expr) {
 // And, of course, the function that dispatches the appropriate compute:
 
 export function computeChunk(expr, ctx, courses) {
-    // console.log()
-    // console.log('expression:', expr)
-    // console.log('context:', ctx)
-
     assertKeys(expr, '$type')
     const type = expr.$type
 
@@ -475,10 +463,6 @@ export function computeReference(expr, ctx) {
 export function getMatchesFromChildren(ctx) {
     const childKeys = filter(keys(ctx), isRequirementName)
     const matches = uniq(flatten(map(childKeys, key => collectMatches(ctx[key]))))
-
-    // map(childKeys, key => collectMatches(ctx[key]))
-    //    ::flatten()
-    //    ::uniq()
 
     return matches
 }
