@@ -539,8 +539,8 @@ describe('parse hanson-string', () => {
                     $count: 1,
                     $where: {
                         $type: 'qualification',
-                            $key: 'year',
-                            $value: {
+                        $key: 'year',
+                        $value: {
                             $eq: {
                                 $name: 'max',
                                 $prop: 'year',
