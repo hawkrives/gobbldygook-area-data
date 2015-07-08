@@ -65,6 +65,8 @@ clean:
 	$(RM) \
 		lib/parse-hanson-string.js \
 		bin/hanson \
+		bin/full \
+		bin/parse \
 		bin/check
 	rm -rf build/
 
