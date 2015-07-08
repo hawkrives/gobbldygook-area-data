@@ -147,14 +147,12 @@ export function compareCourseAgainstOperator(course, key, operator) {
     const kind = findOperatorType(operator)
 
     if (isArray(operator[kind])) {
-        throw new BadTypeError({
-            msg: `what would a comparison to a list even do? oh, wait; i
+        throw new BadTypeError(`what would a comparison to a list even do? oh, wait; i
             suppose it could compare against one of several values... well, im
             not doing that right now. if you want it, edit the PEG and stick
             appropriate stuff in here (probably simplest to just call this
             function again with each possible value and return true if any are
-            true.)`,
-        })
+            true.)`)
     }
 
     else if (isObject(operator[kind])) {
@@ -546,8 +544,7 @@ export function compute(requirement, path, courses=[], overrides={}) {
 
     // or throw an error
     else {
-        // throw new RequiredKeyError(msg='one of message or result === required')
-        console.log('one of message or result === required')
+        throw new RequiredKeyError('either message or result is required')
     }
 
     requirement.computed = computed
