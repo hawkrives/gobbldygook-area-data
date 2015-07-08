@@ -49,8 +49,8 @@ export function compareCourse(course, to) {
 }
 
 
-export function checkForCourse(course, courses) {
-    return any(courses, (c) => compareCourse(c, course))
+export function checkForCourse(query, courses) {
+    return any(courses, (c) => compareCourse(c, query))
 }
 
 
