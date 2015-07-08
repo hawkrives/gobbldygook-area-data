@@ -63,3 +63,7 @@ clean:
 		bin/check
 
 .PHONY: clean test areas-of-study all
+
+
+cover:
+	istanbul cover ./node_modules/.bin/_mocha
