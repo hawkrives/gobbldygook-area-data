@@ -334,7 +334,6 @@ export function collectMatches(expr) {
         matches = expr._matches
     }
 
-    expr._matches = matches
     return matches
 }
 
