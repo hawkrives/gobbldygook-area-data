@@ -380,7 +380,26 @@ describe('parse hanson-string', () => {
         xit('allows "n" to be a number', () => {})
         xit('allows "n" to be a counter', () => {})
         xit('allows "n" to be "all"', () => {})
-        xit('if n is "all", it is the number of items in the of-parens', () => {})
+        it('if n is "all", it is the number of items in the of-parens', () => {
+            expect(parse('all of (A, B, C)')).to.deep.equal({
+              "$type": "of",
+              "$count": 3,
+              "$of": [
+                {
+                  "$type": "reference",
+                  "$requirement": "A"
+                },
+                {
+                  "$type": "reference",
+                  "$requirement": "B"
+                },
+                {
+                  "$type": "reference",
+                  "$requirement": "C"
+                }
+              ]
+            })
+        })
         xit('allows "n" to be "any"', () => {})
         xit('allows "n" to be "none"', () => {})
 
