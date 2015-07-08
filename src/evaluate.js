@@ -314,7 +314,7 @@ export function collectMatches(expr) {
         matches = flatten(map(expr.$and || expr.$or || [], collectMatches))
     }
     else if (type === 'course') {
-        if (expr.computed === true) {
+        if (expr._result === true) {
             matches = [expr]
         }
     }
