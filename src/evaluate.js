@@ -14,6 +14,7 @@ import map from 'lodash/collection/map'
 import mapValues from 'lodash/object/mapValues'
 import max from 'lodash/math/max'
 import min from 'lodash/math/min'
+import omit from 'lodash/object/omit'
 import pluck from 'lodash/collection/pluck'
 import reject from 'lodash/collection/reject'
 import size from 'lodash/collection/size'
@@ -387,10 +388,7 @@ export function computeCourse(expr, courses) {
 
 export function computeOccurrence(expr, courses) {
     assertKeys(expr, '$course', '$count')
-    const clause = expr
-    delete clause.department
-    delete clause.number
-    delete clause.section
+    const clause = omit(expr, ['department', 'number', 'section'])
     const filtered = getOccurrences(clause, courses)
     expr._matches = filtered
     return filtered.length >= expr.$count
