@@ -44,7 +44,7 @@ function cli() {
     let [areaFile, studentFile] = commander.args
     const {courses, overrides} = loadJson(studentFile)
     const rawArea = loadYaml(areaFile)
-    const area = enhanceFile(rawArea)
+    const area = enhanceFile(rawArea, {topLevel: true})
 
     const result = evaluate({courses, overrides}, area)
 
