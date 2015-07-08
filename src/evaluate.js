@@ -416,9 +416,16 @@ export function computeWhere(expr, courses) {
 
 
 export function applyFilter(expr, courses) {
-    assertKeys(expr, '$where')
-    const filtered = filterByWhereClause(courses, expr.$where)
-    expr._matches = filtered
+    let filtered = []
+    if (has(expr, '$where')) {
+        const filtered = filterByWhereClause(courses, expr.$where)
+        expr._matches = filtered
+    }
+    else if (has(expr, '$of')) {
+        const filtered = filter(expr.$of, course =>
+            any(courses, c => compareCourse(course, c)))
+        expr._matches = filtered
+    }
     return filtered
 }
 
