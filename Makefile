@@ -44,11 +44,14 @@ build/%.js: src/%.js
 	babel < $(<) > $(@)
 
 
-test-sa: bin/check
-	$(<) --json ./dist/majors/studio-art.json ./student.json
+test-sa: bin/full
+	$(<) --json ./areas/majors/studio-art.yaml ./example-students/studio-art.json
+
+test-as: bin/full
+	$(<) --json ./areas/majors/asian-studies.yaml ./example-students/asian-studies.json
 
 test-ba: bin/check
-	$(<) --json ./dist/degrees/bachelor-of-arts.json ./student-ba.json
+	$(<) --json ./areas/degrees/bachelor-of-arts.yaml ./example-students/ba.json
 
 
 test:
