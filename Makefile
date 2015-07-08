@@ -1,6 +1,6 @@
 PATH := ./node_modules/.bin/:$(PATH)
 
-all: bin/hanson bin/check bin/parse bin/full
+all: bin/hanson bin/check bin/parse bin/full build/*.js
 
 
 areas-of-study: bin/hanson areas/**/*.yaml
@@ -33,11 +33,13 @@ bin/parse: bin/parse.js lib/parse-hanson-string.js
 lib/parse-hanson-string.js: lib/hanson-string.pegjs
 	pegjs < $(<) | babel > $(@)
 
+build: build/hanson.js build/evaluate.js build/isRequirementName.js
+
 build/hanson.js: src/hanson.js lib/parse-hanson-string.js
 	mkdir -p build
 	babel < $(<) > $(@)
 
-build/evaluate.js: src/evaluate.js
+build/%.js: src/%.js
 	mkdir -p build
 	babel < $(<) > $(@)
 
@@ -61,6 +63,7 @@ clean:
 		lib/parse-hanson-string.js \
 		bin/hanson \
 		bin/check
+	rm -rf build/
 
 .PHONY: clean test areas-of-study all
 
