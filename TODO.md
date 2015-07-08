@@ -1,3 +1,92 @@
+Areas of Study:
+
+- Degrees
+    - [x] Bachelor of Arts
+    - [ ] Bachelor of Music
+- Majors
+    - [ ] American Studies
+    - [ ] Ancient Studies
+    - [ ] Art History
+    - [x] Asian Studies
+    - [ ] Biology
+    - [x] Chemistry
+    - [ ] Classics
+    - [x] Computer Science
+    - [ ] Dance
+    - [ ] Economics
+    - [ ] English
+    - [ ] Environmental Studies
+    - [x] Exercise Science
+    - [ ] French
+    - [ ] German
+    - [ ] Greek
+    - [ ] History
+    - [ ] Individual Major
+    - [ ] Latin
+    - [ ] Latin American Studies
+    - [x] Mathematics
+    - [ ] Medieval Studies
+    - [ ] Music
+    - [ ] Norwegian
+    - [ ] Nursing
+    - [ ] Philosophy
+    - [ ] Physics
+    - [ ] Political Science
+    - [ ] Psychology
+    - [ ] Race and Ethnic Studies
+    - [ ] Religion
+    - [ ] Russian
+    - [ ] Russian Area Studies
+    - [ ] Social Studies Education
+    - [ ] Social Work
+    - [ ] Sociology/Anthropology
+    - [ ] Spanish
+    - [x] Studio Art
+    - [x] Theater
+    - [ ] Women's and Gender Studies
+- Concentrations
+    - [ ] Africa and the Americas
+    - [x] Asian Studies
+    - [ ] Biomedical Studies (only through class of 2016)
+    - [ ] Biomolecular Science
+    - [x] China Studies
+    - [ ] Educational Studies
+    - [ ] Environmental Studies
+    - [ ] Family Studies
+    - [ ] Film Studies
+    - [ ] German Studies
+    - [ ] Historical Perspectives (only through class of 2016)
+    - [ ] Japan Studies
+    - [ ] Latin American Studies
+    - [ ] Linguistic Studies
+    - [ ] Management Studies
+    - [ ] Mathematical Biology
+    - [ ] Media Studies
+    - [ ] Middle Eastern Studies
+    - [ ] Neuroscience
+    - [ ] Nordic Studies
+    - [ ] Race And Ethnic Studies
+    - [ ] Statistics
+    - [ ] Women's And Gender Studies
+    - [ ] Church Music
+    - [ ] Elective Studies
+    - [ ] Music Education
+    - [ ] Performance
+    - [ ] Theory-Composition
+- Emphases
+    - Economics
+        - [ ] Finance
+        - [ ] Management
+        - [ ] Policy Analysis
+        - [ ] International Economic Analysis
+    - B.A. Music:
+        - [ ] History-Literature
+        - [ ] Theory-Composition
+    - B.M. Music
+        - [ ] Collaborative Keyboard Performance
+
+-----
+
 Evaluator:
 
 In order to support the "n thing from children" modifier, 'all' that needs to
@@ -11,13 +100,13 @@ them somewhere that the modifier can find them. Maybe on a "_matches" prop?
     depending on the success of the search.
 - That should be it, I think.
 
----
+-----
 
 Full Support of 12 Areas:
 - in evaluate
   - "n things from children"
 
----
+-----
 
 - better cli interface for evaluate, probably implemented as external module
 
