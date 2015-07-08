@@ -455,9 +455,8 @@ export function computeReference(expr, ctx) {
         expr._matches = target._matches
         return target.computed
     }
-    else {
-        return false
-    }
+
+    return false
 }
 
 export function getMatchesFromChildren(ctx) {
