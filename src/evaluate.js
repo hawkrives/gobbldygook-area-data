@@ -452,7 +452,7 @@ export function computeReference(expr, ctx) {
 
     if (has(ctx, expr.$requirement)) {
         const target = ctx[expr.$requirement]
-        expr._matches = target._matches
+        expr._matches = target.result._matches
         return target.computed
     }
 
