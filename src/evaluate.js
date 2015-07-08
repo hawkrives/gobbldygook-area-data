@@ -4,11 +4,11 @@ import compact from 'lodash/array/compact'
 import filter from 'lodash/collection/filter'
 import flatten from 'lodash/array/flatten'
 import forEach from 'lodash/collection/forEach'
-import identity from 'lodash/utility/identity'
 import includes from 'lodash/collection/includes'
 import isArray from 'lodash/lang/isArray'
 import isObject from 'lodash/lang/isObject'
 import isEqual from 'lodash/lang/isEqual'
+import keys from 'lodash/object/keys'
 import map from 'lodash/collection/map'
 import mapValues from 'lodash/object/mapValues'
 import max from 'lodash/math/max'
@@ -59,8 +59,8 @@ export function getOccurrences(course, courses) {
 }
 
 
-export function assertKeys(dict, ...keys) {
-    const missingKeys = reject(keys, key => includes(Object.keys(dict), key))
+export function assertKeys(dict, ...listOfKeys) {
+    const missingKeys = reject(listOfKeys, key => includes(keys(dict), key))
     if (missingKeys.length) {
         throw new RequiredKeyError(`missing ${missingKeys.join(', ')} from ${dict}`)
     }
@@ -312,6 +312,48 @@ export function filterByWhereClause(list, clause, fullList) {
 }
 
 
+// Collecting matches...
+
+export function collectMatches(expr) {
+    const type = expr.$type
+
+    let matches = []
+    if (type === 'boolean') {
+        const coll = []
+        if ('$and' in expr) {
+            coll = expr.$and
+        }
+        else if ('$or' in expr) {
+            coll = expr.$or
+        }
+        matches = flatten(map(coll, collectMatches))
+    }
+    else if (type === 'course') {
+        if (expr.computed === true) {
+            matches = [expr]
+        }
+    }
+    else if (type === 'modifier') {
+        matches = expr._matches
+    }
+    else if (type === 'occurrence') {
+        matches = expr._matches
+    }
+    else if (type === 'of') {
+        matches = flatten(map(expr.$of, collectMatches))
+    }
+    else if (type === 'reference') {
+        matches = expr._matches
+    }
+    else if (type === 'where') {
+        matches = expr._matches
+    }
+
+    expr._matches = matches
+    return matches
+}
+
+
 // Compute Functions:
 // There are two types of compute functions: those that need the surrounding
 // context, and those that don't.
@@ -437,51 +479,14 @@ export function computeReference(expr, ctx) {
     }
 }
 
-
-export function collectMatches(expr) {
-    const type = expr.$type
-
-    let matches = []
-    if (type === 'boolean') {
-        const coll = []
-        if ('$and' in expr)
-            coll = expr.$and
-        else if ('$or' in expr)
-            coll = expr.$or
-        matches = flatten(map(coll, collectMatches))
-    }
-    else if (type === 'course') {
-        if (expr.computed === true)
-            matches = [expr]
-    }
-    else if (type === 'modifier') {
-        matches = expr._matches
-    }
-    else if (type === 'occurrence') {
-        matches = expr._matches
-    }
-    else if (type === 'of') {
-        matches = flatten(map(expr.$of, collectMatches))
-    }
-    else if (type === 'reference') {
-        matched = expr._matches
-    }
-    else if (type === 'where') {
-        matches = expr._matches
-    }
-
-    expr._matches = matches
-    return matches
-}
-
 export function getMatchesFromChildren(ctx) {
     const childKeys = filter(keys(ctx), isRequirementName)
     const matches = uniq(flatten(map(childKeys, key => collectMatches(ctx[key]))))
-    
+
     // map(childKeys, key => collectMatches(ctx[key]))
     //    ::flatten()
     //    ::uniq()
-    
+
     return matches
 }
 
@@ -498,13 +503,13 @@ export function computeModifier(expr, ctx, courses) {
     if (!includes(['course', 'department', 'credit'], what)) {
         throw new UnknownPropertyError(what)
     }
-    
+
     let filtered = []
 
     if (expr.$from === 'children') {
         filtered = getMatchesFromChildren(ctx)
     }
-    
+
     else if (expr.$from === 'filter') {
         filtered = getMatchesFromFilter(ctx)
     }
@@ -513,9 +518,9 @@ export function computeModifier(expr, ctx, courses) {
         assertKeys(expr, '$where')
         filtered = filterByWhereClause(courses, expr.$where)
     }
-    
+
     expr._matches = filtered
-    
+
     let num = undefined
     if (what === 'course') {
         num = countCourses(filtered)
@@ -526,7 +531,7 @@ export function computeModifier(expr, ctx, courses) {
     else if (what === 'credit') {
         num = countCredits(filtered)
     }
-    
+
     return num >= expr.$count
 }
 
