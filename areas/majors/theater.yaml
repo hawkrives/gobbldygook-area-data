@@ -1,13 +1,13 @@
-name: Theater
+name: Theatre
 type: Major
-revision: 2014-15
-result: all of (Theater, Electives, Practicum)
+revision: 2010-11
+result: all of (Theatre, Electives, Practicum)
 
 # This major requires a minimum of nine courses plus four practicum quarter
 # credits. All majors must register with the department chair as soon as they
 # declare the major.
 
-Theater:
+Theatre:
     # Course requirements: Theater 130, 140, 180, 232, 240 or 250, 270, 271, 360,
     all of (
         THEAT 130, 140, 180, 232,
