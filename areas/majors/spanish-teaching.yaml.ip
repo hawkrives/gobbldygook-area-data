@@ -1,14 +1,18 @@
-name: Spanish
+name: Spanish (K-12 Teaching Licensure)
 type: major
 revision: 2014-15
-result: all of (Requirements, Level III, Electives)
+result: all of (
+	Requirements,
+	Level III,
+	Electives,
+	English and Education)
 
 Requirements:
 	SPAN 250 & 275 & 276 & (313 | 314)
 
 Level III:
 	# one additional level III course;
-	one of (SPAN 311, 312, 313, 314, 315)
+	one of (SPAN 311, 312, 315)
 
 Electives:
 	message:
@@ -34,4 +38,7 @@ Electives:
 		Focus on Spain &
 		Focus on Latin America &
 		Other Electives &
-		three courses from children
+		six courses from children
+
+English and Education:
+	ENGL 250 & EDUC 353
