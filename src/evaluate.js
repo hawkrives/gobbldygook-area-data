@@ -59,7 +59,7 @@ export function getOccurrences(course, courses) {
 }
 
 
-export function assertKeys(dict, ...keys): void {
+export function assertKeys(dict, ...keys) {
     const missingKeys = reject(keys, key => includes(Object.keys(dict), key))
     if (missingKeys.length) {
         throw new RequiredKeyError(`missing ${missingKeys.join(', ')} from ${dict}`)
