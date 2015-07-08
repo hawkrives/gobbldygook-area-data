@@ -1,5 +1,6 @@
 import all from 'lodash/collection/all'
 import any from 'lodash/collection/any'
+import assign from 'lodash/object/assign'
 import compact from 'lodash/array/compact'
 import filter from 'lodash/collection/filter'
 import find from 'lodash/collection/find'
@@ -388,9 +389,12 @@ export function computeChunk(expr, ctx, courses) {
 // course, occurrence, where
 
 export function computeCourse(expr, courses) {
-    const query = expr
-    delete query.$type
-    return checkForCourse(query, courses)
+    const query = omit(expr, '$type')
+    if (checkForCourse(query, courses)) {
+        assign(expr, findCourse(query, courses))
+        return true
+    }
+    return false
 }
 
 
