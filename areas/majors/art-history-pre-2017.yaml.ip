@@ -1,4 +1,7 @@
-# Art History (Pre-2017)
+name: Art History (Pre-2017)
+type: Major
+revision: 2014-15
+result: all of (Studio Art, Art History, Art Credits)
 
 Intro:
     Art 150 & 151
@@ -43,8 +46,3 @@ Lasting Legacy:
 
 Art Credits:
     nine credits from courses where {department=ART}
-
-name: Art History (Pre-2017)
-type: Major
-revision: 2014-15
-result: Studio Art & Art History & Art Credits

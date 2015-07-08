@@ -1,3 +1,8 @@
+name: Exercise Science
+type: Major
+revision: 2014-15
+result: all of ( Core, Electives )
+
 Core:
     Anatomy and Physiology:
         Cells and Tissues: BIO 143
@@ -22,8 +27,3 @@ Electives:
     Statistics: STAT 110 | 212 | 214
 
     result: two of ( Sport Ethics, Fitness and Exercise, Research Methods in Psychology, Cellular and Molecular Neuroscience, Developmental Psychology, Psychopathlogy, Statistics )
-
-name: Exercise Science
-type: Major
-revision: 2014-15
-result: all of ( Core, Electives )

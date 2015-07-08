@@ -1,4 +1,7 @@
-# Asian Studies (Full)
+name: Asian Studies
+type: Major
+revision: 2014-15
+result: Language & Interdisciplinary & Seminar & Electives
 
 Language:
     two of (
@@ -34,9 +37,3 @@ Electives:
             ECON 218, 238, HIST 240, PHIL 127 )
 
     result: six courses from children & Level I & Above I
-
-
-name: Asian Studies
-type: Major
-revision: 2014-15
-result: Language & Interdisciplinary & Seminar & Electives

@@ -1,3 +1,8 @@
+name: Mathematics
+type: Major
+revision: 2014-15
+result: all of (Basic, Transitions, Perspectives, Level III, Sequence, Math Courses)
+
 Basic:
     Calculus I: MATH 120
     Calculus II: MATH 128 | 128
@@ -55,8 +60,3 @@ Math Courses:
              244, 252, 226, 230, 232,
              236, 238, 239, 262, 266,
              STAT 2XX)
-
-name: Mathematics
-type: Major
-revision: 2014-15
-result: all of (Basic, Transitions, Perspectives, Level III, Sequence, Math Courses)

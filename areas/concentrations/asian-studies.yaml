@@ -1,4 +1,7 @@
-# Asian Studies Concentration
+name: Asian Studies
+type: Concentration
+revision: 2014-15
+result: Electives
 
 Electives:
     message: At least two of the courses must be taken on-campus.
@@ -32,9 +35,3 @@ Electives:
             PHIL 127 )
 
     result: six courses from children & Courses
-
-
-name: Asian Studies
-type: Concentration
-revision: 2014-15
-result: Electives

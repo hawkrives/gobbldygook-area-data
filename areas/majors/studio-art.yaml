@@ -1,3 +1,8 @@
+name: Studio Art
+type: Major
+revision: 2014-15
+result: all of (Studio Art, Art History, Art Credits)
+
 Studio Art:
     Studio Art Courses:
         eight of (
@@ -72,9 +77,3 @@ Art History:
 
 Art Credits:
     ten credits from courses where { department = ART }
-
-
-name: Studio Art
-type: Major
-revision: 2014-15
-result: Studio Art & Art History & Art Credits

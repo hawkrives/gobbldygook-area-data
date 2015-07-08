@@ -1,3 +1,11 @@
+name: Chemistry
+type: Major
+revision: 2014-15
+result: all of (
+    Intro, Organic,
+    Analytical, Physical,
+    Elective, Physics, Calculus, Seminars )
+
 Intro:
     First Year 1:
         CHEM 121 & 123 & 125
@@ -35,11 +43,3 @@ Calculus:
 
 Seminars:
     message: You are required to attend at least 12 departmental seminars.
-
-name: Chemistry
-type: Major
-revision: 2014-15
-result: all of (
-    Intro, Organic,
-    Analytical, Physical,
-    Elective, Physics, Calculus, Seminars )

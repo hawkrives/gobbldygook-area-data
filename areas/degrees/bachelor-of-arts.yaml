@@ -1,5 +1,7 @@
-# Bachelor of Arts
-# Now expanded to attempt to encompass the B.A. requirements
+name: Bachelor of Arts
+type: Degree
+revision: 2014-15
+result: Foundation & Core & Integrative
 
 Foundation:
     First-Year Writing (FYW):
@@ -97,8 +99,3 @@ Integrative:
         }
 
     result: EIN
-
-name: Bachelor of Arts
-type: Degree
-revision: 2014
-result: Foundation & Core & Integrative

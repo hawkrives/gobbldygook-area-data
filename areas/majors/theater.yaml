@@ -1,3 +1,8 @@
+name: Theater
+type: Major
+revision: 2014-15
+result: all of (Theater, Electives, Practicum)
+
 # This major requires a minimum of nine courses plus four practicum quarter
 # credits. All majors must register with the department chair as soon as they
 # declare the major.
@@ -25,8 +30,3 @@ Practicum:
         two occurrences of THEAT 253
 
     result: Acting & Tech & four courses where { dept = THEAT & (num = 233 | num = 253) }
-
-name: Theater
-type: Major
-revision: 2014-15
-result: Theater & Electives & Practicum

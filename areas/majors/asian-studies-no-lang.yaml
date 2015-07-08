@@ -1,4 +1,13 @@
-# Asian Studies (No Lang)
+name: Asian Studies (No Language)
+type: Major
+revision: 2014-15
+result: Interdisciplinary & Seminar & Electives
+
+message: 
+    Students interested in a major focused on a region of Asia other 
+    than China or Japan should contact the chair of the Asian Studies 
+    Department about the possibility of doing a contract major.
+
 
 Interdisciplinary:
     ASIAN 275
@@ -45,11 +54,3 @@ Electives:
             PHIL 127 )
 
     result: seven courses from children & Level I & Above I
-
-
-message: Students interested in a major focused on a region of Asia other than China or Japan should contact the chair of the Asian Studies Department about the possibility of doing a contract major.
-
-name: Asian Studies (No Language)
-type: Major
-revision: 2014-15
-result: Interdisciplinary & Seminar & Electives

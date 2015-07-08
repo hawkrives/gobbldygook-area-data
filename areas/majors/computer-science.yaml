@@ -1,3 +1,8 @@
+name: Computer Science
+type: major
+revision: 2014-15
+result: all of (Foundation, Core, Electives, Capstone)
+
 Foundation:
     CS1:           CSCI 121 | 125
     Design:        CSCI 241 & 251 & 252
@@ -20,8 +25,3 @@ Electives:
 
 Capstone:
     CSCI 390
-
-name: Computer Science
-type: major
-revision: 2014-15
-result: Foundation & Core & Electives & Capstone
