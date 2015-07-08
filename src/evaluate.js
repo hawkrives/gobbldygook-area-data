@@ -370,6 +370,7 @@ export function computeOccurrence(expr, courses) {
     delete clause.number
     delete clause.section
     const filtered = getOccurrences(clause, courses)
+    expr._matches = filtered
     return filtered.length >= expr.$count
 }
 
@@ -385,7 +386,7 @@ export function computeWhere(expr, courses) {
 export function applyFilter(expr, courses) {
     assertKeys(expr, '$where')
     const filtered = filterByWhereClause(courses, expr.$where)
-    // expr._matches = filtered
+    expr._matches = filtered
     return filtered
 }
 
@@ -395,16 +396,17 @@ export function applyFilter(expr, courses) {
 
 export function computeBoolean(expr, ctx, courses) {
     if ('$or' in expr) {
-        return any(map(expr.$or, req => computeChunk(req, ctx, courses)))
+        const results = map(expr.$or, req => computeChunk(req, ctx, courses))
+        expr._matches = collectMatches(expr)
+        return any(results)
     }
     else if ('$and' in expr) {
-        return all(map(expr.$and, req => computeChunk(req, ctx, courses)))
-    }
-    else if ('$not' in expr) {
-        return !(computeChunk(expr.$not, ctx, courses))
+        const results = map(expr.$and, req => computeChunk(req, ctx, courses))
+        expr._matches = collectMatches(expr)
+        return all(results)
     }
     else {
-        throw new RequiredKeyError(`none of $or, $and, or $not could be found in ${expr}`)
+        throw new RequiredKeyError(`neither $or nor $and could be found in ${expr}`)
     }
 }
 
@@ -417,6 +419,7 @@ export function computeOf(expr, ctx, courses) {
 
     const truthy = compact(evaluated)
     expr.$has = truthy.length
+    expr._matches = collectMatches(expr)
 
     return expr.$has >= expr.$count
 }
@@ -424,13 +427,67 @@ export function computeOf(expr, ctx, courses) {
 
 export function computeReference(expr, ctx) {
     assertKeys(expr, '$requirement')
-    if (expr.$requirement in ctx ){
+    if (expr.$requirement in ctx) {
         const target = ctx[expr.$requirement]
+        expr._matches = target._matches
         return target.computed
     }
     else {
         return false
     }
+}
+
+
+export function collectMatches(expr) {
+    const type = expr.$type
+
+    let matches = []
+    if (type === 'boolean') {
+        const coll = []
+        if ('$and' in expr)
+            coll = expr.$and
+        else if ('$or' in expr)
+            coll = expr.$or
+        matches = flatten(map(coll, collectMatches))
+    }
+    else if (type === 'course') {
+        if (expr.computed === true)
+            matches = [expr]
+    }
+    else if (type === 'modifier') {
+        matches = expr._matches
+    }
+    else if (type === 'occurrence') {
+        matches = expr._matches
+    }
+    else if (type === 'of') {
+        matches = flatten(map(expr.$of, collectMatches))
+    }
+    else if (type === 'reference') {
+        matched = expr._matches
+    }
+    else if (type === 'where') {
+        matches = expr._matches
+    }
+
+    expr._matches = matches
+    return matches
+}
+
+export function getMatchesFromChildren(ctx) {
+    const childKeys = filter(keys(ctx), isRequirementName)
+    const matches = uniq(flatten(map(childKeys, key => collectMatches(ctx[key]))))
+    
+    // map(childKeys, key => collectMatches(ctx[key]))
+    //    ::flatten()
+    //    ::uniq()
+    
+    return matches
+}
+
+export function getMatchesFromFilter(ctx) {
+    assertKeys(ctx, 'filter')
+    return ctx.filter._matches
 }
 
 
@@ -441,29 +498,36 @@ export function computeModifier(expr, ctx, courses) {
     if (!includes(['course', 'department', 'credit'], what)) {
         throw new UnknownPropertyError(what)
     }
+    
+    let filtered = []
 
     if (expr.$from === 'children') {
-        console.error('not yet implemented')
-        return false
+        filtered = getMatchesFromChildren(ctx)
+    }
+    
+    else if (expr.$from === 'filter') {
+        filtered = getMatchesFromFilter(ctx)
     }
 
     else if (expr.$from === 'where') {
-        assertKeys(expr, '$where', '$count')
-        const filtered = filterByWhereClause(courses, expr.$where)
-        let num = undefined
-
-        if (what === 'course') {
-            num = countCourses(filtered)
-        }
-        else if (what === 'department') {
-            num = countDepartments(filtered)
-        }
-        else if (what === 'credit') {
-            num = countCredits(filtered)
-        }
-
-        return num >= expr.$count
+        assertKeys(expr, '$where')
+        filtered = filterByWhereClause(courses, expr.$where)
     }
+    
+    expr._matches = filtered
+    
+    let num = undefined
+    if (what === 'course') {
+        num = countCourses(filtered)
+    }
+    else if (what === 'department') {
+        num = countDepartments(filtered)
+    }
+    else if (what === 'credit') {
+        num = countCredits(filtered)
+    }
+    
+    return num >= expr.$count
 }
 
 
