@@ -2,6 +2,7 @@ import all from 'lodash/collection/all'
 import any from 'lodash/collection/any'
 import compact from 'lodash/array/compact'
 import filter from 'lodash/collection/filter'
+import find from 'lodash/collection/find'
 import flatten from 'lodash/array/flatten'
 import forEach from 'lodash/collection/forEach'
 import has from 'lodash/object/has'
@@ -53,6 +54,11 @@ export function compareCourse(course, to) {
 
 export function checkForCourse(query, courses) {
     return any(courses, (c) => compareCourse(c, query))
+}
+
+
+export function findCourse(query, courses) {
+    return find(courses, (c) => compareCourse(c, query))
 }
 
 
