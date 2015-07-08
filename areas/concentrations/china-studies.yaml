@@ -6,8 +6,8 @@ result: Electives
 Electives:
     description: At least two of the courses must be taken on-campus.
 
-    Courses:
-        two of (
+    result:
+        six of (
             ASIAN 121, 123, 126, 130, 156, 200,
                   210, 215, 216, 220, 230, 235,
                   236, 237,
@@ -33,5 +33,3 @@ Electives:
             ECON 218, 238,
             HIST 240,
             PHIL 127 )
-
-    result: six courses from children & Courses
