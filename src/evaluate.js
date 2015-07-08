@@ -4,6 +4,7 @@ import compact from 'lodash/array/compact'
 import filter from 'lodash/collection/filter'
 import flatten from 'lodash/array/flatten'
 import forEach from 'lodash/collection/forEach'
+import has from 'lodash/object/has'
 import includes from 'lodash/collection/includes'
 import isArray from 'lodash/lang/isArray'
 import isObject from 'lodash/lang/isObject'
@@ -60,7 +61,7 @@ export function getOccurrences(course, courses) {
 
 
 export function assertKeys(dict, ...listOfKeys) {
-    const missingKeys = reject(listOfKeys, key => includes(keys(dict), key))
+    const missingKeys = reject(listOfKeys, key => has(dict, key))
     if (missingKeys.length) {
         throw new RequiredKeyError(`missing ${missingKeys.join(', ')} from ${dict}`)
     }
@@ -93,7 +94,7 @@ export function pathToOverride(path) {
 
 
 export function hasOverride(path, overrides) {
-    return pathToOverride(path) in overrides
+    return has(overrides, pathToOverride(path))
 }
 
 
@@ -103,22 +104,22 @@ export function getOverride(path, overrides) {
 
 
 export function findOperatorType(operator) {
-    if ('$eq' in operator) {
+    if (has(operator, '$eq')) {
         return '$eq'
     }
-    else if ('$ne' in operator) {
+    else if (has(operator, '$ne')) {
         return '$ne'
     }
-    else if ('$lt' in operator) {
+    else if (has(operator, '$lt')) {
         return '$lt'
     }
-    else if ('$lte' in operator) {
+    else if (has(operator, '$lte')) {
         return '$lte'
     }
-    else if ('$gt' in operator) {
+    else if (has(operator, '$gt')) {
         return '$gt'
     }
-    else if ('$gte' in operator) {
+    else if (has(operator, '$gte')) {
         return '$gte'
     }
     else {
@@ -276,7 +277,7 @@ export function filterByWhereClause(list, clause, fullList) {
     }
 
     else if (clause.$type === 'boolean') {
-        if ('$and' in clause) {
+        if (has(clause, '$and')) {
             let filtered = list
             forEach(clause.$and, q => {
                 filtered = filterByWhereClause(filtered, q, fullList)
@@ -284,7 +285,7 @@ export function filterByWhereClause(list, clause, fullList) {
             return filtered
         }
 
-        else if ('$or' in clause) {
+        else if (has(clause, '$or')) {
             let filtrations = []
             forEach(clause.$or, q => {
                 filtrations = union(filtrations, filterByWhereClause(list, q))
@@ -418,12 +419,12 @@ export function applyFilter(expr, courses) {
 // boolean, modifier, of, reference
 
 export function computeBoolean(expr, ctx, courses) {
-    if ('$or' in expr) {
+    if (has(expr, '$or')) {
         const results = map(expr.$or, req => computeChunk(req, ctx, courses))
         expr._matches = collectMatches(expr)
         return any(results)
     }
-    else if ('$and' in expr) {
+    else if (has(expr, '$and')) {
         const results = map(expr.$and, req => computeChunk(req, ctx, courses))
         expr._matches = collectMatches(expr)
         return all(results)
@@ -450,7 +451,8 @@ export function computeOf(expr, ctx, courses) {
 
 export function computeReference(expr, ctx) {
     assertKeys(expr, '$requirement')
-    if (expr.$requirement in ctx) {
+
+    if (has(ctx, expr.$requirement)) {
         const target = ctx[expr.$requirement]
         expr._matches = target._matches
         return target.computed
@@ -526,19 +528,23 @@ export function compute(requirement, path, courses=[], overrides={}) {
 
     let computed = false
 
-    if ('filter' in requirement) {
-        courses = applyFilter(requirement.filter, requirement, courses)
+    // Apply a filter to the set of courses
+    if (has(requirement, 'filter')) {
+        courses = applyFilter(requirement.filter, courses)
     }
 
-    if ('result' in requirement) {
+    // Now check for results
+    if (has(requirement, 'result')) {
         computed = computeChunk(requirement.result, requirement, courses)
     }
 
-    else if ('message' in requirement) {
-        computed = false
+    // or ask for an override
+    else if (has(requirement, 'message')) {
         // show a button to toggle overriding
+        computed = false
     }
 
+    // or throw an error
     else {
         // throw new RequiredKeyError(msg='one of message or result === required')
         console.log('one of message or result === required')
