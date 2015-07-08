@@ -8,10 +8,7 @@ import keys from 'lodash/object/keys'
 import mapValues from 'lodash/object/mapValues'
 import map from 'lodash/collection/map'
 import zipObject from 'lodash/array/zipObject'
-
-function isReqName(name) {
-    return /^([A-Z]|[0-9][A-Z0-9\- ])/.test(name)
-}
+import isRequirementName from './isRequirementName'
 
 let declaredVariables = {}
 
@@ -26,12 +23,12 @@ export function enhanceFile(data, {topLevel=false}={}) {
     const whitelist = topLevel ? topLevelWhitelist : lowerLevelWhitelist
 
     keys(data).forEach(key => {
-        if (!isReqName(key) && !includes(whitelist, key)) {
+        if (!isRequirementName(key) && !includes(whitelist, key)) {
             console.warn(`only ${humanizeList(whitelist)} keys are allowed, and '${key}' is not one of them. all requirements must begin with an uppercase letter or a number.`)
         }
     })
 
-    const requirements = filter(keys(data), isReqName)
+    const requirements = filter(keys(data), isRequirementName)
     const abbreviations = zipObject(map(requirements,
         req => [req.replace(/.* \(([A-Z\-]+)\)$|.*$/, '$1'), req]))
     const titles = zipObject(map(requirements,
@@ -44,11 +41,11 @@ export function enhanceFile(data, {topLevel=false}={}) {
     }
 
     const mutated = mapValues(data, (value, key) => {
-        if (isString(value) && isReqName(key)) {
+        if (isString(value) && isRequirementName(key)) {
             value = {result: value}
         }
 
-        if (isReqName(key)) {
+        if (isRequirementName(key)) {
             value = enhanceFile(value, {topLevel: false})
             value.$type = 'requirement'
         }

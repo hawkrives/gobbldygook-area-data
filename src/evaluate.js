@@ -19,6 +19,7 @@ import size from 'lodash/collection/size'
 import sum from 'lodash/math/sum'
 import union from 'lodash/array/union'
 import uniq from 'lodash/array/uniq'
+import isRequirementName from './isRequirementName'
 
 export class RequiredKeyError extends Error {}
 export class UnknownPropertyError extends Error {}
@@ -26,11 +27,6 @@ export class BadTypeError extends Error {}
 
 
 // Helper Functions
-
-export function isRequirement(name) {
-    return /^[A-Z]|[0-9][A-Z\- ]/.test(name)
-}
-
 
 export function compareCourse(course, to) {
     // course might have more keys than the dict we're comparing it to
@@ -477,7 +473,7 @@ export function computeModifier(expr, ctx, courses) {
 
 export function compute(requirement, path, courses=[], overrides={}) {
     requirement = mapValues(requirement, (req, name) => {
-        return isRequirement(name)
+        return isRequirementName(name)
             ? compute(req, path.concat([name]), courses, overrides)
             : req
     })

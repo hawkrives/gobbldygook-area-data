@@ -22,17 +22,17 @@ import evaluate, {
     getOccurrences,
     getOverride,
     hasOverride,
-    isRequirement,
     pathToOverride,
     RequiredKeyError,
 } from '../src/evaluate'
+import isRequirementName from '../src/isRequirementName'
 
-describe('isRequirement', () => {
+describe('isRequirementName', () => {
     it('checks if a string is a valid requirement name', () => {
-        console.log(isRequirement)
-        expect(isRequirement('0')).to.be.false
-        expect(isRequirement('BTS-B')).to.be.true
-        expect(isRequirement('Studio Art')).to.be.true
+        expect(isRequirementName('0')).to.be.true
+        expect(isRequirementName('BTS-B')).to.be.true
+        expect(isRequirementName('Studio Art')).to.be.true
+        expect(isRequirementName('_A0')).to.be.false
     })
 })
 
