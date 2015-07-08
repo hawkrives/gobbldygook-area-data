@@ -431,5 +431,5 @@ xdescribe('evaluate', () => {
         expect(evaluate({courses, overrides}, area)).to.be.ok()
     })
 
-    // of: stores the number of matches in it's containing expression
+    // of: stores the number of matches in its containing expression
 })
