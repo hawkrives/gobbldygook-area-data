@@ -319,14 +319,7 @@ export function collectMatches(expr) {
 
     let matches = []
     if (type === 'boolean') {
-        const coll = []
-        if ('$and' in expr) {
-            coll = expr.$and
-        }
-        else if ('$or' in expr) {
-            coll = expr.$or
-        }
-        matches = flatten(map(coll, collectMatches))
+        matches = flatten(map(expr.$and || expr.$or || [], collectMatches))
     }
     else if (type === 'course') {
         if (expr.computed === true) {
