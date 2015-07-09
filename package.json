@@ -6,7 +6,7 @@
   "author": "Hawken M. Rives",
   "license": "MIT",
   "scripts": {
-    "eslint": "eslint src/",
+    "eslint": "eslint src/ bin/",
     "mocha": "mocha",
     "build": "make lib/parse-hanson-string.js",
     "test": "npm run eslint && npm run mocha",
