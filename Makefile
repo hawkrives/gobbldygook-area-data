@@ -50,8 +50,11 @@ test-sa: bin/full
 test-as: bin/full
 	$(<) --json ./areas/majors/asian-studies.yaml ./example-students/asian-studies.json
 
-test-ba: bin/check
+test-ba: bin/full
 	$(<) --json ./areas/degrees/bachelor-of-arts.yaml ./example-students/ba.json
+
+test-spanish: bin/full
+	$(<) --json ./areas/majors/spanish.yaml.ip ./example-students/spanish.json # | jq "."
 
 
 test:

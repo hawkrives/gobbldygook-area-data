@@ -1,0 +1,9 @@
+{
+    "courses": [
+        {"department": ["SPAN"], "number": 250, "crsid": 1},
+        {"department": ["SPAN"], "number": 275, "crsid": 2},
+        {"department": ["SPAN"], "number": 314, "crsid": 3},
+        {"department": ["SPAN"], "number": 313, "crsid": 4},
+        {"department": ["SPAN"], "number": 273, "crsid": 5}
+    ]
+}
