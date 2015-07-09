@@ -7,4 +7,4 @@ language: node_js
 node_js:
   - "node"
 
-script: make codecover
+script: npm run test && npm run codecov.io
