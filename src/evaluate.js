@@ -419,13 +419,11 @@ export function applyFilter(expr, courses) {
     let filtered = []
     if (has(expr, '$where')) {
         filtered = filterByWhereClause(courses, expr.$where)
-        expr._matches = filtered
     }
     else if (has(expr, '$of')) {
-        filtered = filter(expr.$of, course =>
-            any(courses, c => compareCourse(course, c)))
-        expr._matches = filtered
+        filtered = filter(expr.$of, course => any(courses, c => compareCourse(course, c)))
     }
+        expr._matches = filtered
     return filtered
 }
 
