@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 import {parse} from '../lib/parse-hanson-string'
 
 function cli() {

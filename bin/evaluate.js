@@ -1,23 +1,34 @@
-#!/usr/bin/env node
-
 import evaluate from '../build/evaluate'
 import fs from 'graceful-fs'
 import commander from 'commander'
 import {version} from '../package.json'
-import {enhanceFile} from '../build/hanson'
-import yaml from 'js-yaml'
 
 function loadFile(filename) {
     const data = fs.readFileSync(filename, 'utf-8')
+    return JSON.parse(data)
+}
+
+import map from 'lodash/collection/map'
+const arrow = ' > '
+function summarizeItem(data, path=[]) {
+    return map(data, value => {
+        let reason = map(data, (val, key) => summarizeItem(val, path.concat([key]))).join('\n')
+        if ('computed' in value && !value.computed) {
+            if (value.$type === 'of') {
+                reason = `${value.$has} of ${value.$count}`
+            }
+            let result = `Failed: ${path.join(arrow)} (${reason})`
+            return result
+        }
+    })
+}
+
+function summarize(data) {
     return data
 }
 
-function loadJson(filename) {
-    return JSON.parse(loadFile(filename))
-}
-
-function loadYaml(filename) {
-    return yaml.safeLoad(loadFile(filename))
+function proseify(data) {
+    return data
 }
 
 function cli() {
@@ -42,9 +53,8 @@ function cli() {
     }
 
     let [areaFile, studentFile] = commander.args
-    const {courses, overrides} = loadJson(studentFile)
-    const rawArea = loadYaml(areaFile)
-    const area = enhanceFile(rawArea, {topLevel: true})
+    const {courses, overrides} = loadFile(studentFile)
+    const area = loadFile(areaFile)
 
     const result = evaluate({courses, overrides}, area)
 
@@ -52,6 +62,13 @@ function cli() {
         const string = JSON.stringify(result, null, 2)
         console.log(string)
     }
+    else if (commander.prose) {
+        console.log(proseify(result))
+    }
+    else if (!commander.status) {
+        console.log(summarize(result))
+    }
+
     if (!result.computed) {
         process.exit(1)
     }
