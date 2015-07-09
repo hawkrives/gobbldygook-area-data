@@ -1,76 +1,67 @@
-import evaluate from '../build/evaluate'
-import fs from 'graceful-fs'
+import evaluate from '../src/evaluate'
 import commander from 'commander'
 import {version} from '../package.json'
+import stdinCb from 'get-stdin'
+const stdin = Promise.promisify(stdinCb)
+import fs from 'graceful-fs'
+const readFile = Promise.promisify(fs.readFile)
+import map from 'lodash/collection/map'
+import kebabCase from 'lodash/string/kebabCase'
 
 function loadFile(filename) {
     const data = fs.readFileSync(filename, 'utf-8')
     return JSON.parse(data)
 }
 
-import map from 'lodash/collection/map'
-const arrow = ' > '
-function summarizeItem(data, path=[]) {
-    return map(data, value => {
-        let reason = map(data, (val, key) => summarizeItem(val, path.concat([key]))).join('\n')
-        if ('computed' in value && !value.computed) {
-            if (value.$type === 'of') {
-                reason = `${value.$has} of ${value.$count}`
-            }
-            let result = `Failed: ${path.join(arrow)} (${reason})`
-            return result
-        }
-    })
+function loadArea({title, type}) {
+    const path = `../areas/${type}/${kebabCase(title).yaml}`
+    return loadFile(path)
 }
 
-function summarize(data) {
-    return data
+const checkAgainstArea = ({courses, overrides}) => (areaData) => {
+    const result = evaluate({courses, overrides}, areaData)
+    if (commander.json) {
+        console.log(JSON.stringify(result, null, 2))
+    }
+    else if (commander.prose) {
+        console.log('not implemented')
+        // console.log(proseify(result))
+    }
+    else if (!commander.status) {
+        console.log('not implemented')
+        // console.log(summarize(result))
+    }
+
+    if (!result.computed) {
+        process.exit(1)
+    }
 }
 
-function proseify(data) {
-    return data
+function run({courses, overrides, areas}) {
+    map(areas, loadArea).forEach(checkAgainstArea({courses, overrides}))
 }
 
 function cli() {
     commander
         .version(version)
-        .usage('[options] areaFile studentFile')
+        .usage('[options] studentFile')
         .option('--json', 'print json')
         .option('--prose', '')
         .option('--summary', '')
         .option('--status', '')
         .parse(process.argv)
 
-    if (!process.argv.slice(2).length) {
+    let [filename] = process.argv.slice(2)
+
+    if (filename === '-') {
+        stdin().then(run)
+    }
+    else if (filename) {
+        readFile(filename, 'utf-8').then(run)
+    }
+    else {
         commander.outputHelp()
         return
-    }
-
-    // if we don't get both areaFile and studentFile
-    if (commander.args.length !== 2) {
-        commander.outputHelp()
-        return
-    }
-
-    let [areaFile, studentFile] = commander.args
-    const {courses, overrides} = loadFile(studentFile)
-    const area = loadFile(areaFile)
-
-    const result = evaluate({courses, overrides}, area)
-
-    if (commander.json) {
-        const string = JSON.stringify(result, null, 2)
-        console.log(string)
-    }
-    else if (commander.prose) {
-        console.log(proseify(result))
-    }
-    else if (!commander.status) {
-        console.log(summarize(result))
-    }
-
-    if (!result.computed) {
-        process.exit(1)
     }
 }
 
