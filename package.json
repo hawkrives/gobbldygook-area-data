@@ -28,7 +28,7 @@
     "chai-as-promised": "5.1.0",
     "codecov.io": "0.1.5",
     "eslint": "0.24.0",
-    "istanbul": "0.3.17",
+    "isparta": "3.0.3",
     "mocha": "2.2.5"
   },
   "keywords": [
