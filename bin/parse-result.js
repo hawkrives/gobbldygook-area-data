@@ -2,7 +2,7 @@ import {parse} from '../lib/parse-hanson-string'
 
 function cli() {
     if (process.argv.length < 3) {
-        console.log('usage: parse-single "string"')
+        console.log('usage: parse-result "string"')
         return
     }
 
