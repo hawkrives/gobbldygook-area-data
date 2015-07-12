@@ -253,36 +253,54 @@ export function filterByQualification(list, qualification, fullList) {
 }
 
 
+function condenseCourse(course) {
+    return `{${map(course, (val, key) => `${key}=${val}`).join(', ')}}`
+}
+
+function checkCourseIdentity(courseA, courseB) {
+    // checks department, number, and a few other fields
+
+    // the purpose of this function
+    // is to determine if one course is a subset of another.
+
+    // because we're overloading the term "course" even more than normal here
+    // here, it's a set of key:value props that are applied as a filter to a list
+    // of fully-fledged course objects (which are actually classes, but whatevs.)
+
+    // so, if c1 looks like {d: A, n: 1}, and c2 looks like {d: A, n: 1, y: 2015},
+    // c2 is a more specific instance of c1.
+
+    // so what does that mean.
+
+    // when testing for course dirtyness, we need to store the minimal
+    // representation of each course, yes?
+
+    // yes
+
+    // but (idk what was going to go here)
+}
+
 export function filterByWhereClause(list, clause, fullList) {
-    // {gereqs = EIN & year <= max(year) from {gereqs = BTS-T}}
-    // {
-    //    "$type": "boolean",
-    //    "$and": [
-    //      { "$type":"qualification", $key: "gereqs", $value: {"$type": "operator", "$eq": "EIN"} },
-    //      { "$type":"qualification", $key: "year", $value: {
-    //          "$type": "operator",
-    //          "$lte": {
-    //            "$name": "max",
-    //            "$prop": "year",
-    //            "$type": "function",
-    //            "$where": {
-    //              "$type": "qualification", $key: "gereqs", $value: {
-    //                "$type": "operator", "$eq": "BTS-T"
-    //              }
-    //            }
-    //          }
-    //      } }
-    //    ]
-    //  }
+    // When filtering by an and-clause, we need access to both the
+    // entire list of courses, and the result of the prior iteration.
+    // To simplify future invocations, we default to `fullList = list`
     if (!fullList) {
         fullList = list
     }
 
+    // There are only two types of where-clauses: boolean, and qualification.
+    // Boolean where-clauses are comprised of a set of qualifications.
+
+    // This function always reduces down to a call to filterByQualification
     if (clause.$type === 'qualification') {
         return filterByQualification(list, clause, fullList)
     }
 
+    // either an and- or or-clause.
     else if (clause.$type === 'boolean') {
+        // and-clauses become the result of applying each invocation to the
+        // result of the prior one. they are the list of unique courses which
+        // meet all of the qualifications.
         if (has(clause, '$and')) {
             let filtered = list
             forEach(clause.$and, q => {
@@ -291,21 +309,25 @@ export function filterByWhereClause(list, clause, fullList) {
             return filtered
         }
 
+        // or-clauses are the list of unique courses that meet one or more
+        // of the qualifications.
         else if (has(clause, '$or')) {
             let filtrations = []
             forEach(clause.$or, q => {
-                filtrations = union(filtrations, filterByWhereClause(list, q))
+                filtrations.push(filterByWhereClause(list, q))
             })
+            console.log(map(filtrations, l => map(l, condenseCourse)))
             return uniq(filtrations, 'crsid')
         }
 
+        // only 'and' and 'or' are currently supported.
         else {
             throw new RequiredKeyError('neither $or nor $and could be found in ${clause}')
         }
     }
 
+    // where-clauses *must* be either a 'boolean' or a 'qualification'
     else {
-        console.log(clause)
         throw new BadTypeError('wth kind of type is a "${clause.$type}" clause?')
     }
 }
