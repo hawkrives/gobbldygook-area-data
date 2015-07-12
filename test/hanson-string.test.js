@@ -668,6 +668,7 @@ describe('parse hanson-string', () => {
                 $count: 1,
                 $what: 'course',
                 $from: 'children',
+                $children: '$all',
             })
         })
         it('can count credits', () => {
@@ -676,6 +677,7 @@ describe('parse hanson-string', () => {
                 $count: 1,
                 $what: 'credit',
                 $from: 'children',
+                $children: '$all',
             })
         })
         it('can count departments', () => {
@@ -684,6 +686,7 @@ describe('parse hanson-string', () => {
                 $count: 1,
                 $what: 'department',
                 $from: 'children',
+                $children: '$all',
             })
         })
         it('will not count departments from courses-where', () => {
