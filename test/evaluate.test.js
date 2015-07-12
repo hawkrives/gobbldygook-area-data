@@ -26,6 +26,7 @@ import evaluate, {
     RequiredKeyError,
 } from '../src/evaluate'
 import isRequirementName from '../src/isRequirementName'
+import {parse} from '../lib/parse-hanson-string'
 
 describe('isRequirementName', () => {
     it('checks if a string is a valid requirement name', () => {
