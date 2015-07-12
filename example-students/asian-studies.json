@@ -1,4 +1,5 @@
 {
+    "areas": [{"type": "major", "name": "Asian Studies", "revision": "2011-12"}],
     "courses": [
         {"department": ["JAPAN"], "number": 111, "crsid": 1},
         {"department": ["JAPAN"], "number": 112, "crsid": 2},

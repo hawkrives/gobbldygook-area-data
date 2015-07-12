@@ -1,4 +1,6 @@
 {
+    "areas": [{"type": "degree", "name": "Bachelor of Arts", "revision": "2014-15"}],
+
     "courses": [
         {"gereqs": ["FYW"], "department": ["ART"], "number": 102, "credits": 1.0},
         {"gereqs": ["FOL-J"], "department": ["ART"], "number": 103, "credits": 1.0},

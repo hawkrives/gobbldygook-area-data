@@ -1,4 +1,6 @@
 {
+    "areas": [{"type": "major", "name": "Studio Art", "revision": "2014-15"}],
+
     "courses": [
         {"department": ["ART"], "number": 102, "credits": 1.0},
         {"department": ["ART"], "number": 103, "credits": 1.0},
