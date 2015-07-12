@@ -6,16 +6,12 @@
   "author": "Hawken M. Rives",
   "license": "MIT",
   "scripts": {
+    "build": "make lib/parse-hanson-string.js",
+    "codecov.io": "babel-node ./node_modules/.bin/isparta cover ./node_modules/.bin/_mocha -- -R spec && ./node_modules/codecov.io/bin/codecov.io.js < ./coverage/coverage.json",
+    "cover": "babel-node ./node_modules/.bin/isparta cover ./node_modules/.bin/_mocha",
     "eslint": "eslint src/ bin/",
     "mocha": "mocha",
-    "build": "make lib/parse-hanson-string.js",
-    "test": "npm run eslint && npm run mocha",
-    "cover": "babel-node ./node_modules/.bin/isparta cover ./node_modules/.bin/_mocha",
-    "codecov.io": "babel-node ./node_modules/.bin/isparta cover ./node_modules/.bin/_mocha -- -R spec && ./node_modules/codecov.io/bin/codecov.io.js < ./coverage/coverage.json",
-    "compile": "babel-node ./bin/compile.js",
-    "evaluate": "babel-node ./bin/evaluate.js",
-    "parse-hanson": "babel-node ./bin/parse-hanson.js",
-    "run": "babel-node ./bin/run.js"
+    "test": "npm run eslint && npm run mocha"
   },
   "dependencies": {
     "archy": "1.0.0",
