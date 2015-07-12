@@ -31,7 +31,7 @@ bin/parse: bin/parse.js lib/parse-hanson-string.js
 
 
 lib/parse-hanson-string.js: lib/hanson-string.pegjs
-	pegjs < $(<) | babel > $(@)
+	pegjs < $(<) | babel --compact 'true' > $(@)
 
 build: build/hanson.js build/evaluate.js build/isRequirementName.js
 

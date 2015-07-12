@@ -668,6 +668,7 @@ describe('parse hanson-string', () => {
                 $count: 1,
                 $what: 'course',
                 $from: 'children',
+                $children: '$all',
             })
         })
         it('can count credits', () => {
@@ -676,6 +677,7 @@ describe('parse hanson-string', () => {
                 $count: 1,
                 $what: 'credit',
                 $from: 'children',
+                $children: '$all',
             })
         })
         it('can count departments', () => {
@@ -684,6 +686,7 @@ describe('parse hanson-string', () => {
                 $count: 1,
                 $what: 'department',
                 $from: 'children',
+                $children: '$all',
             })
         })
         it('will not count departments from courses-where', () => {
@@ -697,6 +700,24 @@ describe('parse hanson-string', () => {
                 $count: 1,
                 $what: 'course',
                 $from: 'children',
+                $children: '$all',
+            })
+        })
+        it('can count from specified children', () => {
+            expect(parse('one course from (A, B)')).to.deep.equal({
+                $type: 'modifier',
+                $count: 1,
+                $what: 'course',
+                $from: 'children',
+                $children: [{$requirement: 'A', $type: 'reference'}, {$requirement: 'B', $type: 'reference'}],
+            })
+
+            expect(parse('one course from (BTS-B, B)', {abbreviations: {'BTS-B': 'Bible'}})).to.deep.equal({
+                $type: 'modifier',
+                $count: 1,
+                $what: 'course',
+                $from: 'children',
+                $children: [{$requirement: 'Bible', $type: 'reference'}, {$requirement: 'B', $type: 'reference'}],
             })
         })
         it('can count from filter', () => {
