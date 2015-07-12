@@ -364,6 +364,30 @@ describe('filterByQualification', () => {
         }
         expect(() => filterByQualification(courses, advancedQualificationBad)).to.throw(RequiredKeyError)
     })
+
+    it('must specify a function when utilizing a nested where-query', () => {
+        const advancedQualificationBad = {
+            $type: 'qualification',
+            $key: 'year',
+            $value: {
+                $type: 'operator',
+                $lte: {
+                    $name: 'max',
+                    $prop: 'year',
+                    $type: '',
+                    $where: {
+                        $type: 'qualification',
+                        $key: 'gereqs',
+                        $value: {
+                            $type: 'operator',
+                            '$eq': 'BTS-T',
+                        },
+                    },
+                },
+            },
+        }
+        expect(() => filterByQualification(courses, advancedQualificationBad)).to.throw(BadTypeError)
+    })
 })
 
 describe('filterByWhereClause', () => {
