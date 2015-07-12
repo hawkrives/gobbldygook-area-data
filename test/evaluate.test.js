@@ -24,6 +24,7 @@ import evaluate, {
     hasOverride,
     pathToOverride,
     RequiredKeyError,
+    BadTypeError,
 } from '../src/evaluate'
 import isRequirementName from '../src/isRequirementName'
 import {parse} from '../lib/parse-hanson-string'
@@ -249,6 +250,12 @@ describe('compareCourseAgainstOperator', () => {
         const course = {department: ['ART', 'ASIAN'], year: 2015}
         const operator = {$lte: {'$computed-value': 2016}}
         expect(compareCourseAgainstOperator(course, 'year', operator)).to.be.true
+    })
+
+    it('refuses to compare against an array', () => {
+        const course = {department: ['ART', 'ASIAN'], year: 2015}
+        const operator = {$lte: [2016]}
+        expect(() => compareCourseAgainstOperator(course, 'year', operator)).to.throw(BadTypeError)
     })
 })
 
