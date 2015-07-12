@@ -435,9 +435,12 @@ export function applyFilter(expr, courses) {
 
 export function computeBoolean(expr, ctx, courses) {
     if (has(expr, '$or')) {
-        const results = map(expr.$or, req => computeChunk(req, ctx, courses))
+        // we only want this to use the first "true" result
+        // we don't need to continue to look after we find one
+        // because this is an or-clause
+        const result = find(expr.$or, req => computeChunk(req, ctx, courses))
         expr._matches = collectMatches(expr)
-        return any(results)
+        return result
     }
     else if (has(expr, '$and')) {
         const results = map(expr.$and, req => computeChunk(req, ctx, courses))
