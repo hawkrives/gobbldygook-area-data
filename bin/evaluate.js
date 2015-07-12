@@ -1,25 +1,29 @@
 import evaluate from '../src/evaluate'
 import commander from 'commander'
 import {version} from '../package.json'
-import stdinCb from 'get-stdin'
-const stdin = Promise.promisify(stdinCb)
-import fs from 'graceful-fs'
-const readFile = Promise.promisify(fs.readFile)
-import map from 'lodash/collection/map'
+import {readFileSync} from 'graceful-fs'
 import kebabCase from 'lodash/string/kebabCase'
+import yaml from 'js-yaml'
+import {enhanceFile} from '../src/hanson'
 
-function loadFile(filename) {
-    const data = fs.readFileSync(filename, 'utf-8')
-    return JSON.parse(data)
+function pluralizeArea(type) {
+    type = type.toLowerCase()
+    if (type === 'emphasis') {
+        return 'emphases'
+    }
+    else {
+        return type + 's'
+    }
 }
 
-function loadArea({title, type}) {
-    const path = `../areas/${type}/${kebabCase(title).yaml}`
-    return loadFile(path)
+function loadArea({name, type, revision}) {
+    const path = `./areas/${pluralizeArea(type)}/${kebabCase(name)}.yaml`
+    return enhanceFile(yaml.safeLoad(readFileSync(path, 'utf-8')), {topLevel: true})
 }
 
 const checkAgainstArea = ({courses, overrides}) => (areaData) => {
     const result = evaluate({courses, overrides}, areaData)
+
     if (commander.json) {
         console.log(JSON.stringify(result, null, 2))
     }
@@ -27,7 +31,7 @@ const checkAgainstArea = ({courses, overrides}) => (areaData) => {
         console.log('not implemented')
         // console.log(proseify(result))
     }
-    else if (!commander.status) {
+    else if (commander.summary) {
         console.log('not implemented')
         // console.log(summarize(result))
     }
@@ -38,7 +42,8 @@ const checkAgainstArea = ({courses, overrides}) => (areaData) => {
 }
 
 function run({courses, overrides, areas}) {
-    map(areas, loadArea).forEach(checkAgainstArea({courses, overrides}))
+    areas.map(loadArea)
+         .forEach(checkAgainstArea({courses, overrides}))
 }
 
 function cli() {
@@ -53,11 +58,13 @@ function cli() {
 
     let [filename] = process.argv.slice(2)
 
-    if (filename === '-') {
-        stdin().then(run)
+    if (!commander.json && !commander.prose && ~commander.summary && !commander.status) {
+        commander.outputHelp()
+        return
     }
-    else if (filename) {
-        readFile(filename, 'utf-8').then(run)
+
+    if (filename) {
+        run(JSON.parse(readFileSync(filename, 'utf-8')))
     }
     else {
         commander.outputHelp()
