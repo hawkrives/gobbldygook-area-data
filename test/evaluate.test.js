@@ -468,17 +468,17 @@ describe('computeModifier', () => {
         expect(result).to.be.true
     })
     xit('checks for <things> from specified children', () => {
-        const req = {
-            Bible: {
-                _matches: [],
-            },
-            $type: 'modifier',
-            $count: 1,
-            $what: 'course',
-            $from: 'children',
-            $children: [{$requirement: 'Bible', $type: 'reference'}, {$requirement: 'B', $type: 'reference'}],
-        }
-        expect(computeModifier(modifier, req, courses))
+        // const req = {
+        //     Bible: {
+        //         _matches: [],
+        //     },
+        //     $type: 'modifier',
+        //     $count: 1,
+        //     $what: 'course',
+        //     $from: 'children',
+        //     $children: [{$requirement: 'Bible', $type: 'reference'}, {$requirement: 'B', $type: 'reference'}],
+        // }
+        // expect(computeModifier(modifier, req, courses))
     })
     xit('checks for <things> from the filter', () => {})
     xit('checks for <things> from the given where-clause', () => {})
