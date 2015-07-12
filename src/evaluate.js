@@ -479,8 +479,26 @@ export function computeReference(expr, ctx) {
     return false
 }
 
-export function getMatchesFromChildren(ctx) {
-    const childKeys = filter(keys(ctx), isRequirementName)
+export function getMatchesFromChildren(expr, ctx) {
+    // grab all the child requirement names for this req
+    let childKeys = filter(keys(ctx), isRequirementName)
+
+    // two options:
+    if (expr.$children === '$all') {
+        // use all of the child requirements in the computation
+        childKeys = childKeys
+    }
+    else if (isArray(expr.$children)) {
+        // or just use some of them (listed in expr.$children)
+        const requested = pluck(expr.$children, '$requirement')
+        childKeys = filter(childKeys, key => includes(requested, key))
+    }
+
+    // collect the matching courses from the requested children
+    // TODO: uniq here suffers from the same problem that the dirty course stuff is
+    //       struggling with. (that is, uniq works on a per-object basis, and while
+    //       you can write down the same course for several reqs, they'll be different
+    //       objects.)
     const matches = uniq(flatten(map(childKeys, key => collectMatches(ctx[key]))))
 
     return matches
@@ -503,7 +521,7 @@ export function computeModifier(expr, ctx, courses) {
     let filtered = []
 
     if (expr.$from === 'children') {
-        filtered = getMatchesFromChildren(ctx)
+        filtered = getMatchesFromChildren(expr, ctx)
     }
 
     else if (expr.$from === 'filter') {
@@ -528,6 +546,7 @@ export function computeModifier(expr, ctx, courses) {
         num = countCredits(filtered)
     }
 
+    expr._counted = num
     return num >= expr.$count
 }
 
