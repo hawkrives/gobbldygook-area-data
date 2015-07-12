@@ -77,8 +77,8 @@ clean:
 
 
 cover:
-	istanbul cover ./node_modules/.bin/_mocha
+	babel-node ./node_modules/.bin/isparta cover ./node_modules/.bin/_mocha
 
 codecover:
-	istanbul cover ./node_modules/.bin/_mocha -- -R spec \
+	babel-node ./node_modules/.bin/isparta cover ./node_modules/.bin/_mocha -- -R spec \
 		&& ./node_modules/codecov.io/bin/codecov.io.js < ./coverage/coverage.json
