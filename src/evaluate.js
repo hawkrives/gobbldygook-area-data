@@ -423,7 +423,7 @@ export function applyFilter(expr, courses) {
     else if (has(expr, '$of')) {
         filtered = filter(expr.$of, course => any(courses, c => compareCourse(course, c)))
     }
-        expr._matches = filtered
+    expr._matches = filtered
     return filtered
 }
 
