@@ -2,7 +2,7 @@
 
 <div>
     <a href='https://travis-ci.org/hawkrives/gobbldygook-area-data'><img src='https://travis-ci.org/hawkrives/gobbldygook-area-data.svg?branch=master' alt='Build and Test Status' /></a>
-    <a href='https://coveralls.io/github/hawkrives/gobbldygook-area-data?branch=master'><img src='https://coveralls.io/repos/hawkrives/gobbldygook-area-data/badge.svg?branch=master' alt='Code Coverage Status' /></a>
+    <a href='https://coveralls.io/github/hawkrives/gobbldygook-area-data?branch=master'><img src='https://coveralls.io/repos/hawkrives/gobbldygook-area-data/badge.svg?branch=master&service=github' alt='Code Coverage Status' /></a>
 </div>
 
 
