@@ -7,7 +7,7 @@ import {enhanceFile} from '../src/hanson'
 function cli() {
     commander
         .version(version)
-        .usage('areaFile | - (read from stdin)')
+        .usage('areaFile')
         .parse(process.argv)
 
     let [filename] = process.argv.slice(2)
