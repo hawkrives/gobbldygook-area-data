@@ -174,14 +174,16 @@ export function compareCourseAgainstOperator(course, key, operator) {
     else {
         // it's a static value; a number or string
         if (kind === '$eq') {
-            return (isArray(course[key])
-                    ? includes(course[key], operator[kind])
-                    : course[key] === operator[kind])
+            if (isArray(course[key])) {
+                return includes(course[key], operator[kind])
+            }
+            return course[key] === operator[kind]
         }
         else if (kind === '$ne') {
-            return (isArray(course[key])
-                    ? !includes(course[key], operator[kind])
-                    : course[key] !== operator[kind])
+            if (isArray(course[key])) {
+                return !includes(course[key], operator[kind])
+            }
+            return course[key] !== operator[kind]
         }
         else if (kind === '$lt') {
             return course[key] < operator[kind]
@@ -571,9 +573,10 @@ export function computeModifier(expr, ctx, courses) {
 
 export function compute(requirement, path, courses=[], overrides={}) {
     requirement = mapValues(requirement, (req, name) => {
-        return isRequirementName(name)
-            ? compute(req, path.concat([name]), courses, overrides)
-            : req
+        if (isRequirementName) {
+            return compute(req, path.concat([name]), courses, overrides)
+        }
+        return req
     })
 
     let computed = false
