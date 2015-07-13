@@ -1,7 +1,6 @@
-import all from 'lodash/collection/all'
-import any from 'lodash/collection/any'
 import assign from 'lodash/object/assign'
 import compact from 'lodash/array/compact'
+import every from 'lodash/collection/every'
 import difference from 'lodash/array/difference'
 import filter from 'lodash/collection/filter'
 import find from 'lodash/collection/find'
@@ -10,8 +9,8 @@ import forEach from 'lodash/collection/forEach'
 import has from 'lodash/object/has'
 import includes from 'lodash/collection/includes'
 import isArray from 'lodash/lang/isArray'
-import isObject from 'lodash/lang/isObject'
 import isEqual from 'lodash/lang/isEqual'
+import isObject from 'lodash/lang/isObject'
 import keys from 'lodash/object/keys'
 import map from 'lodash/collection/map'
 import mapValues from 'lodash/object/mapValues'
@@ -21,6 +20,7 @@ import omit from 'lodash/object/omit'
 import pluck from 'lodash/collection/pluck'
 import reject from 'lodash/collection/reject'
 import size from 'lodash/collection/size'
+import some from 'lodash/collection/some'
 import sortBy from 'lodash/collection/sortBy'
 import sum from 'lodash/math/sum'
 import uniq from 'lodash/array/uniq'
@@ -44,7 +44,7 @@ export function compareCourse(course, to) {
     // - 'international'
     // - 'lab'
     // - 'section'
-    const notEqual = any(
+    const notEqual = some(
         ['year', 'semester', 'department', 'number', 'section', 'level', 'international', 'lab'],
         key => !isEqual(course[key], to[key]))
     if (notEqual) {
@@ -55,7 +55,7 @@ export function compareCourse(course, to) {
 
 
 export function checkForCourse(query, courses) {
-    return any(courses, (c) => compareCourse(c, query))
+    return some(courses, (c) => compareCourse(c, query))
 }
 
 
@@ -438,7 +438,7 @@ export function applyFilter(expr, courses) {
         filtered = filterByWhereClause(courses, expr.$where)
     }
     else if (has(expr, '$of')) {
-        filtered = filter(expr.$of, course => any(courses, c => compareCourse(course, c)))
+        filtered = filter(expr.$of, course => some(courses, c => compareCourse(course, c)))
     }
     expr._matches = filtered
     return filtered
@@ -460,7 +460,7 @@ export function computeBoolean(expr, ctx, courses) {
     else if (has(expr, '$and')) {
         const results = map(expr.$and, req => computeChunk(req, ctx, courses))
         expr._matches = collectMatches(expr)
-        return all(results)
+        return every(results)
     }
     else {
         throw new RequiredKeyError(`neither $or nor $and could be found in ${expr}`)
