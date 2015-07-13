@@ -6,9 +6,10 @@ import kebabCase from 'lodash/string/kebabCase'
 import yaml from 'js-yaml'
 import {enhanceFile} from '../src/hanson'
 import pluralizeArea from '../lib/pluralize-area'
+import {join} from 'path'
 
 function loadArea({name, type/*, revision*/}) {
-    const path = `./areas/${pluralizeArea(type)}/${kebabCase(name)}.yaml`
+    const path = join('./', 'areas/', pluralizeArea(type), `${kebabCase(name)}.yaml`)
     return enhanceFile(yaml.safeLoad(readFileSync(path, 'utf-8')), {topLevel: true})
 }
 
