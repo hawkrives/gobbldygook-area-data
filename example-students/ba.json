@@ -1,6 +1,8 @@
 {
     "areas": [{"type": "degree", "name": "Bachelor of Arts", "revision": "2014-15"}],
 
+    "expectation": false,
+
     "courses": [
         {"gereqs": ["FYW"], "department": ["ART"], "number": 102, "credits": 1.0},
         {"gereqs": ["FOL-J"], "department": ["ART"], "number": 103, "credits": 1.0},
@@ -26,9 +28,5 @@
         {"gereqs": [""], "department": ["ART"], "number": 398, "credits": 1.0},
         {"gereqs": [""], "department": ["ART", "ASIAN"], "number": 259, "credits": 1.0},
         {"gereqs": ["HBS"], "department": ["CSCI"], "number": 241, "credits": 1.0}
-    ],
-
-    "overrides": {
-        "degree.bachelor of arts": true
-    }
+    ]
 }
