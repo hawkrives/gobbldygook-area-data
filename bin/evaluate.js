@@ -5,16 +5,7 @@ import {readFileSync} from 'graceful-fs'
 import kebabCase from 'lodash/string/kebabCase'
 import yaml from 'js-yaml'
 import {enhanceFile} from '../src/hanson'
-
-function pluralizeArea(type) {
-    type = type.toLowerCase()
-    if (type === 'emphasis') {
-        return 'emphases'
-    }
-    else {
-        return type + 's'
-    }
-}
+import pluralizeArea from '../lib/pluralize-area'
 
 function loadArea({name, type/*, revision*/}) {
     const path = `./areas/${pluralizeArea(type)}/${kebabCase(name)}.yaml`
