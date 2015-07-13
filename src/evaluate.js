@@ -2,6 +2,7 @@ import all from 'lodash/collection/all'
 import any from 'lodash/collection/any'
 import assign from 'lodash/object/assign'
 import compact from 'lodash/array/compact'
+import difference from 'lodash/array/difference'
 import filter from 'lodash/collection/filter'
 import find from 'lodash/collection/find'
 import flatten from 'lodash/array/flatten'
@@ -20,8 +21,8 @@ import omit from 'lodash/object/omit'
 import pluck from 'lodash/collection/pluck'
 import reject from 'lodash/collection/reject'
 import size from 'lodash/collection/size'
+import sortBy from 'lodash/collection/sortBy'
 import sum from 'lodash/math/sum'
-import union from 'lodash/array/union'
 import uniq from 'lodash/array/uniq'
 import isRequirementName from './isRequirementName'
 
@@ -253,32 +254,24 @@ export function filterByQualification(list, qualification, fullList) {
 }
 
 
-function condenseCourse(course) {
-    return `{${map(course, (val, key) => `${key}=${val}`).join(', ')}}`
+export function simplifyCourse(course) {
+    // because we can't expect the handy unique crsid to exist on courses from
+    // area specs, we have to figure it out on our own.
+
+    // the closest thing we can do is to reduce a course to the department +
+    // number combination.
+
+    // because we're overloading the term "course" even more than normal here.
+    // in this case, it's a set of key:value props that are applied as a
+    // filter to a list of fully-fledged course objects (which are actually
+    // classes, but whatevs.)
+
+    // so, if c1 looks like {dept: A, num: 1}, and c2 looks like {dept: A,
+    // num: 1, year: 2015}, c2 is a more specific instance of c1.
+
+    return `${sortBy(course.department).join('/')} ${course.number}`
 }
 
-function checkCourseIdentity(courseA, courseB) {
-    // checks department, number, and a few other fields
-
-    // the purpose of this function
-    // is to determine if one course is a subset of another.
-
-    // because we're overloading the term "course" even more than normal here
-    // here, it's a set of key:value props that are applied as a filter to a list
-    // of fully-fledged course objects (which are actually classes, but whatevs.)
-
-    // so, if c1 looks like {d: A, n: 1}, and c2 looks like {d: A, n: 1, y: 2015},
-    // c2 is a more specific instance of c1.
-
-    // so what does that mean.
-
-    // when testing for course dirtyness, we need to store the minimal
-    // representation of each course, yes?
-
-    // yes
-
-    // but (idk what was going to go here)
-}
 
 export function filterByWhereClause(list, clause, fullList) {
     // When filtering by an and-clause, we need access to both the
@@ -316,8 +309,10 @@ export function filterByWhereClause(list, clause, fullList) {
             forEach(clause.$or, q => {
                 filtrations.push(filterByWhereClause(list, q))
             })
-            console.log(map(filtrations, l => map(l, condenseCourse)))
-            return uniq(filtrations, 'crsid')
+
+            // join together the list of lists of possibilities
+            // then uniquify them by way of turning them into the simplified representations
+            return uniq(flatten(filtrations), simplifyCourse)
         }
 
         // only 'and' and 'or' are currently supported.
