@@ -1,7 +1,6 @@
 import assign from 'lodash/object/assign'
 import compact from 'lodash/array/compact'
 import every from 'lodash/collection/every'
-import difference from 'lodash/array/difference'
 import filter from 'lodash/collection/filter'
 import find from 'lodash/collection/find'
 import flatten from 'lodash/array/flatten'
