@@ -467,34 +467,8 @@ describe('filterByWhereClause', () => {
         const clause = {
             $type: 'boolean',
             $or: [
-                {
-                    $type: 'qualification',
-                    $key: 'gereqs',
-                    $value: {
-                        '$type': 'operator',
-                        '$eq': 'EIN',
-                    },
-                },
-                {
-                    $type: 'qualification',
-                    $key: 'year',
-                    $value: {
-                        $type: 'operator',
-                        $lte: {
-                            $name: 'max',
-                            $prop: 'year',
-                            $type: 'function',
-                            $where: {
-                                $type: 'qualification',
-                                $key: 'gereqs',
-                                $value: {
-                                    $type: 'operator',
-                                    $eq: 'BTS-T',
-                                },
-                            },
-                        },
-                    },
-                },
+                { $type: 'qualification', $key: 'gereqs', $value: { $eq: 'EIN', $type: 'operator' } },
+                { $type: 'qualification', $key: 'year', $value: { $eq: 2012, $type: 'operator' } },
             ],
         }
 
