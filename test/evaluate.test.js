@@ -391,17 +391,6 @@ describe('filterByQualification', () => {
 })
 
 describe('filterByWhereClause', () => {
-    let courses
-    beforeEach(() => {
-        courses = [
-            {department: ['ART', 'ASIAN'], number: 310, lab: true, year: 2012},
-            {department: ['ASIAN'], number: 155, gereqs: ['EIN'], year: 2016},
-            {department: ['CSCI'], number: 375, gereqs: ['EIN'], year: 2015},
-            {department: ['REL'], number: 111, section: 'C', gereqs: ['BTS-T'], year: 2012},
-            {department: ['REL'], number: 115, gereqs: ['BTS-T'], year: 2015},
-        ]
-    })
-
     it('filters an array of courses by a where-clause', () => {
         const clause = {
             $type: 'qualification',
@@ -411,6 +400,15 @@ describe('filterByWhereClause', () => {
                 '$eq': 'EIN',
             },
         }
+
+        const courses = [
+            {department: ['ART', 'ASIAN'], number: 310, lab: true, year: 2012},
+            {department: ['ASIAN'], number: 155, gereqs: ['EIN'], year: 2016},
+            {department: ['CSCI'], number: 375, gereqs: ['EIN'], year: 2015},
+            {department: ['REL'], number: 111, section: 'C', gereqs: ['BTS-T'], year: 2012},
+            {department: ['REL'], number: 115, gereqs: ['BTS-T'], year: 2015},
+        ]
+
         expect(filterByWhereClause(courses, clause)).to.deep.equal([
             {department: ['ASIAN'], number: 155, gereqs: ['EIN'], year: 2016},
             {department: ['CSCI'], number: 375, gereqs: ['EIN'], year: 2015},
@@ -451,6 +449,15 @@ describe('filterByWhereClause', () => {
                 },
             ],
         }
+
+        const courses = [
+            {department: ['ART', 'ASIAN'], number: 310, lab: true, year: 2012},
+            {department: ['ASIAN'], number: 155, gereqs: ['EIN'], year: 2016},
+            {department: ['CSCI'], number: 375, gereqs: ['EIN'], year: 2015},
+            {department: ['REL'], number: 111, section: 'C', gereqs: ['BTS-T'], year: 2012},
+            {department: ['REL'], number: 115, gereqs: ['BTS-T'], year: 2015},
+        ]
+
         expect(filterByWhereClause(courses, clause)).to.deep.equal([
             {department: ['CSCI'], number: 375, gereqs: ['EIN'], year: 2015},
         ])
@@ -491,6 +498,14 @@ describe('filterByWhereClause', () => {
             ],
         }
 
+        const courses = [
+            {department: ['ART', 'ASIAN'], number: 310, lab: true, year: 2012},
+            {department: ['ASIAN'], number: 155, gereqs: ['EIN'], year: 2016},
+            {department: ['CSCI'], number: 375, gereqs: ['EIN'], year: 2015},
+            {department: ['REL'], number: 111, section: 'C', gereqs: ['BTS-T'], year: 2012},
+            {department: ['REL'], number: 115, gereqs: ['BTS-T'], year: 2015},
+        ]
+
         expect(filterByWhereClause(courses, clause)).to.deep.equal([
             {department: ['ASIAN'], number: 155, gereqs: ['EIN'], year: 2016},
             {department: ['CSCI'], number: 375, gereqs: ['EIN'], year: 2015},
@@ -502,6 +517,11 @@ describe('filterByWhereClause', () => {
             $type: 'boolean',
             $xor: [],
         }
+
+        const courses = [
+            {department: ['ART', 'ASIAN'], number: 310, lab: true, year: 2012},
+        ]
+
         expect(() => filterByWhereClause(courses, clause)).to.throw(RequiredKeyError)
     })
 })
