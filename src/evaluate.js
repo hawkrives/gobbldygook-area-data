@@ -573,7 +573,7 @@ export function computeModifier(expr, ctx, courses) {
 
 export function compute(requirement, path, courses=[], overrides={}) {
     requirement = mapValues(requirement, (req, name) => {
-        if (isRequirementName) {
+        if (isRequirementName(name)) {
             return compute(req, path.concat([name]), courses, overrides)
         }
         return req
