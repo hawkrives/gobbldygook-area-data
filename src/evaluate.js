@@ -5,6 +5,7 @@ import filter from 'lodash/collection/filter'
 import find from 'lodash/collection/find'
 import flatten from 'lodash/array/flatten'
 import forEach from 'lodash/collection/forEach'
+import get from 'lodash/object/get'
 import has from 'lodash/object/has'
 import includes from 'lodash/collection/includes'
 import isArray from 'lodash/lang/isArray'
@@ -488,7 +489,7 @@ export function computeReference(expr, ctx) {
 
     if (has(ctx, expr.$requirement)) {
         const target = ctx[expr.$requirement]
-        expr._matches = target.result._matches
+        expr._matches = get(target, ['result', '_matches'])
         return target.computed
     }
 
