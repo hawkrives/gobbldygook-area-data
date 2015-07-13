@@ -1,7 +1,6 @@
-import all from 'lodash/collection/all'
-import any from 'lodash/collection/any'
 import assign from 'lodash/object/assign'
 import compact from 'lodash/array/compact'
+import every from 'lodash/collection/every'
 import filter from 'lodash/collection/filter'
 import find from 'lodash/collection/find'
 import flatten from 'lodash/array/flatten'
@@ -9,8 +8,8 @@ import forEach from 'lodash/collection/forEach'
 import has from 'lodash/object/has'
 import includes from 'lodash/collection/includes'
 import isArray from 'lodash/lang/isArray'
-import isObject from 'lodash/lang/isObject'
 import isEqual from 'lodash/lang/isEqual'
+import isObject from 'lodash/lang/isObject'
 import keys from 'lodash/object/keys'
 import map from 'lodash/collection/map'
 import mapValues from 'lodash/object/mapValues'
@@ -20,8 +19,9 @@ import omit from 'lodash/object/omit'
 import pluck from 'lodash/collection/pluck'
 import reject from 'lodash/collection/reject'
 import size from 'lodash/collection/size'
+import some from 'lodash/collection/some'
+import sortBy from 'lodash/collection/sortBy'
 import sum from 'lodash/math/sum'
-import union from 'lodash/array/union'
 import uniq from 'lodash/array/uniq'
 import isRequirementName from './isRequirementName'
 
@@ -43,7 +43,7 @@ export function compareCourse(course, to) {
     // - 'international'
     // - 'lab'
     // - 'section'
-    const notEqual = any(
+    const notEqual = some(
         ['year', 'semester', 'department', 'number', 'section', 'level', 'international', 'lab'],
         key => !isEqual(course[key], to[key]))
     if (notEqual) {
@@ -54,7 +54,7 @@ export function compareCourse(course, to) {
 
 
 export function checkForCourse(query, courses) {
-    return any(courses, (c) => compareCourse(c, query))
+    return some(courses, (c) => compareCourse(c, query))
 }
 
 
@@ -253,36 +253,46 @@ export function filterByQualification(list, qualification, fullList) {
 }
 
 
+export function simplifyCourse(course) {
+    // because we can't expect the handy unique crsid to exist on courses from
+    // area specs, we have to figure it out on our own.
+
+    // the closest thing we can do is to reduce a course to the department +
+    // number combination.
+
+    // because we're overloading the term "course" even more than normal here.
+    // in this case, it's a set of key:value props that are applied as a
+    // filter to a list of fully-fledged course objects (which are actually
+    // classes, but whatevs.)
+
+    // so, if c1 looks like {dept: A, num: 1}, and c2 looks like {dept: A,
+    // num: 1, year: 2015}, c2 is a more specific instance of c1.
+
+    return `${sortBy(course.department).join('/')} ${course.number}`
+}
+
+
 export function filterByWhereClause(list, clause, fullList) {
-    // {gereqs = EIN & year <= max(year) from {gereqs = BTS-T}}
-    // {
-    //    "$type": "boolean",
-    //    "$and": [
-    //      { "$type":"qualification", $key: "gereqs", $value: {"$type": "operator", "$eq": "EIN"} },
-    //      { "$type":"qualification", $key: "year", $value: {
-    //          "$type": "operator",
-    //          "$lte": {
-    //            "$name": "max",
-    //            "$prop": "year",
-    //            "$type": "function",
-    //            "$where": {
-    //              "$type": "qualification", $key: "gereqs", $value: {
-    //                "$type": "operator", "$eq": "BTS-T"
-    //              }
-    //            }
-    //          }
-    //      } }
-    //    ]
-    //  }
+    // When filtering by an and-clause, we need access to both the
+    // entire list of courses, and the result of the prior iteration.
+    // To simplify future invocations, we default to `fullList = list`
     if (!fullList) {
         fullList = list
     }
 
+    // There are only two types of where-clauses: boolean, and qualification.
+    // Boolean where-clauses are comprised of a set of qualifications.
+
+    // This function always reduces down to a call to filterByQualification
     if (clause.$type === 'qualification') {
         return filterByQualification(list, clause, fullList)
     }
 
+    // either an and- or or-clause.
     else if (clause.$type === 'boolean') {
+        // and-clauses become the result of applying each invocation to the
+        // result of the prior one. they are the list of unique courses which
+        // meet all of the qualifications.
         if (has(clause, '$and')) {
             let filtered = list
             forEach(clause.$and, q => {
@@ -291,21 +301,27 @@ export function filterByWhereClause(list, clause, fullList) {
             return filtered
         }
 
+        // or-clauses are the list of unique courses that meet one or more
+        // of the qualifications.
         else if (has(clause, '$or')) {
             let filtrations = []
             forEach(clause.$or, q => {
-                filtrations = union(filtrations, filterByWhereClause(list, q))
+                filtrations.push(filterByWhereClause(list, q))
             })
-            return uniq(filtrations, 'crsid')
+
+            // join together the list of lists of possibilities
+            // then uniquify them by way of turning them into the simplified representations
+            return uniq(flatten(filtrations), simplifyCourse)
         }
 
+        // only 'and' and 'or' are currently supported.
         else {
             throw new RequiredKeyError('neither $or nor $and could be found in ${clause}')
         }
     }
 
+    // where-clauses *must* be either a 'boolean' or a 'qualification'
     else {
-        console.log(clause)
         throw new BadTypeError('wth kind of type is a "${clause.$type}" clause?')
     }
 }
@@ -421,7 +437,7 @@ export function applyFilter(expr, courses) {
         filtered = filterByWhereClause(courses, expr.$where)
     }
     else if (has(expr, '$of')) {
-        filtered = filter(expr.$of, course => any(courses, c => compareCourse(course, c)))
+        filtered = filter(expr.$of, course => some(courses, c => compareCourse(course, c)))
     }
     expr._matches = filtered
     return filtered
@@ -443,7 +459,7 @@ export function computeBoolean(expr, ctx, courses) {
     else if (has(expr, '$and')) {
         const results = map(expr.$and, req => computeChunk(req, ctx, courses))
         expr._matches = collectMatches(expr)
-        return all(results)
+        return every(results)
     }
     else {
         throw new RequiredKeyError(`neither $or nor $and could be found in ${expr}`)

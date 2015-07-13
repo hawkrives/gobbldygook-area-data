@@ -24,6 +24,7 @@ import evaluate, {
     hasOverride,
     pathToOverride,
     RequiredKeyError,
+    BadTypeError,
 } from '../src/evaluate'
 import isRequirementName from '../src/isRequirementName'
 import {parse} from '../lib/parse-hanson-string'
@@ -250,13 +251,28 @@ describe('compareCourseAgainstOperator', () => {
         const operator = {$lte: {'$computed-value': 2016}}
         expect(compareCourseAgainstOperator(course, 'year', operator)).to.be.true
     })
+
+    it('refuses to compare against an array', () => {
+        const course = {department: ['ART', 'ASIAN'], year: 2015}
+        const operator = {$lte: [2016]}
+        expect(() => compareCourseAgainstOperator(course, 'year', operator)).to.throw(BadTypeError)
+    })
 })
 
 describe('filterByQualification', () => {
-    let basicQualification, advancedQualification
     let courses
     beforeEach(() => {
-        basicQualification = {
+        courses = [
+            {department: ['ART', 'ASIAN'], number: 310, lab: true, year: 2012},
+            {department: ['ASIAN'], number: 275, year: 2016},
+            {department: ['CSCI'], number: 375, gereqs: ['EIN'], year: 2013},
+            {department: ['REL'], number: 111, section: 'C', gereqs: ['BTS-T'], year: 2012},
+            {department: ['REL'], number: 115, gereqs: ['BTS-T'], year: 2013},
+        ]
+    })
+
+    it('filters an array of courses by a qualification', () => {
+        const basicQualification = {
             $type: 'qualification',
             $key: 'gereqs',
             $value: {
@@ -264,7 +280,13 @@ describe('filterByQualification', () => {
                 '$eq': 'EIN',
             },
         }
-        advancedQualification = {
+        expect(filterByQualification(courses, basicQualification)).to.deep.equal([
+            {department: ['CSCI'], number: 375, gereqs: ['EIN'], year: 2013},
+        ])
+    })
+
+    it('filters an array based on a nested where-query with the max function', () => {
+        const advancedQualificationMax = {
             $type: 'qualification',
             $key: 'year',
             $value: {
@@ -284,50 +306,117 @@ describe('filterByQualification', () => {
                 },
             },
         }
-        courses = [
-            {departments: ['ART', 'ASIAN'], number: 310, lab: true, year: 2012},
-            {departments: ['ASIAN'], number: 275, year: 2016},
-            {departments: ['CSCI'], number: 375, gereqs: ['EIN'], year: 2013},
-            {departments: ['REL'], number: 111, section: 'C', gereqs: ['BTS-T'], year: 2012},
-            {departments: ['REL'], number: 115, gereqs: ['BTS-T'], year: 2013},
-        ]
-    })
-
-
-
-    it('filters an array of courses by a qualification', () => {
-        expect(filterByQualification(courses, basicQualification)).to.deep.equal([
-            {departments: ['CSCI'], number: 375, gereqs: ['EIN'], year: 2013},
+        expect(filterByQualification(courses, advancedQualificationMax)).to.deep.equal([
+            {department: ['ART', 'ASIAN'], number: 310, lab: true, year: 2012},
+            {department: ['CSCI'], number: 375, gereqs: ['EIN'], year: 2013},
+            {department: ['REL'], number: 111, section: 'C', gereqs: ['BTS-T'], year: 2012},
+            {department: ['REL'], number: 115, gereqs: ['BTS-T'], year: 2013},
         ])
     })
 
-    it('filters an array based on a nested where-query', () => {
-        expect(filterByQualification(courses, advancedQualification)).to.deep.equal([
-            {departments: ['ART', 'ASIAN'], number: 310, lab: true, year: 2012},
-            {departments: ['CSCI'], number: 375, gereqs: ['EIN'], year: 2013},
-            {departments: ['REL'], number: 111, section: 'C', gereqs: ['BTS-T'], year: 2012},
-            {departments: ['REL'], number: 115, gereqs: ['BTS-T'], year: 2013},
+    it('filters an array based on a nested where-query with the min function', () => {
+        const advancedQualificationMin = {
+            $type: 'qualification',
+            $key: 'year',
+            $value: {
+                $type: 'operator',
+                $lte: {
+                    $name: 'min',
+                    $prop: 'year',
+                    $type: 'function',
+                    $where: {
+                        $type: 'qualification',
+                        $key: 'gereqs',
+                        $value: {
+                            $type: 'operator',
+                            '$eq': 'BTS-T',
+                        },
+                    },
+                },
+            },
+        }
+        expect(filterByQualification(courses, advancedQualificationMin)).to.deep.equal([
+            {department: ['ART', 'ASIAN'], number: 310, lab: true, year: 2012},
+            {department: ['REL'], number: 111, section: 'C', gereqs: ['BTS-T'], year: 2012},
         ])
+    })
+
+    it('must use either min or max as a function for a nested where-query', () => {
+        const advancedQualificationBad = {
+            $type: 'qualification',
+            $key: 'year',
+            $value: {
+                $type: 'operator',
+                $lte: {
+                    $name: 'func',
+                    $prop: 'year',
+                    $type: 'function',
+                    $where: {
+                        $type: 'qualification',
+                        $key: 'gereqs',
+                        $value: {
+                            $type: 'operator',
+                            '$eq': 'BTS-T',
+                        },
+                    },
+                },
+            },
+        }
+        expect(() => filterByQualification(courses, advancedQualificationBad)).to.throw(RequiredKeyError)
+    })
+
+    it('must specify a function when utilizing a nested where-query', () => {
+        const advancedQualificationBad = {
+            $type: 'qualification',
+            $key: 'year',
+            $value: {
+                $type: 'operator',
+                $lte: {
+                    $name: 'max',
+                    $prop: 'year',
+                    $type: '',
+                    $where: {
+                        $type: 'qualification',
+                        $key: 'gereqs',
+                        $value: {
+                            $type: 'operator',
+                            '$eq': 'BTS-T',
+                        },
+                    },
+                },
+            },
+        }
+        expect(() => filterByQualification(courses, advancedQualificationBad)).to.throw(BadTypeError)
     })
 })
 
 describe('filterByWhereClause', () => {
-    let clause
-    let courses
-    beforeEach(() => {
-        // {gereqs = EIN & year <= max(year) from courses where {gereqs = BTS-T}}
-        /*
-            {
-                gereqs = EIN &
-                year = max(year) from courses where {
-                    gereqs = BTS-T &
-                    semester = min(semester) from courses where {
-                        level = 300
-                    }
-                }
-            }
-        */
-        clause = {
+    it('filters an array of courses by a where-clause', () => {
+        const clause = {
+            $type: 'qualification',
+            $key: 'gereqs',
+            $value: {
+                '$type': 'operator',
+                '$eq': 'EIN',
+            },
+        }
+
+        const courses = [
+            {department: ['ART', 'ASIAN'], number: 310, lab: true, year: 2012},
+            {department: ['ASIAN'], number: 155, gereqs: ['EIN'], year: 2016},
+            {department: ['CSCI'], number: 375, gereqs: ['EIN'], year: 2015},
+            {department: ['REL'], number: 111, section: 'C', gereqs: ['BTS-T'], year: 2012},
+            {department: ['REL'], number: 115, gereqs: ['BTS-T'], year: 2015},
+        ]
+
+        expect(filterByWhereClause(courses, clause)).to.deep.equal([
+            {department: ['ASIAN'], number: 155, gereqs: ['EIN'], year: 2016},
+            {department: ['CSCI'], number: 375, gereqs: ['EIN'], year: 2015},
+        ])
+    })
+
+    it('filters an array of courses by an and-joined where-clause', () => {
+        const clause = {
             $type: 'boolean',
             $and: [
                 {
@@ -361,17 +450,55 @@ describe('filterByWhereClause', () => {
             ],
         }
 
-        courses = [
-            {departments: ['ART', 'ASIAN'], number: 310, lab: true, year: 2012},
-            {departments: ['CSCI'], number: 375, gereqs: ['EIN'], year: 2015},
-            {departments: ['REL'], number: 111, section: 'C', gereqs: ['BTS-T'], year: 2012},
-            {departments: ['REL'], number: 115, gereqs: ['BTS-T'], year: 2015},
+        const courses = [
+            {department: ['ART', 'ASIAN'], number: 310, lab: true, year: 2012},
+            {department: ['ASIAN'], number: 155, gereqs: ['EIN'], year: 2016},
+            {department: ['CSCI'], number: 375, gereqs: ['EIN'], year: 2015},
+            {department: ['REL'], number: 111, section: 'C', gereqs: ['BTS-T'], year: 2012},
+            {department: ['REL'], number: 115, gereqs: ['BTS-T'], year: 2015},
         ]
-    })
-    it('filters an array of courses by a where-clause', () => {
+
         expect(filterByWhereClause(courses, clause)).to.deep.equal([
-            {departments: ['CSCI'], number: 375, gereqs: ['EIN'], year: 2015},
+            {department: ['CSCI'], number: 375, gereqs: ['EIN'], year: 2015},
         ])
+    })
+
+    it('filters an array of courses by an or-joined where-clause', () => {
+        const clause = {
+            $type: 'boolean',
+            $or: [
+                { $type: 'qualification', $key: 'gereqs', $value: { $eq: 'EIN', $type: 'operator' } },
+                { $type: 'qualification', $key: 'year', $value: { $eq: 2012, $type: 'operator' } },
+            ],
+        }
+
+        const courses = [
+            {department: ['ART', 'ASIAN'], number: 310, lab: true, year: 2012},
+            {department: ['ASIAN'], number: 155, gereqs: ['EIN'], year: 2016},
+            {department: ['CSCI'], number: 375, gereqs: ['EIN'], year: 2015},
+            {department: ['REL'], number: 111, section: 'C', gereqs: ['BTS-T'], year: 2012},
+            {department: ['REL'], number: 115, gereqs: ['BTS-T'], year: 2015},
+        ]
+
+        expect(filterByWhereClause(courses, clause)).to.deep.equal([
+            {department: ['ASIAN'], number: 155, gereqs: ['EIN'], year: 2016},
+            {department: ['CSCI'], number: 375, gereqs: ['EIN'], year: 2015},
+            {department: ['ART', 'ASIAN'], number: 310, lab: true, year: 2012},
+            {department: ['REL'], number: 111, section: 'C', gereqs: ['BTS-T'], year: 2012},
+        ])
+    })
+
+    it('must filter by either "and" or "or"', () => {
+        const clause = {
+            $type: 'boolean',
+            $xor: [],
+        }
+
+        const courses = [
+            {department: ['ART', 'ASIAN'], number: 310, lab: true, year: 2012},
+        ]
+
+        expect(() => filterByWhereClause(courses, clause)).to.throw(RequiredKeyError)
     })
 })
 
