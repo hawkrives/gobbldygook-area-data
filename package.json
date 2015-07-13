@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "build": "make lib/parse-hanson-string.js",
-    "codecov.io": "babel-node ./node_modules/.bin/isparta cover ./node_modules/.bin/_mocha -- -R spec && ./node_modules/codecov.io/bin/codecov.io.js < ./coverage/coverage.json",
+    "coveralls": "babel-node ./node_modules/.bin/isparta cover ./node_modules/.bin/_mocha -- -R spec && ./node_modules/.bin/coveralls < ./coverage/lcov.info",
     "cover": "babel-node ./node_modules/.bin/isparta cover ./node_modules/.bin/_mocha",
     "eslint": "eslint src/ bin/",
     "mocha": "mocha",
@@ -26,10 +26,9 @@
   "devDependencies": {
     "babel": "5.6.14",
     "babel-eslint": "3.1.21",
-    "bluebird": "2.9.32",
     "chai": "3.0.0",
     "chai-as-promised": "5.1.0",
-    "codecov.io": "0.1.5",
+    "coveralls": "2.11.2",
     "eslint": "0.24.0",
     "isparta": "3.0.3",
     "mocha": "2.2.5"
