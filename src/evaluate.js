@@ -613,9 +613,8 @@ export function compute(requirement, path, courses=[], overrides={}) {
 }
 
 
-export default function evaluate(student, area) {
+export default function evaluate({courses=[], overrides=[]}, area) {
     assertKeys(area, 'name', 'result', 'type', 'revision')
-    const {courses, overrides} = student
     const {name, type} = area
     return compute(area, [type, name], courses, overrides)
 }
