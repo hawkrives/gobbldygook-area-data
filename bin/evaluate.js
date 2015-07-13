@@ -16,7 +16,7 @@ function pluralizeArea(type) {
     }
 }
 
-function loadArea({name, type, revision}) {
+function loadArea({name, type/*, revision*/}) {
     const path = `./areas/${pluralizeArea(type)}/${kebabCase(name)}.yaml`
     return enhanceFile(yaml.safeLoad(readFileSync(path, 'utf-8')), {topLevel: true})
 }
