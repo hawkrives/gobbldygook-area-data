@@ -53,28 +53,24 @@ Core:
             Domestic & Global
 
     Artistic and Literary Studies (AL):
-        Art (ALS-A):
-            one course where { gereqs = ALS-A }
-        Literature (ALS-L):
-            one course where { gereqs = ALS-L }
+        Art (ALS-A):        one course where { gereqs = ALS-A }
+        Literature (ALS-L): one course where { gereqs = ALS-L }
 
         result:
             two courses from children &
             Art & Literature
 
     Biblical and Theological Studies (BT):
-        Biblical (BTS-B):
-            result: one course where { gereqs = BTS-B }
-        Theological (BTS-T):
-            result: one course where { gereqs = BTS-T }
+        Biblical (BTS-B):    one course where { gereqs = BTS-B }
+        Theological (BTS-T): one course where { gereqs = BTS-T }
 
         result: Biblical & Theological
 
     Studies in Natural Science (SCI):
         Scientific Exploration and Discovery (SED):
-            result: one course where { gereqs = SED }
+            one course where { gereqs = SED }
         Integrated Scientific Topics (IST):
-            result: one course where { gereqs = IST }
+            one course where { gereqs = IST }
 
         result:
             two courses from children &
