@@ -1,6 +1,6 @@
 import tape from 'tape'
 
-import {compareCourse} from '../lib/compare-course'
+import compareCourse from '../lib/compare-course'
 
 tape('compareCourse', (t) => {
     t.true(
