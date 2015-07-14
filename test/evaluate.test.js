@@ -1,3 +1,5 @@
+import tape from 'tape'
+
 import evaluate, {
     assertKeys,
     checkForCourse,
@@ -26,89 +28,25 @@ import evaluate, {
     RequiredKeyError,
     BadTypeError,
 } from '../src/evaluate'
-import isRequirementName from '../src/isRequirementName'
 import {parse} from '../lib/parse-hanson-string'
 
-describe('isRequirementName', () => {
-    it('checks if a string is a valid requirement name', () => {
-        expect(isRequirementName('0')).to.be.true
-        expect(isRequirementName('BTS-B')).to.be.true
-        expect(isRequirementName('Studio Art')).to.be.true
-        expect(isRequirementName('_A0')).to.be.false
-    })
-})
 
-describe('compareCourse', () => {
-    it(`compares select keys of courses`, () => {
-        expect(compareCourse({
-            department: ['ART'],
-            number: 310,
-        }, {
-            department: ['ART'],
-            number: 310,
-        })).to.be.true
-    })
-
-    it('compares empty objects to be equal', () => {
-        expect(compareCourse({}, {})).to.be.true
-    })
-
-    it('compares the course prop "department"', () => {
-        expect(compareCourse({department: ['ART']}, {department: ['ART']})).to.be.true
-        expect(compareCourse({department: ['ART']}, {department: ['ART', 'ASIAN']})).to.be.false
-        expect(compareCourse({department: ['ASIAN']}, {department: ['ART']})).to.be.false
-        expect(compareCourse({department: ['CHEM', 'BIO']}, {department: ['BIO', 'CHEM']})).to.be.false
-    })
-    it('compares the course prop "semester"', () => {
-        expect(compareCourse({semester: 1}, {semester: 1})).to.be.true
-        expect(compareCourse({semester: 2}, {semester: 1})).to.be.false
-    })
-    it('compares the course prop "year"', () => {
-        expect(compareCourse({year: 2014}, {year: 2014})).to.be.true
-        expect(compareCourse({year: 2014}, {year: 2015})).to.be.false
-    })
-    it('compares the course prop "number"', () => {
-        expect(compareCourse({number: 201}, {number: 201})).to.be.true
-        expect(compareCourse({number: 0}, {number: 0})).to.be.true
-        expect(compareCourse({number: 0}, {number: -0})).to.be.true
-        expect(compareCourse({number: 0}, {number: 1})).to.be.false
-        expect(compareCourse({number: Infinity}, {number: -Infinity})).to.be.false
-        expect(compareCourse({number: Infinity}, {number: Infinity})).to.be.true
-    })
-    it('compares the course prop "level"', () => {
-        expect(compareCourse({level: 100}, {level: 100})).to.be.true
-        expect(compareCourse({level: 100}, {level: 200})).to.be.false
-    })
-    it('compares the course prop "international"', () => {
-        expect(compareCourse({international: true}, {international: true})).to.be.true
-        expect(compareCourse({international: true}, {international: false})).to.be.false
-    })
-    it('compares the course prop "lab"', () => {
-        expect(compareCourse({lab: true}, {lab: true})).to.be.true
-        expect(compareCourse({lab: true}, {lab: false})).to.be.false
-    })
-    it('compares the course prop "section"', () => {
-        expect(compareCourse({section: 'A'}, {section: 'A'})).to.be.true
-        expect(compareCourse({section: 'A'}, {section: 'B'})).to.be.false
-    })
-})
-
-xdescribe('checkForCourse', () => {
+tape.skip('checkForCourse', () => {
     xit('checks for a course in an array of courses', () => {})
 })
 
-xdescribe('getOccurrences', () => {
+tape.skip('getOccurrences', () => {
     xit('returns a list of occurrences of a given course from another array of courses', () => {})
 })
 
-describe('assertKeys', () => {
+tape.skip('assertKeys', (t) => {
     it('assert that some keys are present in an object', () => {
         expect(() => assertKeys({a: 1}, 'a')).not.to.throw()
         expect(() => assertKeys({a: 1}, 'b')).to.throw()
     })
 })
 
-describe('countCourses', () => {
+tape.skip('countCourses', (t) => {
     it('counts the number of distinct courses in an array', () => {
         const courses = [
             {crsid: 310},
@@ -119,7 +57,7 @@ describe('countCourses', () => {
     })
 })
 
-describe('getDepartments', () => {
+tape.skip('getDepartments', (t) => {
     it('returns the distinct departments from an array of courses', () => {
         const courses = [
             {department: ['ART']},
@@ -130,7 +68,7 @@ describe('getDepartments', () => {
     })
 })
 
-describe('countDepartments', () => {
+tape.skip('countDepartments', (t) => {
     it('counts the number of distinct departments in an array of courses', () => {
         const courses = [
             {department: ['ART']},
@@ -141,7 +79,7 @@ describe('countDepartments', () => {
     })
 })
 
-describe('countCredits', () => {
+tape.skip('countCredits', (t) => {
     it('counts the number of credits in an array of courses', () => {
         const courses = [
             {credits: 1.0},
@@ -152,7 +90,7 @@ describe('countCredits', () => {
     })
 })
 
-describe('pathToOverride', () => {
+tape.skip('pathToOverride', (t) => {
     it('computes the path to an override', () => {
         expect(pathToOverride(['a', 'b', 'c d'])).to.equal('a.b.c d')
     })
@@ -164,7 +102,7 @@ describe('pathToOverride', () => {
     })
 })
 
-describe('hasOverride', () => {
+tape.skip('hasOverride', (t) => {
     it('checks if an override exists', () => {
         expect(hasOverride(['a', 'b', 'c'], {'a.b.c': true})).to.be.true
     })
@@ -173,7 +111,7 @@ describe('hasOverride', () => {
     })
 })
 
-describe('getOverride', () => {
+tape.skip('getOverride', (t) => {
     it('returns an override', () => {
         expect(getOverride(['a', 'b', 'c'], {'a.b.c': true})).to.equal(true)
     })
@@ -185,7 +123,7 @@ describe('getOverride', () => {
     })
 })
 
-describe('findOperatorType', () => {
+tape.skip('findOperatorType', (t) => {
     it('returns the type of an operator', () => {
         expect(findOperatorType({$eq: 1})).to.equal('$eq')
     })
@@ -194,7 +132,7 @@ describe('findOperatorType', () => {
     })
 })
 
-describe('compareCourseAgainstOperator', () => {
+tape.skip('compareCourseAgainstOperator', (t) => {
     it('compares a course property against an operator', () => {
         const course = {department: ['ART'], number: 310}
         expect(compareCourseAgainstOperator(course, 'number', {$eq: 310})).to.be.true
@@ -259,7 +197,7 @@ describe('compareCourseAgainstOperator', () => {
     })
 })
 
-describe('filterByQualification', () => {
+tape.skip('filterByQualification', (t) => {
     let courses
     beforeEach(() => {
         courses = [
@@ -390,7 +328,7 @@ describe('filterByQualification', () => {
     })
 })
 
-describe('filterByWhereClause', () => {
+tape.skip('filterByWhereClause', (t) => {
     it('filters an array of courses by a where-clause', () => {
         const clause = {
             $type: 'qualification',
@@ -502,23 +440,23 @@ describe('filterByWhereClause', () => {
     })
 })
 
-xdescribe('computeChunk', () => {
+tape.skip('computeChunk', () => {
     xit('', () => {})
 })
 
-xdescribe('computeCourse', () => {
+tape.skip('computeCourse', () => {
     xit('', () => {})
 })
 
-xdescribe('computeOccurrence', () => {
+tape.skip('computeOccurrence', () => {
     xit('', () => {})
 })
 
-xdescribe('computeWhere', () => {
+tape.skip('computeWhere', () => {
     xit('', () => {})
 })
 
-describe('computeBoolean', () => {
+tape.skip('computeBoolean', (t) => {
     xit('computes the boolean result of and-clauses', () => {})
     xit('computes the boolean result of or-clauses', () => {})
     it('only computes an or-clause until it has a result', () => {
@@ -560,15 +498,15 @@ describe('computeBoolean', () => {
     })
 })
 
-xdescribe('computeOf', () => {
+tape.skip('computeOf', () => {
     xit('', () => {})
 })
 
-xdescribe('computeReference', () => {
+tape.skip('computeReference', () => {
     xit('', () => {})
 })
 
-describe('computeModifier', () => {
+tape.skip('computeModifier', (t) => {
     let courses
     beforeEach(() => {
         courses = [
@@ -609,7 +547,7 @@ describe('computeModifier', () => {
     })
     xit('checks for <things> from the filter', () => {})
     xit('checks for <things> from the given where-clause', () => {})
-    xdescribe('<thing> may be one of', () => {
+    tape.skip('<thing> may be one of', () => {
         it('course')
         it('department')
         it('credit', () => {
@@ -618,12 +556,12 @@ describe('computeModifier', () => {
     })
 })
 
-xdescribe('compute', () => {
+tape.skip('compute', () => {
     xit('', () => {})
 })
 
 
-xdescribe('evaluate', () => {
+tape.skip('evaluate', () => {
     let area, courses, overrides
     beforeEach(() => {
         area = {
