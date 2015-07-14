@@ -1,6 +1,5 @@
 import tape from 'tape'
-
-import isRequirementName from '../src/isRequirementName'
+import isRequirementName from '../lib/is-requirement-name'
 
 tape('isRequirementName checks if a string is a requirement name', (t) => {
     t.true(isRequirementName('BTS-B'), 'can contain hyphens')

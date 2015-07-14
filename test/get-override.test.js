@@ -1,9 +1,12 @@
-it('returns an override', () => {
-        expect(getOverride(['a', 'b', 'c'], {'a.b.c': true})).to.equal(true)
-    })
-    it('simply returns the value of the override', () => {
-        expect(getOverride(['a', 'b', 'c'], {'a.b.c': false})).to.equal(false)
+import tape from 'tape'
+import getOverride from '../lib/get-override'
 
-        const arr = [1, 2, 3]
-        expect(getOverride(['a', 'b', 'c'], {'a.b.c': arr})).to.equal(arr)
-    })
+tape.test('getOverride', (t) => {
+    t.equal(getOverride(['a', 'b', 'c'], {'a.b.c': true}), true, 'returns an override')
+    t.equal(getOverride(['a', 'b', 'c'], {'a.b.c': false}), false, 'simply returns the value of the override')
+
+    const arr = [1, 2, 3]
+    t.equal(getOverride(['a', 'b', 'c'], {'a.b.c': arr}), arr, 'returns the same instance, too')
+
+    t.end()
+})
