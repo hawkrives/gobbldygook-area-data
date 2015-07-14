@@ -6,7 +6,7 @@
   "author": "Hawken M. Rives",
   "license": "MIT",
   "scripts": {
-    "build": "make lib/parse-hanson-string.js",
+    "build": "pegjs < lib/parse-hanson-string.pegjs | babel --compact 'true' > lib/parse-hanson-string.js",
     "coveralls": "babel-node ./node_modules/.bin/isparta cover ./node_modules/.bin/_mocha -- -R spec && ./node_modules/.bin/coveralls < ./coverage/lcov.info",
     "cover": "babel-node ./node_modules/.bin/isparta cover ./node_modules/.bin/_mocha",
     "eslint": "eslint src/ bin/",

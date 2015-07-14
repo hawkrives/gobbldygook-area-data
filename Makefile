@@ -11,10 +11,6 @@ areas-of-study: bin/hanson areas/**/*.yaml
 	done
 
 
-lib/parse-hanson-string.js: lib/hanson-string.pegjs
-	pegjs < $(<) | babel --compact 'true' > $(@)
-
-
 test-sa:
 	babel-node ./bin/run --json ./areas/majors/studio-art.yaml ./example-students/studio-art.json
 
@@ -27,9 +23,5 @@ test-ba:
 test-spanish:
 	babel-node ./bin/run --json ./areas/majors/spanish.yaml.ip ./example-students/spanish.json
 
-
-clean:
-	$(RM) \
-		lib/parse-hanson-string.js
 
 .PHONY: clean
