@@ -10,6 +10,7 @@
     "cover": "babel-node ./node_modules/.bin/isparta cover 'babel-node ./node_modules/.bin/tape' './test/*.js'",
     "coveralls": "babel-node ./node_modules/.bin/isparta cover ./node_modules/.bin/_mocha -- -R spec && ./node_modules/.bin/coveralls < ./coverage/lcov.info",
     "eslint": "eslint src/ bin/",
+    "mocha": "mocha",
     "tape": "babel-node ./node_modules/.bin/tape './test/*.js' | tap-spec",
     "test": "npm run eslint && npm run tape"
   },
