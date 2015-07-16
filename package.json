@@ -11,6 +11,7 @@
     "coveralls": "npm run cover && coveralls < ./coverage/lcov.info",
     "eslint": "eslint lib/ bin/",
     "mocha": "mocha",
+    "mocha:slow": "mocha -R mocha-slow-reporter",
     "precover": "npm run eslint",
     "pretest": "npm run eslint",
     "test": "npm run mocha",
@@ -31,7 +32,8 @@
     "eslint": "0.24.0",
     "isparta": "3.0.3",
     "mocha": "2.2.5",
-    "pegjs": "0.8.0",
+    "mocha-slow-reporter": "0.0.0",
+    "pegjs": "0.8.0"
   },
   "keywords": [
     "sto-scheduler",
