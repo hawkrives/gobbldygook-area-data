@@ -1,10 +1,10 @@
-import tape from 'tape'
 import assertKeys from '../lib/assert-keys'
-import {RequiredKeyError} from '../lib/errors'
 
-tape.test('assertKeys', (t) => {
-    t.throws(() => assertKeys({a: 1}, 'b'), RequiredKeyError, 'checks for required keys')
-    t.doesNotThrow(() => assertKeys({a: 1}, 'a'), RequiredKeyError, 'is quiet if all keys are present')
-
-    t.end()
+describe('assertKeys', () => {
+    it('checks for required keys', () => {
+        expect(() => assertKeys({a: 1}, 'b')).to.throw(ReferenceError)
+    })
+    it('is quiet if all keys are present', () => {
+        expect(() => assertKeys({a: 1}, 'a')).not.to.throw(ReferenceError)
+    })
 })
