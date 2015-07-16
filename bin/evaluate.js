@@ -1,16 +1,16 @@
-import evaluate from '../src/evaluate'
+import evaluate from '../lib/evaluate'
 import commander from 'commander'
 import {version} from '../package.json'
 import {readFileSync} from 'graceful-fs'
 import kebabCase from 'lodash/string/kebabCase'
 import yaml from 'js-yaml'
-import {enhanceFile} from '../src/hanson'
+import enhanceHanson from '../lib/enhance-hanson'
 import pluralizeArea from '../lib/pluralize-area'
 import {join} from 'path'
 
 function loadArea({name, type/*, revision*/}) {
     const path = join('./', 'areas/', pluralizeArea(type), `${kebabCase(name)}.yaml`)
-    return enhanceFile(yaml.safeLoad(readFileSync(path, 'utf-8')), {topLevel: true})
+    return enhanceHanson(yaml.safeLoad(readFileSync(path, 'utf-8')), {topLevel: true})
 }
 
 const checkAgainstArea = ({courses, overrides}) => (areaData) => {

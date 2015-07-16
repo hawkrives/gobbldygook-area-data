@@ -2,7 +2,7 @@ import commander from 'commander'
 import {version} from '../package.json'
 import {readFileSync} from 'graceful-fs'
 import yaml from 'js-yaml'
-import {enhanceFile} from '../src/hanson'
+import enhanceHanson from '../lib/enhance-hanson'
 
 function cli() {
     commander
@@ -13,7 +13,7 @@ function cli() {
     let [filename] = process.argv.slice(2)
 
     if (filename) {
-        const mutated = enhanceFile(yaml.safeLoad(readFileSync(filename, 'utf-8')), {topLevel: true})
+        const mutated = enhanceHanson(yaml.safeLoad(readFileSync(filename, 'utf-8')), {topLevel: true})
         console.log(JSON.stringify(mutated, null, 2))
     }
     else {
