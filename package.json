@@ -7,11 +7,11 @@
   "license": "MIT",
   "scripts": {
     "build": "pegjs < lib/parse-hanson-string.pegjs | babel --compact 'true' > lib/parse-hanson-string.js",
-    "precover": "npm run eslint",
     "cover": "babel-node ./node_modules/.bin/isparta cover ./node_modules/.bin/_mocha",
     "coveralls": "npm run cover && coveralls < ./coverage/lcov.info",
     "eslint": "eslint lib/ bin/",
     "mocha": "mocha",
+    "precover": "npm run eslint",
     "pretest": "npm run eslint",
     "test": "npm run mocha",
     "travis": "npm run coveralls"
