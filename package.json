@@ -7,12 +7,14 @@
   "license": "MIT",
   "scripts": {
     "build": "pegjs < lib/parse-hanson-string.pegjs | babel --compact 'true' > lib/parse-hanson-string.js",
-    "cover": "babel-node ./node_modules/.bin/isparta cover 'babel-node ./node_modules/.bin/tape' './test/*.js'",
-    "coveralls": "babel-node ./node_modules/.bin/isparta cover ./node_modules/.bin/_mocha -- -R spec && ./node_modules/.bin/coveralls < ./coverage/lcov.info",
-    "eslint": "eslint src/ bin/",
+    "precover": "npm run eslint",
+    "cover": "babel-node ./node_modules/.bin/isparta cover ./node_modules/.bin/_mocha",
+    "coveralls": "npm run cover && coveralls < ./coverage/lcov.info",
+    "eslint": "eslint lib/ bin/",
     "mocha": "mocha",
-    "tape": "babel-node ./node_modules/.bin/tape './test/*.js' | tap-spec",
-    "test": "npm run eslint && npm run tape"
+    "pretest": "npm run eslint",
+    "test": "npm run mocha",
+    "travis": "npm run coveralls"
   },
   "dependencies": {
     "commander": "2.8.1",
