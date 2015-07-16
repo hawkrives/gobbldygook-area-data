@@ -37,7 +37,8 @@
     "js-beautify": "1.5.10",
     "mocha": "2.2.5",
     "mocha-slow-reporter": "0.0.0",
-    "pegjs": "0.8.0"
+    "pegjs": "0.8.0",
+    "sparkly": "2.0.1"
   },
   "keywords": [
     "sto-scheduler",
