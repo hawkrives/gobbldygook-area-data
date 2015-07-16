@@ -5,33 +5,39 @@
   "repository": "hawkrives/gobbldygook-area-data",
   "author": "Hawken M. Rives",
   "license": "MIT",
+  "config": {
+    "beautify": "-f - --end-with-newline --indent-size 2"
+  },
   "scripts": {
-    "build": "pegjs < lib/parse-hanson-string.pegjs | babel --compact 'true' > lib/parse-hanson-string.js",
-    "coveralls": "babel-node ./node_modules/.bin/isparta cover ./node_modules/.bin/_mocha -- -R spec && ./node_modules/.bin/coveralls < ./coverage/lcov.info",
+    "build": "pegjs < lib/parse-hanson-string.pegjs | babel --compact 'true' | js-beautify $npm_package_config_beautify > lib/parse-hanson-string.js",
     "cover": "babel-node ./node_modules/.bin/isparta cover ./node_modules/.bin/_mocha",
-    "eslint": "eslint src/ bin/",
+    "coveralls": "npm run cover && coveralls < ./coverage/lcov.info",
+    "eslint": "eslint lib/ bin/",
     "mocha": "mocha",
-    "test": "npm run eslint && npm run mocha"
+    "mocha:slow": "mocha -R mocha-slow-reporter",
+    "precover": "npm run eslint",
+    "pretest": "npm run eslint",
+    "test": "npm run mocha",
+    "travis": "npm run coveralls"
   },
   "dependencies": {
-    "archy": "1.0.0",
-    "chalk": "1.1.0",
     "commander": "2.8.1",
     "graceful-fs": "4.1.2",
     "humanize-list": "1.0.0",
     "js-yaml": "3.3.1",
-    "lodash": "3.10.0",
-    "pegjs": "0.8.0"
+    "lodash": "3.10.0"
   },
   "devDependencies": {
     "babel": "5.6.14",
     "babel-eslint": "3.1.21",
     "chai": "3.0.0",
-    "chai-as-promised": "5.1.0",
     "coveralls": "2.11.2",
     "eslint": "0.24.0",
     "isparta": "3.0.3",
-    "mocha": "2.2.5"
+    "js-beautify": "1.5.10",
+    "mocha": "2.2.5",
+    "mocha-slow-reporter": "0.0.0",
+    "pegjs": "0.8.0"
   },
   "keywords": [
     "sto-scheduler",
