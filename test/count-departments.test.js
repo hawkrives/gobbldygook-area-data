@@ -1,4 +1,7 @@
-it('counts the number of distinct departments in an array of courses', () => {
+import countDepartments from '../lib/count-departments'
+
+describe('countDepartments', () => {
+    it('counts the number of distinct departments in an array of courses', () => {
         const courses = [
             {department: ['ART']},
             {department: ['ART', 'ASIAN']},
@@ -6,3 +9,4 @@ it('counts the number of distinct departments in an array of courses', () => {
         ]
         expect(countDepartments(courses)).to.equal(4)
     })
+})

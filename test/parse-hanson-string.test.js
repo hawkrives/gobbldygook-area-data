@@ -1,8 +1,7 @@
-import tape from 'tape'
 import {parse} from '../lib/parse-hanson-string'
 
-tape.skip('parse hanson-string', () => {
-    test('course parsing', () => {
+describe('parse hanson-string', () => {
+    describe('course parsing', () => {
         it('parses courses with a single department', () => {
             expect(parse('CSCI 121')).to.deep.equal({
                 $type: 'course',
@@ -134,7 +133,7 @@ tape.skip('parse hanson-string', () => {
         })
     })
 
-    test('boolean parsing', () => {
+    describe('boolean parsing', () => {
         it('parses courses seperated by | as being or-d', () => {
             expect(parse('CSCI 121 | CSCI 125')).to.deep.equal({
                 $type: 'boolean',
@@ -371,12 +370,12 @@ tape.skip('parse hanson-string', () => {
         })
     })
 
-    xtest('counters', () => {
+    xdescribe('counters', () => {
         xit('n may be in english from "zero" to "twenty"', () => {})
         xit('n may be a number from 0 to (at least) 999', () => {})
     })
 
-    test('of-statements', () => {
+    describe('of-statements', () => {
         it('supports of statements of the form "n of ()"', () => {
             expect(() => parse('one of (CHEM 121)')).to.not.throw()
         })
@@ -482,8 +481,8 @@ tape.skip('parse hanson-string', () => {
             expect(() => parse('three of (CSCI 121, 125)')).to.throw('you requested 3 items, but only listed 2 options ([{"$type":"course","department":["CSCI"],"number":121},{"$type":"course","department":["CSCI"],"number":125}])')
         })
     })
-    test('where-statements', () => {
-        test('qualifications', () => {
+    describe('where-statements', () => {
+        describe('qualifications', () => {
             it('can be separated by &', () => {
                 expect(() => parse('one course where {a = b & c = d}')).not.to.throw()
             })
@@ -566,7 +565,7 @@ tape.skip('parse hanson-string', () => {
                     },
                 })
             })
-            test('value may be compared by', () => {
+            describe('value may be compared by', () => {
                 it('= (single equals)', () => {
                     expect(parse('one course where {a = b}')).to
                         .have.deep.property('$where.$value.$eq')
@@ -598,7 +597,7 @@ tape.skip('parse hanson-string', () => {
             })
         })
     })
-    test('occurrences', () => {
+    describe('occurrences', () => {
         it('requires a course to check for occurrences of', () => {
             expect(parse('one occurrence of CSCI 121')).to.deep.equal({
                 $type: 'occurrence',
@@ -613,7 +612,7 @@ tape.skip('parse hanson-string', () => {
             })
         })
     })
-    test('references', () => {
+    describe('references', () => {
         it('can reference a requirement', () => {
             expect(parse('BTS-B')).to.deep.equal({
                 $type: 'reference',
@@ -633,7 +632,7 @@ tape.skip('parse hanson-string', () => {
             expect(parse('Biblical Studies', {titles: {'Biblical Studies': 'Biblical Studies (BTS-B)'}})).to
                 .have.property('$requirement', 'Biblical Studies (BTS-B)')
         })
-        test('titles may include', () => {
+        describe('titles may include', () => {
             it('letters "A-Z"', () => {
                 expect(() => parse('ABC')).not.to.throw()
                 expect(() => parse('A')).not.to.throw()
@@ -662,7 +661,7 @@ tape.skip('parse hanson-string', () => {
             })
         })
     })
-    test('modifiers', () => {
+    describe('modifiers', () => {
         it('can count courses', () => {
             expect(parse('one course from children')).to.deep.equal({
                 $type: 'modifier',

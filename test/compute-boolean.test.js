@@ -1,4 +1,9 @@
-xit('computes the boolean result of and-clauses', () => {})
+import {computeBoolean} from '../lib/compute-chunk'
+import {parse} from '../lib/parse-hanson-string'
+
+
+describe('computeBoolean', () => {
+    xit('computes the boolean result of and-clauses', () => {})
     xit('computes the boolean result of or-clauses', () => {})
     it('only computes an or-clause until it has a result', () => {
         const clause = parse('CSCI 121 | 125')
@@ -37,3 +42,4 @@ xit('computes the boolean result of and-clauses', () => {})
         })
         expect(result).to.be.true
     })
+})

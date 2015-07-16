@@ -1,12 +1,19 @@
-import tape from 'tape'
 import getOverride from '../lib/get-override'
 
-tape.test('getOverride', (t) => {
-    t.equal(getOverride(['a', 'b', 'c'], {'a.b.c': true}), true, 'returns an override')
-    t.equal(getOverride(['a', 'b', 'c'], {'a.b.c': false}), false, 'simply returns the value of the override')
+describe('getOverride', () => {
+    // Note: we're using .equal for booleans here to indicate that it's
+    // returning the value, rather than a boolean.
+    it('returns an override', () => {
+        expect(getOverride(['a', 'b', 'c'], {'a.b.c': true})).to.equal(true)
+    })
 
-    const arr = [1, 2, 3]
-    t.equal(getOverride(['a', 'b', 'c'], {'a.b.c': arr}), arr, 'returns the same instance, too')
+    it('simply returns the value of the override', () => {
+        expect(getOverride(['a', 'b', 'c'], {'a.b.c': false})).to.equal(false)
+        expect(getOverride(['a', 'b', 'c'], {'a.b.c': 5})).to.equal(5)
+    })
 
-    t.end()
+    it('returns the same instance, too', () => {
+        const arr = [1, 2, 3]
+        expect(getOverride(['a', 'b', 'c'], {'a.b.c': arr})).to.equal(arr)
+    })
 })

@@ -1,11 +1,12 @@
-import tape from 'tape'
-import countCourses from '../lib/countCourses'
+import countCourses from '../lib/count-courses'
 
-tape.test('countCourses', (t) => {
-    const courses = [
-        {crsid: 310},
-        {crsid: 311},
-        {crsid: 310},
-    ]
-    t.equal(countCourses(courses), 2, 'counts the number of distinct courses in an array')
+describe('countCourses', () => {
+    it('counts the number of distinct courses in an array', () => {
+        const courses = [
+            {crsid: 310},
+            {crsid: 311},
+            {crsid: 310},
+        ]
+        expect(countCourses(courses)).to.equal(2)
+    })
 })

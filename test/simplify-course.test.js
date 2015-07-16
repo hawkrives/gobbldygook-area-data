@@ -1,10 +1,16 @@
-import tape from 'tape'
 import simplifyCourse from '../lib/simplify-course'
 
-tape.test('simplifyCourse', (t) => {
-    t.equal(simplifyCourse({department: ['CSCI'], number: 121, year: 2014}), 'CSCI 121', 'only uses department and number')
-    t.equal(simplifyCourse({department: ['AS', 'RE'], number: 121}), 'AS/RE 121', 'joins multiple departments with a slash')
-    t.equal(simplifyCourse({department: ['CH', 'BI'], number: 121}), 'BI/CH 121', 're-sorts departments')
-
-    t.end()
+describe('simplifyCourse', () => {
+    it('only uses department and number', () => {
+        expect(simplifyCourse({department: ['CSCI'], number: 121, year: 2014}))
+            .to.equal('CSCI 121')
+    })
+    it('joins multiple departments with a slash', () => {
+        expect(simplifyCourse({department: ['AS', 'RE'], number: 121}))
+            .to.equal('AS/RE 121')
+    })
+    it('re-sorts departments', () => {
+        expect(simplifyCourse({department: ['CH', 'BI'], number: 121}))
+            .to.equal('BI/CH 121')
+    })
 })

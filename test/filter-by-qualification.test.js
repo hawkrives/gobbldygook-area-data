@@ -1,11 +1,6 @@
-let courses = [
-            {department: ['ART', 'ASIAN'], number: 310, lab: true, year: 2012},
-            {department: ['ASIAN'], number: 275, year: 2016},
-            {department: ['CSCI'], number: 375, gereqs: ['EIN'], year: 2013},
-            {department: ['REL'], number: 111, section: 'C', gereqs: ['BTS-T'], year: 2012},
-            {department: ['REL'], number: 115, gereqs: ['BTS-T'], year: 2013},
-        ]
+import {filterByQualification} from '../lib/filter-by-where-clause'
 
+describe('filterByQualification', () => {
     it('filters an array of courses by a qualification', () => {
         const basicQualification = {
             $type: 'qualification',
@@ -15,6 +10,15 @@ let courses = [
                 '$eq': 'EIN',
             },
         }
+
+        const courses = [
+            {department: ['ART', 'ASIAN'], number: 310, lab: true, year: 2012},
+            {department: ['ASIAN'], number: 275, year: 2016},
+            {department: ['CSCI'], number: 375, gereqs: ['EIN'], year: 2013},
+            {department: ['REL'], number: 111, section: 'C', gereqs: ['BTS-T'], year: 2012},
+            {department: ['REL'], number: 115, gereqs: ['BTS-T'], year: 2013},
+        ]
+
         expect(filterByQualification(courses, basicQualification)).to.deep.equal([
             {department: ['CSCI'], number: 375, gereqs: ['EIN'], year: 2013},
         ])
@@ -41,6 +45,15 @@ let courses = [
                 },
             },
         }
+
+        const courses = [
+            {department: ['ART', 'ASIAN'], number: 310, lab: true, year: 2012},
+            {department: ['ASIAN'], number: 275, year: 2016},
+            {department: ['CSCI'], number: 375, gereqs: ['EIN'], year: 2013},
+            {department: ['REL'], number: 111, section: 'C', gereqs: ['BTS-T'], year: 2012},
+            {department: ['REL'], number: 115, gereqs: ['BTS-T'], year: 2013},
+        ]
+
         expect(filterByQualification(courses, advancedQualificationMax)).to.deep.equal([
             {department: ['ART', 'ASIAN'], number: 310, lab: true, year: 2012},
             {department: ['CSCI'], number: 375, gereqs: ['EIN'], year: 2013},
@@ -70,6 +83,15 @@ let courses = [
                 },
             },
         }
+
+        const courses = [
+            {department: ['ART', 'ASIAN'], number: 310, lab: true, year: 2012},
+            {department: ['ASIAN'], number: 275, year: 2016},
+            {department: ['CSCI'], number: 375, gereqs: ['EIN'], year: 2013},
+            {department: ['REL'], number: 111, section: 'C', gereqs: ['BTS-T'], year: 2012},
+            {department: ['REL'], number: 115, gereqs: ['BTS-T'], year: 2013},
+        ]
+
         expect(filterByQualification(courses, advancedQualificationMin)).to.deep.equal([
             {department: ['ART', 'ASIAN'], number: 310, lab: true, year: 2012},
             {department: ['REL'], number: 111, section: 'C', gereqs: ['BTS-T'], year: 2012},
@@ -97,7 +119,17 @@ let courses = [
                 },
             },
         }
-        expect(() => filterByQualification(courses, advancedQualificationBad)).to.throw(RequiredKeyError)
+
+        const courses = [
+            {department: ['ART', 'ASIAN'], number: 310, lab: true, year: 2012},
+            {department: ['ASIAN'], number: 275, year: 2016},
+            {department: ['CSCI'], number: 375, gereqs: ['EIN'], year: 2013},
+            {department: ['REL'], number: 111, section: 'C', gereqs: ['BTS-T'], year: 2012},
+            {department: ['REL'], number: 115, gereqs: ['BTS-T'], year: 2013},
+        ]
+
+        expect(() => filterByQualification(courses, advancedQualificationBad))
+            .to.throw(ReferenceError)
     })
 
     it('must specify a function when utilizing a nested where-query', () => {
@@ -121,5 +153,16 @@ let courses = [
                 },
             },
         }
-        expect(() => filterByQualification(courses, advancedQualificationBad)).to.throw(BadTypeError)
+
+        const courses = [
+            {department: ['ART', 'ASIAN'], number: 310, lab: true, year: 2012},
+            {department: ['ASIAN'], number: 275, year: 2016},
+            {department: ['CSCI'], number: 375, gereqs: ['EIN'], year: 2013},
+            {department: ['REL'], number: 111, section: 'C', gereqs: ['BTS-T'], year: 2012},
+            {department: ['REL'], number: 115, gereqs: ['BTS-T'], year: 2013},
+        ]
+
+        expect(() => filterByQualification(courses, advancedQualificationBad))
+            .to.throw(TypeError)
     })
+})

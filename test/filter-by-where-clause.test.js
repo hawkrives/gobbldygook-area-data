@@ -1,4 +1,7 @@
-it('filters an array of courses by a where-clause', () => {
+import filterByWhereClause from '../lib/filter-by-where-clause'
+
+describe('filterByWhereClause', () => {
+    it('filters an array of courses by a where-clause', () => {
         const clause = {
             $type: 'qualification',
             $key: 'gereqs',
@@ -105,5 +108,6 @@ it('filters an array of courses by a where-clause', () => {
             {department: ['ART', 'ASIAN'], number: 310, lab: true, year: 2012},
         ]
 
-        expect(() => filterByWhereClause(courses, clause)).to.throw(RequiredKeyError)
+        expect(() => filterByWhereClause(courses, clause)).to.throw(ReferenceError)
     })
+})

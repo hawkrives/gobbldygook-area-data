@@ -1,16 +1,16 @@
-import tape from 'tape'
 import evaluate from '../lib/evaluate'
 
-tape.test('evaluate', (t) => {
-    const area = {
-        name: 'Sample Area',
-        type: 'major',
-        result: 'Requirement',
-    }
-    const courses = [{}]
-    const overrides = {}
+describe('evaluate', () => {
+    it('evaluates!', () => {
+        const area = {
+            name: 'Sample Area',
+            type: 'major',
+            revision: '0000-01',
+            result: '',
+        }
+        const courses = [{}]
+        const overrides = {}
 
-    t.true(evaluate({courses, overrides}, area), 'evaluates!')
-
-    t.end()
+        expect(() => evaluate({courses, overrides}, area)).not.to.throw()
+    })
 })

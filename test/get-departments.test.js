@@ -1,4 +1,7 @@
-it('returns the distinct departments from an array of courses', () => {
+import getDepartments from '../lib/get-departments'
+
+describe('getDepartments', () => {
+    it('returns the distinct departments from an array of courses', () => {
         const courses = [
             {department: ['ART']},
             {department: ['ART', 'ASIAN']},
@@ -6,3 +9,4 @@ it('returns the distinct departments from an array of courses', () => {
         ]
         expect(getDepartments(courses)).to.deep.equal(['ART', 'ASIAN', 'CHEM', 'BIO'])
     })
+})

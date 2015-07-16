@@ -1,4 +1,7 @@
-it('counts the number of credits in an array of courses', () => {
+import countCredits from '../lib/count-credits'
+
+describe('countCredits', () => {
+    it('counts the number of credits in an array of courses', () => {
         const courses = [
             {credits: 1.0},
             {credits: 1.5},
@@ -6,3 +9,4 @@ it('counts the number of credits in an array of courses', () => {
         ]
         expect(countCredits(courses)).to.equal(4.0)
     })
+})

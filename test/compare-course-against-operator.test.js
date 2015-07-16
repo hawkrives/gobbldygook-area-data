@@ -1,4 +1,7 @@
-it('compares a course property against an operator', () => {
+import compareCourseAgainstOperator from '../lib/compare-course-against-operator'
+
+describe('compareCourseAgainstOperator', () => {
+    it('compares a course property against an operator', () => {
         const course = {department: ['ART'], number: 310}
         expect(compareCourseAgainstOperator(course, 'number', {$eq: 310})).to.be.true
     })
@@ -58,5 +61,6 @@ it('compares a course property against an operator', () => {
     it('refuses to compare against an array', () => {
         const course = {department: ['ART', 'ASIAN'], year: 2015}
         const operator = {$lte: [2016]}
-        expect(() => compareCourseAgainstOperator(course, 'year', operator)).to.throw(BadTypeError)
+        expect(() => compareCourseAgainstOperator(course, 'year', operator)).to.throw(TypeError)
     })
+})

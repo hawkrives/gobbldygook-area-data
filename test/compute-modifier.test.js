@@ -1,8 +1,12 @@
-let courses = courses = [
-            {department: ['REL'], number: 111},
-            {department: ['REL'], number: 112},
-            {department: ['CSCI'], number: 251},
-        ]
+import computeChunk, {computeModifier} from '../lib/compute-chunk'
+import {parse} from '../lib/parse-hanson-string'
+
+describe('computeModifier', () => {
+    const courses = [
+        {department: ['REL'], number: 111},
+        {department: ['REL'], number: 112},
+        {department: ['CSCI'], number: 251},
+    ]
     it('checks for <things> from all children', () => {
         const modifier = parse('one course from children')
         const req = {Bible: parse('REL 111 | 112 | 251'), result: modifier}
@@ -35,10 +39,11 @@ let courses = courses = [
     })
     xit('checks for <things> from the filter', () => {})
     xit('checks for <things> from the given where-clause', () => {})
-    tape.skip('<thing> may be one of', () => {
+    xdescribe('<thing> may be one of', () => {
         it('course')
         it('department')
         it('credit', () => {
 
         })
     })
+})

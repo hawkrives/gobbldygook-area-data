@@ -1,10 +1,13 @@
-import tape from 'tape'
 import pathToOverride from '../lib/path-to-override'
 
-tape.test('pathToOverride', (t) => {
-    t.equal(pathToOverride(['a', 'b', 'c d']), 'a.b.c d', 'computes the path to an override')
-    t.equal(pathToOverride(['aA', 'b', 'c d']), 'aa.b.c d', 'lower-cases the path')
-    t.equal(pathToOverride(['aA', 'b', 'Studio aRt']), 'aa.b.studio art', 'retains spaces in the path')
-
-    t.end()
+describe('pathToOverride', () => {
+    it('computes the path to an override', () => {
+        expect(pathToOverride(['a', 'b', 'c d'])).to.equal('a.b.c d')
+    })
+    it('lower-cases the path', () => {
+        expect(pathToOverride(['aA', 'b', 'c d'])).to.equal('aa.b.c d')
+    })
+    it('retains spaces in the path', () => {
+        expect(pathToOverride(['aA', 'b', 'Studio aRt'])).to.equal('aa.b.studio art')
+    })
 })
