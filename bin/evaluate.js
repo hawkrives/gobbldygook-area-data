@@ -64,4 +64,6 @@ function cli() {
     }
 }
 
-cli()
+if (require.main === module) {
+    cli()
+}
