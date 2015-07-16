@@ -5,8 +5,11 @@
   "repository": "hawkrives/gobbldygook-area-data",
   "author": "Hawken M. Rives",
   "license": "MIT",
+  "config": {
+    "beautify": "-f - --end-with-newline --indent-size 2"
+  },
   "scripts": {
-    "build": "pegjs < lib/parse-hanson-string.pegjs | babel --compact 'true' > lib/parse-hanson-string.js",
+    "build": "pegjs < lib/parse-hanson-string.pegjs | babel --compact 'true' | js-beautify $npm_package_config_beautify > lib/parse-hanson-string.js",
     "cover": "babel-node ./node_modules/.bin/isparta cover ./node_modules/.bin/_mocha",
     "coveralls": "npm run cover && coveralls < ./coverage/lcov.info",
     "eslint": "eslint lib/ bin/",
@@ -31,6 +34,7 @@
     "coveralls": "2.11.2",
     "eslint": "0.24.0",
     "isparta": "3.0.3",
+    "js-beautify": "1.5.10",
     "mocha": "2.2.5",
     "mocha-slow-reporter": "0.0.0",
     "pegjs": "0.8.0"
