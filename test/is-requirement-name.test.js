@@ -16,4 +16,7 @@ describe('isRequirementName checks if a string is a requirement name', () => {
     it('mustn\'t begin with an underscore', () => {
         expect(isRequirementName('_A0')).to.be.false
     })
+    it('must be one or more chars long', () => {
+        expect(isRequirementName('')).to.be.false
+    })
 })
