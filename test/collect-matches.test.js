@@ -1,6 +1,6 @@
 import collectMatches from '../lib/collect-matches'
 
-describe.only('collectMatches', () => {
+describe('collectMatches', () => {
     it('collects matches from child requirements', () => {
         const expr = {
             $type: 'requirement',
