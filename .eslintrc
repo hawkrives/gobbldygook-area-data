@@ -1,22 +1,25 @@
 ---
-ecmaFeatures:
-  # allow return statements in the global scope
-  globalReturn: true
-  # enable modules
-  modules: true
-
 parser: babel-eslint
+
 
 env:
   node: true
   es6: true
+
+
+ecmaFeatures:
+  # allow return statements in the global scope
+  globalReturn: true
+
+  # enable modules
+  modules: true
+
 
 # 1 means warning
 # 2 means error
 rules:
   # possible errors
   comma-dangle: [2, 'always-multiline']
-  valid-jsdoc: 1
 
   # best practices
   curly: [2, 'multi-line']
@@ -50,3 +53,11 @@ rules:
   no-process-exit: 0
   # mocha setting
   no-unused-expressions: 0
+
+  # jsdoc
+  valid-jsdoc:
+    - 1
+    - prefer:
+        return: returns
+        arg: param
+        argument: param
