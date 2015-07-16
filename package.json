@@ -32,9 +32,6 @@
     "isparta": "3.0.3",
     "mocha": "2.2.5",
     "pegjs": "0.8.0",
-    "tap-spec": "4.0.2",
-    "tape": "4.0.0",
-    "tape-catch": "1.0.4"
   },
   "keywords": [
     "sto-scheduler",
