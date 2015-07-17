@@ -25,6 +25,12 @@ describe('filterByWhereClause', () => {
         ])
     })
 
+    it('throws if confronted with an unknown type', () => {
+        const clause = {$type: 'bad'}
+
+        expect(() => filterByWhereClause([], clause)).to.throw(TypeError)
+    })
+
     it('filters an array of courses by an and-joined where-clause', () => {
         const clause = {
             $type: 'boolean',
