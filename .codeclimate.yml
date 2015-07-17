@@ -16,7 +16,9 @@ engines:
   # to turn on an engine, add it here and set enabled to `true`
   # to turn off an engine, set enabled to `false` or remove it
   eslint:
-    enabled: true
+    # disabling eslint in codeclimate because a) it's run by travis and
+    # b) it doesn't support babel-eslint
+    enabled: false
   csslint:
     enabled: true
 
