@@ -1,6 +1,6 @@
 import getMatchesFromChildren from '../lib/get-matches-from-children'
 
-describe.only('getMatchesFromChildren', () => {
+describe('getMatchesFromChildren', () => {
     it('extracts matches from a requirement\'s children', () => {
         const requirement = {
             result: {
