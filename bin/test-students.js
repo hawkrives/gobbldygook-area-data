@@ -8,7 +8,8 @@ import {safeLoad} from 'js-yaml'
 
 import path from 'path'
 
-import {describe, expect, it} from 'mocha'
+import {describe, it} from 'mocha'
+import {expect} from 'chai'
 
 const studentDir = './example-students/'
 
