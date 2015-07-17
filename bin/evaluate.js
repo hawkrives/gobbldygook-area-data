@@ -1,29 +1,31 @@
 import evaluate from '../lib/evaluate'
-import commander from 'commander'
-import {version} from '../package.json'
-import {readFileSync} from 'graceful-fs'
+import meow from 'meow'
+import pkg from '../package.json'
+import fs from 'graceful-fs'
 import kebabCase from 'lodash/string/kebabCase'
 import yaml from 'js-yaml'
 import enhanceHanson from '../lib/enhance-hanson'
 import pluralizeArea from '../lib/pluralize-area'
-import {join} from 'path'
+import path from 'path'
 
 function loadArea({name, type/*, revision*/}) {
-    const path = join('./', 'areas/', pluralizeArea(type), `${kebabCase(name)}.yaml`)
-    return enhanceHanson(yaml.safeLoad(readFileSync(path, 'utf-8')), {topLevel: true})
+    const filepath = path.join('areas/', pluralizeArea(type), `${kebabCase(name)}.yaml`)
+    const data = fs.readFileSync(filepath, {encoding: 'utf-8'})
+    const obj = yaml.safeLoad(data)
+    return enhanceHanson(obj, {topLevel: true})
 }
 
-const checkAgainstArea = ({courses, overrides}) => (areaData) => {
+const checkAgainstArea = ({courses, overrides}, args) => (areaData) => {
     const result = evaluate({courses, overrides}, areaData)
 
-    if (commander.json) {
+    if (args.json) {
         console.log(JSON.stringify(result, null, 2))
     }
-    else if (commander.prose) {
+    else if (args.prose) {
         console.log('not implemented')
         // console.log(proseify(result))
     }
-    else if (commander.summary) {
+    else if (args.summary) {
         console.log('not implemented')
         // console.log(summarize(result))
     }
@@ -33,31 +35,28 @@ const checkAgainstArea = ({courses, overrides}) => (areaData) => {
     }
 }
 
-function run({courses, overrides, areas}) {
+function run({courses, overrides, areas}, args) {
     areas.map(loadArea)
-         .forEach(checkAgainstArea({courses, overrides}))
+         .forEach(checkAgainstArea({courses, overrides}, args))
 }
 
 export function cli() {
-    commander
-        .version(version)
-        .usage('[options] studentFile')
-        .option('--json', 'print json')
-        .option('--prose', '')
-        .option('--summary', '')
-        .option('--status', '')
-        .parse(process.argv)
+    const args = meow({
+        pkg,
+        help: `Usage:
+            evaluate [--json] [--prose] [--summary] [--status] studentFile`,
+    })
 
-    let [filename] = process.argv.slice(2)
+    let [filename] = args.input
 
-    if (!commander.json && !commander.prose && ~commander.summary && !commander.status) {
-        commander.outputHelp()
+    if (!meow.json && !meow.prose && !meow.summary && !meow.status) {
+        meow.showHelp()
         return
     }
 
     if (filename) {
-        run(JSON.parse(readFileSync(filename, 'utf-8')))
+        run(JSON.parse(fs.readFileSync(filename, 'utf-8')), args.flags)
     }
 
-    commander.outputHelp()
+    meow.showHelp()
 }
