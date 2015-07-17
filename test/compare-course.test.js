@@ -108,4 +108,12 @@ describe('compareCourse', () => {
             expect(compareCourse({section: 'A'}, {section: 'B'})).to.be.false
         })
     })
+
+    it('returns false if the query is more specific than the possibility', () => {
+        expect(compareCourse({department: ['ASIAN'], number: 310, section: 'A'}, {department: ['ASIAN'], number: 310})).to.be.false
+    })
+
+    it('returns true if the query is less specific than the possibility', () => {
+        expect(compareCourse({department: ['ASIAN'], number: 310}, {department: ['ASIAN'], number: 310, section: 'A'})).to.be.true
+    })
 })
