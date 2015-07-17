@@ -1,25 +1,24 @@
-import commander from 'commander'
-import {version} from '../package.json'
-import {readFileSync} from 'graceful-fs'
+import meow from 'meow'
+import pkg from '../package.json'
+import fs from 'graceful-fs'
 import yaml from 'js-yaml'
 import enhanceHanson from '../lib/enhance-hanson'
 
-function cli() {
-    commander
-        .version(version)
-        .usage('areaFile')
-        .parse(process.argv)
+export function cli() {
+    const args = meow({
+        pkg,
+        help: `Usage:
+            compile areaFile`,
+    })
 
-    let [filename] = process.argv.slice(2)
+    const [filename] = args.input
 
     if (filename) {
-        const mutated = enhanceHanson(yaml.safeLoad(readFileSync(filename, 'utf-8')), {topLevel: true})
-        console.log(JSON.stringify(mutated, null, 2))
+        const data = fs.readFileSync(filename, {encoding: 'utf-8'})
+        const obj = yaml.safeLoad(data)
+        const enhanced = enhanceHanson(obj, {topLevel: true})
+        console.log(JSON.stringify(enhanced, null, 2))
     }
-    else {
-        commander.outputHelp()
-        return
-    }
-}
 
-cli()
+    args.showHelp()
+}
