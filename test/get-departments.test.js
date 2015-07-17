@@ -7,6 +7,7 @@ describe('getDepartments', () => {
             {department: ['ART', 'ASIAN']},
             {department: ['CHEM', 'BIO']},
         ]
+
         expect(getDepartments(courses)).to.deep.equal(['ART', 'ASIAN', 'CHEM', 'BIO'])
     })
 })
