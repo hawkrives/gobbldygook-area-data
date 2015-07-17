@@ -25,7 +25,7 @@ function getStudentNames() {
         .map((filename) => path.resolve(studentDir + filename))
 }
 
-function main() {
+export function cli() {
     getStudentNames()
         .map(filename => {
             const s = loadStudent(filename)
@@ -43,5 +43,3 @@ function main() {
             })
         })
 }
-
-main()

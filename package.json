@@ -11,6 +11,7 @@
     "cover": "babel-node ./node_modules/.bin/isparta cover ./node_modules/.bin/_mocha",
     "eslint": "eslint src/ bin/",
     "mocha": "mocha",
+    "test:students": "mocha ./bin/test-students",
     "test": "npm run eslint && npm run mocha"
   },
   "dependencies": {
