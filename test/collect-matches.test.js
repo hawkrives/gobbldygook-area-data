@@ -1,6 +1,17 @@
 import collectMatches from '../lib/collect-matches'
 
 describe('collectMatches', () => {
+    it('throws an error if confronted with an unknow type', () => {
+        const expr = {
+            $type: 'requirement',
+            result: {
+                $type: 'odd',
+            },
+        }
+
+        expect(() => collectMatches(expr)).to.throw(TypeError)
+    })
+
     it('collects matches from child requirements', () => {
         const expr = {
             $type: 'requirement',
