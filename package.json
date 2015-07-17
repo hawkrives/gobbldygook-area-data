@@ -10,6 +10,7 @@
   },
   "scripts": {
     "build": "pegjs < lib/parse-hanson-string.pegjs | babel --compact 'true' | js-beautify $npm_package_config_beautify > lib/parse-hanson-string.js",
+    "build:debug": "cat debug/README.md",
     "cover": "babel-node ./node_modules/.bin/isparta cover ./node_modules/.bin/_mocha",
     "coveralls": "npm run cover && coveralls < ./coverage/lcov.info",
     "eslint": "eslint lib/ bin/",
