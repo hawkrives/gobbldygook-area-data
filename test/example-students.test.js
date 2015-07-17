@@ -6,23 +6,23 @@ import kebabCase from 'lodash/string/kebabCase'
 import {readFileSync, readdirSync} from 'graceful-fs'
 import {safeLoad} from 'js-yaml'
 
-import {join, resolve as resolvePath, extname} from 'path'
+import path from 'path'
 
 const studentDir = './example-students/'
 
 function loadArea({name, type/*, revision*/}) {
-    const path = join('./', 'areas/', pluralizeArea(type), `${kebabCase(name)}.yaml`)
-    return enhanceFile(safeLoad(readFileSync(path, 'utf-8')), {topLevel: true})
+    const filepath = path.join('areas/', pluralizeArea(type), `${kebabCase(name)}.yaml`)
+    return enhanceFile(safeLoad(readFileSync(filepath, {encoding: 'utf-8'})), {topLevel: true})
 }
 
 function loadStudent(filename) {
-    return JSON.parse(readFileSync(filename, 'utf-8'))
+    return JSON.parse(readFileSync(filename, {encoding: 'utf-8'}))
 }
 
 function getStudentNames() {
     return readdirSync(studentDir)
-        .filter((filename) => extname(filename) === '.json')
-        .map((filename) => resolvePath(studentDir + filename))
+        .filter((filename) => path.extname(filename) === '.json')
+        .map((filename) => path.resolve(studentDir + filename))
 }
 
 function main() {
