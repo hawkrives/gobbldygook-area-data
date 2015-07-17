@@ -1,14 +1,22 @@
 import {computeBoolean} from '../lib/compute-chunk'
-import {parse} from '../lib/parse-hanson-string'
-
 
 describe('computeBoolean', () => {
     xit('computes the boolean result of and-clauses', () => {})
     xit('computes the boolean result of or-clauses', () => {})
+
     it('only computes an or-clause until it has a result', () => {
-        const clause = parse('CSCI 121 | 125')
+        const clause = {
+            $type: 'boolean',
+            $or: [
+                {$type: 'course', 'department': ['CSCI'], 'number': 121},
+                {$type: 'course', 'department': ['CSCI'], 'number': 125},
+            ],
+        }
         const requirement = {result: clause}
-        const courses = [{department: ['CSCI'], number: 121}, {department: ['CSCI'], number: 125}]
+        const courses = [
+            {department: ['CSCI'], number: 121},
+            {department: ['CSCI'], number: 125},
+        ]
 
         const result = computeBoolean(clause, requirement, courses)
         expect(clause).to.deep.equal({
@@ -25,9 +33,18 @@ describe('computeBoolean', () => {
     })
 
     it('computes an or-clause even if the first item is false', () => {
-        const clause = parse('CSCI 121 | 125')
+        const clause = {
+            $type: 'boolean',
+            $or: [
+                {$type: 'course', 'department': ['CSCI'], 'number': 121},
+                {$type: 'course', 'department': ['CSCI'], 'number': 125},
+            ],
+        }
         const requirement = {result: clause}
-        const courses = [{department: ['CSCI'], number: 151}, {department: ['CSCI'], number: 125}]
+        const courses = [
+            {department: ['CSCI'], number: 151},
+            {department: ['CSCI'], number: 125},
+        ]
 
         const result = computeBoolean(clause, requirement, courses)
         expect(clause).to.deep.equal({
