@@ -50,17 +50,17 @@ Approved Courses:
             approved when they have media-related
             content.
         filter: only courses from (
-            AMCON 202,
-            AMST 301,
-            ART 246, 253,
-            ENGL 266,
-            FREN 250, 272,
-            HIST 375,
-            MEDIA 220,
-            REL 121 ("The Bible as Screenplay" and "Jesus at the Movies"),
-            RUSST 254, 265, 372
-            WRI 111 ("Writing about Film" and "Page, Stage, and Screen")
-        )
+                AMCON 202,
+                AMST 301,
+                ART 246, 253,
+                ENGL 266,
+                FREN 250, 272,
+                HIST 375,
+                MEDIA 220,
+                REL 121 ("The Bible as Screenplay" and "Jesus at the Movies"),
+                RUSST 254, 265, 372
+                WRI 111 ("Writing about Film" and "Page, Stage, and Screen")
+            )
 
     result: three courses from children
 
