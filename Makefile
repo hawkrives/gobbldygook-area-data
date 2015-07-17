@@ -1,16 +1,6 @@
 PATH := ./node_modules/.bin/:$(PATH)
 
 
-areas-of-study: bin/hanson areas/**/*.yaml
-	rm -rf dist/
-	cp -r areas/ dist/
-	@for file in dist/**/*.yaml; do \
-		echo; \
-		echo $$file; \
-		./bin/hanson $$file; \
-	done
-
-
 test-sa:
 	babel-node ./bin/run --json ./areas/majors/studio-art.yaml ./example-students/studio-art.json
 
