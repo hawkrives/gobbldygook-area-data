@@ -1,0 +1,24 @@
+{
+    "areas": [{"type": "major", "name": "Chemistry", "revision": "2013-14"}],
+    "courses": [
+        {"department": ["CHEM"], "num": 125, "name": "Struct Chem & Equilib Lab"},
+        {"department": ["CHEM"], "num": 125, "name": "Struct Chem & Equilib"},
+        {"department": ["CHEM"], "num": 126, "name": "Chemical Reactions"},
+        {"department": ["CHEM"], "num": 126, "name": "Chem Reactions/Lab"},
+        {"department": ["CHEM"], "num": 247, "name": "Organic Chemistry I"},
+        {"department": ["CHEM"], "num": 248, "name": "Organic Chemistry II"},
+        {"department": ["CHEM"], "num": 253, "name": "Synthesis Lab I"},
+        {"department": ["CHEM"], "num": 254, "name": "Synthesis Lab II"},
+        {"department": ["CHEM"], "num": 255, "name": "Analytical Chem"},
+        {"department": ["CHEM"], "num": 256, "name": "Analytical Lab"},
+        {"department": ["CHEM"], "num": 357, "name": "Physical Lab"},
+        {"department": ["CHEM"], "num": 371, "name": "Physical Chemistry"},
+        {"department": ["CHEM"], "num": 379, "name": "Biochemistry I"},
+        {"department": ["MATH"], "num": 999, "name": "Calculus I"},
+        {"department": ["MATH"], "num": 128, "name": "Calculus II"},
+        {"department": ["PHYS"], "num": 124, "name": "Prin Physics I/Lab"},
+        {"department": ["PHYS"], "num": 124, "name": "Principles Physics I"},
+        {"department": ["PHYS"], "num": 125, "name": "Principles Physics II"},
+        {"department": ["PHYS"], "num": 125, "name": "Prin Physics II/Lab"}
+    ]
+}
