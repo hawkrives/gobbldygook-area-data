@@ -36,7 +36,7 @@ export function cli() {
             return {...s, filename}
         })
         .forEach(({courses, overrides, areas, filename, expectation=true}) => {
-            describe(filename, () => {
+            describe(path.basename(filename), () => {
                 areas.forEach(data => {
                     it(`${expectation ? 'should' : 'should not'} pass ${data.name}`, () => {
                         const result = evaluate({courses, overrides}, data)
