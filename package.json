@@ -23,6 +23,7 @@
     "pretest": "npm run eslint",
     "profile": "cat profile/README.md",
     "test": "npm run mocha",
+    "test:students": "mocha ./bin/test-students",
     "travis": "npm run coveralls"
   },
   "dependencies": {
