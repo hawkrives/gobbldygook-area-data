@@ -10,6 +10,7 @@
   },
   "scripts": {
     "build": "pegjs < lib/parse-hanson-string.pegjs | babel --compact 'true' | js-beautify $npm_package_config_beautify > lib/parse-hanson-string.js",
+    "benchmark": "babel-node ./benchmarks/students-benchmark.js --runs 50 --graph",
     "build:debug": "cat debug/README.md",
     "cover": "babel-node ./node_modules/.bin/isparta cover ./node_modules/.bin/_mocha",
     "coveralls": "npm run cover && coveralls < ./coverage/lcov.info",
@@ -26,7 +27,9 @@
     "graceful-fs": "4.1.2",
     "humanize-list": "1.0.0",
     "js-yaml": "3.3.1",
-    "lodash": "3.10.0"
+    "junk": "1.0.2",
+    "lodash": "3.10.0",
+    "meow": "3.3.0"
   },
   "devDependencies": {
     "babel": "5.6.14",
@@ -39,6 +42,7 @@
     "mocha": "2.2.5",
     "mocha-slow-reporter": "0.0.0",
     "pegjs": "0.8.0",
+    "pretty-ms": "1.4.0",
     "sparkly": "2.0.1"
   },
   "keywords": [
