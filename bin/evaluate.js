@@ -38,7 +38,7 @@ function run({courses, overrides, areas}) {
          .forEach(checkAgainstArea({courses, overrides}))
 }
 
-function cli() {
+export function cli() {
     commander
         .version(version)
         .usage('[options] studentFile')
@@ -58,12 +58,6 @@ function cli() {
     if (filename) {
         run(JSON.parse(readFileSync(filename, 'utf-8')))
     }
-    else {
-        commander.outputHelp()
-        return
-    }
-}
 
-if (require.main === module) {
-    cli()
+    commander.outputHelp()
 }
