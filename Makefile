@@ -1,13 +1,13 @@
 PATH := ./node_modules/.bin/:$(PATH)
 
 
-areas-of-study: bin/hanson areas/**/*.yaml
+areas-of-study: areas/**/*.yaml
 	rm -rf dist/
 	cp -r areas/ dist/
 	@for file in dist/**/*.yaml; do \
 		echo; \
 		echo $$file; \
-		./bin/hanson $$file; \
+		./bin/compile $$file > $$file.json; \
 	done
 
 
