@@ -1,5 +1,5 @@
-import evaluate from '../src/evaluate'
-import {enhanceFile} from '../src/hanson'
+import evaluate from '../lib/evaluate'
+import enhanceFile from '../lib/enhance-hanson'
 import pluralizeArea from '../lib/pluralize-area'
 import kebabCase from 'lodash/string/kebabCase'
 
@@ -7,6 +7,8 @@ import {readFileSync, readdirSync} from 'graceful-fs'
 import {safeLoad} from 'js-yaml'
 
 import path from 'path'
+
+import {describe, expect, it} from 'mocha'
 
 const studentDir = './example-students/'
 
