@@ -12,7 +12,6 @@
     "benchmark": "babel-node ./benchmarks/students-benchmark.js --runs 50 --graph",
     "build": "npm run build:peg && npm run build:areas",
     "build:areas": "./bin/compile-areas areas/ --out-dir dist/",
-    "build:debug": "cat debug/README.md",
     "build:peg": "pegjs < lib/parse-hanson-string.pegjs | babel --compact 'true' | js-beautify $npm_package_config_beautify > lib/parse-hanson-string.js",
     "cover": "babel-node ./node_modules/.bin/isparta cover ./node_modules/.bin/_mocha",
     "coveralls": "npm run cover && coveralls < ./coverage/lcov.info",
@@ -21,6 +20,7 @@
     "mocha:slow": "mocha -R mocha-slow-reporter",
     "precover": "npm run eslint",
     "pretest": "npm run eslint",
+    "profile": "cat profile/README.md",
     "test": "npm run mocha",
     "travis": "npm run coveralls"
   },
