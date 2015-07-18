@@ -1,10 +1,26 @@
 import {parse} from '../lib/parse-hanson-string'
+import meow from 'meow'
+import pkg from '../package.json'
 
 export function cli() {
-    if (process.argv.length < 3) {
-        console.log('usage: parse-result "string"')
+    const args = meow({
+        pkg,
+        help: `Usage:
+            parse-result [--js] 'result expression'`,
+    })
+
+    const data = args.input[0] || args.flags.js
+
+    if (!data) {
+        args.showHelp()
         return
     }
 
-    console.log(JSON.stringify(parse(process.argv[2]), null, 2))
+    const string = JSON.stringify(parse(data), null, 2)
+    if (args.flags.js) {
+        console.log(string.replace(/"/g, `'`).replace(/'(.*?)'(:.*)/g, '$1$2'))
+    }
+    else {
+        console.log(string)
+    }
 }
