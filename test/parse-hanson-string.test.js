@@ -602,7 +602,7 @@ describe('parse hanson-string', () => {
             expect(parse('one occurrence of CSCI 121')).to.deep.equal({
                 $type: 'occurrence',
                 $count: 1,
-                course: {
+                $course: {
                     $type: 'course',
                     department: [
                         'CSCI',
