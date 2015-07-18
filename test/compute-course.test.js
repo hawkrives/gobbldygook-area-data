@@ -1,6 +1,6 @@
 import {computeCourse} from '../lib/compute-chunk'
 
-describe.only('computeCourse', () => {
+describe('computeCourse', () => {
     it('checks if a course exists in the list of courses', () => {
         const courses = [
             {$type: 'course', department: ['ASIAN', 'ART'], number: 130},
