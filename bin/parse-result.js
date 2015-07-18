@@ -1,6 +1,7 @@
 import {parse} from '../lib/parse-hanson-string'
 import meow from 'meow'
 import pkg from '../package.json'
+import stringify from 'json-stable-stringify'
 
 export function cli() {
     const args = meow({
@@ -16,9 +17,11 @@ export function cli() {
         return
     }
 
-    const string = JSON.stringify(parse(data), null, 2)
+    const string = stringify(parse(data), {space: 4})
     if (args.flags.js) {
-        console.log(string.replace(/"/g, `'`).replace(/'(.*?)'(:.*)/g, '$1$2'))
+        console.log(string
+            .replace(/"/g, `'`)
+            .replace(/'(.*?)'(:.*)/g, '$1$2'))
     }
     else {
         console.log(string)
