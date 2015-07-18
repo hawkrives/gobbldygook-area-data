@@ -1,3 +1,6 @@
 {
-	"optional": ["es7.objectRestSpread"]
+	"optional": [
+		"es7.objectRestSpread",
+		"es7.classProperties"
+	]
 }
