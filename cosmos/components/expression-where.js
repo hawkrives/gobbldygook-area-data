@@ -27,6 +27,26 @@ function humanizeOperator(operator) {
     }
 }
 
+class Qualifier extends Component {
+    static propTypes = {
+        $type: PropTypes.oneOf(['qualification', 'boolean']).isRequired,
+        $key: PropTypes.string,
+        $value: PropTypes.object,
+        $or: PropTypes.array,
+        $and: PropTypes.array,
+    }
+
+    render() {
+        return (this.props.$type === 'qualification')
+            ? <Qualification {...this.props} />
+            : <BooleanGroup {...this.props} />
+    }
+}
+
+class BooleanGroup extends Component {
+
+}
+
 class Qualification extends Component {
     static propTypes = {
         $type: PropTypes.oneOf(['qualification']).isRequired,
@@ -39,7 +59,7 @@ class Qualification extends Component {
         const operator = humanizeOperator(type)
         const value = this.props.$value[type]
 
-        return (<span>{"{"}{this.props.$key} {operator} {value}{"}"}</span>)
+        return (<span>{'{'}{this.props.$key} {operator} {value}{'}'}</span>)
     }
 }
 
@@ -75,8 +95,7 @@ export default class Where extends Component {
         return (
             <span className={cx('where', {matched: this.props._result})}
                   style={this.props.style}>
-                {has} of {wants} courses
-                <Qualification {...filter} />
+                {has} of {wants} courses from courses where <Qualification {...filter} />
             </span>
         )
     }
