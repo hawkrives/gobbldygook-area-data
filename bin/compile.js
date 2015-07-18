@@ -19,6 +19,7 @@ export function cli() {
         const enhanced = enhanceHanson(obj, {topLevel: true})
         console.log(JSON.stringify(enhanced, null, 2))
     }
-
-    args.showHelp()
+    else {
+        args.showHelp()
+    }
 }

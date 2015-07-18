@@ -49,14 +49,15 @@ export function cli() {
 
     let [filename] = args.input
 
-    if (!meow.json && !meow.prose && !meow.summary && !meow.status) {
-        meow.showHelp()
+    if (!args.flags.json && !args.flags.prose && !args.flags.summary && !args.flags.status) {
+        args.showHelp()
         return
     }
 
     if (filename) {
         run(JSON.parse(fs.readFileSync(filename, 'utf-8')), args.flags)
     }
-
-    meow.showHelp()
+    else {
+        args.showHelp()
+    }
 }
