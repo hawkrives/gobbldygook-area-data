@@ -258,7 +258,7 @@ describe('computeBoolean', () => {
         computeChunk({expr: requirement.A, ctx: requirement, courses, dirty})
         computeChunk({expr: requirement.C, ctx: requirement, courses, dirty})
 
-        const {computedResult, matches} = computeBoolean({expr: clause, ctx: requirement, courses, dirty: new Set()})
+        const {computedResult, matches} = computeBoolean({expr: clause, ctx: requirement, courses, dirty})
         expect(clause).to.deep.equal({
             $and: [
                 {
