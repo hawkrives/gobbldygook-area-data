@@ -1,7 +1,7 @@
 import computeChunk, {computeModifier} from '../lib/compute-chunk'
 import applyFilter from '../lib/apply-filter'
 
-describe.only('computeModifier', () => {
+describe('computeModifier', () => {
     it('checks for <things> from all children', () => {
         const modifier = {
             $type: 'modifier',
