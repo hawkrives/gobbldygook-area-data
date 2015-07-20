@@ -362,7 +362,6 @@ describe('computeBoolean', () => {
         ])
     })
 
-    it('can compute the result of several requirement references')
     it('can compute the result of several of-expressions', () => {
         const clause = {
             $and: [
@@ -441,6 +440,71 @@ describe('computeBoolean', () => {
         expect(matches).to.deep.equal([
             {_result: true, $type: 'course', $course: {department: ['CSCI'], number: 125}},
             {_result: true, $type: 'course', $course: {department: ['ART'], number: 102}},
+        ])
+    })
+
+    it('can compute the result of several requirement references', () => {
+        const clause = {
+            $and: [
+                {$requirement: 'A', $type: 'reference'},
+                {$requirement: 'C', $type: 'reference'},
+            ],
+            $type: 'boolean',
+        }
+        const requirement = {
+            A: {$type: 'requirement', result: {
+                $type: 'course', $course: {department: ['ART'], number: 120},
+            }},
+            C: {$type: 'requirement', result: {
+                $count: 2,
+                $of: [
+                    {$type: 'course', $course: {department: ['ART'], number: 103}},
+                    {$type: 'course', $course: {department: ['ART'], number: 104}},
+                    {$type: 'course', $course: {department: ['ART'], number: 105}},
+                ],
+                $type: 'of',
+            }},
+            result: clause,
+        }
+
+        const courses = [
+            {department: ['ART'], number: 120},
+            {department: ['ART'], number: 104},
+            {department: ['ART'], number: 105},
+        ]
+        const dirty = new Set()
+
+        requirement.A.computed = computeChunk({expr: requirement.A.result, ctx: requirement, courses, dirty})
+        requirement.C.computed = computeChunk({expr: requirement.C.result, ctx: requirement, courses, dirty})
+
+        const {computedResult, matches} = computeBoolean({expr: clause, ctx: requirement, courses, dirty})
+        expect(clause).to.deep.equal({
+            $and: [
+                {
+                    $requirement: 'A',
+                    $type: 'reference',
+                    _result: true,
+                    _matches: [
+                        {_result: true, $type: 'course', $course: {department: ['ART'], number: 120}},
+                    ],
+                },
+                {
+                    $requirement: 'C',
+                    $type: 'reference',
+                    _result: true,
+                    _matches: [
+                        {_result: true, $type: 'course', $course: {department: ['ART'], number: 104}},
+                        {_result: true, $type: 'course', $course: {department: ['ART'], number: 105}},
+                    ],
+                },
+            ],
+            $type: 'boolean',
+        })
+        expect(computedResult).to.be.true
+        expect(matches).to.deep.equal([
+            {$type: 'course', _result: true, $course: {department: ['ART'], number: 120}},
+            {$type: 'course', _result: true, $course: {department: ['ART'], number: 104}},
+            {$type: 'course', _result: true, $course: {department: ['ART'], number: 105}},
         ])
     })
 
