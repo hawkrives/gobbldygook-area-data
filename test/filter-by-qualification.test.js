@@ -5,10 +5,8 @@ describe('filterByQualification', () => {
         const basicQualification = {
             $type: 'qualification',
             $key: 'gereqs',
-            $value: {
-                '$type': 'operator',
-                '$eq': 'EIN',
-            },
+            $value: 'EIN',
+            $operator: '$eq',
         }
 
         const courses = [
@@ -28,20 +26,16 @@ describe('filterByQualification', () => {
         const advancedQualificationMax = {
             $type: 'qualification',
             $key: 'year',
+            $operator: '$lte',
             $value: {
-                $type: 'operator',
-                $lte: {
-                    $name: 'max',
-                    $prop: 'year',
-                    $type: 'function',
-                    $where: {
-                        $type: 'qualification',
-                        $key: 'gereqs',
-                        $value: {
-                            $type: 'operator',
-                            '$eq': 'BTS-T',
-                        },
-                    },
+                $name: 'max',
+                $prop: 'year',
+                $type: 'function',
+                $where: {
+                    $type: 'qualification',
+                    $key: 'gereqs',
+                    $operator: '$eq',
+                    $value: 'BTS-T',
                 },
             },
         }
@@ -66,20 +60,16 @@ describe('filterByQualification', () => {
         const advancedQualificationMin = {
             $type: 'qualification',
             $key: 'year',
+            $operator: '$lte',
             $value: {
-                $type: 'operator',
-                $lte: {
-                    $name: 'min',
-                    $prop: 'year',
-                    $type: 'function',
-                    $where: {
-                        $type: 'qualification',
-                        $key: 'gereqs',
-                        $value: {
-                            $type: 'operator',
-                            '$eq': 'BTS-T',
-                        },
-                    },
+                $name: 'min',
+                $prop: 'year',
+                $type: 'function',
+                $where: {
+                    $type: 'qualification',
+                    $key: 'gereqs',
+                    $operator: '$eq',
+                    $value: 'BTS-T',
                 },
             },
         }
@@ -102,20 +92,16 @@ describe('filterByQualification', () => {
         const advancedQualificationBad = {
             $type: 'qualification',
             $key: 'year',
+            $operator: '$lte',
             $value: {
-                $type: 'operator',
-                $lte: {
-                    $name: 'func',
-                    $prop: 'year',
-                    $type: 'function',
-                    $where: {
-                        $type: 'qualification',
-                        $key: 'gereqs',
-                        $value: {
-                            $type: 'operator',
-                            '$eq': 'BTS-T',
-                        },
-                    },
+                $name: 'not-max-nor-min',
+                $prop: 'year',
+                $type: 'function',
+                $where: {
+                    $type: 'qualification',
+                    $key: 'gereqs',
+                    $operator: '$eq',
+                    $value: 'BTS-T',
                 },
             },
         }
@@ -136,20 +122,16 @@ describe('filterByQualification', () => {
         const advancedQualificationBad = {
             $type: 'qualification',
             $key: 'year',
+            $operator: '$lte',
             $value: {
-                $type: 'operator',
-                $lte: {
-                    $name: 'max',
-                    $prop: 'year',
-                    $type: '',
-                    $where: {
-                        $type: 'qualification',
-                        $key: 'gereqs',
-                        $value: {
-                            $type: 'operator',
-                            '$eq': 'BTS-T',
-                        },
-                    },
+                $name: 'max',
+                $prop: 'year',
+                $type: '',
+                $where: {
+                    $type: 'qualification',
+                    $key: 'gereqs',
+                    $operator: '$eq',
+                    $value: 'BTS-T',
                 },
             },
         }
