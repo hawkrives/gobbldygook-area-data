@@ -5,10 +5,8 @@ describe('filterByWhereClause', () => {
         const clause = {
             $type: 'qualification',
             $key: 'gereqs',
-            $value: {
-                '$type': 'operator',
-                '$eq': 'EIN',
-            },
+            $operator: '$eq',
+            $value: 'EIN',
         }
 
         const courses = [
@@ -38,28 +36,22 @@ describe('filterByWhereClause', () => {
                 {
                     $type: 'qualification',
                     $key: 'gereqs',
-                    $value: {
-                        '$type': 'operator',
-                        '$eq': 'EIN',
-                    },
+                    $operator: '$eq',
+                    $value: 'EIN',
                 },
                 {
                     $type: 'qualification',
                     $key: 'year',
+                    $operator: '$lte',
                     $value: {
-                        $type: 'operator',
-                        $lte: {
-                            $name: 'max',
-                            $prop: 'year',
-                            $type: 'function',
-                            $where: {
-                                $type: 'qualification',
-                                $key: 'gereqs',
-                                $value: {
-                                    $type: 'operator',
-                                    $eq: 'BTS-T',
-                                },
-                            },
+                        $name: 'max',
+                        $prop: 'year',
+                        $type: 'function',
+                        $where: {
+                            $type: 'qualification',
+                            $key: 'gereqs',
+                            $operator: '$eq',
+                            $value: 'BTS-T',
                         },
                     },
                 },
@@ -83,8 +75,8 @@ describe('filterByWhereClause', () => {
         const clause = {
             $type: 'boolean',
             $or: [
-                { $type: 'qualification', $key: 'gereqs', $value: { $eq: 'EIN', $type: 'operator' } },
-                { $type: 'qualification', $key: 'year', $value: { $eq: 2012, $type: 'operator' } },
+                { $type: 'qualification', $key: 'gereqs', $operator: '$eq', $value: 'EIN' },
+                { $type: 'qualification', $key: 'year', $operator: '$eq', $value: 2012 },
             ],
         }
 
