@@ -7,7 +7,8 @@ describe('applyFilter', () => {
             $where: {
                 $type: 'qualification',
                 $key: 'number',
-                $value: {$eq: 121, $type: 'operator'},
+                $value: 121,
+                $operator: '$eq',
             },
         }
 
@@ -32,7 +33,8 @@ describe('applyFilter', () => {
             $where: {
                 $type: 'qualification',
                 $key: 'number',
-                $value: {$eq: 121, $type: 'operator'},
+                $value: 121,
+                $operator: '$eq',
             },
         }
 
@@ -80,7 +82,8 @@ describe('applyFilter', () => {
             $where: {
                 $type: 'qualification',
                 $key: 'number',
-                $value: {$eq: 121, $type: 'operator'},
+                $value: 121,
+                $operator: '$eq',
             },
         }
 
