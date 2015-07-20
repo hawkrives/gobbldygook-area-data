@@ -25,8 +25,8 @@ describe('computeBoolean', () => {
         })
         expect(computedResult).to.be.true
         expect(matches).to.deep.equal([
-            {_result: true, $type: 'course', $course: {department: ['CSCI'], number: 121}},
-            {_result: true, $type: 'course', $course: {department: ['CSCI'], number: 125}},
+            {department: ['CSCI'], number: 121},
+            {department: ['CSCI'], number: 125},
         ])
     })
 
@@ -54,7 +54,7 @@ describe('computeBoolean', () => {
         })
         expect(computedResult).to.be.true
         expect(matches).to.deep.equal([
-            {_result: true, $type: 'course', $course: {department: ['CSCI'], number: 121}},
+            {department: ['CSCI'], number: 121},
         ])
     })
 
@@ -82,7 +82,7 @@ describe('computeBoolean', () => {
         })
         expect(computedResult).to.be.true
         expect(matches).to.deep.equal([
-            {_result: true, $type: 'course', $course: {department: ['CSCI'], number: 121}},
+            {department: ['CSCI'], number: 121},
         ])
     })
 
@@ -110,7 +110,7 @@ describe('computeBoolean', () => {
         })
         expect(computedResult).to.be.true
         expect(matches).to.deep.equal([
-            {_result: true, $type: 'course', $course: {department: ['CSCI'], number: 125}},
+            {department: ['CSCI'], number: 125},
         ])
     })
 
@@ -152,7 +152,7 @@ describe('computeBoolean', () => {
                     $type: 'boolean',
                     _result: true,
                     _matches: [
-                        {_result: true, $type: 'course', $course: {department: ['CSCI'], number: 125}},
+                        {department: ['CSCI'], number: 125},
                     ],
                 },
                 {
@@ -163,7 +163,7 @@ describe('computeBoolean', () => {
                     $type: 'boolean',
                     _result: true,
                     _matches: [
-                        {_result: true, $type: 'course', $course: {department: ['CSCI'], number: 130}},
+                        {department: ['CSCI'], number: 130},
                     ],
                 },
             ],
@@ -171,8 +171,8 @@ describe('computeBoolean', () => {
         })
         expect(computedResult).to.be.true
         expect(matches).to.deep.equal([
-            {_result: true, $type: 'course', $course: {department: ['CSCI'], number: 125}},
-            {_result: true, $type: 'course', $course: {department: ['CSCI'], number: 130}},
+            {department: ['CSCI'], number: 125},
+            {department: ['CSCI'], number: 130},
         ])
     })
 
@@ -201,7 +201,7 @@ describe('computeBoolean', () => {
         })
         expect(computedResult).to.be.true
         expect(matches).to.deep.equal([
-            {_result: true, $type: 'course', $course: {department: ['CSCI'], number: 125}},
+            {department: ['CSCI'], number: 125},
         ])
     })
 
@@ -270,9 +270,9 @@ describe('computeBoolean', () => {
                     _result: true,
                     _counted: 3,
                     _matches: [
-                        {$type: 'course', _result: true, $course: {department: ['ART'], number: 120, credits: 1.0}},
-                        {$type: 'course', _result: true, $course: {department: ['ART'], number: 104, credits: 1.0}},
-                        {$type: 'course', _result: true, $course: {department: ['ART'], number: 105, credits: 1.0}},
+                        {department: ['ART'], number: 120, credits: 1.0},
+                        {department: ['ART'], number: 104, credits: 1.0},
+                        {department: ['ART'], number: 105, credits: 1.0},
                     ],
                 },
                 {
@@ -287,9 +287,9 @@ describe('computeBoolean', () => {
                     _result: true,
                     _counted: 3,
                     _matches: [
-                        {$type: 'course', _result: true, $course: {department: ['ART'], number: 120, credits: 1.0}},
-                        {$type: 'course', _result: true, $course: {department: ['ART'], number: 104, credits: 1.0}},
-                        {$type: 'course', _result: true, $course: {department: ['ART'], number: 105, credits: 1.0}},
+                        {department: ['ART'], number: 120, credits: 1.0},
+                        {department: ['ART'], number: 104, credits: 1.0},
+                        {department: ['ART'], number: 105, credits: 1.0},
                     ],
                 },
             ],
@@ -297,9 +297,9 @@ describe('computeBoolean', () => {
         })
         expect(computedResult).to.be.true
         expect(matches).to.deep.equal([
-            {$type: 'course', _result: true, $course: {department: ['ART'], number: 120, credits: 1.0}},
-            {$type: 'course', _result: true, $course: {department: ['ART'], number: 104, credits: 1.0}},
-            {$type: 'course', _result: true, $course: {department: ['ART'], number: 105, credits: 1.0}},
+            {department: ['ART'], number: 120, credits: 1.0},
+            {department: ['ART'], number: 104, credits: 1.0},
+            {department: ['ART'], number: 105, credits: 1.0},
         ])
     })
 
@@ -368,28 +368,16 @@ describe('computeBoolean', () => {
                 {
                     $count: 1,
                     $of: [
-                        {
-                            $course: {department: ['CSCI'], number: 121},
-                            $type: 'course',
-                        },
-                        {
-                            $course: {department: ['CSCI'], number: 125},
-                            $type: 'course',
-                        },
+                        {$course: {department: ['CSCI'], number: 121}, $type: 'course'},
+                        {$course: {department: ['CSCI'], number: 125}, $type: 'course'},
                     ],
                     $type: 'of',
                 },
                 {
                     $count: 1,
                     $of: [
-                        {
-                            $course: {department: ['ART'], number: 102},
-                            $type: 'course',
-                        },
-                        {
-                            $course: {department: ['ART'], number: 103},
-                            $type: 'course',
-                        },
+                        {$course: {department: ['ART'], number: 102}, $type: 'course'},
+                        {$course: {department: ['ART'], number: 103}, $type: 'course'},
                     ],
                     $type: 'of',
                 },
@@ -416,7 +404,7 @@ describe('computeBoolean', () => {
                     $type: 'of',
                     _counted: 1,
                     _matches: [
-                        {_result: true, $course: {department: ['CSCI'], number: 125}, $type: 'course'},
+                        {department: ['CSCI'], number: 125},
                     ],
                     _result: true,
                 },
@@ -429,7 +417,7 @@ describe('computeBoolean', () => {
                     $type: 'of',
                     _counted: 1,
                     _matches: [
-                        {_result: true, $course: {department: ['ART'], number: 102}, $type: 'course'},
+                        {department: ['ART'], number: 102},
                     ],
                     _result: true,
                 },
@@ -438,8 +426,8 @@ describe('computeBoolean', () => {
         })
         expect(computedResult).to.be.true
         expect(matches).to.deep.equal([
-            {_result: true, $type: 'course', $course: {department: ['CSCI'], number: 125}},
-            {_result: true, $type: 'course', $course: {department: ['ART'], number: 102}},
+            {department: ['CSCI'], number: 125},
+            {department: ['ART'], number: 102},
         ])
     })
 
@@ -485,7 +473,7 @@ describe('computeBoolean', () => {
                     $type: 'reference',
                     _result: true,
                     _matches: [
-                        {_result: true, $type: 'course', $course: {department: ['ART'], number: 120}},
+                        {department: ['ART'], number: 120},
                     ],
                 },
                 {
@@ -493,8 +481,8 @@ describe('computeBoolean', () => {
                     $type: 'reference',
                     _result: true,
                     _matches: [
-                        {_result: true, $type: 'course', $course: {department: ['ART'], number: 104}},
-                        {_result: true, $type: 'course', $course: {department: ['ART'], number: 105}},
+                        {department: ['ART'], number: 104},
+                        {department: ['ART'], number: 105},
                     ],
                 },
             ],
@@ -502,9 +490,9 @@ describe('computeBoolean', () => {
         })
         expect(computedResult).to.be.true
         expect(matches).to.deep.equal([
-            {$type: 'course', _result: true, $course: {department: ['ART'], number: 120}},
-            {$type: 'course', _result: true, $course: {department: ['ART'], number: 104}},
-            {$type: 'course', _result: true, $course: {department: ['ART'], number: 105}},
+            {department: ['ART'], number: 120},
+            {department: ['ART'], number: 104},
+            {department: ['ART'], number: 105},
         ])
     })
 
