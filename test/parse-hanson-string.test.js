@@ -5,53 +5,63 @@ describe('parse hanson-string', () => {
         it('parses courses with a single department', () => {
             expect(parse('CSCI 121')).to.deep.equal({
                 $type: 'course',
-                department: ['CSCI'],
-                number: 121,
+                $course: {
+                    department: ['CSCI'],
+                    number: 121,
+                },
             })
         })
 
         it('parses courses with a two departments', () => {
             expect(parse('AS/ES 121')).to.deep.equal({
                 $type: 'course',
-                department: ['ASIAN', 'ENVST'],
-                number: 121,
+                $course: {
+                    department: ['ASIAN', 'ENVST'],
+                    number: 121,
+                },
             })
         })
 
         it('parses courses with no departments as having no department', () => {
             expect(parse('121')).to.deep.equal({
                 $type: 'course',
-                number: 121,
+                $course: {number: 121},
             })
         })
 
         it('parses courses with sections', () => {
             expect(parse('CSCI 121.A')).to.deep.equal({
                 $type: 'course',
-                department: ['CSCI'],
-                number: 121,
-                section: 'A',
+                $course: {
+                    department: ['CSCI'],
+                    number: 121,
+                    section: 'A',
+                },
             })
         })
 
         it('parses courses with years', () => {
             expect(parse('CSCI 121.A.2014')).to.deep.equal({
                 $type: 'course',
-                department: ['CSCI'],
-                number: 121,
-                section: 'A',
-                year: 2014,
+                $course: {
+                    department: ['CSCI'],
+                    number: 121,
+                    section: 'A',
+                    year: 2014,
+                },
             })
         })
 
         it('parses courses with semesters', () => {
             expect(parse('CSCI 121.A.2014.1')).to.deep.equal({
                 $type: 'course',
-                department: ['CSCI'],
-                number: 121,
-                section: 'A',
-                year: 2014,
-                semester: 1,
+                $course: {
+                    department: ['CSCI'],
+                    number: 121,
+                    section: 'A',
+                    year: 2014,
+                    semester: 1,
+                },
             })
         })
 
@@ -67,48 +77,58 @@ describe('parse hanson-string', () => {
         it('supports wildcard sections', () => {
             expect(parse('CSCI 121.*')).to.deep.equal({
                 $type: 'course',
-                department: ['CSCI'],
-                number: 121,
-                section: '*',
+                $course: {
+                    department: ['CSCI'],
+                    number: 121,
+                    section: '*',
+                },
             })
         })
 
         it('supports wildcard years', () => {
             expect(parse('CSCI 121.*.*')).to.deep.equal({
                 $type: 'course',
-                department: ['CSCI'],
-                number: 121,
-                section: '*',
-                year: '*',
+                $course: {
+                    department: ['CSCI'],
+                    number: 121,
+                    section: '*',
+                    year: '*',
+                },
             })
         })
 
         it('supports wildcard semesters', () => {
             expect(parse('CSCI 121.*.*.*')).to.deep.equal({
                 $type: 'course',
-                department: ['CSCI'],
-                number: 121,
-                section: '*',
-                year: '*',
-                semester: '*',
+                $course: {
+                    department: ['CSCI'],
+                    number: 121,
+                    section: '*',
+                    year: '*',
+                    semester: '*',
+                },
             })
         })
 
         it('supports international courses', () => {
             expect(parse('CSCI 121I')).to.deep.equal({
                 $type: 'course',
-                department: ['CSCI'],
-                number: 121,
-                international: true,
+                $course: {
+                    department: ['CSCI'],
+                    number: 121,
+                    international: true,
+                },
             })
         })
 
         it('supports labs', () => {
             expect(parse('CSCI 121L')).to.deep.equal({
                 $type: 'course',
-                department: ['CSCI'],
-                number: 121,
-                lab: true,
+                $course: {
+                    department: ['CSCI'],
+                    number: 121,
+                    lab: true,
+                },
             })
         })
 
@@ -121,10 +141,12 @@ describe('parse hanson-string', () => {
         it('supports international labs', () => {
             expect(parse('CSCI 121IL')).to.deep.equal({
                 $type: 'course',
-                department: ['CSCI'],
-                number: 121,
-                international: true,
-                lab: true,
+                $course: {
+                    department: ['CSCI'],
+                    number: 121,
+                    international: true,
+                    lab: true,
+                },
             })
         })
 
@@ -140,13 +162,17 @@ describe('parse hanson-string', () => {
                 $or: [
                     {
                         $type: 'course',
-                        department: ['CSCI'],
-                        number: 121,
+                        $course: {
+                            department: ['CSCI'],
+                            number: 121,
+                        },
                     },
                     {
                         $type: 'course',
-                        department: ['CSCI'],
-                        number: 125,
+                        $course: {
+                            department: ['CSCI'],
+                            number: 125,
+                        },
                     },
                 ],
             })
@@ -158,13 +184,17 @@ describe('parse hanson-string', () => {
                 $and: [
                     {
                         $type: 'course',
-                        department: ['CSCI'],
-                        number: 121,
+                        $course: {
+                                department: ['CSCI'],
+                            number: 121,
+                        },
                     },
                     {
                         $type: 'course',
-                        department: ['CSCI'],
-                        number: 125,
+                        $course: {
+                                department: ['CSCI'],
+                            number: 125,
+                        },
                     },
                 ],
             })
@@ -176,13 +206,17 @@ describe('parse hanson-string', () => {
                 $or: [
                     {
                         $type: 'course',
-                        department: ['CSCI'],
-                        number: 121,
+                        $course: {
+                                department: ['CSCI'],
+                            number: 121,
+                        },
                     },
                     {
                         $type: 'course',
-                        department: ['CSCI'],
-                        number: 125,
+                        $course: {
+                                department: ['CSCI'],
+                            number: 125,
+                        },
                     },
                 ],
             })
@@ -194,13 +228,17 @@ describe('parse hanson-string', () => {
                 $or: [
                     {
                         $type: 'course',
-                        department: ['CSCI'],
-                        number: 121,
+                        $course: {
+                                department: ['CSCI'],
+                            number: 121,
+                        },
                     },
                     {
                         $type: 'course',
-                        department: ['PSCI'],
-                        number: 125,
+                        $course: {
+                                department: ['PSCI'],
+                            number: 125,
+                        },
                     },
                 ],
             })
@@ -212,23 +250,31 @@ describe('parse hanson-string', () => {
                 $and: [
                     {
                         $type: 'course',
-                        department: ['CSCI'],
-                        number: 121,
+                        $course: {
+                                department: ['CSCI'],
+                            number: 121,
+                        },
                     },
                     {
                         $type: 'course',
-                        department: ['CSCI'],
-                        number: 125,
+                        $course: {
+                                department: ['CSCI'],
+                            number: 125,
+                        },
                     },
                     {
                         $type: 'course',
-                        department: ['CSCI'],
-                        number: 126,
+                        $course: {
+                                department: ['CSCI'],
+                            number: 126,
+                        },
                     },
                     {
                         $type: 'course',
-                        department: ['CSCI'],
-                        number: 123,
+                        $course: {
+                                department: ['CSCI'],
+                            number: 123,
+                        },
                     },
                 ],
             })
@@ -240,23 +286,31 @@ describe('parse hanson-string', () => {
                 $or: [
                     {
                         $type: 'course',
-                        department: ['CSCI'],
-                        number: 121,
+                        $course: {
+                                department: ['CSCI'],
+                            number: 121,
+                        },
                     },
                     {
                         $type: 'course',
-                        department: ['CSCI'],
-                        number: 125,
+                        $course: {
+                                department: ['CSCI'],
+                            number: 125,
+                        },
                     },
                     {
                         $type: 'course',
-                        department: ['CSCI'],
-                        number: 126,
+                        $course: {
+                                department: ['CSCI'],
+                            number: 126,
+                        },
                     },
                     {
                         $type: 'course',
-                        department: ['CSCI'],
-                        number: 123,
+                        $course: {
+                                department: ['CSCI'],
+                            number: 123,
+                        },
                     },
                 ],
             })
@@ -268,18 +322,24 @@ describe('parse hanson-string', () => {
                 $or: [
                     {
                         $type: 'course',
-                        department: ['CSCI'],
-                        number: 121,
+                        $course: {
+                                department: ['CSCI'],
+                            number: 121,
+                        },
                     },
                     {
                         $type: 'course',
-                        department: ['CSCI'],
-                        number: 121,
+                        $course: {
+                                department: ['CSCI'],
+                            number: 121,
+                        },
                     },
                     {
                         $type: 'course',
-                        department: ['CSCI'],
-                        number: 125,
+                        $course: {
+                                department: ['CSCI'],
+                            number: 125,
+                        },
                     },
                 ],
             })
@@ -294,20 +354,26 @@ describe('parse hanson-string', () => {
                         $and: [
                             {
                                 $type: 'course',
-                                department: ['CSCI'],
-                                number: 121,
+                                $course: {
+                                        department: ['CSCI'],
+                                    number: 121,
+                                },
                             },
                             {
                                 $type: 'course',
-                                department: ['CSCI'],
-                                number: 122,
+                                $course: {
+                                        department: ['CSCI'],
+                                    number: 122,
+                                },
                             },
                         ],
                     },
                     {
                         $type: 'course',
-                        department: ['CSCI'],
-                        number: 123,
+                        $course: {
+                                department: ['CSCI'],
+                            number: 123,
+                        },
                     },
                 ],
             })
@@ -319,21 +385,27 @@ describe('parse hanson-string', () => {
                 $or: [
                     {
                         $type: 'course',
-                        department: ['CSCI'],
-                        number: 121,
+                        $course: {
+                            department: ['CSCI'],
+                            number: 121,
+                        },
                     },
                     {
                         $type: 'boolean',
                         $and: [
                             {
                                 $type: 'course',
-                                department: ['CSCI'],
-                                number: 122,
+                                $course: {
+                                    department: ['CSCI'],
+                                    number: 122,
+                                },
                             },
                             {
                                 $type: 'course',
-                                department: ['CSCI'],
-                                number: 123,
+                                $course: {
+                                    department: ['CSCI'],
+                                    number: 123,
+                                },
                             },
                         ],
                     },
@@ -350,20 +422,26 @@ describe('parse hanson-string', () => {
                         $or: [
                             {
                                 $type: 'course',
-                                department: ['CSCI'],
-                                number: 121,
+                                $course: {
+                                    department: ['CSCI'],
+                                    number: 121,
+                                },
                             },
                             {
                                 $type: 'course',
-                                department: ['CSCI'],
-                                number: 122,
+                                $course: {
+                                    department: ['CSCI'],
+                                    number: 122,
+                                },
                             },
                         ],
                     },
                     {
                         $type: 'course',
-                        department: ['CSCI'],
-                        number: 123,
+                        $course: {
+                            department: ['CSCI'],
+                            number: 123,
+                        },
                     },
                 ],
             })
@@ -390,7 +468,7 @@ describe('parse hanson-string', () => {
         })
         it('if n is "all", it is the number of items in the of-parens', () => {
             expect(parse('all of (A, B, C)')).to
-                .have.property('$count').and.equal(3)
+                .have.property('$count', 3)
         })
         it('allows "n" to be "any"', () => {
             expect(() => parse('any of (A, B, C)')).to.not.throw()
@@ -440,8 +518,10 @@ describe('parse hanson-string', () => {
                 $of: [
                     {
                         $type: 'course',
-                        department: ['CSCI'],
-                        number: 121,
+                        $course: {
+                            department: ['CSCI'],
+                            number: 121,
+                        },
                     },
                 ],
             })
@@ -471,14 +551,14 @@ describe('parse hanson-string', () => {
                 $of: [
                     {
                         $type: 'course',
-                        number: 121,
+                        $course: {number: 121},
                     },
                 ],
             })
         })
 
         it('throws an error if more items are required than are provided', () => {
-            expect(() => parse('three of (CSCI 121, 125)')).to.throw('you requested 3 items, but only listed 2 options ([{"$type":"course","department":["CSCI"],"number":121},{"$type":"course","department":["CSCI"],"number":125}])')
+            expect(() => parse('three of (CSCI 121, 125)')).to.throw('you requested 3 items, but only listed 2 options ([{"$type":"course","$course":{"department":["CSCI"],"number":121}},{"$type":"course","$course":{"department":["CSCI"],"number":125}}])')
         })
     })
     describe('where-statements', () => {
@@ -519,22 +599,18 @@ describe('parse hanson-string', () => {
                     $count: 1,
                     $where: {
                         $type: 'qualification',
-                            $key: 'year',
-                            $value: {
-                            $eq: {
-                                $name: 'max',
-                                $prop: 'year',
-                                $type: 'function',
-                                $where: {
-                                    $type: 'qualification',
-                                    $key: 'gereqs',
-                                    $value: {
-                                        $eq: 'year',
-                                        $type: 'operator',
-                                    },
-                                },
+                        $key: 'year',
+                        $operator: '$eq',
+                        $value: {
+                            $name: 'max',
+                            $prop: 'year',
+                            $type: 'function',
+                            $where: {
+                                $type: 'qualification',
+                                $key: 'gereqs',
+                                $operator: '$eq',
+                                $value: 'year',
                             },
-                            $type: 'operator',
                         },
                     },
                 })
@@ -546,21 +622,17 @@ describe('parse hanson-string', () => {
                     $where: {
                         $type: 'qualification',
                         $key: 'year',
+                        $operator: '$eq',
                         $value: {
-                            $eq: {
-                                $name: 'max',
-                                $prop: 'year',
-                                $type: 'function',
-                                $where: {
-                                    $type: 'qualification',
-                                    $key: 'gereqs',
-                                    $value: {
-                                        $eq: 'year',
-                                        $type: 'operator',
-                                    },
-                                },
+                            $name: 'max',
+                            $prop: 'year',
+                            $type: 'function',
+                            $where: {
+                                $type: 'qualification',
+                                $key: 'gereqs',
+                                $operator: '$eq',
+                                $value: 'year',
                             },
-                            $type: 'operator',
                         },
                     },
                 })
@@ -568,31 +640,31 @@ describe('parse hanson-string', () => {
             describe('value may be compared by', () => {
                 it('= (single equals)', () => {
                     expect(parse('one course where {a = b}')).to
-                        .have.deep.property('$where.$value.$eq')
+                        .have.deep.property('$where.$operator', '$eq')
                 })
                 it('== (double equals)', () => {
                     expect(parse('one course where {a == b}')).to
-                        .have.deep.property('$where.$value.$eq')
+                        .have.deep.property('$where.$operator', '$eq')
                 })
                 it('!= (not equal to)', () => {
                     expect(parse('one course where {a != b}')).to
-                        .have.deep.property('$where.$value.$ne')
+                        .have.deep.property('$where.$operator', '$ne')
                 })
                 it('< (less than)', () => {
                     expect(parse('one course where {a < b}')).to
-                        .have.deep.property('$where.$value.$lt')
+                        .have.deep.property('$where.$operator', '$lt')
                 })
                 it('<= (less than or equal to)', () => {
                     expect(parse('one course where {a <= b}')).to
-                        .have.deep.property('$where.$value.$lte')
+                        .have.deep.property('$where.$operator', '$lte')
                 })
                 it('> (greater than)', () => {
                     expect(parse('one course where {a > b}')).to
-                        .have.deep.property('$where.$value.$gt')
+                        .have.deep.property('$where.$operator', '$gt')
                 })
                 it('=> (greater than or equal to)', () => {
                     expect(parse('one course where {a >= b}')).to
-                        .have.deep.property('$where.$value.$gte')
+                        .have.deep.property('$where.$operator', '$gte')
                 })
             })
         })
@@ -602,8 +674,7 @@ describe('parse hanson-string', () => {
             expect(parse('one occurrence of CSCI 121')).to.deep.equal({
                 $type: 'occurrence',
                 $count: 1,
-                course: {
-                    $type: 'course',
+                $course: {
                     department: [
                         'CSCI',
                     ],
@@ -737,10 +808,8 @@ describe('parse hanson-string', () => {
                 $where: {
                     $type: 'qualification',
                     $key: 'a',
-                    $value: {
-                        $eq: 'b',
-                        $type: 'operator',
-                    },
+                    $operator: '$eq',
+                    $value: 'b',
                 },
             })
         })
