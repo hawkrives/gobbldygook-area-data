@@ -9,11 +9,21 @@ describe('computeOccurrence', () => {
         }
 
         const courses = [
-            {$type: 'course', department: ['THEAT'], number: 222},
-            {$type: 'course', department: ['THEAT'], number: 222},
+            {department: ['THEAT'], number: 222},
+            {department: ['THEAT'], number: 222},
         ]
 
-        expect(computeOccurrence(expr, courses)).to.be.true
+        const {computedResult, matches, counted} = computeOccurrence({expr, courses})
+
+        expect(computedResult)
+            .to.be.true
+        expect(matches)
+            .to.deep.equal([
+                {department: ['THEAT'], number: 222},
+                {department: ['THEAT'], number: 222},
+            ])
+        expect(counted)
+            .to.equal(2)
     })
 
     it('ignores anything besides department and number via simplifyCourse', () => {
@@ -24,10 +34,19 @@ describe('computeOccurrence', () => {
         }
 
         const courses = [
-            {$type: 'course', department: ['THEAT'], number: 222, year: 2014, semester: 1},
-            {$type: 'course', department: ['THEAT'], number: 222, year: 2014, semester: 3},
+            {department: ['THEAT'], number: 222, year: 2014, semester: 1},
+            {department: ['THEAT'], number: 222, year: 2014, semester: 3},
         ]
 
-        expect(computeOccurrence(expr, courses)).to.be.true
+        const {computedResult, matches, counted} = computeOccurrence({expr, courses})
+        expect(computedResult)
+            .to.be.true
+        expect(matches)
+            .to.deep.equal([
+                {department: ['THEAT'], number: 222, year: 2014, semester: 1},
+                {department: ['THEAT'], number: 222, year: 2014, semester: 3},
+            ])
+        expect(counted)
+            .to.equal(2)
     })
 })
