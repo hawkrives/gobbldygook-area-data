@@ -36,7 +36,6 @@ describe('computeOf', () => {
             ],
         }
 
-        console.log
         expect(computeOf(expr, req, courses)).to.be.true
         expect(expr).to.deep.equal(expectedResult)
     })
