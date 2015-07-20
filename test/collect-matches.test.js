@@ -43,6 +43,15 @@ describe('collectMatches', () => {
             ])
     })
 
+    it('does not try to collect matches from requirements with no result key', () => {
+        const expr = {
+            $type: 'requirement',
+            message: 'hi',
+        }
+
+        expect(collectMatches(expr)).to.deep.equal([])
+    })
+
     it('collects matches from boolean expressions', () => {
         const expr = {
             $type: 'requirement',
