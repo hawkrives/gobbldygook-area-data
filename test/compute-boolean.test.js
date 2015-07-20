@@ -508,5 +508,80 @@ describe('computeBoolean', () => {
         ])
     })
 
-    it('can compute the result of several where-expressions')
+    it('can compute the result of several where-expressions', () => {
+        const clause = {
+            $and: [
+                {
+                    $count: 1,
+                    $type: 'where',
+                    $where: {
+                        $key: 'gereqs',
+                        $operator: '$eq',
+                        $type: 'qualification',
+                        $value: 'WRI',
+                    },
+                },
+                {
+                    $count: 1,
+                    $type: 'where',
+                    $where: {
+                        $key: 'gereqs',
+                        $operator: '$eq',
+                        $type: 'qualification',
+                        $value: 'BTS-T',
+                    },
+                },
+            ],
+            $type: 'boolean',
+        }
+
+        const requirement = {result: clause}
+
+        const courses = [
+            {department: ['CSCI'], number: 125, gereqs: ['WRI']},
+            {department: ['ART'], number: 102, gereqs: ['BTS-T']},
+        ]
+
+        const {computedResult, matches} = computeBoolean({expr: clause, ctx: requirement, courses, dirty: new Set()})
+        expect(clause).to.deep.equal({
+            $and: [
+                {
+                    $count: 1,
+                    $type: 'where',
+                    $where: {
+                        $key: 'gereqs',
+                        $operator: '$eq',
+                        $type: 'qualification',
+                        $value: 'WRI',
+                    },
+                    _counted: 1,
+                    _matches: [
+                        {department: ['CSCI'], number: 125, gereqs: ['WRI']},
+                    ],
+                    _result: true,
+                },
+                {
+                    $count: 1,
+                    $type: 'where',
+                    $where: {
+                        $key: 'gereqs',
+                        $operator: '$eq',
+                        $type: 'qualification',
+                        $value: 'BTS-T',
+                    },
+                    _counted: 1,
+                    _matches: [
+                        {department: ['ART'], number: 102, gereqs: ['BTS-T']},
+                    ],
+                    _result: true,
+                },
+            ],
+            $type: 'boolean',
+        })
+        expect(computedResult).to.be.true
+        expect(matches).to.deep.equal([
+            {department: ['CSCI'], number: 125, gereqs: ['WRI']},
+            {department: ['ART'], number: 102, gereqs: ['BTS-T']},
+        ])
+    })
 })
