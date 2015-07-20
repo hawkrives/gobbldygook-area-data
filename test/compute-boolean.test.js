@@ -235,8 +235,8 @@ describe('computeBoolean', () => {
             $type: 'boolean',
         }
         const requirement = {
-            A: {$type: 'course', $course: {department: ['ART'], number: 120}},
-            C: {
+            A: {$type: 'requirement', result: {$type: 'course', $course: {department: ['ART'], number: 120}}},
+            C: {$type: 'requirement', result: {
                 $count: 2,
                 $of: [
                     {$type: 'course', $course: {department: ['ART'], number: 103}},
@@ -244,7 +244,7 @@ describe('computeBoolean', () => {
                     {$type: 'course', $course: {department: ['ART'], number: 105}},
                 ],
                 $type: 'of',
-            },
+            }},
             result: clause,
         }
 
@@ -255,8 +255,8 @@ describe('computeBoolean', () => {
         ]
         const dirty = new Set()
 
-        computeChunk({expr: requirement.A, ctx: requirement, courses, dirty})
-        computeChunk({expr: requirement.C, ctx: requirement, courses, dirty})
+        requirement.A.computed = computeChunk({expr: requirement.A.result, ctx: requirement, courses, dirty})
+        requirement.C.computed = computeChunk({expr: requirement.C.result, ctx: requirement, courses, dirty})
 
         const {computedResult, matches} = computeBoolean({expr: clause, ctx: requirement, courses, dirty})
         expect(clause).to.deep.equal({
