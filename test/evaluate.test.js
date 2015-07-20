@@ -11,11 +11,14 @@ describe('evaluate', () => {
                 $type: 'requirement',
                 result: {
                     $type: 'course',
-                    department: ['ASIAN'],
-                    number: 0,
+                    $course: {
+                        department: ['ASIAN'],
+                        number: 100,
+                    },
                 },
             },
         }
+
         const courses = []
         const overrides = {}
 
