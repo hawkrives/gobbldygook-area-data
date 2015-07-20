@@ -1,18 +1,12 @@
 name: Studio Art
 type: Major
 revision: 2014-15
-result: all of (Studio Art, Art History, Art Credits)
+result:
+    ten credits from children &
+    Studio Art &
+    Art History
 
 Studio Art:
-    Studio Art Courses:
-        eight of (
-            ART 102, 103, 104, 106, 205,
-                207, 221, 222, 223, 224,
-                225, 226, 227, 228, 229,
-                232, 233, 234, 236, 238,
-                240, 246, 294, 298, 340,
-                343, 394, 398 )
-
     Foundations:
         ART 102 & 103 & 104
 
@@ -52,10 +46,14 @@ Studio Art:
     Senior Studies in Studio Art:
         ART 343
 
-    result: all of (
-        Foundations,
-        2D Media, 3D Media, New Media,
-        Juried Show, Senior Studies in Studio Art, Studio Art Courses )
+    Electives:
+        one of (ART 106, 246, 294, 298, 340, 394, 398)
+
+    result: eight courses from children &
+        all of (
+            Foundations,
+            2D Media, 3D Media, New Media,
+            Juried Show, Senior Studies in Studio Art, Electives )
 
 
 Art History:
@@ -73,7 +71,3 @@ Art History:
         ENVST 270,
         PHIL 243,
         RACE 253)
-
-
-Art Credits:
-    ten credits from courses where { department = ART }
