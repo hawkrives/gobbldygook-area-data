@@ -362,7 +362,87 @@ describe('computeBoolean', () => {
         ])
     })
 
-    it('can compute the result of several of-expressions')
     it('can compute the result of several requirement references')
+    it('can compute the result of several of-expressions', () => {
+        const clause = {
+            $and: [
+                {
+                    $count: 1,
+                    $of: [
+                        {
+                            $course: {department: ['CSCI'], number: 121},
+                            $type: 'course',
+                        },
+                        {
+                            $course: {department: ['CSCI'], number: 125},
+                            $type: 'course',
+                        },
+                    ],
+                    $type: 'of',
+                },
+                {
+                    $count: 1,
+                    $of: [
+                        {
+                            $course: {department: ['ART'], number: 102},
+                            $type: 'course',
+                        },
+                        {
+                            $course: {department: ['ART'], number: 103},
+                            $type: 'course',
+                        },
+                    ],
+                    $type: 'of',
+                },
+            ],
+            $type: 'boolean',
+        }
+
+        const requirement = {result: clause}
+
+        const courses = [
+            {department: ['CSCI'], number: 125},
+            {department: ['ART'], number: 102},
+        ]
+
+        const {computedResult, matches} = computeBoolean({expr: clause, ctx: requirement, courses, dirty: new Set()})
+        expect(clause).to.deep.equal({
+            $and: [
+                {
+                    $count: 1,
+                    $of: [
+                        {_result: false, $course: {department: ['CSCI'], number: 121}, $type: 'course'},
+                        {_result: true, $course: {department: ['CSCI'], number: 125}, $type: 'course'},
+                    ],
+                    $type: 'of',
+                    _counted: 1,
+                    _matches: [
+                        {_result: true, $course: {department: ['CSCI'], number: 125}, $type: 'course'},
+                    ],
+                    _result: true,
+                },
+                {
+                    $count: 1,
+                    $of: [
+                        {_result: true, $course: {department: ['ART'], number: 102}, $type: 'course'},
+                        {_result: false, $course: {department: ['ART'], number: 103}, $type: 'course'},
+                    ],
+                    $type: 'of',
+                    _counted: 1,
+                    _matches: [
+                        {_result: true, $course: {department: ['ART'], number: 102}, $type: 'course'},
+                    ],
+                    _result: true,
+                },
+            ],
+            $type: 'boolean',
+        })
+        expect(computedResult).to.be.true
+        expect(matches).to.deep.equal([
+            {_result: true, $type: 'course', $course: {department: ['CSCI'], number: 125}},
+            {_result: true, $type: 'course', $course: {department: ['ART'], number: 102}},
+        ])
+    })
+
     it('can compute the result of several where-expressions')
 })
