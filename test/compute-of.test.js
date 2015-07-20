@@ -6,9 +6,9 @@ describe('computeOf', () => {
             $type: 'of',
             $count: 2,
             $of: [
-                {$type: 'course', department: ['CSCI'], number: 121},
-                {$type: 'course', department: ['CSCI'], number: 125},
-                {$type: 'course', department: ['CSCI'], number: 150},
+                {$type: 'course', $course: {department: ['CSCI'], number: 121}},
+                {$type: 'course', $course: {department: ['CSCI'], number: 125}},
+                {$type: 'course', $course: {department: ['CSCI'], number: 150}},
             ],
         }
         const req = {
@@ -16,28 +16,33 @@ describe('computeOf', () => {
             result: expr,
         }
 
+        const dirty = new Set()
         const courses = [
             {department: ['CSCI'], number: 121},
             {department: ['CSCI'], number: 125},
         ]
 
-        const expectedResult = {
+        const {computedResult, matches, counted} = computeOf({expr, ctx: req, courses, dirty})
+
+        expect(computedResult)
+            .to.be.true
+        expect(matches)
+            .to.deep.equal([
+                {department: ['CSCI'], number: 121},
+                {department: ['CSCI'], number: 125},
+            ])
+        expect(counted)
+            .to.equal(2)
+
+        expect(expr).to.deep.equal({
             $type: 'of',
             $count: 2,
-            _counted: 2,
-            _matches: [
-                {_result: true, $type: 'course', department: ['CSCI'], number: 121},
-                {_result: true, $type: 'course', department: ['CSCI'], number: 125},
-            ],
             $of: [
-                {_result: true, $type: 'course', department: ['CSCI'], number: 121},
-                {_result: true, $type: 'course', department: ['CSCI'], number: 125},
-                {_result: false, $type: 'course', department: ['CSCI'], number: 150},
+                {_result: true, $type: 'course', $course: {department: ['CSCI'], number: 121}},
+                {_result: true, $type: 'course', $course: {department: ['CSCI'], number: 125}},
+                {_result: false, $type: 'course', $course: {department: ['CSCI'], number: 150}},
             ],
-        }
-
-        expect(computeOf(expr, req, courses)).to.be.true
-        expect(expr).to.deep.equal(expectedResult)
+        })
     })
 
     it('stores the number of matches in its containing expression')
