@@ -303,7 +303,65 @@ describe('computeBoolean', () => {
         ])
     })
 
-    it('can compute the result of several occurrence expressions')
+    it('can compute the result of several occurrence expressions', () => {
+        const clause = {
+            $or: [
+                {
+                    $count: 1,
+                    $course: {department: ['THEAT'], number: 222},
+                    $type: 'occurrence',
+                },
+                {
+                    $count: 3,
+                    $course: {department: ['THEAT'], number: 266},
+                    $type: 'occurrence',
+                },
+            ],
+            $type: 'boolean',
+        }
+
+        const requirement = {result: clause}
+
+        const courses = [
+            {department: ['THEAT'], number: 266, year: 2014, semester: 1},
+            {department: ['THEAT'], number: 266, year: 2014, semester: 3},
+            {department: ['THEAT'], number: 266, year: 2015, semester: 1},
+        ]
+
+        const {computedResult, matches} = computeBoolean({expr: clause, ctx: requirement, courses, dirty: new Set()})
+        expect(clause).to.deep.equal({
+            $or: [
+                {
+                    $count: 1,
+                    $course: {department: ['THEAT'], number: 222},
+                    $type: 'occurrence',
+                    _result: false,
+                    _counted: 0,
+                    _matches: [],
+                },
+                {
+                    $count: 3,
+                    $course: {department: ['THEAT'], number: 266},
+                    $type: 'occurrence',
+                    _result: true,
+                    _counted: 3,
+                    _matches: [
+                        {department: ['THEAT'], number: 266, year: 2014, semester: 1},
+                        {department: ['THEAT'], number: 266, year: 2014, semester: 3},
+                        {department: ['THEAT'], number: 266, year: 2015, semester: 1},
+                    ],
+                },
+            ],
+            $type: 'boolean',
+        })
+        expect(computedResult).to.be.true
+        expect(matches).to.deep.equal([
+            {department: ['THEAT'], number: 266, year: 2014, semester: 1},
+            {department: ['THEAT'], number: 266, year: 2014, semester: 3},
+            {department: ['THEAT'], number: 266, year: 2015, semester: 1},
+        ])
+    })
+
     it('can compute the result of several of-expressions')
     it('can compute the result of several requirement references')
     it('can compute the result of several where-expressions')
