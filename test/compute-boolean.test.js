@@ -19,8 +19,8 @@ describe('computeBoolean', () => {
         expect(clause).to.deep.equal({
             $type: 'boolean',
             $and: [
-                {_result: true, $type: 'course', $course: {department: ['CSCI'], number: 121}},
-                {_result: true, $type: 'course', $course: {department: ['CSCI'], number: 125}},
+                {_result: true, _used: true, $type: 'course', $course: {department: ['CSCI'], number: 121}},
+                {_result: true, _used: true, $type: 'course', $course: {department: ['CSCI'], number: 125}},
             ],
         })
         expect(computedResult).to.be.true
@@ -48,7 +48,7 @@ describe('computeBoolean', () => {
         expect(clause).to.deep.equal({
             $type: 'boolean',
             $or: [
-                {_result: true, $type: 'course', $course: {department: ['CSCI'], number: 121}},
+                {_used: true, _result: true, $type: 'course', $course: {department: ['CSCI'], number: 121}},
                 {$type: 'course', $course: {department: ['CSCI'], number: 125}},
             ],
         })
@@ -76,7 +76,7 @@ describe('computeBoolean', () => {
         expect(clause).to.deep.equal({
             $type: 'boolean',
             $or: [
-                {_result: true, $type: 'course', $course: {department: ['CSCI'], number: 121}},
+                {_used: true, _result: true, $type: 'course', $course: {department: ['CSCI'], number: 121}},
                 {$type: 'course', $course: {department: ['CSCI'], number: 125}},
             ],
         })
@@ -105,7 +105,7 @@ describe('computeBoolean', () => {
             $type: 'boolean',
             $or: [
                 {_result: false, $type: 'course', $course: {department: ['CSCI'], number: 121}},
-                {_result: true, $type: 'course', $course: {department: ['CSCI'], number: 125}},
+                {_used: true, _result: true, $type: 'course', $course: {department: ['CSCI'], number: 125}},
             ],
         })
         expect(computedResult).to.be.true
@@ -147,7 +147,7 @@ describe('computeBoolean', () => {
                 {
                     $or: [
                         {_result: false, $type: 'course', $course: {department: ['CSCI'], number: 121}},
-                        {_result: true, $type: 'course', $course: {department: ['CSCI'], number: 125}},
+                        {_used: true, _result: true, $type: 'course', $course: {department: ['CSCI'], number: 125}},
                     ],
                     $type: 'boolean',
                     _result: true,
@@ -157,7 +157,7 @@ describe('computeBoolean', () => {
                 },
                 {
                     $or: [
-                        {_result: true, $type: 'course', $course: {department: ['CSCI'], number: 130}},
+                        {_used: true, _result: true, $type: 'course', $course: {department: ['CSCI'], number: 130}},
                         {$type: 'course', $course: {department: ['CSCI'], number: 131}},
                     ],
                     $type: 'boolean',
@@ -195,7 +195,7 @@ describe('computeBoolean', () => {
         expect(clause).to.deep.equal({
             $or: [
                 {_result: false, $type: 'course', $course: {department: ['CSCI'], number: 121}},
-                {_result: true, $type: 'course', $course: {department: ['CSCI'], number: 125}},
+                {_used: true, _result: true, $type: 'course', $course: {department: ['CSCI'], number: 125}},
             ],
             $type: 'boolean',
         })
@@ -399,7 +399,7 @@ describe('computeBoolean', () => {
                     $count: 1,
                     $of: [
                         {_result: false, $course: {department: ['CSCI'], number: 121}, $type: 'course'},
-                        {_result: true, $course: {department: ['CSCI'], number: 125}, $type: 'course'},
+                        {_used: true, _result: true, $course: {department: ['CSCI'], number: 125}, $type: 'course'},
                     ],
                     $type: 'of',
                     _counted: 1,
@@ -411,7 +411,7 @@ describe('computeBoolean', () => {
                 {
                     $count: 1,
                     $of: [
-                        {_result: true, $course: {department: ['ART'], number: 102}, $type: 'course'},
+                        {_used: true, _result: true, $course: {department: ['ART'], number: 102}, $type: 'course'},
                         {_result: false, $course: {department: ['ART'], number: 103}, $type: 'course'},
                     ],
                     $type: 'of',

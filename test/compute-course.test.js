@@ -21,7 +21,7 @@ describe('computeCourse', () => {
             .to.be.true
 
         expect(match)
-            .to.deep.equal({department: ['ART'], number: 250, _used: true})
+            .to.deep.equal({department: ['ART'], number: 250})
     })
 
     it('adds the course to the dirty set if it matches', () => {
@@ -88,6 +88,6 @@ describe('computeCourse', () => {
         expect(computedResult)
             .to.be.true
         expect(match)
-            .to.deep.equal({_used: true, department: ['ART'], number: 250, crsid: 2015})
+            .to.deep.equal({department: ['ART'], number: 250, crsid: 2015})
     })
 })
