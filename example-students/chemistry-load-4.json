@@ -26,6 +26,7 @@
         {"department": ["PHYS"], "number": 125, "name": "Principles Physics II"}
     ],
     "overrides": {
-        "major.chemistry.seminars": true
+        "major.chemistry.seminars": true,
+        "major.chemistry.intro.first year 1": true
     }
 }
