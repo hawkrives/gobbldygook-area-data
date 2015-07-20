@@ -25,6 +25,7 @@
         {"department": ["ART"], "number": 343, "credits": 1.0},
         {"department": ["ART"], "number": 398, "credits": 1.0},
         {"department": ["ART", "ASIAN"], "number": 259, "credits": 1.0},
+        {"department": ["ART", "ASIAN"], "number": 260, "credits": 1.0},
         {"department": ["CSCI"], "number": 241, "credits": 1.0}
     ],
 
