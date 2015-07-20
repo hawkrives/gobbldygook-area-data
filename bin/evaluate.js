@@ -7,6 +7,8 @@ import yaml from 'js-yaml'
 import enhanceHanson from '../lib/enhance-hanson'
 import pluralizeArea from '../lib/pluralize-area'
 import path from 'path'
+import compute from '../lib/compute'
+import get from 'lodash/object/get'
 
 function loadArea({name, type/*, revision*/}) {
     const filepath = path.join('areas/', pluralizeArea(type), `${kebabCase(name)}.yaml`)
@@ -16,6 +18,15 @@ function loadArea({name, type/*, revision*/}) {
 }
 
 const checkAgainstArea = ({courses, overrides}, args) => (areaData) => {
+    if (args.path) {
+        const result = compute(
+            get(areaData, args.path), {
+                path: [areaData.type, areaData.name].concat(args.path.split('.')),
+                courses, overrides})
+        console.log(result)
+        return
+    }
+
     const result = evaluate({courses, overrides}, areaData)
 
     if (args.json) {
@@ -44,7 +55,7 @@ export function cli() {
     const args = meow({
         pkg,
         help: `Usage:
-            evaluate [--json] [--prose] [--summary] [--status] studentFile`,
+            evaluate [--json] [--prose] [--summary] [--status] [--path path.to.requirement] studentFile`,
     })
 
     let [filename] = args.input
