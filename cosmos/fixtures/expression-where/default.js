@@ -4,9 +4,7 @@ export default {
 	$where: {
 		$type: 'qualification',
 		$key: 'gereqs',
-		$value: {
-			$eq: 'WRI',
-			$type: 'operator',
-		},
+		$operator: '$eq',
+		$value: 'WRI',
 	},
 }

@@ -7,29 +7,23 @@ export default {
             {
                 $type: 'qualification',
                 $key: 'gereqs',
-                $value: {
-                    $eq: 'EIN',
-                    $type: 'operator',
-                },
+                $operator: '$eq',
+                $value: 'EIN',
             },
             {
                 $type: 'qualification',
                 $key: 'year',
+                $operator: '$lte',
                 $value: {
-                    $lte: {
-                        $name: 'max',
-                        $prop: 'year',
-                        $type: 'function',
-                        $where: {
-                            $type: 'qualification',
-                            $key: 'gereqs',
-                            $value: {
-                                $eq: 'BTS-T',
-                                $type: 'operator',
-                            },
-                        },
+                    $name: 'max',
+                    $prop: 'year',
+                    $type: 'function',
+                    $where: {
+                        $type: 'qualification',
+                        $key: 'gereqs',
+                        $operator: '$eq',
+                        $value: 'BTS-T',
                     },
-                    $type: 'operator',
                 },
             },
         ],

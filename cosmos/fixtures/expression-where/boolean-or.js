@@ -7,18 +7,14 @@ export default {
             {
                 $type: 'qualification',
                 $key: 'gereqs',
-                $value: {
-                    $eq: 'WRI',
-                    $type: 'operator',
-                },
+                $operator: '$eq',
+                $value: 'WRI',
             },
             {
                 $type: 'qualification',
                 $key: 'year',
-                $value: {
-                    $eq: '2014',
-                    $type: 'operator',
-                },
+                $operator: '$eq',
+                $value: '2014',
             },
         ],
     },

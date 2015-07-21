@@ -4,9 +4,7 @@ export default {
 	$where: {
 		$type: 'qualification',
 		$key: 'year',
-		$value: {
-			$lte: '2015',
-			$type: 'operator',
-		},
+		$operator: '$lte',
+		$value: 2015,
 	},
 }
