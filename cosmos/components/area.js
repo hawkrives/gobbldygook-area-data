@@ -18,10 +18,10 @@ import filter from 'lodash/collection/filter'
 import keys from 'lodash/object/keys'
 import isRequirementName from '../../lib/is-requirement-name'
 
-// const good = '✓'
-// const bad = '╳'
-const good = '✅'
-const bad = '❌'
+const good = <span style={{color: '#3D9970'}}>✓</span>
+const bad = <span style={{color: '#FF4136', fontWeight: 'bold'}}>×</span>
+// const good = '✅'
+// const bad = '❌'
 
 class Expression extends Component {
     static propTypes = {
@@ -34,6 +34,9 @@ class Expression extends Component {
     render() {
         const {expr} = this.props
         const {$type} = expr
+
+        const wasComputed = expr.hasOwnProperty('_result')
+        const computationResult = expr._result
 
         let contents = <span>{JSON.stringify(expr)}</span>
 
@@ -63,7 +66,7 @@ class Expression extends Component {
         }
         else if ($type === 'of') {
             contents = (
-                <span>{expr.$count} of
+                <span>{wasComputed ? expr._counted + ' of ' : ''}{expr.$count} needed from
                     ( {expr.$of.map((ex, i, coll) =>
                         <span key={i}>
                             <Expression expr={ex} ctx={this.props.ctx} />
@@ -73,17 +76,14 @@ class Expression extends Component {
             )
         }
         else if ($type === 'modifier') {
-            contents = <span>{expr.$count} {expr.$what + (expr.$count === 1 ? '' : 's')} from {expr.$from}</span>
+            contents = <span>{wasComputed ? expr._counted + ' of ' : ''}{expr.$count} {expr.$what + (expr.$count === 1 ? '' : 's')} from {expr.$from}</span>
         }
-
-        const wasComputed = expr.hasOwnProperty('_result')
-        const computationResult = expr._result
 
         let computed = wasComputed
                 ? computationResult ? good : bad
                 : ''
 
-        return <span>{computed} ({contents})</span>
+        return <span>({computed} {contents})</span>
     }
 }
 
@@ -104,7 +104,7 @@ class Requirement extends Component {
             : ''
 
         const message = this.props.message
-            ? <li>Message: {this.props.message}</li>
+            ? <li>Message: "{this.props.message}"</li>
             : ''
 
         const filterEl = this.props.filter
