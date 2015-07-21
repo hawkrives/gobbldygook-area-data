@@ -115,7 +115,7 @@ class Requirement extends Component {
         const computationResult = this.props.computed
 
         let computed = wasComputed
-                ? computationResult ? good : bad
+                ? <small>{computationResult ? 'completed!' : 'incomplete...'}</small>
                 : ''
 
         return (
