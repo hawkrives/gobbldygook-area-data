@@ -2,16 +2,6 @@ import React, {Component, PropTypes} from 'react'
 import styles from './expression-course.less'
 import cx from 'classnames'
 
-function shrinkDepartment(department) {
-    if (department === 'ART') {
-        return 'AR'
-    }
-    else if (department === 'ASIAN') {
-        return 'AS'
-    }
-    return department
-}
-
 export default class Course extends Component {
     static propTypes = {
         department: PropTypes.arrayOf(PropTypes.string).isRequired,
@@ -21,12 +11,14 @@ export default class Course extends Component {
         semester: PropTypes.number,
         lab: PropTypes.bool,
         international: PropTypes.bool,
-        _result: PropTypes.bool,
         style: PropTypes.object,
     }
 
     render() {
-        const department = (<span className='department'>{this.props.department.map(shrinkDepartment).join('/')}</span>)
+        const department = (
+            <span className='department'>
+                {this.props.department.join('/')}
+            </span>)
         const number = (<span className='number'>{this.props.number}</span>)
 
         const international = this.props.international

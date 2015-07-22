@@ -1,10 +1,14 @@
 @import (reference) './base.less';
 
 .course {
-	.block();
+	border-radius: 3px;
+	border: 1px solid #444;
+	padding: 0.125em 0.25em;
 
 	display: inline-flex;
 	flex-flow: row nowrap;
+	display: -webkit-inline-flex;
+	-webkit-flex-flow: row nowrap;
 
 	font-size: 0.9em;
 
@@ -16,6 +20,8 @@
 	.temporal {
 		display: flex;
 		flex-flow: column nowrap;
+		display: -webkit-flex;
+		-webkit-flex-flow: column nowrap;
 		text-align: center;
 	}
 

@@ -59,7 +59,7 @@ class Expression extends Component {
             )
         }
         else if ($type === 'course') {
-            contents = <span>{expr.$course.department.join('/')} {expr.$course.number}</span>
+            contents = <CourseExpression {...expr.$course} />
         }
         else if ($type === 'reference') {
             contents = <span>^{expr.$requirement}</span>
@@ -67,11 +67,11 @@ class Expression extends Component {
         else if ($type === 'of') {
             contents = (
                 <span>{wasComputed ? expr._counted + ' of ' : ''}{expr.$count} needed from
-                    ( {expr.$of.map((ex, i, coll) =>
+                    {expr.$of.map((ex, i, coll) =>
                         <span key={i}>
                             <Expression expr={ex} ctx={this.props.ctx} />
                             {i < coll.length - 1 ? ', ' : ''}
-                        </span>)} )
+                        </span>)}
                 </span>
             )
         }
@@ -83,7 +83,7 @@ class Expression extends Component {
                 ? computationResult ? good : bad
                 : ''
 
-        return <span>({computed} {contents})</span>
+        return <span className={`expression expression--${$type}`}>({computed} {contents})</span>
     }
 }
 
@@ -115,11 +115,11 @@ class Requirement extends Component {
         const computationResult = this.props.computed
 
         let computed = wasComputed
-                ? <small>{computationResult ? 'completed!' : 'incomplete...'}</small>
+                ? computationResult ? good : bad
                 : ''
 
         return (
-            <li><strong>{this.props.name}</strong>: {computed}
+            <li>{computed} <strong>{this.props.name}</strong>
                 <ul>
                     {message}
                     {childKeys.map(k => <Requirement key={k} name={k} {...this.props[k]} />)}
@@ -146,36 +146,15 @@ export default class AreaOfStudy extends Component {
         result: {},
     }
 
-    constructor(props) {
-        super(props)
-        this.state = {
-            isCollapsed: false,
-        }
-    }
-
-    toggle() {
-        this.setState(newState => {
-            newState.isCollapsed = !newState.isCollapsed
-        })
-    }
-
     render() {
         return (
-            // <TreeView collapsed={this.state.isCollapsed}
-            //           nodeLabel={label}
-            //           onClick={this.toggle.bind(this)}
-            //           tabIndex={0}
-            //           onKeyPress={this.toggle.bind(this)}>
             <div>
-                <h1 style={{fontWeight: 'bold'}} onClick={this.toggle.bind(this)}>
-                    {this.props.name}—a {this.props.type} production
-                </h1>
-                <span>Requirements:</span>
+                <h1>{this.props.name}—a {this.props.type} production</h1>
+                <h2>Requirements:</h2>
                 <ul>
                     <Requirement {...this.props} />
                 </ul>
             </div>
-            // </TreeView>
         )
     }
 }
