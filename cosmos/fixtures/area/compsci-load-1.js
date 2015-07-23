@@ -89,17 +89,23 @@ export default {
       {
         "$type": "reference",
         "$requirement": "Electives",
-        "_result": false,
+        "_result": true,
         "_matches": [
           {
-            "section": "*",
-            "year": 2014,
-            "semester": 1,
+            "department": [
+              "CSCI"
+            ],
+            "number": 284,
+            "crsid": 9
+          },
+          {
             "department": [
               "CSCI"
             ],
             "number": 300,
-            "crsid": 10
+            "crsid": 10,
+            "year": 2014,
+            "semester": 1
           }
         ]
       },
@@ -118,7 +124,7 @@ export default {
         ]
       }
     ],
-    "_result": false,
+    "_result": true,
     "_matches": [
       {
         "department": [
@@ -187,14 +193,20 @@ export default {
         "crsid": 7
       },
       {
-        "section": "*",
-        "year": 2014,
-        "semester": 1,
+        "department": [
+          "CSCI"
+        ],
+        "number": 284,
+        "crsid": 9
+      },
+      {
         "department": [
           "CSCI"
         ],
         "number": 300,
-        "crsid": 10
+        "crsid": 10,
+        "year": 2014,
+        "semester": 1
       },
       {
         "department": [
@@ -204,7 +216,7 @@ export default {
         "crsid": 11
       }
     ],
-    "_counted": 3
+    "_counted": 4
   },
   "Foundation": {
     "CS1": {
@@ -717,73 +729,220 @@ export default {
     "computed": true
   },
   "Electives": {
+    "Theory of Computation": {
+      "result": {
+        "$type": "course",
+        "$course": {
+          "department": [
+            "CSCI"
+          ],
+          "number": 333
+        },
+        "_result": false
+      },
+      "$type": "requirement",
+      "computed": false
+    },
+    "Programming Languages": {
+      "result": {
+        "$type": "course",
+        "$course": {
+          "department": [
+            "CSCI"
+          ],
+          "number": 276,
+          "crsid": 8
+        },
+        "_result": false
+      },
+      "$type": "requirement",
+      "computed": false
+    },
+    "Client-Server Applications": {
+      "result": {
+        "$type": "course",
+        "$course": {
+          "department": [
+            "CSCI"
+          ],
+          "number": 284,
+          "crsid": 9
+        },
+        "_used": true,
+        "_result": true
+      },
+      "$type": "requirement",
+      "computed": true
+    },
+    "Operating Systems": {
+      "result": {
+        "$type": "course",
+        "$course": {
+          "department": [
+            "CSCI"
+          ],
+          "number": 273,
+          "crsid": 7
+        },
+        "_result": false
+      },
+      "$type": "requirement",
+      "computed": false
+    },
+    "Bioinformatics": {
+      "result": {
+        "$type": "course",
+        "$course": {
+          "department": [
+            "CSCI"
+          ],
+          "number": 315
+        },
+        "_result": false
+      },
+      "$type": "requirement",
+      "computed": false
+    },
+    "Topics in Computer Science": {
+      "result": {
+        "$type": "course",
+        "$course": {
+          "department": [
+            "CSCI"
+          ],
+          "number": 300,
+          "crsid": 10,
+          "year": 2014,
+          "semester": 1
+        },
+        "_used": true,
+        "_result": true
+      },
+      "$type": "requirement",
+      "computed": true
+    },
+    "Logic Programming": {
+      "result": {
+        "$type": "course",
+        "$course": {
+          "department": [
+            "CSCI"
+          ],
+          "number": 336
+        },
+        "_result": false
+      },
+      "$type": "requirement",
+      "computed": false
+    },
+    "Advanced Team Project": {
+      "result": {
+        "$type": "course",
+        "$course": {
+          "department": [
+            "CSCI"
+          ],
+          "number": 350
+        },
+        "_result": false
+      },
+      "$type": "requirement",
+      "computed": false
+    },
     "result": {
       "$type": "of",
       "$count": 2,
       "$of": [
         {
-          "$type": "course",
-          "$course": {
-            "department": [
-              "CSCI"
-            ],
-            "number": 350
-          },
-          "_result": false
+          "$type": "reference",
+          "$requirement": "Theory of Computation",
+          "_result": false,
+          "_matches": []
         },
         {
-          "$type": "course",
-          "$course": {
-            "department": [
-              "CSCI"
-            ],
-            "number": 315
-          },
-          "_result": false
+          "$type": "reference",
+          "$requirement": "Programming Languages",
+          "_result": false,
+          "_matches": []
         },
         {
-          "$type": "course",
-          "$course": {
-            "department": [
-              "CSCI"
-            ],
-            "number": 336
-          },
-          "_result": false
+          "$type": "reference",
+          "$requirement": "Client-Server Applications",
+          "_result": true,
+          "_matches": [
+            {
+              "department": [
+                "CSCI"
+              ],
+              "number": 284,
+              "crsid": 9
+            }
+          ]
         },
         {
-          "$type": "course",
-          "$course": {
-            "section": "*",
-            "year": 2014,
-            "semester": 1,
-            "department": [
-              "CSCI"
-            ],
-            "number": 300,
-            "crsid": 10
-          },
-          "_used": true,
-          "_result": true
+          "$type": "reference",
+          "$requirement": "Operating Systems",
+          "_result": false,
+          "_matches": []
+        },
+        {
+          "$type": "reference",
+          "$requirement": "Bioinformatics",
+          "_result": false,
+          "_matches": []
+        },
+        {
+          "$type": "reference",
+          "$requirement": "Topics in Computer Science",
+          "_result": true,
+          "_matches": [
+            {
+              "department": [
+                "CSCI"
+              ],
+              "number": 300,
+              "crsid": 10,
+              "year": 2014,
+              "semester": 1
+            }
+          ]
+        },
+        {
+          "$type": "reference",
+          "$requirement": "Logic Programming",
+          "_result": false,
+          "_matches": []
+        },
+        {
+          "$type": "reference",
+          "$requirement": "Advanced Team Project",
+          "_result": false,
+          "_matches": []
         }
       ],
-      "_result": false,
+      "_result": true,
       "_matches": [
         {
-          "section": "*",
-          "year": 2014,
-          "semester": 1,
+          "department": [
+            "CSCI"
+          ],
+          "number": 284,
+          "crsid": 9
+        },
+        {
           "department": [
             "CSCI"
           ],
           "number": 300,
-          "crsid": 10
+          "crsid": 10,
+          "year": 2014,
+          "semester": 1
         }
       ],
-      "_counted": 1
+      "_counted": 2
     },
     "$type": "requirement",
-    "computed": false
+    "computed": true
   },
   "Capstone": {
     "result": {
@@ -801,5 +960,5 @@ export default {
     "$type": "requirement",
     "computed": true
   },
-  "computed": false
+  "computed": true
 }
