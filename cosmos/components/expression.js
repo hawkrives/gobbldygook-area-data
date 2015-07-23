@@ -1,69 +1,10 @@
 import React, {Component, PropTypes} from 'react'
 import flatten from 'lodash/array/flatten'
 
+import CourseExpression from './expression-course'
+
 import cx from 'classnames'
 import './expression.less'
-
-export class CourseExpression extends Component {
-    static propTypes = {
-        _result: PropTypes.bool,
-        department: PropTypes.arrayOf(PropTypes.string).isRequired,
-        international: PropTypes.bool,
-        lab: PropTypes.bool,
-        number: PropTypes.number.isRequired,
-        section: PropTypes.string,
-        semester: PropTypes.number,
-        style: PropTypes.object,
-        year: PropTypes.number,
-    }
-
-    render() {
-        const department = this.props.department.join('/')
-
-        const international = this.props.international
-            ? <span className='international'>I</span>
-            : null
-        const lab = this.props.lab
-            ? <span className='lab'>L</span>
-            : null
-
-        const section = this.props.section
-            ? <span className='section'>.{this.props.section}</span>
-            : null
-
-        const year = this.props.year
-            ? <span className='year'>{this.props.year}</span>
-            : null
-        const semester = this.props.semester
-            ? <span className='semester'>{this.props.semester}</span>
-            : null
-
-        /////
-
-        const temporalIdentifiers = (semester || year)
-            ? (<div className='temporal'>
-                <span>S{semester}</span>
-                <span>{year}</span>
-            </div>)
-            : null
-
-        return (
-            <span className={cx('course', {matched: this.props._result})} style={this.props.style}>
-                <div className='basic-identifiers'>
-                    <span className='department'>{department}</span>
-                    <span>
-                        <span className='number'>{this.props.number}</span>
-                        {international}
-                        {lab}
-                        {' '}{section}
-                    </span>
-                </div>
-                {temporalIdentifiers}
-            </span>
-        )
-    }
-}
-
 
 export default class Expression extends Component {
     static propTypes = {
