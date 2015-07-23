@@ -109,11 +109,16 @@ describe('compareCourseToCourse', () => {
     })
 
     describe('compares the "section" prop', () => {
-        it('the same section is equal', () => {
+        it('and the same section is equal', () => {
             expect(compareCourseToCourse({section: 'A'}, {section: 'A'})).to.be.true
         })
-        it('different sections are different', () => {
+
+        it('and different sections are different', () => {
             expect(compareCourseToCourse({section: 'A'}, {section: 'B'})).to.be.false
+        })
+
+        it('and supports the wildcard selector', () => {
+            expect(compareCourseToCourse({section: '*'}, {section: 'D'})).to.be.true
         })
     })
 

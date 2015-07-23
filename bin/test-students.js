@@ -35,8 +35,9 @@ export function cli() {
             s.areas = s.areas.map(loadArea)
             return {...s, filename}
         })
-        .forEach(({courses, overrides, areas, filename, expectation=true}) => {
-            describe(path.basename(filename), () => {
+        .forEach(({courses, overrides, areas, filename, expectation=true, pending=false}) => {
+            const func = pending ? describe.skip : describe
+            func(path.basename(filename), () => {
                 areas.forEach(data => {
                     it(`${expectation ? 'should' : 'should not'} pass ${data.name}`, () => {
                         const result = evaluate({courses, overrides}, data)
