@@ -1,4 +1,41 @@
 .requirement {
-	border-left: solid 0.125em #444;
-	padding-left: 0.5em;
+	border-top: solid 1px black;
+
+	.requirement {
+		.requirement--title {
+			border-bottom: solid 1px black;
+			font-size: 0.8em;
+			margin-top: 0;
+			margin-bottom: 0;
+			text-align: center;
+			text-transform: uppercase;
+		}
+		.requirement {
+			.requirement--title {
+				text-align: left;
+				text-transform: none;
+			}
+		}
+	}
+
+	padding: 0.125em 0.25em;
+
+	.requirement {
+		margin-left: 0.75em;
+	}
+
+	// &:hover {
+	// 	background-color: rgba(0, 0, 0, 0.1);
+	// }
+}
+
+.requirement--title {
+	font-size: 1.2em;
+}
+
+.requirement--result,
+.requirement--message,
+.requirement--filter {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
 }

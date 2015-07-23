@@ -6,6 +6,11 @@ import CourseExpression from './expression-course'
 import cx from 'classnames'
 import './expression.less'
 
+const joiners = {
+    $and: 'AND',
+    $or: 'OR',
+}
+
 export default class Expression extends Component {
     static propTypes = {
         ctx: PropTypes.object,
@@ -22,22 +27,21 @@ export default class Expression extends Component {
         const computationResult = expr._result
 
         let contents = null
-
-        const joiners = {
-            $and: 'AND',
-            $or: 'OR',
-        }
+        let description = null
 
         if ($type === 'boolean') {
             let kind = '$invalid'
+
             if (expr.hasOwnProperty('$and')) {
                 kind = '$and'
             }
             else if (expr.hasOwnProperty('$or')) {
                 kind = '$or'
             }
+
             const joiner = joiners[kind]
             const end = expr[kind].length - 1
+
             contents = flatten(expr[kind].map((ex, i) => [
                 <Expression key={i} expr={ex} ctx={this.props.ctx} />,
                 i < end ? <span key={`${i}-joiner`} className='joiner'>{joiner}</span> : null,
@@ -50,19 +54,12 @@ export default class Expression extends Component {
             contents = expr.$requirement
         }
         else if ($type === 'of') {
-            contents = (
-                <span>
-                    <div>
-                        {wasComputed ? expr._counted + ' of ' : ''}
-                        {expr.$count} needed from {' '}
-                    </div>
-                    {expr.$of.map((ex, i) =>
-                        <Expression key={i} expr={ex} ctx={this.props.ctx} />)}
-                </span>
-            )
+            description = `${wasComputed ? expr._counted + ' of ' : ''} ${expr.$count} needed from `
+            contents = expr.$of.map((ex, i) =>
+                <Expression key={i} expr={ex} ctx={this.props.ctx} />)
         }
         else if ($type === 'modifier') {
-            contents = `${wasComputed ? expr._counted + ' of ' : ''}${expr.$count} ${expr.$what + (expr.$count === 1 ? '' : 's')} from ${expr.$from}`
+            description = `${wasComputed ? expr._counted + ' of ' : ''}${expr.$count} ${expr.$what + (expr.$count === 1 ? '' : 's')} from ${expr.$from}`
         }
         else {
             contents = <span>{JSON.stringify(expr)}</span>
@@ -70,7 +67,8 @@ export default class Expression extends Component {
 
         return (
             <span className={cx('expression', `expression--${$type}`, {computed: wasComputed}, {'computed-success': computationResult}, {'computed-failure': !computationResult})}>
-                {contents}
+                {description ? <div className='expression--description'>{description}</div> : null}
+                {contents ? <span className='expression--contents'>{contents}</span> : null}
             </span>
         )
     }

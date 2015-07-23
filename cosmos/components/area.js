@@ -22,8 +22,8 @@ export default class AreaOfStudy extends Component {
     render() {
         return (
             <div className='area'>
-                <h1>{this.props.name}</h1>
-                <Requirement {...this.props} />
+                <h1 className='area--title'>{this.props.name}</h1>
+                <Requirement {...this.props} topLevel />
             </div>
         )
     }
