@@ -19,9 +19,24 @@ Core:
     result: all of ( Algorithms, Ethics, Theory, Systems )
 
 Electives:
-    two of (
-        350, 315, 336,
-        CSCI 300.*.2014.1 )
+    Theory of Computation: CSCI 333
+    Programming Languages: CSCI 276
+    Client-Server Applications: CSCI 284
+    Operating Systems: CSCI 273
+    Bioinformatics: CSCI 315
+    Topics in Computer Science: CSCI 300
+    Logic Programming: CSCI 336
+    Advanced Team Project: CSCI 350
+
+    result: two of (
+        Theory of Computation,
+        Programming Languages,
+        Client-Server Applications,
+        Operating Systems,
+        Bioinformatics,
+        Topics in Computer Science,
+        Logic Programming,
+        Advanced Team Project )
 
 Capstone:
     CSCI 390
