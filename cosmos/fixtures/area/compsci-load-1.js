@@ -9,7 +9,7 @@ export default {
       {
         "$type": "reference",
         "$requirement": "Foundation",
-        "_result": false,
+        "_result": true,
         "_matches": [
           {
             "department": [
@@ -38,6 +38,16 @@ export default {
             ],
             "number": 252,
             "crsid": 4
+          },
+          {
+            "section": "*",
+            "year": 2014,
+            "semester": 1,
+            "department": [
+              "MATH"
+            ],
+            "number": 282,
+            "crsid": 13
           }
         ]
       },
@@ -80,7 +90,18 @@ export default {
         "$type": "reference",
         "$requirement": "Electives",
         "_result": false,
-        "_matches": []
+        "_matches": [
+          {
+            "section": "*",
+            "year": 2014,
+            "semester": 1,
+            "department": [
+              "CSCI"
+            ],
+            "number": 300,
+            "crsid": 10
+          }
+        ]
       },
       {
         "$type": "reference",
@@ -128,6 +149,16 @@ export default {
         "crsid": 4
       },
       {
+        "section": "*",
+        "year": 2014,
+        "semester": 1,
+        "department": [
+          "MATH"
+        ],
+        "number": 282,
+        "crsid": 13
+      },
+      {
         "department": [
           "CSCI"
         ],
@@ -156,6 +187,16 @@ export default {
         "crsid": 7
       },
       {
+        "section": "*",
+        "year": 2014,
+        "semester": 1,
+        "department": [
+          "CSCI"
+        ],
+        "number": 300,
+        "crsid": 10
+      },
+      {
         "department": [
           "CSCI"
         ],
@@ -163,7 +204,7 @@ export default {
         "crsid": 11
       }
     ],
-    "_counted": 2
+    "_counted": 3
   },
   "Foundation": {
     "CS1": {
@@ -289,9 +330,11 @@ export default {
               "department": [
                 "MATH"
               ],
-              "number": 282
+              "number": 282,
+              "crsid": 13
             },
-            "_result": false
+            "_used": true,
+            "_result": true
           },
           {
             "$type": "course",
@@ -300,8 +343,7 @@ export default {
                 "MATH"
               ],
               "number": 244
-            },
-            "_result": false
+            }
           },
           {
             "$type": "course",
@@ -310,15 +352,25 @@ export default {
                 "MATH"
               ],
               "number": 252
-            },
-            "_result": false
+            }
           }
         ],
-        "_result": false,
-        "_matches": []
+        "_result": true,
+        "_matches": [
+          {
+            "section": "*",
+            "year": 2014,
+            "semester": 1,
+            "department": [
+              "MATH"
+            ],
+            "number": 282,
+            "crsid": 13
+          }
+        ]
       },
       "$type": "requirement",
-      "computed": false
+      "computed": true
     },
     "result": {
       "$type": "of",
@@ -369,11 +421,22 @@ export default {
         {
           "$type": "reference",
           "$requirement": "Proof-Writing",
-          "_result": false,
-          "_matches": []
+          "_result": true,
+          "_matches": [
+            {
+              "section": "*",
+              "year": 2014,
+              "semester": 1,
+              "department": [
+                "MATH"
+              ],
+              "number": 282,
+              "crsid": 13
+            }
+          ]
         }
       ],
-      "_result": false,
+      "_result": true,
       "_matches": [
         {
           "department": [
@@ -402,12 +465,22 @@ export default {
           ],
           "number": 252,
           "crsid": 4
+        },
+        {
+          "section": "*",
+          "year": 2014,
+          "semester": 1,
+          "department": [
+            "MATH"
+          ],
+          "number": 282,
+          "crsid": 13
         }
       ],
-      "_counted": 2
+      "_counted": 3
     },
     "$type": "requirement",
-    "computed": false
+    "computed": true
   },
   "Core": {
     "Algorithms": {
@@ -687,14 +760,27 @@ export default {
             "department": [
               "CSCI"
             ],
-            "number": 300
+            "number": 300,
+            "crsid": 10
           },
-          "_result": false
+          "_used": true,
+          "_result": true
         }
       ],
       "_result": false,
-      "_matches": [],
-      "_counted": 0
+      "_matches": [
+        {
+          "section": "*",
+          "year": 2014,
+          "semester": 1,
+          "department": [
+            "CSCI"
+          ],
+          "number": 300,
+          "crsid": 10
+        }
+      ],
+      "_counted": 1
     },
     "$type": "requirement",
     "computed": false
