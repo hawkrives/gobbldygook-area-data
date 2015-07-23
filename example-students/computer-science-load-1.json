@@ -10,9 +10,9 @@
         {"department": ["CSCI"], "number": 273, "crsid": 7},
         {"department": ["CSCI"], "number": 276, "crsid": 8},
         {"department": ["CSCI"], "number": 284, "crsid": 9},
-        {"department": ["CSCI"], "number": 300, "crsid": 10},
+        {"department": ["CSCI"], "number": 300, "crsid": 10, "year": 2014, "semester": 1},
         {"department": ["CSCI"], "number": 390, "crsid": 11},
-        {"department": ["CSCI"], "number": 220, "crsid": 12},
-        {"department": ["MATH"], "number": 282, "crsid": 13}
+        {"department": ["MATH"], "number": 220, "crsid": 12},
+        {"department": ["MATH"], "number": 282, "crsid": 13, "year": 2014, "semester": 1}
     ]
 }
