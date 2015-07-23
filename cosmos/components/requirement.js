@@ -15,7 +15,12 @@ export default class Requirement extends Component {
         message: PropTypes.string,
         name: PropTypes.string,
         result: PropTypes.object,
-        topLevel: PropTypes.bool.isRequired,
+        topLevel: PropTypes.bool,
+    }
+
+    static defaultProps = {
+        topLevel: false,
+        result: {},
     }
 
     render() {
@@ -40,15 +45,15 @@ export default class Requirement extends Component {
             ? null
             : <h2 className={`requirement--title ${wasComputed ? computationResult ? 'computed-success' : 'computed-failure' : 'computed-not'}`}>{this.props.name}</h2>
 
+        const children = childKeys.map(k => <Requirement key={k} name={k} {...this.props[k]} />)
+
         return (
             <div className={`requirement`}>
                 {title}
                 {message}
                 {filterEl}
                 {result}
-                <div className='children'>
-                    {childKeys.map(k => <Requirement key={k} name={k} {...this.props[k]} />)}
-                </div>
+                {children.length ? <div className='children'>{children}</div> : null}
             </div>
         )
     }

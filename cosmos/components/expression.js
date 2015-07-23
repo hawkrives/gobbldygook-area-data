@@ -1,5 +1,4 @@
 import React, {Component, PropTypes} from 'react'
-import flatten from 'lodash/array/flatten'
 
 import CourseExpression from './expression-course'
 
@@ -39,13 +38,13 @@ export default class Expression extends Component {
                 kind = '$or'
             }
 
-            const joiner = joiners[kind]
-            const end = expr[kind].length - 1
-
-            contents = flatten(expr[kind].map((ex, i) => [
-                <Expression key={i} expr={ex} ctx={this.props.ctx} />,
-                i < end ? <span key={`${i}-joiner`} className='joiner'>{joiner}</span> : null,
-            ]))
+            contents = expr[kind].reduce((acc, exp, i) => {
+                if (i > 0) {
+                    acc.push(<span key={`${i}-joiner`} className='joiner'>{joiners[kind]}</span>)
+                }
+                acc.push(<Expression key={i} expr={exp} ctx={this.props.ctx} />)
+                return acc
+            }, [])
         }
         else if ($type === 'course') {
             contents = <CourseExpression {...expr.$course} />
@@ -54,15 +53,18 @@ export default class Expression extends Component {
             contents = expr.$requirement
         }
         else if ($type === 'of') {
-            description = `${wasComputed ? expr._counted + ' of ' : ''} ${expr.$count} needed from `
+            description = `${expr._counted || 0} of ${expr.$count}`
             contents = expr.$of.map((ex, i) =>
                 <Expression key={i} expr={ex} ctx={this.props.ctx} />)
         }
         else if ($type === 'modifier') {
             description = `${wasComputed ? expr._counted + ' of ' : ''}${expr.$count} ${expr.$what + (expr.$count === 1 ? '' : 's')} from ${expr.$from}`
         }
+        else if ($type === 'where') {
+            description = JSON.stringify(expr)
+        }
         else {
-            contents = <span>{JSON.stringify(expr)}</span>
+            contents = JSON.stringify(expr)
         }
 
         return (
