@@ -1,6 +1,6 @@
 {
     "areas": [{"type": "major", "name": "Computer Science", "revision": "2014-15"}],
-    "expectation": false,
+    "pending": true,
     "courses": [
         {"department": ["CSCI"], "number": 125, "crsid": 1},
         {"department": ["CSCI"], "number": 241, "crsid": 2},
