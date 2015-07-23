@@ -66,7 +66,7 @@ export default class Expression extends Component {
         }
 
         return (
-            <span className={cx('expression', `expression--${$type}`, {computed: wasComputed}, {'computed-success': computationResult}, {'computed-failure': !computationResult})}>
+            <span className={cx('expression', `expression--${$type}`, wasComputed ? 'computed' : 'computed--not', computationResult ? 'computed-success' : 'computed-failure')}>
                 {description ? <div className='expression--description'>{description}</div> : null}
                 {contents ? <span className='expression--contents'>{contents}</span> : null}
             </span>
