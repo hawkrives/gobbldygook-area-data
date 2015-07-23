@@ -1,5 +1,4 @@
 import React, {Component, PropTypes} from 'react'
-import styles from './expression-where.less'
 import cx from 'classnames'
 
 function humanizeOperator(operator) {
@@ -28,11 +27,11 @@ function humanizeOperator(operator) {
 
 class Qualifier extends Component {
     static propTypes = {
-        $type: PropTypes.oneOf(['qualification', 'boolean']).isRequired,
-        $key: PropTypes.string,
-        $value: PropTypes.object,
-        $or: PropTypes.array,
         $and: PropTypes.array,
+        $key: PropTypes.string,
+        $or: PropTypes.array,
+        $type: PropTypes.oneOf(['qualification', 'boolean']).isRequired,
+        $value: PropTypes.object,
     }
 
     render() {
@@ -50,10 +49,10 @@ class BooleanGroup extends Component {
 
 class Qualification extends Component {
     static propTypes = {
-        $type: PropTypes.oneOf(['qualification']).isRequired,
         $key: PropTypes.string.isRequired,
-        $value: PropTypes.oneOf([PropTypes.number, PropTypes.string]).isRequired,
         $operator: PropTypes.oneOf(['$eq', '$ne', '$lt', '$lte', '$gt', '$gte']).isRequired,
+        $type: PropTypes.oneOf(['qualification']).isRequired,
+        $value: PropTypes.oneOf([PropTypes.number, PropTypes.string]).isRequired,
     }
 
     render() {
@@ -71,18 +70,18 @@ class Qualification extends Component {
 
 export default class Where extends Component {
     static propTypes = {
-        style: PropTypes.object,
-        _result: PropTypes.bool,
-        _counted: PropTypes.number,
-        _matches: PropTypes.arrayOf(PropTypes.object),
-        $type: PropTypes.oneOf(['where']).isRequired,
         $count: PropTypes.number.isRequired,
+        $type: PropTypes.oneOf(['where']).isRequired,
         $where: PropTypes.shape({
             $type: PropTypes.oneOf(['qualification', 'boolean']).isRequired,
             $key: PropTypes.string.isRequired,
             $value: PropTypes.oneOf([PropTypes.number, PropTypes.string]).isRequired,
             $operator: PropTypes.oneOf(['$eq', '$ne', '$lt', '$lte', '$gt', '$gte']).isRequired,
         }),
+        _counted: PropTypes.number,
+        _matches: PropTypes.arrayOf(PropTypes.object),
+        _result: PropTypes.bool,
+        style: PropTypes.object,
     }
 
     static defaultProps = {
