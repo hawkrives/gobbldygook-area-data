@@ -1,6 +1,9 @@
 ---
 parser: babel-eslint
 
+plugins:
+  - react
+
 
 env:
   node: true
@@ -13,6 +16,9 @@ ecmaFeatures:
 
   # enable modules
   modules: true
+
+  # enable JSX
+  jsx: true
 
 
 # 1 means warning
@@ -51,8 +57,27 @@ rules:
 
   # node things
   no-process-exit: 0
+
   # mocha setting
   no-unused-expressions: 0
+
+  # react rules – https://github.com/yannickcr/eslint-plugin-react
+  react/display-name: 0
+  react/jsx-curly-spacing: [1, 'never']
+  react/jsx-no-duplicate-props: 1
+  react/jsx-no-undef: 2
+  react/jsx-sort-prop-types: 1
+  react/jsx-uses-react: 2
+  react/jsx-uses-vars: 2
+  react/no-did-mount-set-state: 1
+  react/no-did-update-set-state: 1
+  react/no-multi-comp: 0
+  react/no-unknown-property: 1
+  react/prop-types: 2
+  react/react-in-jsx-scope: 2
+  react/self-closing-comp: 1
+  react/sort-comp: 1
+  react/wrap-multilines: 1
 
   # jsdoc
   valid-jsdoc:
