@@ -8,7 +8,7 @@ import Expression from './expression'
 
 import './requirement.less'
 
-class Requirement extends Component {
+export default class Requirement extends Component {
     static propTypes = {
         computed: PropTypes.bool,
         filter: PropTypes.object,
