@@ -33,22 +33,30 @@ describe('compareCourseToCourse', () => {
     })
 
     describe('compares the "semester" prop', () => {
-        it('the same semester is equal to itself', () => {
+        it('and the same semester is equal to itself', () => {
             expect(compareCourseToCourse({semester: 1}, {semester: 1})).to.be.true
         })
 
-        it('different semesters are not equal', () => {
+        it('and different semesters are not equal', () => {
             expect(compareCourseToCourse({semester: 2}, {semester: 1})).to.be.false
+        })
+
+        it('and supports the wildcard selector', () => {
+            expect(compareCourseToCourse({semester: '*'}, {semester: 1})).to.be.true
         })
     })
 
     describe('compares the "year" prop', () => {
-        it('the same year is equal to itself', () => {
+        it('and the same year is equal to itself', () => {
             expect(compareCourseToCourse({year: 2014}, {year: 2014})).to.be.true
         })
 
-        it('different years are not equal', () => {
+        it('and different years are not equal', () => {
             expect(compareCourseToCourse({year: 2014}, {year: 2015})).to.be.false
+        })
+
+        it('and supports the wildcard selector', () => {
+            expect(compareCourseToCourse({year: '*'}, {year: 2015})).to.be.true
         })
     })
 
