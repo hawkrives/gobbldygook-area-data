@@ -44,7 +44,8 @@
 .requirement--title,
 .requirement--result,
 .requirement--message,
-.requirement--filter {
+.requirement--filter,
+.requirement--override-buttons {
 	width: 100%;
 	padding-top: 0.4em;
 	padding-bottom: 0.4em;
@@ -59,4 +60,20 @@
 
 .requirement .requirement .requirement .requirement--message {
 	// padding-left: 0;
+}
+
+.requirement--override-buttons {
+	display: flex;
+	justify-content: space-around;
+
+	button {
+		cursor: pointer;
+		flex: 1;
+		max-width: 25%;
+		border: solid 1px currentColor;
+		background-color: #efefef;
+	}
+	button:active {
+		background-color: #dadada;
+	}
 }

@@ -20,14 +20,13 @@ export default class Requirement extends Component {
 
     static defaultProps = {
         topLevel: false,
-        result: {},
     }
 
     render() {
         const childKeys = filter(keys(this.props), isRequirementName)
 
         const result = this.props.result
-            ? <div className='requirement--result'><Expression expr={this.props.result || {}} ctx={this.props} /></div>
+            ? <div className='requirement--result'><Expression expr={this.props.result} ctx={this.props} /></div>
             : null
 
         const message = this.props.message
@@ -47,10 +46,19 @@ export default class Requirement extends Component {
 
         const children = childKeys.map(k => <Requirement key={k} name={k} {...this.props[k]} />)
 
+        let override = null
+        if (this.props.message && !this.props.result) {
+            override = (<span className='requirement--override-buttons button-group'>
+                <button>Not yet…</button>
+                <button>Done!</button>
+            </span>)
+        }
+
         return (
             <div className={`requirement`}>
                 {title}
                 {message}
+                {override}
                 {filterEl}
                 {result}
                 {children.length ? <div className='children'>{children}</div> : null}
