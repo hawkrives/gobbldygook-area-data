@@ -1,15 +1,3 @@
-# gobbldygook-area-data
-
-<div>
-    <a href='https://travis-ci.org/hawkrives/gobbldygook-area-data'>
-        <img src='https://travis-ci.org/hawkrives/gobbldygook-area-data.svg?branch=master' alt='Build and Test Status'>
-    </a>
-    <a href='https://coveralls.io/github/hawkrives/gobbldygook-area-data?branch=master'>
-        <img src='https://coveralls.io/repos/hawkrives/gobbldygook-area-data/badge.svg?branch=master&service=github' alt='Code Coverage Status'>
-    </a>
-</div>
-
-
 ## Details of the Hanson format
 
 What we call the "Hanson format" is named after Professor Bob Hanson, who provided the original inspiration for this style of declarative area-of-study specification.
@@ -41,7 +29,7 @@ In the most basic sense, an area of study file is a list of requirements, where 
 
 Each requirement must include either a `result` key, or a `message` key. (These key names are case-sensitive.) If no keys exist under a requirement, the value is parsed as a course expression, and implicitly assigned to `result`.
 
-If a `message` key is provided, the message is rendered with markdown and displayed before the result. If only a message key is provided. It is rendered and shown with a button for easy acquiescence (to the demands of the message.)
+If a `message` key is provided, the message is rendered with markdown and displayed before the result. If only a message key is provided, it is rendered and shown with a button for easy acquiescence (to the demands of the message.)
 
 The values of the `result` and `message` keys are interpreted as strings. In order to remain readable, we recommend splitting the contents of the string over multiple lines once it gets long. The string may be split by any number of line breaks, as long as the first non-whitespace character on the line is indented past the first character of the key.
 
@@ -77,7 +65,7 @@ The top level must have at least four keys: `name`, `type`, `revision`, and `res
 
 ### Course Expressions
 
-A course expression is a powerful construct. It can be as simple as "the user must have taken Computer Science 111," or as complex as "one course with both the EIN general education requirement *and* taken in a year before (or in the same year as) the highest year from courses with the BTS-T general education requirement," or really anything in-between.
+A course expression is a powerful construct. It can be as simple as "the user must have taken Computer Science 111," or as complex as "one course with both the EIN general education requirement *and* taken in a year after (or in the same year as) the lowest year from courses with the BTS-T general education requirement," or really anything in-between.
 
 The most basic course expression is a single course. A single course is specified, at the simplest level, by the department abbreviation, a space, then the course number, like `CSCI 115` or `AS/RE 150`. If you use a dual-department course, it must use the short abbreviations of the departments—AS instead of ASIAN, AR instead of ART—separated by a forward-slash (the `/` character.)
 
@@ -109,7 +97,7 @@ That's why we support "of-expressions."
 
 of-expressions may contain any of the expressions detailed in this document. `three of (CSCI 121 & 125, 241, 251 & 252)` is valid.
 
-The number at the beginning of the of-expression may be any number between `zero` and `twenty`, or one of the words `all`, `any`, or `none`.
+The number at the beginning of the of-expression may be any number between `zero` and `ten`, or one of the words `all`, `any`, or `none`.
 
 `none` equates to `zero`—that is, the student must have taken zero of the courses listed to pass the expression. `any` equates to `one`, and `all` is evaluated to be the number of items within the of-expression.
 
@@ -185,11 +173,12 @@ you may refer to it as `Biblical Study (BTS-B)`, `Biblical Study`, or `BTS-B`.
 
 When you need more power, you may reach for where-expressions, modifiers, and filters. With that said: *please* try and only use these in a last resort. Most majors can be expressed with only courses, boolean- and of-expressions, and requirement references.
 
+
 ### `where`-expressions
 
 A where-expression is composed of two parts: a counter and a qualifier.
 
-The counter is the same as in an of-expression; an English number between zero and twenty. A qualifier is made up of one or more qualifications, surrounded by curly braces.
+The counter is the same as in an of-expression; an English number between zero and ten. A qualifier is made up of one or more qualifications, surrounded by curly braces.
 
 A qualification is a `key`/`value` pair representing a property/value pair to look for. Qualifiers operate on a list of courses, filtering the list to only those courses which qualify.
 
@@ -201,7 +190,7 @@ The key/value pair must be separated by an operator. Valid operators are:
 - `>`, "less-than"
 - `>=`, "greater-than-or-equal-to"
 
-**Warning:** The logic of any operator other than `=` on value types other than numbers has not been defined nor tested.
+**Warning:** The logic of any operator other than `=`, on value types other than numbers, has not been defined nor tested.
 
 Qualifications may be separated by the boolean operator "and" (`&`) and/or the operator "or" (`|`). They may be grouped by parentheses. Normal boolean logic applies.
 
@@ -223,6 +212,8 @@ In extreme cases, the value may be expressed as the result of a function run ove
 This looks like `{ year <= max(year) from courses where { gereqs = BTS-T } }`
 
 *(TODO: make clearer.)* The value, in this case, is `max`, which is the name of a function to run on the values of the specified property from the list of courses which match the nested qualification.
+
+You may also require that the resulting courses be "distinct" courses; that is, that they are not just different offerings of the same course. In other words, you can require that they be different *courses*, not just different *classes*.
 
 
 ### The `filter` key
@@ -246,7 +237,7 @@ filter: only courses from ( CSCI 111, 112, 123, 151, 167 )
 Now `result` can only know about those five courses.
 
 
-### modifiers
+### Modifiers
 
 Modifiers primarily exist to count things. They can count things from four different sources: *all* child requirements ("from children"), *some* child requirements ("from (Child, Child 2)"), the `filter` key ("from filter"), or from a new where-expression ("from courses where {}").
 
@@ -277,6 +268,12 @@ result: two departments from children & two courses from children
 filter: three of (ART 102, 105, 108)
 result: three credits from filter
 ```
+
+
+A special type of modifier is the "besides" modifier. It counts any course *except* for the one described by the modifier.
+
+As such, `result: one course besides CHEM 398 from { ... }` would pass as long as the student has at least one course that is not CHEM 398.
+
 
 
 ### Variables
@@ -310,6 +307,11 @@ result:
 ```
 
 
+Need to Document:
+
+the `student selected` key on requirements. it shows a message, and forces the student to specify what courses they need to take.
+
+
 ## Formatting
 
 Congratulations for having read this far! I think that's all of the concepts. So. With the hard-and-fast rules out of the way, let's think about some subjective ones for a minute: the formatting of the major specification file.
@@ -322,15 +324,3 @@ Congratulations for having read this far! I think that's all of the concepts. So
     - subsequent lines of courses in the same department should be indented one space past the department name
     - a line break after the opening parenthesis
     - the closing parenthesis on the same line as the last course
-
-
-## A History of the Hanson Format
-### v1
-### v2
-### v3
-### v4
-### v4.1
-### v4.2
-### v4.3
-### v4.4
-### v4.5
