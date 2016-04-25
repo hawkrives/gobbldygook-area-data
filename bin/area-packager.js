@@ -1,0 +1,35 @@
+#!/usr/bin/env node
+
+'use strict'
+const yaml = require('js-yaml')
+const sha1 = require('sha1')
+const junk = require('junk')
+const glob = require('glob')
+const fs = require('fs')
+
+function collectAreas() {
+	return glob.sync('*/*.yaml').filter(junk.not)
+}
+
+function processArea(filename) {
+	const file = fs.readFileSync(filename, 'utf-8')
+	const data = yaml.safeLoad(file)
+
+	return {
+		hash: sha1(file),
+		path: filename,
+		type: data.type.toLowerCase(),
+		revision: data.revision,
+	}
+}
+
+function processAreasDir() {
+	return JSON.stringify({
+		type: 'areas',
+		files: collectAreas().map(processArea),
+	})
+}
+
+if (require.main === module) {
+	fs.writeFileSync('info.json', processAreasDir(), 'utf-8')
+}
