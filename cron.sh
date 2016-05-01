@@ -3,7 +3,8 @@
 # exit if any commands error
 set -e
 
-PATH=~/bin:$PATH
+PATH=/home/users/rives/bin/:$PATH
+node -v
 
 git pull origin master
 
