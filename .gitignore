@@ -6,4 +6,3 @@ build/
 *.log
 .DS_Store
 coverage
-info.json
