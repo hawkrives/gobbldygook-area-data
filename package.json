@@ -10,9 +10,9 @@
   "author": "Hawken Rives <hawkrives@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "glob": "^7.0.3",
-    "js-yaml": "^3.6.0",
-    "junk": "^1.0.2",
+    "glob": "^7.0.6",
+    "js-yaml": "^3.6.1",
+    "junk": "^1.0.3",
     "sha1": "^1.1.1"
   }
 }
