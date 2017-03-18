@@ -27,9 +27,9 @@ function processAreasDir() {
 	return JSON.stringify({
 		type: 'areas',
 		files: collectAreas().map(processArea),
-	})
+	}, null, 2)
 }
 
 if (require.main === module) {
-	fs.writeFileSync('info.json', processAreasDir(), 'utf-8')
+	fs.writeFileSync('info.json', processAreasDir() + '\n', 'utf-8')
 }
