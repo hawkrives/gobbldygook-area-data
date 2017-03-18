@@ -4,6 +4,7 @@ revision: 2014-15
 
 result:
     nine courses from children &
+    at most three courses from children where { level = 100 } &
     Analyzing Politics and Policies &
     American Politics and Public Policy &
     Comparative Politics &
