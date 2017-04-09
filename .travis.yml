@@ -3,6 +3,10 @@ dist: trusty
 language: node_js
 node_js: latest
 
+branches:
+  only:
+  - master
+
 install:
   - npm install
 
