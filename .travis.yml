@@ -1,7 +1,7 @@
 os: linux
 dist: trusty
 language: node_js
-node_js: latest
+node_js: 7
 
 branches:
   only:
