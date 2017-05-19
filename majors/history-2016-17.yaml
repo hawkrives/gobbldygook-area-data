@@ -3,7 +3,7 @@ type: major
 revision: 2016-17
 result: Level 1 & Major Seminar & Level III & Non-Western World & Europe & U.S. & Pre-Modern Period
 
-children share courses: false
+children share courses: true
 
 Level 1:
     Seminars:
