@@ -3,7 +3,7 @@ type: major
 revision: 2016-17
 result: Language & Ancient History & Classics & Electives & Independent Research
 
-description: 
+message: 
     1 course in Greek may be used as an elective if the student satisfies the 
     required language portion of the major with Latin courses. 1 course in Latin 
     may be used as an elective if the student satisfies the required language 
@@ -39,5 +39,5 @@ Electives:
     )
 
 Independent Research:
-    description: "1 Independent Research, which gives the student a chance to explore a chosen topic in depth."
+    message: "1 Independent Research, which gives the student a chance to explore a chosen topic in depth."
     result: CLASS 398 | HIST 398 | LATIN 398 | GREEK 398
