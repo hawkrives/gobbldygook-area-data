@@ -1,0 +1,25 @@
+Intro: CS 111
+
+Core:
+  all of (CS 201, CS 202, CS 208)
+
+Advanced Core:
+  all of (CS 251, CS 257, CS 252, CS 254)
+
+Electives:
+  two of (
+    CS 304, CS 311, CS 312, CS 314,
+    CS 321, CS 322, CS 324, CS 328,
+    CS 231, CS 331, CS 332, CS 334,
+    CS 341, CS 342, CS 344, CS 348,
+    CS 352, CS 358, CS 361, CS 362, CS 364
+  )
+
+Comps:
+  CS 399 & CS 400
+
+title: Computer Science
+school: Carleton
+type: Major
+revision: 2018-19
+result: Intro & Core & Advanced Core & Electives & Comps
