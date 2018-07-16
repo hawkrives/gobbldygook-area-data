@@ -1,100 +1,84 @@
 name: Bachelor of Arts
 slug: curriculum/graduate-requirements-degrees/general-education-requirements-ba
 type: degree
-revision: 2014-15
-result: Foundation & Core & Integrative
+revision: 2018-19
+result: AI & Curricular Exploration & Global Citizenship & Writing Requirement & PE
 
-Foundation:
-    First-Year Writing (FYW):
-        one course where { gereqs = FYW }
 
-    Writing in Context (WRI):
-        four courses where { gereqs = WRI }
+Argument and Inquiry Seminar (AI):
+    six credits where { requirements = AI }
 
-    Foreign Language (FOL):
-        French:    one course where { gereqs = FOL-F }
-        German:    one course where { gereqs = FOL-G }
-        Spanish:   one course where { gereqs = FOL-S }
-        Chinese:   one course where { gereqs = FOL-C }
-        Greek:     one course where { gereqs = FOL-K }
-        Latin:     one course where { gereqs = FOL-L }
-        Japanese:  one course where { gereqs = FOL-J }
-        Norwegian: one course where { gereqs = FOL-N }
-        Russian:   one course where { gereqs = FOL-R }
+
+Curricular Exploration:
+    Arts Practice (ARP):
+        six credits where { requirements = ARP }
+
+    Formal or Statistical Reasoning (FSR):
+        six credits where { requirements = FSR }
+
+    Humanistic Inquiry (HI):
+        six credits where { requirements = HI }
+
+    Literary/Artistic Analysis (LA):
+        six credits where { requirements = LA }
+
+    Science with Lab (LS):
+        six credits where { requirements = LS }
+
+    Social Inquiry (SI):
+        six credits where { requirements = SI }
+
+    result: all of ( ARP, FSR, HI, LA, LS, SI )
+
+
+Global Citizenship:
+    Langauge Requirement:
+        Arabic:    ARBC 205
+        Chinese:   CHIN 205
+        French:    FREN 204
+        German:    GERM 204
+        Greek:     GRK 204
+        Hebrew:    HEBR 204
+        Japanese:  JAPN 205
+        Latin:     LATN 204
+        Russian:   RUSS 204
+        Spanish:   SPAN 204
 
         result: one of (
-            French, German, Spanish,
-            Greek, Latin,
-            Chinese, Japanese,
-            Norwegian, Russian )
+            Arabic, Chinese, French, German,
+            Greek, Japanese, Latin, Russian,
+            Spanish )
 
-    Oral Communication (ORC):
-        one course where { gereqs = ORC }
+    International Studies (IS):
+        six credits where { requirements = IS }
 
-    Abstract and Quantitative Reasoning (AQR):
-        one course where { gereqs = AQR }
+    Intercultural Domestic Studies (IDS):
+        six credits where { requirements = IDS }
 
-    Studies in Physical Movement (SPM):
-        two distinct courses where { gereqs = SPM }
-
-    result: all of ( FYW, WRI, FOL, ORC, AQR, SPM )
+    result:
+        Language Requirement & IS & IDS
 
 
-Core:
-    Historical Studies in Western Culture (HWC):
-        message: One course must be taught by a St. Olaf professor
-        result: two courses where { gereqs = HWC }
-
-    Multicultural Studies (MC):
-        Domestic (MCD): one course where { gereqs = MCD }
-        Global   (MCG): one course where { gereqs = MCG }
-
-        result:
-            two courses from children &
-            two departments from children &
-            Domestic & Global
-
-    Artistic and Literary Studies (AL):
-        Art (ALS-A):        one course where { gereqs = ALS-A }
-        Literature (ALS-L): one course where { gereqs = ALS-L }
-
-        result:
-            two courses from children &
-            Art & Literature
-
-    Biblical and Theological Studies (BT):
-        Biblical (BTS-B):    one course where { gereqs = BTS-B }
-        Theological (BTS-T): one course where { gereqs = BTS-T }
-
-        result: Biblical & Theological
-
-    Studies in Natural Science (SCI):
-        Scientific Exploration and Discovery (SED):
-            one course where { gereqs = SED }
-        Integrated Scientific Topics (IST):
-            one course where { gereqs = IST }
-
-        result:
-            two courses from children &
-            two departments from children &
-            SED & IST
-
-    Studies in Human Behavior and Society (HBS):
-        filter: only courses where { gereqs = HBS }
-        result: two departments from filter & two courses from filter
-
-    result: all of ( HWC, MC, AL, BT, SCI, HBS )
-
-Integrative:
-    Ethical Issues and Normative Perspectives (EIN):
+Writing Requirement:
+    Portfolio:
         message:
-            Strictly speaking, your BTS-T should be completed *before*
-            you take your EIN.
-        result: one course where {
-                gereqs = EIN &
-                year >= min (year) from courses where {
-                    gereqs = BTS-T
-                }
-            }
+            Students are required to successfully complete a writing portfolio
+            to be reviewed by faculty after the third term, and no later than
+            the sixth term.
 
-    result: EIN
+    result:
+        one course where { requirements = WR1 } &
+        six credits where { requirements = WR2 } &
+        Portfolio
+
+
+Physical Education (PE):
+    message:
+        Four terms of Physical Education activity are to be taken by each
+        student. Only one activity per term may count toward this requirement.
+
+    filter:
+        only courses where { requirements = PE }
+
+    result:
+        four terms from filter
