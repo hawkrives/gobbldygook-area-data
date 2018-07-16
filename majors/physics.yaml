@@ -1,0 +1,64 @@
+Intro:
+  message: >
+    You may either take a two sectioned approach, with two 5-week courses ("Sectioned"),
+    OR a 10-week combined intro course ("Combined").
+
+  Sectioned:
+    (PHYS 131 | PHYS 141 | PHYS 142) & PHYS 151
+
+  Combined:
+    PHYS 143 | PHYS 144
+
+  result:
+    Sectioned | Combined
+
+Core:
+  all of (
+    PHYS 228,
+    PHYS 231,
+    PHYS 235,
+    PHYS 335,
+    PHYS 342,
+    PHYS 400
+  )
+
+Applied:
+  one of (
+    PHYS 234,
+    PHYS 261,
+    PHYS 341,
+    PHYS 343,
+    PHYS 344,
+    PHYS 346,
+    PHYS 347,
+    PHYS 354,
+    ASTR 232,
+    ASTR 233,
+    ENTS 262,
+    GEOL 240
+  )
+
+Mathematics:
+  all of (
+    (MATH 101 | MATH 111),
+    (MATH 120 | MATH 121),
+    (MATH 210 | MATH 211),
+    MATH 232
+  )
+
+Recommended:
+  zero of (
+    PHYS 123, 346, 356,
+    ASTR 113, 356,
+    CHEM 123,
+    MATH 241, 261, 341,
+    CS 111
+  )
+
+Graduate School:
+  zero of (PHYS 346, 352, 355)
+
+name: Physics
+type: Major
+revision: 2018-19
+result: Intro & Core & Applied & Mathematics & Recommended & Graduate School
