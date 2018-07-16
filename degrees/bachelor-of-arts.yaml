@@ -6,33 +6,33 @@ result: AI & Curricular Exploration & Global Citizenship & Writing Requirement &
 
 
 Argument and Inquiry Seminar (AI):
-    six credits where { requirements = AI }
+    six credits from courses where { requirements = AI }
 
 
 Curricular Exploration:
     Arts Practice (ARP):
-        six credits where { requirements = ARP }
+        six credits from courses where { requirements = ARP }
 
     Formal or Statistical Reasoning (FSR):
-        six credits where { requirements = FSR }
+        six credits from courses where { requirements = FSR }
 
     Humanistic Inquiry (HI):
-        six credits where { requirements = HI }
+        six credits from courses where { requirements = HI }
 
     Literary/Artistic Analysis (LA):
-        six credits where { requirements = LA }
+        six credits from courses where { requirements = LA }
 
     Science with Lab (LS):
-        six credits where { requirements = LS }
+        six credits from courses where { requirements = LS }
 
     Social Inquiry (SI):
-        six credits where { requirements = SI }
+        six credits from courses where { requirements = SI }
 
     result: all of ( ARP, FSR, HI, LA, LS, SI )
 
 
 Global Citizenship:
-    Langauge Requirement:
+    Language Requirement:
         Arabic:    ARBC 205
         Chinese:   CHIN 205
         French:    FREN 204
@@ -50,10 +50,10 @@ Global Citizenship:
             Spanish )
 
     International Studies (IS):
-        six credits where { requirements = IS }
+        six credits from courses where { requirements = IS }
 
     Intercultural Domestic Studies (IDS):
-        six credits where { requirements = IDS }
+        six credits from courses where { requirements = IDS }
 
     result:
         Language Requirement & IS & IDS
@@ -68,7 +68,7 @@ Writing Requirement:
 
     result:
         one course where { requirements = WR1 } &
-        six credits where { requirements = WR2 } &
+        six credits from courses where { requirements = WR2 } &
         Portfolio
 
 
