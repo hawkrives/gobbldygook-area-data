@@ -2,7 +2,7 @@
 
 'use strict'
 const yaml = require('js-yaml')
-const sha1 = require('sha1')
+const hasha = require('hasha')
 const junk = require('junk')
 const glob = require('glob')
 const fs = require('fs')
@@ -16,7 +16,7 @@ function processArea(filename) {
 	const data = yaml.safeLoad(file)
 
 	return {
-		hash: sha1(file),
+		hash: hasha(file),
 		path: filename,
 		type: data.type.toLowerCase(),
 		revision: data.revision,
