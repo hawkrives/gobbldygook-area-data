@@ -1,6 +1,6 @@
 name: Studio Art
 type: Major
-revision: 2014-15
+revision: 2017-18
 result:
     ten credits from children &
     Studio Art &
@@ -11,11 +11,12 @@ Studio Art:
         ART 102 & 103 & 104
 
     2D Media:
-        Drawing:     ART 225 | 232 | 233
-        Painting:    ART 221 | 222
-        Printmaking: ART 226 | 227
+        Drawing:        ART 225 | 232 | 233
+        Painting:       ART 221 | 222
+        Printmaking:    ART 226 | 227
+        Graphic Design: ART 236
 
-        result: Drawing | Painting | Printmaking
+        result: Drawing | Painting | Printmaking | Graphic Design
 
     3D Media:
         Ceramics:  ART 207 | 234
@@ -62,12 +63,11 @@ Art History:
         ART 252 or 253 as one of your art history courses.
 
     result: two of (
-        ART 153, 161, 251, 252, 253,
-            254, 255, 256, 263, 269,
-            271, 275, 277, 280, 294,
-            298, 350, 379, 394, 396,
-            398,
-        AR/AS 259, 260, 262, 270, 310,
+        ART 153, 161, 251, 252, 253, 
+            254, 255, 256, 259, 260, 
+            261, 262, 263, 265, 267, 
+            269, 271, 273, 277, 280,
+            350, 370,
+        ASIAN 270, 310,
         ENVST 270,
-        PHIL 243,
-        RACE 253)
+        PHIL 243)
