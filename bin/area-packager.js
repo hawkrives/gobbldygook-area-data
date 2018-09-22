@@ -18,6 +18,7 @@ function processArea(filename) {
 	return {
 		hash: hasha(file),
 		path: filename,
+		name: data.name,
 		type: data.type.toLowerCase(),
 		revision: data.revision,
 	}
