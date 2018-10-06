@@ -45,7 +45,7 @@ Core:
         message: One course must be taught by a St. Olaf professor
         result: two courses where { gereqs = HWC }
 
-    Multicultural Studies (MC):
+    Multicultural Studies:
         Domestic (MCD): one course where { gereqs = MCD }
         Global   (MCG): one course where { gereqs = MCG }
 
@@ -54,7 +54,7 @@ Core:
             two departments from children &
             Domestic & Global
 
-    Artistic and Literary Studies (AL):
+    Artistic and Literary Studies:
         Art (ALS-A):        one course where { gereqs = ALS-A }
         Literature (ALS-L): one course where { gereqs = ALS-L }
 
@@ -62,13 +62,13 @@ Core:
             two courses from children &
             Art & Literature
 
-    Biblical and Theological Studies (BT):
+    Biblical and Theological Studies:
         Biblical (BTS-B):    one course where { gereqs = BTS-B }
         Theological (BTS-T): one course where { gereqs = BTS-T }
 
         result: Biblical & Theological
 
-    Studies in Natural Science (SCI):
+    Studies in Natural Science:
         Scientific Exploration and Discovery (SED):
             one course where { gereqs = SED }
         Integrated Scientific Topics (IST):
@@ -83,7 +83,14 @@ Core:
         filter: only courses where { gereqs = HBS }
         result: two departments from filter & two courses from filter
 
-    result: all of ( HWC, MC, AL, BT, SCI, HBS )
+    result: all of ( 
+            HWC,
+            Multicultural Studies,
+            Artistic and Literary Studies,
+            Biblical and Theological Studies,
+            Studies in Natural Science,
+            HBS
+        )
 
 Integrative:
     Ethical Issues and Normative Perspectives (EIN):
