@@ -1,12 +1,10 @@
 os: linux
-dist: trusty
-sudo: false
+dist: xenial
 
 language: node_js
-node_js: 10
+node_js: 11
 
-install:
-  - npm ci
+install: npm ci
 
 script:
   - npm run package
