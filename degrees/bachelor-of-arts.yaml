@@ -7,29 +7,37 @@ result: all of (Degree Requirements, General Education)
 Degree Requirements:
     result: all of (Courses, Residency, Interim, Grade Point Average, Course Level, Graded Courses, Major)
 
-    Courses: 
+    Courses:
+        message: 'Not implemented yet.'
         result: ''
 
-    Residency: 
+    Residency:
+        message: 'Not implemented yet.'
         result: ''
 
-    Interim: 
+    Interim:
+        message: 'Not implemented yet.'
         result: ''
 
-    Grade Point Average: 
+    Grade Point Average:
+        message: 'Not implemented yet.'
         result: ''
 
-    Course Level: 
+    Course Level:
+        message: 'Not implemented yet.'
         result: ''
 
-    Graded Courses: 
+    Graded Courses:
+        message: 'Not implemented yet.'
         result: ''
 
-    Major: 
-      result: ''
+    Major:
+        message: 'Not implemented yet.'
+        result: ''
 
 General Education:
     result: all of (Foundation, Core, Integrative)
+
     Foundation:
         First-Year Writing (FYW):
             one course where { gereqs = FYW }
