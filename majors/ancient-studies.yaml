@@ -1,0 +1,43 @@
+name: Ancient Studies
+type: major
+revision: 2016-17
+result: Language & Ancient History & Classics & Electives & Independent Research
+
+message: 
+    1 course in Greek may be used as an elective if the student satisfies the 
+    required language portion of the major with Latin courses. 1 course in Latin 
+    may be used as an elective if the student satisfies the required language 
+    portion of the major with Greek courses.
+
+Language:
+    LATIN 252 | GREEK 253
+
+Ancient History:
+    one of (
+        CLASS 126, 240, 243, 253,
+        GREEK 111, 112, 231, 253, 374, 375,
+        HIST 190, 201, 203, 204, 303, 396,
+        LATIN 111, 112, 231, 235, 373, 375,
+        PHIL 235,
+        REL 221, 221, 222, 272, 273, 320, 393,
+        THEAT 270,
+    )
+
+Classics:
+    one course where {department = CLASS}
+
+Electives:
+    four of (
+        ART 161, 267,
+        CLASS 126, 129, 240, 241, 243, 244, 251, 253,
+        ENGL 255,
+        HIST 190, 201, 203, 204, 205, 303, 396,
+        PHIL 235,
+        REL 221, 222, 271, 272, 273, 293, 320, 391.*.2016,
+        THEAT 270,
+        GCON 113, 115,
+    )
+
+Independent Research:
+    message: "1 Independent Research, which gives the student a chance to explore a chosen topic in depth."
+    result: CLASS 398 | HIST 398 | LATIN 398 | GREEK 398

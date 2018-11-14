@@ -1,0 +1,278 @@
+{
+  "type": "areas",
+  "files": [
+    {
+      "hash": "d67eaeb26fd02a24688a5aaa77f61122a3a30704bb2069d4cca78ada76a1ec2a27d677237cfcfd42dc6cfa69714f4b2624f5c604c242eef28c6913669f75c2fd",
+      "path": "concentrations/africa-and-the-americas.yaml",
+      "name": "Africa and the Americas",
+      "type": "concentration",
+      "revision": "2014-15"
+    },
+    {
+      "hash": "cf3ad069aa8bdb0912f65742f16280f3038d89a3f134a78006dbcfedd6e9e832b372a9b12c62ff16922ad26acb2a64c2fe14331ec820f20e661af612388de97b",
+      "path": "concentrations/asian-studies.yaml",
+      "name": "Asian Studies",
+      "type": "concentration",
+      "revision": "2011-12"
+    },
+    {
+      "hash": "0a553f7196cd79f2f833c3bfce0cadece4ea7fd076daa281011b3f4d8a762bf8b58b9ddaa6f14dccfadac8d6355cc8d2879468af6c5b1fddc190f6faa7610ac8",
+      "path": "concentrations/biomedical-studies.yaml",
+      "name": "Biomedical Studies",
+      "type": "concentration",
+      "revision": "2011-12"
+    },
+    {
+      "hash": "6236c0d7cc277f8cf50a85df6e1073e1f46318dea691981ea031fcd69e1a3269c93bd3822de05b3dcf6df1037f1ec504b224a59acd87483bf072a63f589707b5",
+      "path": "concentrations/biomolecular-science.yaml",
+      "name": "Biomolecular Science",
+      "type": "concentration",
+      "revision": "2014-15"
+    },
+    {
+      "hash": "a7c237856197489427a3e708959320614fb33381df5e21d29cf03df06bee2a79b8c084128143c72f73f49411b4ed6a36e501b6a152d328fb39bf2f9255797261",
+      "path": "concentrations/china-studies.yaml",
+      "name": "China Studies",
+      "type": "concentration",
+      "revision": "2011-12"
+    },
+    {
+      "hash": "0f5a0ad2d93bb7af4d0a58496508acbd94d5a5f4c1c35ebd63833f2917b3c24b9d2b582da873483ca8f07201b0f9187adadb96980c617e461671bcea2d1fd683",
+      "path": "concentrations/japan-studies.yaml",
+      "name": "Japan Studies",
+      "type": "concentration",
+      "revision": "2014-15"
+    },
+    {
+      "hash": "3267f7044a284edb5ac76332a57d943ce5d2cb82fc71f28937bca49ad3509c38a9ffa040ce49775a194d5d372ba92cfcc1254cf9b231909634c6a331a37603a2",
+      "path": "concentrations/linguistic-studies.yaml",
+      "name": "Linguistics",
+      "type": "concentration",
+      "revision": "2013-14"
+    },
+    {
+      "hash": "b46161ae0f9d044e50131b5e7fd72d059fbf781e996723e56676a4e06e85f308eb6236694625ebdcdb0298030e7c1805cc81601d1bc301c89ebd3218f24e7be7",
+      "path": "concentrations/mathematical-biology.yaml",
+      "name": "Mathematical Biology",
+      "type": "concentration",
+      "revision": "2015-16"
+    },
+    {
+      "hash": "9ba6e7f293b8b5d65d44a98f7d1d3e8bf603b59b01711c57c3a03afe3e7cb36d1ea97c2733c8119370d274dfadda62e3a9122417d51f01c38e8357bd2d0ccd84",
+      "path": "concentrations/media-studies.yaml",
+      "name": "Media Studies",
+      "type": "concentration",
+      "revision": "2014-15"
+    },
+    {
+      "hash": "1206c3dde5080408f683bac8156523abadcb8a06e34e00fd5d86ea5966aa806c7a0e5727cd0f02c9ceb864ba11c55d3dc2ecf95c564b3e2c89cdd73ce39a3f74",
+      "path": "concentrations/neuroscience.yaml",
+      "name": "Neuroscience",
+      "type": "concentration",
+      "revision": "2011-12"
+    },
+    {
+      "hash": "df396afb1dfbe7dcca9d996978a2461c7ea05b91c5e2df6566ae41b8e15d103f7f5ff050161b61b07336842069ebbd4f35856c8c73566f2f0e5ea2fae305f793",
+      "path": "concentrations/statistics.yaml",
+      "name": "Statistics",
+      "type": "concentration",
+      "revision": "2014-15"
+    },
+    {
+      "hash": "38bf399b90f2610781f497abba5b89de7485d07dc8b800561070d6338e2dd6b6fbbc025db1f6bd43f6315e07b6d155c7c8247df0b48733bedcde081c83cb0ae8",
+      "path": "concentrations/womens-and-gender-studies.yaml",
+      "name": "Women's and Gender Studies",
+      "type": "concentration",
+      "revision": "2014-15"
+    },
+    {
+      "hash": "22878193061ffe39b4c0981ad78a0afd2767696cbc9f4a37d3844998fc71145b55aea7325f971ce9b44d8210364d244e061ce6bd6c12d8377c049f1da443119a",
+      "path": "degrees/bachelor-of-arts.yaml",
+      "name": "Bachelor of Arts",
+      "type": "degree",
+      "revision": "2014-15"
+    },
+    {
+      "hash": "e6e58506d1feb5424ac4d32d0777fd7f44f18be09305296c793caf74cf866c85f9de583f3abb907f27c4ab921cd3e67d3d6262073a522380d8f1c61bcd8295b6",
+      "path": "degrees/bachelor-of-music.yaml",
+      "name": "Bachelor of Music",
+      "type": "degree",
+      "revision": "2014-15"
+    },
+    {
+      "hash": "79a326af6ae173ba0caaf89a7cbcd41172d3dfe44531e3ae73e8b71c80cdee8eadaebb3201e32e318a7c5cf95ddb0e128ef58fb7a6f2af467ae16ea4874e53ae",
+      "path": "majors/ancient-studies.yaml",
+      "name": "Ancient Studies",
+      "type": "major",
+      "revision": "2016-17"
+    },
+    {
+      "hash": "20bfd8338db746cadfc3074353b14b139d70fa222ed8995942331903b2d7bf8f0a7d0c6cf930c135cafcd25f8ee4a159e43ff046414733185370edf023d1ea24",
+      "path": "majors/asian-studies-no-language.yaml",
+      "name": "Asian Studies (No Language)",
+      "type": "major",
+      "revision": "2014-15"
+    },
+    {
+      "hash": "c2edeea501f55dff5ea58da415fc7a7755036a3be62aae96214bd7a18d51d6323a7e6310dad57a98dd9feabe709a53c765281b24f8b6b1523d874cced1d43d92",
+      "path": "majors/asian-studies.yaml",
+      "name": "Asian Studies",
+      "type": "major",
+      "revision": "2011-12"
+    },
+    {
+      "hash": "ddf94745d01b4e0bf4ae631ccd676aad4bbdbbdc3a0466877dbf786c0d559e21f754432a3cd1a406ae0cdd7786afaa99043bc0b7a4e8a9d99a1c73bf4882c42e",
+      "path": "majors/biology-2014-15.yaml",
+      "name": "Biology",
+      "type": "major",
+      "revision": "2014-15"
+    },
+    {
+      "hash": "c8d1bb6e6f887f762db8081a5cca62045a11dd889e41db45bbc869989b7dab80fa19b337bd0cf65061a9831c5e691652dcd8d3ed9e6cf92cfb067d0aebf2cd76",
+      "path": "majors/biology.yaml",
+      "name": "Biology",
+      "type": "major",
+      "revision": "2015-16"
+    },
+    {
+      "hash": "a0a8ca1d3f5b3243818bf0143f349738ec7d97724e95439090ce58248eff2440b1936e5399a8daad187fb7feb744ebd5dc648adce7f312f62351fbbb9c2eae52",
+      "path": "majors/chemistry.yaml",
+      "name": "Chemistry",
+      "type": "major",
+      "revision": "2013-14"
+    },
+    {
+      "hash": "1c76fe14027aa3741c232baba1cb9cb4abb04859f20de3c2ecaeb6a2823c864ca8bfb8c71cab6b13241f0ac479f776709b909a7d0df63b2db22f72e40a47d170",
+      "path": "majors/computer-science.yaml",
+      "name": "Computer Science",
+      "type": "major",
+      "revision": "2014-15"
+    },
+    {
+      "hash": "f420bac5846551b4e2c6be596086aa9ef33147cdbd6c18ad7c354685977271f9ee0e5bb89dc0c32daafcddcdc15c68be3b73c1eba80cdb911e6f13870df0c81a",
+      "path": "majors/dance.yaml",
+      "name": "Dance",
+      "type": "major",
+      "revision": "2014-15"
+    },
+    {
+      "hash": "13683e2520d796b74a627c49c4095a61983649b94fdd6a938f1634f2fca67fbf7fe2c10b45ef7a4bf558d0e9b548c0f0c41115d5ee2b6ad7906bbc83443c80ff",
+      "path": "majors/exercise-science.yaml",
+      "name": "Exercise Science",
+      "type": "major",
+      "revision": "2014-15"
+    },
+    {
+      "hash": "5667bf74ff78418f762d59cda91e116005c0bede24b0f32237f2c6bb6e683a69c1f521aa10f40bfff378568e48d336cd52dcbdc028d03eea7de7c6a724985951",
+      "path": "majors/history-2011.yaml",
+      "name": "History",
+      "type": "major",
+      "revision": "2011-12"
+    },
+    {
+      "hash": "c1f4ba6053b8e9baae92983da3c40120ff00a21dc50b318f7ed2ce4bf5bf28ecdba9f72b3b2525a3b93abd902edbd1c90d2307eaefa0778b87e1df43fd3d4e0a",
+      "path": "majors/history-2016-17.yaml",
+      "name": "History",
+      "type": "major",
+      "revision": "2016-17"
+    },
+    {
+      "hash": "6f1a2f03ee1e25ab8dc1c969876e8cd2fc8b061eabd098e54d4a1310cd4a4e7d0606ccad7a008c44de3564d2a258fe29144f3108b03aa308bd6448a1a9f92d72",
+      "path": "majors/individual-major.yaml",
+      "name": "Individual Major",
+      "type": "major",
+      "revision": "2014-15"
+    },
+    {
+      "hash": "a1b9f7ce53ba6e864de5f5cc304c81fc92584704507e6828edf81baa6398bcfabbed6dde4f05fb6fb5e505a7fa7b1df703de7f7bfcc8a3c4ba253edbf8f6c73e",
+      "path": "majors/latin.yaml",
+      "name": "Latin",
+      "type": "major",
+      "revision": "2011-12"
+    },
+    {
+      "hash": "8854f67b0d931985596a561fc3fcaa2ac4e22c8b7fcb1a29c6c38be500ecf3a41ae9b14c5ca7a75f8587953e242c9b76e18cd37b774b18adcc85e84821a41ff0",
+      "path": "majors/mathematics.yaml",
+      "name": "Mathematics",
+      "type": "major",
+      "revision": "2011-12"
+    },
+    {
+      "hash": "b0da4a882b7294eda93469ab6f946efc8ea42a9c7f98dc746397ec4afb5893961d7511a4e62dbfc0996c49a91a590d64a7837680a191cb717a779f110ff1c27b",
+      "path": "majors/nursing.yaml",
+      "name": "Nursing",
+      "type": "major",
+      "revision": "2014-15"
+    },
+    {
+      "hash": "4b446fd87f02faadef662773a92ccc5bab1ec95da5edcc9cff5a1ef8d974120693a2b258fb495284d155345df7e09af21ac1b5abe65ee4d02bc8472874970fe5",
+      "path": "majors/philosophy-contract.yaml",
+      "name": "Philosophy (Contract)",
+      "type": "major",
+      "revision": "2011-12"
+    },
+    {
+      "hash": "835e3eb6fe96f37fbff94134d7e3150fbe256f2978205ba015478bfb93e6b4172a6697b126c0afa7a471830806c4de853ec9ab4fe45f0f092f33b5d371e5a327",
+      "path": "majors/philosophy.yaml",
+      "name": "Philosophy",
+      "type": "major",
+      "revision": "2011-12"
+    },
+    {
+      "hash": "bc8df810c12e0aa9048e22865f924569501e7403983e8562caa809ce79f18579ec43221673f4f397725af1640b4292c7e295d94fa542e640489dfcbd24f31dbd",
+      "path": "majors/physics-2011-12.yaml",
+      "name": "Physics",
+      "type": "major",
+      "revision": "2011-12"
+    },
+    {
+      "hash": "fd6e700ea1f21eba7d67cb4e24f2a5f4abe43ec2979084567469cbc470e6f0da212a9579672eb44153f440c01b5b1380ef452008aac20af8d4871317df7b3162",
+      "path": "majors/physics.yaml",
+      "name": "Physics",
+      "type": "major",
+      "revision": "2015-16"
+    },
+    {
+      "hash": "eff20b409fb574fb1057394b0e4f61989609724b0e68240b7e8f0e021cbb164172641f5ceed24ed339ab6f33cf40e4b13a65118caed9637bd4875ff0bd5bc01e",
+      "path": "majors/political-science.yaml",
+      "name": "Political Science",
+      "type": "major",
+      "revision": "2014-15"
+    },
+    {
+      "hash": "7076abb730030928e9dbb1b9b272990c933263fee93db439cc4d74d6a70a3bb401f0be3fcf03d3d7eb76658fe6400d098cdc8f1ea461f018bb1acaa73286c4d4",
+      "path": "majors/psychology.yaml",
+      "name": "Psychology",
+      "type": "major",
+      "revision": "2014-15"
+    },
+    {
+      "hash": "753b6b1cf9f7e852fec39044a615fce8a613b10f44c3d195580564c85335cb04865c8f8ca8e970b58463c9c15618ea36072c2a71c81815d6e08cad20de542f69",
+      "path": "majors/sociology-anthropology.yaml",
+      "name": "Sociology/Anthropology",
+      "type": "major",
+      "revision": "2011-12"
+    },
+    {
+      "hash": "d7bc50f7db055d62c74d5be446486cd5a42a30a74919f443df4de6bbdf06445ea0f42330d2beb588d6047c148db02d6b5e4eeeeb74c00e93c402c2498aba087f",
+      "path": "majors/studio-art.yaml",
+      "name": "Studio Art",
+      "type": "major",
+      "revision": "2017-18"
+    },
+    {
+      "hash": "173bf6c88641e96f14759b79b4c84c84b6e02b1a4b54076272d4223d08dca57a2a43cb3222dd73fa7defdc0e845e76b8052dc0612d972e8a821accaad2a3017b",
+      "path": "majors/theatre.yaml",
+      "name": "Theatre",
+      "type": "major",
+      "revision": "2010-11"
+    },
+    {
+      "hash": "592461cff4fe5dd009c1b198938577c9d9c181efc853aaf036a8007cf77bd21a66dd175e7ffa7c025b62b3c9798c8c4d89cf59086c5446301761095e33548be0",
+      "path": "majors/womens-and-gender-studies.yaml",
+      "name": "Women's and Gender Studies",
+      "type": "major",
+      "revision": "2014-15"
+    }
+  ]
+}

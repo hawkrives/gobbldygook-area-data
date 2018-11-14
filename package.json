@@ -1,0 +1,18 @@
+{
+  "name": "gobbldygook-area-data",
+  "private": true,
+  "version": "1.0.0",
+  "description": "What we call the \"Hanson format\" is named after Professor Bob Hanson, who provided the original inspiration for this style of declarative area-of-study specification.",
+  "scripts": {
+    "package": "./bin/area-packager.js"
+  },
+  "repository": "https://github.com/hawkrives/gobbldygook-area-data",
+  "author": "Hawken Rives <hawkrives@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "glob": "^7.0.6",
+    "hasha": "^2.2.0",
+    "js-yaml": "^3.6.1",
+    "junk": "^2.1.0"
+  }
+}

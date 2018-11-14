@@ -1,0 +1,16 @@
+name: Latin
+type: major
+revision: 2011-12
+result: Latin & Ancient Roman History & Classics
+
+Latin:
+    seven of ( LATIN 111, 112, 231, 235, 252, 370, 371, 372, 373, 374, 375, 377 )
+
+Ancient Roman History:
+    one of ( HIST 204, LATIN 372 )
+
+Classics:
+    one of (
+        CLASS 121, 123, 124, 126, 129, 241,
+              243, 244, 251, 253, 396
+    )

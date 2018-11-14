@@ -1,0 +1,22 @@
+name: Philosophy (Contract)
+type: major
+revision: 2011-12
+
+result:
+  Base &
+  Level III Seminars &
+  Contract &
+  seven courses from children
+
+Base:
+  all of (PHIL 235, 236, 240)
+
+Level III Seminars:
+  message: The two level III seminar courses in philosophy may not be taken S/U.
+  result: two of (PHIL 371, 372, 373, 374, 375)
+
+Contract:
+  contract: true
+  message:
+    Three level II or III courses in another department chosen to complement
+    the work in philosophy.
