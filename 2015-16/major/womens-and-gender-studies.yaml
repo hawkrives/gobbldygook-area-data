@@ -1,0 +1,133 @@
+name: Women's and Gender Studies
+type: major
+catalog: 2015-16
+
+result:
+  count: all
+  of:
+    - requirement: Introduction
+    - requirement: Additional Courses
+    - requirement: Advanced Topics
+
+
+requirements:
+  Introduction:
+    result:
+      course: WMGST 121
+
+  Advanced Topics:
+    result:
+      course: WMGST 399
+
+  Additional Courses:
+    save:
+      - given: these requirements
+        requirements:
+          - requirement: Theory and Methods
+          - requirement: Women and Gender in Historical Context
+          - requirement: Women and Gender in Global/Comparative/Diverse Contexts
+          - requirement: Electives
+          - requirement: Lived Experiences
+        what: courses
+        name: $elective_courses
+        label: "Taken Elective Courses"
+
+    result:
+      count: all
+      of:
+        - requirement: Theory and Methods
+        - requirement: Gender in Historical Context
+        - requirement: Gender in Global/Comparative/Diverse Contexts
+        - {requirement: Electives, optional: true}
+        - requirement: Lived Experiences
+
+        - given: $elective_courses
+          what: courses
+          do: count >= 7
+
+        - given: $elective_courses
+          where: {level: 300}
+          what: courses
+          do: count >= 1
+
+    requirements:
+      Theory and Methods:
+        result:
+          count: any
+          of:
+            - AMST 100
+            - ART 277
+            - ENGL 242
+            - ENGL 264
+            - ENGL 340
+            - FAMST 242
+            - FAMST 253
+            - PHIL 245
+            - PSYCH 390
+            - {course: PSYCH 396, year: 2013, semester: Spring}
+            - REL 209
+            - REL 344
+            - SOAN 235
+            - SOAN 246
+            - SOAN 260
+
+      Gender in Historical Context:
+        result:
+          count: any
+          of:
+            - {course: FREN 372, year: 2017, semester: Fall}
+            - HIST 121
+            - HIST 191
+            - HIST 224
+            - HIST 231
+            - HIST 237
+            - HIST 239
+            - {course: HIST 320, year: 2014, semester: Spring}
+            - PHIL 245
+            - PSYCH 223
+            - PSYCH 241
+            - REL 209
+            - REL 264
+            - SOAN 128
+            - SOAN 235
+            - SOAN 261
+            - SPAN 250
+
+      Gender in Global/Comparative/Diverse Contexts:
+        result:
+          count: any
+          of:
+            - DANCE 246
+            - ENGL 246
+            - {course: ENGL 340, year: 2011, semester: Interim}
+            - {course: ENGL 340, year: 2011, semester: Spring}
+            - {course: ENGL 340, year: 2012, semester: Fall}
+            - {course: ENGL 340, year: 2012, semester: Interim}
+            - {course: ENGL 340, year: 2013, semester: Interim}
+            - {course: ENGL 340, year: 2014, semester: Interim}
+            - {course: ENGL 340, year: 2015, semester: Interim}
+            - FAMST 253
+            - HIST 115
+            - HIST 122
+            - HIST 182
+            - {course: HIST 189, year: 2011, semester: Fall}
+            - {course: HIST 189, year: 2012, semester: Fall}
+            - HIST 272
+            - {course: HIST 320, year: 2011, semester: Fall}
+            - {course: HIST 320, year: 2013, semester: Fall}
+            - REL 209
+            - REL 264
+            - SOAN 246
+
+      Electives:
+        result:
+          count: any
+          of:
+            - BIO 124
+            - NORW 282
+            - NURS 386
+            - PSYCH 350
+
+      Lived Experiences:
+        message:
+          The major says, "One course must focus on women's lived experiences."
