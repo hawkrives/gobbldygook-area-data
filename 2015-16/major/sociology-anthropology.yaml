@@ -1,0 +1,61 @@
+name: Sociology/Anthropology
+type: major
+catalog: 2015-16
+
+result:
+  count: all
+  of:
+    - requirement: History of Sociological Theory
+    - requirement: Anthropological Theory
+    - requirement: Foundations of Social Science Research
+    - requirement: Ethnographic Research Methods
+    - requirement: Senior Seminar
+    - requirement: Principles of Statistics
+    - requirement: Electives
+
+
+requirements:
+  History of Sociological Theory:
+    result:
+      course: SOAN 291
+
+  Anthropological Theory:
+    result:
+      course: SOAN 292
+
+  Foundations of Social Science Research:
+    message: STAT 110 must be taken before SOAN 371.
+    result:
+      course: SOAN 371
+
+  Ethnographic Research Methods:
+    result:
+      course: SOAN 373
+
+  Senior Seminar:
+    result:
+      course: SOAN 399
+
+  Principles of Statistics:
+    result:
+      course: STAT 110
+
+  Electives:
+    message:
+      Students are permitted to take one of the four elective courses, but
+      not a core course, S/U.
+
+    result:
+      given: these courses
+      of: [
+        SOAN 121, SOAN 128, SOAN 232, SOAN 234,
+        SOAN 235, SOAN 236, SOAN 237, SOAN 242,
+        SOAN 246, SOAN 248, SOAN 249, SOAN 260,
+        SOAN 261, SOAN 262, SOAN 264, SOAN 265,
+        SOAN 266, SOAN 267, SOAN 268,
+        AS/SA 239,
+      ]
+      limit:
+        - where: {su: true}
+          at_most: 1
+      do: count >= 4
