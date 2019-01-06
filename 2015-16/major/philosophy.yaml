@@ -25,8 +25,8 @@ requirements:
 
   Electives:
     result:
-      count: 3
-      of: [
+      given: these courses
+      courses: [
         PHIL 118, PHIL 119, PHIL 120, PHIL 127, PHIL 147,
         PHIL 231, PHIL 233, PHIL 235, PHIL 236, PHIL 240,
         PHIL 241, PHIL 243, PHIL 244, PHIL 245, PHIL 246,
@@ -36,5 +36,9 @@ requirements:
         PHIL 396, PHIL 398, PHIL 399,
         AS/PH 251,
         PH/RE 278,
-        GCON 310, GCON 218,
+        GCON 218,
       ]
+      limit:
+        - where: {department: '! PHIL'}
+          at_most: 2
+      do: count >= 3
