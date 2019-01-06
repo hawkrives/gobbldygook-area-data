@@ -3,7 +3,8 @@ type: major
 catalog: 2015-16
 
 result:
-  both:
+  count: all
+  of:
     - count: all
       of:
         - requirement: Research Methods
