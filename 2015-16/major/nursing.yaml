@@ -1,0 +1,53 @@
+name: Nursing
+type: major
+catalog: 2015-16
+
+result:
+  count: all
+  of:
+    - requirement: Prerequisites
+    - requirement: Requirements
+
+
+requirements:
+  Prerequisites:
+    message:
+      These courses must be completed before beginning level III nursing courses.
+
+    result:
+      count: all
+      of:
+        - BIO 143
+        - BIO 231
+        - BIO 243
+        - ID 110
+        - ID 210
+        - PSYCH 125
+        - PSYCH 241
+        - {count: 1, of: [SOAN 121, SOAN 128, SOAN 260, SOAN 264]}
+
+  Requirements:
+    Ethics:
+      message:
+        Students should consult with their advisor to determine what courses
+        meet this requirement from among the general education EIN courses.
+      result:
+        count: any
+        of: [
+          AMCON 101,
+        ]
+
+    result:
+      count: all
+      of:
+        - NURS 211
+        - NURS 311
+        - NURS 312
+        - NURS 313
+        - NURS 314
+        - NURS 386
+        - NURS 388
+        - NURS 390
+        - NURS 392
+        - NURS 397
+        - requirement: Ethics
