@@ -16,34 +16,34 @@ Credit for the original impetus for investigating a static format, instead of wr
    1. course
    1. requirement
    1. given
-	  1. Types of Input
-		 1. :courses
-		 1. :these courses
-		 1. :these requirements
-		 1. :areas of study
-		 1. :$variable
-	  1. Types of Output
-		 1. what:courses
-		 1. what:credits
-		 1. what:distinct courses
-		 1. what:grade
-		 1. what:term
-	  1. Types of Filters
-		 1. where:{department}
-		 1. where:{semester}
-		 1. where:{level}
-		 1. where:{institution}
-		 1. where:{graded}
-		 1. where:{gereqs}
-		 1. where:{custom_attribute}
-		 1. how to use multiple values to search (MCD | MCG)
-	  1. Types of Actions
-		 1. do:count
-		 1. do:sum
-		 1. do:average
-		 1. do:minimum
-		 1. do:difference
-	  1. Limiters
+    1. Types of Input
+     1. :courses
+     1. :these courses
+     1. :these requirements
+     1. :areas of study
+     1. :$variable
+    1. Types of Output
+     1. what:courses
+     1. what:credits
+     1. what:distinct courses
+     1. what:grade
+     1. what:term
+    1. Types of Filters
+     1. where:{department}
+     1. where:{semester}
+     1. where:{level}
+     1. where:{institution}
+     1. where:{graded}
+     1. where:{gereqs}
+     1. where:{custom_attribute}
+     1. how to use multiple values to search (MCD | MCG)
+    1. Types of Actions
+     1. do:count
+     1. do:sum
+     1. do:average
+     1. do:minimum
+     1. do:difference
+    1. Limiters
 1. Saving Subsets
 1. Global Limits
 1. Custom Attributes on Courses
@@ -54,9 +54,9 @@ Credit for the original impetus for investigating a static format, instead of wr
 1. Common Requirements among All Majors
    1. todo(hawken): credits outside of the major?
    1. todo(hawken): how to define common major requirements?
-	  1. especially since they only apply to B.A. majors
-	  1. … actually do we need a “ba-major” and “bm-major” type?
-	  1. are there bm-concentrations? emphases?
+    1. especially since they only apply to B.A. majors
+    1. … actually do we need a “ba-major” and “bm-major” type?
+    1. are there bm-concentrations? emphases?
 
 
 
@@ -199,6 +199,12 @@ of: Array<Rule>
 
 The `of` key takes an array of other Rules; `count` determines how many of the rules must evaluate to `true` in order for this rule to also evaluate to `true`.
 
+The `of/count` rule is greedy; it does not end the evaluation process when the count is reached. Instead, it evaluates every possibility in the `of` array.
+
+That is to say, `count: 1, of: [<four courses>]` will consume all four of those courses.
+
+There is not currently a way to change this behavior. It remains to be seen if it is problematic.
+
 ### Examples
 
 ```yaml
@@ -224,6 +230,8 @@ either: [Rule, Rule]
 `both:` and `either:` are specializations of the `count:,of:` rule; you could write `both:` as `count:all,of:Rules`, and `either:` as `count:any,of:Rules`. Sometimes it’s just easier to be able to say “yeah, I want both of these things to be true”.
 
 `both:` and `either:` both require exactly two Rules as their input.
+
+TODO(hawken): do I need/want an `all:` / `any:` shorthand pair too? Maybe… it’s attractive.
 
 ### Examples
 ```yaml
@@ -669,6 +677,7 @@ If it's true, the attribute behaves like `gereqs`; if it has three values, the c
 
 If it's false, then no matter how many values there are, the course can count for only one requirement, as well as one other requirement which refers to the requirement directly.
 
+
 ### Other Attribute Types
 
 There are currently no other allowed types of attribute.
@@ -726,3 +735,31 @@ requirements:
 # Common Requirements among All Majors
 
 TODO(hawken)
+
+# Common Recipes
+
+## Occurrences
+Assert that the student has taken a given course more than once.
+
+```yaml
+result:
+  given: these courses
+  courses: [THEAT 233]
+  what: courses
+  do: count >= 1
+```
+
+## Dynamically selecting part of an “of”
+
+If you need to selecting courses in an `of:`, I recommend switching to a `given:these courses` rule instead.
+
+For example, you could do this to limit the student to only take one non-Philosophy course from the set of electives.
+
+```yaml
+given: these courses
+courses: [PHIL 118, PHIL 119, PHIL 120, GCON 218, REL 147]
+limit:
+  - where: {department: '! PHIL'}
+    at_most: 1
+do: count >= 3
+```
