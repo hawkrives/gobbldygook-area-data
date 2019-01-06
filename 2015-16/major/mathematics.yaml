@@ -21,8 +21,8 @@ result:
         - requirement: Interdisciplinary
         - requirement: Sequence
         - requirement: Level III
-      what: courses
       where: {institution: St. Olaf College}
+      what: courses
       do: count >= 6
 
 limiters:
