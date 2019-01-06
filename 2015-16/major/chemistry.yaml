@@ -1,0 +1,110 @@
+name: Chemistry
+type: major
+catalog: 2015-16
+
+result:
+  count: all
+  of:
+    - requirement: Introductory Sequence
+    - requirement: Organic
+    - requirement: Analytical
+    - requirement: Physical
+    - requirement: Elective
+    - requirement: Physics
+    - requirement: Calculus
+    - requirement: Seminars
+
+requirements:
+  Introductory Sequence:
+    requirements:
+      First Year 1:
+        result:
+          count: all
+          of: [CHEM 121, CHEM 123, CHEM 125]
+
+      First Year 2:
+        result:
+          count: all
+          of: [CHEM 125, CHEM 126]
+
+      CH/BI:
+        result:
+          count: all
+          of: [CH/BI 125, CH/BI 126, CH/BI 227]
+
+    result:
+      count: any
+      of:
+        - requirement: First Year 1
+        - requirement: First Year 2
+        - requirement: CH/BI
+
+
+  Organic:
+    result:
+      count: all
+      of: [CHEM 247, CHEM 253, CHEM 248, CHEM 254]
+
+
+  Analytical:
+    result:
+      count: all
+      of: [CHEM 255, CHEM 256]
+
+
+  Physical:
+    result:
+      count: all
+      of: [CHEM 357, CHEM 371]
+
+
+  Elective:
+    result:
+      count: any
+      of:
+        - CHEM 252
+        - CHEM 260
+        - CHEM 298
+        - CHEM 379
+        - both: [CHEM 382, CHEM 378]
+        - CHEM 384
+        - CHEM 386
+        - CHEM 388
+        - CHEM 391
+        - CHEM 398
+
+
+  Physics:
+    result:
+      either:
+        - requirement: Non-Majors
+        - requirement: Majors
+
+    requirements:
+      Non-Majors:
+        message: If you are not a Physics major…
+        count: all
+        of: [PHYS 142, PHYS 124]
+
+      Majors:
+        message: If you _are_ a Physics major…
+        count: all
+        of:
+          - PHYS 130
+          - PHYS 131
+          - PHYS 232
+          - given: areas of study
+            where: {type: major, name: Physics}
+            do: count = 1
+
+
+  Calculus:
+    result:
+      either: [MATH 126, MATH 128]
+
+
+  Seminars:
+    message:
+      You are required to attend at least 12 departmental seminars during your
+      junior and senior years.
+    department_audited: true

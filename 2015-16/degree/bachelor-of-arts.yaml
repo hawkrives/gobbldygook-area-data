@@ -1,0 +1,352 @@
+name: Bachelor of Arts
+type: degree
+catalog: 2015-16
+
+result:
+  count: all
+  of:
+    - Degree Requirements
+    - General Education
+
+requirements:
+  Degree Requirements:
+    result:
+      count: all
+      of:
+        - requirement: Courses
+        - requirement: Residency
+        - requirement: Interim
+        - requirement: Grade Point Average
+        - requirement: Course Level
+        - requirement: Graded Courses
+        - requirement: Major
+
+    requirements:
+      Courses:
+        result:
+          given: courses
+          what: credits
+          do: sum >= 35
+
+      Residency:
+        result:
+          given: courses
+          where: {institution: St. Olaf College}
+          what: credits
+          do: sum >= 17
+
+      Interim:
+        save:
+          - given: courses
+            where: {semester: Interim}
+            what: courses
+            name: $interim_courses
+        result:
+          and:
+            - {given: $interim_courses, what: credits, do: sum >= 3}
+            - {given: $interim_courses, what: courses, do: count >= 3}
+
+      Grade Point Average:
+        result:
+          given: courses
+          what: grades
+          do: average >= 2.0
+
+      Course Level:
+        result:
+          given: courses
+          where: {level: >= 200}
+          what: credits
+          do: sum >= 18
+
+      Graded Courses:
+        result:
+          given: courses
+          where: {graded: yes}
+          what: credits
+          do: sum >= 24
+
+      Major:
+        result:
+          given: areas of study
+          where: {type: major}
+          do: count >= 1
+
+
+  General Education:
+    result:
+      count: all
+      of:
+        - requirement: Foundation
+        - requirement: Core
+        - requirement: Integrative
+
+    requirements:
+      Foundation:
+        result:
+          count: all
+          of:
+            - First-Year Writing
+            - Writing in Context
+            - Foreign Language
+            - Oral Communication
+            - Abstract and Quantitative Reasoning
+            - Studies in Physical Movement
+
+        First-Year Writing:
+          result:
+            given: courses
+            where: {gereqs: FYW}
+            what: courses
+            do: count >= 1
+
+        Writing in Context:
+          result:
+            given: courses
+            where: {gereqs: WRI}
+            what: courses
+            do: count >= 4
+
+        Foreign Language:
+          result:
+            count: any
+            of:
+              - {given: courses, where: {gereqs: FOL-C}, what: courses, do: count >= 1}
+              - {given: courses, where: {gereqs: FOL-F}, what: courses, do: count >= 1}
+              - {given: courses, where: {gereqs: FOL-G}, what: courses, do: count >= 1}
+              - {given: courses, where: {gereqs: FOL-K}, what: courses, do: count >= 1}
+              - {given: courses, where: {gereqs: FOL-J}, what: courses, do: count >= 1}
+              - {given: courses, where: {gereqs: FOL-L}, what: courses, do: count >= 1}
+              - {given: courses, where: {gereqs: FOL-N}, what: courses, do: count >= 1}
+              - {given: courses, where: {gereqs: FOL-R}, what: courses, do: count >= 1}
+              - {given: courses, where: {gereqs: FOL-S}, what: courses, do: count >= 1}
+
+        Oral Communication:
+          result:
+            given: courses
+            where: {gereqs: ORC}
+            what: courses
+            do: count >= 1
+
+        Abstract and Quantitative Reasoning:
+          result:
+            given: courses
+            where: {gereqs: AQR}
+            what: courses
+            do: count >= 1
+
+        Studies in Physical Movement:
+          result:
+            given: courses
+            where: {gereqs: SPM}
+            what: distinct courses
+            do: count >= 2
+
+      Core:
+        result:
+          count: all
+          of:
+            - requirement: Historical Studies in Western Culture
+            - requirement: Multicultural Studies
+            - requirement: Artistic and Literary Studies
+            - requirement: Biblical and Theological Studies
+            - requirement: Studies in Natural Science
+            - requirement: Studies in Human Behavior and Society
+
+        requirements:
+          Historical Studies in Western Culture:
+            message:
+              One course must be taught by a St. Olaf professor.
+            save:
+              - given: courses
+                where: {gereqs: HWC}
+                what: courses
+                name: $hwc_courses
+            result:
+              both:
+                - given: $hwc_courses
+                  what: courses
+                  do: count >= 2
+                - given: $hwc_courses
+                  where: {institution: St. Olaf College}
+                  what: courses
+                  do: count >= 1
+
+          Multicultural Studies:
+            save:
+              - given: courses
+                where: {gereqs: MCD | MCG}
+                what: courses
+                name: $multicultural_courses
+
+            result:
+              count: all
+              of:
+                - given: $multicultural_courses
+                  what: courses
+                  do: count >= 2
+
+                - given: $multicultural_courses
+                  what: departments
+                  do: count >= 2
+
+                - label: 'MCD'
+                  given: $multicultural_courses
+                  where: {gereqs: MCD}
+                  what: courses
+                  do: count >= 1
+
+                - label: 'MCG'
+                  given: $multicultural_courses
+                  where: {gereqs: MCG}
+                  what: courses
+                  do: count >= 1
+
+          Artistic and Literary Studies:
+            save:
+              - given: courses
+                where: {gereqs: ALS-A | ALS-L}
+                what: courses
+                name: $art_courses
+
+            result:
+              count: all
+              of:
+                - label: 'Two Courses'
+                  given: $art_courses
+                  what: courses
+                  do: count >= 2
+
+                - label: 'ALS-A'
+                  given: $art_courses
+                  where: {gereqs: ALS-A}
+                  what: courses
+                  do: count >= 1
+
+                - label: 'ALS-L'
+                  given: $art_courses
+                  where: {gereqs: ALS-L}
+                  what: courses
+                  do: count >= 1
+
+          Biblical and Theological Studies:
+            save:
+              - given: courses
+                where: {gereqs: BTS-B | BTS-T}
+                what: courses
+                name: $religion_courses
+
+            result:
+              count: all
+              of:
+                - label: 'Two Courses'
+                  given: $religion_courses
+                  what: courses
+                  do: count >= 2
+
+                - label: 'BTS-B'
+                  given: $religion_courses
+                  where: {gereqs: 'BTS-B'}
+                  what: courses
+                  do: count >= 1
+
+                - label: 'BTS-T'
+                  given: $religion_courses
+                  where: {gereqs: 'BTS-T'}
+                  what: courses
+                  do: count >= 1
+
+          Studies in Natural Science:
+            save:
+              - given: courses
+                where: {gereqs: SED | IST}
+                what: courses
+                name: $science_courses
+
+            result:
+              count: all
+              of:
+                - given: $science_courses
+                  what: courses
+                  do: count >= 2
+
+                - given: $science_courses
+                  what: departments
+                  do: count >= 2
+
+                - label: 'SED'
+                  given: $science_courses
+                  where: {gereqs: SED}
+                  what: courses
+                  do: count >= 1
+
+                - label: 'IST'
+                  given: $science_courses
+                  where: {gereqs: IST}
+                  what: courses
+                  do: count >= 1
+
+          Studies in Human Behavior and Society:
+            save:
+              - given: courses
+                where: {gereqs: HBS}
+                what: courses
+                name: $human_courses
+
+            result:
+              count: all
+              of:
+                - given: $human_courses
+                  what: courses
+                  do: count >= 2
+
+                - given: $human_courses
+                  what: departments
+                  do: count >= 2
+
+                - given: $human_courses
+                  where: {institution: St. Olaf College}
+                  what: courses
+                  do: count >= 1
+
+      Integrative:
+        result:
+          count: all
+          of:
+            - requirement: Ethical Issues and Normative Perspectives
+
+        requirements:
+          Ethical Issues and Normative Perspectives:
+            message:
+              To complete any EIN course, you must have either completed the
+              BTS-T requirement or have obtained permission of the EIN instructor
+              beforehand.
+
+            save:
+              - given: courses
+                where: {gereqs: BTS-T}
+                what: terms
+                do: minimum
+                name: $first_btst
+                label: "first BTS-T course"
+
+              - given: courses
+                where: {gereqs: EIN}
+                what: courses
+                name: $ein_courses
+                label: "EIN courses"
+
+              - given: $ein_courses
+                what: terms
+                do: minimum
+                name: $first_ein
+                label: "first EIN course"
+
+            result:
+              count: all
+              of:
+                - given: $ein_courses
+                  what: courses
+                  do: count >= 1
+
+                - do: $first_btst < $first_ein

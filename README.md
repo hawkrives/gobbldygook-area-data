@@ -1,326 +1,728 @@
-## Details of the Hanson format
+# A Declarative Domain-Specific Language for Defining Areas of Study at St. Olaf College
 
-What we call the "Hanson format" is named after Professor Bob Hanson, who provided the original inspiration for this style of declarative area-of-study specification.
+This document outlines the language features of the “Hanson Format”, a domain-specific language (DSL) intended for use in statically defining the requirements for areas of study at St. Olaf College.
 
-An *area of study* is a degree, major, concentration, or area of emphasis. In this document, unless otherwise specified, the phrases "major" and "area of study" are synonymous.
+An “area of study” is any single degree, major, concentration, or area of emphasis.
+
+Credit for the original impetus for investigating a static format, instead of writing imperative routines for each requirement, is due to Professor Bob Hanson, of the Chemistry Department, who led an independent study into this topic in January of 2015.
+
+# Table of Contents
+
+1. Introduction
+1. Sections, Sub-sections, and Requirements
+1. Rules
+   1. of/count
+   1. both/either
+   1. course
+   1. requirement
+   1. given
+	  1. Types of Input
+		 1. :courses
+		 1. :these courses
+		 1. :these requirements
+		 1. :areas of study
+		 1. :$variable
+	  1. Types of Output
+		 1. what:courses
+		 1. what:credits
+		 1. what:distinct courses
+		 1. what:grade
+		 1. what:term
+	  1. Types of Filters
+		 1. where:{department}
+		 1. where:{semester}
+		 1. where:{level}
+		 1. where:{institution}
+		 1. where:{graded}
+		 1. where:{gereqs}
+		 1. where:{custom_attribute}
+		 1. how to use multiple values to search (MCD | MCG)
+	  1. Types of Actions
+		 1. do:count
+		 1. do:sum
+		 1. do:average
+		 1. do:minimum
+		 1. do:difference
+	  1. Limiters
+1. Saving Subsets
+1. Global Limits
+1. Custom Attributes on Courses
+   1. “multiple values can be used”
+1. Messages
+1. Contracts
+1. Department Verification
+1. Common Requirements among All Majors
+   1. todo(hawken): credits outside of the major?
+   1. todo(hawken): how to define common major requirements?
+	  1. especially since they only apply to B.A. majors
+	  1. … actually do we need a “ba-major” and “bm-major” type?
+	  1. are there bm-concentrations? emphases?
 
 
-### Basics
 
-Each major file must be a valid [YAML][yaml] file. That is, it will be a set of nested `key: value` pairs, where the end of the key is signified by a colon. YAML files **must** be intended with spaces, not tab characters.
+# Definitions
 
-[yaml]: http://yaml.org
+> term
 
-The top level of a major file looks something like this:
+A specific year/semester combination; i.e., `2012-1`.
+
+> area of study
+
+A degree, major, concentration, or area of emphasis.
+
+# Sections, Sub-sections, and Requirements
+
+Each area of study is broken down into one or more sections or Requirements.
+
+The top-level of the file must follow the following structure:
 
 ```yaml
-name: Major Name
-type: major
-revision: 2015-16
-result: Requirement A & Requirement B
+name: Chemistry
+type: degree | major | concentration | emphasis
+catalog: 2015-16
 
-Requirement A: ART 102 & 103
+result: Rule
 
-Requirement B:
-    result: CSCI 121 | 125 | 320
+requirements:
+  < Sections and requirements go here. >
 ```
 
-In the most basic sense, an area of study file is a list of requirements, where each requirement is composed of the courses that you must take to complete the requirement.
+Each section consists of either sub-sections or Requirements.
 
-Each requirement must include either a `result` key, or a `message` key. (These key names are case-sensitive.) If no keys exist under a requirement, the value is parsed as a course expression, and implicitly assigned to `result`.
+Each Requirement must contain at least the `result` key, which is a Rule (rules are described in the next section.)
 
-If a `message` key is provided, the message is rendered with markdown and displayed before the result. If only a message key is provided, it is rendered and shown with a button for easy acquiescence (to the demands of the message.)
+## Sections
 
-The values of the `result` and `message` keys are interpreted as strings. In order to remain readable, we recommend splitting the contents of the string over multiple lines once it gets long. The string may be split by any number of line breaks, as long as the first non-whitespace character on the line is indented past the first character of the key.
+A Section may contain only the `message`, `result`, and `requirements` keys.
+
+If a section is nested within another section, it is known as a “sub-section”.
+
+A Section follows the following structure:
 
 ```yaml
-Requirement:
-    message:
-        You may include messages here.
-        They can be broken
-        across multiple lines.
+Name:
+  result: Rule
+  requirements:
+    <other sections / requirements>
 ```
 
-`result` values are comprised of a mixture of course expressions and requirement references.
-
-**Tip:** The system tracks which courses have been taken at the least specific level possible: department + number. The same course will not count for more than one requirement. (Section, year, semester, lab, and international qualifiers are stripped off for this comparison.)
-
-
-## Defining an Area of Study
-
-Before we dig in to what a result value is, let's think about the top level of the major file.
-
-The top level must have at least four keys: `name`, `type`, `revision`, and `result`.
-
-`name` is the name of the area of study.
-
-`type` must be one of "degree," "major," "concentration," or "emphasis." These values are not case-sensitive.
-
-`revision` is the school year during which the area was last modified; "2012-13" or "2015-16". It must include the year of the fall semester and the year of the spring semester, separated by a hyphen.
-
-`result` is just like any other result key: a combination of requirement references and course expressions. It is unique, though, in that it will likely not include any course expressions itself, instead only referencing child requirements.
-
-
-## What makes a `result`?
-
-### Course Expressions
-
-A course expression is a powerful construct. It can be as simple as "the user must have taken Computer Science 111," or as complex as "one course with both the EIN general education requirement *and* taken in a year after (or in the same year as) the lowest year from courses with the BTS-T general education requirement," or really anything in-between.
-
-The most basic course expression is a single course. A single course is specified, at the simplest level, by the department abbreviation, a space, then the course number, like `CSCI 115` or `AS/RE 150`. If you use a dual-department course, it must use the short abbreviations of the departments—AS instead of ASIAN, AR instead of ART—separated by a forward-slash (the `/` character.)
-
-**Tip:** When you have several course expressions in a row that share the same department, you can leave off subsequent department declarations; each course between two department declarations will be assigned the last seen department from that result key.
-
-
-### Boolean Expressions
-
-These course expressions may be joined into a Boolean expression by way of an "and" operator (`&`, the ampersand) and/or an "or" operator (`|`, the pipe character).
-
-The sections of a Boolean expression are evaluated as arguments to the operators. `A | B` returns true if either `A` or `B` is true, while `A & B` requires both to be true. Additionally, you can override the normal order of operations by way of parentheses.
-
-Each individual course expression is evaluated to *either* `true` or `false`. This means that a Boolean expression such as `(CSCI 125 | 121) & 251 & 252` will be fulfilled if the student has taken:
-
-- either of CS 125 or 121
-- and CS 251
-- and CS 252
-
-When computing a boolean expression, parentheses take precedence, followed by `&`, and finally `|`.
-
-
-### `of`-expressions
-
-If you have a bunch of courses that students can take, it would be much too hard to write out all possible combinations of the courses. Imagine that you have three courses—`A`, `B`, and `C`—and the student may take any two of them. A boolean expression could be `(A & B) | (B & C) | (A & C)`—that's already pretty long; imagine how long it would get with, say, a choice of 3 courses from among 10 options.
-
-That's why we support "of-expressions."
-
-`two of ( CSCI 121, 125, ART 102, 103, 104 )`—the student must take two of the courses listed in the parentheses.
-
-of-expressions may contain any of the expressions detailed in this document. `three of (CSCI 121 & 125, 241, 251 & 252)` is valid.
-
-The number at the beginning of the of-expression may be any number between `zero` and `ten`, or one of the words `all`, `any`, or `none`.
-
-`none` equates to `zero`—that is, the student must have taken zero of the courses listed to pass the expression. `any` equates to `one`, and `all` is evaluated to be the number of items within the of-expression.
-
-If you require the student to take more items that you list—say, `three of (CSCI 121, 251)`—Gobbldygook will warn you that the requirement can never be completed.
-
-
-## Child Requirements
-
-Those three types of expressions cover *most* of the needs of expressing major requirements. However, most majors will be easier to understand and specify if they are broken up into smaller chunks.
-
-We call these smaller chunks "requirements." Each requirement may include any number of child requirements. Please make liberal use of child requirements when specifying majors.
-
-Each requirement may be as simple as a `result` string. However, it may also be composed from the results of one or more child requirements.
-
-Requirement names **must** begin with either a capital letter or a number, which may be followed by any number of additional letters, numbers, underscores, and hyphens.
-
-The name of a requirement can be used as a reference to the result of that requirement.
+## Requirements
+A Requirement follows the following structure:
 
 ```yaml
-Requirement:
-    result: Child Requirement 1 | Child Requirement 2 | Mathematics
-
-    Child Requirement 1: CSCI 121
-    Child Requirement 2: CSCI 251
-
-    Mathematics:
-        result: one of (A, B, C)
-        A: MATH 111
-        B: MATH 112
-        C: MATH 113
-```
-
-If you include any child requirements, you must explicitly specify a `result` key in the host requirement. If you do not, the child requirements will never be taken into account.
-
-**Tip:** Both boolean expressions and of-expressions support requirement references anywhere they support course expressions.
-
-You can only reference an immediate child requirement.
-
-This will not work:
-
-```yaml
-Parent:
-    result: Grandchild
-    Child:
-        Grandchild: CSCI 121
-```
-
-`Parent` cannot see the children of `Child`. Instead, give `Child` a `result` of "Grandchild," and `Parent` a `result` of "Child".
-
-```yaml
-Parent:
-    result: Child
-    Child:
-        result: Grandchild
-        Grandchild: CSCI 121
-```
-
-Names are important. Phil Karlton once said that there are two hard things in computer science: cache invalidation, and naming things. With that in mind, remember that the people who will be trying to use these major specifications are not intimately familiar with the requirements of the major, and it would be quite kind of you to name things descriptively.
-
-For that reason, we support abbreviating requirement names. If you end a requirement name with a phrase in parentheses, it will be treated as an abbreviation of the full requirement name, and can be used anywhere the full name can. Additionally, you may refer to a requirement with an abbreviation by the name without the abbreviation, or by the entire string—including parentheses.
-
-Given the following requirement,
-
-```yaml
-Biblical Study (BTS-B):
-    result: REL 111
-```
-
-you may refer to it as `Biblical Study (BTS-B)`, `Biblical Study`, or `BTS-B`.
-
-
-## Advanced Expressions
-
-When you need more power, you may reach for where-expressions, modifiers, and filters. With that said: *please* try and only use these in a last resort. Most majors can be expressed with only courses, boolean- and of-expressions, and requirement references.
-
-
-### `where`-expressions
-
-A where-expression is composed of two parts: a counter and a qualifier.
-
-The counter is the same as in an of-expression; an English number between zero and ten. A qualifier is made up of one or more qualifications, surrounded by curly braces.
-
-A qualification is a `key`/`value` pair representing a property/value pair to look for. Qualifiers operate on a list of courses, filtering the list to only those courses which qualify.
-
-The key/value pair must be separated by an operator. Valid operators are:
-
-- `=`, "equals"
-- `<`, "less-than"
-- `<=`, "less-than-or-equal-to"
-- `>`, "less-than"
-- `>=`, "greater-than-or-equal-to"
-
-**Warning:** The logic of any operator other than `=`, on value types other than numbers, has not been defined nor tested.
-
-Qualifications may be separated by the boolean operator "and" (`&`) and/or the operator "or" (`|`). They may be grouped by parentheses. Normal boolean logic applies.
-
-A set of `and`-separated qualifications will return the set of courses which matched *all* of the provided qualifications. A set of `or`-separated qualifications will return the set of courses which matched *any* of the provided qualifications.
-
-An example `where`-expression is `one course where { gereqs = FYW }`. It will look for at least one course whose `gereqs` property is "FYW".
-
-**Tip:** If the property in question is a list of values, as in the case of `gereqs`, it will check to see if the list contains the specified value.
-
-The list of valid properties are:
-
-- Dates: year, semester
-- Organizational: department, number, section, lab, international
-- Internal: clbid, crsid
-- Miscellaneous: credits
-
-In extreme cases, the value may be expressed as the result of a function run over another list of courses. So far, the only area of study that requires this amount of power are the degrees.
-
-This looks like `{ year <= max(year) from courses where { gereqs = BTS-T } }`
-
-*(TODO: make clearer.)* The value, in this case, is `max`, which is the name of a function to run on the values of the specified property from the list of courses which match the nested qualification.
-
-You may also require that the resulting courses be "distinct" courses; that is, that they are not just different offerings of the same course. In other words, you can require that they be different *courses*, not just different *classes*.
-
-
-### The `filter` key
-
-Requirements may have another key, beyond just `result` and `message`. The `filter` key is an expression that filters the list of possible courses before it reaches `result`.
-
-There are two types of `filter` values: `where`-expressions, and `of`-expressions. The difference between `filter` values and plain `of`- and `where`-expressions is that a `filter` cannot require a number of matches.
-
-You can give it a `where`-expression:
-
-```yaml
-filter: only courses where { gereqs = FYW }
-```
-
-Now `result` will only know about the courses with a FYW gereq. Alternately, you can limit it to a whitelist of courses:
-
-```yaml
-filter: only courses from ( CSCI 111, 112, 123, 151, 167 )
-```
-
-Now `result` can only know about those five courses.
-
-
-### Modifiers
-
-Modifiers primarily exist to count things. They can count things from four different sources: *all* child requirements ("from children"), *some* child requirements ("from (Child, Child 2)"), the `filter` key ("from filter"), or from a new where-expression ("from courses where {}").
-
-Modifiers can count three things from a source: the number of unique courses taken (not classes), the number of credits earned, and the number of unique departments.
-
-These concepts are expressed like `<count> <thing> from <source>`. `count` may be an English number between zero and twenty.
-
-```yaml
-Child 1: CSCI 121
-Child 2: ART 102
-result: two courses from children
-```
-
-```yaml
-A: one of (CSCI 121, 130)
-B: one of (CHEM 101, 102, 103)
-C: ART 102
-result: two courses from (A, B) & C
-```
-
-```yaml
-IST: one course where { gereqs = IST }
-SED: one course where { gereqs = SED }
-result: two departments from children & two courses from children
-```
-
-```yaml
-filter: three of (ART 102, 105, 108)
-result: three credits from filter
+Name:
+  message: optional; a description of the requirement
+  contract: optional; true|false; if true, the requirement is a contract between the student and the department
+  department_audited: optional; true|false; if true, the requirement is tracked and audited by the department, not the registrar or SIS
+  result: a Rule
+  save: optional; an Array of Saved Subsets
 ```
 
 
-A special type of modifier is the "besides" modifier. It counts any course *except* for the one described by the modifier.
+# Rules
 
-As such, `result: one course besides CHEM 398 from { ... }` would pass as long as the student has at least one course that is not CHEM 398.
+Rules are the basic building blocks of areas of study.
 
+## course
 
+A `course` rule states that a course must exist in the student’s plan. If the student’s plan includes the course listed, the rule will be **fulfilled**; otherwise, it will not.
 
-### Variables
-
-You might reach a point where you don't want to type a long list of courses several times.
-
-We've got you covered! (But, please, use sparingly.)
-
-You can declare variables under a `declare` key. These variables must be named in kebab-case (all-lowercase letters and numbers, with words separated by hyphens.)
-
-You can only reference a variable from the level in which it was defined. Neither the parent level nor the child levels can see any other variables.
-
-You can reference a variable from the `filter` and `result` keys.
-
-To reference a variable, use '$' + [the name of the variable]. If the variable is named `draw`, you would refer to it by `$draw`.
-
-A variable is, from the point of view of the program, simply a find/replace operation. It will replace the variable reference with the contents of the variable.
+> Most requirements should consist primarily of `course:` rules.
 
 ```yaml
-declare:
-    math-level-3: MATH 330, 340, 344, 348, 351, 356, 364, 382, 384
+course: CSCI 121
+```
+
+Most Rules support referring to `course` rules by way of a shorthand where you leave out the `course: ` prefix.
+
+I.E., the following two rules are identical:
+
+```yaml
+count: any
+of:
+  - {course: CSCI 121}
+```
+
+```yaml
+count: any
+of:
+  - CSCI 121
+```
+
+### Extra `course` properties
+
+The verbose form of the `course` rule also supports additional keys, for certain scenarios:
+
+- `term:` year-semester; specifies an exact term in which the course must have been taken; useful for topics courses
+- `section:` letter; specifies the exact section for the course
+- `year:` number
+- `semester:` number
+- `lab:` true|false
+- `international:` true|false
+
+A more verbose form of a course, then, looks like this:
+
+```yaml
+- {course: CSCI 121, section: A, lab: true, term: 2012}
+```
+## requirement
+
+In order to refer to the result of a requirement, you must combine the key `requirement:` with the name of the requirement.
+
+If you have
+
+```yaml
+requirements:
+  Requirement Name:
+    result: <blah>
+```
+
+then you can refer to the result of that requirement as follows:
+
+```yaml
+requirement: Requirement Name
+```
+
+You can also mark a requirement as "optional", which makes it completely optional.
+
+To do so, add `optional: true` to the requirement:
+
+```yaml
+- {requirement: Requirement Name, optional: true}
+```
+## of/count
+
+```yaml
+count: Number | any | all
+of: Array<Rule>
+```
+
+The `of` key takes an array of other Rules; `count` determines how many of the rules must evaluate to `true` in order for this rule to also evaluate to `true`.
+
+### Examples
+
+```yaml
+count: all
+of:
+  - requirement: Requirement Name
+  - course: CSCI 123
+  - ASIAN 140
+```
+
+There are three valid values for the `count:` key: any positive, non-zero integer; the keyword “any”; or the keyword “all”.
+
+## both/either
+
+```yaml
+both: [Rule, Rule]
+```
+
+```yaml
+either: [Rule, Rule]
+```
+
+`both:` and `either:` are specializations of the `count:,of:` rule; you could write `both:` as `count:all,of:Rules`, and `either:` as `count:any,of:Rules`. Sometimes it’s just easier to be able to say “yeah, I want both of these things to be true”.
+
+`both:` and `either:` both require exactly two Rules as their input.
+
+### Examples
+```yaml
+either: [CSCI 121, CSCI 125]
+```
+
+```yaml
+both: [CSCI 251, {course: CSCI 252, lab: true}]
+```
+## given
+`given:` is the workhorse rule; when you need something that’s not feasible to describe statically, such as all of the FYW courses, `given:` is able to search through the student’s planned courses at audit time.
+
+There are several variants of the `given:` rule, each of which are described below.
+
+In general, a `given` rule takes a set of Inputs (`given:`), filters them through the given Filters (`where:`), selects the chosen type of Output for each item (`what:`), then executes the specific Action on said items (`do:`).
+
+#### Examples
+
+```yaml
+# “There must be 6 or more courses with the `FYW` gereq attribute in the student's plan”
+given: courses
+where: {gereqs: FYW}
+what: courses
+do: count >= 6
+```
+### Types of Input
+Each `given:` rule needs some type of input on which to execute. The `given:` key tells the rule what to execute on.
+
+#### :courses
+```yaml
+given: courses
+```
+
+The `:courses` value will provide the set of all courses from the student’s plan.
+
+#### :these courses
+```yaml
+given: these courses
+courses: [CSCI 121, ASIAN 130]
+```
+
+The `:these courses` value requires that the `courses:` key be provided.
+
+It provides the intersection between the student’s planned courses and the set of courses listed under `courses:`.
+
+#### :these requirements
+```yaml
+given: these requirements
+requirements: Array<RequirementName>
+```
+
+The `:these requirements` value requires that the `requirements:` key be provided.
+
+It provides the set of courses which were used by the named requirements.
+
+#### :areas of study
+```yaml
+given: areas of study
+```
+
+The `:areas of study` value provides the student’s areas of study – their degrees, majors, concentrations, and areas of emphasis.
+
+#### :$variable\_name
+```yaml
+given: $variable_name
+```
+
+The `:$variable_name` value provides contents of that `$variable`, as defined in the `save:` section of the current rule.
+
+See the “Saving Subsets” section for more information.
+
+### Types of Filters
+A `given:` rule may need to filter the input data before it runs the action. The `where:` key tells the rule what data should be included or excluded.
+
+The general syntax is as follows:
+
+```yaml
+where: {key: value, key2: value2}
+```
+
+where `key` may be one of “department”, “semester”, “year”, “level”, “institution”, “number”, “graded”, or “gereqs”.
+
+`value` may be a simple value, like `MATH` or `FYW` or `2018` or `true`; it may be a keyword, like `graduation-year`; or it may be an operation, like `>= 2018` or `! MATH`.
+
+#### where:{department}
+```yaml
+given: courses
+where: {department: MATH}
+```
+
+```yaml
+given: courses
+where: {department: "! MATH"}
+```
+
+`where:{department}` filters the input down to only courses which have the given department.
+
+> TODO(hawken): what happens to AS/PS? is the department AS/PS, ASIAN, PSCI, or [ASIAN, PSCI]?
+
+#### where:{semester}
+```yaml
+given: courses
+where: {semester: Interim}
+```
+
+`where:{semester}` filters the input down to only courses which were taken in the given semester.
+
+Valid values are as follows: Fall, Interim, Spring, Summer Session 1, Summer Session 2.
+
+#### where:{year}
+```yaml
+given: courses
+where: {year: graduation-year}
+```
+
+`where:{year}` filters the input down to only courses which were taken in the given year.
+
+Valid values are as follows: `graduation-year`.
+
+#### where:{level}
+```yaml
+given: courses
+where: {level: '>= 200'}
+```
+
+`where:{level}` filters the input down to only courses which were at the given level.
+
+#### where:{institution}
+```yaml
+given: courses
+where: {institution: St. Olaf College}
+```
+
+`where:{institution}` filters the input down to only courses which were taken at the given institution.
+
+#### where:{graded}
+```yaml
+given: courses
+where: {graded: true}
+```
+
+`where:{graded}` filters the input down to only courses which were taken graded (in other words, courses which were not p/n or s/u).
+
+> TODO(hawken) er… yeah? what is a graded course? double-check.
+
+#### where:{gereqs}
+```yaml
+given: courses
+where: {gereqs: FYW}
+```
+
+`where:{gereqs}` filters the input down to only courses which have the given GE Requirement as an attribute.
+
+In other words, given the filter `where: {gereqs: FYW}`, any course which has FYW in its gereqs attribute (i.e., `{gereqs: [FYW, WRI, HBS]`) will pass the filter.
+
+#### where:{custom\_attribute}
+These work similarly to the `where:{gereqs}` filter, but with some added wrinkles described in the “Custom Attributes on Courses” section.
+
+```yaml
+given: courses
+where: {math_perspective: 'A'}
+```
+
+#### operators
+Sometimes, you need to specify more than just a single value; to that end, you can specify either a less-than/greater-than operation or a boolean “or” as the value of a `where{thing}`.
+
+##### or/and
+```yaml
+given: courses
+where: {gereqs: 'MCD | MCG'}
+```
+
+##### less-than/greater-than
+```yaml
+given: courses
+where: {level: '>= 200'}
+```
+#### Limiting Results
+
+If you need to restrict a certain type of course from being counted, such as Asian Studies’ requirement that “no more than two level-I courses may count”, you can attach a “limiter” to the rule.
+
+```yaml
+given: courses
+limit:
+  - where: {level: 100}
+    at_most: 2
+do: count >= 6
+```
+
+For more information, see the “Limiters” section.
+
+> TODO(hawken): Talk about how a limiter differs from a `where:` clause.
+>
+### Types of Output
+Each `given:` rule must output some information. The `what:` key  tells the rule what to output.
+
+#### what:courses
+```yaml
+given: courses
+what: courses
+```
+
+This returns each course.
+
+#### what:credits
+```yaml
+given: courses
+what: credits
+```
+
+This returns the number of credits for each course.
+
+#### what:distinct courses
+```yaml
+given: courses
+what: distinct courses
+```
+
+> TODO(hawken): do we need “distinct” courses? I think I need to look at what makes it “distinct” again, because I have a feeling that the default type of a course might need to change, and we may need a “duplicated courses” value instead…
+
+#### what:grades
+```yaml
+given: courses
+what: grades
+```
+
+This returns the grade that the student got from each course.
+
+#### what:terms
+```yaml
+given: courses
+what: terms
+```
+
+This returns the term in which the course was taken for each course.
+
+### Types of Actions
+Each `given:` rule needs to execute some type of action. The `do:` key tells the rule what to do.
+
+#### commands
+##### count
+Given an input sequence of items, `count` becomes the number of items in the sequence.
+
+```yaml
+given: courses
+what: courses
+do: count >= 6
+```
+
+##### sum
+Given an input sequence of _numbers_, `sum` becomes the sum total of the items in the sequence.
+
+```yaml
+given: courses
+what: credits
+do: sum >= 6
+```
+
+It’s important to highlight the difference between `what:credits, do:count` and `what:credits, do:sum`; `do:count` will return the number of courses _with credits_, while `do:sum` will tally them up and return the number _of credits_.
+
+> todo(hawken): can we somehow merge `do:count` and `do:sum`? it’s never been confusing in hanson@v1…
+
+##### average
+Given an input sequence of _numbers_, `average` becomes the average of the items in the sequence.
+
+```yaml
+given: courses
+what: grades
+do: average >= 2.0
+```
+
+##### minimum
+Given an input sequence of _numbers_, `minimum` becomes the smallest item in the sequence.
+
+```yaml
+given: courses
+what: terms
+do: minimum
+```
+
+This is mostly useful to save values for a later `$variable_name` action.
+
+##### difference
+Given a two-item input sequence of numbers, `difference` becomes the difference between the two items.
+
+```yaml
+given: these courses
+courses: [DANCE 201, DANCE 212]
+what: term
+do: difference <= 1
+```
+
+##### $variable\_name
+Writing `$variable_name` substitutes the calculated value of that variable into the equation.
+
+```yaml
+do: $first_btst < $first_ein
+```
+
+#### operators
+##### less-than
+The less-than operator, `<`, returns “true” if the left side is less than the right side; otherwise, it returns “false”.
+
+It requires that both sides be numeric.
+
+##### greater-than
+The greater-than operator, `>`, returns “true” if the left side is greater than the right side; otherwise, it returns “false”.
+
+It requires that both sides be numeric.
+
+##### equal-to
+The equal-to operator, `=`, returns “true” if the left side is equal to the right side; otherwise, it returns “false”.
+
+It requires that both sides be numeric.
+
+# Saving Subsets
+
+You can "save" partial results for re-use later in the computation.
+
+> Additionally, saving subsets can make the student's experience nicer, because it can display intermediate results of the computations.
+
+A `save:` block may contain one or more `-save` rules.
+
+A `-save` rule is similar to a `given:` rule, with a few differences:
+
+- it requires both `name:` and `label:` keys
+- the `do:` key is optional
+- the `name:` value must begin with a `$` symbol
+- the `label` value must be wrapped in double-quotes
+
+```yaml
+save:
+  - given: courses
+    where: {department: MATH}
+    what: courses
+    name: $math_courses
+    label: "The MATH Courses"
+```
+
+You can use any `-save` rule in any `given:` block at the same level, or it can serve as input to a subsequent `-save` rule.
+
+# Examples
+
+Save the AMCON or MATH courses, and assert that there are at least six of them.
+
+```yaml
+save:
+  - given: courses
+    where: {department: 'MATH | AMCON'}
+    what: courses
+    name: $amcon_or_math
+    label: "a subset"
 result:
-    one of ($math-level-3, MATH 210)
+  given: $amcon_or_math
+  what: courses
+  do: count >= 6
 ```
 
-is equivalent to
+Assert that the student took their first WRI before their first BTS-T.
 
 ```yaml
+save:
+  - given: courses
+    where: {gereqs: WRI}
+    what: terms
+    do: minimum
+    name: $first_wri
+    label: "the first WRI"
+  - given: courses
+    where: {gereqs: BTS-T}
+    what: terms
+    do: minimum
+    name: $first_btst
+    label: "the first BTS-T"
 result:
-    one of (MATH 330, 340, 344, 348, 351, 356, 364, 382, 384, MATH 210)
+  do: $first_wri < $first_btst
+```
+# Limiters
+
+Sometimes, a major needs to say "You may only count at most 2 non-MATH courses towards this major".
+
+To do this, you can impose a "global limit", where the algorithm will stop using courses that match the given filters after the limit has been hit.
+
+For instance, this block prevents more than two non-MATH courses from being selected to fulfill any requirement within the major.
+
+```yaml
+limiters:
+  - where: {department: '! MATH'}
+    at_most: 2
 ```
 
+You may also place limiters within a `given` rule, as described in the “Limiting Results” section.
 
-Need to Document:
+This rule prevents more than two level-I courses from being selected as part of the 6 courses needed to fulfill the requirement.
 
-the `student selected` key on requirements. it shows a message, and forces the student to specify what courses they need to take.
+```yaml
+given: courses
+limit:
+  - where: {level: 100}
+    at_most: 2
+do: count >= 6
+```
 
+A limiter can currently only apply an `at_most` limit; other modes may be added in the future, if needed.
 
-## Formatting
+# Custom Attributes on Courses
 
-Congratulations for having read this far! I think that's all of the concepts. So. With the hard-and-fast rules out of the way, let's think about some subjective ones for a minute: the formatting of the major specification file.
+Sometimes, it's easier to specify courses by `where: {attribute: value}` as opposed to listing them individually in a the requirement.
 
-- Please indent each level by four spaces
-- Try to limit the file to ~80 characters wide
-- When of-expressions have, like, a bunch of options, put:
-    - line-breaks before each change in department
-    - a maximum of five courses on each line
-    - subsequent lines of courses in the same department should be indented one space past the department name
-    - a line break after the opening parenthesis
-    - the closing parenthesis on the same line as the last course
+To attach an attribute for courses within a major, you declare them at the top-level of the file:
+
+```yaml
+attributes:
+  definitions:
+    math_perspectives:
+      type: set
+      multiple values can be used: false
+  courses:
+    MATH 242: {math_perspectives: [M]}
+    MATH 244: {math_perspectives: [C]}
+    MATH 252: {math_perspectives: [A]}
+    MATH 262: {math_perspectives: [C, D, M]}
+    MATH 230: {math_perspectives: [C, M]}
+    MATH 232: {math_perspectives: [D]}
+```
+
+That is, you declare a top-level dictionary called "attributes"; that contains two other dictionaries, named "definitions" and "courses".
+
+The "definitions" dictionary is a set of key:value pairs, where each key defines the name of an attribute, and each value follows one of the following definitions.
+
+## Attribute Types
+
+### Set attributes
+
+```yaml
+type: set
+multiple values can be used: true | false
+```
+
+The key `multiple values can be used` controls whether or not a course can count multiple times for its different attribute values.
+
+If it's true, the attribute behaves like `gereqs`; if it has three values, the course can count for three different requirements, one per value, as well as one requirement which refers to the requirement directly.
+
+If it's false, then no matter how many values there are, the course can count for only one requirement, as well as one other requirement which refers to the requirement directly.
+
+### Other Attribute Types
+
+There are currently no other allowed types of attribute.
+
+## Example: Mathematics Perspectives
+
+Sometimes, you need to use courses across two dimensions.
+
+For example, the Mathematics major requires that you have courses in the "Transitions" requirement; then, it also has some courses that are "perspectives", and a course can be used both for a single perspective, and also for another requirement.
+
+IE, MATH 220 is in the "A" perspective, and it's also in Transitions.
+
+Normally, if you list the same course explicitly in two requirements, it can only be used by the first requirement.
+
+To get around that, and allow a course to be used in two spots, you can specify custom attributes for a set of courses. Courses that are looked up by attribute are fetched in a separate pass, so they can count for multiple requirements.
+
+You can mentally model these "custom attributes" like the normal gereqs attribute.  (Now, with that said, MATH's requirement actually differs from gereqs in one important way; a course can be counted for multiple GE requirements, but it may only count for one MATH perspective.)
+
+# Messages
+
+You can attach a `message:` to a requirement, section, or sub-section, in order to show a message to the student.
+
+```yaml
+requirements:
+  Core:
+    message: >
+      A thing, with some description.
+```
+# Contracts
+
+Certain requirements cannot be statically codified because they are defined individually per-student.
+
+Currently, contracts are entered into by a student and a department, and they are stored and verified by the department.
+
+To mark a requirement as a contract, you just add `contract: true` to the requirement.
+
+```yaml
+requirements:
+  Core:
+    message: A contract thing.
+    contract: true
+```
+# Department Auditing
+
+Certain requirements are tracked by the department, instead of the registrar.
+
+To define a department-audited requirement, add the `department_audited` key to the requirement.
+
+```yaml
+requirements:
+  Core:
+    message: a message about the requirement
+    department_audited: true
+```
+# Common Requirements among All Majors
+
+TODO(hawken)

@@ -1,0 +1,65 @@
+name: Computer Science
+type: major
+catalog: 2015-16
+
+result:
+  both:
+    - count: all
+      of:
+        - requirement: Foundation
+        - requirement: Core
+        - requirement: Electives
+        - requirement: Capstone
+
+
+requirements:
+  Foundation:
+    result:
+      count: 3
+      of:
+        - either: [CSCI 121, CSCI 125]
+        - CSCI 241
+        - both: [CSCI 251, CSCI 252]
+        - count: any
+          of: [MATH 232, MATH 252, MATH 244]
+
+  Core:
+    result:
+      count: all
+      of:
+        - CS 253
+        - CS 263
+        - requirement: Languages
+        - requirement: Systems
+
+    requirements:
+      Languages:
+        result:
+          count: any
+          of: [CSCI 276, CSCI 316, CSCI 333]
+
+      Systems:
+        result:
+          count: any
+          of:
+            - CSCI 273
+            - CSCI 284
+            - {course: CSCI 300, term: 2014-1}
+
+  Electives:
+    result:
+      count: 2
+      of:
+        - CSCI 333
+        - CSCI 276
+        - CSCI 316
+        - CSCI 284
+        - CSCI 273
+        - CSCI 300
+        - CSCI 315
+        - CSCI 350
+
+  Capstone:
+    result:
+      course: CSCI 390
+

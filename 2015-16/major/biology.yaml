@@ -1,0 +1,90 @@
+name: Biology
+type: major
+catalog: 2015-16
+
+result:
+  - count: all
+    of:
+      - requirement: Foundation
+      - requirement: Core
+      - requirement: Level III
+      - requirement: Electives
+      - requirement: Chemistry
+
+limiters:
+  - where: {level: 100}
+    at_most: 2
+
+requirements:
+  Foundation:
+    result:
+      course: BIO 150
+
+  Core:
+    result:
+      count: all
+      of:
+        - requirement: Genetics
+        - requirement: Cell Biology
+        - requirement: Comparative Organismal Biology
+        - requirement: Ecology
+
+    requirements:
+      Genetics:
+        result:
+          course: BIO 233
+      Cell Biology:
+        result:
+          count: any
+          of: [BIO 227, CH/BI 227, CH/BI 127]
+      Comparative Organismal Biology:
+        result:
+          count: any
+          of: [BIO 242, BIO 247, BIO 248, BIO 251, BIO 252, BIO 266, BIO 275]
+      Ecology:
+        result:
+          course: BIO 261
+
+
+  Level III:
+    result:
+      count: 1
+      of: [
+        BIO 315, BIO 341, BIO 348, BI/ES 350, BIO 363, BIO 364,
+        BIO 371, BIO 372, BIO 382, BIO 383, BIO 385, BIO 386, BIO 391,
+      ]
+
+  Electives:
+    result:
+      count: 2
+      of: [
+        BIO 298, BIO 396, BIO 398,
+        CHEM 379, NEURO 239, PSYCH 238, ENVST 281,
+        BIO 121, BIO 123, BIO 124, BIO 127, BIO 128, BIO 130, BIO 131,
+        BIO 135, BIO 143, BIO 150,
+        CH/BI 125, CH/BI 126, CH/BI 227,
+        BI/ES 226, BI/ES 228, BI/ES 286,
+        BIO 227, BIO 231, BIO 233, BIO 242, BIO 243, BIO 247, BIO 248, BIO 249,
+        BIO 251, BIO 252, BIO 261, BIO 266, BIO 275, BIO 282, BIO 284, BIO 287,
+        BIO 288, BIO 292, BIO 315, BIO 341, BIO 348, BI/ES 350, BIO 363, BIO 364,
+        BIO 371, BIO 372, BIO 382, BIO 383, BIO 385, BIO 386, BIO 391,
+      ]
+
+  Chemistry:
+    result:
+      count: any
+      of:
+        - requirement: Intro A
+        - requirement: Intro B
+        - requirement: CH/BI
+
+    requirements:
+      Intro A:
+        count: all
+        of: [CHEM 121, CHEM 123, CHEM 126]
+      Intro B:
+        count: all
+        of: [CHEM 125, CHEM 126]
+      CH/BI:
+        count: all
+        of: [CH/BI 125, CH/BI 126]
