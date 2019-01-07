@@ -468,6 +468,14 @@ what: terms
 
 This returns the term in which the course was taken for each course.
 
+#### what:areas of study
+```yaml
+given: areas of study
+what: areas of study
+```
+
+This returns each area of study.
+
 ### Types of Actions
 Each `given:` rule needs to execute some type of action. The `do:` key tells the rule what to do.
 

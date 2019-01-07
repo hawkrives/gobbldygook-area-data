@@ -70,6 +70,7 @@ requirements:
         result:
           given: areas of study
           where: {type: major}
+          what: areas of study
           do: count >= 1
 
 

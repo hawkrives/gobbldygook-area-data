@@ -95,6 +95,7 @@ requirements:
           - PHYS 232
           - given: areas of study
             where: {type: major, name: Physics}
+            what: areas of study
             do: count = 1
 
 

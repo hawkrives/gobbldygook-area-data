@@ -130,6 +130,7 @@ requirements:
             - course: CHEM 371
             - given: areas of study
               where: {type: major, name: Chemistry}
+              what: areas of study
               do: count = 1
       Economics:
         result:
@@ -137,6 +138,7 @@ requirements:
             - course: ECON 385
             - given: areas of study
               where: {type: major, name: Economics}
+              what: areas of study
               do: count = 1
       Physics:
         result:
@@ -144,6 +146,7 @@ requirements:
             - course: PHYS 375
             - given: areas of study
               where: {type: major, name: Physics}
+              what: areas of study
               do: count = 1
 
 
