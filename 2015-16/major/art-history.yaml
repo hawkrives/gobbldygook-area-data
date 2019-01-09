@@ -83,7 +83,7 @@ requirements:
             PHIL 243,
           ]
           what: courses
-          do: count => 1
+          do: count >= 1
 
   Lasting Legacy:
     department_audited: true
