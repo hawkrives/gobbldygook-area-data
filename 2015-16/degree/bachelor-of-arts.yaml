@@ -359,9 +359,9 @@ requirements:
               - given: save
                 save: $ein_courses
                 what: terms
-                do: minimum
-                name: $first_ein
-                label: "first EIN course"
+                do: maximum
+                name: $last_ein
+                label: "last EIN course"
 
             result:
               count: all
@@ -371,4 +371,4 @@ requirements:
                   what: courses
                   do: count >= 1
 
-                - do: $first_btst < $first_ein
+                - do: $first_btst < $last_ein
