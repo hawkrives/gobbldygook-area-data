@@ -58,14 +58,16 @@ requirements:
         name: $asian_courses
         label: "Asian Studies Courses"
 
-      - given: $asian_courses
+      - given: save
+        save: $asian_courses
         limit:
           - where: {level: 100}
             at_most: 2
         name: $limited_asian_courses
         label: "Limited Asian Studies Courses"
 
-      - given: $asian_courses
+      - given: save
+        save: $asian_courses
         where: {level: >= 200}
         name: $upper_level
         label: "Upper-Level Asian Studies Courses"
@@ -73,11 +75,13 @@ requirements:
     result:
       count: all
       of:
-        - given: $limited_asian_courses
+        - given: save
+          save: $limited_asian_courses
           what: courses
           do: count >= 6
 
-        - given: $upper_level
+        - given: save
+          save: $upper_level
           where: {institution: St. Olaf College}
           what: courses
           do: count >= 2

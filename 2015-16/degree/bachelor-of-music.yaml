@@ -43,8 +43,8 @@ requirements:
             name: $interim_courses
         result:
           and:
-            - {given: $interim_courses, what: credits, do: sum >= 3}
-            - {given: $interim_courses, what: courses, do: count >= 3}
+            - {given: save, save: $interim_courses, what: credits, do: sum >= 3}
+            - {given: save, save: $interim_courses, what: courses, do: count >= 3}
 
       Grade Point Average:
         result:
@@ -179,18 +179,21 @@ requirements:
               count: all
               of:
                 - label: 'Two Courses'
-                  given: $religion_courses
+                  given: save
+                  save: $religion_courses
                   what: courses
                   do: count >= 2
 
                 - label: 'BTS-B'
-                  given: $religion_courses
+                  given: save
+                  save: $religion_courses
                   where: {gereqs: 'BTS-B'}
                   what: courses
                   do: count >= 1
 
                 - label: 'BTS-T'
-                  given: $religion_courses
+                  given: save
+                  save: $religion_courses
                   where: {gereqs: 'BTS-T'}
                   what: courses
                   do: count >= 1

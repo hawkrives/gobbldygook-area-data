@@ -294,12 +294,15 @@ given: areas of study
 
 The `:areas of study` value provides the student’s areas of study – their degrees, majors, concentrations, and areas of emphasis.
 
-#### :$variable\_name
+#### :save
 ```yaml
-given: $variable_name
+given: save
+save: $variable_name
 ```
 
-The `:$variable_name` value provides contents of that `$variable`, as defined in the `save:` section of the current rule.
+The `:save` value requires that the `save:` key be provided.
+
+The `save: $variable_name` value provides contents of that `$variable`, as defined in the `save:` section of the current rule.
 
 See the “Saving Subsets” section for more information.
 
@@ -593,7 +596,8 @@ save:
     name: $amcon_or_math
     label: "a subset"
 result:
-  given: $amcon_or_math
+  given: save
+  save: $amcon_or_math
   what: courses
   do: count >= 6
 ```

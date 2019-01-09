@@ -91,7 +91,8 @@ requirements:
         name: $dance_seminars
         label: "Senior Dance Seminars"
     result:
-      given: $dance_seminars
+      given: save
+      save: $dance_seminars
       what: course
       do: count >= 1
 

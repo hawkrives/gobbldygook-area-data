@@ -168,11 +168,13 @@ requirements:
 
       result:
         both:
-          - given: $level_3
+          - given: save
+            save: $level_3
             what: courses
             do: count >= 2
 
-          - given: $level_3
+          - given: save
+            save: $level_3
             where: {department: MATH}
             what: courses
             do: count >= 1
