@@ -57,21 +57,21 @@ requirements:
           given: these courses
           courses: [ART 259, ART 260, ART 262, ART 267, ASIAN 310]
           what: courses
-          do: count => 2
+          do: count >= 2
 
       European and American art:
         result:
           given: these courses
           courses: [ART 269, ASIAN 270]
           what: courses
-          do: count => 2
+          do: count >= 2
 
       art created before 1700 CE:
         result:
           given: these courses
           courses: [ART 253, ART 255, ART 263, ART 271, ART 273]
           what: courses
-          do: count => 1
+          do: count >= 1
 
       art created after 1700 CE:
         result:
