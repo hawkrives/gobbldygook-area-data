@@ -83,20 +83,22 @@ requirements:
     requirements:
       Non-Majors:
         message: If you are not a Physics major…
-        count: all
-        of: [PHYS 142, PHYS 124]
+        result:
+          count: all
+          of: [PHYS 142, PHYS 124]
 
       Majors:
         message: If you _are_ a Physics major…
-        count: all
-        of:
-          - PHYS 130
-          - PHYS 131
-          - PHYS 232
-          - given: areas of study
-            where: {type: major, name: Physics}
-            what: areas of study
-            do: count = 1
+        result:
+          count: all
+          of:
+            - PHYS 130
+            - PHYS 131
+            - PHYS 232
+            - given: areas of study
+              where: {type: major, name: Physics}
+              what: areas of study
+              do: count = 1
 
 
   Calculus:
