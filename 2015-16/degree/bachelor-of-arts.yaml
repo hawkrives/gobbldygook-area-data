@@ -41,8 +41,9 @@ requirements:
             where: {semester: Interim}
             what: courses
             name: $interim_courses
+            label: Interim Courses
         result:
-          and:
+          both:
             - {given: save, save: $interim_courses, what: credits, do: sum >= 3}
             - {given: save, save: $interim_courses, what: courses, do: count >= 3}
 
@@ -163,6 +164,7 @@ requirements:
                 where: {gereqs: HWC}
                 what: courses
                 name: $hwc_courses
+                label: Courses with an HWC
             result:
               both:
                 - given: save
@@ -181,6 +183,7 @@ requirements:
                 where: {gereqs: MCD | MCG}
                 what: courses
                 name: $multicultural_courses
+                label: Courses with an MCD or MCG
 
             result:
               count: all
@@ -195,15 +198,13 @@ requirements:
                   what: departments
                   do: count >= 2
 
-                - label: 'MCD'
-                  given: save
+                - given: save
                   save: $multicultural_courses
                   where: {gereqs: MCD}
                   what: courses
                   do: count >= 1
 
-                - label: 'MCG'
-                  given: save
+                - given: save
                   save: $multicultural_courses
                   where: {gereqs: MCG}
                   what: courses
@@ -215,6 +216,7 @@ requirements:
                 where: {gereqs: ALS-A | ALS-L}
                 what: courses
                 name: $art_courses
+                label: Courses with an ALS-A or ALS-L
 
             result:
               count: all
@@ -245,6 +247,7 @@ requirements:
                 where: {gereqs: BTS-B | BTS-T}
                 what: courses
                 name: $religion_courses
+                label: Courses with a BTS-B or BTS-T
 
             result:
               count: all
@@ -275,6 +278,7 @@ requirements:
                 where: {gereqs: SED | IST}
                 what: courses
                 name: $science_courses
+                label: Courses with an SED or IST
 
             result:
               count: all
@@ -309,6 +313,7 @@ requirements:
                 where: {gereqs: HBS}
                 what: courses
                 name: $human_courses
+                label: Courses with an HBS
 
             result:
               count: all
