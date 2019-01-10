@@ -56,7 +56,7 @@ requirements:
       Course Level:
         result:
           given: courses
-          where: {level: >= 200}
+          where: {level: '>= 200'}
           what: credits
           do: sum >= 18
 
