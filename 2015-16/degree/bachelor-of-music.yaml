@@ -41,8 +41,9 @@ requirements:
             where: {semester: Interim}
             what: courses
             name: $interim_courses
+            label: Interim Courses
         result:
-          and:
+          both:
             - {given: save, save: $interim_courses, what: credits, do: sum >= 3}
             - {given: save, save: $interim_courses, what: courses, do: count >= 3}
 
@@ -174,6 +175,7 @@ requirements:
                 where: {gereqs: BTS-B | BTS-T}
                 what: courses
                 name: $religion_courses
+                label: Courses with a BTS-B or BTS-T
 
             result:
               count: all
@@ -184,15 +186,13 @@ requirements:
                   what: courses
                   do: count >= 2
 
-                - label: 'BTS-B'
-                  given: save
+                - given: save
                   save: $religion_courses
                   where: {gereqs: 'BTS-B'}
                   what: courses
                   do: count >= 1
 
-                - label: 'BTS-T'
-                  given: save
+                - given: save
                   save: $religion_courses
                   where: {gereqs: 'BTS-T'}
                   what: courses
