@@ -5,8 +5,8 @@ catalog: 2015-16
 result:
   count: all
   of:
-    - Degree Requirements
-    - General Education
+    - requirement: Degree Requirements
+    - requirement: General Education
 
 requirements:
   Degree Requirements:
@@ -31,21 +31,21 @@ requirements:
       Residency:
         result:
           given: courses
-          where: {institution: St. Olaf College}
+          where: { institution: St. Olaf College }
           what: credits
           do: sum >= 17
 
       Interim:
         save:
           - given: courses
-            where: {semester: Interim}
+            where: { semester: Interim }
             what: courses
             name: $interim_courses
             label: Interim Courses
         result:
           both:
-            - {given: save, save: $interim_courses, what: credits, do: sum >= 3}
-            - {given: save, save: $interim_courses, what: courses, do: count >= 3}
+            - { given: save, save: $interim_courses, what: credits, do: sum >= 3 }
+            - { given: save, save: $interim_courses, what: courses, do: count >= 3 }
 
       Grade Point Average:
         result:
@@ -56,21 +56,21 @@ requirements:
       Course Level:
         result:
           given: courses
-          where: {level: >= 200}
+          where: { level: ">= 200" }
           what: credits
           do: sum >= 18
 
       Graded Courses:
         result:
           given: courses
-          where: {graded: yes}
+          where: { graded: true }
           what: credits
           do: sum >= 24
 
       Major:
         result:
           given: areas of study
-          where: {type: major}
+          where: { type: major }
           what: areas of study
           do: count >= 1
 
@@ -94,54 +94,55 @@ requirements:
             - Abstract and Quantitative Reasoning
             - Studies in Physical Movement
 
-        First-Year Writing:
-          result:
-            given: courses
-            where: {gereqs: FYW}
-            what: courses
-            do: count >= 1
+        requirements:
+          First-Year Writing:
+            result:
+              given: courses
+              where: { gereqs: FYW }
+              what: courses
+              do: count >= 1
 
-        Writing in Context:
-          result:
-            given: courses
-            where: {gereqs: WRI}
-            what: courses
-            do: count >= 4
+          Writing in Context:
+            result:
+              given: courses
+              where: { gereqs: WRI }
+              what: courses
+              do: count >= 4
 
-        Foreign Language:
-          result:
-            count: any
-            of:
-              - CHIN 112
-              - FREN 112
-              - GERM 112
-              - GREEK 112
-              - JAPAN 112
-              - LATIN 112
-              - NORW 112
-              - RUSSL 112
-              - SPAN 112
+          Foreign Language:
+            result:
+              count: any
+              of:
+                - CHIN 112
+                - FREN 112
+                - GERM 112
+                - GREEK 112
+                - JAPAN 112
+                - LATIN 112
+                - NORW 112
+                - RUSSL 112
+                - SPAN 112
 
-        Oral Communication:
-          result:
-            given: courses
-            where: {gereqs: ORC}
-            what: courses
-            do: count >= 1
+          Oral Communication:
+            result:
+              given: courses
+              where: { gereqs: ORC }
+              what: courses
+              do: count >= 1
 
-        Reasoning:
-          result:
-            given: courses
-            where: {gereqs: AQR | SED | IST}
-            what: courses
-            do: count >= 1
+          Reasoning:
+            result:
+              given: courses
+              where: { gereqs: AQR | SED | IST }
+              what: courses
+              do: count >= 1
 
-        Studies in Physical Movement:
-          result:
-            given: courses
-            where: {gereqs: SPM}
-            what: distinct courses
-            do: count >= 2
+          Studies in Physical Movement:
+            result:
+              given: courses
+              where: { gereqs: SPM }
+              what: distinct courses
+              do: count >= 2
 
       Core:
         result:
@@ -158,21 +159,21 @@ requirements:
           Historical Studies in Western Culture or Literary Studies:
             result:
               given: courses
-              where: {gereqs: HWC | ALS-L}
+              where: { gereqs: HWC | ALS-L }
               what: courses
               do: count >= 1
 
           Multicultural Studies:
             result:
               given: courses
-              where: {gereqs: MCD | MCG}
+              where: { gereqs: MCD | MCG }
               what: courses
               do: count >= 1
 
           Biblical and Theological Studies:
             save:
               - given: courses
-                where: {gereqs: BTS-B | BTS-T}
+                where: { gereqs: BTS-B | BTS-T }
                 what: courses
                 name: $religion_courses
                 label: Courses with a BTS-B or BTS-T
@@ -180,7 +181,7 @@ requirements:
             result:
               count: all
               of:
-                - label: 'Two Courses'
+                - label: "Two Courses"
                   given: save
                   save: $religion_courses
                   what: courses
@@ -188,20 +189,20 @@ requirements:
 
                 - given: save
                   save: $religion_courses
-                  where: {gereqs: 'BTS-B'}
+                  where: { gereqs: "BTS-B" }
                   what: courses
                   do: count >= 1
 
                 - given: save
                   save: $religion_courses
-                  where: {gereqs: 'BTS-T'}
+                  where: { gereqs: "BTS-T" }
                   what: courses
                   do: count >= 1
 
           Studies in Human Behavior and Society:
             result:
               given: courses
-              where: {gereqs: HBS}
+              where: { gereqs: HBS }
               what: courses
               do: count >= 1
 
@@ -215,6 +216,6 @@ requirements:
           Ethical Issues and Normative Perspectives:
             result:
               given: courses
-              where: {gereqs: EIN}
+              where: { gereqs: EIN }
               what: courses
               do: count >= 1

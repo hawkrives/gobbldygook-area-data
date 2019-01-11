@@ -5,8 +5,8 @@ catalog: 2015-16
 result:
   count: all
   of:
-    - Degree Requirements
-    - General Education
+    - requirement: Degree Requirements
+    - requirement: General Education
 
 requirements:
   Degree Requirements:
@@ -31,21 +31,21 @@ requirements:
       Residency:
         result:
           given: courses
-          where: {institution: St. Olaf College}
+          where: { institution: St. Olaf College }
           what: credits
           do: sum >= 17
 
       Interim:
         save:
           - given: courses
-            where: {semester: Interim}
+            where: { semester: Interim }
             what: courses
             name: $interim_courses
             label: Interim Courses
         result:
           both:
-            - {given: save, save: $interim_courses, what: credits, do: sum >= 3}
-            - {given: save, save: $interim_courses, what: courses, do: count >= 3}
+            - { given: save, save: $interim_courses, what: credits, do: sum >= 3 }
+            - { given: save, save: $interim_courses, what: courses, do: count >= 3 }
 
       Grade Point Average:
         result:
@@ -56,21 +56,21 @@ requirements:
       Course Level:
         result:
           given: courses
-          where: {level: '>= 200'}
+          where: { level: '>= 200' }
           what: credits
           do: sum >= 18
 
       Graded Courses:
         result:
           given: courses
-          where: {graded: yes}
+          where: { graded: true }
           what: credits
           do: sum >= 24
 
       Major:
         result:
           given: areas of study
-          where: {type: major}
+          where: { type: major }
           what: areas of study
           do: count >= 1
 
@@ -95,54 +95,55 @@ requirements:
             - Abstract and Quantitative Reasoning
             - Studies in Physical Movement
 
-        First-Year Writing:
-          result:
-            given: courses
-            where: {gereqs: FYW}
-            what: courses
-            do: count >= 1
+        requirements:
+          First-Year Writing:
+            result:
+              given: courses
+              where: { gereqs: FYW }
+              what: courses
+              do: count >= 1
 
-        Writing in Context:
-          result:
-            given: courses
-            where: {gereqs: WRI}
-            what: courses
-            do: count >= 4
+          Writing in Context:
+            result:
+              given: courses
+              where: { gereqs: WRI }
+              what: courses
+              do: count >= 4
 
-        Foreign Language:
-          result:
-            count: any
-            of:
-              - {given: courses, where: {gereqs: FOL-C}, what: courses, do: count >= 1}
-              - {given: courses, where: {gereqs: FOL-F}, what: courses, do: count >= 1}
-              - {given: courses, where: {gereqs: FOL-G}, what: courses, do: count >= 1}
-              - {given: courses, where: {gereqs: FOL-K}, what: courses, do: count >= 1}
-              - {given: courses, where: {gereqs: FOL-J}, what: courses, do: count >= 1}
-              - {given: courses, where: {gereqs: FOL-L}, what: courses, do: count >= 1}
-              - {given: courses, where: {gereqs: FOL-N}, what: courses, do: count >= 1}
-              - {given: courses, where: {gereqs: FOL-R}, what: courses, do: count >= 1}
-              - {given: courses, where: {gereqs: FOL-S}, what: courses, do: count >= 1}
+          Foreign Language:
+            result:
+              count: any
+              of:
+                - { given: courses, where: { gereqs: FOL-C }, what: courses, do: count >= 1 }
+                - { given: courses, where: { gereqs: FOL-F }, what: courses, do: count >= 1 }
+                - { given: courses, where: { gereqs: FOL-G }, what: courses, do: count >= 1 }
+                - { given: courses, where: { gereqs: FOL-K }, what: courses, do: count >= 1 }
+                - { given: courses, where: { gereqs: FOL-J }, what: courses, do: count >= 1 }
+                - { given: courses, where: { gereqs: FOL-L }, what: courses, do: count >= 1 }
+                - { given: courses, where: { gereqs: FOL-N }, what: courses, do: count >= 1 }
+                - { given: courses, where: { gereqs: FOL-R }, what: courses, do: count >= 1 }
+                - { given: courses, where: { gereqs: FOL-S }, what: courses, do: count >= 1 }
 
-        Oral Communication:
-          result:
-            given: courses
-            where: {gereqs: ORC}
-            what: courses
-            do: count >= 1
+          Oral Communication:
+            result:
+              given: courses
+              where: { gereqs: ORC }
+              what: courses
+              do: count >= 1
 
-        Abstract and Quantitative Reasoning:
-          result:
-            given: courses
-            where: {gereqs: AQR}
-            what: courses
-            do: count >= 1
+          Abstract and Quantitative Reasoning:
+            result:
+              given: courses
+              where: { gereqs: AQR }
+              what: courses
+              do: count >= 1
 
-        Studies in Physical Movement:
-          result:
-            given: courses
-            where: {gereqs: SPM}
-            what: distinct courses
-            do: count >= 2
+          Studies in Physical Movement:
+            result:
+              given: courses
+              where: { gereqs: SPM }
+              what: distinct courses
+              do: count >= 2
 
       Core:
         result:
@@ -161,7 +162,7 @@ requirements:
               One course must be taught by a St. Olaf professor.
             save:
               - given: courses
-                where: {gereqs: HWC}
+                where: { gereqs: HWC }
                 what: courses
                 name: $hwc_courses
                 label: Courses with an HWC
@@ -173,14 +174,14 @@ requirements:
                   do: count >= 2
                 - given: save
                   save: $hwc_courses
-                  where: {institution: St. Olaf College}
+                  where: { institution: St. Olaf College }
                   what: courses
                   do: count >= 1
 
           Multicultural Studies:
             save:
               - given: courses
-                where: {gereqs: MCD | MCG}
+                where: { gereqs: MCD | MCG }
                 what: courses
                 name: $multicultural_courses
                 label: Courses with an MCD or MCG
@@ -200,20 +201,20 @@ requirements:
 
                 - given: save
                   save: $multicultural_courses
-                  where: {gereqs: MCD}
+                  where: { gereqs: MCD }
                   what: courses
                   do: count >= 1
 
                 - given: save
                   save: $multicultural_courses
-                  where: {gereqs: MCG}
+                  where: { gereqs: MCG }
                   what: courses
                   do: count >= 1
 
           Artistic and Literary Studies:
             save:
               - given: courses
-                where: {gereqs: ALS-A | ALS-L}
+                where: { gereqs: ALS-A | ALS-L }
                 what: courses
                 name: $art_courses
                 label: Courses with an ALS-A or ALS-L
@@ -230,21 +231,21 @@ requirements:
                 - label: 'ALS-A'
                   given: save
                   save: $art_courses
-                  where: {gereqs: ALS-A}
+                  where: { gereqs: ALS-A }
                   what: courses
                   do: count >= 1
 
                 - label: 'ALS-L'
                   given: save
                   save: $art_courses
-                  where: {gereqs: ALS-L}
+                  where: { gereqs: ALS-L }
                   what: courses
                   do: count >= 1
 
           Biblical and Theological Studies:
             save:
               - given: courses
-                where: {gereqs: BTS-B | BTS-T}
+                where: { gereqs: BTS-B | BTS-T }
                 what: courses
                 name: $religion_courses
                 label: Courses with a BTS-B or BTS-T
@@ -261,21 +262,21 @@ requirements:
                 - label: 'BTS-B'
                   given: save
                   save: $religion_courses
-                  where: {gereqs: 'BTS-B'}
+                  where: { gereqs: 'BTS-B' }
                   what: courses
                   do: count >= 1
 
                 - label: 'BTS-T'
                   given: save
                   save: $religion_courses
-                  where: {gereqs: 'BTS-T'}
+                  where: { gereqs: 'BTS-T' }
                   what: courses
                   do: count >= 1
 
           Studies in Natural Science:
             save:
               - given: courses
-                where: {gereqs: SED | IST}
+                where: { gereqs: SED | IST }
                 what: courses
                 name: $science_courses
                 label: Courses with an SED or IST
@@ -296,21 +297,21 @@ requirements:
                 - label: 'SED'
                   given: save
                   save: $science_courses
-                  where: {gereqs: SED}
+                  where: { gereqs: SED }
                   what: courses
                   do: count >= 1
 
                 - label: 'IST'
                   given: save
                   save: $science_courses
-                  where: {gereqs: IST}
+                  where: { gereqs: IST }
                   what: courses
                   do: count >= 1
 
           Studies in Human Behavior and Society:
             save:
               - given: courses
-                where: {gereqs: HBS}
+                where: { gereqs: HBS }
                 what: courses
                 name: $human_courses
                 label: Courses with an HBS
@@ -330,7 +331,7 @@ requirements:
 
                 - given: save
                   save: $human_courses
-                  where: {institution: St. Olaf College}
+                  where: { institution: St. Olaf College }
                   what: courses
                   do: count >= 1
 
@@ -349,14 +350,14 @@ requirements:
 
             save:
               - given: courses
-                where: {gereqs: BTS-T}
+                where: { gereqs: BTS-T }
                 what: terms
                 do: minimum
                 name: $first_btst
                 label: "first BTS-T course"
 
               - given: courses
-                where: {gereqs: EIN}
+                where: { gereqs: EIN }
                 what: courses
                 name: $ein_courses
                 label: "EIN courses"
