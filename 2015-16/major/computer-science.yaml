@@ -4,13 +4,12 @@ degree: Bachelor of Arts
 catalog: 2015-16
 
 result:
-  both:
-    - count: all
-      of:
-        - requirement: Foundation
-        - requirement: Core
-        - requirement: Electives
-        - requirement: Capstone
+  count: all
+  of:
+    - requirement: Foundation
+    - requirement: Core
+    - requirement: Electives
+    - requirement: Capstone
 
 
 requirements:
