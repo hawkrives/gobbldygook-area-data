@@ -90,7 +90,7 @@ requirements:
     result:
       given: save
       save: "Senior Dance Seminars"
-      what: course
+      what: courses
       do: count >= 1
 
 
