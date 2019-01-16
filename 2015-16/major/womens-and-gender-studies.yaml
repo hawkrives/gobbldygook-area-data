@@ -48,7 +48,7 @@ requirements:
 
         - given: save
           save: "Taken Elective Courses"
-          where: {level: 300}
+          where: {level: '300'}
           what: courses
           do: count >= 1
 
