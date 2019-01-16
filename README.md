@@ -422,7 +422,7 @@ If you need to restrict a certain type of course from being counted, such as Asi
 ```yaml
 given: courses
 limit:
-  - where: {level: 100}
+  - where: {level: '100'}
     at_most: 2
 do: count >= 6
 ```
@@ -640,13 +640,15 @@ This rule prevents more than two level-I courses from being selected as part of 
 ```yaml
 given: courses
 limit:
-  - where: {level: 100}
+  - where: {level: '100'}
     at_most: 2
 do: count >= 6
 ```
 
 A limiter can currently only apply an `at_most` limit; other modes may be added in the future, if needed.
 
+> Note: limiter values must always be wrapped in single-quotes (that is, YAML must parse them as strings.)
+>
 # Custom Attributes on Courses
 
 Sometimes, it's easier to specify courses by `where: {attribute: value}` as opposed to listing them individually in a the requirement.
