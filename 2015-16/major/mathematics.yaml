@@ -116,7 +116,7 @@ requirements:
           do: count >= 1
 
 
-  Interdisplinary:
+  Interdisciplinary:
     result:
       count: any
       of:
