@@ -147,11 +147,9 @@ requirements:
         result:
           count: all
           of:
-            - requirement: Historical Studies in Western Culture
+            - requirement: Historical Studies in Western Culture or Literary Studies
             - requirement: Multicultural Studies
-            - requirement: Artistic and Literary Studies
             - requirement: Biblical and Theological Studies
-            - requirement: Studies in Natural Science
             - requirement: Studies in Human Behavior and Society
 
         requirements:

@@ -52,7 +52,7 @@ requirements:
       - given: save
         save: "Asian Studies Courses"
         limit:
-          - where: {level: 100}
+          - where: {level: '100'}
             at_most: 2
         name: "Limited Asian Studies Courses"
 

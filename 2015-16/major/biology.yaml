@@ -4,13 +4,13 @@ degree: Bachelor of Arts
 catalog: 2015-16
 
 result:
-  - count: all
-    of:
-      - requirement: Foundation
-      - requirement: Core
-      - requirement: Level III
-      - requirement: Electives
-      - requirement: Chemistry
+  count: all
+  of:
+    - requirement: Foundation
+    - requirement: Core
+    - requirement: Level III
+    - requirement: Electives
+    - requirement: Chemistry
 
 limiters:
   - where: {level: 100}
@@ -81,11 +81,14 @@ requirements:
 
     requirements:
       Intro A:
-        count: all
-        of: [CHEM 121, CHEM 123, CHEM 126]
+        result:
+          count: all
+          of: [CHEM 121, CHEM 123, CHEM 126]
       Intro B:
-        count: all
-        of: [CHEM 125, CHEM 126]
+        result:
+          count: all
+          of: [CHEM 125, CHEM 126]
       CH/BI:
-        count: all
-        of: [CH/BI 125, CH/BI 126]
+        result:
+          count: all
+          of: [CH/BI 125, CH/BI 126]

@@ -50,37 +50,41 @@ requirements:
       course: PSCI 220
 
   American Politics and Public Policy:
-    count: 1
-    of: [
-      PSCI 111, PSCI 204, PSCI 211, PSCI 244,
-      PSCI 246, PSCI 255, PSCI 272, PSCI 311,
-      ES/PS 276,
-    ]
+    result:
+      count: 1
+      of: [
+        PSCI 111, PSCI 204, PSCI 211, PSCI 244,
+        PSCI 246, PSCI 255, PSCI 272, PSCI 311,
+        ES/PS 276,
+      ]
 
   Comparative Politics:
-    count: 1
-    of: [
-      PSCI 112, PSCI 115, PSCI 117, PSCI 252,
-      PSCI 264, PSCI 282, PSCI 283, PSCI 350,
-      PSCI 367, PSCI 370, PSCI 382, PSCI 385,
-      AS/PS 255,
-    ]
+    result:
+      count: 1
+      of: [
+        PSCI 112, PSCI 115, PSCI 117, PSCI 252,
+        PSCI 264, PSCI 282, PSCI 283, PSCI 350,
+        PSCI 367, PSCI 370, PSCI 382, PSCI 385,
+        AS/PS 255,
+      ]
 
   International Relations:
-    count: 1
-    of: [
-      PSCI 115, PSCI 119, PSCI 121, PSCI 245,
-      PSCI 257, PSCI 258, PSCI 285, PSCI 321,
-      ES/PS 201,
-    ]
+    result:
+      count: 1
+      of: [
+        PSCI 115, PSCI 119, PSCI 121, PSCI 245,
+        PSCI 257, PSCI 258, PSCI 285, PSCI 321,
+        ES/PS 201,
+      ]
 
   Political Theory:
-    count: 1
-    of: [
-      PSCI 113, PSCI 119, PSCI 232, PSCI 259,
-      PSCI 260, PSCI 262, PSCI 284, PSCI 384,
-      ES/PS 225,
-    ]
+    result:
+      count: 1
+      of: [
+        PSCI 113, PSCI 119, PSCI 232, PSCI 259,
+        PSCI 260, PSCI 262, PSCI 284, PSCI 384,
+        ES/PS 225,
+      ]
 
   Additional Courses:
     result:
@@ -90,6 +94,7 @@ requirements:
         - requirement: French, German, Spanish
         - requirement: Chinese, Greek, Latin, Japanese, Norwegian, Russian
 
+    requirements:
       Statistics:
         result:
           given: courses

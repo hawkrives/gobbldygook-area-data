@@ -28,15 +28,16 @@ requirements:
         - {count: 1, of: [SOAN 121, SOAN 128, SOAN 260, SOAN 264]}
 
   Requirements:
-    Ethics:
-      message:
-        Students should consult with their advisor to determine what courses
-        meet this requirement from among the general education EIN courses.
-      result:
-        count: any
-        of: [
-          AMCON 101,
-        ]
+    requirements:
+      Ethics:
+        message:
+          Students should consult with their advisor to determine what courses
+          meet this requirement from among the general education EIN courses.
+        result:
+          count: any
+          of: [
+            AMCON 101,
+          ]
 
     result:
       count: all

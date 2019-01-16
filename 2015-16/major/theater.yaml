@@ -6,7 +6,7 @@ catalog: 2015-16
 result:
   count: all
   of:
-    - requirement: Theatre
+    - requirement: Theater
     - requirement: Electives
     - requirement: Practicum
 
