@@ -48,7 +48,7 @@ requirements:
 
     result:
       given: these courses
-      of: [
+      courses: [
         SOAN 121, SOAN 128, SOAN 232, SOAN 234,
         SOAN 235, SOAN 236, SOAN 237, SOAN 242,
         SOAN 246, SOAN 248, SOAN 249, SOAN 260,
@@ -58,6 +58,7 @@ requirements:
       ]
       repeats: first
       limit:
-        - where: {su: true}
+        - where: {su: 'true'}
           at_most: 1
+      what: courses
       do: count >= 4
