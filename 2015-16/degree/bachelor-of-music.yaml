@@ -49,7 +49,7 @@ requirements:
       Grade Point Average:
         result:
           given: courses
-          what: grade
+          what: grades
           do: average >= 2.0
 
       Course Level:
@@ -62,7 +62,7 @@ requirements:
       Graded Courses:
         result:
           given: courses
-          where: { graded: true }
+          where: { graded: 'true' }
           what: credits
           do: sum >= 24
 
