@@ -40,12 +40,11 @@ requirements:
           - given: courses
             where: { semester: Interim }
             what: courses
-            name: $interim_courses
-            label: Interim Courses
+            name: "Interim Courses"
         result:
           both:
-            - { given: save, save: $interim_courses, what: credits, do: sum >= 3 }
-            - { given: save, save: $interim_courses, what: courses, do: count >= 3 }
+            - { given: save, save: "Interim Courses", what: credits, do: sum >= 3 }
+            - { given: save, save: "Interim Courses", what: courses, do: count >= 3 }
 
       Grade Point Average:
         result:
@@ -164,16 +163,15 @@ requirements:
               - given: courses
                 where: { gereqs: HWC }
                 what: courses
-                name: $hwc_courses
-                label: Courses with an HWC
+                name: "Courses with an HWC"
             result:
               both:
                 - given: save
-                  save: $hwc_courses
+                  save: "Courses with an HWC"
                   what: courses
                   do: count >= 2
                 - given: save
-                  save: $hwc_courses
+                  save: "Courses with an HWC"
                   where: { institution: St. Olaf College }
                   what: courses
                   do: count >= 1
@@ -183,30 +181,29 @@ requirements:
               - given: courses
                 where: { gereqs: MCD | MCG }
                 what: courses
-                name: $multicultural_courses
-                label: Courses with an MCD or MCG
+                name: "Courses with an MCD or MCG"
 
             result:
               count: all
               of:
                 - given: save
-                  save: $multicultural_courses
+                  save: "Courses with an MCD or MCG"
                   what: courses
                   do: count >= 2
 
                 - given: save
-                  save: $multicultural_courses
+                  save: "Courses with an MCD or MCG"
                   what: departments
                   do: count >= 2
 
                 - given: save
-                  save: $multicultural_courses
+                  save: "Courses with an MCD or MCG"
                   where: { gereqs: MCD }
                   what: courses
                   do: count >= 1
 
                 - given: save
-                  save: $multicultural_courses
+                  save: "Courses with an MCD or MCG"
                   where: { gereqs: MCG }
                   what: courses
                   do: count >= 1
@@ -216,28 +213,24 @@ requirements:
               - given: courses
                 where: { gereqs: ALS-A | ALS-L }
                 what: courses
-                name: $art_courses
-                label: Courses with an ALS-A or ALS-L
+                name: "Courses with an ALS-A or ALS-L"
 
             result:
               count: all
               of:
-                - label: 'Two Courses'
-                  given: save
-                  save: $art_courses
+                - given: save
+                  save: "Courses with an ALS-A or ALS-L"
                   what: courses
                   do: count >= 2
 
-                - label: 'ALS-A'
-                  given: save
-                  save: $art_courses
+                - given: save
+                  save: "Courses with an ALS-A or ALS-L"
                   where: { gereqs: ALS-A }
                   what: courses
                   do: count >= 1
 
-                - label: 'ALS-L'
-                  given: save
-                  save: $art_courses
+                - given: save
+                  save: "Courses with an ALS-A or ALS-L"
                   where: { gereqs: ALS-L }
                   what: courses
                   do: count >= 1
@@ -247,28 +240,24 @@ requirements:
               - given: courses
                 where: { gereqs: BTS-B | BTS-T }
                 what: courses
-                name: $religion_courses
-                label: Courses with a BTS-B or BTS-T
+                name: "Courses with a BTS-B or BTS-T"
 
             result:
               count: all
               of:
-                - label: 'Two Courses'
-                  given: save
-                  save: $religion_courses
+                - given: save
+                  save: "Courses with a BTS-B or BTS-T"
                   what: courses
                   do: count >= 2
 
-                - label: 'BTS-B'
-                  given: save
-                  save: $religion_courses
+                - given: save
+                  save: "Courses with a BTS-B or BTS-T"
                   where: { gereqs: 'BTS-B' }
                   what: courses
                   do: count >= 1
 
-                - label: 'BTS-T'
-                  given: save
-                  save: $religion_courses
+                - given: save
+                  save: "Courses with a BTS-B or BTS-T"
                   where: { gereqs: 'BTS-T' }
                   what: courses
                   do: count >= 1
@@ -278,32 +267,29 @@ requirements:
               - given: courses
                 where: { gereqs: SED | IST }
                 what: courses
-                name: $science_courses
-                label: Courses with an SED or IST
+                name: "Courses with an SED or IST"
 
             result:
               count: all
               of:
                 - given: save
-                  save: $science_courses
+                  save: "Courses with an SED or IST"
                   what: courses
                   do: count >= 2
 
                 - given: save
-                  save: $science_courses
+                  save: "Courses with an SED or IST"
                   what: departments
                   do: count >= 2
 
-                - label: 'SED'
-                  given: save
-                  save: $science_courses
+                - given: save
+                  save: "Courses with an SED or IST"
                   where: { gereqs: SED }
                   what: courses
                   do: count >= 1
 
-                - label: 'IST'
-                  given: save
-                  save: $science_courses
+                - given: save
+                  save: "Courses with an SED or IST"
                   where: { gereqs: IST }
                   what: courses
                   do: count >= 1
@@ -313,24 +299,23 @@ requirements:
               - given: courses
                 where: { gereqs: HBS }
                 what: courses
-                name: $human_courses
-                label: Courses with an HBS
+                name: "Courses with an HBS"
 
             result:
               count: all
               of:
                 - given: save
-                  save: $human_courses
+                  save: "Courses with an HBS"
                   what: courses
                   do: count >= 2
 
                 - given: save
-                  save: $human_courses
+                  save: "Courses with an HBS"
                   what: departments
                   do: count >= 2
 
                 - given: save
-                  save: $human_courses
+                  save: "Courses with an HBS"
                   where: { institution: St. Olaf College }
                   what: courses
                   do: count >= 1
@@ -353,28 +338,26 @@ requirements:
                 where: { gereqs: BTS-T }
                 what: terms
                 do: minimum
-                name: $first_btst
-                label: "first BTS-T course"
+                name: first BTS-T course
 
               - given: courses
                 where: { gereqs: EIN }
                 what: courses
-                name: $ein_courses
-                label: "EIN courses"
+                name: EIN courses
 
               - given: save
-                save: $ein_courses
+                save: EIN courses
                 what: terms
                 do: maximum
-                name: $last_ein
-                label: "last EIN course"
+                name: last EIN course
 
             result:
               count: all
               of:
                 - given: save
-                  save: $ein_courses
+                  save: EIN courses
                   what: courses
                   do: count >= 1
 
-                - do: $first_btst < $last_ein
+                - do: >
+                    "first BTS-T course" < "last EIN course"

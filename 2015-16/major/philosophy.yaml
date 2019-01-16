@@ -39,6 +39,7 @@ requirements:
         PH/RE 278,
         GCON 218,
       ]
+      repeats: first
       limit:
         - where: {department: '! PHIL'}
           at_most: 2

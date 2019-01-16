@@ -18,8 +18,12 @@ For this requirement, you must complete enough courses at St. Olaf College to
 obtain 17 credits.
 
 ## Interim
-For this requirement, you must complete enough courses during the Interim
-semester to obtain 3 credits spread across 3 courses.
+Given this subset of courses from your transcript:
+
+- list courses taken during Interim here
+
+For this requirement, you must complete enough courses in the subset to obtain
+3 credits spread across 3 courses.
 
 ## Grade Point Average
 For this requirement, you must maintain a 2.0 or greater GPA across all of your

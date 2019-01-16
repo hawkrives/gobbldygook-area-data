@@ -22,14 +22,6 @@ For this requirement, you must complete all of the following courses:
 
 For this section, you must complete the "Articulate Body" requirement, and complete enough courses to obtain 1.5 credits from the "Ballet", "Improvisation", "International and Social", and "Moden" requirements.
 
-## Articulate Body
-
-For this requirement, both of the following must be true:
-
-1. you must take both the DANCE 212 and DANCE 213 courses
-2. the difference in the terms between when you took DANCE 201 (2012-3) and DANCE 212 (2013-1)
-   must be less than or equal to 1
-
 ## Ballet
 
 For this requirement, all of the following must be true:
@@ -62,6 +54,16 @@ For this requirement, all of the following must be true:
 2. you must take either the DANCE 210 or the DANCE 211 courses
 3. you must take either the DANCE 250 or the DANCE 251 courses
 4. you must take either the DANCE 310 or the DANCE 311 courses
+
+## Other Topics
+
+For this requirement, you must take all of the following courses:
+
+- DANCE 107
+- DANCE 112
+- DANCE 113
+- DANCE 141
+- DANCE 160
 
 # Senior Dance Seminar
 > Note: Must be taken fall of senior year. Final projects may take the form of a

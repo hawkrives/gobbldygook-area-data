@@ -40,12 +40,11 @@ requirements:
           - given: courses
             where: { semester: Interim }
             what: courses
-            name: $interim_courses
-            label: Interim Courses
+            name: Interim Courses
         result:
           both:
-            - { given: save, save: $interim_courses, what: credits, do: sum >= 3 }
-            - { given: save, save: $interim_courses, what: courses, do: count >= 3 }
+            - { given: save, save: Interim Courses, what: credits, do: sum >= 3 }
+            - { given: save, save: Interim Courses, what: courses, do: count >= 3 }
 
       Grade Point Average:
         result:
@@ -175,26 +174,24 @@ requirements:
               - given: courses
                 where: { gereqs: BTS-B | BTS-T }
                 what: courses
-                name: $religion_courses
-                label: Courses with a BTS-B or BTS-T
+                name: Courses with a BTS-B or BTS-T
 
             result:
               count: all
               of:
-                - label: "Two Courses"
-                  given: save
-                  save: $religion_courses
+                - given: save
+                  save: Courses with a BTS-B or BTS-T
                   what: courses
                   do: count >= 2
 
                 - given: save
-                  save: $religion_courses
+                  save: Courses with a BTS-B or BTS-T
                   where: { gereqs: "BTS-B" }
                   what: courses
                   do: count >= 1
 
                 - given: save
-                  save: $religion_courses
+                  save: Courses with a BTS-B or BTS-T
                   where: { gereqs: "BTS-T" }
                   what: courses
                   do: count >= 1

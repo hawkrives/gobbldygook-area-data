@@ -271,11 +271,14 @@ The `:courses` value will provide the set of all courses from the student’s pl
 ```yaml
 given: these courses
 courses: [CSCI 121, ASIAN 130]
+repeats: first | last | all
 ```
 
-The `:these courses` value requires that the `courses:` key be provided.
+The `:these courses` value requires that the `courses:` and `repeats:` keys be provided.
 
 It provides the intersection between the student’s planned courses and the set of courses listed under `courses:`.
+
+By specifying the `repeats:` key, you can control whether it will emit the first occurrence, the last occurrence, or all occurrences.
 
 #### :these requirements
 ```yaml
@@ -297,12 +300,12 @@ The `:areas of study` value provides the student’s areas of study – their de
 #### :save
 ```yaml
 given: save
-save: $variable_name
+save: "a named save block"
 ```
 
-The `:save` value requires that the `save:` key be provided.
+The `:save` value requires that the `save:` key be defined at the requirement level.
 
-The `save: $variable_name` value provides contents of that `$variable`, as defined in the `save:` section of the current rule.
+The `save: "a named save block"` value provides contents of that save block, as defined in the `save:` section of the current rule.
 
 See the “Saving Subsets” section for more information.
 
@@ -568,18 +571,15 @@ A `save:` block may contain one or more `-save` rules.
 
 A `-save` rule is similar to a `given:` rule, with a few differences:
 
-- it requires both `name:` and `label:` keys
+- it requires a `name:` key
 - the `do:` key is optional
-- the `name:` value must begin with a `$` symbol
-- the `label` value must be wrapped in double-quotes
 
 ```yaml
 save:
   - given: courses
     where: {department: MATH}
     what: courses
-    name: $math_courses
-    label: "The MATH Courses"
+    name: "The MATH Courses"
 ```
 
 You can use any `-save` rule in any `given:` block at the same level, or it can serve as input to a subsequent `-save` rule.
@@ -593,11 +593,10 @@ save:
   - given: courses
     where: {department: 'MATH | AMCON'}
     what: courses
-    name: $amcon_or_math
-    label: "a subset"
+    name: "either AMCON or MATH"
 result:
   given: save
-  save: $amcon_or_math
+  save: "either AMCON or MATH"
   what: courses
   do: count >= 6
 ```
@@ -610,16 +609,15 @@ save:
     where: {gereqs: WRI}
     what: terms
     do: minimum
-    name: $first_wri
-    label: "the first WRI"
+    name: "the first WRI"
   - given: courses
     where: {gereqs: BTS-T}
     what: terms
     do: minimum
-    name: $first_btst
-    label: "the first BTS-T"
+    name: "the first BTS-T"
 result:
-  do: $first_wri < $first_btst
+  do: >
+    "the first WRI" < "the first BTS-T"
 ```
 # Limiters
 
@@ -763,7 +761,7 @@ result:
 
 ## Dynamically selecting part of an “of”
 
-If you need to selecting courses in an `of:`, I recommend switching to a `given:these courses` rule instead.
+If you need to filter or limit certain courses in an `of:` rule, I recommend switching to a `given:these courses` rule instead.
 
 For example, you could do this to limit the student to only take one non-Philosophy course from the set of electives.
 

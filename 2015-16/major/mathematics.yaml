@@ -163,19 +163,19 @@ requirements:
             STAT 322,
             CSCI 315, CSCI 333,
           ]
+          repeats: first
           what: courses
-          name: $level_3
-          label: "Level III Courses"
+          name: "Level III Courses"
 
       result:
         both:
           - given: save
-            save: $level_3
+            save: "Level III Courses"
             what: courses
             do: count >= 2
 
           - given: save
-            save: $level_3
+            save: "Level III Courses"
             where: {department: MATH}
             what: courses
             do: count >= 1

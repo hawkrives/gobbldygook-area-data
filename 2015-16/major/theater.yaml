@@ -48,6 +48,7 @@ requirements:
         - requirement: Tech
         - given: these courses
           courses: [THEAT 233, THEAT 253]
+          repeats: all
           what: courses
           do: count >= 4
 
@@ -56,6 +57,7 @@ requirements:
         result:
           given: these courses
           courses: [THEAT 233]
+          repeats: all
           what: courses
           do: count >= 1
 
@@ -63,6 +65,7 @@ requirements:
         result:
           given: these courses
           courses: [THEAT 253]
+          repeats: all
           what: courses
           do: count >= 2
 

@@ -45,34 +45,32 @@ requirements:
           HIST 240,
           PHIL 127,
         ]
+        repeats: first
         what: courses
-        name: $asian_courses
-        label: "Asian Studies Courses"
+        name: "Asian Studies Courses"
 
       - given: save
-        save: $asian_courses
+        save: "Asian Studies Courses"
         limit:
           - where: {level: 100}
             at_most: 2
-        name: $limited_asian_courses
-        label: "Limited Asian Studies Courses"
+        name: "Limited Asian Studies Courses"
 
       - given: save
-        save: $asian_courses
+        save: "Asian Studies Courses"
         where: {level: >= 200}
-        name: $upper_level
-        label: "Upper-Level Asian Studies Courses"
+        name: "Upper-Level Asian Studies Courses"
 
     result:
       count: all
       of:
         - given: save
-          save: $limited_asian_courses
+          save: "Limited Asian Studies Courses"
           what: courses
           do: count >= 7
 
         - given: save
-          save: $upper_level
+          save: "Upper-Level Asian Studies Courses"
           where: {institution: St. Olaf College}
           what: courses
           do: count >= 2

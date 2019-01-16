@@ -21,40 +21,26 @@ requirements:
         - DANCE 100
         - DANCE 124
         - DANCE 150
-        - DANCE 201
         - DANCE 231
         - DANCE 246
+        - DANCE 270
 
   Movement-Intensive Courses (Technique):
     result:
-      both:
-        - requirement: Articulate Body
-        - given: these requirements
-          requirements:
-            - requirement: Ballet
-            - requirement: Improvisation
-            - requirement: International and Social
-            - requirement: Modern
-          what: credits
-          do: sum >= 1.5
+      given: these requirements
+      requirements:
+        - requirement: Ballet
+        - requirement: Improvisation
+        - requirement: International and Social
+        - requirement: Modern
+        - requirement: Other Topics
+      what: credits
+      do: sum >= 1.5
 
     requirements:
-      Articulate Body:
-        message:
-          DANCE 212 must be taken concurrently with or within 1 term of DANCE 201.
-
-        result:
-          both:
-            - count: all
-              of: [DANCE 212, DANCE 213]
-            - given: these courses
-              courses: [DANCE 201, DANCE 212]
-              what: term
-              do: difference <= 1
-
       Ballet:
         result:
-          count: all
+          count: any
           of:
             - DANCE 121
             - either: [DANCE 130, DANCE 131]
@@ -63,22 +49,32 @@ requirements:
 
       Improvisation:
         result:
-          count: all
+          count: any
           of: [DANCE 105, DANCE 115, DANCE 215, DANCE 315]
 
       International and Social:
         result:
-          count: all
-          of: [DANCE 106, DANCE 108, DANCE 109, DANCE 206, DANCE 209]
+          count: any
+          of: [DANCE 106, DANCE 108, DANCE 206, DANCE 207, DANCE 209]
 
       Modern:
         result:
-          count: all
+          count: any
           of:
             - DANCE 111
             - either: [DANCE 210, DANCE 211]
             - either: [DANCE 250, DANCE 251]
             - either: [DANCE 310, DANCE 311]
+
+      Other Topics:
+        result:
+          count: any
+          of:
+            - DANCE 107
+            - DANCE 112
+            - DANCE 113
+            - DANCE 141
+            - DANCE 160
 
   Senior Dance Seminar:
     message:
@@ -88,12 +84,12 @@ requirements:
     save:
       - given: these courses
         courses: [DANCE 399]
+        repeats: last
         where: {year: graduation-year, semester: Fall}
-        name: $dance_seminars
-        label: "Senior Dance Seminars"
+        name: "Senior Dance Seminars"
     result:
       given: save
-      save: $dance_seminars
+      save: "Senior Dance Seminars"
       what: course
       do: count >= 1
 

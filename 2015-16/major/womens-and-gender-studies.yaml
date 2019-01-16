@@ -30,8 +30,7 @@ requirements:
           - requirement: Electives
           - requirement: Lived Experiences
         what: courses
-        name: $elective_courses
-        label: "Taken Elective Courses"
+        name: "Taken Elective Courses"
 
     result:
       count: all
@@ -43,12 +42,12 @@ requirements:
         - requirement: Lived Experiences
 
         - given: save
-          save: $elective_courses
+          save: "Taken Elective Courses"
           what: courses
           do: count >= 7
 
         - given: save
-          save: $elective_courses
+          save: "Taken Elective Courses"
           where: {level: 300}
           what: courses
           do: count >= 1
@@ -134,3 +133,4 @@ requirements:
       Lived Experiences:
         message:
           The major says, "One course must focus on women's lived experiences."
+        contract: true

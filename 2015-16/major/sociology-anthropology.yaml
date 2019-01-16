@@ -56,6 +56,7 @@ requirements:
         SOAN 266, SOAN 267, SOAN 268,
         AS/SA 239,
       ]
+      repeats: first
       limit:
         - where: {su: true}
           at_most: 1
