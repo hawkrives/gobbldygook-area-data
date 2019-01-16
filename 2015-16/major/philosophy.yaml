@@ -43,4 +43,5 @@ requirements:
       limit:
         - where: {department: '! PHIL'}
           at_most: 2
+      what: courses
       do: count >= 3
