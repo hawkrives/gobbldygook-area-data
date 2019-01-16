@@ -15,9 +15,9 @@ result:
 
 
 limiters:
-  - where: {level: 100}
+  - where: {level: '100'}
     at_most: 3
-  - where: {level: 100, type: Seminar}
+  - where: {level: '100', type: Seminar}
     at_most: 2
 
 
