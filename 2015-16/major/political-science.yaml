@@ -34,13 +34,13 @@ result:
         - requirement: International Relations
         - requirement: Political Theory
         - requirement: Additional Courses
-      where: {level: 300}
+      where: {level: '300'}
       what: courses
       do: count >= 2
 
 
 limiters:
-  - where: {level: 100}
+  - where: {level: '100'}
     at_most: 3
 
 
