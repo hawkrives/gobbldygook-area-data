@@ -86,12 +86,12 @@ requirements:
         result:
           count: all
           of:
-            - First-Year Writing
-            - Writing in Context
-            - Foreign Language
-            - Oral Communication
-            - Abstract and Quantitative Reasoning
-            - Studies in Physical Movement
+            - requirement: First-Year Writing
+            - requirement: Writing in Context
+            - requirement: Foreign Language
+            - requirement: Oral Communication
+            - requirement: Reasoning
+            - requirement: Studies in Physical Movement
 
         requirements:
           First-Year Writing:
