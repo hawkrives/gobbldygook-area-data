@@ -14,8 +14,8 @@ result:
 
 requirements:
   Language:
-    surplus: [Electives, .of]
     result:
+      surplus: [Electives, .of]
       either: [LATIN 252, GREEK 253]
 
   Ancient History:
