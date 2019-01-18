@@ -1,0 +1,129 @@
+name: Art History
+type: major
+degree: Bachelor of Arts
+catalog: 2018-19
+
+result:
+  count: all
+  of:
+    - requirement: Intro
+    - requirement: Methods
+    - requirement: Studio Art
+    - requirement: Distribution
+    - requirement: Lasting Legacy
+
+
+attributes:
+  definitions:
+    art_period:
+      type: string
+    art_locale:
+      type: array
+      multiple values can be used: true
+  courses:
+    ART 161, 2000-1: {art_locale: [american], art_period: post-1700}
+    ART 161, 2001-1: {art_locale: [african], art_period: post-1700}
+    ART 251: {art_locale: [european, american], art_period: post-1700}
+    ART 252: {art_locale: [european, american], art_period: post-1700}
+    ART 253: {art_locale: [european, american], art_period: post-1700}
+    ART 254: {art_locale: [european, american], art_period: pre-1700}
+    ART 255: {art_locale: [european, american], art_period: pre-1700}
+    ART 256: {art_locale: [european, american], art_period: post-1700}
+    ART 259: {art_locale: [asian, african, near-eastern], art_period: pre-1700}
+    ART 260: {art_locale: [asian, african, near-eastern], art_period: pre-1700}
+    ART 261: {art_locale: [european, american], art_period: post-1700}
+    ART 262: {art_locale: [asian, african, near-eastern], art_period: pre-1700}
+    ART 263: {art_locale: [european, american], art_period: pre-1700}
+    ART 265: {art_locale: [european, american], art_period: post-1700}
+    ART 267: {art_locale: [asian, african, near-eastern], art_period: pre-1700}
+    ART 269: {art_locale: [asian, african], art_period: post-1700}
+    ART 271: {art_locale: [european, american], art_period: pre-1700}
+    ART 273: {art_locale: [european, american], art_period: pre-1700}
+    ART 277: {art_locale: [european, american], art_period: post-1700}
+    ART 280: {art_locale: [european, american], art_period: post-1700}
+    ART 370: {art_locale: [european, american], art_period: post-1700}
+    ASIAN 270: {art_locale: [asian, african], art_period: post-1700}
+    ASIAN 310: {art_locale: [asian, african], art_period: pre-1700}
+    ENVST 270: {art_locale: [european, american], art_period: post-1700}
+    PHIL 243: {art_locale: [european, american], art_period: post-1700}
+
+requirements:
+  Intro:
+    result:
+      course: ART 153
+
+  Methods:
+    result:
+      course: ART 350
+
+  Studio Art:
+    result:
+      count: 1
+      of: [
+        ART 102, ART 103, ART 104, ART 106, ART 205,
+        ART 207, ART 221, ART 222, ART 223, ART 224,
+        ART 225, ART 226, ART 227, ART 228, ART 229,
+        ART 232, ART 233, ART 234, ART 236, ART 238,
+        ART 240, ART 246, ART 294, ART 298, ART 340,
+        ART 343, ART 394, ART 398,
+      ]
+
+  Distribution:
+    message:
+       At least two courses must focus on Asian, African, Indigenous American, or
+       Near Eastern/Islamic art; at least two courses must focus on American or
+       European art; one course must cover art created before 1700 CE; one must
+       cover art created after 1700 CE.
+
+    result:
+      both:
+        - count: all
+          of:
+            - requirement: Asian, African, Indigenous American, or Near Eastern/Islamic Art
+            - requirement: European and American Art
+            - requirement: Art created before 1700 CE
+            - requirement: Art created after 1700 CE
+
+        - given: these requirements
+          requirements:
+            - requirement: Asian, African, Indigenous American, or Near Eastern/Islamic Art
+            - requirement: European and American Art
+            - requirement: Art created before 1700 CE
+            - requirement: Art created after 1700 CE
+          what: courses
+          do: count >= 6
+
+    requirements:
+      Asian, African, or Near Eastern/Islamic Art:
+        result:
+          given: courses
+          where: {art_locale: asian | african | near-eastern}
+          what: courses
+          do: count >= 2
+
+       European and American Art:
+        result:
+          given: courses
+          where: {art_locale: european | american}
+          what: courses
+          do: count >= 2
+
+      Art created before 1700 CE:
+        result:
+          given: courses
+          where: {art_period: pre-1700}
+          what: courses
+          do: count >= 1
+
+      Art created after 1700 CE:
+        result:
+          given: courses
+          where: {art_period: post-1700}
+          what: courses
+          do: count >= 1
+
+  Lasting Legacy:
+    department_audited: true
+    message:
+      Majors must successfully complete the non-credit, senior "lasting legacy"
+      project or its equivalent.
