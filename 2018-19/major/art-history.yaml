@@ -70,10 +70,10 @@ requirements:
 
   Distribution:
     message:
-       At least two courses must focus on Asian, African, Indigenous American, or
-       Near Eastern/Islamic art; at least two courses must focus on American or
-       European art; one course must cover art created before 1700 CE; one must
-       cover art created after 1700 CE.
+      At least two courses must focus on Asian, African, Indigenous American,
+      or Near Eastern/Islamic art; at least two courses must focus on American
+      or European art; one course must cover art created before 1700 CE; one
+      must cover art created after 1700 CE.
 
     result:
       both:
@@ -94,14 +94,14 @@ requirements:
           do: count >= 6
 
     requirements:
-      Asian, African, or Near Eastern/Islamic Art:
+      Asian, African, Indigenous American, or Near Eastern/Islamic Art:
         result:
           given: courses
-          where: {art_locale: asian | african | near-eastern}
+          where: {art_locale: asian | african | indigenous-american | near-eastern}
           what: courses
           do: count >= 2
 
-       European and American Art:
+      European and American Art:
         result:
           given: courses
           where: {art_locale: european | american}
