@@ -1,0 +1,169 @@
+name: Studio Art
+type: major
+degree: Bachelor of Arts
+catalog: 2018-19
+
+result:
+  count: all
+  of:
+    - requirement: Foundations
+    - requirement: Juried Show
+    - requirement: Senior Studies in Studio Art
+    - requirement: Electives
+    - requirement: Areas
+    - requirement: Art History
+
+requirements:
+  Foundations:
+    result:
+      surplus: [Studio Art, Electives, .of]
+      count: all
+      of:
+        - either: [ART 102, ART 106]
+        - ART 103
+        - ART 104
+
+  Areas:
+    result:
+      count: all
+      of:
+        - requirement: 2D Media
+        - requirement: 3D Media
+        - requirement: New Media
+
+    requirements:
+      2D Media:
+        result:
+          count: any
+          of:
+            - requirement: Drawing
+            - requirement: Painting
+            - requirement: Printmaking
+            - requirement: Graphic Design
+
+        requirements:
+          Drawing:
+            result:
+              surplus: [Studio Art, Electives, .of]
+              count: any
+              of: [ART 225, ART 232, ART 233]
+
+          Painting:
+            result:
+              surplus: [Studio Art, Electives, .of]
+              count: any
+              of: [ART 221, ART 222]
+
+          Printmaking:
+            result:
+              surplus: [Studio Art, Electives, .of]
+              count: any
+              of: [ART 226, ART 227]
+
+          Graphic Design:
+            result:
+              surplus: [Studio Art, Electives, .of]
+              count: any
+              of:
+                - {course: ART 236, term: 2000-0}
+
+      3D Media:
+        result:
+          count: any
+          of:
+            - requirement: Ceramics
+            - requirement: Sculpture
+
+        requirements:
+          Ceramics:
+            result:
+              surplus: [Studio Art, Electives, .of]
+              count: any
+              of: [ART 207, ART 234]
+
+          Sculpture:
+            result:
+              surplus: [Studio Art, Electives, .of]
+              count: any
+              of: [ART 223, ART 224]
+
+      New Media:
+        result:
+          count: any
+          of:
+            - requirement: Photography
+            - requirement: Interactive Image
+            - requirement: Digital Video
+            - requirement: Performance
+            - requirement: Graphic Design
+
+        requirements:
+          Photography:
+            result:
+              surplus: [Studio Art, Electives, .of]
+              count: any
+              of: [ART 205, ART 238]
+
+          Interactive Image:
+            result:
+              surplus: [Studio Art, Electives, .of]
+              count: any
+              of: [ART 228]
+
+          Digital Video:
+            result:
+              surplus: [Studio Art, Electives, .of]
+              count: any
+              of: [ART 229]
+
+          Performance:
+            result:
+              surplus: [Studio Art, Electives, .of]
+              count: any
+              of: [ART 240]
+
+          Graphic Design:
+            result:
+              surplus: [Studio Art, Electives, .of]
+              count: any
+              of:
+                - {course: ART 236, term: 2000-0}
+
+  Juried Show:
+    department_audited: true
+    message:
+      Majors must participate in two juried shows. To fulfill the the
+      requirements of the studio art major, you must either enter the student
+      juried show in spring semester twice, or enter our student juried show
+      once and one other non-class related exhibition on or off campus.
+
+  Senior Studies in Studio Art:
+    result:
+      course: ART 343
+
+  Electives:
+    result:
+      count: 1
+      of: [
+        ART 106, ART 246, ART 294, ART 298, ART 340,
+        ART 394, ART 398,
+      ]
+
+
+  Art History:
+    message:
+      The department strongly recommends that you take
+      ART 252 or 253 as one of your art history courses.
+
+    result:
+      count: 2
+      of: [
+        ART 153, ART 161, ART 251, ART 252, ART 253,
+        ART 254, ART 255, ART 256, ART 259, ART 260,
+        ART 261, ART 262, ART 263, ART 265, ART 267,
+        ART 269, ART 271, ART 273, ART 277, ART 280,
+        ART 350, ART 370,
+        ASIAN 270, ASIAN 310,
+        ENVST 270,
+        PHIL 243,
+      ]
