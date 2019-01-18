@@ -28,7 +28,6 @@ attributes:
       multiple values can be used: false
     history_era:
       type: string
-      multiple values can be used: false
   courses:
     HIST 101: {history_region: [europe, russia], history_era: pre-modern}
     HIST 111: {history_region: [europe, russia], history_era: pre-modern}
