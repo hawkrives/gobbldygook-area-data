@@ -1,0 +1,97 @@
+name: Biology
+type: major
+degree: Bachelor of Arts
+catalog: 2018-19
+
+result:
+  count: all
+  of:
+    - requirement: Foundation
+    - requirement: Core
+    - requirement: Level III
+    - requirement: Electives
+    - requirement: Chemistry
+
+limiters:
+  - where: {level: '100'}
+    at_most: 2
+  - where: {institution: '! St. Olaf College'}
+    at_most: 0
+  # - where: {graded: 'true', grade: '>= C', level: '100'}
+  #   at_most: 2
+
+requirements:
+  Foundation:
+    result:
+      course: BIO 150
+
+  Core:
+    result:
+      count: all
+      of:
+        - requirement: Genetics
+        - requirement: Cell Biology
+        - requirement: Comparative Organismal Biology
+        - requirement: Ecology
+
+    requirements:
+      Genetics:
+        result:
+          count: 1
+          of: [BIO 233]
+
+      Cell Biology:
+        result:
+          count: 1
+          of: [BIO 227, CH/BI 227]
+
+      Comparative Organismal Biology:
+        result:
+          count: 1
+          of: [BIO 242, BIO 247, BIO 248, BIO 251, BIO 252, BIO 266, BIO 275, BIO 226]
+
+      Ecology:
+        result:
+          count: 1
+          of: [BIO 261, BIO 226]
+
+  Level III:
+    result:
+      excess: [Electives, .result, .of]
+      count: 1
+      of:
+        - BIO 315
+        - BIO 341
+        - BIO 348
+        - BIO 363
+        - BIO 364
+        - BIO 371
+        - BIO 372
+        - BIO 382
+        - BIO 383
+        - BIO 385
+        - BIO 386
+        - BIO 391
+
+  Electives:
+    result:
+      count: 2
+      of: [
+        BIO 298, BIO 396, BIO 398,
+        CHEM 379, NEURO 239, PSYCH 238,
+        {course: ENVST 281, term: 2000-1},
+        BIO 121, BIO 123, BIO 124, BIO 127, BIO 128,
+        BIO 130, BIO 131, BIO 135, BIO 143, BIO 150,
+        BIO 227, BIO 231, BIO 233, BIO 242, BIO 243,
+        BIO 247, BIO 248, BIO 249, BIO 251, BIO 252,
+        BIO 261, BIO 266, BIO 275, BIO 282, BIO 284,
+        BIO 287, BIO 288, BIO 292,
+      ]
+
+  Chemistry:
+    result:
+      count: any
+      of:
+        - {count: all, of: [CHEM 121, CHEM 123, CHEM 126]}
+        - {count: all, of: [CHEM 125, CHEM 126]}
+        - {count: all, of: [CH/BI 125, CH/BI 126]}
