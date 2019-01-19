@@ -1,0 +1,117 @@
+name: Dance
+type: major
+degree: Bachelor of Arts
+catalog: 2014-15
+
+result:
+  count: all
+  of:
+    - requirement: Language-Intensive Courses (Theory)
+    - requirement: Movement-Intensive Courses (Technique)
+    - requirement: Senior Dance Seminar
+    - requirement: Area of Speciality
+    - requirement: Dance Companies
+    - requirement: Productions
+
+requirements:
+  Language-Intensive Courses (Theory):
+    result:
+      count: all
+      of:
+        - DANCE 100
+        - DANCE 124
+        - DANCE 150
+        - DANCE 231
+        - DANCE 246
+        - DANCE 270
+
+  Movement-Intensive Courses (Technique):
+    result:
+      given: these requirements
+      requirements:
+        - requirement: Ballet
+        - requirement: International and Social
+        - requirement: Modern
+        - requirement: Other Topics
+      what: credits
+      do: sum >= 1.5
+
+    requirements:
+      Ballet:
+        result:
+          count: any
+          of:
+            - DANCE 121
+            - either: [DANCE 130, DANCE 131]
+            - either: [DANCE 220, DANCE 221]
+            - either: [DANCE 320, DANCE 321]
+
+      International and Social:
+        result:
+          count: any
+          of:
+            - DANCE 106
+            - DANCE 108
+            - DANCE 109
+            - DANCE 206
+            - DANCE 207
+            - DANCE 209
+
+      Modern:
+        result:
+          count: any
+          of:
+            - DANCE 111
+            - either: [DANCE 210, DANCE 211]
+            - either: [DANCE 250, DANCE 251]
+            - either: [DANCE 310, DANCE 311]
+
+      Other Topics:
+        result:
+          count: any
+          of:
+            - DANCE 107
+            - DANCE 112
+            - DANCE 113
+            - DANCE 141
+            - DANCE 160
+
+  Senior Dance Seminar:
+    message:
+      Must be taken fall of senior year. Final projects may take the
+      form of a research paper, performance, choreography, or blended
+      project.
+    save:
+      - given: these courses
+        courses: [DANCE 399]
+        repeats: last
+        where: {year: graduation-year, semester: Fall}
+        name: "Senior Dance Seminars"
+    result:
+      given: save
+      save: "Senior Dance Seminars"
+      what: courses
+      do: count >= 1
+
+
+  Area of Speciality:
+    contract: true
+    message:
+      Each student designs an individualized area of specialty derived
+      from their own interests and investigation. Select at least two
+      credits from within or outside the department.
+
+
+  Dance Companies:
+    department_audited: true
+    message:
+      Majors are required to participate in one of the dance companies
+      (Companydance™ or Veselica™ International Dance Ensemble) for a
+      minimum of three semesters.
+
+
+  Productions:
+    department_audited: true
+    message:
+      Majors are required to contribute in managing a dance production
+      for a minimum of one semester.
