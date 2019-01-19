@@ -1,0 +1,159 @@
+name: Political Science
+type: major
+degree: Bachelor of Arts
+catalog: 2015-16
+
+result:
+  count: all
+  of:
+    - count: all
+      of:
+        - requirement: Research Methods
+        - requirement: American Politics and Public Policy
+        - requirement: Comparative Politics
+        - requirement: International Relations
+        - requirement: Political Theory
+        - {requirement: Additional Courses, optional: true}
+
+    - given: these requirements
+      requirements:
+        - requirement: Research Methods
+        - requirement: American Politics and Public Policy
+        - requirement: Comparative Politics
+        - requirement: International Relations
+        - requirement: Political Theory
+        - requirement: Additional Courses
+      what: courses
+      do: count >= 9
+
+limiters:
+  - where: {level: '100'}
+    at_most: 3
+
+
+attributes:
+  definitions:
+    psci_topic:
+      type: string
+
+  courses:
+    PSCI 111: {psci_topic: american}
+    PSCI 204: {psci_topic: american}
+    PSCI 211: {psci_topic: american}
+    PSCI 244: {psci_topic: american}
+    PSCI 255: {psci_topic: american}
+    PSCI 272: {psci_topic: american}
+    ES/PS 276: {psci_topic: american}
+    PSCI 112: {psci_topic: comparative}
+    PSCI 115: {psci_topic: comparative}
+    PSCI 117: {psci_topic: comparative}
+    PSCI 252: {psci_topic: comparative}
+    PSCI 264: {psci_topic: comparative}
+    PSCI 282: {psci_topic: comparative}
+    PSCI 283: {psci_topic: comparative}
+    AS/PS 255: {psci_topic: comparative}
+    PSCI 115: {psci_topic: international}
+    PSCI 119: {psci_topic: international}
+    PSCI 121: {psci_topic: international}
+    PSCI 245: {psci_topic: international}
+    PSCI 257: {psci_topic: international}
+    PSCI 258: {psci_topic: international}
+    PSCI 285: {psci_topic: international}
+    ES/PS 201: {psci_topic: international}
+    PSCI 113: {psci_topic: theory}
+    PSCI 119: {psci_topic: theory}
+    PSCI 232: {psci_topic: theory}
+    PSCI 259: {psci_topic: theory}
+    PSCI 260: {psci_topic: theory}
+    PSCI 262: {psci_topic: theory}
+    PSCI 284: {psci_topic: theory}
+    ES/PS 225: {psci_topic: theory}
+    # 2000-01 Fall
+    PSCI 299 2000-1: {psci_topic: theory}
+
+
+requirements:
+  Research Methods:
+    result:
+      course: PSCI 220
+
+  American Politics and Public Policy:
+    result:
+      given: courses
+      where: {psci_topic: american}
+      what: courses
+      do: count >= 1
+
+  Comparative Politics:
+    result:
+      given: courses
+      where: {psci_topic: comparative}
+      what: courses
+      do: count >= 1
+
+  International Relations:
+    result:
+      given: courses
+      where: {psci_topic: international}
+      what: courses
+      do: count >= 1
+
+  Political Theory:
+    result:
+      given: courses
+      where: {psci_topic: theory}
+      what: courses
+      do: count >= 1
+
+  Level III:
+    result:
+      count: 2
+      of:
+        - PSCI 311
+        - PSCI 321
+        - PSCI 350
+        - PSCI 367
+        - PSCI 370
+        - PSCI 382
+        - PSCI 384
+        - PSCI 385
+
+  Additional Courses:
+    result:
+      count: 1
+      of:
+        - requirement: Statistics
+        - requirement: World Langauge
+
+    requirements:
+      Statistics:
+        result:
+          given: courses
+          where: {department: STAT}
+          what: courses
+          do: count >= 1
+
+      World Langauge:
+        result:
+          either:
+            - requirement: French, German, Spanish
+            - requirement: Chinese, Greek, Latin, Japanese, Norwegian, Russian
+
+        requirements:
+          French, German, Spanish:
+            result:
+              given: courses
+              where:
+                department: 'FREN | GERM | SPAN'
+                number: '>= 232'
+              what: courses
+              do: count >= 1
+
+          Chinese, Greek, Latin, Japanese, Norwegian, Russian:
+            result:
+              given: courses
+              where:
+                department: 'CHIN | GREEK | LATIN | JAPAN | NORW | RUSSN'
+                number: '>= 231'
+              what: courses
+              do: count >= 1
