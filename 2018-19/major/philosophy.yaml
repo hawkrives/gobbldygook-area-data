@@ -1,0 +1,44 @@
+name: Philosophy
+type: major
+degree: Bachelor of Arts
+catalog: 2018-19
+
+result:
+  count: all
+  of:
+    - requirement: Core
+    - requirement: Level III Seminars
+    - requirement: Electives
+
+requirements:
+  Core:
+    result:
+      count: all
+      of: [PHIL 235, PHIL 236, PHIL 240]
+
+  Level III Seminars:
+    result:
+      given: these courses
+      courses: [PHIL 371, PHIL 372, PHIL 373, PHIL 374, PHIL 375]
+      repeats: first
+      limit:
+        - {at_most: 0, where: {s/u: 'true'}}
+      what: courses
+      do: count >= 3
+
+  Electives:
+    result:
+      given: these courses
+      courses: [
+        PHIL 118, PHIL 119, PHIL 120, PHIL 147,
+        PHIL 233, PHIL 235, PHIL 236, PHIL 240,
+        PHIL 241, PHIL 243, PHIL 244, PHIL 245,
+        PHIL 246, PHIL 250, PHIL 251, PHIL 252,
+        PHIL 254, PHIL 255, PHIL 257, PHIL 259,
+        PHIL 260, PHIL 261, PHIL 371, PHIL 372,
+        PHIL 373, PHIL 374, PHIL 375, PHIL 399,
+        GCON 218,
+      ]
+      repeats: first
+      what: courses
+      do: count >= 3
