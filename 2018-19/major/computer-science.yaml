@@ -1,0 +1,64 @@
+name: Computer Science
+type: major
+degree: Bachelor of Arts
+catalog: 2018-19
+
+result:
+  count: all
+  of:
+    - requirement: Foundation
+    - requirement: Core
+    - requirement: Electives
+    - requirement: Capstone
+
+
+requirements:
+  Foundation:
+    result:
+      count: 3
+      of:
+        - either: [CSCI 121, CSCI 125]
+        - CSCI 241
+        - both: [CSCI 251, CSCI 252]
+        - count: 1
+          of: [MATH 232, MATH 252, MATH 244]
+
+  Core:
+    result:
+      count: all
+      of:
+        - CS 253
+        - CS 263
+        - requirement: Languages
+        - requirement: Systems
+
+    requirements:
+      Languages:
+        result:
+          surplus: [Electives, .result, .of]
+          count: any
+          of: [CSCI 276, CSCI 333, CSCI 336]
+
+      Systems:
+        result:
+          surplus: [Electives, .result, .of]
+          count: any
+          of:
+            - CSCI 273
+            - CSCI 284
+            - {course: CSCI 300, term: 2000-1}
+
+  Electives:
+    result:
+      count: 2
+      of:
+        - CSCI 316
+        - CSCI 300
+        - CSCI 315
+        - CSCI 350
+        - {course: ID 259, term: 2000-1}
+        - {course: ID 259, term: 2003-3}
+
+  Capstone:
+    result:
+      course: CSCI 390
