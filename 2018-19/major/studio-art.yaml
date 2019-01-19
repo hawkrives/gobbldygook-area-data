@@ -16,7 +16,7 @@ result:
 requirements:
   Foundations:
     result:
-      surplus: [Studio Art, Electives, .of]
+      surplus: [Studio Art, Electives, .result, .of]
       count: all
       of:
         - either: [ART 102, ART 106]
@@ -44,25 +44,25 @@ requirements:
         requirements:
           Drawing:
             result:
-              surplus: [Studio Art, Electives, .of]
+              surplus: [Studio Art, Electives, .result, .of]
               count: any
               of: [ART 225, ART 232, ART 233]
 
           Painting:
             result:
-              surplus: [Studio Art, Electives, .of]
+              surplus: [Studio Art, Electives, .result, .of]
               count: any
               of: [ART 221, ART 222]
 
           Printmaking:
             result:
-              surplus: [Studio Art, Electives, .of]
+              surplus: [Studio Art, Electives, .result, .of]
               count: any
               of: [ART 226, ART 227]
 
           Graphic Design:
             result:
-              surplus: [Studio Art, Electives, .of]
+              surplus: [Studio Art, Electives, .result, .of]
               count: any
               of:
                 - {course: ART 236, term: 2000-0}
@@ -77,13 +77,13 @@ requirements:
         requirements:
           Ceramics:
             result:
-              surplus: [Studio Art, Electives, .of]
+              surplus: [Studio Art, Electives, .result, .of]
               count: any
               of: [ART 207, ART 234]
 
           Sculpture:
             result:
-              surplus: [Studio Art, Electives, .of]
+              surplus: [Studio Art, Electives, .result, .of]
               count: any
               of: [ART 223, ART 224]
 
@@ -100,31 +100,31 @@ requirements:
         requirements:
           Photography:
             result:
-              surplus: [Studio Art, Electives, .of]
+              surplus: [Studio Art, Electives, .result, .of]
               count: any
               of: [ART 205, ART 238]
 
           Interactive Image:
             result:
-              surplus: [Studio Art, Electives, .of]
+              surplus: [Studio Art, Electives, .result, .of]
               count: any
               of: [ART 228]
 
           Digital Video:
             result:
-              surplus: [Studio Art, Electives, .of]
+              surplus: [Studio Art, Electives, .result, .of]
               count: any
               of: [ART 229]
 
           Performance:
             result:
-              surplus: [Studio Art, Electives, .of]
+              surplus: [Studio Art, Electives, .result, .of]
               count: any
               of: [ART 240]
 
           Graphic Design:
             result:
-              surplus: [Studio Art, Electives, .of]
+              surplus: [Studio Art, Electives, .result, .of]
               count: any
               of:
                 - {course: ART 236, term: 2000-0}

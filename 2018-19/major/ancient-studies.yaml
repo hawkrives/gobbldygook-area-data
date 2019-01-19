@@ -15,7 +15,7 @@ result:
 requirements:
   Language:
     result:
-      surplus: [Electives, .of]
+      surplus: [Electives, .result, .of]
       either: [LATIN 252, GREEK 253]
 
   Ancient History:
@@ -60,6 +60,6 @@ requirements:
 
   Independent Research:
     result:
-      surplus: [Electives, .of]
+      surplus: [Electives, .result, .of]
       count: any
       of: [CLASS 398, HIST 398, LATIN 398, GREEK 398]
