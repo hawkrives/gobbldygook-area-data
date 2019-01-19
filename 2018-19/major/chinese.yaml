@@ -1,0 +1,80 @@
+name: Chinese
+type: major
+degree: Bachelor of Arts
+catalog: 2018-19
+
+result:
+  count: all
+  of:
+    - requirement: Core Language
+    - requirement: Upper-Level Language
+    - requirement: Language and Culture
+    - {requirement: FLAC, optional: true}
+
+requirements:
+  Core Language:
+    result:
+      count: all
+      of: [CHIN 231, CHIN 232, CHIN 301, CHIN 302]
+
+  Upper-Level Language:
+    result:
+      count: all
+      of:
+        - CHIN 320
+        - CHIN 351
+        - CHIN 360
+
+  Language and Culture:
+    message: >
+      The Asian Conversation sequence (ASIAN 210, ASIAN 215 or ASIAN 216, ASIAN
+      220) will count for no more than two courses.
+
+      One of these courses can be an Independent Study (capstone project) or the
+      Asian Studies senior seminars (ASIAN 397 and ASIAN 399).
+
+    save:
+      - given: these courses
+        courses:
+          - ASIAN 397
+          - ASIAN 399
+          - ASIAN 298
+          - ASIAN 296
+          - ASIAN 398
+          - ASIAN 396
+          - ASIAN 210
+          - ASIAN 215
+          - ASIAN 216
+          - ASIAN 220
+          - ASIAN 268
+          - ASIAN 230
+        repeats: first
+        limit:
+          - {at_most: 1, where: {level: '100'}}
+          - {at_most: 1, where: {department: 'ASIAN', number: '397 | 399 | 296 | 298 | 396 | 398'}}
+          - {at_most: 2, where: {department: 'ASIAN', number: '210 | 215 | 216 | 220'}}
+        name: Allowed Courses
+
+    result:
+      count: all
+      of:
+        - given: save
+          save: Allowed Courses
+          what: courses
+          where: {level: '300'}
+          do: count >= 1
+
+        - given: save
+          save: Allowed Courses
+          what: courses
+          do: count >= 4
+
+  FLAC:
+    result:
+      count: any
+      of:
+        - ASIAN 156
+        - ASIAN 237
+        - ASIAN 270
+        - HIST 250
+        - HIST 251
