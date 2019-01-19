@@ -1,0 +1,52 @@
+name: Biomolecular Science
+type: concentration
+degree: Bachelor of Arts
+catalog: 2018-19
+
+result:
+  count: all
+  of:
+    - requirement: Core
+    - requirement: Experiential Learning
+    - requirement: Electives
+
+requirements:
+  Core:
+    result:
+      count: all
+      of:
+        - BIO 150
+        - count: any
+          of:
+          - {count: all, of: [CHEM 125, CHEM 126, BIO 227]}
+          - {count: all, of: [CHEM 121, CHEM 123, CHEM 126, BIO 227]}
+          - {count: all, of: [CH/BI 125, CH/BI 126, CH/BI 227]}
+        - BIO 223
+        - BMOLS 201
+        - both: [CHEM 247, CHEM 253]
+        - both: [CHEM 248, CHEM 254]
+        - both: [CHEM 379, CHEM 373]
+
+  Experiential Learning:
+    department_audited: true
+    message:
+      Participation in an experimentally based research experience or employment
+      that takes biomolecular sciences beyond the traditional classroom is
+      required of each concentrator. This can occur either on- or off-campus.
+      This activity must be pre-approved by the Biomolecular Science Committee
+      and be supported after the fact by a letter from a supervisor.
+
+  Electives:
+    result:
+      count: 2
+      of:
+        - BIO 315
+        - BIO 341
+        - BIO 364
+        - BIO 372
+        - BIO 382
+        - BIO 383
+        - CHEM 384
+        - CHEM 385
+        - CHEM 391
+        - CSCI 315
