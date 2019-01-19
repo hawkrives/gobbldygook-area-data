@@ -1,0 +1,91 @@
+name: Chemistry
+type: major
+degree: Bachelor of Arts
+catalog: 2018-19
+
+result:
+  count: all
+  of:
+    - requirement: Introductory Sequence
+    - requirement: Upper-Level Core
+    - requirement: Physics
+    - requirement: Mathematics
+    - requirement: Seminars
+
+requirements:
+  Introductory Sequence:
+    requirements:
+      Option A:
+        result:
+          count: all
+          of: [CHEM 121, CHEM 123, CHEM 125]
+
+      Option B:
+        result:
+          count: all
+          of: [CHEM 125, CHEM 126]
+
+      Option C:
+        result:
+          count: all
+          of: [CH/BI 125, CH/BI 126, CH/BI 227]
+
+    result:
+      count: any
+      of:
+        - requirement: Option A
+        - requirement: Option B
+        - requirement: Option C
+
+  Upper-Level Core:
+    result:
+      count: all
+      of:
+        - requirement: Organic
+        - requirement: Analytical
+        - requirement: Physical
+        - requirement: Elective
+
+    requirements:
+      Organic:
+        result:
+          count: all
+          of: [CHEM 247, CHEM 253, CHEM 248, CHEM 254]
+
+      Analytical:
+        result:
+          count: all
+          of: [CHEM 255, CHEM 256]
+
+      Physical:
+        result:
+          count: all
+          of: [CHEM 357, CHEM 371]
+
+      Elective:
+        result:
+          count: any
+          of:
+            - CHEM 252
+            - CHEM 280
+            - CHEM 379
+            - CHEM 382
+            - CHEM 384
+            - CHEM 386
+            - CHEM 388
+            - CHEM 391
+
+  Physics:
+    result:
+      either:
+        - PHYS 125
+        - PHYS 232
+
+  Mathematics:
+    result:
+      either: [MATH 126, MATH 128]
+
+  Seminars:
+    message:
+      Attendance is required at 12 departmental seminars after declaration of major.
+    department_audited: true
