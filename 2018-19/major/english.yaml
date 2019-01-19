@@ -1,0 +1,297 @@
+name: English
+type: major
+degree: Bachelor of Arts
+catalog: 2018-19
+
+result:
+  count: all
+  of:
+    - requirement: Literary Studies
+    - requirement: Cross-Cultural Studies
+    - requirement: Literary History
+    - either:
+      - requirement: Cross-Disciplinary Studies
+      - requirement: Genre Studies
+    - requirement: Electives
+    - requirement: 1800s
+
+attributes:
+  definitions:
+    english_topic:
+      type: string
+    english_period:
+      type: string
+  courses:
+    # 2018-19 Fall
+    ENGL 205 2018-1: {engl_topic: cross-cultural, engl_period: post-1800}
+    ENGL 206 2018-1: {engl_topic: cross-cultural, engl_period: post-1800}
+    ENGL 209 2018-1: {engl_topic: cross-cultural, engl_period: post-1800}
+    ENGL 223 2018-1: {engl_topic: literary-history, engl_period: pre-1800}
+    ENGL 253 2018-1: {engl_topic: elective, engl_period: post-1800}
+    ENGL 258 2018-1: {engl_topic: elective, engl_period: post-1800}
+    ENGL 275 2018-1: {engl_topic: cross-disciplinary, engl_period: post-1800}
+    ENGL 276 2018-1: {engl_topic: cross-disciplinary, engl_period: post-1800}
+    ENGL 280A 2018-1: {engl_topic: genre-studies, engl_period: post-1800}
+    ENGL 280B 2018-1: {engl_topic: genre-studies, engl_period: post-1800}
+    ENGL 284 2018-1: {engl_topic: genre-studies}
+    ENGL 285 2018-1: {engl_topic: genre-studies, engl_period: post-1800}
+    ENGL 292 2018-1: {engl_topic: genre-studies, engl_period: post-1800}
+    ENGL 293 2018-1: {engl_topic: genre-studies, engl_period: post-1800}
+    ENGL 296 2018-1: {engl_topic: genre-studies, engl_period: post-1800}
+    # 2018-19 Interim
+    ENGL 280A 2018-2: {engl_topic: genre-studies, engl_period: post-1800}
+    ENGL 280B 2018-2: {engl_topic: genre-studies, engl_period: post-1800}
+    ENGL 282 2018-2: {engl_topic: genre-studies, engl_period: post-1800}
+    ENGL 287 2018-2: {engl_topic: genre-studies, engl_period: post-1800}
+    ID 258 2018-2: {engl_topic: elective, engl_period: post-1800}
+    # 2018-19 Spring
+    ENGL 200 2018-3: {engl_topic: cross-cultural, engl_period: post-1800}
+    ENGL 207 2018-3: {engl_topic: cross-cultural, engl_period: post-1800}
+    ENGL 208 2018-3: {engl_topic: cross-cultural, engl_period: post-1800}
+    ENGL 220 2018-3: {engl_topic: literary-history, engl_period: pre-1800}
+    ENGL 229 2018-3: {engl_topic: literary-history, engl_period: post-1800}
+    ENGL 242 2018-3: {engl_topic: genre-studies, engl_period: post-1800}
+    ENGL 251 2018-3: {engl_topic: elective, engl_period: post-1800}
+    ENGL 256 2018-3: {engl_topic: elective, engl_period: pre-1800}
+    ENGL 260 2018-3: {engl_topic: cross-disciplinary, engl_period: post-1800}
+    ENGL 283 2018-3: {engl_topic: genre-studies, engl_period: post-1800}
+    ENGL 286 2018-3: {engl_topic: genre-studies, engl_period: post-1800}
+    ENGL 289 2018-3: {engl_topic: genre-studies, engl_period: post-1800}
+    # 2017-18 Fall
+    ENGL 203 2017-1: {engl_topic: cross-cultural, engl_period: post-1800}
+    ENGL 205 2017-1: {engl_topic: cross-cultural, engl_period: post-1800}
+    ENGL 220 2017-1: {engl_topic: literary-history, engl_period: post-1800}
+    ENGL 223 2017-1: {engl_topic: literary-history, engl_period: pre-1800}
+    ENGL 228 2017-1: {engl_topic: literary-history, engl_period: post-1800}
+    ENGL 260 2017-1: {engl_topic: cross-disciplinary, engl_period: pre-1800}
+    ENGL 266 2017-1: {engl_topic: cross-disciplinary, engl_period: post-1800}
+    ENGL 269 2017-1: {engl_topic: cross-disciplinary, engl_period: post-1800}
+    ENGL 271 2017-1: {engl_topic: cross-disciplinary, engl_period: pre-1800}
+    ENGL 275 2017-1: {engl_topic: cross-disciplinary, engl_period: post-1800}
+    ENGL 280 2017-1: {engl_topic: genre-studies, engl_period: post-1800}
+    ENGL 283 2017-1: {engl_topic: genre-studies, engl_period: post-1800}
+    ENGL 292 2017-1: {engl_topic: genre-studies, engl_period: post-1800}
+    ENGL 293 2017-1: {engl_topic: genre-studies, engl_period: post-1800}
+    ENGL 296 2017-1: {engl_topic: genre-studies, engl_period: post-1800}
+    # 2017-18 Interim
+    ENGL 260 2017-2: {engl_topic: cross-disciplinary, engl_period: pre-1800}
+    ENGL 263 2017-2: {engl_topic: cross-disciplinary, engl_period: post-1800}
+    ENGL 267 2017-2: {engl_topic: cross-disciplinary, engl_period: post-1800}
+    ENGL 280 2017-2: {engl_topic: genre-studies, engl_period: post-1800}
+    ENGL 282 2017-2: {engl_topic: genre-studies, engl_period: post-1800}
+    ENGL 290 2017-2: {engl_topic: cross-disciplinary, engl_period: post-1800}
+    ID 257 2017-2: {engl_topic: elective, engl_period: post-1800}
+    ID 258 2017-2: {engl_topic: elective, engl_period: post-1800}
+    # 2017-18 Spring
+    ENGL 200 2017-3: {engl_topic: cross-cultural, engl_period: post-1800}
+    ENGL 204 2017-3: {engl_topic: cross-cultural, engl_period: post-1800}
+    ENGL 207 2017-3: {engl_topic: cross-cultural, engl_period: post-1800}
+    ENGL 209 2017-3: {engl_topic: cross-cultural, engl_period: post-1800}
+    ENGL 229 2017-3: {engl_topic: literary-history, engl_period: post-1800}
+    ENGL 232 2017-3: {engl_topic: literary-history, engl_period: pre-1800}
+    ENGL 242 2017-3: {engl_topic: genre-studies, engl_period: post-1800}
+    ENGL 258 2017-3: {engl_topic: elective, engl_period: post-1800}
+    ENGL 260 2017-3: {engl_topic: cross-disciplinary, engl_period: post-1800}
+    ENGL 289 2017-3: {engl_topic: genre-studies, engl_period: post-1800}
+    ENGL 291 2017-3: {engl_topic: genre-studies, engl_period: post-1800}
+    # 2016-1
+    # ENGL 203 cross-cultural, post-1800
+    # ENGL 205 cross-cultural, post-1800
+    # ENGL 206 cross-cultural, post-1800
+    # ENGL 220 literary-history, pre-1800
+    # ENGL 229 literary-history, post-1800
+    # ENGL 253 elective, post-1800
+    # ENGL 275 cross-disciplinary
+    # ENGL 280A genre-studies
+    # ENGL 280B genre-studies
+    # ENGL 285 genre-studies
+    # ENGL 291 genre-studies
+    # ENGL 293 genre-studies
+    # ENGL 296 genre-studies
+    # 2016-2
+    # ENGL 212 cross-cultural, post-1800
+    # ENGL 253 elective, post-1800
+    # ENGL 267 cross-disciplinary, post-1800
+    # ENGL 268 cross-disciplinary, post-1800
+    # ENGL 275 cross-disciplinary, post-1800
+    # ENGL 280 genre-studies
+    # ENGL 281 cross-disciplinary, post-1800
+    # ENGL 286 genre-studies
+    # ID 258 elective
+    # 2016-3
+    # ENGL 207 cross-cultural, post-1800
+    # ENGL 220 literary-history,
+    # ENGL 225 literary-history, pre-1800
+    # ENGL 228 literary-history, post-1800
+    # ENGL 242 genre-studies, post-1800
+    # ENGL 250 elective
+    # ENGL 251 elective, post-1800
+    # ENGL 255 elective, post-1800
+    # ENGL 256 elective, pre-1800
+    # ENGL 258 elective, post-1800
+    # ENGL 260 cross-disciplinary, post-1800
+    # ENGL 276 cross-disciplinary, post-1800
+    # ENGL 280A genre-studies, post-1800
+    # ENGL 280B genre-studies, post-1800
+    # ENGL 292 genre-studies
+    # 2015-1
+    # ENGL 204 cross-cultural, post-1800
+    # ENGL 205 cross-cultural, post-1800
+    # ENGL 209 cross-cultural, post-1800
+    # ENGL 227 literary-history, Pre-1800
+    # ENGL 228 literary-history, post-1800
+    # ENGL 232 literary-history, Pre-1800
+    # ENGL 268 cross-disciplinary
+    # ENGL 273 cross-disciplinary, post-1800
+    # ENGL 280 genre-studies
+    # ENGL 292 genre-studies
+    # ENGL 293 genre-studies
+    # ENGL 296 genre-studies
+    # 2015-2
+    # ENGL 260 cross-disciplinary, pre-1800
+    # ENGL 263 cross-disciplinary, post-1800
+    # ENGL 275 cross-disciplinary, post-1800
+    # ENGL 287 genre-studies
+    # ID 257 elective
+    # ID 258 elective
+    # 2015-3
+    # ENGL 201 cross-cultural, post-1800
+    # ENGL 203 cross-cultural, post-1800
+    # ENGL 220 literary-history, post-1800
+    # ENGL 223 literary-history, pre-1800
+    # ENGL 229 literary-history, post-1800
+    # ENGL 242 genre-studies
+    # ENGL 258 elective
+    # ENGL 260 cross-disciplinary, pre-1800
+    # ENGL 266 cross-disciplinary, post-1800
+    # ENGL 280A genre-studies
+    # ENGL 280B genre-studies
+    # ENGL 286 genre-studies
+    # ENGL 291A genre-studies
+    # ENGL 291B genre-studies
+    # 2014-1
+    # ENGL 204 cross-cultural, post-1800
+    # ENGL 208 cross-cultural, post-1800
+    # ENGL 220A literary-history, pre-1800
+    # ENGL 220B literary-history, post-1800
+    # ENGL 256 elective, pre-1800
+    # ENGL 271 cross-disciplinary, pre-1800
+    # ENGL 275 cross-disciplinary, post-1800
+    # ENGL 280 genre-studies, post-1800
+    # ENGL 285 genre-studies, post-1800
+    # ENGL 291 genre-studies
+    # ENGL 293 genre-studies
+    # ENGL 296 genre-studies
+    # 2014-2
+    # ENGL 260 cross-disciplinary, post-1800
+    # ENGL 264 cross-disciplinary, post-1800
+    # ENGL 268 cross-disciplinary, post-1800
+    # ENGL 288 genre-studies
+    # ID 258 elective
+    # 2014-3
+    # ENGL 200 cross-cultural, post-1800
+    # ENGL 205 cross-cultural, post-1800
+    # ENGL 206 cross-cultural, post-1800
+    # ENGL 223 literary-history pre-1800
+    # ENGL 228 literary-history post-1800
+    # ENGL 242 genre-studies
+    # ENGL 250 elective
+    # ENGL 258 elective, post-1800
+    # ENGL 260 cross-disciplinary, post-1800
+    # ENGL 276 cross-disciplinary, post-1800
+    # ENGL 280A genre-studies
+    # ENGL 280B genre-studies
+    # ENGL 284 genre-studies
+    # ENGL 292 genre-studies
+    # 2013-1
+    # ENGL 203 cross-cultural, post-1800
+    # ENGL 205 cross-cultural, post-1800
+    # ENGL 220 literary-history, post-1800
+    # ENGL 221 literary-history, pre-1800
+    # ENGL 225 literary-history, pre-1800
+    # ENGL 229 literary-history
+    # ENGL 251 elective, post-1800
+    # ENGL 258 elective, post-1800
+    # ENGL 260 cross-disciplinary, pre-1800
+    # ENGL 268 cross-disciplinary, post-1800
+    # ENGL 285 genre-studies, post-1800
+    # ENGL 291A genre-studies
+    # ENGL 291B genre-studies
+    # ENGL 292 genre-studies
+    # ENGL 293 genre-studies
+    # ENGL 296 genre-studies
+    # 2013-2
+    # ID 258 cross-disciplinary
+    # ENGL 212 cross-cultural
+    # ENGL 252 elective
+    # ENGL 260 cross-disciplinary
+    # ENGL 264 cross-disciplinary, post-1800
+    # ENGL 267 cross-disciplinary
+    # ENGL 289 genre-studies
+    # ID 257 elective
+    # ID 258 elective
+    # 2013-3
+    # ENGL 200 cross-cultural
+    # ENGL 204 cross-cultural
+    # ENGL 223 literary-history, pre-1800
+    # ENGL 228 literary-history
+    # ENGL 242 genre-studies
+    # ENGL 250 elective
+    # ENGL 264 cross-disciplinary
+    # ENGL 266 cross-disciplinary, post-1800
+    # ENGL 280 genre-studies
+    # ENGL 287 genre-studies
+    # ENGL 291 genre-studies
+
+requirements:
+  Literary Studies:
+    result:
+      course: ENGL 185
+
+  Cross-Cultural Studies:
+    result:
+      given: courses
+      where: {english_topic: cross-cultural}
+      what: courses
+      do: count >= 1
+
+  Literary History:
+    result:
+      given: courses
+      where: {english_topic: literary-history}
+      what: courses
+      do: count >= 1
+
+  Cross-Disciplinary Studies:
+    result:
+      given: courses
+      where: {english_topic: cross-disciplinary}
+      what: courses
+      do: count >= 1
+
+  Genre Studies:
+    result:
+      given: courses
+      where: {english_topic: genre-studies}
+      what: courses
+      do: count >= 1
+
+  Electives:
+    result:
+      given: courses
+      where: {english_topic: 'elective | genre-studies | cross-cultural | literary-history | cross-disciplinary'}
+      what: courses
+      do: count >= 6
+
+  1800s:
+    result:
+      both:
+        - given: courses
+          where: {english_period: 'pre-1800'}
+          what: courses
+          do: count >= 1
+
+        - given: courses
+          where: {english_period: 'post-1800'}
+          what: courses
+          do: count >= 1
