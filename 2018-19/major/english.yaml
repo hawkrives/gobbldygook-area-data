@@ -17,9 +17,9 @@ result:
 
 attributes:
   definitions:
-    english_topic:
+    engl_topic:
       type: string
-    english_period:
+    engl_period:
       type: string
   courses:
     # 2018-19 Fall
