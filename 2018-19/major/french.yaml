@@ -1,0 +1,67 @@
+name: French
+type: major
+degree: Bachelor of Arts
+catalog: 2018-19
+
+result:
+  count: all
+  of:
+    - requirement: Speaking and Writing
+    - requirement: The Francophone World
+    - requirement: Level III
+    - requirement: Electives
+
+requirements:
+  Speaking and Writing:
+    result:
+      surplus: [Electives, .result, .of]
+      count: 2
+      of:
+        - FREN 250
+        - FREN 251
+        - FREN 253
+
+  The Francophone World:
+    result:
+      surplus: [Electives, .result, .of]
+      count: 2
+      of:
+        - FREN 271
+        - FREN 272
+        - FREN 273
+        - FREN 275
+
+  Level III:
+    result:
+      surplus: [Electives, .result, .of]
+      count: 2
+      of:
+        - FREN 372
+        - FREN 373
+        - FREN 397
+        - FREN 399
+
+  Electives:
+    result:
+      given: these courses
+      courses:
+        - FREN 231
+        - FREN 232
+        - FREN 235
+        - ART 251
+        - ART 252
+        - ART 263
+        - ART 271
+        - HIST 210
+        - HIST 226
+        - HIST 227
+        - MUSIC 343
+        - PHIL 236
+        - PSCI 260
+        - PSCI 283
+        - THEAT 270
+      repeats: first
+      what: courses
+      limit:
+        - {at_most: 1, where: {department: '! FREN'}}
+      do: count >= 2
