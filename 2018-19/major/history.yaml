@@ -22,12 +22,16 @@ limiters:
 
 
 attributes:
+  defaults:
+    may count for multiple requirements: true
+
   definitions:
     history_region:
       type: array
       multiple values can be used: false
     history_era:
       type: string
+
   courses:
     HIST 101: {history_region: [europe, russia], history_era: pre-modern}
     HIST 111: {history_region: [europe, russia], history_era: pre-modern}
