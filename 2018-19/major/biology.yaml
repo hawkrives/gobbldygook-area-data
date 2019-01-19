@@ -57,7 +57,7 @@ requirements:
 
   Level III:
     result:
-      excess: [Electives, .result, .of]
+      surplus: [Electives, .result, .of]
       count: 1
       of:
         - BIO 315

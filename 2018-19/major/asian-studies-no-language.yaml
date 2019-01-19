@@ -34,7 +34,7 @@ attributes:
 requirements:
   Seminar:
     result:
-      excess: [Electives, .result, .courses]
+      surplus: [Electives, .result, .courses]
       either: [ASIAN 397, ASIAN 399]
 
   Electives:
