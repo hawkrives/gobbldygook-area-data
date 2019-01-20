@@ -1,0 +1,68 @@
+name: Theater
+type: major
+degree: Bachelor of Arts
+catalog: 2018-19
+
+result:
+  count: all
+  of:
+    - requirement: Part 1
+    - requirement: Part 2
+    - requirement: Practicum
+
+requirements:
+  Part 1:
+    result:
+      count: all
+      of:
+        - THEAT 130
+        - THEAT 140
+        - THEAT 180
+        - THEAT 232
+        - either: [THEAT 240, THEAT 250]
+        - THEAT 270
+        - THEAT 271
+
+  Part 2:
+    result:
+      count: 2
+      of:
+        - THEAT 338
+        - THEAT 379
+        - THEAT 380
+        - THEAT 394
+        - THEAT 398
+
+  Practicum:
+    message:
+      All students must enroll in four practicum classes, of which at least one
+      must be THEAT 233 and at least two must be THEAT 253; the fourth practicum
+      class is then a choice of either 233 or 253.
+
+    result:
+      count: all
+      of:
+        - requirement: Acting
+        - requirement: Tech
+        - given: these courses
+          courses: [THEAT 233, THEAT 253]
+          repeats: all
+          what: courses
+          do: count >= 4
+
+    requirements:
+      Acting:
+        result:
+          given: these courses
+          courses: [THEAT 233]
+          repeats: all
+          what: courses
+          do: count >= 1
+
+      Tech:
+        result:
+          given: these courses
+          courses: [THEAT 253]
+          repeats: all
+          what: courses
+          do: count >= 2
