@@ -1,0 +1,188 @@
+name: Mathematics
+type: major
+degree: Bachelor of Arts
+catalog: 2015-16
+
+result:
+  both:
+    - count: all
+      of:
+        - requirement: Basics
+        - requirement: Transitions
+        - requirement: Perspectives
+        - {requirement: Interdisciplinary, optional: true}
+        - requirement: Sequence
+        - requirement: Level III
+
+    - given: these requirements
+      requirements:
+        - requirement: Basics
+        - requirement: Transitions
+        - requirement: Perspectives
+        - requirement: Interdisciplinary
+        - requirement: Sequence
+        - requirement: Level III
+      where: {institution: St. Olaf College}
+      what: courses
+      do: count >= 6
+
+limiters:
+  - where: {department: '! MATH'}
+    at_most: 2
+
+attributes:
+  definitions:
+    math_perspectives:
+      type: array
+      multiple values can be used: false
+  courses:
+    MATH 226: {math_perspectives: [C]}
+    MATH 230: {math_perspectives: [C, M]}
+    MATH 232: {math_perspectives: [D]}
+    MATH 236: {math_perspectives: [M]}
+    MATH 239: {math_perspectives: [D]}
+    MATH 242: {math_perspectives: [M]}
+    MATH 244: {math_perspectives: [C]}
+    MATH 252: {math_perspectives: [A]}
+    MATH 262: {math_perspectives: [C, D, M]}
+    MATH 266: {math_perspectives: [M]}
+    MATH 330: {math_perspectives: [M]}
+    MATH 340: {math_perspectives: [C]}
+    MATH 344: {math_perspectives: [C]}
+    MATH 348: {math_perspectives: [A]}
+    MATH 352: {math_perspectives: [A]}
+    MATH 356: {math_perspectives: [A]}
+    MATH 364: {math_perspectives: [D]}
+    MSCS 341: {math_perspectives: [M]}
+    STAT 212: {math_perspectives: [M]}
+    STAT 214: {math_perspectives: [M]}
+    STAT 272: {math_perspectives: [M]}
+    STAT 316: {math_perspectives: [M]}
+
+
+requirements:
+  Basics:
+    result:
+      count: all
+      of:
+        - MATH 120
+        - either: [MATH 126, MATH 128]
+        - MATH 220
+
+  Transitions:
+    result:
+      count: 2
+      of:
+        - MATH 242
+        - MATH 244
+        - MATH 252
+
+  Perspectives:
+    message: One course from each of three of the four perspectives.
+
+    result:
+      count: 3
+      of:
+        - requirement: Axiomatic/Algebraic (A)
+        - requirement: Continuous/Analytic (C)
+        - requirement: Discrete/Combinatorial (D)
+        - requirement: Modeling/Computation (M)
+
+    requirements:
+      Axiomatic/Algebraic (A):
+        result:
+          given: courses
+          where: {math_perspectives: A}
+          what: courses
+          do: count >= 1
+
+      Continuous/Analytic (C):
+        result:
+          given: courses
+          where: {math_perspectives: C}
+          what: courses
+          do: count >= 1
+
+      Discrete/Combinatorial (D):
+        result:
+          given: courses
+          where: {math_perspectives: D}
+          what: courses
+          do: count >= 1
+
+      Modeling/Computation (M):
+        result:
+          given: courses
+          where: {math_perspectives: M}
+          what: courses
+          do: count >= 1
+
+
+  Interdisciplinary:
+    result:
+      count: any
+      of:
+        - requirement: Chemistry
+        - requirement: Economics
+        - requirement: Physics
+
+    requirements:
+      Chemistry:
+        result:
+          both:
+            - course: CHEM 371
+            - given: areas of study
+              where: {type: major, name: Chemistry}
+              what: areas of study
+              do: count = 1
+      Economics:
+        result:
+          both:
+            - course: ECON 385
+            - given: areas of study
+              where: {type: major, name: Economics}
+              what: areas of study
+              do: count = 1
+      Physics:
+        result:
+          both:
+            - course: PHYS 375
+            - given: areas of study
+              where: {type: major, name: Physics}
+              what: areas of study
+              do: count = 1
+
+
+  Level III:
+    result:
+      given: these courses
+      courses: [
+        MATH 330, MATH 340, MATH 344, MATH 348, MATH 352,
+        MATH 356, MATH 364, MATH 382, MATH 384, MATH 396,
+        MSCS 341, MSCS 390,
+        STAT 322,
+        CSCI 315, CSCI 333,
+      ]
+      repeats: first
+      limit:
+        - {at_most: 1, where: {department: '! MATH'}}
+      what: courses
+      do: count >= 2
+
+  Sequence:
+    message:
+      A 200-300-level sequence of two courses, at least one of which must be a
+      Mathematics course.
+
+    result:
+      count: 1
+      of:
+        - both: [MATH 230, MATH 330]
+        - both: [MATH 226, MATH 340]
+        - both: [MATH 244, MATH 344]
+        - both: [MATH 224, MATH 348]
+        - both: [MATH 252, MATH 352]
+        - both: [MATH 220, MATH 356]
+        - both: [MATH 232, MATH 364]
+        - both: [MATH 262, STAT 322]
+        - both: [MATH 220, MSCS 341]
