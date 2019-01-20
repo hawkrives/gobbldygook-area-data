@@ -1,0 +1,47 @@
+name: Physics
+type: major
+degree: Bachelor of Arts
+catalog: 2015-16
+
+result:
+  count: all
+  of:
+    - requirement: Analytics
+    - requirement: Modern Physics
+    - requirement: Upper-Level
+    - requirement: Upper-Level Elective
+    - requirement: Elective
+
+requirements:
+  Analytics:
+    result:
+      count: all
+      of: [PHYS 130, PHYS 131, PHYS 232]
+
+  Modern Physics:
+    result:
+      count: all
+      of: [PHYS 244, PHYS 245]
+
+  Upper-Level:
+    result:
+      count: all
+      of: [PHYS 374, PHYS 375, PHYS 385, PHYS 386]
+
+  Upper-Level Elective:
+    result:
+      surplus: [Elective, .result, .of]
+      count: 1
+      of: [PHYS 360, PHYS 362, PHYS 376, PHYS 379, PHYS 390]
+
+  Elective:
+    result:
+      count: 1
+      of:
+        - PHYS 112
+        - PHYS 124
+        - PHYS 125
+        - PHYS 154
+        - PHYS 246
+        - PHYS 252
+        - PHYS 396
