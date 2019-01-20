@@ -13,6 +13,7 @@ result:
         - requirement: Comparative Politics
         - requirement: International Relations
         - requirement: Political Theory
+        - requirement: Level III
         - {requirement: Additional Courses, optional: true}
 
     - given: these requirements
@@ -22,6 +23,7 @@ result:
         - requirement: Comparative Politics
         - requirement: International Relations
         - requirement: Political Theory
+        - requirement: Level III
         - requirement: Additional Courses
       what: courses
       do: count >= 9

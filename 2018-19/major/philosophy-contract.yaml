@@ -9,6 +9,7 @@ result:
     - requirement: Core
     - requirement: Level III Seminars
     - requirement: Complementary Courses
+    - requirement: Electives
 
 requirements:
   Core:
