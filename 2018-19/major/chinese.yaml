@@ -121,8 +121,8 @@ requirements:
     result:
       count: any
       of:
-        - {course: ASIAN 156, type: flac}
-        - {course: ASIAN 237, type: flac}
-        - {course: ASIAN 270, type: flac}
-        - {course: HIST 250, type: flac}
-        - {course: HIST 251, type: flac}
+        - {course: ASIAN 156, type: FLAC}
+        - {course: ASIAN 237, type: FLAC}
+        - {course: ASIAN 270, type: FLAC}
+        - {course: HIST 250, type: FLAC}
+        - {course: HIST 251, type: FLAC}
