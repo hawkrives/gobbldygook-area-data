@@ -1,0 +1,87 @@
+name: Religion
+type: major
+degree: Bachelor of Arts
+catalog: 2018-19
+
+result:
+  count: all
+  of:
+    - requirement: General Education
+    - requirement: What is Religion?
+    - requirement: Religious Dimensions
+    - requirement: Intensive Studies
+
+requirements:
+  General Education:
+    result:
+      both:
+        - given: courses
+          where: { gereqs: BTS-B }
+          what: courses
+          do: count >= 1
+
+        - given: courses
+          where: { gereqs: BTS-T }
+          what: courses
+          do: count >= 1
+
+  What is Religion?:
+    result:
+      course: REL 285
+
+  Religious Dimensions:
+    message: TODO. Not yet completed. At all.
+    result:
+      count: 1
+      of: []
+      # Courses that focus on three different dimensions of religion (and deal with at least two different religious traditions):
+    #   count: all
+    #   of:
+    #     - requirement: Sacred Texts
+    #     - requirement: Religion in History and Culture
+    #     - requirement: Religious Thought
+
+    # requirements:
+    #   Sacred Texts:
+    #     result:
+    #       given: these courses
+    #       courses: []
+    #       what: courses
+    #       do: count >= 1
+    #   Religion in History and Culture:
+    #     result:
+    #       given: these courses
+    #       courses: []
+    #       what: courses
+    #       do: count >= 1
+    #   Religious Thought:
+    #     result:
+    #       given: these courses
+    #       courses: []
+    #       what: courses
+    #       do: count >= 1
+
+  Intensive Studies:
+    result:
+      both:
+        - count: 1
+          of:
+            - REL 302
+            - REL 303
+            - REL 304
+            - REL 320
+            - REL 341
+            - REL 344
+
+        - given: these courses
+          courses:
+            - REL 390
+            - REL 391
+            - REL 392
+            - REL 393
+            - REL 395
+            - REL 397
+            - REL 399
+          repeats: all
+          what: courses
+          do: count >= 1
