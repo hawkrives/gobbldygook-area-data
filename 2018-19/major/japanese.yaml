@@ -1,0 +1,100 @@
+name: Chinese
+type: major
+degree: Bachelor of Arts
+catalog: 2018-19
+
+result:
+  count: all
+  of:
+    - requirement: Core Language
+    - requirement: Upper-Level Language
+    - requirement: Language and Culture
+    - {requirement: FLAC, optional: true}
+
+requirements:
+  Core Language:
+    result:
+      count: all
+      of: [JAPAN 231, JAPAN 232, JAPAN 301, JAPAN 302]
+
+  Upper-Level Language:
+    result:
+      count: all
+      of:
+        - JAPAN 320
+
+  Language and Culture:
+    message: >
+      The Asian Conversation sequence (ASIAN 210, ASIAN 215 or ASIAN 216, ASIAN
+      220) will count for no more than two courses.
+
+      One of these courses may be an Independent Study (capstone project) or the
+      Asian Studies senior seminars (ASIAN 397 and ASIAN 399).
+
+    save:
+      - given: these courses
+        courses:
+          - ASIAN 397
+          - ASIAN 399
+          - ASIAN 298
+          - ASIAN 296
+          - ASIAN 398
+          - ASIAN 396
+
+          - ASIAN 210
+          - ASIAN 215
+          - ASIAN 216
+          - ASIAN 220
+
+          # focused on japan
+          - ART 260
+          - ASIAN 126
+          - ASIAN 130
+          - ASIAN 230
+          - ASIAN 235
+          - AS/ES 377
+          - HIST 252
+          - HIST 253
+
+          # cross-cultural
+          - ASIAN 121
+          - ASIAN 123
+          - ASIAN 200
+          - ASIAN 240
+          - ASIAN 268
+          - ASIAN 282
+          - ASIAN 300
+          - ASIAN 310
+          - ASIAN 333
+          - AS/PS 255
+          - AS/RE 256
+          - AS/RE 257
+          - AS/RE 289
+          - HIST 345
+          - PHIL 251
+          - PSCI 245
+        repeats: first
+        limit:
+          - {at_most: 1, where: {level: '100'}}
+          - {at_most: 1, where: {department: 'ASIAN', number: '397 | 399 | 296 | 298 | 396 | 398'}}
+          - {at_most: 2, where: {department: 'ASIAN', number: '210 | 215 | 216 | 220'}}
+        name: Allowed Courses
+
+    result:
+      count: all
+      of:
+        - given: save
+          save: Allowed Courses
+          what: courses
+          where: {level: '300'}
+          do: count >= 1
+
+        - given: save
+          save: Allowed Courses
+          what: courses
+          do: count >= 4
+
+  FLAC:
+    result:
+      count: any
+      of: []
