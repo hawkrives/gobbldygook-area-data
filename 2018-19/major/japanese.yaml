@@ -11,6 +11,20 @@ result:
     - requirement: Language and Culture
     - {requirement: FLAC, optional: true}
 
+attributes:
+  definitions:
+    japan_kind:
+      type: string
+  courses:
+    ASIAN 210: {japan_kind: asiancon}
+    ASIAN 215: {japan_kind: asiancon}
+    ASIAN 216: {japan_kind: asiancon}
+    ASIAN 220: {japan_kind: asiancon}
+    ASIAN 397: {japan_kind: senior-seminar}
+    ASIAN 399: {japan_kind: senior-seminar}
+    ASIAN 298: {japan_kind: independent-study}
+    ASIAN 398: {japan_kind: independent-study}
+
 requirements:
   Core Language:
     result:
@@ -32,67 +46,75 @@ requirements:
       Asian Studies senior seminars (ASIAN 397 and ASIAN 399).
 
     save:
-      - given: these courses
-        courses:
-          - ASIAN 397
-          - ASIAN 399
-          - ASIAN 298
-          - ASIAN 296
-          - ASIAN 398
-          - ASIAN 396
-
-          - ASIAN 210
-          - ASIAN 215
-          - ASIAN 216
-          - ASIAN 220
-
-          # focused on japan
-          - ART 260
-          - ASIAN 126
-          - ASIAN 130
-          - ASIAN 230
-          - ASIAN 235
-          - AS/ES 377
-          - HIST 252
-          - HIST 253
-
-          # cross-cultural
-          - ASIAN 121
-          - ASIAN 123
-          - ASIAN 200
-          - ASIAN 240
-          - ASIAN 268
-          - ASIAN 282
-          - ASIAN 300
-          - ASIAN 310
-          - ASIAN 333
-          - AS/PS 255
-          - AS/RE 256
-          - AS/RE 257
-          - AS/RE 289
-          - HIST 345
-          - PHIL 251
-          - PSCI 245
-        repeats: first
+      - given: these requirements
+        requirements:
+          - requirement: Japan-focused
+          - requirement: Comparative
+        what: courses
         limit:
           - {at_most: 1, where: {level: '100'}}
-          - {at_most: 1, where: {department: 'ASIAN', number: '397 | 399 | 296 | 298 | 396 | 398'}}
-          - {at_most: 2, where: {department: 'ASIAN', number: '210 | 215 | 216 | 220'}}
         name: Allowed Courses
 
     result:
       count: all
       of:
+        - requirement: Japan-focused
+        - requirement: Comparative
+
+        - given: save
+          save: Allowed Courses
+          what: courses
+          do: count >= 4
+
         - given: save
           save: Allowed Courses
           what: courses
           where: {level: '300'}
           do: count >= 1
 
-        - given: save
-          save: Allowed Courses
-          what: courses
-          do: count >= 4
+    requirements:
+      Japan-focused:
+        result:
+          count: 1
+          of:
+            - ART 260
+            - ASIAN 126
+            - ASIAN 130
+            - ASIAN 230
+            - ASIAN 235
+            - AS/ES 377
+            - HIST 252
+            - HIST 253
+
+      Comparative:
+        result:
+          count: 1
+          of:
+            - ASIAN 121
+            - ASIAN 123
+            - ASIAN 200
+            - ASIAN 210
+            - ASIAN 215
+            - ASIAN 216
+            - ASIAN 220
+            - ASIAN 240
+            - ASIAN 268
+            - ASIAN 282
+            - ASIAN 300
+            - ASIAN 310
+            - ASIAN 333
+            - ASIAN 397
+            - ASIAN 399
+            - AS/PS 255
+            - AS/RE 256
+            - AS/RE 257
+            - AS/RE 289
+            - HIST 345
+            - PHIL 251
+            - PSCI 245
+          limit:
+            - {at_most: 2, where: {japan_kind: 'asiancon'}}
+            - {at_most: 1, where: {japan_kind: 'independent-study | senior-seminar'}}
 
   FLAC:
     result:

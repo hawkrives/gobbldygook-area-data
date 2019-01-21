@@ -11,6 +11,20 @@ result:
     - requirement: Language and Culture
     - {requirement: FLAC, optional: true}
 
+attributes:
+  definitions:
+    chin_kind:
+      type: string
+  courses:
+    ASIAN 210: {chin_kind: asiancon}
+    ASIAN 215: {chin_kind: asiancon}
+    ASIAN 216: {chin_kind: asiancon}
+    ASIAN 220: {chin_kind: asiancon}
+    ASIAN 397: {chin_kind: senior-seminar}
+    ASIAN 399: {chin_kind: senior-seminar}
+    ASIAN 298: {chin_kind: independent-study}
+    ASIAN 398: {chin_kind: independent-study}
+
 requirements:
   Core Language:
     result:
@@ -30,51 +44,85 @@ requirements:
       The Asian Conversation sequence (ASIAN 210, ASIAN 215 or ASIAN 216, ASIAN
       220) will count for no more than two courses.
 
-      One of these courses can be an Independent Study (capstone project) or the
+      One of these courses may be an Independent Study (capstone project) or the
       Asian Studies senior seminars (ASIAN 397 and ASIAN 399).
 
     save:
-      - given: these courses
-        courses:
-          - ASIAN 397
-          - ASIAN 399
-          - ASIAN 298
-          - ASIAN 296
-          - ASIAN 398
-          - ASIAN 396
-          - ASIAN 210
-          - ASIAN 215
-          - ASIAN 216
-          - ASIAN 220
-          - ASIAN 268
-          - ASIAN 230
-        repeats: first
+      - given: these requirements
+        requirements:
+          - requirement: China-focused
+          - requirement: Comparative
+        what: courses
         limit:
           - {at_most: 1, where: {level: '100'}}
-          - {at_most: 1, where: {department: 'ASIAN', number: '397 | 399 | 296 | 298 | 396 | 398'}}
-          - {at_most: 2, where: {department: 'ASIAN', number: '210 | 215 | 216 | 220'}}
         name: Allowed Courses
 
     result:
       count: all
       of:
-        - given: save
-          save: Allowed Courses
-          what: courses
-          where: {level: '300'}
-          do: count >= 1
+        - requirement: China-focused
+        - requirement: Comparative
 
         - given: save
           save: Allowed Courses
           what: courses
           do: count >= 4
 
+        - given: save
+          save: Allowed Courses
+          what: courses
+          where: {level: '300'}
+          do: count >= 1
+
+    requirements:
+      China-focused:
+        result:
+          count: 1
+          of:
+            - ART 259
+            - ASIAN 156
+            - ASIAN 236
+            - ASIAN 237
+            - ASIAN 270
+            - HIST 250
+            - HIST 251
+            - HIST 262
+
+      Comparative:
+        result:
+          count: 1
+          of:
+            - ASIAN 121
+            - ASIAN 123
+            - ASIAN 200
+            - ASIAN 210
+            - ASIAN 215
+            - ASIAN 216
+            - ASIAN 220
+            - ASIAN 268
+            - ASIAN 282
+            - ASIAN 300
+            - ASIAN 310
+            - ASIAN 333
+            - ASIAN 397
+            - ASIAN 399
+            - AS/PS 255
+            - AS/RE 256
+            - AS/RE 257
+            - AS/RE 289
+            - HIST 345
+            - PHIL 251
+            - PSCI 245
+          limit:
+            - {at_most: 2, where: {chin_kind: 'asiancon'}}
+            - {at_most: 1, where: {chin_kind: 'independent-study | senior-seminar'}}
+
   FLAC:
     result:
       count: any
       of:
-        - ASIAN 156
-        - ASIAN 237
-        - ASIAN 270
-        - HIST 250
-        - HIST 251
+        - {course: ASIAN 156, type: flac}
+        - {course: ASIAN 237, type: flac}
+        - {course: ASIAN 270, type: flac}
+        - {course: HIST 250, type: flac}
+        - {course: HIST 251, type: flac}
