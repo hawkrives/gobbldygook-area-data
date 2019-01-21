@@ -19,7 +19,7 @@ requirements:
 
   Upper-Level Language:
     result:
-      count: all
+      count: any
       of:
         - CHIN 320
         - CHIN 351
