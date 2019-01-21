@@ -51,7 +51,7 @@ requirements:
         requirements:
           Social Sciences for Natural Science:
             result:
-              count: [1, 2]
+              count: 1
               of:
                 - ES/PS 201
                 - ENVST 232
@@ -70,7 +70,7 @@ requirements:
 
           Arts and Humanities for Natural Science:
             result:
-              count: [1, 2]
+              count: 1
               of:
                 - ENVST 202
                 - either: [PHIL 257, REL 278]
@@ -149,7 +149,7 @@ requirements:
         requirements:
           Natural Science for Social Sciences:
             result:
-              count: [1, 2]
+              count: 1
               of:
                 - ENVST 123
                 - ENVST 245
@@ -169,7 +169,7 @@ requirements:
 
           Arts and Humanities for Social Sciences:
             result:
-              count: [1, 2]
+              count: 1
               of:
                 - ENVST 202
                 - ENVST 270
@@ -256,7 +256,7 @@ requirements:
         requirements:
           Natural Science for Arts and the Humanities:
             result:
-              count: [1, 2]
+              count: 1
               of:
                 - ENVST 123
                 - ENVST 245
@@ -276,7 +276,7 @@ requirements:
 
           Social Sciences for Arts and the Humanities:
             result:
-              count: [1, 2]
+              count: 1
               of:
                 - ENVST 232
                 - ENVST 235
