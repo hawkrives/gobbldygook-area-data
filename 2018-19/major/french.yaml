@@ -14,7 +14,7 @@ result:
 requirements:
   Speaking and Writing:
     result:
-      surplus: [Electives, .result, .of]
+      surplus: [Electives, .result, .courses]
       count: 2
       of:
         - FREN 250
@@ -23,7 +23,7 @@ requirements:
 
   The Francophone World:
     result:
-      surplus: [Electives, .result, .of]
+      surplus: [Electives, .result, .courses]
       count: 2
       of:
         - FREN 271
@@ -33,7 +33,7 @@ requirements:
 
   Level III:
     result:
-      surplus: [Electives, .result, .of]
+      surplus: [Electives, .result, .courses]
       count: 2
       of:
         - FREN 372
