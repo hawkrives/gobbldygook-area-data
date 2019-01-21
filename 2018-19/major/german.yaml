@@ -1,0 +1,83 @@
+name: German
+type: major
+degree: Bachelor of Arts
+catalog: 2018-19
+
+result:
+  count: all
+  of:
+    - requirement: Speaking and Writing
+    - requirement: The Francophone World
+    - requirement: Level III
+    - requirement: Electives
+
+requirements:
+  Level 250:
+    result:
+      surplus: [Electives, Langauge, .result, .of]
+      count: 2
+      of:
+        - GERM 251
+        - GERM 252
+        - GERM 253
+      limit:
+        - {at_most: 1, where: {institution: '! St. Olaf College'}}
+
+  Level 270:
+    result:
+      surplus: [Electives, Langauge, .result, .of]
+      count: 2
+      of:
+        - GERM 271
+        - GERM 272
+        - GERM 273
+        - GERM 276
+      limit:
+        - {at_most: 1, where: {institution: '! St. Olaf College'}}
+
+  Level III:
+    message: This course will preferably be taken in the student's senior year.
+    result:
+      surplus: [Electives, Langauge, .result, .of]
+      count: 1
+      of:
+        - GERM 371
+        - GERM 372
+
+  Electives:
+    result:
+      both:
+        - count: any
+          of:
+            - {requirement: Language, optional: true}
+            - {requirement: In Translation, optional: true}
+
+        - given: these requirements
+          requirements:
+            - requirement: Langauge
+            - requirement: In Translation
+          what: courses
+          do: count >= 3
+
+    requirements:
+      Language:
+        result:
+          count: any
+          of:
+          - GERM 232
+
+      In Translation:
+        result:
+          given: these courses
+          courses:
+            - GERM 147
+            - GERM 249
+            - GERM 263
+          repeats: first
+          what: courses
+          limit:
+            # > a maximum of one course in English with a significant German focus taught by a St. Olaf instructor
+            #
+            # because all of these courses are in english, we can just limit it to at_most:1 here to accomplish this goal
+            - {at_most: 1, where: {institution: 'St. Olaf College'}}
+          do: count = 1
