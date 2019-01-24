@@ -12,18 +12,43 @@ result:
     - {requirement: FLAC, optional: true}
 
 attributes:
-  definitions:
-    chin_kind:
-      type: string
   courses:
-    ASIAN 210: {chin_kind: asiancon}
-    ASIAN 215: {chin_kind: asiancon}
-    ASIAN 216: {chin_kind: asiancon}
-    ASIAN 220: {chin_kind: asiancon}
-    ASIAN 397: {chin_kind: senior-seminar}
-    ASIAN 399: {chin_kind: senior-seminar}
-    ASIAN 298: {chin_kind: independent-study}
-    ASIAN 398: {chin_kind: independent-study}
+    ART 259: [china_focused_on_china]
+    AS/PS 255: [china_comparative_asia]
+    AS/RE 256: [china_comparative_asia]
+    AS/RE 257: [china_comparative_asia]
+    AS/RE 289: [china_comparative_asia]
+    ASIAN 121: [china_comparative_asia]
+    ASIAN 123: [china_comparative_asia]
+    ASIAN 156.F: [china_flac]
+    ASIAN 156: [china_focused_on_china]
+    ASIAN 200: [china_comparative_asia]
+    ASIAN 210: [china_comparative_asia, china_asiancon]
+    ASIAN 215: [china_comparative_asia, china_asiancon]
+    ASIAN 216: [china_comparative_asia, china_asiancon]
+    ASIAN 220: [china_comparative_asia, china_asiancon]
+    ASIAN 236: [china_focused_on_china]
+    ASIAN 237.F: [china_flac]
+    ASIAN 237: [china_focused_on_china]
+    ASIAN 268: [china_comparative_asia]
+    ASIAN 270.F: [china_flac]
+    ASIAN 270: [china_focused_on_china]
+    ASIAN 282: [china_comparative_asia]
+    ASIAN 298: [china_independent_study]
+    ASIAN 300: [china_comparative_asia]
+    ASIAN 310: [china_comparative_asia]
+    ASIAN 333: [china_comparative_asia]
+    ASIAN 397: [china_comparative_asia, china_senior_seminar]
+    ASIAN 398: [china_independent_study]
+    ASIAN 399: [china_comparative_asia, china_senior_seminar]
+    HIST 250.F: [china_flac]
+    HIST 250: [china_focused_on_china]
+    HIST 251.F: [china_flac]
+    HIST 251: [china_focused_on_china]
+    HIST 262: [china_focused_on_china]
+    HIST 345: [china_comparative_asia]
+    PHIL 251: [china_comparative_asia]
+    PSCI 245: [china_comparative_asia]
 
 requirements:
   Core Language:
@@ -77,52 +102,24 @@ requirements:
     requirements:
       China-focused:
         result:
-          count: 1
-          of:
-            - ART 259
-            - ASIAN 156
-            - ASIAN 236
-            - ASIAN 237
-            - ASIAN 270
-            - HIST 250
-            - HIST 251
-            - HIST 262
+          given: courses
+          where: {attributes: china_focused_on_china}
+          what: courses
+          do: count >= 1
 
       Comparative:
         result:
-          count: 1
-          of:
-            - ASIAN 121
-            - ASIAN 123
-            - ASIAN 200
-            - ASIAN 210
-            - ASIAN 215
-            - ASIAN 216
-            - ASIAN 220
-            - ASIAN 268
-            - ASIAN 282
-            - ASIAN 300
-            - ASIAN 310
-            - ASIAN 333
-            - ASIAN 397
-            - ASIAN 399
-            - AS/PS 255
-            - AS/RE 256
-            - AS/RE 257
-            - AS/RE 289
-            - HIST 345
-            - PHIL 251
-            - PSCI 245
+          given: courses
+          where: {attributes: china_comparative_asia}
           limit:
-            - {at_most: 2, where: {chin_kind: 'asiancon'}}
-            - {at_most: 1, where: {chin_kind: 'independent-study | senior-seminar'}}
+            - {at_most: 2, where: {attributes: 'china_asiancon'}}
+            - {at_most: 1, where: {attributes: 'china_independent_study | china_seminar'}}
+          what: courses
+          do: count >= 1
 
   FLAC:
     result:
-      count: any
-      of:
-        - {course: ASIAN 156, type: FLAC}
-        - {course: ASIAN 237, type: FLAC}
-        - {course: ASIAN 270, type: FLAC}
-        - {course: HIST 250, type: FLAC}
-        - {course: HIST 251, type: FLAC}
+      given: courses
+      where: {attributes: china_flac}
+      what: courses
+      do: count >= 1
