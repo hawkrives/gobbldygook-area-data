@@ -20,6 +20,69 @@ limiters:
   # - where: {graded: 'true', grade: '>= C', level: '100'}
   #   at_most: 2
 
+attributes:
+  courses:
+    BIO 121: [bio_elective]
+    BIO 123: [bio_elective]
+    BIO 124: [bio_elective]
+    BIO 127: [bio_elective]
+    BIO 128: [bio_elective]
+    BIO 130: [bio_elective]
+    BIO 131: [bio_elective]
+    BIO 135: [bio_elective]
+    BIO 143: [bio_elective]
+    BIO 150: [bio_elective]
+    BIO 226: [bio_elective]
+    BIO 226: [bio_elective]
+    BIO 227: [bio_elective]
+    BIO 227: [bio_elective]
+    BIO 231: [bio_elective]
+    BIO 233: [bio_elective]
+    BIO 233: [bio_elective]
+    BIO 242: [bio_elective]
+    BIO 242: [bio_elective]
+    BIO 243: [bio_elective]
+    BIO 247: [bio_elective]
+    BIO 247: [bio_elective]
+    BIO 248: [bio_elective]
+    BIO 248: [bio_elective]
+    BIO 249: [bio_elective]
+    BIO 251: [bio_elective]
+    BIO 251: [bio_elective]
+    BIO 252: [bio_elective]
+    BIO 252: [bio_elective]
+    BIO 261: [bio_elective]
+    BIO 261: [bio_elective]
+    BIO 266: [bio_elective]
+    BIO 266: [bio_elective]
+    BIO 275: [bio_elective]
+    BIO 275: [bio_elective]
+    BIO 282: [bio_elective]
+    BIO 284: [bio_elective]
+    BIO 287: [bio_elective]
+    BIO 288: [bio_elective]
+    BIO 292: [bio_elective]
+    BIO 298: [bio_elective]
+    BIO 315: [bio_elective]
+    BIO 341: [bio_elective]
+    BIO 348: [bio_elective]
+    BIO 363: [bio_elective]
+    BIO 364: [bio_elective]
+    BIO 371: [bio_elective]
+    BIO 372: [bio_elective]
+    BIO 382: [bio_elective]
+    BIO 383: [bio_elective]
+    BIO 385: [bio_elective]
+    BIO 386: [bio_elective]
+    BIO 391: [bio_elective]
+    BIO 396: [bio_elective]
+    BIO 398: [bio_elective]
+    CH/BI 227: [bio_elective]
+    CHEM 379: [bio_elective]
+    ENVST 281 2000-1: [bio_elective]
+    NEURO 239: [bio_elective]
+    PSYCH 238: [bio_elective]
+
 requirements:
   Foundation:
     result:
@@ -57,7 +120,6 @@ requirements:
 
   Level III:
     result:
-      surplus: [Electives, .result, .of]
       count: 1
       of:
         - BIO 315
@@ -75,18 +137,10 @@ requirements:
 
   Electives:
     result:
-      count: 2
-      of: [
-        BIO 298, BIO 396, BIO 398,
-        CHEM 379, NEURO 239, PSYCH 238,
-        {course: ENVST 281, term: 2000-1},
-        BIO 121, BIO 123, BIO 124, BIO 127, BIO 128,
-        BIO 130, BIO 131, BIO 135, BIO 143, BIO 150,
-        BIO 227, BIO 231, BIO 233, BIO 242, BIO 243,
-        BIO 247, BIO 248, BIO 249, BIO 251, BIO 252,
-        BIO 261, BIO 266, BIO 275, BIO 282, BIO 284,
-        BIO 287, BIO 288, BIO 292,
-      ]
+      given: courses
+      where: {attribute: bio_elective}
+      what: courses
+      do: count >= 2
 
   Chemistry:
     result:
