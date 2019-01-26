@@ -657,42 +657,41 @@ To attach an attribute for courses within a major, you declare them at the top-l
 
 ```yaml
 attributes:
-  definitions:
-    math_perspectives:
-      type: set
-      multiple values can be used: false
   courses:
-    MATH 242: {math_perspectives: [M]}
-    MATH 244: {math_perspectives: [C]}
-    MATH 252: {math_perspectives: [A]}
-    MATH 262: {math_perspectives: [C, D, M]}
-    MATH 230: {math_perspectives: [C, M]}
-    MATH 232: {math_perspectives: [D]}
+    MATH 226: [math_perspective_c]
+    MATH 230: [math_perspective_a, math_perspective_m]
+    MATH 232: [math_perspective_d]
+    MATH 236: [math_perspective_m]
+    MATH 262: [math_perspective_c, math_perspective_d, math_perspective_m]
 ```
 
-That is, you declare a top-level dictionary called "attributes"; that contains two other dictionaries, named "definitions" and "courses".
+That is, you declare a top-level dictionary called "attributes", which contains another dictionary, named "courses".
 
-The "definitions" dictionary is a set of key:value pairs, where each key defines the name of an attribute, and each value follows one of the following definitions.
+The left side of each line (each "key") in the `courses` dictionary is mapped to an array of attribute names. If an attribute is named in this array, then the course will have that attribute; if it's not, then it won't.
 
-## Attribute Types
+Custom attributes are attached to each course under the "attributes" key, so they can be matched with `where: {attributes: math_perspective_a}`.
 
-### Set attributes
+
+## Multicountable
 
 ```yaml
-type: set
-multiple values can be used: true | false
+attributes:
+  multicountable:
+    - [{attribute: math_a}, {attribute: math_b}]
+    - [{course: ECON 237}, {attribute: econ_q}, {attribute: econ_blah}]
 ```
 
-The key `multiple values can be used` controls whether or not a course can count multiple times for its different attribute values.
+`multicountable` controls how courses can be counted multiple times.
 
-If it's true, the attribute behaves like `gereqs`; if it has three values, the course can count for three different requirements, one per value, as well as one requirement which refers to the requirement directly.
+It can accept specifiers as `attribute` or `course`.
 
-If it's false, then no matter how many values there are, the course can count for only one requirement, as well as one other requirement which refers to the requirement directly.
+A course may be matched by each entry in the array exactly once; once it has been matched by an entry, it cannot be matched by that method again.
 
+For example, `[{course: ECON 385}, {attribute: econ_level_3}]` means that a single course may be matched twice: once as `ECON 385`, and once as "a course with `econ_level_3`".
 
-### Other Attribute Types
+Given `[{attribute: engl_elective}, {attribute: engl_period_post1800}, {attribute: engl_period_pre1800}]` as another example: a single course may be used up to three times: once as "a course with `engl_elective`", once as "a course with `engl_period_post1800`", and once as "a course with `engl_period_pre1800`".
 
-There are currently no other allowed types of attribute.
+As a final example, take `[{attribute: history_era_premodern}, {attribute: history_l2_seminar}, {attribute: history_level_3}, {attribute: history_region_europe}, {attribute: history_region_nonwesternworld}, {attribute: history_region_us}]`; this means that a course may be used up to _six times_, once for each of the named attributes.
 
 ## Example: Mathematics Perspectives
 
@@ -704,9 +703,10 @@ IE, MATH 220 is in the "A" perspective, and it's also in Transitions.
 
 Normally, if you list the same course explicitly in two requirements, it can only be used by the first requirement.
 
-To get around that, and allow a course to be used in two spots, you can specify custom attributes for a set of courses. Courses that are looked up by attribute are fetched in a separate pass, so they can count for multiple requirements.
+However, if you need to bypass that restriction, you have two options:
 
-You can mentally model these "custom attributes" like the normal gereqs attribute.  (Now, with that said, MATH's requirement actually differs from gereqs in one important way; a course can be counted for multiple GE requirements, but it may only count for one MATH perspective.)
+1. Add `[{course: DEPT NNN}, {attribute: name}]` (where NNN is the number of the course in question); the course can then be used both by name (ECON 356, for example) and by attribute (`econ_elective`, let's say.)
+2. Specify the course as `{course: MATH 220, can_match_used: true}` instead of just `MATH 220`. Use this **very sparingly**! The Mathematics major requires it, since it has sequences of courses that really only care about "did you complete a sequence", but thus far no other major has even needed it. It allows a course to match no matter how many times it's been used already.
 
 # Messages
 
