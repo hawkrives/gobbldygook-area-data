@@ -12,120 +12,102 @@ result:
 
 
 attributes:
-  definitions:
-    asian_region:
-      type: array
-      multiple values can be used: false
   courses:
-    CHIN 231: {asian_region: [china]}
-    CHIN 232: {asian_region: [china]}
-    CHIN 301: {asian_region: [china]}
-    CHIN 302: {asian_region: [china]}
-    CHIN 320: {asian_region: [china]}
-    CHIN 351: {asian_region: [china]}
-    JAPAN 231: {asian_region: [japan]}
-    JAPAN 232: {asian_region: [japan]}
-    JAPAN 301: {asian_region: [japan]}
-    JAPAN 302: {asian_region: [japan]}
-    JAPAN 320: {asian_region: [japan]}
-    ASIAN 268 2012-3: {asian_region: [china]}
-    ASIAN 240: {asian_region: [japan]}
-    ASIAN 230 <=2014-5: {asian_region: [japan]}
+    AR/AS 259: [asian_elective]
+    AR/AS 260: [asian_elective]
+    AR/AS 262: [asian_elective]
+    AR/AS 270: [asian_elective]
+    AR/AS 310: [asian_elective]
+    AS/ES 277: [asian_elective]
+    AS/HI 250: [asian_elective]
+    AS/HI 251: [asian_elective]
+    AS/HI 252: [asian_elective]
+    AS/HI 253: [asian_elective]
+    AS/HI 262: [asian_elective]
+    AS/HI 345: [asian_elective]
+    AS/PH 251: [asian_elective]
+    AS/PS 245: [asian_elective]
+    AS/PS 250: [asian_elective]
+    AS/RE 253: [asian_elective]
+    AS/RE 254: [asian_elective]
+    AS/RE 256: [asian_elective]
+    AS/RE 257: [asian_elective]
+    AS/RE 289: [asian_elective]
+    AS/SA 239: [asian_elective]
+    ASIAN 121: [asian_elective]
+    ASIAN 123: [asian_elective]
+    ASIAN 126: [asian_elective]
+    ASIAN 130: [asian_elective]
+    ASIAN 156: [asian_elective]
+    ASIAN 200: [asian_elective]
+    ASIAN 210: [asian_elective]
+    ASIAN 215: [asian_elective]
+    ASIAN 216: [asian_elective]
+    ASIAN 220: [asian_elective]
+    ASIAN 230: [asian_elective]
+    ASIAN 235: [asian_elective]
+    ASIAN 236: [asian_elective]
+    ASIAN 237: [asian_elective]
+    ASIAN 240: [asian_elective, asian_region_japan]
+    ASIAN 240: [asian_elective]
+    ASIAN 268: [asian_elective]
+    ASIAN 294: [asian_elective]
+    ASIAN 298: [asian_elective]
+    ASIAN 300: [asian_elective]
+    ASIAN 384: [asian_elective]
+    ASIAN 396: [asian_elective]
+    ASIAN 397: [asian_elective, asian_seminar]
+    ASIAN 398: [asian_elective]
+    ASIAN 399: [asian_elective, asian_seminar]
+    CHIN 231: [asian_elective, asian_region_china, asian_language_chinese]
+    CHIN 232: [asian_elective, asian_region_china, asian_language_chinese]
+    CHIN 301: [asian_elective, asian_region_china, asian_language_chinese]
+    CHIN 302: [asian_elective, asian_region_china, asian_language_chinese]
+    CHIN 320: [asian_elective, asian_region_china, asian_language_chinese]
+    CHIN 351: [asian_elective, asian_region_china, asian_language_chinese]
+    CHIN 394: [asian_elective]
+    CHIN 398: [asian_elective]
+    ECON 218: [asian_elective]
+    ECON 238: [asian_elective]
+    HIST 240: [asian_elective]
+    JAPAN 231: [asian_elective, asian_region_japan, asian_language_japanese]
+    JAPAN 232: [asian_elective, asian_region_japan, asian_language_japanese]
+    JAPAN 301: [asian_elective, asian_region_japan, asian_language_japanese]
+    JAPAN 302: [asian_elective, asian_region_japan, asian_language_japanese]
+    JAPAN 320: [asian_elective, asian_region_japan, asian_language_japanese]
+    JAPAN 394: [asian_elective]
+    JAPAN 398: [asian_elective]
+    PHIL 127: [asian_elective]
 
 requirements:
   Language:
     result:
-      count: 2
-      of:
-        - CHIN 231
-        - CHIN 232
-        - CHIN 301
-        - CHIN 302
-        - CHIN 320
-        - CHIN 351
-        - JAPAN 231
-        - JAPAN 232
-        - JAPAN 301
-        - JAPAN 302
-        - JAPAN 320
+      given: courses
+      where: {attributes: asian_language_chinese | asian_language_japanese}
+      what: courses
+      do: count >= 1
 
   Seminar:
     result:
-      surplus: [Electives, .result, .courses]
-      either: [ASIAN 397, ASIAN 399]
+      given: courses
+      where: {attributes: asian_seminar}
+      what: courses
+      do: count >= 1
 
   Electives:
     result:
-      given: these courses
-      courses:
-        - ASIAN 121
-        - ASIAN 123
-        - ASIAN 126
-        - ASIAN 130
-        - ASIAN 156
-        - ASIAN 200
-        - ASIAN 210
-        - ASIAN 215
-        - ASIAN 216
-        - ASIAN 220
-        - ASIAN 230
-        - ASIAN 235
-        - ASIAN 236
-        - ASIAN 237
-        - ASIAN 240
-        - ASIAN 268
-        - ASIAN 294
-        - ASIAN 298
-        - ASIAN 300
-        - ASIAN 384
-        - ASIAN 396
-        - ASIAN 398
-        - AR/AS 259
-        - AR/AS 260
-        - AR/AS 262
-        - AR/AS 270
-        - AR/AS 310
-        - AS/ES 277
-        - AS/HI 250
-        - AS/HI 251
-        - AS/HI 252
-        - AS/HI 253
-        - AS/HI 262
-        - AS/HI 345
-        - AS/PH 251
-        - AS/PS 245
-        - AS/PS 250
-        - AS/RE 253
-        - AS/RE 254
-        - AS/RE 256
-        - AS/RE 257
-        - AS/RE 289
-        - AS/SA 239
-        - CHIN 301
-        - CHIN 302
-        - CHIN 320
-        - CHIN 351
-        - CHIN 394
-        - CHIN 398
-        - JAPAN 301
-        - JAPAN 302
-        - JAPAN 320
-        - JAPAN 394
-        - JAPAN 398
-        - ECON 218
-        - ECON 238
-        - HIST 240
-        - PHIL 127
+      given: courses
+      where: {attributes: asian_elective}
       limit:
-        # "Not more than two at level I"
+        # "No more than two at level I"
         - {at_most: 2, where: {level: '100'}}
         # "No more than four elective courses about any one country"
-        - {at_most: 4, where: {asian_region: 'china'}}
-        - {at_most: 4, where: {asian_region: 'japan'}}
+        - {at_most: 4, where: {attributes: asian_region_china}}
+        - {at_most: 4, where: {attributes: asian_region_japan}}
         # "At least two at level II or level III, taken on campus"
         # aka "no more than 4 may be taken off-campus", since we need six total
-        - {at_most: 4, where: {institution: '! St. Olaf College', level: '200 | 300'}}
+        - {at_most: 5, where: {institution: '! St. Olaf College', level: '200 | 300'}}
         # and "No level I or level II language courses may count." is taken care of by not listing them
       repeats: first
       what: courses
-      do: count >= 6
+      do: count >= 7

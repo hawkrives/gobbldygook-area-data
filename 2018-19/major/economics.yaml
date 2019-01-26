@@ -11,11 +11,28 @@ result:
     - requirement: Economic Analysis
 
 attributes:
+  multicountable:
+    - [{course: ECON 385}, {attribute: econ_level_3}]
+
   courses:
-    ECON 385:
-      may count for multiple requirements:
-        - [Core]
-        - [Economic Analysis, Level III]
+    ECON 200: [econ_level_2]
+    ECON 210: [econ_level_2]
+    ECON 218: [econ_level_2]
+    ECON 220: [econ_level_2]
+    ECON 222: [econ_level_2]
+    ECON 242: [econ_level_2]
+    ECON 243: [econ_level_2]
+    ECON 245: [econ_level_2]
+    ECON 247: [econ_level_2]
+    ECON 249: [econ_level_2]
+    ECON 371: [econ_level_3]
+    ECON 372: [econ_level_3]
+    ECON 373: [econ_level_3]
+    ECON 374: [econ_level_3]
+    ECON 376: [econ_level_3]
+    ECON 382: [econ_level_3]
+    ECON 385: [econ_level_3]
+    ECON 399: [econ_level_3]
 
 
 requirements:
@@ -48,33 +65,19 @@ requirements:
             - requirement: Level II
             - requirement: Level III
           what: courses
-          do: count >= 2
+          do: count >= 4
 
     requirements:
       Level II:
         result:
-          count: 1
-          of:
-            - ECON 200
-            - ECON 210
-            - ECON 218
-            - ECON 220
-            - ECON 222
-            - ECON 242
-            - ECON 243
-            - ECON 245
-            - ECON 247
-            - ECON 249
+          given: courses
+          where: {attributes: econ_level_2}
+          what: courses
+          do: count >= 1
 
       Level III:
         result:
-          count: 2
-          of:
-            - ECON 371
-            - ECON 372
-            - ECON 373
-            - ECON 374
-            - ECON 376
-            - ECON 382
-            - ECON 385
-            - ECON 399
+          given: courses
+          where: {attributes: econ_level_3}
+          what: courses
+          do: count >= 2
