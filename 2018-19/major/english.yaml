@@ -16,12 +16,33 @@ result:
     - requirement: 1800s
 
 attributes:
-  multicountable:
-    - [engl_elective, engl_period_post1800, engl_period_pre1800]
-    - [engl_topic_crosscultural, engl_period_post1800, engl_period_pre1800]
-    - [engl_topic_crossdisciplinary, engl_period_post1800, engl_period_pre1800]
-    - [engl_topic_genre, engl_period_post1800, engl_period_pre1800]
-    - [engl_topic_literary_history, engl_period_post1800, engl_period_pre1800]
+  multicountable: [
+    [
+      {attribute: engl_elective},
+      {attribute: engl_period_post1800},
+      {attribute: engl_period_pre1800},
+    ],
+    [
+      {attribute: engl_topic_crosscultural},
+      {attribute: engl_period_post1800},
+      {attribute: engl_period_pre1800},
+    ],
+    [
+      {attribute: engl_topic_crossdisciplinary},
+      {attribute: engl_period_post1800},
+      {attribute: engl_period_pre1800},
+    ],
+    [
+      {attribute: engl_topic_genre},
+      {attribute: engl_period_post1800},
+      {attribute: engl_period_pre1800},
+    ],
+    [
+      {attribute: engl_topic_literary_history},
+      {attribute: engl_period_post1800},
+      {attribute: engl_period_pre1800},
+    ],
+  ]
 
   courses:
     # 2018-19 Fall

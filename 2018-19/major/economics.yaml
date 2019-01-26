@@ -11,13 +11,8 @@ result:
     - requirement: Economic Analysis
 
 attributes:
-  options:
-    ECON 385:
-      counts for multiple requirements:
-        # count: 2
-        paths:
-          - [Core]
-          - [Economic Analysis, Level III]
+  multicountable:
+    - [{course: ECON 385}, {attribute: econ_level_3}]
 
   courses:
     ECON 200: [econ_level_2]

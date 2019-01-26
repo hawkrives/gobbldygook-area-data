@@ -4,14 +4,26 @@ degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
-  count: all
-  of:
-    - requirement: Major Seminar
-    - requirement: Level III
-    - requirement: Non-Western World
-    - requirement: Europe & Russia
-    - requirement: U.S.
-    - requirement: Pre-Modern Period
+  both:
+    - count: all
+      of:
+        - requirement: Major Seminar
+        - requirement: Level III
+        - requirement: Non-Western World
+        - requirement: Europe & Russia
+        - requirement: U.S.
+        - requirement: Pre-Modern Period
+
+    - given: these requirements
+      requirements:
+        - requirement: Major Seminar
+        - requirement: Level III
+        - requirement: Non-Western World
+        - requirement: Europe & Russia
+        - requirement: U.S.
+        - requirement: Pre-Modern Period
+      what: courses
+      do: count >= 9
 
 
 limiters:
@@ -22,15 +34,16 @@ limiters:
 
 
 attributes:
-  multicountable:
-    - [
-        history_era_premodern,
-        history_l2_seminar,
-        history_level_3,
-        history_region_europe,
-        history_region_nonwesternworld,
-        history_region_us,
-      ]
+  multicountable: [
+    [
+      {attribute: history_era_premodern},
+      {attribute: history_l2_seminar},
+      {attribute: history_level_3},
+      {attribute: history_region_europe},
+      {attribute: history_region_nonwesternworld},
+      {attribute: history_region_us},
+    ],
+  ]
 
   courses:
     ASIAN 399: [history_level_3]

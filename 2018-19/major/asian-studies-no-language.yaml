@@ -80,7 +80,10 @@ attributes:
 requirements:
   Seminar:
     result:
-      either: [ASIAN 397, ASIAN 399]
+      given: courses
+      where: {attributes: asian_seminar}
+      what: courses
+      do: count >= 1
 
   Electives:
     result:

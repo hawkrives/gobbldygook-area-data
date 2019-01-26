@@ -32,10 +32,10 @@ limiters:
 
 attributes:
   multicountable:
-    - [math_perspective_a, math_level_3]
-    - [math_perspective_c, math_level_3]
-    - [math_perspective_d, math_level_3]
-    - [math_perspective_m, math_level_3]
+    - [{attribute: math_perspective_a}, {attribute: math_level_3}, {attribute: math_transitions}]
+    - [{attribute: math_perspective_c}, {attribute: math_level_3}, {attribute: math_transitions}]
+    - [{attribute: math_perspective_d}, {attribute: math_level_3}, {attribute: math_transitions}]
+    - [{attribute: math_perspective_m}, {attribute: math_level_3}, {attribute: math_transitions}]
 
   courses:
     CSCI 315: [math_level_3]
@@ -45,9 +45,9 @@ attributes:
     MATH 232: [math_perspective_d]
     MATH 236: [math_perspective_m]
     MATH 239: [math_perspective_d]
-    MATH 242: [math_perspective_m]
-    MATH 244: [math_perspective_c]
-    MATH 252: [math_perspective_a]
+    MATH 242: [math_perspective_m, math_transitions]
+    MATH 244: [math_perspective_c, math_transitions]
+    MATH 252: [math_perspective_a, math_transitions]
     MATH 262: [math_perspective_c, math_perspective_d, math_perspective_m]
     MATH 266: [math_perspective_m]
     MATH 330: [math_perspective_m, math_level_3]
@@ -79,11 +79,10 @@ requirements:
 
   Transitions:
     result:
-      count: 2
-      of:
-        - MATH 242
-        - MATH 244
-        - MATH 252
+      given: courses
+      where: {attributes: math_transitions}
+      what: courses
+      do: count >= 2
 
   Perspectives:
     message: One course from each of three of the four perspectives.
@@ -172,12 +171,12 @@ requirements:
     result:
       count: 1
       of:
-        - both: [MATH 220, MATH 356]
-        - both: [MATH 220, MSCS 341]
-        - both: [MATH 224, MATH 348]
-        - both: [MATH 226, MATH 340]
-        - both: [MATH 230, MATH 330]
-        - both: [MATH 232, MATH 364]
-        - both: [MATH 244, MATH 344]
-        - both: [MATH 252, MATH 352]
-        - both: [MATH 262, STAT 322]
+        - both: [{course: MATH 220, can_match_used: true}, {course: MATH 356, can_match_used: true}]
+        - both: [{course: MATH 220, can_match_used: true}, {course: MSCS 341, can_match_used: true}]
+        - both: [{course: MATH 224, can_match_used: true}, {course: MATH 348, can_match_used: true}]
+        - both: [{course: MATH 226, can_match_used: true}, {course: MATH 340, can_match_used: true}]
+        - both: [{course: MATH 230, can_match_used: true}, {course: MATH 330, can_match_used: true}]
+        - both: [{course: MATH 232, can_match_used: true}, {course: MATH 364, can_match_used: true}]
+        - both: [{course: MATH 244, can_match_used: true}, {course: MATH 344, can_match_used: true}]
+        - both: [{course: MATH 252, can_match_used: true}, {course: MATH 352, can_match_used: true}]
+        - both: [{course: MATH 262, can_match_used: true}, {course: STAT 322, can_match_used: true}]
