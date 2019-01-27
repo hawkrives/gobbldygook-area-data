@@ -12,6 +12,21 @@ result:
     - requirement: Upper-Level Elective
     - requirement: Elective
 
+attributes:
+  courses:
+    PHYS 112: [physics_elective]
+    PHYS 124: [physics_elective]
+    PHYS 125: [physics_elective]
+    PHYS 154: [physics_elective]
+    PHYS 246: [physics_elective]
+    PHYS 252: [physics_elective]
+    PHYS 360: [physics_elective]
+    PHYS 362: [physics_elective]
+    PHYS 376: [physics_elective]
+    PHYS 379: [physics_elective]
+    PHYS 390: [physics_elective]
+    PHYS 396: [physics_elective]
+
 requirements:
   Analytics:
     result:
@@ -30,18 +45,12 @@ requirements:
 
   Upper-Level Elective:
     result:
-      surplus: [Elective, .result, .of]
       count: 1
       of: [PHYS 360, PHYS 362, PHYS 376, PHYS 379, PHYS 390]
 
   Elective:
     result:
-      count: 1
-      of:
-        - PHYS 112
-        - PHYS 124
-        - PHYS 125
-        - PHYS 154
-        - PHYS 246
-        - PHYS 252
-        - PHYS 396
+      given: courses
+      where: {attributes: physics_elective}
+      what: courses
+      do: count >= 1

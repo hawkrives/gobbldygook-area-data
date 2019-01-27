@@ -12,29 +12,72 @@ result:
     - requirement: Electives
     - requirement: Independent Research
 
+attributes:
+  courses:
+    ART 161: [ancient_elective]
+    ART 267: [ancient_elective]
+    CLASS 126: [ancient_history, ancient_classics, ancient_elective]
+    CLASS 129: [ancient_elective]
+    CLASS 240: [ancient_history, ancient_classics, ancient_elective]
+    CLASS 241: [ancient_elective]
+    CLASS 243: [ancient_history, ancient_classics, ancient_elective]
+    CLASS 244: [ancient_elective]
+    CLASS 251: [ancient_elective]
+    CLASS 253: [ancient_history, ancient_classics, ancient_elective]
+    CLASS 398: [ancient_ir, ancient_elective]
+    ENGL 255: [ancient_elective]
+    GCON 113: [ancient_elective]
+    GCON 115: [ancient_elective]
+    GREEK 111: [ancient_history, ancient_elective]
+    GREEK 112: [ancient_history, ancient_elective]
+    GREEK 231: [ancient_history, ancient_elective]
+    GREEK 253: [ancient_history, ancient_elective]
+    GREEK 374: [ancient_history, ancient_elective]
+    GREEK 375: [ancient_history, ancient_elective]
+    GREEK 398: [ancient_ir, ancient_elective]
+    HIST 190: [ancient_history, ancient_elective]
+    HIST 201: [ancient_history, ancient_elective]
+    HIST 203: [ancient_history, ancient_elective]
+    HIST 204: [ancient_history, ancient_elective]
+    HIST 205: [ancient_elective]
+    HIST 303: [ancient_history, ancient_elective]
+    HIST 396: [ancient_history, ancient_elective]
+    HIST 398: [ancient_ir, ancient_elective]
+    LATIN 111: [ancient_history, ancient_elective]
+    LATIN 112: [ancient_history, ancient_elective]
+    LATIN 231: [ancient_history, ancient_elective]
+    LATIN 235: [ancient_history, ancient_elective]
+    LATIN 373: [ancient_history, ancient_elective]
+    LATIN 375: [ancient_history, ancient_elective]
+    LATIN 398: [ancient_ir, ancient_elective]
+    PHIL 235: [ancient_history, ancient_elective]
+    REL 221: [ancient_history, ancient_elective]
+    REL 222: [ancient_history, ancient_elective]
+    REL 271: [ancient_elective]
+    REL 272: [ancient_history, ancient_elective]
+    REL 273: [ancient_history, ancient_elective]
+    REL 293: [ancient_elective]
+    REL 320: [ancient_history, ancient_elective]
+    REL 391 2016.1: [ancient_elective]
+    REL 393: [ancient_history, ancient_elective]
+    THEAT 270: [ancient_history, ancient_elective]
+
 requirements:
   Language:
     result:
-      surplus: [Electives, .result, .of]
       either: [LATIN 252, GREEK 253]
 
   Ancient History:
     result:
-      count: any
-      of: [
-        CLASS 126, CLASS 240, CLASS 243, CLASS 253,
-        GREEK 111, GREEK 112, GREEK 231, GREEK 253, GREEK 374, GREEK 375,
-        HIST 190, HIST 201, HIST 203, HIST 204, HIST 303, HIST 396,
-        LATIN 111, LATIN 112, LATIN 231, LATIN 235, LATIN 373, LATIN 375,
-        PHIL 235,
-        REL 221, REL 221, REL 222, REL 272, REL 273, REL 320, REL 393,
-        THEAT 270,
-      ]
+      given: courses
+      where: { attributes: ancient_history }
+      what: courses
+      do: count >= 1
 
   Classics:
     result:
       given: courses
-      where: {department: CLASS}
+      where: { attributes: ancient_classics }
       what: courses
       do: count >= 1
 
@@ -46,20 +89,14 @@ requirements:
       portion of the major with Greek courses.
 
     result:
-      count: 4
-      of: [
-        ART 161, ART 267,
-        CLASS 126, CLASS 129, CLASS 240, CLASS 241, CLASS 243, CLASS 244, CLASS 251, CLASS 253,
-        ENGL 255,
-        HIST 190, HIST 201, HIST 203, HIST 204, HIST 205, HIST 303, HIST 396,
-        PHIL 235,
-        REL 221, REL 222, REL 271, REL 272, REL 273, REL 293, REL 320, {course: REL 391, year: 2016},
-        THEAT 270,
-        GCON 113, GCON 115,
-      ]
+      given: courses
+      where: { attributes: ancient_elective }
+      what: courses
+      do: count >= 4
 
   Independent Research:
     result:
-      surplus: [Electives, .result, .of]
-      count: any
-      of: [CLASS 398, HIST 398, LATIN 398, GREEK 398]
+      given: courses
+      where: { attributes: ancient_ir }
+      what: courses
+      do: count >= 1

@@ -11,50 +11,56 @@ result:
     - requirement: Level III
     - requirement: Electives
 
+# attributes:
+#   GERM 251: [german_elective]
+#   GERM 252: [german_elective]
+#   GERM 253: [german_elective]
+#   GERM 271: [german_elective]
+#   GERM 272: [german_elective]
+#   GERM 273: [german_elective]
+#   GERM 276: [german_elective]
+#   GERM 371: [german_elective]
+#   GERM 372: [german_elective]
+
 requirements:
   Level 250:
     result:
-      surplus: [Electives, Langauge, .result, .of]
-      count: 2
-      of:
-        - GERM 251
-        - GERM 252
-        - GERM 253
+      given: these courses
+      courses: [GERM 251, GERM 252, GERM 253]
+      repeats: first
+      what: courses
       limit:
-        - {at_most: 1, where: {institution: '! St. Olaf College'}}
+        - { at_most: 1, where: { institution: "! St. Olaf College" } }
+      do: count >= 2
 
   Level 270:
     result:
-      surplus: [Electives, Langauge, .result, .of]
-      count: 2
-      of:
-        - GERM 271
-        - GERM 272
-        - GERM 273
-        - GERM 276
+      given: these courses
+      courses: [GERM 271, GERM 272, GERM 273, GERM 276]
+      repeats: first
+      what: courses
       limit:
-        - {at_most: 1, where: {institution: '! St. Olaf College'}}
+        - { at_most: 1, where: { institution: "! St. Olaf College" } }
+      do: count >= 2
 
   Level III:
     message: This course will preferably be taken in the student's senior year.
     result:
-      surplus: [Electives, Langauge, .result, .of]
-      count: 1
-      of:
-        - GERM 371
-        - GERM 372
+      either: [GERM 371, GERM 372]
 
   Electives:
     result:
       both:
         - count: any
           of:
-            - {requirement: Language, optional: true}
-            - {requirement: In Translation, optional: true}
+            - { requirement: Language, optional: true }
+            - { requirement: Interim In German, optional: true }
+            - { requirement: In Translation, optional: true }
 
         - given: these requirements
           requirements:
             - requirement: Langauge
+            - requirement: Interim In German
             - requirement: In Translation
           what: courses
           do: count >= 3
@@ -62,9 +68,11 @@ requirements:
     requirements:
       Language:
         result:
-          count: any
-          of:
-          - GERM 232
+          course: GERM 232
+
+      Interim In German:
+        message: You may count one German Interim abroad towards this requirement.
+        registrar_audited: true
 
       In Translation:
         result:
@@ -91,8 +99,10 @@ requirements:
           repeats: first
           what: courses
           limit:
-            # > a maximum of one course in English with a significant German focus taught by a St. Olaf instructor
+            # > a maximum of one course in English with a significant German
+            # > focus taught by a St. Olaf instructor
             #
-            # because all of these courses are in english, we can just limit it to at_most:1 here to accomplish this goal
-            - {at_most: 1, where: {institution: 'St. Olaf College'}}
+            # because all of these courses are in english, we can just limit it
+            # to at_most:1 here to accomplish this goal
+            - { at_most: 1, where: { institution: "St. Olaf College" } }
           do: count = 1

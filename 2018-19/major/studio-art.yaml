@@ -13,10 +13,62 @@ result:
     - requirement: Areas
     - requirement: Art History
 
+attributes:
+  courses:
+    ART 106: [art_elective]
+    ART 153: [art_history]
+    ART 161: [art_history]
+    ART 205: [art_elective]
+    ART 207: [art_elective]
+    ART 221: [art_elective]
+    ART 222: [art_elective]
+    ART 223: [art_elective]
+    ART 224: [art_elective]
+    ART 225: [art_elective]
+    ART 226: [art_elective]
+    ART 227: [art_elective]
+    ART 228: [art_elective]
+    ART 229: [art_elective]
+    ART 232: [art_elective]
+    ART 233: [art_elective]
+    ART 234: [art_elective]
+    ART 236 2000.0: [art_elective]
+    ART 238: [art_elective]
+    ART 240: [art_elective]
+    ART 246: [art_elective]
+    ART 251: [art_history]
+    ART 252: [art_history]
+    ART 253: [art_history]
+    ART 254: [art_history]
+    ART 255: [art_history]
+    ART 256: [art_history]
+    ART 259: [art_history]
+    ART 260: [art_history]
+    ART 261: [art_history]
+    ART 262: [art_history]
+    ART 263: [art_history]
+    ART 265: [art_history]
+    ART 267: [art_history]
+    ART 269: [art_history]
+    ART 271: [art_history]
+    ART 273: [art_history]
+    ART 277: [art_history]
+    ART 280: [art_history]
+    ART 294: [art_elective]
+    ART 298: [art_elective]
+    ART 340: [art_elective]
+    ART 350: [art_history]
+    ART 370: [art_history]
+    ART 394: [art_elective]
+    ART 398: [art_elective]
+    ASIAN 270: [art_history]
+    ASIAN 310: [art_history]
+    ENVST 270: [art_history]
+    PHIL 243: [art_history]
+
 requirements:
   Foundations:
     result:
-      surplus: [Studio Art, Electives, .result, .of]
       count: all
       of:
         - either: [ART 102, ART 106]
@@ -44,25 +96,21 @@ requirements:
         requirements:
           Drawing:
             result:
-              surplus: [Studio Art, Electives, .result, .of]
               count: any
               of: [ART 225, ART 232, ART 233]
 
           Painting:
             result:
-              surplus: [Studio Art, Electives, .result, .of]
               count: any
               of: [ART 221, ART 222]
 
           Printmaking:
             result:
-              surplus: [Studio Art, Electives, .result, .of]
               count: any
               of: [ART 226, ART 227]
 
           Graphic Design:
             result:
-              surplus: [Studio Art, Electives, .result, .of]
               count: any
               of:
                 - {course: ART 236, term: 2000-0}
@@ -77,13 +125,11 @@ requirements:
         requirements:
           Ceramics:
             result:
-              surplus: [Studio Art, Electives, .result, .of]
               count: any
               of: [ART 207, ART 234]
 
           Sculpture:
             result:
-              surplus: [Studio Art, Electives, .result, .of]
               count: any
               of: [ART 223, ART 224]
 
@@ -100,31 +146,26 @@ requirements:
         requirements:
           Photography:
             result:
-              surplus: [Studio Art, Electives, .result, .of]
               count: any
               of: [ART 205, ART 238]
 
           Interactive Image:
             result:
-              surplus: [Studio Art, Electives, .result, .of]
               count: any
               of: [ART 228]
 
           Digital Video:
             result:
-              surplus: [Studio Art, Electives, .result, .of]
               count: any
               of: [ART 229]
 
           Performance:
             result:
-              surplus: [Studio Art, Electives, .result, .of]
               count: any
               of: [ART 240]
 
           Graphic Design:
             result:
-              surplus: [Studio Art, Electives, .result, .of]
               count: any
               of:
                 - {course: ART 236, term: 2000-0}
@@ -143,12 +184,10 @@ requirements:
 
   Electives:
     result:
-      count: 1
-      of: [
-        ART 106, ART 246, ART 294, ART 298, ART 340,
-        ART 394, ART 398,
-      ]
-
+      given: courses
+      where: {attributes: art_elective}
+      what: courses
+      do: count >= 1
 
   Art History:
     message:
@@ -156,14 +195,7 @@ requirements:
       ART 252 or 253 as one of your art history courses.
 
     result:
-      count: 2
-      of: [
-        ART 153, ART 161, ART 251, ART 252, ART 253,
-        ART 254, ART 255, ART 256, ART 259, ART 260,
-        ART 261, ART 262, ART 263, ART 265, ART 267,
-        ART 269, ART 271, ART 273, ART 277, ART 280,
-        ART 350, ART 370,
-        ASIAN 270, ASIAN 310,
-        ENVST 270,
-        PHIL 243,
-      ]
+      given: courses
+      where: {attributes: art_history}
+      what: courses
+      do: count >= 1

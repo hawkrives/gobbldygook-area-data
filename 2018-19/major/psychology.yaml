@@ -12,6 +12,39 @@ result:
     - requirement: General Education
     - requirement: Electives
 
+attributes:
+  courses:
+    PSYCH 235: [psych_elective]
+    PSYCH 236: [psych_elective]
+    PSYCH 237: [psych_elective]
+    PSYCH 238: [psych_elective]
+    PSYCH 241: [psych_elective]
+    PSYCH 244: [psych_elective]
+    PSYCH 247: [psych_elective]
+    PSYCH 220: [psych_elective]
+    PSYCH 221: [psych_elective]
+    PSYCH 222: [psych_elective]
+    PSYCH 223: [psych_elective]
+    PSYCH 224: [psych_elective]
+    PSYCH 225: [psych_elective]
+    PSYCH 227: [psych_elective]
+    PSYCH 250: [psych_elective]
+    PSYCH 251: [psych_elective]
+    PSYCH 336: [psych_elective, psych_level_3]
+    PSYCH 338: [psych_elective, psych_level_3]
+    PSYCH 339: [psych_elective, psych_level_3]
+    PSYCH 341: [psych_elective, psych_level_3]
+    PSYCH 342: [psych_elective, psych_level_3]
+    PSYCH 344: [psych_elective, psych_level_3]
+    PSYCH 350: [psych_elective, psych_level_3]
+    PSYCH 375: [psych_elective, psych_level_3]
+    PSYCH 378: [psych_elective, psych_level_3]
+    PSYCH 390: [psych_elective, psych_level_3]
+    PSYCH 391: [psych_elective, psych_level_3]
+    PSYCH 395: [psych_elective, psych_level_3]
+    PSYCH 396: [psych_elective, psych_level_3]
+    PSYCH 398: [psych_elective, psych_level_3]
+
 requirements:
   Foundation:
     result:
@@ -27,25 +60,20 @@ requirements:
     requirements:
       Natural Science:
         result:
-          surplus: [Electives, .result, .of]
           count: 2
           of: [PSYCH 235, PSYCH 236, PSYCH 237, PSYCH 238]
 
       Social Science:
         result:
-          surplus: [Electives, .result, .of]
           count: 2
           of: [PSYCH 241, PSYCH 244, PSYCH 247, PSYCH 249]
 
   Level III Capstone:
     result:
-      surplus: [Electives, .result, .of]
-      count: 2
-      of: [
-        PSYCH 336, PSYCH 338, PSYCH 339, PSYCH 341, PSYCH 342,
-        PSYCH 344, PSYCH 350, PSYCH 375, PSYCH 378, PSYCH 390,
-        PSYCH 391, PSYCH 395, PSYCH 396, PSYCH 398,
-      ]
+      given: courses
+      where: { attributes: psych_level_3 }
+      what: courses
+      do: count >= 2
 
   General Education:
     result:
@@ -54,8 +82,7 @@ requirements:
 
   Electives:
     result:
-      count: 2
-      of: [
-        PSYCH 220, PSYCH 221, PSYCH 222, PSYCH 223, PSYCH 224,
-        PSYCH 225, PSYCH 227, PSYCH 250, PSYCH 251,
-      ]
+      given: courses
+      where: { attributes: psych_elective }
+      what: courses
+      do: count >= 2

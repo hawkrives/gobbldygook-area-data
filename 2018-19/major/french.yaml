@@ -11,10 +11,38 @@ result:
     - requirement: Level III
     - requirement: Electives
 
+attributes:
+  courses:
+    FREN 250: [french_elective]
+    FREN 251: [french_elective]
+    FREN 253: [french_elective]
+    ART 251: [french_elective]
+    ART 252: [french_elective]
+    ART 263: [french_elective]
+    ART 271: [french_elective]
+    FREN 231: [french_elective]
+    FREN 232: [french_elective]
+    FREN 235: [french_elective]
+    FREN 271: [french_elective]
+    FREN 272: [french_elective]
+    FREN 273: [french_elective]
+    FREN 275: [french_elective]
+    FREN 372: [french_elective]
+    FREN 373: [french_elective]
+    FREN 397: [french_elective]
+    FREN 399: [french_elective]
+    HIST 210: [french_elective]
+    HIST 226: [french_elective]
+    HIST 227: [french_elective]
+    MUSIC 343: [french_elective]
+    PHIL 236: [french_elective]
+    PSCI 260: [french_elective]
+    PSCI 283: [french_elective]
+    THEAT 270: [french_elective]
+
 requirements:
   Speaking and Writing:
     result:
-      surplus: [Electives, .result, .courses]
       count: 2
       of:
         - FREN 250
@@ -23,7 +51,6 @@ requirements:
 
   The Francophone World:
     result:
-      surplus: [Electives, .result, .courses]
       count: 2
       of:
         - FREN 271
@@ -33,7 +60,6 @@ requirements:
 
   Level III:
     result:
-      surplus: [Electives, .result, .courses]
       count: 2
       of:
         - FREN 372
@@ -43,24 +69,8 @@ requirements:
 
   Electives:
     result:
-      given: these courses
-      courses:
-        - FREN 231
-        - FREN 232
-        - FREN 235
-        - ART 251
-        - ART 252
-        - ART 263
-        - ART 271
-        - HIST 210
-        - HIST 226
-        - HIST 227
-        - MUSIC 343
-        - PHIL 236
-        - PSCI 260
-        - PSCI 283
-        - THEAT 270
-      repeats: first
+      given: courses
+      where: {attributes: french_elective}
       what: courses
       limit:
         - {at_most: 1, where: {department: '! FREN'}}
