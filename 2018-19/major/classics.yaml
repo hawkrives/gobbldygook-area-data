@@ -10,25 +10,39 @@ result:
     - requirement: Classics
     - requirement: Ancient History
 
+attributes:
+  LATIN 111: [classics_latin]
+  LATIN 112: [classics_latin]
+  LATIN 231: [classics_latin]
+  LATIN 235: [classics_latin]
+  LATIN 252: [classics_latin]
+  LATIN 370: [classics_latin]
+  LATIN 371: [classics_latin]
+  LATIN 372: [classics_latin]
+  LATIN 373: [classics_latin]
+  LATIN 374: [classics_latin]
+  LATIN 375: [classics_latin]
+  LATIN 377: [classics_latin]
+  GREEK 111: [classics_greek]
+  GREEK 112: [classics_greek]
+  GREEK 231: [classics_greek]
+  GREEK 253: [classics_greek]
+  GREEK 370: [classics_greek]
+  GREEK 372: [classics_greek]
+  GREEK 373: [classics_greek]
+  GREEK 374: [classics_greek]
+  GREEK 375: [classics_greek]
+  CLASS 111: [classics_ancient_history]
+
 requirements:
   Language:
     save:
-      - given: these courses
-        courses: [
-          LATIN 111, LATIN 112, LATIN 231, LATIN 235,
-          LATIN 252, LATIN 370, LATIN 371, LATIN 372,
-          LATIN 373, LATIN 374, LATIN 375, LATIN 377,
-        ]
-        repeats: first
+      - given: courses
+        where: {attributes: classics_latin}
         name: Latin Courses
 
-      - given: these courses
-        courses: [
-          GREEK 111, GREEK 112, GREEK 231, GREEK 253,
-          GREEK 370, GREEK 372, GREEK 373, GREEK 374,
-          GREEK 375,
-        ]
-        repeats: first
+      - given: courses
+        where: {attributes: classics_greek}
         name: Greek Courses
 
     result:
@@ -71,6 +85,7 @@ requirements:
   Ancient History:
     message: TODO find out what courses are considered "ancient history"
     result:
-      count: 1
-      of:
-        - CLASS 111
+      given: courses
+      where: {attributes: classics_ancient_history}
+      what: courses
+      do: count >= 1
