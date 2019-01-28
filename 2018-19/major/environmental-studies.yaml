@@ -112,7 +112,7 @@ requirements:
               repeats: first
               limit:
                 - where: {department: '! ENVST'}
-                  at_most: 2
+                  at_most: 1
               what: courses
               do: count >= 2
 
