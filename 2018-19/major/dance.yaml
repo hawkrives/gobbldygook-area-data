@@ -81,16 +81,11 @@ requirements:
       Must be taken fall of senior year. Final projects may take the
       form of a research paper, performance, choreography, or blended
       project.
-    save:
-      - given: these courses
-        courses: [DANCE 399]
-        repeats: last
-        where: {year: graduation-year, semester: Fall}
-        name: "Senior Dance Seminars"
     result:
-      given: save
-      save: "Senior Dance Seminars"
-      what: courses
+      given: these courses
+      courses: [DANCE 399]
+      repeats: last
+      where: {year: graduation-year, semester: Fall}
       do: count >= 1
 
 
