@@ -86,6 +86,7 @@ requirements:
       courses: [DANCE 399]
       repeats: last
       where: {year: graduation-year, semester: Fall}
+      what: courses
       do: count >= 1
 
 
