@@ -81,20 +81,20 @@ requirements:
   Seminar:
     result:
       given: courses
-      where: {attributes: asian_seminar}
+      where: {attribute: asian_seminar}
       what: courses
       do: count >= 1
 
   Electives:
     result:
       given: courses
-      where: {attributes: asian_elective}
+      where: {attribute: asian_elective}
       limit:
         # "No more than two at level I"
         - {at_most: 2, where: {level: '100'}}
         # "No more than four elective courses about any one country"
-        - {at_most: 4, where: {attributes: asian_region_china}}
-        - {at_most: 4, where: {attributes: asian_region_japan}}
+        - {at_most: 4, where: {attribute: asian_region_china}}
+        - {at_most: 4, where: {attribute: asian_region_japan}}
         # "At least two at level II or level III, taken on campus"
         # aka "no more than 4 may be taken off-campus", since we need six total
         - {at_most: 5, where: {institution: '! St. Olaf College', level: '200 | 300'}}

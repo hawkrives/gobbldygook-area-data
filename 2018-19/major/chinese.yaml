@@ -103,23 +103,23 @@ requirements:
       China-focused:
         result:
           given: courses
-          where: {attributes: china_focused_on_china}
+          where: {attribute: china_focused_on_china}
           what: courses
           do: count >= 1
 
       Comparative:
         result:
           given: courses
-          where: {attributes: china_comparative_asia}
+          where: {attribute: china_comparative_asia}
           limit:
-            - {at_most: 2, where: {attributes: 'china_asiancon'}}
-            - {at_most: 1, where: {attributes: 'china_independent_study | china_seminar'}}
+            - {at_most: 2, where: {attribute: 'china_asiancon'}}
+            - {at_most: 1, where: {attribute: 'china_independent_study | china_seminar'}}
           what: courses
           do: count >= 1
 
   FLAC:
     result:
       given: courses
-      where: {attributes: china_flac}
+      where: {attribute: china_flac}
       what: courses
       do: count >= 1

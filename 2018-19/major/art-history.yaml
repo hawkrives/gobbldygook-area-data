@@ -83,7 +83,7 @@ requirements:
   Studio Art:
     result:
       given: courses
-      where: {attributes: art_studio_art}
+      where: {attribute: art_studio_art}
       what: courses
       do: count >= 1
 
@@ -116,28 +116,28 @@ requirements:
       Asian, African, Indigenous American, or Near Eastern/Islamic Art:
         result:
           given: courses
-          where: {attributes: art_locale_asian | art_locale_african | art_locale_indigenous_american | art_locale_near_eastern}
+          where: {attribute: art_locale_asian | art_locale_african | art_locale_indigenous_american | art_locale_near_eastern}
           what: courses
           do: count >= 2
 
       European and American Art:
         result:
           given: courses
-          where: {attributes: art_locale_european | art_locale_american}
+          where: {attribute: art_locale_european | art_locale_american}
           what: courses
           do: count >= 2
 
       Art created before 1700 CE:
         result:
           given: courses
-          where: {attributes: art_period_pre1700}
+          where: {attribute: art_period_pre1700}
           what: courses
           do: count >= 1
 
       Art created after 1700 CE:
         result:
           given: courses
-          where: {attributes: art_period_post1700}
+          where: {attribute: art_period_post1700}
           what: courses
           do: count >= 1
 

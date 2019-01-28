@@ -80,7 +80,7 @@ requirements:
   Transitions:
     result:
       given: courses
-      where: {attributes: math_transitions}
+      where: {attribute: math_transitions}
       what: courses
       do: count >= 2
 
@@ -99,28 +99,28 @@ requirements:
       Axiomatic/Algebraic (A):
         result:
           given: courses
-          where: {attributes: math_perspective_a}
+          where: {attribute: math_perspective_a}
           what: courses
           do: count >= 1
 
       Continuous/Analytic (C):
         result:
           given: courses
-          where: {attributes: math_perspective_c}
+          where: {attribute: math_perspective_c}
           what: courses
           do: count >= 1
 
       Discrete/Combinatorial (D):
         result:
           given: courses
-          where: {attributes: math_perspective_d}
+          where: {attribute: math_perspective_d}
           what: courses
           do: count >= 1
 
       Modeling/Computation (M):
         result:
           given: courses
-          where: {attributes: math_perspective_m}
+          where: {attribute: math_perspective_m}
           what: courses
           do: count >= 1
 
@@ -161,7 +161,7 @@ requirements:
   Level III:
     result:
       given: courses
-      where: {attributes: math_level_3}
+      where: {attribute: math_level_3}
       limit:
         - {at_most: 1, where: {department: '! MATH'}}
       what: courses

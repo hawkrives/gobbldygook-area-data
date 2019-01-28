@@ -142,41 +142,41 @@ requirements:
   European:
     result:
       given: courses
-      where: {attributes: history_region_europe}
+      where: {attribute: history_region_europe}
       what: courses
       do: count >= 1
 
   U.S.:
     result:
       given: courses
-      where: {attributes: history_region_us}
+      where: {attribute: history_region_us}
       what: courses
       do: count >= 1
 
   Non-Western World:
     result:
       given: courses
-      where: {attributes: history_region_nonwesternworld}
+      where: {attribute: history_region_nonwesternworld}
       what: courses
       do: count >= 1
 
   Pre-Modern Period:
     result:
       given: courses
-      where: {attributes: history_era_premodern}
+      where: {attribute: history_era_premodern}
       what: courses
       do: count >= 2
 
   Major Seminar:
     result:
       given: courses
-      where: {attributes: history_l2_seminar}
+      where: {attribute: history_l2_seminar}
       what: courses
       do: count >= 1
 
   Level III:
     result:
       given: courses
-      where: {attributes: history_level_3}
+      where: {attribute: history_level_3}
       what: courses
       do: count >= 3

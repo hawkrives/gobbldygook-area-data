@@ -71,7 +71,7 @@ requirements:
   Level III Capstone:
     result:
       given: courses
-      where: { attributes: psych_level_3 }
+      where: { attribute: psych_level_3 }
       what: courses
       do: count >= 2
 
@@ -83,6 +83,6 @@ requirements:
   Electives:
     result:
       given: courses
-      where: { attributes: psych_elective }
+      where: { attribute: psych_elective }
       what: courses
       do: count >= 2

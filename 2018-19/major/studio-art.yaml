@@ -185,7 +185,7 @@ requirements:
   Electives:
     result:
       given: courses
-      where: {attributes: art_elective}
+      where: {attribute: art_elective}
       what: courses
       do: count >= 1
 
@@ -196,6 +196,6 @@ requirements:
 
     result:
       given: courses
-      where: {attributes: art_history}
+      where: {attribute: art_history}
       what: courses
       do: count >= 1

@@ -51,6 +51,6 @@ requirements:
   Elective:
     result:
       given: courses
-      where: {attributes: physics_elective}
+      where: {attribute: physics_elective}
       what: courses
       do: count >= 1

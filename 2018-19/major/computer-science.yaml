@@ -61,7 +61,7 @@ requirements:
   Electives:
     result:
       given: courses
-      where: {attributes: csci_elective}
+      where: {attribute: csci_elective}
       what: courses
       do: count >= 2
 

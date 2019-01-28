@@ -98,23 +98,23 @@ requirements:
       Japan-focused:
         result:
           given: courses
-          where: {attributes: japan_focused_on_japan}
+          where: {attribute: japan_focused_on_japan}
           what: courses
           do: count >= 1
 
       Comparative:
         result:
           given: courses
-          where: {attributes: japan_comparative_asia}
+          where: {attribute: japan_comparative_asia}
           limit:
-            - {at_most: 2, where: {attributes: 'japan_asiancon'}}
-            - {at_most: 1, where: {attributes: 'japan_independent_study | japan_seminar'}}
+            - {at_most: 2, where: {attribute: 'japan_asiancon'}}
+            - {at_most: 1, where: {attribute: 'japan_independent_study | japan_seminar'}}
           what: courses
           do: count >= 1
 
   FLAC:
     result:
       given: courses
-      where: {attributes: japan_flac}
+      where: {attribute: japan_flac}
       what: courses
       do: count >= 1

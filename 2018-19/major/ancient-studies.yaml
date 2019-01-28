@@ -70,14 +70,14 @@ requirements:
   Ancient History:
     result:
       given: courses
-      where: { attributes: ancient_history }
+      where: { attribute: ancient_history }
       what: courses
       do: count >= 1
 
   Classics:
     result:
       given: courses
-      where: { attributes: ancient_classics }
+      where: { attribute: ancient_classics }
       what: courses
       do: count >= 1
 
@@ -90,13 +90,13 @@ requirements:
 
     result:
       given: courses
-      where: { attributes: ancient_elective }
+      where: { attribute: ancient_elective }
       what: courses
       do: count >= 4
 
   Independent Research:
     result:
       given: courses
-      where: { attributes: ancient_ir }
+      where: { attribute: ancient_ir }
       what: courses
       do: count >= 1

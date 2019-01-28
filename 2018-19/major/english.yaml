@@ -274,35 +274,35 @@ requirements:
   Cross-Cultural Studies:
     result:
       given: courses
-      where: {attributes: engl_topic_crosscultural}
+      where: {attribute: engl_topic_crosscultural}
       what: courses
       do: count >= 1
 
   Literary History:
     result:
       given: courses
-      where: {attributes: engl_topic_literary_history}
+      where: {attribute: engl_topic_literary_history}
       what: courses
       do: count >= 1
 
   Cross-Disciplinary Studies:
     result:
       given: courses
-      where: {attributes: engl_topic_crossdisciplinary}
+      where: {attribute: engl_topic_crossdisciplinary}
       what: courses
       do: count >= 1
 
   Genre Studies:
     result:
       given: courses
-      where: {attributes: engl_topic_genre}
+      where: {attribute: engl_topic_genre}
       what: courses
       do: count >= 1
 
   Electives:
     result:
       given: courses
-      where: {attributes: 'engl_elective | engl_topic_genre | engl_topic_crosscultural | engl_topic_literary_history | engl_topic_crossdisciplinary'}
+      where: {attribute: 'engl_elective | engl_topic_genre | engl_topic_crosscultural | engl_topic_literary_history | engl_topic_crossdisciplinary'}
       what: courses
       do: count >= 6
 
@@ -310,11 +310,11 @@ requirements:
     result:
       both:
         - given: courses
-          where: {attributes: engl_period_pre1800}
+          where: {attribute: engl_period_pre1800}
           what: courses
           do: count >= 1
 
         - given: courses
-          where: {attributes: engl_period_post1800}
+          where: {attribute: engl_period_post1800}
           what: courses
           do: count >= 1

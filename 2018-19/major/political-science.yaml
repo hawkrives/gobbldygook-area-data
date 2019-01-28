@@ -86,35 +86,35 @@ requirements:
   American Politics and Public Policy:
     result:
       given: courses
-      where: {attributes: psci_topic_american}
+      where: {attribute: psci_topic_american}
       what: courses
       do: count >= 1
 
   Comparative Politics:
     result:
       given: courses
-      where: {attributes: psci_topic_comparative}
+      where: {attribute: psci_topic_comparative}
       what: courses
       do: count >= 1
 
   International Relations:
     result:
       given: courses
-      where: {attributes: psci_topic_international}
+      where: {attribute: psci_topic_international}
       what: courses
       do: count >= 1
 
   Political Theory:
     result:
       given: courses
-      where: {attributes: psci_topic_theory}
+      where: {attribute: psci_topic_theory}
       what: courses
       do: count >= 1
 
   Level III:
     result:
       given: courses
-      where: {attributes: psci_level_3}
+      where: {attribute: psci_level_3}
       what: courses
       do: count >= 2
 

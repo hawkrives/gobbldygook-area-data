@@ -71,13 +71,13 @@ requirements:
       Level II:
         result:
           given: courses
-          where: {attributes: econ_level_2}
+          where: {attribute: econ_level_2}
           what: courses
           do: count >= 1
 
       Level III:
         result:
           given: courses
-          where: {attributes: econ_level_3}
+          where: {attribute: econ_level_3}
           what: courses
           do: count >= 2

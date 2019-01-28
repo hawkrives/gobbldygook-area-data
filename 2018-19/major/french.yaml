@@ -70,7 +70,7 @@ requirements:
   Electives:
     result:
       given: courses
-      where: {attributes: french_elective}
+      where: {attribute: french_elective}
       what: courses
       limit:
         - {at_most: 1, where: {department: '! FREN'}}
