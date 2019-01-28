@@ -27,7 +27,7 @@ attributes:
 requirements:
   Foundation:
     result:
-      count: 3
+      count: all
       of:
         - either: [CSCI 121, CSCI 125]
         - CSCI 241
