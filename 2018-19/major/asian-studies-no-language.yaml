@@ -47,7 +47,6 @@ attributes:
     ASIAN 236: [asian_elective]
     ASIAN 237: [asian_elective]
     ASIAN 240: [asian_elective, asian_region_japan]
-    ASIAN 240: [asian_elective]
     ASIAN 268: [asian_elective]
     ASIAN 294: [asian_elective]
     ASIAN 298: [asian_elective]
