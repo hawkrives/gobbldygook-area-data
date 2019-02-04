@@ -107,6 +107,7 @@ requirements:
                 - { course: ENVST 381, term: 2000-1 }
                 - ENVST 397
                 - BIO 224
+              repeats: first
               limit:
                 - where: { department: "! ENVST" }
                   at_most: 2
@@ -308,6 +309,7 @@ requirements:
                 - REL 278
                 - ENVST 381
                 - { course: DEPT 301, term: 2000-1 }
+              repeats: first
               limit:
                 - { at_most: 5, where: { level: "200" } }
               what: courses
