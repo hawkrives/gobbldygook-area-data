@@ -107,22 +107,19 @@ requirements:
                 - { course: ENVST 381, term: 2000-1 }
                 - ENVST 397
                 - BIO 224
-              repeats: first
-              limit:
-                - where: { department: "! ENVST" }
-                  at_most: 2
-              what: courses
-              do: count >= 2
-
-          Level III Natural Science:
-            result:
-              count: 1
-              of:
                 - BI/ES 350
                 - BIO 371
                 - { course: BIO 391, term: 2000-1 }
                 - { course: CHEM 391, term: 2000-1 }
                 - { course: ENVST 391, term: 2000-1 }
+              repeats: first
+              limit:
+                - where: { department: "! ENVST", level: "200" }
+                  at_most: 1
+                - where: { level: "! 300" }
+                  at_most: 2
+              what: courses
+              do: count >= 3
 
       Social Science:
         result:
