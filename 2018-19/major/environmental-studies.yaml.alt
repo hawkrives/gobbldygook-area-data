@@ -6,8 +6,9 @@ catalog: 2018-19
 result:
   count: all
   of:
-    - Major
-    - Areas of Emphasis
+    - requirement: Major
+    - requirement: Areas of Emphasis
+
 
 requirements:
   Major:
@@ -15,66 +16,67 @@ requirements:
       count: all
       of: [ENVST 137, ENVST 237, ENVST 399]
 
+
   Areas of Emphasis:
+    save:
+      - given: these requirements
+        requirements:
+          - requirement: Social Science
+          - requirement: Arts and Humanities
+        what: courses
+        name: social and arts
+
+      - given: these requirements
+        requirements:
+          - requirement: Natural Science
+          - requirement: Arts and Humanities
+        what: courses
+        name: natural and arts
+
+      - given: these requirements
+        requirements:
+          - requirement: Natural Science
+          - requirement: Social Science
+        what: courses
+        name: natural and social
+
     result:
       count: any
       of:
-        - requirement: Natural Science
-        - requirement: Social Science
-        - requirement: Arts and Humanities
+        - both:
+            - requirement: Natural Science
+            - given: save
+              save: social and arts
+              what: courses
+              do: count >= 3
+
+        - both:
+            - requirement: Social Science
+            - given: save
+              save: natural and arts
+              what: courses
+              do: count >= 3
+
+        - both:
+            - requirement: Arts and Humanities
+            - given: save
+              save: natural and social
+              what: courses
+              do: count >= 3
+
 
     requirements:
       Natural Science:
         result:
           count: all
           of:
-            - requirement: Social Sciences for Natural Science
-            - requirement: Arts and Humanities for Natural Science
             - requirement: Statistics, Modeling, and Mapping
             - requirement: Intermediate Chemistry
             - requirement: Intermediate Ecology
             - requirement: Environmental Science
-            - requirement: Level III
-
-            - given: these requirements
-              requirements:
-                - requirement: Social Sciences for Natural Science
-                - requirement: Arts and Humanities for Natural Science
-                - requirement: Statistics, Modeling, and Mapping
-                - requirement: Intermediate Chemistry
-                - requirement: Intermediate Ecology
-                - requirement: Environmental Science
-                - requirement: Level III
-              what: courses
-              do: count >= 9
+            - requirement: Level III Natural Science
 
         requirements:
-          Social Sciences for Natural Science:
-            result:
-              count: 1
-              of:
-                - ES/PS 201
-                - ENVST 232
-                - ENVST 235
-                - ES/PS 276
-                - AS/ES 277
-                - {course: ENVST 281, term: 2014-5}
-                - ENVST 381
-                - ECON 242
-                - ID 234
-                - PSCI 221
-                - PSYCH 227
-                - SOAN 222
-                - SOAN 247
-                - {course: SOAN 297, term: 2015-3}
-
-          Arts and Humanities for Natural Science:
-            result:
-              count: 1
-              of:
-                - ENVST 202
-                - either: [PHIL 257, REL 278]
-
           Statistics, Modeling, and Mapping:
             result:
               count: 1
@@ -107,9 +109,10 @@ requirements:
                 - {course: ENVST 381, term: 2000-1}
                 - ENVST 397
                 - BIO 224
+              repeats: first
               limit:
                 - where: {department: '! ENVST'}
-                  at_most: 2
+                  at_most: 1
               what: courses
               do: count >= 2
 
@@ -123,66 +126,16 @@ requirements:
                 - {course: CHEM 391, term: 2000-1}
                 - {course: ENVST 391, term: 2000-1}
 
-
       Social Science:
         result:
           count: all
           of:
-            - requirement: Natural Science for Social Sciences
-            - requirement: Arts and Humanities for Social Sciences
             - requirement: Methodological Analysis
             - requirement: Economic Analysis
             - requirement: Environmental Political Policy and Institutions
             - requirement: Social Science Electives
 
-            - given: these requirements
-              requirements:
-                - requirement: Natural Science for Social Sciences
-                - requirement: Arts and Humanities for Social Sciences
-                - requirement: Methodological Analysis
-                - requirement: Economic Analysis
-                - requirement: Environmental Political Policy and Institutions
-                - requirement: Social Science Electives
-              what: courses
-              do: count >= 9
-
         requirements:
-          Natural Science for Social Sciences:
-            result:
-              count: 1
-              of:
-                - ENVST 123
-                - ENVST 245
-                - ENVST 255
-                - {course: ENVST 281, term: 2000-1}
-                - {course: ENVST 381, term: 2000-1}
-                - BI/ES 226
-                - BI/ES 228
-                - BI/ES 286
-                - BI/ES 350
-                - BIO 224
-                - either: [BIO 226, BIO 261]
-                - CHEM 124
-                - both: [CHEM 225, CHEM 256]
-                - {course: BIO 391, term: 2000-1}
-                - {course: CHEM 391, term: 2000-1}
-
-          Arts and Humanities for Social Sciences:
-            result:
-              count: 1
-              of:
-                - ENVST 202
-                - ENVST 270
-                - {course: ENVST 281, term: 2000-1}
-                - {course: ENVST 381, term: 2000-1}
-                - FILM 230
-                - GERM 276
-                - HIST 245
-                - HIST 275
-                - {course: NORW 224, term: 2000-1}
-                - either: [PHIL 257, REL 278]
-                - ENGL 276
-
           Methodological Analysis:
             result:
               count: 1
@@ -233,83 +186,24 @@ requirements:
 
       Arts and Humanities:
         result:
-          count: all
-          of:
-            - requirement: Natural Science for Social Sciences
-            - requirement: Arts and Humanities for Social Sciences
-            - requirement: Methodological Analysis
-            - requirement: Economic Analysis
-            - requirement: Environmental Political Policy and Institutions
-            - requirement: Social Science Electives
-
-            - given: these requirements
-              requirements:
-                - requirement: Natural Science for Social Sciences
-                - requirement: Arts and Humanities for Social Sciences
-                - requirement: Methodological Analysis
-                - requirement: Economic Analysis
-                - requirement: Environmental Political Policy and Institutions
-                - requirement: Social Science Electives
-              what: courses
-              do: count >= 9
-
-        requirements:
-          Natural Science for Arts and the Humanities:
-            result:
-              count: 1
-              of:
-                - ENVST 123
-                - ENVST 245
-                - ENVST 255
-                - {course: ENVST 281, term: 2000-1}
-                - {course: ENVST 381, term: 2000-1}
-                - BI/ES 226
-                - BI/ES 228
-                - BI/ES 286
-                - BI/ES 350
-                - BIO 224
-                - either: [BIO 226, BIO 261]
-                - CHEM 124
-                - both: [CHEM 225, CHEM 256]
-                - {course: BIO 391, term: 2000-1}
-                - {course: CHEM 391, term: 2000-1}
-
-          Social Sciences for Arts and the Humanities:
-            result:
-              count: 1
-              of:
-                - ENVST 232
-                - ENVST 235
-                - {course: ENVST 281, term: 2000-1}
-                - {course: ENVST 381, term: 2000-1}
-                - ES/PS 201
-                - ES/PS 276
-                - ECON 242
-                - PSCI 221
-                - PSYCH 227
-                - SOAN 222
-                - SOAN 247
-                - AS/ES 277
-
-          Courses for Arts and the Humanities:
-            result:
-              given: these courses
-              courses:
-                - ENVST 202
-                - ENVST 270
-                - {course: ENVST 281, term: 2000-1}
-                - {course: ENVST 381, term: 2000-1}
-                - FILM 230
-                - GERM 276
-                - HIST 245
-                - HIST 275
-                - {course: NORW 224, term: 2000-1}
-                - PHIL 257
-                - ENGL 276
-                - REL 278
-                - ENVST 381
-                - {course: DEPT 301, term: 2000-1}
-              limit:
-                - {at_most: 5, where: {level: '200'}}
-              what: courses
-              do: count >= 6
+          given: these courses
+          courses:
+            - ENVST 202
+            - ENVST 270
+            - {course: ENVST 281, term: 2000-1}
+            - {course: ENVST 381, term: 2000-1}
+            - FILM 230
+            - GERM 276
+            - HIST 245
+            - HIST 275
+            - {course: NORW 224, term: 2000-1}
+            - PHIL 257
+            - ENGL 276
+            - REL 278
+            - ENVST 381
+            - {course: DEPT 301, term: 2000-1}
+          repeats: first
+          limit:
+            - {at_most: 5, where: {level: '200'}}
+          what: courses
+          do: count >= 6
