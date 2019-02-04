@@ -34,7 +34,6 @@ requirements:
             - requirement: Intermediate Chemistry
             - requirement: Intermediate Ecology
             - requirement: Environmental Science
-            - requirement: Level III
 
             - given: these requirements
               requirements:
@@ -44,7 +43,6 @@ requirements:
                 - requirement: Intermediate Chemistry
                 - requirement: Intermediate Ecology
                 - requirement: Environmental Science
-                - requirement: Level III
               what: courses
               do: count >= 9
 
