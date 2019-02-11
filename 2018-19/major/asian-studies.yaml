@@ -104,9 +104,9 @@ requirements:
         - {at_most: 4, where: {attribute: asian_region_china}}
         - {at_most: 4, where: {attribute: asian_region_japan}}
         # "At least two at level II or level III, taken on campus"
-        # aka "no more than 4 may be taken off-campus", since we need six total
-        - {at_most: 5, where: {institution: '! St. Olaf College', level: '200 | 300'}}
+        # aka "no more than 5 may be taken off-campus", since we need six total
+        - {at_most: 4, where: {institution: '! St. Olaf College', level: '200 | 300'}}
         # and "No level I or level II language courses may count." is taken care of by not listing them
       repeats: first
       what: courses
-      do: count >= 7
+      do: count >= 6
