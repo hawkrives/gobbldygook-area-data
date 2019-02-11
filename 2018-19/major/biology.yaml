@@ -90,22 +90,35 @@ requirements:
       Genetics:
         result:
           count: 1
-          of: [BIO 233]
+          of:
+            - BIO 233
 
       Cell Biology:
         result:
           count: 1
-          of: [BIO 227, CH/BI 227]
+          of:
+            - BIO 227
+            - CH/BI 227
 
       Comparative Organismal Biology:
         result:
           count: 1
-          of: [BIO 242, BIO 247, BIO 248, BIO 251, BIO 252, BIO 266, BIO 275, BIO 226]
+          of:
+            - BIO 242
+            - BIO 247
+            - BIO 248
+            - BIO 251
+            - BIO 252
+            - BIO 266
+            - BIO 275
+            - BIO 226
 
       Ecology:
         result:
           count: 1
-          of: [BIO 261, BIO 226]
+          of:
+            - BIO 261
+            - BIO 226
 
   Level III:
     result:
