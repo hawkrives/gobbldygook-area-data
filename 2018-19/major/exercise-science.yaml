@@ -8,7 +8,6 @@ result:
   of:
     - requirement: Core
     - requirement: Electives
-    - {requirement: Recomended, optional: true}
 
 requirements:
   Core:
@@ -36,11 +35,3 @@ requirements:
         - PSYCH 241
         - PSYCH 247
         - {count: 1, of: [STAT 110, STAT 212, STAT 214]}
-
-  Recomended:
-    result:
-      count: all
-      of:
-        - ESTH 394
-        - EST 398
-        - CHEM 121
