@@ -359,5 +359,7 @@ requirements:
                   what: courses
                   do: count >= 1
 
-                - do: >
-                    "first BTS-T course" < "last EIN course"
+                - do:
+                    lhs: "first BTS-T course"
+                    op: "<"
+                    rhs: "last EIN course"
