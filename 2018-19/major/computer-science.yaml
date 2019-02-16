@@ -56,7 +56,7 @@ requirements:
           of:
             - CSCI 273
             - CSCI 284
-            - {course: CSCI 300, term: 2000-1}
+            - {course: CSCI 300, year: 2000, semester: Fall}
 
   Electives:
     result:
