@@ -35,7 +35,7 @@ requirements:
             - requirement: Intermediate Ecology
             - requirement: Environmental Science
 
-            - given: these requirements
+            - given: these-requirements
               requirements:
                 - requirement: Social Sciences for Natural Science
                 - requirement: Arts and Humanities for Natural Science
@@ -92,7 +92,7 @@ requirements:
 
           Environmental Science:
             result:
-              given: these courses
+              given: these-courses
               courses:
                 - ENVST 123
                 - BI/ES 226
@@ -130,7 +130,7 @@ requirements:
             - requirement: Environmental Political Policy and Institutions
             - requirement: Social Science Electives
 
-            - given: these requirements
+            - given: these-requirements
               requirements:
                 - requirement: Natural Science for Social Sciences
                 - requirement: Arts and Humanities for Social Sciences
@@ -249,7 +249,7 @@ requirements:
             - requirement: Environmental Political Policy and Institutions
             - requirement: Social Science Electives
 
-            - given: these requirements
+            - given: these-requirements
               requirements:
                 - requirement: Natural Science for Social Sciences
                 - requirement: Arts and Humanities for Social Sciences
@@ -300,7 +300,7 @@ requirements:
 
           Courses for Arts and the Humanities:
             result:
-              given: these courses
+              given: these-courses
               courses:
                 - ENVST 202
                 - ENVST 270

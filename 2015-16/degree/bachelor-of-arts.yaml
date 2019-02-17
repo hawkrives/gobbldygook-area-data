@@ -68,9 +68,9 @@ requirements:
 
       Major:
         result:
-          given: areas of study
+          given: areas
           where: { type: major }
-          what: areas of study
+          what: areas
           do: count >= 1
 
 
@@ -141,7 +141,7 @@ requirements:
             result:
               given: courses
               where: { gereqs: SPM }
-              what: distinct courses
+              what: distinct-courses
               do: count >= 2
 
       Core:

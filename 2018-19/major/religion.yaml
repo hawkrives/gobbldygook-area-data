@@ -44,19 +44,19 @@ requirements:
     # requirements:
     #   Sacred Texts:
     #     result:
-    #       given: these courses
+    #       given: these-courses
     #       courses: []
     #       what: courses
     #       do: count >= 1
     #   Religion in History and Culture:
     #     result:
-    #       given: these courses
+    #       given: these-courses
     #       courses: []
     #       what: courses
     #       do: count >= 1
     #   Religious Thought:
     #     result:
-    #       given: these courses
+    #       given: these-courses
     #       courses: []
     #       what: courses
     #       do: count >= 1
@@ -73,7 +73,7 @@ requirements:
             - REL 341
             - REL 344
 
-        - given: these courses
+        - given: these-courses
           courses:
             - REL 390
             - REL 391

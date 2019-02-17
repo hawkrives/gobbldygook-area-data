@@ -22,7 +22,7 @@ requirements:
 
   Additional Courses:
     save:
-      - given: these requirements
+      - given: these-requirements
         requirements:
           - requirement: Theory and Methods
           - requirement: Women and Gender in Historical Context

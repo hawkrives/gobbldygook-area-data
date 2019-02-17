@@ -40,10 +40,12 @@ requirements:
     save:
       - given: courses
         where: {attributes: classics_latin}
+        what: courses
         name: Latin Courses
 
       - given: courses
         where: {attributes: classics_greek}
+        what: courses
         name: Greek Courses
 
     result:

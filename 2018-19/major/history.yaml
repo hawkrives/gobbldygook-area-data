@@ -14,7 +14,7 @@ result:
         - requirement: U.S.
         - requirement: Pre-Modern Period
 
-    - given: these requirements
+    - given: these-requirements
       requirements:
         - requirement: Major Seminar
         - requirement: Level III

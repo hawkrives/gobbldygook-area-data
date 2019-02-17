@@ -60,7 +60,7 @@ requirements:
         - requirement: Level II
         - requirement: Level III
 
-        - given: these requirements
+        - given: these-requirements
           requirements:
             - requirement: Level II
             - requirement: Level III

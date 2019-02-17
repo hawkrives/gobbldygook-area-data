@@ -18,7 +18,7 @@ requirements:
 
   Level III Seminars:
     result:
-      given: these courses
+      given: these-courses
       courses: [PHIL 371, PHIL 372, PHIL 373, PHIL 374, PHIL 375]
       repeats: first
       limit:
@@ -28,7 +28,7 @@ requirements:
 
   Electives:
     result:
-      given: these courses
+      given: these-courses
       courses: [
         PHIL 118, PHIL 119, PHIL 120, PHIL 147,
         PHIL 233, PHIL 235, PHIL 236, PHIL 240,

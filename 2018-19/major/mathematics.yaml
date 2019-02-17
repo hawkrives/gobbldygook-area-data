@@ -14,7 +14,7 @@ result:
         - requirement: Sequence
         - requirement: Level III
 
-    - given: these requirements
+    - given: these-requirements
       requirements:
         - requirement: Basics
         - requirement: Transitions
@@ -137,25 +137,25 @@ requirements:
         result:
           both:
             - course: CHEM 371
-            - given: areas of study
+            - given: areas
               where: {type: major, name: Chemistry}
-              what: areas of study
+              what: areas
               do: count = 1
       Economics:
         result:
           both:
             - course: ECON 385
-            - given: areas of study
+            - given: areas
               where: {type: major, name: Economics}
-              what: areas of study
+              what: areas
               do: count = 1
       Physics:
         result:
           both:
             - course: PHYS 375
-            - given: areas of study
+            - given: areas
               where: {type: major, name: Physics}
-              what: areas of study
+              what: areas
               do: count = 1
 
   Level III:

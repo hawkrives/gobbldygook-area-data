@@ -103,7 +103,7 @@ requirements:
             - requirement: Art created before 1700 CE
             - requirement: Art created after 1700 CE
 
-        - given: these requirements
+        - given: these-requirements
           requirements:
             - requirement: Asian, African, Indigenous American, or Near Eastern/Islamic Art
             - requirement: European and American Art

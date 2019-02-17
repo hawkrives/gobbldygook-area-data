@@ -27,7 +27,7 @@ requirements:
 
   Movement-Intensive Courses (Technique):
     result:
-      given: these requirements
+      given: these-requirements
       requirements:
         - requirement: Ballet
         - requirement: International and Social
@@ -82,7 +82,7 @@ requirements:
       form of a research paper, performance, choreography, or blended
       project.
     result:
-      given: these courses
+      given: these-courses
       courses: [DANCE 399]
       repeats: last
       where: {year: graduation-year, semester: Fall}

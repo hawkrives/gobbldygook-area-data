@@ -47,7 +47,7 @@ requirements:
       not a core course, S/U.
 
     result:
-      given: these courses
+      given: these-courses
       courses: [
         SOAN 121, SOAN 128, SOAN 232, SOAN 233,
         SOAN 234, SOAN 235, SOAN 236, SOAN 237,

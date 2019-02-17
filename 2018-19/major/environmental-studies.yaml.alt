@@ -19,21 +19,21 @@ requirements:
 
   Areas of Emphasis:
     save:
-      - given: these requirements
+      - given: these-requirements
         requirements:
           - requirement: Social Science
           - requirement: Arts and Humanities
         what: courses
         name: social and arts
 
-      - given: these requirements
+      - given: these-requirements
         requirements:
           - requirement: Natural Science
           - requirement: Arts and Humanities
         what: courses
         name: natural and arts
 
-      - given: these requirements
+      - given: these-requirements
         requirements:
           - requirement: Natural Science
           - requirement: Social Science
@@ -96,7 +96,7 @@ requirements:
 
           Environmental Science:
             result:
-              given: these courses
+              given: these-courses
               courses:
                 - ENVST 123
                 - BI/ES 226
@@ -186,7 +186,7 @@ requirements:
 
       Arts and Humanities:
         result:
-          given: these courses
+          given: these-courses
           courses:
             - ENVST 202
             - ENVST 270

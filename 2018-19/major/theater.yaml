@@ -44,7 +44,7 @@ requirements:
       of:
         - requirement: Acting
         - requirement: Tech
-        - given: these courses
+        - given: these-courses
           courses: [THEAT 233, THEAT 253]
           repeats: all
           what: courses
@@ -53,7 +53,7 @@ requirements:
     requirements:
       Acting:
         result:
-          given: these courses
+          given: these-courses
           courses: [THEAT 233]
           repeats: all
           what: courses
@@ -61,7 +61,7 @@ requirements:
 
       Tech:
         result:
-          given: these courses
+          given: these-courses
           courses: [THEAT 253]
           repeats: all
           what: courses

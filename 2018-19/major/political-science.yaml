@@ -16,7 +16,7 @@ result:
         - requirement: Level III
         - {requirement: Additional Courses, optional: true}
 
-    - given: these requirements
+    - given: these-requirements
       requirements:
         - requirement: Research Methods
         - requirement: American Politics and Public Policy

@@ -68,7 +68,7 @@ requirements:
       Asian Studies senior seminars (ASIAN 397 and ASIAN 399).
 
     save:
-      - given: these requirements
+      - given: these-requirements
         requirements:
           - requirement: Japan-focused
           - requirement: Comparative

@@ -17,7 +17,7 @@ requirements:
 
   Electives:
     save:
-      - given: these requirements
+      - given: these-requirements
         requirements:
           - requirement: Topics
           - requirement: Seminar
@@ -54,7 +54,7 @@ requirements:
     requirements:
       Topics:
         result:
-          given: these courses
+          given: these-courses
           courses: [AMST 205, AMST 206, AMST 207, AMST 208, AMST 209, AMST 210]
           repeats: all
           what: courses
@@ -62,7 +62,7 @@ requirements:
 
       Seminar:
         result:
-          given: these courses
+          given: these-courses
           courses: [AMST 301]
           repeats: all
           what: courses
@@ -70,7 +70,7 @@ requirements:
 
       Disciplinary:
         result:
-          given: these courses
+          given: these-courses
           courses: [
             AFAM 231,
             AMCON 101, AMCON 102, AMCON 110, AMCON 111, AMCON 201, AMCON 202,
