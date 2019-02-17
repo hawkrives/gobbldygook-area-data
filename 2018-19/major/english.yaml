@@ -267,46 +267,46 @@ attributes:
     # ENGL 291 genre-studies
 
 requirements:
-  Literary Studies:
+  - name: Literary Studies
     result:
       course: ENGL 185
 
-  Cross-Cultural Studies:
+  - name: Cross-Cultural Studies
     result:
       given: courses
       where: {attribute: engl_topic_crosscultural}
       what: courses
       do: count >= 1
 
-  Literary History:
+  - name: Literary History
     result:
       given: courses
       where: {attribute: engl_topic_literary_history}
       what: courses
       do: count >= 1
 
-  Cross-Disciplinary Studies:
+  - name: Cross-Disciplinary Studies
     result:
       given: courses
       where: {attribute: engl_topic_crossdisciplinary}
       what: courses
       do: count >= 1
 
-  Genre Studies:
+  - name: Genre Studies
     result:
       given: courses
       where: {attribute: engl_topic_genre}
       what: courses
       do: count >= 1
 
-  Electives:
+  - name: Electives
     result:
       given: courses
       where: {attribute: 'engl_elective | engl_topic_genre | engl_topic_crosscultural | engl_topic_literary_history | engl_topic_crossdisciplinary'}
       what: courses
       do: count >= 6
 
-  1800s:
+  - name: 1800s
     result:
       both:
         - given: courses

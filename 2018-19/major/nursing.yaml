@@ -13,7 +13,7 @@ result:
 
 
 requirements:
-  Prerequisites:
+  - name: Prerequisites
     message:
       These courses must be completed before beginning level III nursing courses.
 
@@ -29,7 +29,7 @@ requirements:
         - {count: 1, of: [BIO 121, BIO 231]}
         - {count: 1, of: [SOAN 121, SOAN 128, SOAN 260, SOAN 264, SOAN 267]}
 
-  Ethics:
+  - name: Ethics
     message:
       Students should consult with their advisor to determine what courses
       meet this requirement from among the general education EIN courses.
@@ -39,7 +39,7 @@ requirements:
         AMCON 101,
       ]
 
-  Requirements:
+  - name: Requirements
     result:
       count: all
       of:
@@ -55,7 +55,7 @@ requirements:
         - NURS 319
         - NURS 399
 
-  Recommended:
+  - name: Recommended
     result:
       count: all
       of:

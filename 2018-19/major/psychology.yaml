@@ -46,11 +46,11 @@ attributes:
     PSYCH 398: [psych_elective, psych_level_3]
 
 requirements:
-  Foundation:
+  - name: Foundation
     result:
       both: [PSYCH 125, PSYCH 230]
 
-  Content Core:
+  - name: Content Core
     result:
       count: all
       of:
@@ -58,29 +58,29 @@ requirements:
         - requirement: Social Science
 
     requirements:
-      Natural Science:
+      - name: Natural Science
         result:
           count: 2
           of: [PSYCH 235, PSYCH 236, PSYCH 237, PSYCH 238]
 
-      Social Science:
+      - name: Social Science
         result:
           count: 2
           of: [PSYCH 241, PSYCH 244, PSYCH 247, PSYCH 249]
 
-  Level III Capstone:
+  - name: Level III Capstone
     result:
       given: courses
       where: { attribute: psych_level_3 }
       what: courses
       do: count >= 2
 
-  General Education:
+  - name: General Education
     result:
       count: 1
       of: [STAT 110, STAT 212, STAT 214, ECON 263]
 
-  Electives:
+  - name: Electives
     result:
       given: courses
       where: { attribute: psych_elective }

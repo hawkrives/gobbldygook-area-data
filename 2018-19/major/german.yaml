@@ -23,7 +23,7 @@ result:
 #   GERM 372: [german_elective]
 
 requirements:
-  Level 250:
+  - name: Level 250
     result:
       given: these-courses
       courses: [GERM 251, GERM 252, GERM 253]
@@ -33,7 +33,7 @@ requirements:
         - { at_most: 1, where: { institution: "! St. Olaf College" } }
       do: count >= 2
 
-  Level 270:
+  - name: Level 270
     result:
       given: these-courses
       courses: [GERM 271, GERM 272, GERM 273, GERM 276]
@@ -43,12 +43,12 @@ requirements:
         - { at_most: 1, where: { institution: "! St. Olaf College" } }
       do: count >= 2
 
-  Level III:
+  - name: Level III
     message: This course will preferably be taken in the student's senior year.
     result:
       either: [GERM 371, GERM 372]
 
-  Electives:
+  - name: Electives
     result:
       both:
         - count: any
@@ -66,15 +66,15 @@ requirements:
           do: count >= 3
 
     requirements:
-      Language:
+      - name: Language
         result:
           course: GERM 232
 
-      Interim In German:
+      - name: Interim In German
         message: You may count one German Interim abroad towards this requirement.
         registrar_audited: true
 
-      In Translation:
+      - name: In Translation
         result:
           given: these-courses
           courses:

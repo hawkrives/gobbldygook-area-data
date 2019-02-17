@@ -25,7 +25,7 @@ attributes:
     ID 259 2000.1: [csci_elective]
 
 requirements:
-  Foundation:
+  - name: Foundation
     result:
       count: all
       of:
@@ -35,7 +35,7 @@ requirements:
         - count: 1
           of: [MATH 232, MATH 252, MATH 244]
 
-  Core:
+  - name: Core
     result:
       count: all
       of:
@@ -45,12 +45,12 @@ requirements:
         - requirement: Systems
 
     requirements:
-      Languages:
+      - name: Languages
         result:
           count: any
           of: [CSCI 276, CSCI 333, CSCI 336]
 
-      Systems:
+      - name: Systems
         result:
           count: any
           of:
@@ -58,13 +58,13 @@ requirements:
             - CSCI 284
             - {course: CSCI 300, year: 2000, semester: Fall}
 
-  Electives:
+  - name: Electives
     result:
       given: courses
       where: {attribute: csci_elective}
       what: courses
       do: count >= 2
 
-  Capstone:
+  - name: Capstone
     result:
       course: CSCI 390

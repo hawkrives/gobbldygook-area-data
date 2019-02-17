@@ -36,7 +36,7 @@ attributes:
 
 
 requirements:
-  Core:
+  - name: Core
     result:
       count: all
       of:
@@ -46,14 +46,14 @@ requirements:
           - ECON 263
           - both: [STAT 272, ECON 385]
 
-  Foundation:
+  - name: Foundation
     result:
       count: any
       of:
         - MATH 120
         - MATH 119
 
-  Economic Analysis:
+  - name: Economic Analysis
     result:
       count: all
       of:
@@ -68,14 +68,14 @@ requirements:
           do: count >= 4
 
     requirements:
-      Level II:
+      - name: Level II
         result:
           given: courses
           where: {attribute: econ_level_2}
           what: courses
           do: count >= 1
 
-      Level III:
+      - name: Level III
         result:
           given: courses
           where: {attribute: econ_level_3}

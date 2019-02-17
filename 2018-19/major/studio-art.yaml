@@ -67,7 +67,7 @@ attributes:
     PHIL 243: [art_history]
 
 requirements:
-  Foundations:
+  - name: Foundations
     result:
       count: all
       of:
@@ -75,7 +75,7 @@ requirements:
         - ART 103
         - ART 104
 
-  Areas:
+  - name: Areas
     result:
       count: all
       of:
@@ -84,7 +84,7 @@ requirements:
         - requirement: New Media
 
     requirements:
-      2D Media:
+      - name: 2D Media
         result:
           count: any
           of:
@@ -94,28 +94,28 @@ requirements:
             - requirement: Graphic Design
 
         requirements:
-          Drawing:
+          - name: Drawing
             result:
               count: any
               of: [ART 225, ART 232, ART 233]
 
-          Painting:
+          - name: Painting
             result:
               count: any
               of: [ART 221, ART 222]
 
-          Printmaking:
+          - name: Printmaking
             result:
               count: any
               of: [ART 226, ART 227]
 
-          Graphic Design:
+          - name: Graphic Design
             result:
               count: any
               of:
                 - {course: ART 236, year: 2000, semester: Fall}
 
-      3D Media:
+      - name: 3D Media
         result:
           count: any
           of:
@@ -123,17 +123,17 @@ requirements:
             - requirement: Sculpture
 
         requirements:
-          Ceramics:
+          - name: Ceramics
             result:
               count: any
               of: [ART 207, ART 234]
 
-          Sculpture:
+          - name: Sculpture
             result:
               count: any
               of: [ART 223, ART 224]
 
-      New Media:
+      - name: New Media
         result:
           count: any
           of:
@@ -144,33 +144,33 @@ requirements:
             - requirement: Graphic Design
 
         requirements:
-          Photography:
+          - name: Photography
             result:
               count: any
               of: [ART 205, ART 238]
 
-          Interactive Image:
+          - name: Interactive Image
             result:
               count: any
               of: [ART 228]
 
-          Digital Video:
+          - name: Digital Video
             result:
               count: any
               of: [ART 229]
 
-          Performance:
+          - name: Performance
             result:
               count: any
               of: [ART 240]
 
-          Graphic Design:
+          - name: Graphic Design
             result:
               count: any
               of:
                 - {course: ART 236, year: 2000, semester: Fall}
 
-  Juried Show:
+  - name: Juried Show
     department_audited: true
     message:
       Majors must participate in two juried shows. To fulfill the the
@@ -178,18 +178,18 @@ requirements:
       juried show in spring semester twice, or enter our student juried show
       once and one other non-class related exhibition on or off campus.
 
-  Senior Studies in Studio Art:
+  - name: Senior Studies in Studio Art
     result:
       course: ART 343
 
-  Electives:
+  - name: Electives
     result:
       given: courses
       where: {attribute: art_elective}
       what: courses
       do: count >= 1
 
-  Art History:
+  - name: Art History
     message:
       The department strongly recommends that you take
       ART 252 or 253 as one of your art history courses.

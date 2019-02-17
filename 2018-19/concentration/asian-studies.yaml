@@ -403,7 +403,7 @@ attributes:
     PHIL 127 2018-3: [asian_elective]
 
 requirements:
-  Electives:
+  - name: Electives
     result:
       given: courses
       where: {attribute: asian_elective}

@@ -10,12 +10,12 @@ result:
     - requirement: Electives
 
 requirements:
-  American Culture:
+  - name: American Culture
     result:
       course: AMST 100
 
 
-  Electives:
+  - name: Electives
     save:
       - given: these-requirements
         requirements:
@@ -52,7 +52,7 @@ requirements:
           do: count >= 6
 
     requirements:
-      Topics:
+      - name: Topics
         result:
           given: these-courses
           courses: [AMST 205, AMST 206, AMST 207, AMST 208, AMST 209, AMST 210]
@@ -60,7 +60,7 @@ requirements:
           what: courses
           do: count >= 1
 
-      Seminar:
+      - name: Seminar
         result:
           given: these-courses
           courses: [AMST 301]
@@ -68,7 +68,7 @@ requirements:
           what: courses
           do: count >= 1
 
-      Disciplinary:
+      - name: Disciplinary
         result:
           given: these-courses
           courses: [

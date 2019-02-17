@@ -11,13 +11,13 @@ result:
 
 
 requirements:
-  Major:
+  - name: Major
     result:
       count: all
       of: [ENVST 137, ENVST 237, ENVST 399]
 
 
-  Areas of Emphasis:
+  - name: Areas of Emphasis
     save:
       - given: these-requirements
         requirements:
@@ -66,7 +66,7 @@ requirements:
 
 
     requirements:
-      Natural Science:
+      - name: Natural Science
         result:
           count: all
           of:
@@ -77,24 +77,24 @@ requirements:
             - requirement: Level III Natural Science
 
         requirements:
-          Statistics, Modeling, and Mapping:
+          - name: Statistics, Modeling, and Mapping
             result:
               count: 1
               of: [ENVST 255, STAT 212, STAT 272]
 
-          Intermediate Chemistry:
+          - name: Intermediate Chemistry
             result:
               count: 1
               of:
                 - both: [CHEM 248, CHEM 254]
                 - both: [CHEM 255, CHEM 256]
 
-          Intermediate Ecology:
+          - name: Intermediate Ecology
             result:
               count: 1
               of: [BIO 261, BIO 226]
 
-          Environmental Science:
+          - name: Environmental Science
             result:
               given: these-courses
               courses:
@@ -116,7 +116,7 @@ requirements:
               what: courses
               do: count >= 2
 
-          Level III Natural Science:
+          - name: Level III Natural Science
             result:
               count: 1
               of:
@@ -126,7 +126,7 @@ requirements:
                 - {course: CHEM 391, year: 2000, semester: Fall}
                 - {course: ENVST 391, year: 2000, semester: Fall}
 
-      Social Science:
+      - name: Social Science
         result:
           count: all
           of:
@@ -136,7 +136,7 @@ requirements:
             - requirement: Social Science Electives
 
         requirements:
-          Methodological Analysis:
+          - name: Methodological Analysis
             result:
               count: 1
               of:
@@ -150,7 +150,7 @@ requirements:
                 - PSYCH 230
                 - PSCI 220
 
-          Economic Analysis:
+          - name: Economic Analysis
             result:
               count: all
               of:
@@ -159,12 +159,12 @@ requirements:
                 - {count: any, of: [ECON 121, ECON 110, ECON 120]}
                 - ECON 242
 
-          Environmental Political Policy and Institutions:
+          - name: Environmental Political Policy and Institutions
             result:
               count: 1
               of: [ENVST 232, ES/PS 201, ES/PS 276]
 
-          Social Science Electives:
+          - name: Social Science Electives
             result:
               count: 2
               of:
@@ -184,7 +184,7 @@ requirements:
                 - ID 234
                 - AS/ES 227
 
-      Arts and Humanities:
+      - name: Arts and Humanities
         result:
           given: these-courses
           courses:

@@ -36,7 +36,7 @@ attributes:
     CLASS 111: [classics_ancient_history]
 
 requirements:
-  Language:
+  - name: Language
     save:
       - given: courses
         where: {attributes: classics_latin}
@@ -70,7 +70,7 @@ requirements:
               what: courses
               do: count >= 3
 
-  Classics:
+  - name: Classics
     result:
       count: 1
       of:
@@ -85,7 +85,7 @@ requirements:
         - CLASS 253
         - CLASS 396
 
-  Ancient History:
+  - name: Ancient History
     message: TODO find out what courses are considered "ancient history"
     result:
       given: courses

@@ -73,11 +73,11 @@ attributes:
     PSYCH 238: [bio_elective]
 
 requirements:
-  Foundation:
+  - name: Foundation
     result:
       course: BIO 150
 
-  Core:
+  - name: Core
     result:
       count: all
       of:
@@ -87,20 +87,20 @@ requirements:
         - requirement: Ecology
 
     requirements:
-      Genetics:
+      - name: Genetics
         result:
           count: 1
           of:
             - BIO 233
 
-      Cell Biology:
+      - name: Cell Biology
         result:
           count: 1
           of:
             - BIO 227
             - CH/BI 227
 
-      Comparative Organismal Biology:
+      - name: Comparative Organismal Biology
         result:
           count: 1
           of:
@@ -113,14 +113,14 @@ requirements:
             - BIO 275
             - BIO 226
 
-      Ecology:
+      - name: Ecology
         result:
           count: 1
           of:
             - BIO 261
             - BIO 226
 
-  Level III:
+  - name: Level III
     result:
       count: 1
       of:
@@ -137,14 +137,14 @@ requirements:
         - BIO 386
         - BIO 391
 
-  Electives:
+  - name: Electives
     result:
       given: courses
       where: {attribute: bio_elective}
       what: courses
       do: count >= 2
 
-  Chemistry:
+  - name: Chemistry
     result:
       count: any
       of:

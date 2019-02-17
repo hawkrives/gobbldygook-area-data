@@ -28,27 +28,27 @@ attributes:
     PHYS 396: [physics_elective]
 
 requirements:
-  Analytics:
+  - name: Analytics
     result:
       count: all
       of: [PHYS 130, PHYS 131, PHYS 232]
 
-  Modern Physics:
+  - name: Modern Physics
     result:
       count: all
       of: [PHYS 244, PHYS 245]
 
-  Upper-Level:
+  - name: Upper-Level
     result:
       count: all
       of: [PHYS 374, PHYS 375, PHYS 385, PHYS 386]
 
-  Upper-Level Elective:
+  - name: Upper-Level Elective
     result:
       count: 1
       of: [PHYS 360, PHYS 362, PHYS 376, PHYS 379, PHYS 390]
 
-  Elective:
+  - name: Elective
     result:
       given: courses
       where: {attribute: physics_elective}

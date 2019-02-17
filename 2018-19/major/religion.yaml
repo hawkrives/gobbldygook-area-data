@@ -12,7 +12,7 @@ result:
     - requirement: Intensive Studies
 
 requirements:
-  General Education:
+  - name: General Education
     result:
       both:
         - given: courses
@@ -25,16 +25,17 @@ requirements:
           what: courses
           do: count >= 1
 
-  What is Religion?:
+  - name: What is Religion?
     result:
       course: REL 285
 
-  Religious Dimensions:
+  - name: Religious Dimensions
     message: TODO. Not yet completed. At all.
     result:
       count: 1
       of: []
-      # Courses that focus on three different dimensions of religion (and deal with at least two different religious traditions):
+
+    # Courses that focus on three different dimensions of religion (and deal with at least two different religious traditions):
     #   count: all
     #   of:
     #     - requirement: Sacred Texts
@@ -61,7 +62,7 @@ requirements:
     #       what: courses
     #       do: count >= 1
 
-  Intensive Studies:
+  - name: Intensive Studies
     result:
       both:
         - count: 1

@@ -51,12 +51,12 @@ attributes:
     PSCI 245: [china_comparative_asia]
 
 requirements:
-  Core Language:
+  - name: Core Language
     result:
       count: all
       of: [CHIN 231, CHIN 232, CHIN 301, CHIN 302]
 
-  Upper-Level Language:
+  - name: Upper-Level Language
     result:
       count: any
       of:
@@ -64,7 +64,7 @@ requirements:
         - CHIN 351
         - CHIN 360
 
-  Language and Culture:
+  - name: Language and Culture
     message: >
       The Asian Conversation sequence (ASIAN 210, ASIAN 215 or ASIAN 216, ASIAN
       220) will count for no more than two courses.
@@ -100,14 +100,14 @@ requirements:
           do: count >= 1
 
     requirements:
-      China-focused:
+      - name: China-focused
         result:
           given: courses
           where: {attribute: china_focused_on_china}
           what: courses
           do: count >= 1
 
-      Comparative:
+      - name: Comparative
         result:
           given: courses
           where: {attribute: china_comparative_asia}
@@ -117,7 +117,7 @@ requirements:
           what: courses
           do: count >= 1
 
-  FLAC:
+  - name: FLAC
     result:
       given: courses
       where: {attribute: china_flac}

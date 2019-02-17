@@ -41,7 +41,7 @@ attributes:
     THEAT 270: [french_elective]
 
 requirements:
-  Speaking and Writing:
+  - name: Speaking and Writing
     result:
       count: 2
       of:
@@ -49,7 +49,7 @@ requirements:
         - FREN 251
         - FREN 253
 
-  The Francophone World:
+  - name: The Francophone World
     result:
       count: 2
       of:
@@ -58,7 +58,7 @@ requirements:
         - FREN 273
         - FREN 275
 
-  Level III:
+  - name: Level III
     result:
       count: 2
       of:
@@ -67,7 +67,7 @@ requirements:
         - FREN 397
         - FREN 399
 
-  Electives:
+  - name: Electives
     result:
       given: courses
       where: {attribute: french_elective}

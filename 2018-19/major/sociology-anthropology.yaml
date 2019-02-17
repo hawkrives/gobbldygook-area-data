@@ -16,32 +16,32 @@ result:
 
 
 requirements:
-  History of Sociological Theory:
+  - name: History of Sociological Theory
     result:
       course: SOAN 291
 
-  Anthropological Theory:
+  - name: Anthropological Theory
     result:
       course: SOAN 292
 
-  Foundations of Social Science Research:
+  - name: Foundations of Social Science Research
     message: STAT 110 must be taken before SOAN 371.
     result:
       course: SOAN 371
 
-  Ethnographic Research Methods:
+  - name: Ethnographic Research Methods
     result:
       course: SOAN 373
 
-  Senior Seminar:
+  - name: Senior Seminar
     result:
       course: SOAN 399
 
-  Principles of Statistics:
+  - name: Principles of Statistics
     result:
       course: STAT 110
 
-  Electives:
+  - name: Electives
     message:
       Students are permitted to take one of the four elective courses, but
       not a core course, S/U.

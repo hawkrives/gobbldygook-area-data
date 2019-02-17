@@ -10,7 +10,7 @@ result:
     - requirement: Electives
 
 requirements:
-  Core:
+  - name: Core
     result:
       count: all
       of:
@@ -23,7 +23,7 @@ requirements:
         - ESTH 390
         - PSYCH 125
 
-  Electives:
+  - name: Electives
     result:
       count: 2
       of:

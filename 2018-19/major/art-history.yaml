@@ -72,22 +72,22 @@ attributes:
 
 
 requirements:
-  Intro:
+  - name: Intro
     result:
       course: ART 153
 
-  Methods:
+  - name: Methods
     result:
       course: ART 350
 
-  Studio Art:
+  - name: Studio Art
     result:
       given: courses
       where: {attribute: art_studio_art}
       what: courses
       do: count >= 1
 
-  Distribution:
+  - name: Distribution
     message:
       At least two courses must focus on Asian, African, Indigenous American,
       or Near Eastern/Islamic art; at least two courses must focus on American
@@ -113,35 +113,35 @@ requirements:
           do: count >= 6
 
     requirements:
-      Asian, African, Indigenous American, or Near Eastern/Islamic Art:
+      - name: Asian, African, Indigenous American, or Near Eastern/Islamic Art
         result:
           given: courses
           where: {attribute: art_locale_asian | art_locale_african | art_locale_indigenous_american | art_locale_near_eastern}
           what: courses
           do: count >= 2
 
-      European and American Art:
+      - name: European and American Art
         result:
           given: courses
           where: {attribute: art_locale_european | art_locale_american}
           what: courses
           do: count >= 2
 
-      Art created before 1700 CE:
+      - name: Art created before 1700 CE
         result:
           given: courses
           where: {attribute: art_period_pre1700}
           what: courses
           do: count >= 1
 
-      Art created after 1700 CE:
+      - name: Art created after 1700 CE
         result:
           given: courses
           where: {attribute: art_period_post1700}
           what: courses
           do: count >= 1
 
-  Lasting Legacy:
+  - name: Lasting Legacy
     department_audited: true
     message:
       Majors must successfully complete the non-credit, senior "lasting legacy"

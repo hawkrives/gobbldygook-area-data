@@ -801,7 +801,7 @@ attributes:
     PHIL 127 2018-3: [Asian Studies|concentration|v3|Elective]
 
 requirements:
-  Electives:
+  - name: Electives
     result:
       given: courses
       where: {2018-19|concentration|Asian Studies|Elective}

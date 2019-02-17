@@ -69,7 +69,7 @@ attributes:
     STAT 322: [math_level_3]
 
 requirements:
-  Basics:
+  - name: Basics
     result:
       count: all
       of:
@@ -77,14 +77,14 @@ requirements:
         - either: [MATH 126, MATH 128]
         - MATH 220
 
-  Transitions:
+  - name: Transitions
     result:
       given: courses
       where: {attribute: math_transitions}
       what: courses
       do: count >= 2
 
-  Perspectives:
+  - name: Perspectives
     message: One course from each of three of the four perspectives.
 
     result:
@@ -96,35 +96,35 @@ requirements:
         - requirement: Modeling/Computation (M)
 
     requirements:
-      Axiomatic/Algebraic (A):
+      - name: Axiomatic/Algebraic (A)
         result:
           given: courses
           where: {attribute: math_perspective_a}
           what: courses
           do: count >= 1
 
-      Continuous/Analytic (C):
+      - name: Continuous/Analytic (C)
         result:
           given: courses
           where: {attribute: math_perspective_c}
           what: courses
           do: count >= 1
 
-      Discrete/Combinatorial (D):
+      - name: Discrete/Combinatorial (D)
         result:
           given: courses
           where: {attribute: math_perspective_d}
           what: courses
           do: count >= 1
 
-      Modeling/Computation (M):
+      - name: Modeling/Computation (M)
         result:
           given: courses
           where: {attribute: math_perspective_m}
           what: courses
           do: count >= 1
 
-  Interdisciplinary:
+  - name: Interdisciplinary
     result:
       count: any
       of:
@@ -133,7 +133,7 @@ requirements:
         - requirement: Physics
 
     requirements:
-      Chemistry:
+      - name: Chemistry
         result:
           both:
             - course: CHEM 371
@@ -141,7 +141,7 @@ requirements:
               where: {type: major, name: Chemistry}
               what: areas
               do: count = 1
-      Economics:
+      - name: Economics
         result:
           both:
             - course: ECON 385
@@ -149,7 +149,7 @@ requirements:
               where: {type: major, name: Economics}
               what: areas
               do: count = 1
-      Physics:
+      - name: Physics
         result:
           both:
             - course: PHYS 375
@@ -158,7 +158,7 @@ requirements:
               what: areas
               do: count = 1
 
-  Level III:
+  - name: Level III
     result:
       given: courses
       where: {attribute: math_level_3}
@@ -167,7 +167,7 @@ requirements:
       what: courses
       do: count >= 2
 
-  Sequence:
+  - name: Sequence
     result:
       count: 1
       of:

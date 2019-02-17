@@ -11,7 +11,7 @@ result:
     - requirement: Ancient Greek History
 
 requirements:
-  Language:
+  - name: Language
     result:
       count: 7
       of:
@@ -25,7 +25,7 @@ requirements:
         - GREEK 374
         - GREEK 375
 
-  Classics:
+  - name: Classics
     result:
       count: 1
       of:
@@ -40,7 +40,7 @@ requirements:
         - CLASS 253
         - CLASS 396
 
-  Ancient Greek History:
+  - name: Ancient Greek History
     message: TODO find out what courses are considered "ancient greek history"
     result:
       count: 1

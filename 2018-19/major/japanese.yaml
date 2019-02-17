@@ -49,17 +49,17 @@ attributes:
     ASIAN 001A.F: [japan_flac] # ASIAN 001, section A, FLAC course
 
 requirements:
-  Core Language:
+  - name: Core Language
     result:
       count: all
       of: [JAPAN 231, JAPAN 232, JAPAN 301, JAPAN 302]
 
-  Upper-Level Language:
+  - name: Upper-Level Language
     result:
       count: all
       of: [JAPAN 320, JAPAN 350]
 
-  Language and Culture:
+  - name: Language and Culture
     message: >
       The Asian Conversation sequence (ASIAN 210, ASIAN 215 or ASIAN 216, ASIAN
       220) will count for no more than two courses.
@@ -95,14 +95,14 @@ requirements:
           do: count >= 1
 
     requirements:
-      Japan-focused:
+      - name: Japan-focused
         result:
           given: courses
           where: {attribute: japan_focused_on_japan}
           what: courses
           do: count >= 1
 
-      Comparative:
+      - name: Comparative
         result:
           given: courses
           where: {attribute: japan_comparative_asia}
@@ -112,7 +112,7 @@ requirements:
           what: courses
           do: count >= 1
 
-  FLAC:
+  - name: FLAC
     result:
       given: courses
       where: {attribute: japan_flac}

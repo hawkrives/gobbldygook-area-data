@@ -11,7 +11,7 @@ result:
     - requirement: Electives
 
 requirements:
-  Core:
+  - name: Core
     result:
       count: all
       of:
@@ -27,7 +27,7 @@ requirements:
         - both: [CHEM 248, CHEM 254]
         - both: [CHEM 379, CHEM 373]
 
-  Experiential Learning:
+  - name: Experiential Learning
     department_audited: true
     message:
       Participation in an experimentally based research experience or employment
@@ -36,7 +36,7 @@ requirements:
       This activity must be pre-approved by the Biomolecular Science Committee
       and be supported after the fact by a letter from a supervisor.
 
-  Electives:
+  - name: Electives
     result:
       count: 2
       of:

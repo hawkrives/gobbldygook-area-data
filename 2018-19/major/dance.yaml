@@ -14,7 +14,7 @@ result:
     - requirement: Productions
 
 requirements:
-  Language-Intensive Courses (Theory):
+  - name: Language-Intensive Courses (Theory)
     result:
       count: all
       of:
@@ -25,7 +25,7 @@ requirements:
         - DANCE 246
         - DANCE 270
 
-  Movement-Intensive Courses (Technique):
+  - name: Movement-Intensive Courses (Technique)
     result:
       given: these-requirements
       requirements:
@@ -37,7 +37,7 @@ requirements:
       do: sum >= 1.5
 
     requirements:
-      Ballet:
+      - name: Ballet
         result:
           count: any
           of:
@@ -46,7 +46,7 @@ requirements:
             - either: [DANCE 220, DANCE 221]
             - either: [DANCE 320, DANCE 321]
 
-      International and Social:
+      - name: International and Social
         result:
           count: any
           of:
@@ -57,7 +57,7 @@ requirements:
             - DANCE 207
             - DANCE 209
 
-      Modern:
+      - name: Modern
         result:
           count: any
           of:
@@ -66,7 +66,7 @@ requirements:
             - either: [DANCE 250, DANCE 251]
             - either: [DANCE 310, DANCE 311]
 
-      Other Topics:
+      - name: Other Topics
         result:
           count: any
           of:
@@ -76,7 +76,7 @@ requirements:
             - DANCE 141
             - DANCE 160
 
-  Senior Dance Seminar:
+  - name: Senior Dance Seminar
     message:
       Must be taken fall of senior year. Final projects may take the
       form of a research paper, performance, choreography, or blended
@@ -90,7 +90,7 @@ requirements:
       do: count >= 1
 
 
-  Area of Speciality:
+  - name: Area of Speciality
     contract: true
     message:
       Each student designs an individualized area of specialty derived
@@ -98,7 +98,7 @@ requirements:
       credits from within or outside the department.
 
 
-  Dance Companies:
+  - name: Dance Companies
     department_audited: true
     message:
       Majors are required to participate in one of the dance companies
@@ -106,7 +106,7 @@ requirements:
       minimum of three semesters.
 
 
-  Productions:
+  - name: Productions
     department_audited: true
     message:
       Majors are required to contribute in managing a dance production

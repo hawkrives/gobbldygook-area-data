@@ -63,25 +63,25 @@ attributes:
     THEAT 270: [ancient_history, ancient_elective]
 
 requirements:
-  Language:
+  - name: Language
     result:
       either: [LATIN 252, GREEK 253]
 
-  Ancient History:
+  - name: Ancient History
     result:
       given: courses
       where: { attribute: ancient_history }
       what: courses
       do: count >= 1
 
-  Classics:
+  - name: Classics
     result:
       given: courses
       where: { attribute: ancient_classics }
       what: courses
       do: count >= 1
 
-  Electives:
+  - name: Electives
     message:
       1 course in Greek may be used as an elective if the student satisfies the
       required language portion of the major with Latin courses. 1 course in Latin
@@ -94,7 +94,7 @@ requirements:
       what: courses
       do: count >= 4
 
-  Independent Research:
+  - name: Independent Research
     result:
       given: courses
       where: { attribute: ancient_ir }

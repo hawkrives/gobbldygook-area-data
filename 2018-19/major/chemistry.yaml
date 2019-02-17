@@ -13,19 +13,19 @@ result:
     - requirement: Seminars
 
 requirements:
-  Introductory Sequence:
+  - name: Introductory Sequence
     requirements:
-      Option A:
+      - name: Option A
         result:
           count: all
           of: [CHEM 121, CHEM 123, CHEM 125]
 
-      Option B:
+      - name: Option B
         result:
           count: all
           of: [CHEM 125, CHEM 126]
 
-      Option C:
+      - name: Option C
         result:
           count: all
           of: [CH/BI 125, CH/BI 126, CH/BI 227]
@@ -37,7 +37,7 @@ requirements:
         - requirement: Option B
         - requirement: Option C
 
-  Upper-Level Core:
+  - name: Upper-Level Core
     result:
       count: all
       of:
@@ -47,22 +47,22 @@ requirements:
         - requirement: Elective
 
     requirements:
-      Organic:
+      - name: Organic
         result:
           count: all
           of: [CHEM 247, CHEM 253, CHEM 248, CHEM 254]
 
-      Analytical:
+      - name: Analytical
         result:
           count: all
           of: [CHEM 255, CHEM 256]
 
-      Physical:
+      - name: Physical
         result:
           count: all
           of: [CHEM 357, CHEM 371]
 
-      Elective:
+      - name: Elective
         result:
           count: any
           of:
@@ -75,17 +75,17 @@ requirements:
             - CHEM 388
             - CHEM 391
 
-  Physics:
+  - name: Physics
     result:
       either:
         - PHYS 125
         - PHYS 232
 
-  Mathematics:
+  - name: Mathematics
     result:
       either: [MATH 126, MATH 128]
 
-  Seminars:
+  - name: Seminars
     message:
       Attendance is required at 12 departmental seminars after declaration of major.
     department_audited: true

@@ -11,7 +11,7 @@ result:
     - requirement: Ancient Roman History
 
 requirements:
-  Language:
+  - name: Language
     result:
       count: 7
       of:
@@ -28,7 +28,7 @@ requirements:
         - LATIN 375
         - LATIN 377
 
-  Classics:
+  - name: Classics
     result:
       count: 1
       of:
@@ -43,7 +43,7 @@ requirements:
         - CLASS 253
         - CLASS 396
 
-  Ancient Roman History:
+  - name: Ancient Roman History
     message: TODO find out what courses are considered "ancient roman history"
     result:
       count: 1

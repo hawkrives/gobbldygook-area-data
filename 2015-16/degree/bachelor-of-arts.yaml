@@ -9,7 +9,7 @@ result:
     - requirement: General Education
 
 requirements:
-  Degree Requirements:
+  - name: Degree Requirements
     result:
       count: all
       of:
@@ -22,20 +22,20 @@ requirements:
         - requirement: Major
 
     requirements:
-      Courses:
+      - name: Courses
         result:
           given: courses
           what: credits
           do: sum >= 35
 
-      Residency:
+      - name: Residency
         result:
           given: courses
           where: { institution: St. Olaf College }
           what: credits
           do: sum >= 17
 
-      Interim:
+      - name: Interim
         save:
           - given: courses
             where: { semester: Interim }
@@ -46,27 +46,27 @@ requirements:
             - { given: save, save: "Interim Courses", what: credits, do: sum >= 3 }
             - { given: save, save: "Interim Courses", what: courses, do: count >= 3 }
 
-      Grade Point Average:
+      - name: Grade Point Average
         result:
           given: courses
           what: grades
           do: average >= 2.0
 
-      Course Level:
+      - name: Course Level
         result:
           given: courses
           where: { level: '>= 200' }
           what: credits
           do: sum >= 18
 
-      Graded Courses:
+      - name: Graded Courses
         result:
           given: courses
           where: { graded: 'true' }
           what: credits
           do: sum >= 24
 
-      Major:
+      - name: Major
         result:
           given: areas
           where: { type: major }
@@ -74,7 +74,7 @@ requirements:
           do: count >= 1
 
 
-  General Education:
+  - name: General Education
     result:
       count: all
       of:
@@ -83,7 +83,7 @@ requirements:
         - requirement: Integrative
 
     requirements:
-      Foundation:
+      - name: Foundation
         result:
           count: all
           of:
@@ -95,21 +95,21 @@ requirements:
             - requirement: Studies in Physical Movement
 
         requirements:
-          First-Year Writing:
+          - name: First-Year Writing
             result:
               given: courses
               where: { gereqs: FYW }
               what: courses
               do: count >= 1
 
-          Writing in Context:
+          - name: Writing in Context
             result:
               given: courses
               where: { gereqs: WRI }
               what: courses
               do: count >= 4
 
-          Foreign Language:
+          - name: Foreign Language
             result:
               count: any
               of:
@@ -123,28 +123,28 @@ requirements:
                 - { given: courses, where: { gereqs: FOL-R }, what: courses, do: count >= 1 }
                 - { given: courses, where: { gereqs: FOL-S }, what: courses, do: count >= 1 }
 
-          Oral Communication:
+          - name: Oral Communication
             result:
               given: courses
               where: { gereqs: ORC }
               what: courses
               do: count >= 1
 
-          Abstract and Quantitative Reasoning:
+          - name: Abstract and Quantitative Reasoning
             result:
               given: courses
               where: { gereqs: AQR }
               what: courses
               do: count >= 1
 
-          Studies in Physical Movement:
+          - name: Studies in Physical Movement
             result:
               given: courses
               where: { gereqs: SPM }
               what: distinct-courses
               do: count >= 2
 
-      Core:
+      - name: Core
         result:
           count: all
           of:
@@ -156,7 +156,7 @@ requirements:
             - requirement: Studies in Human Behavior and Society
 
         requirements:
-          Historical Studies in Western Culture:
+          - name: Historical Studies in Western Culture
             message:
               One course must be taught by a St. Olaf professor.
             save:
@@ -176,7 +176,7 @@ requirements:
                   what: courses
                   do: count >= 1
 
-          Multicultural Studies:
+          - name: Multicultural Studies
             save:
               - given: courses
                 where: { gereqs: MCD | MCG }
@@ -208,7 +208,7 @@ requirements:
                   what: courses
                   do: count >= 1
 
-          Artistic and Literary Studies:
+          - name: Artistic and Literary Studies
             save:
               - given: courses
                 where: { gereqs: ALS-A | ALS-L }
@@ -235,7 +235,7 @@ requirements:
                   what: courses
                   do: count >= 1
 
-          Biblical and Theological Studies:
+          - name: Biblical and Theological Studies
             save:
               - given: courses
                 where: { gereqs: BTS-B | BTS-T }
@@ -262,7 +262,7 @@ requirements:
                   what: courses
                   do: count >= 1
 
-          Studies in Natural Science:
+          - name: Studies in Natural Science
             save:
               - given: courses
                 where: { gereqs: SED | IST }
@@ -294,7 +294,7 @@ requirements:
                   what: courses
                   do: count >= 1
 
-          Studies in Human Behavior and Society:
+          - name: Studies in Human Behavior and Society
             save:
               - given: courses
                 where: { gereqs: HBS }
@@ -320,14 +320,14 @@ requirements:
                   what: courses
                   do: count >= 1
 
-      Integrative:
+      - name: Integrative
         result:
           count: all
           of:
             - requirement: Ethical Issues and Normative Perspectives
 
         requirements:
-          Ethical Issues and Normative Perspectives:
+          - name: Ethical Issues and Normative Perspectives
             message:
               To complete any EIN course, you must have either completed the
               BTS-T requirement or have obtained permission of the EIN instructor

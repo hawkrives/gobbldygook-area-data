@@ -77,46 +77,46 @@ attributes:
 
 
 requirements:
-  Research Methods:
+  - name: Research Methods
     result:
       course: PSCI 220
 
-  American Politics and Public Policy:
+  - name: American Politics and Public Policy
     result:
       given: courses
       where: {attribute: psci_topic_american}
       what: courses
       do: count >= 1
 
-  Comparative Politics:
+  - name: Comparative Politics
     result:
       given: courses
       where: {attribute: psci_topic_comparative}
       what: courses
       do: count >= 1
 
-  International Relations:
+  - name: International Relations
     result:
       given: courses
       where: {attribute: psci_topic_international}
       what: courses
       do: count >= 1
 
-  Political Theory:
+  - name: Political Theory
     result:
       given: courses
       where: {attribute: psci_topic_theory}
       what: courses
       do: count >= 1
 
-  Level III:
+  - name: Level III
     result:
       given: courses
       where: {attribute: psci_level_3}
       what: courses
       do: count >= 2
 
-  Additional Courses:
+  - name: Additional Courses
     result:
       count: 1
       of:
@@ -124,21 +124,21 @@ requirements:
         - requirement: World Langauge
 
     requirements:
-      Statistics:
+      - name: Statistics
         result:
           given: courses
           where: {department: STAT}
           what: courses
           do: count >= 1
 
-      World Langauge:
+      - name: World Langauge
         result:
           either:
             - requirement: French, German, Spanish
             - requirement: Chinese, Greek, Latin, Japanese, Norwegian, Russian
 
         requirements:
-          French, German, Spanish:
+          - name: French, German, Spanish
             result:
               given: courses
               where:
@@ -147,7 +147,7 @@ requirements:
               what: courses
               do: count >= 1
 
-          Chinese, Greek, Latin, Japanese, Norwegian, Russian:
+          - name: Chinese, Greek, Latin, Japanese, Norwegian, Russian
             result:
               given: courses
               where:

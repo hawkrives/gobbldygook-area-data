@@ -77,14 +77,14 @@ attributes:
     PHIL 127: [asian_elective]
 
 requirements:
-  Seminar:
+  - name: Seminar
     result:
       given: courses
       where: {attribute: asian_seminar}
       what: courses
       do: count >= 1
 
-  Electives:
+  - name: Electives
     result:
       given: courses
       where: {attribute: asian_elective}
