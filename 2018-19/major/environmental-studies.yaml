@@ -193,7 +193,7 @@ requirements:
                 - PSCI 220
 
           - name: Economic Analysis
-            message: The department strongly recommends taking ECON 12
+            message: The department strongly recommends taking ECON 121
             result:
               count: all
               of:
