@@ -134,18 +134,6 @@ requirements:
           - name: Other Lessons
             result: {given: courses, where: {department: MUSPF, number: '! 112'}, what: terms, do: count >= 2}
 
-      - name: Organ
-        result:
-          given: these-requirements
-          requirements: [{requirement: Lessons}, {requirement: Other Lessons}]
-          what: terms
-          do: count >= 6
-        requirements:
-          - name: Lessons
-            result: {given: these-courses, courses: [MUSPF 113], repeats: all, what: terms, do: count >= 4}
-          - name: Other Lessons
-            result: {given: courses, where: {department: MUSPF, number: '! 113'}, what: terms, do: count >= 2}
-
       - name: Flute
         result:
           given: these-requirements
@@ -289,18 +277,6 @@ requirements:
             result: {given: these-courses, courses: [MUSPF 136], repeats: all, what: terms, do: count >= 4}
           - name: Other Lessons
             result: {given: courses, where: {department: MUSPF, number: '! 136'}, what: terms, do: count >= 2}
-
-      - name: Flute
-        result:
-          given: these-requirements
-          requirements: [{requirement: Lessons}, {requirement: Other Lessons}]
-          what: terms
-          do: count >= 6
-        requirements:
-          - name: Lessons
-            result: {given: these-courses, courses: [MUSPF 137], repeats: all, what: terms, do: count >= 4}
-          - name: Other Lessons
-            result: {given: courses, where: {department: MUSPF, number: '! 137'}, what: terms, do: count >= 2}
 
       - name: String Bass
         result:
