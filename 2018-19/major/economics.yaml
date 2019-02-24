@@ -109,7 +109,14 @@ emphases:
             of:
               - ECON 218
               - ECON 243
-              - elective: true
+              - requirement: Non-Econ International Topics
+
+          requirements:
+            - name: Non-Econ International Topics
+              contract: true
+              message:
+                You may also choose an course outside of Economics Department that
+                relates to international topics.
 
     - name: Public Policy
       result:
@@ -155,7 +162,13 @@ emphases:
               - MGMT 252
               - MGMT 256
               - MGMT 281
-              - elective: 'Other MGMT course (to be negotiated)'
+              - requirement: Other MGMT Course
+
+          requirements:
+            - name: Other MGMT Course
+              contract: true
+              message:
+                You may also negotiate some other MGMT course.
 
     - name: Finance
       result:
