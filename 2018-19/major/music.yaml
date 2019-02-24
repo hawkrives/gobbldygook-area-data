@@ -401,12 +401,13 @@ requirements:
 
 
 emphases:
-  configuration: {}
+  limits: []
 
-  options:
+  choices:
     - name: Composition
       result:
-        both:
+        count: all
+        of:
           - requirement: Courses
           - requirement: Lessons
           - requirement: Performances
@@ -431,18 +432,15 @@ emphases:
         - name: Performances
           message:
             2 composition performances, at least 1 in junior or senior year
-          save:
-            - given: music performances
-              where: {performance: 'AAA | BBB'}
-              what: performances
-              name: 'performances'
           result:
             both:
-              - given: save
-                save: performances
+              - given: performances
+                where: {performance: 'AAA | BBB'}
+                what: performances
                 do: count >= 2
-              - given: save
-                where: {year: '$senior-year | $junior-year'}
+              - given: performances
+                where: {performance: 'AAA | BBB', year: '$senior-year | $junior-year'}
+                what: performances
                 do: count >= 1
 
         - name: Portfolio
@@ -455,7 +453,8 @@ emphases:
 
     - name: Musicology
       result:
-        both:
+        count: all
+        of:
           - requirement: Courses
           - requirement: More Courses
           - requirement: Portfolio
@@ -498,7 +497,8 @@ emphases:
 
     - name: Theory
       result:
-        both:
+        count: all
+        of:
           - requirement: Courses
           - requirement: Portfolio
 
