@@ -393,3 +393,124 @@ requirements:
       Ten recitals per semester on campus, with a minimum of 60.
 
     department_audited: true
+
+
+emphases:
+  configuration: {}
+
+  options:
+    - name: Composition
+      result:
+        both:
+          - requirement: Courses
+          - requirement: Lessons
+          - requirement: Performances
+          - requirement: Portfolio
+
+      requirements:
+        - name: Courses
+          result:
+            count: all
+            of:
+              - MUSIC 225
+              - MUSIC 324
+
+        - name: Lessons
+          result:
+            given: these-courses
+            courses: [MUSPF 326]
+            repeats: all
+            what: terms
+            do: count >= 4
+
+        - name: Performances
+          message:
+            2 composition performances, at least 1 in junior or senior year
+          save:
+            - given: music performances
+              where: {performance: 'AAA | BBB'}
+              what: performances
+              name: 'performances'
+          result:
+            both:
+              - given: save
+                save: performances
+                do: count >= 2
+              - given: save
+                where: {year: '$senior-year | $junior-year'}
+                do: count >= 1
+
+        - name: Portfolio
+          message:
+            With approval of the composition faculty, the student submits a
+            portfolio of at least 3 compositions previously submitted for Level
+            III composition courses to the Music Office by May 1 of the senior
+            year
+          department_audited: true
+
+    - name: Musicology
+      result:
+        both:
+          - requirement: Courses
+          - requirement: More Courses
+          - requirement: Portfolio
+
+      requirements:
+        - name: Courses
+          result:
+            count: 2
+            of: [
+              MUSIC 340, MUSIC 341, MUSIC 342, MUSIC 343, MUSIC 344,
+              MUSIC 345, MUSIC 346, MUSIC 347, MUSIC 348, MUSIC 349,
+            ]
+
+        - name: More Courses
+          result:
+            count: 1
+            of:
+              - MUSIC 312
+              - MUSIC 313
+              - MUSIC 314
+              - MUSIC 340
+              - MUSIC 341
+              - MUSIC 342
+              - MUSIC 343
+              - MUSIC 344
+              - MUSIC 345
+              - MUSIC 346
+              - MUSIC 347
+              - MUSIC 348
+              - MUSIC 349
+
+        - name: Portfolio
+          message:
+            With approval of the musicology faculty, the student submits a
+            portfolio of at least 3 papers previously submitted for Level III
+            musicology courses to the Music Office by May 1 of the senior year.
+            One of these must be revised with faculty supervision to demonstrate
+            the student's best work in musiciology
+          department_audited: true
+
+    - name: Theory
+      result:
+        both:
+          - requirement: Courses
+          - requirement: Portfolio
+
+      requirements:
+        - name: Courses
+          result:
+            count: all
+            of:
+              - MUSIC 312
+              - MUSIC 313
+              - MUSIC 314
+
+        - name: Portfolio
+          message:
+            With approval of the theory faculty, the student submits a portfolio
+            of at least 3 papers previously submitted for Level III theory
+            courses to the Music Office by May 1 of the senior year. One of these
+            must be revised with faculty supervision to demonstrate the student's
+            best work in music analysis
+          department_audited: true

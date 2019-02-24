@@ -81,3 +81,106 @@ requirements:
           where: {attribute: econ_level_3}
           what: courses
           do: count >= 2
+
+
+emphases:
+  configuration:
+    limit:
+      - {at_most: 0, where: {grade: '< 2.0'}}
+
+  options:
+    - name: International Economic Analysis and Policy
+      result:
+        both:
+          - requirement: International Economics
+          - requirement: Electives
+
+      requirements:
+        - name: International Economics
+          result:
+            course: ECON 382
+
+        - name: Electives
+          message:
+            You may also choose an course outside of Economics Department that
+            relates to international topics.
+          result:
+            count: 2
+            of:
+              - ECON 218
+              - ECON 243
+              - elective: true
+
+    - name: Public Policy
+      result:
+        both:
+          - requirement: Public Policy
+          - requirement: Electives
+
+      requirements:
+        - name: Public Policy
+          result:
+            course: ECON 371
+
+        - name: Electives
+          result:
+            count: 3
+            of:
+              - ECON 242
+              - ECON 245
+              - ECON 249
+              - ECON 385
+
+    - name: Management
+      result:
+        both:
+          - requirement: Management
+          - requirement: Electives
+
+      requirements:
+        - name: Management
+          result:
+            count: all
+            of:
+              - MGMT 225
+              - MGMT 237
+              - MGMT 251
+              - MGMT 383
+
+        - name: Electives
+          result:
+            count: any
+            of:
+              - MGMT 250
+              - MGMT 252
+              - MGMT 256
+              - MGMT 281
+              - elective: 'Other MGMT course (to be negotiated)'
+
+    - name: Finance
+      result:
+        both:
+          - requirement: Finance
+          - requirement: Electives
+
+      requirements:
+        - name: Finance
+          result:
+            count: all
+            of:
+              - MGMT 225
+              - MGMT 237
+              - MGMT 281
+              - MGMT 380
+
+        - name: Electives
+          result:
+            count: any
+            of:
+              - both: [MGMT 250, MGMT 251]
+              - MGMT 252
+              - MGMT 256
+              - ECON 371
+              - ECON 374
+              - ECON 382
+              - ECON 385
