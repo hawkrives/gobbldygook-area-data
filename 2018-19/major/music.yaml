@@ -385,14 +385,18 @@ requirements:
   - name: Performances
     message:
       Two solo performances on a St. Olaf Student Recital.
-
-    department_audited: true
+    given: music performances
+    where: {performance: 'Instrumental Student Recital | Vocal Lab Choir Solo'}
+    what: performances
+    do: count >= 2
 
   - name: Recital Attendance
-    message:
-      Ten recitals per semester on campus, with a minimum of 60.
-
-    department_audited: true
+    note:
+      You must attend 10 recitals per semester on campus, with a minimum of 60 overall.
+    result:
+      given: music performance attendances
+      what: performances
+      do: count >= 60
 
 
 emphases:
