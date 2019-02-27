@@ -1,0 +1,53 @@
+name: Norwegian
+type: major
+degree: Bachelor of Arts
+catalog: 2018-19
+
+result:
+  count: all
+  of:
+    - requirement: Language
+    - requirement: Culture & Writing
+    - requirement: History & Culture
+    - requirement: Upper-Level Elective
+
+limits:
+  - {at_most: 1, where: {s/u: 'true'}}
+
+attributes:
+  courses:
+    NORW 130: [norw_history_culture]
+    NORW 140: [norw_history_culture]
+    NORW 244: [norw_history_culture]
+    HIST 222: [norw_history_culture]
+
+
+requirements:
+  - name: Language
+    result:
+      count: all
+      of:
+        - NORW 111
+        - NORW 112
+        - NORW 231
+        - NORW 232
+        
+  - name: Culture & Writing
+    result:
+      count: all
+      of:
+        - NORW 253
+        - NORW 371
+        - NORW 372
+
+  - name: History & Culture
+    result:
+      given: courses
+      where: {attribute: norw_history_culture}
+      what: courses
+      do: count >= 1
+   
+  - name: Upper-Level Elective
+    contract: true
+    message:
+      One additional upper-level course chosen in consultation with the chair
