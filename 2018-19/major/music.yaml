@@ -21,8 +21,8 @@ requirements:
       of:
         - MUSIC 114
         - MUSIC 141
-        - MUSIC 161
-        - MUSIC 162
+        - {course: MUSIC 161, grade: B-}
+        - {course: MUSIC 162, grade: B-}
         - either: [MUSIC 212, MUSIC 214]
 
   - name: Musicology
