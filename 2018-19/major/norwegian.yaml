@@ -50,4 +50,9 @@ requirements:
   - name: Upper-Level Elective
     contract: true
     message:
-      One additional upper-level course chosen in consultation with the chair
+      One additional, chosen in consultation with the chair
+    
+    result:
+      count: any
+      of:
+        - CATDOG 123
