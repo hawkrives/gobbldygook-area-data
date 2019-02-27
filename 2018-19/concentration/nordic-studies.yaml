@@ -1,0 +1,60 @@
+name: Nordic Studies
+type: concentration
+degree: Bachelor of Arts
+catalog: 2018-19
+
+result:
+  count: all
+  of:
+    - requirement: Language
+    - requirement: Electives
+
+limits:
+  - {at_most: 1, where: {s/u: 'true'}}
+
+attributes:
+  courses:
+    NORW 130: [nordic_elective, nordic_focus_norway]
+    NORW 140: [nordic_elective, nordic_focus_norway]
+    NORW 224: [nordic_elective, nordic_focus_norway]
+    NORW 244: [nordic_elective]
+    NORW 253: [nordic_elective, nordic_focus_norway]
+    NORW 282: [nordic_elective, nordic_focus_norway]
+    NORW 371: [nordic_elective, nordic_focus_norway]
+    NORW 372: [nordic_elective, nordic_focus_norway]
+    HIST 222: [nordic_elective]
+    HIST 169: [nordic_elective]
+    PHIL 233: [nordic_elective]
+    PSCI 283: [nordic_elective]
+    PSCI 382: [nordic_elective]
+    REL 213 2000-0: [nordic_elective]
+
+
+requirements:
+  - name: Language
+    result:
+      count: any
+      of:
+        - NORW 232
+        - NORW 260
+        - NORW 344
+        - NORW 353
+        - NORW 371
+        - NORW 372
+
+  - name: Electives
+    message: >
+      Up to three courses from study abroad programs such as DIS, HECUA: The
+      New Norway, and university direct-enroll programs may be counted toward
+      the Nordic studies concentration
+    result:
+      given: courses
+      where: {attribute: nordic_elective}
+      limit:
+        # > At least two of the five courses must have a focus on at least one
+        # > Nordic country other than Norway.
+        - {at_most: 3, where: {attribute: 'nordic_focus_norway'}}
+        # this addresses the "1-2 and 2-3" part of the major
+        - {at_most: 2, where: {department: 'NORW'}}
+      what: courses
+      do: count >= 5
