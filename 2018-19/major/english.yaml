@@ -300,12 +300,32 @@ requirements:
       do: count >= 1
 
   - name: Electives
+    save:
+      - given: courses
+        where: {attribute: 'engl_elective | engl_topic_genre | engl_topic_crosscultural | engl_topic_literary_history | engl_topic_crossdisciplinary'}
+        what: courses
+        name: electives
+      - given: save
+        save: electives
+        name: level3-electives
+        where: {level: 300}
+        what: courses
     result:
-      given: courses
-      where: {attribute: 'engl_elective | engl_topic_genre | engl_topic_crosscultural | engl_topic_literary_history | engl_topic_crossdisciplinary'}
-      what: courses
-      do: count >= 6
-
+      count: all
+      of:
+        - given: save
+          save: electives
+          what: courses
+          do: count >= 6
+        - given: save
+          save: level3-courses
+          what: courses
+          do: count >= 2
+        - given: save
+          save: level3-courses
+          what: courses
+          where: {attribute: 'engl_focus_literature | engl_focus_film'}
+          do: count >= 1
   - name: 1800s
     result:
       both:
