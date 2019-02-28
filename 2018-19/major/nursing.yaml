@@ -9,14 +9,11 @@ result:
     - requirement: Prerequisites
     - requirement: Requirements
     - requirement: Ethics
-    - {requirement: Recommended, optional: true}
-
 
 requirements:
   - name: Prerequisites
     message:
       These courses must be completed before beginning level III nursing courses.
-
     result:
       count: all
       of:
@@ -31,13 +28,12 @@ requirements:
 
   - name: Ethics
     message:
-      Students should consult with their advisor to determine what courses
-      meet this requirement from among the general education EIN courses.
+      Nursing recommends taking the Biomedical Ethics (PHIL 250) course for this requirement
     result:
-      count: any
-      of: [
-        AMCON 101,
-      ]
+      given: courses
+      where: {gereqs: EIN}
+      what: courses
+      do: count >= 1
 
   - name: Requirements
     result:
@@ -54,9 +50,3 @@ requirements:
         - NURS 318
         - NURS 319
         - NURS 399
-
-  - name: Recommended
-    result:
-      count: all
-      of:
-        - NURS 390
