@@ -308,7 +308,7 @@ requirements:
       - given: save
         save: electives
         name: level3-electives
-        where: {level: 300}
+        where: {level: '300'}
         what: courses
     result:
       count: all
