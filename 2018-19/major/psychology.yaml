@@ -12,8 +12,15 @@ result:
     - requirement: General Education
     - requirement: Electives
 
+limits:
+  - {at_most: 2, where: {institution: '! STO', course: '! PSYCH 125'}}
+
 attributes:
   courses:
+    ID 271 2018-1: [psych_elective]
+    ID 271B 2019-1: [psych_elective]
+    PSYCH 220: [psych_elective]
+    PSYCH 221: [psych_elective]
     PSYCH 235: [psych_elective]
     PSYCH 236: [psych_elective]
     PSYCH 237: [psych_elective]
@@ -41,6 +48,7 @@ attributes:
     PSYCH 378: [psych_elective, psych_level_3]
     PSYCH 390: [psych_elective, psych_level_3]
     PSYCH 391: [psych_elective, psych_level_3]
+    PSYCH 394: [psych_elective, psych_level_3]
     PSYCH 395: [psych_elective, psych_level_3]
     PSYCH 396: [psych_elective, psych_level_3]
     PSYCH 398: [psych_elective, psych_level_3]
@@ -48,7 +56,9 @@ attributes:
 requirements:
   - name: Foundation
     result:
-      both: [PSYCH 125, PSYCH 230]
+      both:
+        - PSYCH 125
+        - PSYCH 230
 
   - name: Content Core
     result:
@@ -72,13 +82,20 @@ requirements:
     result:
       given: courses
       where: { attribute: psych_level_3 }
+      limit:
+        # Only one PSYCH 396 or PSYCH 398 may fulfill the level III requirement
+        - {at_most: 1, where: {course: 'PSYCH 396 | PSYCH 398'}}
       what: courses
       do: count >= 2
 
   - name: General Education
     result:
-      count: 1
-      of: [STAT 110, STAT 212, STAT 214, ECON 263]
+      count: any
+      of:
+        - STAT 110
+        - STAT 212
+        - STAT 214
+        - ECON 263
 
   - name: Electives
     result:
