@@ -31,7 +31,7 @@ requirements:
         - NORW 112
         - NORW 231
         - NORW 232
-        
+
   - name: Culture & Writing
     result:
       count: all
@@ -46,13 +46,16 @@ requirements:
       where: {attribute: norw_history_culture}
       what: courses
       do: count >= 1
-   
+
   - name: Upper-Level Elective
-    contract: true
-    message:
-      One additional, chosen in consultation with the chair
-    
     result:
       count: any
       of:
-        - CATDOG 123
+        - NORW 224
+        - NORW 240
+        - NORW 244
+        - NORW 246
+        - NORW 282
+        - NORW 296
+        - HIST 211
+        - HIST 222
