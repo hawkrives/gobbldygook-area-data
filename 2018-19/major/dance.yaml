@@ -85,7 +85,7 @@ requirements:
       given: these-courses
       courses: [DANCE 399]
       repeats: last
-      where: {year: $senior-year, semester: Fall}
+      where: {year: senior-year, semester: Fall}
       what: courses
       do: count >= 1
 

@@ -27,7 +27,7 @@ result:
       do: count >= 6
 
 limiters:
-  - where: {department: '! MATH'}
+  - where: {subject: '! MATH'}
     at_most: 2
 
 attributes:
@@ -163,7 +163,7 @@ requirements:
       given: courses
       where: {attribute: math_level_3}
       limit:
-        - {at_most: 1, where: {department: '! MATH'}}
+        - {at_most: 1, where: {subject: '! MATH'}}
       what: courses
       do: count >= 2
 

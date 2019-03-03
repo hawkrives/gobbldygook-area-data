@@ -73,5 +73,5 @@ requirements:
       where: {attribute: french_elective}
       what: courses
       limit:
-        - {at_most: 1, where: {department: '! FREN'}}
+        - {at_most: 1, where: {subject: '! FREN'}}
       do: count >= 2

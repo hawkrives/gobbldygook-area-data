@@ -62,7 +62,7 @@ requirements:
       - name: Graded Courses
         result:
           given: courses
-          where: { graded: 'true' }
+          where: { graded: graded }
           what: credits
           do: sum >= 24
 

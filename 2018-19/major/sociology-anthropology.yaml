@@ -59,7 +59,7 @@ requirements:
       ]
       repeats: first
       limit:
-        - where: {su: 'true'}
+        - where: {graded: su}
           at_most: 1
       what: courses
       do: count >= 4

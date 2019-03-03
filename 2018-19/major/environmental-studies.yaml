@@ -112,7 +112,7 @@ requirements:
                 - { course: ENVST 391, year: 2000, semester: Fall }
               repeats: first
               limit:
-                - where: { department: "! ENVST", level: "200" }
+                - where: { subject: "! ENVST", level: "200" }
                   at_most: 1
                 - where: { level: "! 300" }
                   at_most: 2

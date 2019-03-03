@@ -127,7 +127,7 @@ requirements:
       - name: Statistics
         result:
           given: courses
-          where: {department: STAT}
+          where: {subject: STAT}
           what: courses
           do: count >= 1
 
@@ -142,7 +142,7 @@ requirements:
             result:
               given: courses
               where:
-                department: 'FREN | GERM | SPAN'
+                subject: 'FREN | GERM | SPAN'
                 number: '>= 232'
               what: courses
               do: count >= 1
@@ -151,7 +151,7 @@ requirements:
             result:
               given: courses
               where:
-                department: 'CHIN | GREEK | LATIN | JAPAN | NORW | RUSSN'
+                subject: 'CHIN | GREEK | LATIN | JAPAN | NORW | RUSSN'
                 number: '>= 231'
               what: courses
               do: count >= 1

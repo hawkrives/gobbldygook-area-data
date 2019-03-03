@@ -10,7 +10,7 @@ result:
     - requirement: Electives
 
 limits:
-  - {at_most: 1, where: {s/u: 'true'}}
+  - {at_most: 1, where: {graded: su}}
 
 attributes:
   courses:
@@ -53,6 +53,6 @@ requirements:
         # > Nordic country other than Norway.
         - {at_most: 3, where: {attribute: 'nordic_focus_norway'}}
         # this addresses the "1-2 and 2-3" part of the major
-        - {at_most: 2, where: {department: 'NORW'}}
+        - {at_most: 2, where: {subject: 'NORW'}}
       what: courses
       do: count >= 5

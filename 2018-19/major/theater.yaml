@@ -11,7 +11,7 @@ result:
     - requirement: Practicum
 
 limits:
-  - {at_most: 1, where: {s/u: 'true', credits: '1.00'}}
+  - {at_most: 1, where: {graded: su, credits: 1.00}}
 
 requirements:
   - name: Part 1

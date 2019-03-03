@@ -22,7 +22,7 @@ requirements:
       courses: [PHIL 371, PHIL 372, PHIL 373, PHIL 374, PHIL 375]
       repeats: first
       limit:
-        - {at_most: 0, where: {s/u: 'true'}}
+        - {at_most: 0, where: {graded: su}}
       what: courses
       do: count >= 3
 

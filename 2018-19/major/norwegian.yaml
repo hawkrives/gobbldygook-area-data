@@ -12,7 +12,7 @@ result:
     - requirement: Upper-Level Elective
 
 limits:
-  - {at_most: 1, where: {s/u: 'true'}}
+  - {at_most: 1, where: {graded: su}}
 
 attributes:
   courses:
