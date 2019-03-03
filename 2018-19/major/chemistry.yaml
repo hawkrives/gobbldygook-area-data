@@ -4,66 +4,76 @@ degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
+  type: count-of
   count: all
   of:
-    - requirement: Introductory Sequence
-    - requirement: Upper-Level Core
-    - requirement: Physics
-    - requirement: Mathematics
-    - requirement: Seminars
+    - {type: requirement, name: Introductory Sequence}
+    - {type: requirement, name: Upper-Level Core}
+    - {type: requirement, name: Physics}
+    - {type: requirement, name: Mathematics}
+    - {type: requirement, name: Seminars}
 
 requirements:
   - name: Introductory Sequence
     requirements:
       - name: Option A
         result:
+          type: count-of
           count: all
           of: [CHEM 121, CHEM 123, CHEM 125]
 
       - name: Option B
         result:
+          type: count-of
           count: all
           of: [CHEM 125, CHEM 126]
 
       - name: Option C
         result:
+          type: count-of
           count: all
           of: [CH/BI 125, CH/BI 126, CH/BI 227]
 
     result:
+      type: count-of
       count: any
       of:
-        - requirement: Option A
-        - requirement: Option B
-        - requirement: Option C
+        - {type: requirement, name: Option A}
+        - {type: requirement, name: Option B}
+        - {type: requirement, name: Option C}
 
   - name: Upper-Level Core
     result:
+      type: count-of
       count: all
       of:
-        - requirement: Organic
-        - requirement: Analytical
-        - requirement: Physical
-        - requirement: Elective
+        - {type: requirement, name: Organic}
+        - {type: requirement, name: Analytical}
+        - {type: requirement, name: Physical}
+        - {type: requirement, name: Elective}
 
     requirements:
       - name: Organic
         result:
+          type: count-of
           count: all
           of: [CHEM 247, CHEM 253, CHEM 248, CHEM 254]
 
       - name: Analytical
         result:
+          type: count-of
           count: all
           of: [CHEM 255, CHEM 256]
 
       - name: Physical
         result:
+          type: count-of
           count: all
           of: [CHEM 357, CHEM 371]
 
       - name: Elective
         result:
+          type: count-of
           count: any
           of:
             - CHEM 252
@@ -77,13 +87,17 @@ requirements:
 
   - name: Physics
     result:
+      type: either
       either:
         - PHYS 125
         - PHYS 232
 
   - name: Mathematics
     result:
-      either: [MATH 126, MATH 128]
+      type: either
+      either:
+        - MATH 126
+        - MATH 128
 
   - name: Seminars
     message:

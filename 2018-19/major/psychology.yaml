@@ -4,13 +4,14 @@ degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
+  type: count-of
   count: all
   of:
-    - requirement: Foundation
-    - requirement: Content Core
-    - requirement: Level III Capstone
-    - requirement: General Education
-    - requirement: Electives
+    - {type: requirement, name: Foundation}
+    - {type: requirement, name: Content Core}
+    - {type: requirement, name: Level III Capstone}
+    - {type: requirement, name: General Education}
+    - {type: requirement, name: Electives}
 
 limits:
   - {at_most: 2, where: {institution: '! STO', course: '! PSYCH 125'}}
@@ -56,30 +57,35 @@ attributes:
 requirements:
   - name: Foundation
     result:
+      type: both
       both:
         - PSYCH 125
         - PSYCH 230
 
   - name: Content Core
     result:
+      type: count-of
       count: all
       of:
-        - requirement: Natural Science
-        - requirement: Social Science
+        - {type: requirement, name: Natural Science}
+        - {type: requirement, name: Social Science}
 
     requirements:
       - name: Natural Science
         result:
+          type: count-of
           count: 2
           of: [PSYCH 235, PSYCH 236, PSYCH 237, PSYCH 238]
 
       - name: Social Science
         result:
+          type: count-of
           count: 2
           of: [PSYCH 241, PSYCH 244, PSYCH 247, PSYCH 249]
 
   - name: Level III Capstone
     result:
+      type: given
       given: courses
       where: { attribute: psych_level_3 }
       limit:
@@ -90,6 +96,7 @@ requirements:
 
   - name: General Education
     result:
+      type: count-of
       count: any
       of:
         - STAT 110
@@ -99,6 +106,7 @@ requirements:
 
   - name: Electives
     result:
+      type: given
       given: courses
       where: { attribute: psych_elective }
       what: courses

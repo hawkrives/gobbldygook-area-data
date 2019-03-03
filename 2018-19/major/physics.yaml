@@ -4,13 +4,14 @@ degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
+  type: count-of
   count: all
   of:
-    - requirement: Analytics
-    - requirement: Modern Physics
-    - requirement: Upper-Level
-    - requirement: Upper-Level Elective
-    - requirement: Elective
+    - {type: requirement, name: Analytics}
+    - {type: requirement, name: Modern Physics}
+    - {type: requirement, name: Upper-Level}
+    - {type: requirement, name: Upper-Level Elective}
+    - {type: requirement, name: Elective}
 
 attributes:
   courses:
@@ -30,26 +31,31 @@ attributes:
 requirements:
   - name: Analytics
     result:
+      type: count-of
       count: all
       of: [PHYS 130, PHYS 131, PHYS 232]
 
   - name: Modern Physics
     result:
+      type: count-of
       count: all
       of: [PHYS 244, PHYS 245]
 
   - name: Upper-Level
     result:
+      type: count-of
       count: all
       of: [PHYS 374, PHYS 375, PHYS 385, PHYS 386]
 
   - name: Upper-Level Elective
     result:
+      type: count-of
       count: 1
       of: [PHYS 360, PHYS 362, PHYS 376, PHYS 379, PHYS 390]
 
   - name: Elective
     result:
+      type: given
       given: courses
       where: {attribute: physics_elective}
       what: courses

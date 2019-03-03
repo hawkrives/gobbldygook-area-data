@@ -4,13 +4,14 @@ degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
+  type: count-of
   count: all
   of:
-    - requirement: Intro
-    - requirement: Methods
-    - requirement: Studio Art
-    - requirement: Distribution
-    - requirement: Lasting Legacy
+    - {type: requirement, name: Intro}
+    - {type: requirement, name: Methods}
+    - {type: requirement, name: Studio Art}
+    - {type: requirement, name: Distribution}
+    - {type: requirement, name: Lasting Legacy}
 
 
 attributes:
@@ -74,14 +75,17 @@ attributes:
 requirements:
   - name: Intro
     result:
+      type: course
       course: ART 153
 
   - name: Methods
     result:
+      type: course
       course: ART 350
 
   - name: Studio Art
     result:
+      type: given
       given: courses
       where: {attribute: art_studio_art}
       what: courses
@@ -95,26 +99,30 @@ requirements:
       must cover art created after 1700 CE.
 
     result:
+      type: both
       both:
-        - count: all
+        - type: count-of
+          count: all
           of:
-            - requirement: Asian, African, Indigenous American, or Near Eastern/Islamic Art
-            - requirement: European and American Art
-            - requirement: Art created before 1700 CE
-            - requirement: Art created after 1700 CE
+            - {type: requirement, name: 'Asian, African, Indigenous American, or Near Eastern/Islamic Art'}
+            - {type: requirement, name: European and American Art}
+            - {type: requirement, name: Art created before 1700 CE}
+            - {type: requirement, name: Art created after 1700 CE}
 
-        - given: these-requirements
+        - type: given
+          given: these-requirements
           requirements:
-            - requirement: Asian, African, Indigenous American, or Near Eastern/Islamic Art
-            - requirement: European and American Art
-            - requirement: Art created before 1700 CE
-            - requirement: Art created after 1700 CE
+            - Asian, African, Indigenous American, or Near Eastern/Islamic Art
+            - European and American Art
+            - Art created before 1700 CE
+            - Art created after 1700 CE
           what: courses
           do: count >= 6
 
     requirements:
       - name: Asian, African, Indigenous American, or Near Eastern/Islamic Art
         result:
+          type: given
           given: courses
           where: {attribute: art_locale_asian | art_locale_african | art_locale_indigenous_american | art_locale_near_eastern}
           what: courses
@@ -122,6 +130,7 @@ requirements:
 
       - name: European and American Art
         result:
+          type: given
           given: courses
           where: {attribute: art_locale_european | art_locale_american}
           what: courses
@@ -129,6 +138,7 @@ requirements:
 
       - name: Art created before 1700 CE
         result:
+          type: given
           given: courses
           where: {attribute: art_period_pre1700}
           what: courses
@@ -136,6 +146,7 @@ requirements:
 
       - name: Art created after 1700 CE
         result:
+          type: given
           given: courses
           where: {attribute: art_period_post1700}
           what: courses

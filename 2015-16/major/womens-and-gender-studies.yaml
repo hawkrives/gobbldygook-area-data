@@ -4,49 +4,54 @@ degree: Bachelor of Arts
 catalog: 2015-16
 
 result:
+  type: count-of
   count: all
   of:
-    - requirement: Introduction
-    - requirement: Additional Courses
-    - requirement: Advanced Topics
+    - {type: requirement, name: Introduction}
+    - {type: requirement, name: Additional Courses}
+    - {type: requirement, name: Advanced Topics}
 
 
 requirements:
   - name: Introduction
     result:
+      type: course
       course: WMGST 121
 
   - name: Advanced Topics
     result:
+      type: course
       course: WMGST 399
 
   - name: Additional Courses
     save:
       - given: these-requirements
         requirements:
-          - requirement: Theory and Methods
-          - requirement: Women and Gender in Historical Context
-          - requirement: Women and Gender in Global/Comparative/Diverse Contexts
-          - requirement: Electives
-          - requirement: Lived Experiences
+          - Theory and Methods
+          - Women and Gender in Historical Context
+          - Women and Gender in Global/Comparative/Diverse Contexts
+          - Electives
+          - Lived Experiences
         what: courses
         name: "Taken Elective Courses"
 
     result:
+      type: count-of
       count: all
       of:
-        - requirement: Theory and Methods
-        - requirement: Gender in Historical Context
-        - requirement: Gender in Global/Comparative/Diverse Contexts
-        - {requirement: Electives, optional: true}
-        - requirement: Lived Experiences
+        - {type: requirement, name: Theory and Methods}
+        - {type: requirement, name: Gender in Historical Context}
+        - {type: requirement, name: Gender in Global/Comparative/Diverse Contexts}
+        - {type: requirement, name: Lived Experiences}
 
-        - given: save
+        - type: given
+          given: save
           save: "Taken Elective Courses"
           what: courses
           do: count >= 7
 
-        - given: save
+        - type: given
+          given: save
           save: "Taken Elective Courses"
           where: {level: '300'}
           what: courses
@@ -55,6 +60,7 @@ requirements:
     requirements:
       - name: Theory and Methods
         result:
+          type: count-of
           count: any
           of:
             - AMST 100
@@ -66,7 +72,7 @@ requirements:
             - FAMST 253
             - PHIL 245
             - PSYCH 390
-            - {course: PSYCH 396, year: 2013, semester: Spring}
+            - {type: course, course: PSYCH 396, year: 2013, semester: Spring}
             - REL 209
             - REL 344
             - SOAN 235
@@ -75,16 +81,17 @@ requirements:
 
       - name: Gender in Historical Context
         result:
+          type: count-of
           count: any
           of:
-            - {course: FREN 372, year: 2017, semester: Fall}
+            - {type: course, course: FREN 372, year: 2017, semester: Fall}
             - HIST 121
             - HIST 191
             - HIST 224
             - HIST 231
             - HIST 237
             - HIST 239
-            - {course: HIST 320, year: 2014, semester: Spring}
+            - {type: course, course: HIST 320, year: 2014, semester: Spring}
             - PHIL 245
             - PSYCH 223
             - PSYCH 241
@@ -97,38 +104,30 @@ requirements:
 
       - name: Gender in Global/Comparative/Diverse Contexts
         result:
+          type: count-of
           count: any
           of:
             - DANCE 246
             - ENGL 246
-            - {course: ENGL 340, year: 2011, semester: Interim}
-            - {course: ENGL 340, year: 2011, semester: Spring}
-            - {course: ENGL 340, year: 2012, semester: Fall}
-            - {course: ENGL 340, year: 2012, semester: Interim}
-            - {course: ENGL 340, year: 2013, semester: Interim}
-            - {course: ENGL 340, year: 2014, semester: Interim}
-            - {course: ENGL 340, year: 2015, semester: Interim}
+            - {type: course, course: ENGL 340, year: 2011, semester: Interim}
+            - {type: course, course: ENGL 340, year: 2011, semester: Spring}
+            - {type: course, course: ENGL 340, year: 2012, semester: Fall}
+            - {type: course, course: ENGL 340, year: 2012, semester: Interim}
+            - {type: course, course: ENGL 340, year: 2013, semester: Interim}
+            - {type: course, course: ENGL 340, year: 2014, semester: Interim}
+            - {type: course, course: ENGL 340, year: 2015, semester: Interim}
             - FAMST 253
             - HIST 115
             - HIST 122
             - HIST 182
-            - {course: HIST 189, year: 2011, semester: Fall}
-            - {course: HIST 189, year: 2012, semester: Fall}
+            - {type: course, course: HIST 189, year: 2011, semester: Fall}
+            - {type: course, course: HIST 189, year: 2012, semester: Fall}
             - HIST 272
-            - {course: HIST 320, year: 2011, semester: Fall}
-            - {course: HIST 320, year: 2013, semester: Fall}
+            - {type: course, course: HIST 320, year: 2011, semester: Fall}
+            - {type: course, course: HIST 320, year: 2013, semester: Fall}
             - REL 209
             - REL 264
             - SOAN 246
-
-      - name: Electives
-        result:
-          count: any
-          of:
-            - BIO 124
-            - NORW 282
-            - NURS 386
-            - PSYCH 350
 
       - name: Lived Experiences
         message:

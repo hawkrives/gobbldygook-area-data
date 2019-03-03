@@ -4,10 +4,11 @@ degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
+  type: count-of
   count: all
   of:
-    - requirement: Seminar
-    - requirement: Electives
+    - {type: requirement, name: Seminar}
+    - {type: requirement, name: Electives}
 
 attributes:
   courses:
@@ -79,6 +80,7 @@ attributes:
 requirements:
   - name: Seminar
     result:
+      type: given
       given: courses
       where: {attribute: asian_seminar}
       what: courses
@@ -86,6 +88,7 @@ requirements:
 
   - name: Electives
     result:
+      type: given
       given: courses
       where: {attribute: asian_elective}
       limit:

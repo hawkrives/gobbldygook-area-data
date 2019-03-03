@@ -4,7 +4,8 @@ degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
-  requirement: Electives
+  type: requirement
+  name: Electives
 
 
 attributes:
@@ -405,6 +406,7 @@ attributes:
 requirements:
   - name: Electives
     result:
+      type: given
       given: courses
       where: {attribute: asian_elective}
       limit:

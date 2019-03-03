@@ -4,17 +4,19 @@ degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
+  type: count-of
   count: all
   of:
-    - requirement: Prerequisites
-    - requirement: Requirements
-    - requirement: Ethics
+    - {type: requirement, name: Prerequisites}
+    - {type: requirement, name: Requirements}
+    - {type: requirement, name: Ethics}
 
 requirements:
   - name: Prerequisites
     message:
       These courses must be completed before beginning level III nursing courses.
     result:
+      type: count-of
       count: all
       of:
         - BIO 143
@@ -23,13 +25,14 @@ requirements:
         - NURS 110
         - PSYCH 125
         - PSYCH 241
-        - {count: 1, of: [BIO 121, BIO 231]}
-        - {count: 1, of: [SOAN 121, SOAN 128, SOAN 260, SOAN 264, SOAN 267]}
+        - {type: count-of, count: 1, of: [BIO 121, BIO 231]}
+        - {type: count-of, count: 1, of: [SOAN 121, SOAN 128, SOAN 260, SOAN 264, SOAN 267]}
 
   - name: Ethics
     message:
       Nursing recommends taking the Biomedical Ethics (PHIL 250) course for this requirement
     result:
+      type: given
       given: courses
       where: {gereqs: EIN}
       what: courses
@@ -37,6 +40,7 @@ requirements:
 
   - name: Requirements
     result:
+      type: count-of
       count: all
       of:
         - NURS 211

@@ -4,12 +4,13 @@ degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
+  type: count-of
   count: all
   of:
-    - requirement: Core Language
-    - requirement: Upper-Level Language
-    - requirement: Language and Culture
-    - {requirement: FLAC, optional: true}
+    - {type: requirement, name: Core Language}
+    - {type: requirement, name: Upper-Level Language}
+    - {type: requirement, name: Language and Culture}
+    - {type: requirement, name: FLAC}
 
 attributes:
   courses:
@@ -53,11 +54,13 @@ attributes:
 requirements:
   - name: Core Language
     result:
+      type: count-of
       count: all
       of: [CHIN 231, CHIN 232, CHIN 301, CHIN 302]
 
   - name: Upper-Level Language
     result:
+      type: count-of
       count: any
       of:
         - CHIN 320
@@ -75,25 +78,28 @@ requirements:
     save:
       - given: these-requirements
         requirements:
-          - requirement: China-focused
-          - requirement: Comparative
+          - China-focused
+          - Comparative
         what: courses
         limit:
           - {at_most: 1, where: {level: '100'}}
         name: Allowed Courses
 
     result:
+      type: count-of
       count: all
       of:
-        - requirement: China-focused
-        - requirement: Comparative
+        - {type: requirement, name: China-focused}
+        - {type: requirement, name: Comparative}
 
-        - given: save
+        - type: given
+          given: save
           save: Allowed Courses
           what: courses
           do: count >= 4
 
-        - given: save
+        - type: given
+          given: save
           save: Allowed Courses
           what: courses
           where: {level: '300'}
@@ -102,6 +108,7 @@ requirements:
     requirements:
       - name: China-focused
         result:
+          type: given
           given: courses
           where: {attribute: china_focused_on_china}
           what: courses
@@ -109,6 +116,7 @@ requirements:
 
       - name: Comparative
         result:
+          type: given
           given: courses
           where: {attribute: china_comparative_asia}
           limit:
@@ -116,10 +124,3 @@ requirements:
             - {at_most: 1, where: {attribute: 'china_independent_study | china_seminar'}}
           what: courses
           do: count >= 1
-
-  - name: FLAC
-    result:
-      given: courses
-      where: {attribute: china_flac}
-      what: courses
-      do: count >= 1

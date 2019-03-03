@@ -4,18 +4,20 @@ degree: Bachelor of Arts
 catalog: 2014-15
 
 result:
+  type: count-of
   count: all
   of:
-    - requirement: Language-Intensive Courses (Theory)
-    - requirement: Movement-Intensive Courses (Technique)
-    - requirement: Senior Dance Seminar
-    - requirement: Area of Speciality
-    - requirement: Dance Companies
-    - requirement: Productions
+    - {type: requirement, name: Language-Intensive Courses (Theory)}
+    - {type: requirement, name: Movement-Intensive Courses (Technique)}
+    - {type: requirement, name: Senior Dance Seminar}
+    - {type: requirement, name: Area of Speciality}
+    - {type: requirement, name: Dance Companies}
+    - {type: requirement, name: Productions}
 
 requirements:
   - name: Language-Intensive Courses (Theory)
     result:
+      type: count-of
       count: all
       of:
         - DANCE 100
@@ -27,27 +29,30 @@ requirements:
 
   - name: Movement-Intensive Courses (Technique)
     result:
+      type: given
       given: these-requirements
       requirements:
-        - requirement: Ballet
-        - requirement: International and Social
-        - requirement: Modern
-        - requirement: Other Topics
+        - Ballet
+        - International and Social
+        - Modern
+        - Other Topics
       what: credits
       do: sum >= 1.5
 
     requirements:
       - name: Ballet
         result:
+          type: count-of
           count: any
           of:
             - DANCE 121
-            - either: [DANCE 130, DANCE 131]
-            - either: [DANCE 220, DANCE 221]
-            - either: [DANCE 320, DANCE 321]
+            - {type: either, either: [DANCE 130, DANCE 131]}
+            - {type: either, either: [DANCE 220, DANCE 221]}
+            - {type: either, either: [DANCE 320, DANCE 321]}
 
       - name: International and Social
         result:
+          type: count-of
           count: any
           of:
             - DANCE 106
@@ -59,15 +64,17 @@ requirements:
 
       - name: Modern
         result:
+          type: count-of
           count: any
           of:
             - DANCE 111
-            - either: [DANCE 210, DANCE 211]
-            - either: [DANCE 250, DANCE 251]
-            - either: [DANCE 310, DANCE 311]
+            - {type: either, either: [DANCE 210, DANCE 211]}
+            - {type: either, either: [DANCE 250, DANCE 251]}
+            - {type: either, either: [DANCE 310, DANCE 311]}
 
       - name: Other Topics
         result:
+          type: count-of
           count: any
           of:
             - DANCE 107
@@ -82,6 +89,7 @@ requirements:
       form of a research paper, performance, choreography, or blended
       project.
     result:
+      type: given
       given: these-courses
       courses: [DANCE 399]
       repeats: last

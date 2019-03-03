@@ -4,41 +4,48 @@ degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
+  type: count-of
   count: all
   of:
-    - requirement: History of Sociological Theory
-    - requirement: Anthropological Theory
-    - requirement: Foundations of Social Science Research
-    - requirement: Ethnographic Research Methods
-    - requirement: Senior Seminar
-    - requirement: Principles of Statistics
-    - requirement: Electives
+    - {type: requirement, name: History of Sociological Theory}
+    - {type: requirement, name: Anthropological Theory}
+    - {type: requirement, name: Foundations of Social Science Research}
+    - {type: requirement, name: Ethnographic Research Methods}
+    - {type: requirement, name: Senior Seminar}
+    - {type: requirement, name: Principles of Statistics}
+    - {type: requirement, name: Electives}
 
 
 requirements:
   - name: History of Sociological Theory
     result:
+      type: course
       course: SOAN 291
 
   - name: Anthropological Theory
     result:
+      type: course
       course: SOAN 292
 
   - name: Foundations of Social Science Research
     message: STAT 110 must be taken before SOAN 371.
     result:
+      type: course
       course: SOAN 371
 
   - name: Ethnographic Research Methods
     result:
+      type: course
       course: SOAN 373
 
   - name: Senior Seminar
     result:
+      type: course
       course: SOAN 399
 
   - name: Principles of Statistics
     result:
+      type: course
       course: STAT 110
 
   - name: Electives
@@ -47,6 +54,7 @@ requirements:
       not a core course, S/U.
 
     result:
+      type: given
       given: these-courses
       courses: [
         SOAN 121, SOAN 128, SOAN 232, SOAN 233,
@@ -59,7 +67,6 @@ requirements:
       ]
       repeats: first
       limit:
-        - where: {graded: su}
-          at_most: 1
+        - {at_most: 1, where: {graded: su}}
       what: courses
       do: count >= 4

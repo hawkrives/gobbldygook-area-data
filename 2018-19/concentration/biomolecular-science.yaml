@@ -4,28 +4,31 @@ degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
+  type: count-of
   count: all
   of:
-    - requirement: Core
-    - requirement: Experiential Learning
-    - requirement: Electives
+    - {type: requirement, name: Core}
+    - {type: requirement, name: Experiential Learning}
+    - {type: requirement, name: Electives}
 
 requirements:
   - name: Core
     result:
+      type: count-of
       count: all
       of:
         - BIO 150
-        - count: any
+        - type: count-of
+          count: any
           of:
-          - {count: all, of: [CHEM 125, CHEM 126, BIO 227]}
-          - {count: all, of: [CHEM 121, CHEM 123, CHEM 126, BIO 227]}
-          - {count: all, of: [CH/BI 125, CH/BI 126, CH/BI 227]}
+            - {type: count-of, count: all, of: [CHEM 125, CHEM 126, BIO 227]}
+            - {type: count-of, count: all, of: [CHEM 121, CHEM 123, CHEM 126, BIO 227]}
+            - {type: count-of, count: all, of: [CH/BI 125, CH/BI 126, CH/BI 227]}
         - BIO 223
         - BMOLS 201
-        - both: [CHEM 247, CHEM 253]
-        - both: [CHEM 248, CHEM 254]
-        - both: [CHEM 379, CHEM 373]
+        - {type: both, both: [CHEM 247, CHEM 253]}
+        - {type: both, both: [CHEM 248, CHEM 254]}
+        - {type: both, both: [CHEM 379, CHEM 373]}
 
   - name: Experiential Learning
     department_audited: true
@@ -38,6 +41,7 @@ requirements:
 
   - name: Electives
     result:
+      type: count-of
       count: 2
       of:
         - BIO 315

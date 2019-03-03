@@ -4,27 +4,15 @@ degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
-  both:
-    - count: all
-      of:
-        - requirement: Basics
-        - requirement: Transitions
-        - requirement: Perspectives
-        - {requirement: Interdisciplinary, optional: true}
-        - requirement: Sequence
-        - requirement: Level III
-
-    - given: these-requirements
-      requirements:
-        - requirement: Basics
-        - requirement: Transitions
-        - requirement: Perspectives
-        - requirement: Interdisciplinary
-        - requirement: Sequence
-        - requirement: Level III
-      where: {institution: St. Olaf College}
-      what: courses
-      do: count >= 6
+  type: count-of
+  count: all
+  of:
+    - {type: requirement, name: Basics}
+    - {type: requirement, name: Transitions}
+    - {type: requirement, name: Perspectives}
+    - {type: requirement, name: Interdisciplinary}
+    - {type: requirement, name: Sequence}
+    - {type: requirement, name: Level III}
 
 limiters:
   - where: {subject: '! MATH'}
@@ -71,14 +59,16 @@ attributes:
 requirements:
   - name: Basics
     result:
+      type: count-of
       count: all
       of:
         - MATH 120
-        - either: [MATH 126, MATH 128]
+        - {type: either, either: [MATH 126, MATH 128]}
         - MATH 220
 
   - name: Transitions
     result:
+      type: given
       given: courses
       where: {attribute: math_transitions}
       what: courses
@@ -86,18 +76,19 @@ requirements:
 
   - name: Perspectives
     message: One course from each of three of the four perspectives.
-
     result:
+      type: count-of
       count: 3
       of:
-        - requirement: Axiomatic/Algebraic (A)
-        - requirement: Continuous/Analytic (C)
-        - requirement: Discrete/Combinatorial (D)
-        - requirement: Modeling/Computation (M)
+        - {type: requirement, name: Axiomatic/Algebraic (A)}
+        - {type: requirement, name: Continuous/Analytic (C)}
+        - {type: requirement, name: Discrete/Combinatorial (D)}
+        - {type: requirement, name: Modeling/Computation (M)}
 
     requirements:
       - name: Axiomatic/Algebraic (A)
         result:
+          type: given
           given: courses
           where: {attribute: math_perspective_a}
           what: courses
@@ -105,6 +96,7 @@ requirements:
 
       - name: Continuous/Analytic (C)
         result:
+          type: given
           given: courses
           where: {attribute: math_perspective_c}
           what: courses
@@ -112,6 +104,7 @@ requirements:
 
       - name: Discrete/Combinatorial (D)
         result:
+          type: given
           given: courses
           where: {attribute: math_perspective_d}
           what: courses
@@ -119,6 +112,7 @@ requirements:
 
       - name: Modeling/Computation (M)
         result:
+          type: given
           given: courses
           where: {attribute: math_perspective_m}
           what: courses
@@ -126,40 +120,51 @@ requirements:
 
   - name: Interdisciplinary
     result:
-      count: any
+      type: count-of
+      count: 0
       of:
-        - requirement: Chemistry
-        - requirement: Economics
-        - requirement: Physics
+        - {type: requirement, name: Chemistry}
+        - {type: requirement, name: Economics}
+        - {type: requirement, name: Physics}
 
     requirements:
       - name: Chemistry
         result:
+          type: both
           both:
-            - course: CHEM 371
-            - given: areas
+            - type: course
+              course: CHEM 371
+            - type: given
+              given: areas
               where: {type: major, name: Chemistry}
               what: areas
               do: count = 1
       - name: Economics
         result:
+          type: both
           both:
-            - course: ECON 385
-            - given: areas
+            - type: course
+              course: ECON 385
+            - type: given
+              given: areas
               where: {type: major, name: Economics}
               what: areas
               do: count = 1
       - name: Physics
         result:
+          type: both
           both:
-            - course: PHYS 375
-            - given: areas
+            - type: course
+              course: PHYS 375
+            - type: given
+              given: areas
               where: {type: major, name: Physics}
               what: areas
               do: count = 1
 
   - name: Level III
     result:
+      type: given
       given: courses
       where: {attribute: math_level_3}
       limit:
@@ -169,14 +174,42 @@ requirements:
 
   - name: Sequence
     result:
+      type: count-of
       count: 1
       of:
-        - both: [{course: MATH 220, can_match_used: true}, {course: MATH 356, can_match_used: true}]
-        - both: [{course: MATH 220, can_match_used: true}, {course: MSCS 341, can_match_used: true}]
-        - both: [{course: MATH 224, can_match_used: true}, {course: MATH 348, can_match_used: true}]
-        - both: [{course: MATH 226, can_match_used: true}, {course: MATH 340, can_match_used: true}]
-        - both: [{course: MATH 230, can_match_used: true}, {course: MATH 330, can_match_used: true}]
-        - both: [{course: MATH 232, can_match_used: true}, {course: MATH 364, can_match_used: true}]
-        - both: [{course: MATH 244, can_match_used: true}, {course: MATH 344, can_match_used: true}]
-        - both: [{course: MATH 252, can_match_used: true}, {course: MATH 352, can_match_used: true}]
-        - both: [{course: MATH 262, can_match_used: true}, {course: STAT 322, can_match_used: true}]
+        - type: both
+          both:
+            - {type: course, course: MATH 220, can_match_used: true}
+            - {type: course, course: MATH 356, can_match_used: true}
+        - type: both
+          both:
+            - {type: course, course: MATH 220, can_match_used: true}
+            - {type: course, course: MSCS 341, can_match_used: true}
+        - type: both
+          both:
+            - {type: course, course: MATH 224, can_match_used: true}
+            - {type: course, course: MATH 348, can_match_used: true}
+        - type: both
+          both:
+            - {type: course, course: MATH 226, can_match_used: true}
+            - {type: course, course: MATH 340, can_match_used: true}
+        - type: both
+          both:
+            - {type: course, course: MATH 230, can_match_used: true}
+            - {type: course, course: MATH 330, can_match_used: true}
+        - type: both
+          both:
+            - {type: course, course: MATH 232, can_match_used: true}
+            - {type: course, course: MATH 364, can_match_used: true}
+        - type: both
+          both:
+            - {type: course, course: MATH 244, can_match_used: true}
+            - {type: course, course: MATH 344, can_match_used: true}
+        - type: both
+          both:
+            - {type: course, course: MATH 252, can_match_used: true}
+            - {type: course, course: MATH 352, can_match_used: true}
+        - type: both
+          both:
+            - {type: course, course: MATH 262, can_match_used: true}
+            - {type: course, course: STAT 322, can_match_used: true}

@@ -4,14 +4,16 @@ degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
+  type: count-of
   count: all
   of:
-    - requirement: American Culture
-    - requirement: Electives
+    - {type: requirement, name: American Culture}
+    - {type: requirement, name: Electives}
 
 requirements:
   - name: American Culture
     result:
+      type: course
       course: AMST 100
 
 
@@ -19,34 +21,39 @@ requirements:
     save:
       - given: these-requirements
         requirements:
-          - requirement: Topics
-          - requirement: Seminar
-          - requirement: Disciplinary
+          - Topics
+          - Seminar
+          - Disciplinary
         repeats: all
         what: courses
         name: Taken Electives
 
     result:
+      type: count-of
       count: all
       of:
-        - given: save
+        - type: given
+          given: save
           save: Taken Electives
           where: {gereqs: 'MCD'}
           what: courses
           do: count >= 2
 
-        - given: save
+        - type: given
+          given: save
           save: Taken Electives
           where: {level: '300'}
           what: courses
           do: count >= 2
 
-        - given: save
+        - type: given
+          given: save
           save: Taken Electives
           what: departments
           do: count >= 3
 
-        - given: save
+        - type: given
+          given: save
           save: Taken Electives
           what: courses
           do: count >= 6
@@ -54,6 +61,7 @@ requirements:
     requirements:
       - name: Topics
         result:
+          type: given
           given: these-courses
           courses: [AMST 205, AMST 206, AMST 207, AMST 208, AMST 209, AMST 210]
           repeats: all
@@ -62,6 +70,7 @@ requirements:
 
       - name: Seminar
         result:
+          type: given
           given: these-courses
           courses: [AMST 301]
           repeats: all
@@ -70,6 +79,7 @@ requirements:
 
       - name: Disciplinary
         result:
+          type: given
           given: these-courses
           courses: [
             AFAM 231,

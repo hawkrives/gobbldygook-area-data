@@ -4,16 +4,18 @@ degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
+  type: count-of
   count: all
   of:
-    - requirement: Literary Studies
-    - requirement: Cross-Cultural Studies
-    - requirement: Literary History
-    - either:
-      - requirement: Cross-Disciplinary Studies
-      - requirement: Genre Studies
-    - requirement: Electives
-    - requirement: 1800s
+    - {type: requirement, name: Literary Studies}
+    - {type: requirement, name: Cross-Cultural Studies}
+    - {type: requirement, name: Literary History}
+    - type: either
+      either:
+        - {type: requirement, name: Cross-Disciplinary Studies}
+        - {type: requirement, name: Genre Studies}
+    - {type: requirement, name: Electives}
+    - {type: requirement, name: 1800s}
 
 attributes:
   multicountable: [
@@ -269,10 +271,12 @@ attributes:
 requirements:
   - name: Literary Studies
     result:
+      type: course
       course: ENGL 185
 
   - name: Cross-Cultural Studies
     result:
+      type: given
       given: courses
       where: {attribute: engl_topic_crosscultural}
       what: courses
@@ -280,6 +284,7 @@ requirements:
 
   - name: Literary History
     result:
+      type: given
       given: courses
       where: {attribute: engl_topic_literary_history}
       what: courses
@@ -287,6 +292,7 @@ requirements:
 
   - name: Cross-Disciplinary Studies
     result:
+      type: given
       given: courses
       where: {attribute: engl_topic_crossdisciplinary}
       what: courses
@@ -294,6 +300,7 @@ requirements:
 
   - name: Genre Studies
     result:
+      type: given
       given: courses
       where: {attribute: engl_topic_genre}
       what: courses
@@ -311,30 +318,37 @@ requirements:
         where: {level: '300'}
         what: courses
     result:
+      type: count-of
       count: all
       of:
-        - given: save
+        - type: given
+          given: save
           save: electives
           what: courses
           do: count >= 6
-        - given: save
+        - type: given
+          given: save
           save: level3-courses
           what: courses
           do: count >= 2
-        - given: save
+        - type: given
+          given: save
           save: level3-courses
           what: courses
           where: {attribute: 'engl_focus_literature | engl_focus_film'}
           do: count >= 1
   - name: 1800s
     result:
+      type: both
       both:
-        - given: courses
+        - type: given
+          given: courses
           where: {attribute: engl_period_pre1800}
           what: courses
           do: count >= 1
 
-        - given: courses
+        - type: given
+          given: courses
           where: {attribute: engl_period_post1800}
           what: courses
           do: count >= 1

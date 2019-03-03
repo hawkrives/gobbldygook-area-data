@@ -4,12 +4,13 @@ degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
+  type: count-of
   count: all
   of:
-    - requirement: Language
-    - requirement: Culture & Writing
-    - requirement: History & Culture
-    - requirement: Upper-Level Elective
+    - {type: requirement, name: Language}
+    - {type: requirement, name: Culture & Writing}
+    - {type: requirement, name: History & Culture}
+    - {type: requirement, name: Upper-Level Elective}
 
 limits:
   - {at_most: 1, where: {graded: su}}
@@ -25,6 +26,7 @@ attributes:
 requirements:
   - name: Language
     result:
+      type: count-of
       count: all
       of:
         - NORW 111
@@ -34,6 +36,7 @@ requirements:
 
   - name: Culture & Writing
     result:
+      type: count-of
       count: all
       of:
         - NORW 253
@@ -42,6 +45,7 @@ requirements:
 
   - name: History & Culture
     result:
+      type: given
       given: courses
       where: {attribute: norw_history_culture}
       what: courses
@@ -49,6 +53,7 @@ requirements:
 
   - name: Upper-Level Elective
     result:
+      type: count-of
       count: any
       of:
         - NORW 224

@@ -4,20 +4,23 @@ degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
+  type: count-of
   count: all
   of:
-    - requirement: Core
-    - requirement: Level III Seminars
-    - requirement: Electives
+    - {type: requirement, name: Core}
+    - {type: requirement, name: Level III Seminars}
+    - {type: requirement, name: Electives}
 
 requirements:
   - name: Core
     result:
+      type: count-of
       count: all
       of: [PHIL 235, PHIL 236, PHIL 240]
 
   - name: Level III Seminars
     result:
+      type: given
       given: these-courses
       courses: [PHIL 371, PHIL 372, PHIL 373, PHIL 374, PHIL 375]
       repeats: first
@@ -28,6 +31,7 @@ requirements:
 
   - name: Electives
     result:
+      type: given
       given: these-courses
       courses: [
         PHIL 118, PHIL 119, PHIL 120, PHIL 147,

@@ -4,11 +4,12 @@ degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
+  type: count-of
   count: all
   of:
-    - requirement: Part 1
-    - requirement: Part 2
-    - requirement: Practicum
+    - {type: requirement, name: Part 1}
+    - {type: requirement, name: Part 2}
+    - {type: requirement, name: Practicum}
 
 limits:
   - {at_most: 1, where: {graded: su, credits: 1.00}}
@@ -16,18 +17,20 @@ limits:
 requirements:
   - name: Part 1
     result:
+      type: count-of
       count: all
       of:
         - THEAT 130
         - THEAT 140
         - THEAT 180
         - THEAT 232
-        - either: [THEAT 240, THEAT 250]
+        - {type: either, either: [THEAT 240, THEAT 250]}
         - THEAT 270
         - THEAT 271
 
   - name: Part 2
     result:
+      type: count-of
       count: 2
       of:
         - THEAT 338
@@ -43,11 +46,13 @@ requirements:
       class is then a choice of either 233 or 253.
 
     result:
+      type: count-of
       count: all
       of:
-        - requirement: Acting
-        - requirement: Tech
-        - given: these-courses
+        - {type: requirement, name: Acting}
+        - {type: requirement, name: Tech}
+        - type: given
+          given: these-courses
           courses: [THEAT 233, THEAT 253]
           repeats: all
           what: courses
@@ -56,6 +61,7 @@ requirements:
     requirements:
       - name: Acting
         result:
+          type: given
           given: these-courses
           courses: [THEAT 233]
           repeats: all
@@ -64,6 +70,7 @@ requirements:
 
       - name: Tech
         result:
+          type: given
           given: these-courses
           courses: [THEAT 253]
           repeats: all

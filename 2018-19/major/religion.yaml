@@ -4,43 +4,49 @@ degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
+  type: count-of
   count: all
   of:
-    - requirement: General Education
-    - requirement: What is Religion?
-    - requirement: Religious Dimensions
-    - requirement: Intensive Studies
+    - {type: requirement, name: General Education}
+    - {type: requirement, name: 'What is Religion?'}
+    - {type: requirement, name: Religious Dimensions}
+    - {type: requirement, name: Intensive Studies}
 
 requirements:
   - name: General Education
     result:
+      type: both
       both:
-        - given: courses
+        - type: given
+          given: courses
           where: { gereqs: BTS-B }
           what: courses
           do: count >= 1
 
-        - given: courses
+        - type: given
+          given: courses
           where: { gereqs: BTS-T }
           what: courses
           do: count >= 1
 
   - name: What is Religion?
     result:
+      type: course
       course: REL 285
 
   - name: Religious Dimensions
     message: TODO. Not yet completed. At all.
     result:
+      type: count-of
       count: 1
       of: []
 
     # Courses that focus on three different dimensions of religion (and deal with at least two different religious traditions):
     #   count: all
     #   of:
-    #     - requirement: Sacred Texts
-    #     - requirement: Religion in History and Culture
-    #     - requirement: Religious Thought
+    #     - name: Sacred Texts
+    #     - name: Religion in History and Culture
+    #     - name: Religious Thought
 
     # requirements:
     #   Sacred Texts:
@@ -64,8 +70,10 @@ requirements:
 
   - name: Intensive Studies
     result:
+      type: both
       both:
-        - count: 1
+        - type: count-of
+          count: 1
           of:
             - REL 302
             - REL 303
@@ -74,7 +82,8 @@ requirements:
             - REL 341
             - REL 344
 
-        - given: these-courses
+        - type: given
+          given: these-courses
           courses:
             - REL 390
             - REL 391

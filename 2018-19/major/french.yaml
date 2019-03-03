@@ -4,12 +4,13 @@ degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
+  type: count-of
   count: all
   of:
-    - requirement: Speaking and Writing
-    - requirement: The Francophone World
-    - requirement: Level III
-    - requirement: Electives
+    - {type: requirement, name: Speaking and Writing}
+    - {type: requirement, name: The Francophone World}
+    - {type: requirement, name: Level III}
+    - {type: requirement, name: Electives}
 
 attributes:
   courses:
@@ -43,6 +44,7 @@ attributes:
 requirements:
   - name: Speaking and Writing
     result:
+      type: count-of
       count: 2
       of:
         - FREN 250
@@ -51,6 +53,7 @@ requirements:
 
   - name: The Francophone World
     result:
+      type: count-of
       count: 2
       of:
         - FREN 271
@@ -60,6 +63,7 @@ requirements:
 
   - name: Level III
     result:
+      type: count-of
       count: 2
       of:
         - FREN 372
@@ -69,6 +73,7 @@ requirements:
 
   - name: Electives
     result:
+      type: given
       given: courses
       where: {attribute: french_elective}
       what: courses

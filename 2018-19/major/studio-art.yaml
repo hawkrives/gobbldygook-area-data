@@ -4,14 +4,15 @@ degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
+  type: count-of
   count: all
   of:
-    - requirement: Foundations
-    - requirement: Juried Show
-    - requirement: Senior Studies in Studio Art
-    - requirement: Electives
-    - requirement: Areas
-    - requirement: Art History
+    - {type: requirement, name: Foundations}
+    - {type: requirement, name: Juried Show}
+    - {type: requirement, name: Senior Studies in Studio Art}
+    - {type: requirement, name: Electives}
+    - {type: requirement, name: Areas}
+    - {type: requirement, name: Art History}
 
 attributes:
   courses:
@@ -69,106 +70,120 @@ attributes:
 requirements:
   - name: Foundations
     result:
+      type: count-of
       count: all
       of:
-        - either: [ART 102, ART 106]
+        - {type: either, either: [ART 102, ART 106]}
         - ART 103
         - ART 104
 
   - name: Areas
     result:
+      type: count-of
       count: all
       of:
-        - requirement: 2D Media
-        - requirement: 3D Media
-        - requirement: New Media
+        - {type: requirement, name: 2D Media}
+        - {type: requirement, name: 3D Media}
+        - {type: requirement, name: New Media}
 
     requirements:
       - name: 2D Media
         result:
+          type: count-of
           count: any
           of:
-            - requirement: Drawing
-            - requirement: Painting
-            - requirement: Printmaking
-            - requirement: Graphic Design
+            - {type: requirement, name: Drawing}
+            - {type: requirement, name: Painting}
+            - {type: requirement, name: Printmaking}
+            - {type: requirement, name: Graphic Design}
 
         requirements:
           - name: Drawing
             result:
+              type: count-of
               count: any
               of: [ART 225, ART 232, ART 233]
 
           - name: Painting
             result:
+              type: count-of
               count: any
               of: [ART 221, ART 222]
 
           - name: Printmaking
             result:
+              type: count-of
               count: any
               of: [ART 226, ART 227]
 
           - name: Graphic Design
             result:
+              type: count-of
               count: any
-              of:
-                - {course: ART 236, year: 2000, semester: Fall}
+              of: [ART 236]
 
       - name: 3D Media
         result:
+          type: count-of
           count: any
           of:
-            - requirement: Ceramics
-            - requirement: Sculpture
+            - {type: requirement, name: Ceramics}
+            - {type: requirement, name: Sculpture}
 
         requirements:
           - name: Ceramics
             result:
+              type: count-of
               count: any
               of: [ART 207, ART 234]
 
           - name: Sculpture
             result:
+              type: count-of
               count: any
               of: [ART 223, ART 224]
 
       - name: New Media
         result:
+          type: count-of
           count: any
           of:
-            - requirement: Photography
-            - requirement: Interactive Image
-            - requirement: Digital Video
-            - requirement: Performance
-            - requirement: Graphic Design
+            - {type: requirement, name: Photography}
+            - {type: requirement, name: Interactive Image}
+            - {type: requirement, name: Digital Video}
+            - {type: requirement, name: Performance}
+            - {type: requirement, name: Graphic Design}
 
         requirements:
           - name: Photography
             result:
+              type: count-of
               count: any
               of: [ART 205, ART 238]
 
           - name: Interactive Image
             result:
+              type: count-of
               count: any
               of: [ART 228]
 
           - name: Digital Video
             result:
+              type: count-of
               count: any
               of: [ART 229]
 
           - name: Performance
             result:
+              type: count-of
               count: any
               of: [ART 240]
 
           - name: Graphic Design
             result:
+              type: count-of
               count: any
-              of:
-                - {course: ART 236, year: 2000, semester: Fall}
+              of: [ART 236]
 
   - name: Juried Show
     department_audited: true
@@ -180,10 +195,12 @@ requirements:
 
   - name: Senior Studies in Studio Art
     result:
+      type: course
       course: ART 343
 
   - name: Electives
     result:
+      type: given
       given: courses
       where: {attribute: art_elective}
       what: courses
@@ -195,6 +212,7 @@ requirements:
       ART 252 or 253 as one of your art history courses.
 
     result:
+      type: given
       given: courses
       where: {attribute: art_history}
       what: courses

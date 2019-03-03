@@ -4,12 +4,13 @@ degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
+  type: count-of
   count: all
   of:
-    - requirement: Foundation
-    - requirement: Core
-    - requirement: Electives
-    - requirement: Capstone
+    - {type: requirement, name: Foundation}
+    - {type: requirement, name: Core}
+    - {type: requirement, name: Electives}
+    - {type: requirement, name: Capstone}
 
 attributes:
   courses:
@@ -27,39 +28,45 @@ attributes:
 requirements:
   - name: Foundation
     result:
+      type: count-of
       count: all
       of:
-        - either: [CSCI 121, CSCI 125]
+        - {type: either, either: [CSCI 121, CSCI 125]}
         - CSCI 241
-        - both: [CSCI 251, CSCI 252]
-        - count: 1
+        - {type: both, both: [CSCI 251, CSCI 252]}
+        - type: count-of
+          count: 1
           of: [MATH 232, MATH 252, MATH 244]
 
   - name: Core
     result:
+      type: count-of
       count: all
       of:
         - CS 253
         - CS 263
-        - requirement: Languages
-        - requirement: Systems
+        - {type: requirement, name: Languages}
+        - {type: requirement, name: Systems}
 
     requirements:
       - name: Languages
         result:
+          type: count-of
           count: any
           of: [CSCI 276, CSCI 333, CSCI 336]
 
       - name: Systems
         result:
+          type: count-of
           count: any
           of:
             - CSCI 273
             - CSCI 284
-            - {course: CSCI 300, year: 2000, semester: Fall}
+            - {type: course, course: CSCI 300, year: 2000, semester: Fall}
 
   - name: Electives
     result:
+      type: given
       given: courses
       where: {attribute: csci_elective}
       what: courses
@@ -67,4 +74,5 @@ requirements:
 
   - name: Capstone
     result:
+      type: course
       course: CSCI 390

@@ -4,27 +4,30 @@ degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
+  type: count-of
   count: all
   of:
-    - count: all
+    - type: count-of
+      count: all
       of:
-        - requirement: Research Methods
-        - requirement: American Politics and Public Policy
-        - requirement: Comparative Politics
-        - requirement: International Relations
-        - requirement: Political Theory
-        - requirement: Level III
-        - {requirement: Additional Courses, optional: true}
+        - {type: requirement, name: Research Methods}
+        - {type: requirement, name: American Politics and Public Policy}
+        - {type: requirement, name: Comparative Politics}
+        - {type: requirement, name: International Relations}
+        - {type: requirement, name: Political Theory}
+        - {type: requirement, name: Level III}
+        - {type: requirement, name: Additional Courses}
 
-    - given: these-requirements
+    - type: given
+      given: these-requirements
       requirements:
-        - requirement: Research Methods
-        - requirement: American Politics and Public Policy
-        - requirement: Comparative Politics
-        - requirement: International Relations
-        - requirement: Political Theory
-        - requirement: Level III
-        - requirement: Additional Courses
+        - Research Methods
+        - American Politics and Public Policy
+        - Comparative Politics
+        - International Relations
+        - Political Theory
+        - Level III
+        - Additional Courses
       what: courses
       do: count >= 9
 
@@ -79,10 +82,12 @@ attributes:
 requirements:
   - name: Research Methods
     result:
+      type: course
       course: PSCI 220
 
   - name: American Politics and Public Policy
     result:
+      type: given
       given: courses
       where: {attribute: psci_topic_american}
       what: courses
@@ -90,6 +95,7 @@ requirements:
 
   - name: Comparative Politics
     result:
+      type: given
       given: courses
       where: {attribute: psci_topic_comparative}
       what: courses
@@ -97,6 +103,7 @@ requirements:
 
   - name: International Relations
     result:
+      type: given
       given: courses
       where: {attribute: psci_topic_international}
       what: courses
@@ -104,6 +111,7 @@ requirements:
 
   - name: Political Theory
     result:
+      type: given
       given: courses
       where: {attribute: psci_topic_theory}
       what: courses
@@ -111,6 +119,7 @@ requirements:
 
   - name: Level III
     result:
+      type: given
       given: courses
       where: {attribute: psci_level_3}
       what: courses
@@ -118,14 +127,16 @@ requirements:
 
   - name: Additional Courses
     result:
-      count: 1
+      type: count-of
+      count: 0
       of:
-        - requirement: Statistics
-        - requirement: World Langauge
+        - {type: requirement, name: Statistics}
+        - {type: requirement, name: World Langauge}
 
     requirements:
       - name: Statistics
         result:
+          type: given
           given: courses
           where: {subject: STAT}
           what: courses
@@ -133,13 +144,15 @@ requirements:
 
       - name: World Langauge
         result:
+          type: either
           either:
-            - requirement: French, German, Spanish
-            - requirement: Chinese, Greek, Latin, Japanese, Norwegian, Russian
+            - {type: requirement, name: 'French, German, Spanish'}
+            - {type: requirement, name: 'Chinese, Greek, Latin, Japanese, Norwegian, Russian'}
 
         requirements:
           - name: French, German, Spanish
             result:
+              type: given
               given: courses
               where:
                 subject: 'FREN | GERM | SPAN'
@@ -149,6 +162,7 @@ requirements:
 
           - name: Chinese, Greek, Latin, Japanese, Norwegian, Russian
             result:
+              type: given
               given: courses
               where:
                 subject: 'CHIN | GREEK | LATIN | JAPAN | NORW | RUSSN'

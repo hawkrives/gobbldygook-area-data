@@ -4,15 +4,17 @@ degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
+  type: count-of
   count: all
   of:
-    - requirement: Language
-    - requirement: Classics
-    - requirement: Ancient Greek History
+    - {type: requirement, name: Language}
+    - {type: requirement, name: Classics}
+    - {type: requirement, name: Ancient Greek History}
 
 requirements:
   - name: Language
     result:
+      type: count-of
       count: 7
       of:
         - GREEK 111
@@ -27,6 +29,7 @@ requirements:
 
   - name: Classics
     result:
+      type: count-of
       count: 1
       of:
         - CLASS 121
@@ -43,6 +46,7 @@ requirements:
   - name: Ancient Greek History
     message: TODO find out what courses are considered "ancient greek history"
     result:
+      type: count-of
       count: 1
       of:
         - CLASS 111

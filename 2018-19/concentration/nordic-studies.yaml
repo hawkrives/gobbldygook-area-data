@@ -4,10 +4,11 @@ degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
+  type: count-of
   count: all
   of:
-    - requirement: Language
-    - requirement: Electives
+    - {type: requirement, name: Language}
+    - {type: requirement, name: Electives}
 
 limits:
   - {at_most: 1, where: {graded: su}}
@@ -33,6 +34,7 @@ attributes:
 requirements:
   - name: Language
     result:
+      type: count-of
       count: any
       of:
         - NORW 232
@@ -46,6 +48,7 @@ requirements:
       New Norway, and university direct-enroll programs may be counted toward
       the Nordic studies concentration
     result:
+      type: given
       given: courses
       where: {attribute: nordic_elective}
       limit:

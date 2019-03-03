@@ -4,12 +4,12 @@ degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
+  type: count-of
   count: all
   of:
-    - requirement: Core Language
-    - requirement: Upper-Level Language
-    - requirement: Language and Culture
-    - {requirement: FLAC, optional: true}
+    - {type: requirement, name: Core Language}
+    - {type: requirement, name: Upper-Level Language}
+    - {type: requirement, name: Language and Culture}
 
 attributes:
   courses:
@@ -51,11 +51,13 @@ attributes:
 requirements:
   - name: Core Language
     result:
+      type: count-of
       count: all
       of: [JAPAN 231, JAPAN 232, JAPAN 301, JAPAN 302]
 
   - name: Upper-Level Language
     result:
+      type: count-of
       count: all
       of: [JAPAN 320, JAPAN 350]
 
@@ -70,25 +72,28 @@ requirements:
     save:
       - given: these-requirements
         requirements:
-          - requirement: Japan-focused
-          - requirement: Comparative
+          - Japan-focused
+          - Comparative
         what: courses
         limit:
           - {at_most: 1, where: {level: '100'}}
         name: Allowed Courses
 
     result:
+      type: count-of
       count: all
       of:
-        - requirement: Japan-focused
-        - requirement: Comparative
+        - {type: requirement, name: Japan-focused}
+        - {type: requirement, name: Comparative}
 
-        - given: save
+        - type: given
+          given: save
           save: Allowed Courses
           what: courses
           do: count >= 4
 
-        - given: save
+        - type: given
+          given: save
           save: Allowed Courses
           what: courses
           where: {level: '300'}
@@ -97,6 +102,7 @@ requirements:
     requirements:
       - name: Japan-focused
         result:
+          type: given
           given: courses
           where: {attribute: japan_focused_on_japan}
           what: courses
@@ -104,6 +110,7 @@ requirements:
 
       - name: Comparative
         result:
+          type: given
           given: courses
           where: {attribute: japan_comparative_asia}
           limit:
@@ -111,10 +118,3 @@ requirements:
             - {at_most: 1, where: {attribute: 'japan_independent_study | japan_seminar'}}
           what: courses
           do: count >= 1
-
-  - name: FLAC
-    result:
-      given: courses
-      where: {attribute: japan_flac}
-      what: courses
-      do: count >= 1

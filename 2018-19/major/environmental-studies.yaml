@@ -4,51 +4,57 @@ degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
+  type: count-of
   count: all
   of:
-    - Major
-    - Areas of Emphasis
+    - {type: requirement, name: Major}
+    - {type: requirement, name: Areas of Emphasis}
 
 requirements:
   - name: Major
     result:
+      type: count-of
       count: all
       of: [ENVST 137, ENVST 237, ENVST 399]
 
   - name: Areas of Emphasis
     result:
+      type: count-of
       count: any
       of:
-        - requirement: Natural Science
-        - requirement: Social Science
-        - requirement: Arts and Humanities
+        - {type: requirement, name: Natural Science}
+        - {type: requirement, name: Social Science}
+        - {type: requirement, name: Arts and Humanities}
 
     requirements:
       - name: Natural Science
         result:
+          type: count-of
           count: all
           of:
-            - requirement: Social Sciences for Natural Science
-            - requirement: Arts and Humanities for Natural Science
-            - requirement: Statistics, Modeling, and Mapping
-            - requirement: Intermediate Chemistry
-            - requirement: Intermediate Ecology
-            - requirement: Environmental Science
+            - {type: requirement, name: Social Sciences for Natural Science}
+            - {type: requirement, name: Arts and Humanities for Natural Science}
+            - {type: requirement, name: 'Statistics, Modeling, and Mapping'}
+            - {type: requirement, name: Intermediate Chemistry}
+            - {type: requirement, name: Intermediate Ecology}
+            - {type: requirement, name: Environmental Science}
 
-            - given: these-requirements
+            - type: given
+              given: these-requirements
               requirements:
-                - requirement: Social Sciences for Natural Science
-                - requirement: Arts and Humanities for Natural Science
-                - requirement: Statistics, Modeling, and Mapping
-                - requirement: Intermediate Chemistry
-                - requirement: Intermediate Ecology
-                - requirement: Environmental Science
+                - Social Sciences for Natural Science
+                - Arts and Humanities for Natural Science
+                - Statistics, Modeling, and Mapping
+                - Intermediate Chemistry
+                - Intermediate Ecology
+                - Environmental Science
               what: courses
               do: count >= 9
 
         requirements:
           - name: Social Sciences for Natural Science
             result:
+              type: count-of
               count: 1
               of:
                 - ES/PS 201
@@ -56,7 +62,7 @@ requirements:
                 - ENVST 235
                 - ES/PS 276
                 - AS/ES 277
-                - { course: ENVST 281, year: 2014, semester: Summer Session 2 }
+                - { type: course, course: ENVST 281, year: 2014, semester: Summer Session 2 }
                 - ENVST 381
                 - ECON 242
                 - ID 234
@@ -64,34 +70,39 @@ requirements:
                 - PSYCH 227
                 - SOAN 222
                 - SOAN 247
-                - { course: SOAN 297, year: 2015, semester: Spring }
+                - { type: course, course: SOAN 297, year: 2015, semester: Spring }
 
           - name: Arts and Humanities for Natural Science
             result:
+              type: count-of
               count: 1
               of:
                 - ENVST 202
-                - either: [PHIL 257, REL 278]
+                - {type: either, either: [PHIL 257, REL 278]}
 
           - name: Statistics, Modeling, and Mapping
             result:
+              type: count-of
               count: 1
               of: [ENVST 255, STAT 212, STAT 272]
 
           - name: Intermediate Chemistry
             result:
+              type: count-of
               count: 1
               of:
-                - both: [CHEM 248, CHEM 254]
-                - both: [CHEM 255, CHEM 256]
+                - {type: both, both: [CHEM 248, CHEM 254]}
+                - {type: both, both: [CHEM 255, CHEM 256]}
 
           - name: Intermediate Ecology
             result:
+              type: count-of
               count: 1
               of: [BIO 261, BIO 226]
 
           - name: Environmental Science
             result:
+              type: given
               given: these-courses
               courses:
                 - ENVST 123
@@ -121,65 +132,70 @@ requirements:
 
       - name: Social Science
         result:
+          type: count-of
           count: all
           of:
-            - requirement: Natural Science for Social Sciences
-            - requirement: Arts and Humanities for Social Sciences
-            - requirement: Methodological Analysis
-            - requirement: Economic Analysis
-            - requirement: Environmental Political Policy and Institutions
-            - requirement: Social Science Electives
+            - {type: requirement, name: Natural Science for Social Sciences}
+            - {type: requirement, name: Arts and Humanities for Social Sciences}
+            - {type: requirement, name: Methodological Analysis}
+            - {type: requirement, name: Economic Analysis}
+            - {type: requirement, name: Environmental Political Policy and Institutions}
+            - {type: requirement, name: Social Science Electives}
 
-            - given: these-requirements
+            - type: given
+              given: these-requirements
               requirements:
-                - requirement: Natural Science for Social Sciences
-                - requirement: Arts and Humanities for Social Sciences
-                - requirement: Methodological Analysis
-                - requirement: Economic Analysis
-                - requirement: Environmental Political Policy and Institutions
-                - requirement: Social Science Electives
+                - Natural Science for Social Sciences
+                - Arts and Humanities for Social Sciences
+                - Methodological Analysis
+                - Economic Analysis
+                - Environmental Political Policy and Institutions
+                - Social Science Electives
               what: courses
               do: count >= 9
 
         requirements:
           - name: Natural Science for Social Sciences
             result:
+              type: count-of
               count: 1
               of:
                 - ENVST 123
                 - ENVST 245
                 - ENVST 255
-                - { course: ENVST 281, year: 2000, semester: Fall }
-                - { course: ENVST 381, year: 2000, semester: Fall }
+                - { type: course, course: ENVST 281, year: 2000, semester: Fall }
+                - { type: course, course: ENVST 381, year: 2000, semester: Fall }
                 - BI/ES 226
                 - BI/ES 228
                 - BI/ES 286
                 - BI/ES 350
                 - BIO 224
-                - either: [BIO 226, BIO 261]
+                - { type: either, either: [BIO 226, BIO 261] }
                 - CHEM 124
-                - both: [CHEM 225, CHEM 256]
-                - { course: BIO 391, year: 2000, semester: Fall }
-                - { course: CHEM 391, year: 2000, semester: Fall }
+                - { type: both, both: [CHEM 225, CHEM 256] }
+                - { type: course, course: BIO 391, year: 2000, semester: Fall }
+                - { type: course, course: CHEM 391, year: 2000, semester: Fall }
 
           - name: Arts and Humanities for Social Sciences
             result:
+              type: count-of
               count: 1
               of:
                 - ENVST 202
                 - ENVST 270
-                - { course: ENVST 281, year: 2000, semester: Fall }
-                - { course: ENVST 381, year: 2000, semester: Fall }
+                - { type: course, course: ENVST 281, year: 2000, semester: Fall }
+                - { type: course, course: ENVST 381, year: 2000, semester: Fall }
                 - FILM 230
                 - GERM 276
                 - HIST 245
                 - HIST 275
-                - { course: NORW 224, year: 2000, semester: Fall }
-                - either: [PHIL 257, REL 278]
+                - { type: course, course: NORW 224, year: 2000, semester: Fall }
+                - { type: either, either: [PHIL 257, REL 278]}
                 - ENGL 276
 
           - name: Methodological Analysis
             result:
+              type: count-of
               count: 1
               of:
                 - ENVST 255
@@ -195,9 +211,11 @@ requirements:
           - name: Economic Analysis
             message: The department strongly recommends taking ECON 121
             result:
-              count: all
-              of:
-                - count: any
+              type: both
+              both:
+                - ECON 242
+                - type: count-of
+                  count: any
                   of:
                     - ECON 121
                     - ECON 110
@@ -211,28 +229,29 @@ requirements:
                     - ECON 118
                     - ECON 119
                     - ECON 120
-                - ECON 242
 
           - name: Environmental Political Policy and Institutions
             result:
+              type: count-of
               count: 1
               of: [ENVST 232, ES/PS 201, ES/PS 276]
 
           - name: Social Science Electives
             result:
+              type: count-of
               count: 2
               of:
                 - ES/PS 201
                 - ENVST 232
                 - ENVST 235
                 - ES/PS 276
-                - { course: ENVST 281, year: 2000, semester: Fall }
-                - { course: ENVST 381, year: 2000, semester: Fall }
-                - { course: ENVST 396, year: 2000, semester: Fall }
+                - { type: course, course: ENVST 281, year: 2000, semester: Fall }
+                - { type: course, course: ENVST 381, year: 2000, semester: Fall }
+                - { type: course, course: ENVST 396, year: 2000, semester: Fall }
                 - ECON 243
                 - PSYCH 227
                 - SOAN 247
-                - { course: SOAN 297, year: 2000, semester: Fall }
+                - { type: course, course: SOAN 297, year: 2000, semester: Fall }
                 - PSCI 221
                 - SOAN 222
                 - ID 234
@@ -240,55 +259,59 @@ requirements:
 
       - name: Arts and Humanities
         result:
+          type: count-of
           count: all
           of:
-            - requirement: Natural Science for Social Sciences
-            - requirement: Arts and Humanities for Social Sciences
-            - requirement: Methodological Analysis
-            - requirement: Economic Analysis
-            - requirement: Environmental Political Policy and Institutions
-            - requirement: Social Science Electives
+            - {type: requirement, name: Natural Science for Social Sciences}
+            - {type: requirement, name: Arts and Humanities for Social Sciences}
+            - {type: requirement, name: Methodological Analysis}
+            - {type: requirement, name: Economic Analysis}
+            - {type: requirement, name: Environmental Political Policy and Institutions}
+            - {type: requirement, name: Social Science Electives}
 
-            - given: these-requirements
+            - type: given
+              given: these-requirements
               requirements:
-                - requirement: Natural Science for Social Sciences
-                - requirement: Arts and Humanities for Social Sciences
-                - requirement: Methodological Analysis
-                - requirement: Economic Analysis
-                - requirement: Environmental Political Policy and Institutions
-                - requirement: Social Science Electives
+                - Natural Science for Social Sciences
+                - Arts and Humanities for Social Sciences
+                - Methodological Analysis
+                - Economic Analysis
+                - Environmental Political Policy and Institutions
+                - Social Science Electives
               what: courses
               do: count >= 9
 
         requirements:
           - name: Natural Science for Arts and the Humanities
             result:
+              type: count-of
               count: 1
               of:
                 - ENVST 123
                 - ENVST 245
                 - ENVST 255
-                - { course: ENVST 281, year: 2000, semester: Fall }
-                - { course: ENVST 381, year: 2000, semester: Fall }
+                - { type: course, course: ENVST 281, year: 2000, semester: Fall }
+                - { type: course, course: ENVST 381, year: 2000, semester: Fall }
                 - BI/ES 226
                 - BI/ES 228
                 - BI/ES 286
                 - BI/ES 350
                 - BIO 224
-                - either: [BIO 226, BIO 261]
+                - { type: either, either: [BIO 226, BIO 261] }
                 - CHEM 124
-                - both: [CHEM 225, CHEM 256]
-                - { course: BIO 391, year: 2000, semester: Fall }
-                - { course: CHEM 391, year: 2000, semester: Fall }
+                - { type: both, both: [CHEM 225, CHEM 256] }
+                - { type: course, course: BIO 391, year: 2000, semester: Fall }
+                - { type: course, course: CHEM 391, year: 2000, semester: Fall }
 
           - name: Social Sciences for Arts and the Humanities
             result:
+              type: count-of
               count: 1
               of:
                 - ENVST 232
                 - ENVST 235
-                - { course: ENVST 281, year: 2000, semester: Fall }
-                - { course: ENVST 381, year: 2000, semester: Fall }
+                - { type: course, course: ENVST 281, year: 2000, semester: Fall }
+                - { type: course, course: ENVST 381, year: 2000, semester: Fall }
                 - ES/PS 201
                 - ES/PS 276
                 - ECON 242
@@ -300,6 +323,7 @@ requirements:
 
           - name: Courses for Arts and the Humanities
             result:
+              type: given
               given: these-courses
               courses:
                 - ENVST 202

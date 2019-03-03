@@ -4,27 +4,18 @@ degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
+  type: count-of
   count: all
   of:
-    - requirement: Speaking and Writing
-    - requirement: The Francophone World
-    - requirement: Level III
-    - requirement: Electives
-
-# attributes:
-#   GERM 251: [german_elective]
-#   GERM 252: [german_elective]
-#   GERM 253: [german_elective]
-#   GERM 271: [german_elective]
-#   GERM 272: [german_elective]
-#   GERM 273: [german_elective]
-#   GERM 276: [german_elective]
-#   GERM 371: [german_elective]
-#   GERM 372: [german_elective]
+    - {type: requirement, name: Speaking and Writing}
+    - {type: requirement, name: The Francophone World}
+    - {type: requirement, name: Level III}
+    - {type: requirement, name: Electives}
 
 requirements:
   - name: Level 250
     result:
+      type: given
       given: these-courses
       courses: [GERM 251, GERM 252, GERM 253]
       repeats: first
@@ -35,6 +26,7 @@ requirements:
 
   - name: Level 270
     result:
+      type: given
       given: these-courses
       courses: [GERM 271, GERM 272, GERM 273, GERM 276]
       repeats: first
@@ -46,28 +38,24 @@ requirements:
   - name: Level III
     message: This course will preferably be taken in the student's senior year.
     result:
+      type: either
       either: [GERM 371, GERM 372]
 
   - name: Electives
     result:
-      both:
-        - count: any
-          of:
-            - { requirement: Language, optional: true }
-            - { requirement: Interim In German, optional: true }
-            - { requirement: In Translation, optional: true }
-
-        - given: these-requirements
-          requirements:
-            - requirement: Langauge
-            - requirement: Interim In German
-            - requirement: In Translation
-          what: courses
-          do: count >= 3
+      type: given
+      given: these-requirements
+      requirements:
+        - Langauge
+        - Interim In German
+        - In Translation
+      what: courses
+      do: count >= 3
 
     requirements:
       - name: Language
         result:
+          type: course
           course: GERM 232
 
       - name: Interim In German
@@ -76,6 +64,7 @@ requirements:
 
       - name: In Translation
         result:
+          type: given
           given: these-courses
           courses:
             - GERM 147

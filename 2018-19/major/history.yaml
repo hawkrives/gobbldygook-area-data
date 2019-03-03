@@ -4,24 +4,27 @@ degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
+  type: both
   both:
-    - count: all
+    - type: count-of
+      count: all
       of:
-        - requirement: Major Seminar
-        - requirement: Level III
-        - requirement: Non-Western World
-        - requirement: Europe & Russia
-        - requirement: U.S.
-        - requirement: Pre-Modern Period
+        - {type: requirement, name: Major Seminar}
+        - {type: requirement, name: Level III}
+        - {type: requirement, name: Non-Western World}
+        - {type: requirement, name: Europe & Russia}
+        - {type: requirement, name: U.S.}
+        - {type: requirement, name: Pre-Modern Period}
 
-    - given: these-requirements
+    - type: given
+      given: these-requirements
       requirements:
-        - requirement: Major Seminar
-        - requirement: Level III
-        - requirement: Non-Western World
-        - requirement: Europe & Russia
-        - requirement: U.S.
-        - requirement: Pre-Modern Period
+        - Major Seminar
+        - Level III
+        - Non-Western World
+        - Europe & Russia
+        - U.S.
+        - Pre-Modern Period
       what: courses
       do: count >= 9
 
@@ -141,6 +144,7 @@ attributes:
 requirements:
   - name: European
     result:
+      type: given
       given: courses
       where: {attribute: history_region_europe}
       what: courses
@@ -148,6 +152,7 @@ requirements:
 
   - name: U.S.
     result:
+      type: given
       given: courses
       where: {attribute: history_region_us}
       what: courses
@@ -155,6 +160,7 @@ requirements:
 
   - name: Non-Western World
     result:
+      type: given
       given: courses
       where: {attribute: history_region_nonwesternworld}
       what: courses
@@ -162,6 +168,7 @@ requirements:
 
   - name: Pre-Modern Period
     result:
+      type: given
       given: courses
       where: {attribute: history_era_premodern}
       what: courses
@@ -169,6 +176,7 @@ requirements:
 
   - name: Major Seminar
     result:
+      type: given
       given: courses
       where: {attribute: history_l2_seminar}
       what: courses
@@ -176,6 +184,7 @@ requirements:
 
   - name: Level III
     result:
+      type: given
       given: courses
       where: {attribute: history_level_3}
       what: courses

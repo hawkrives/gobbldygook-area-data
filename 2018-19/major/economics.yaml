@@ -4,11 +4,12 @@ degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
+  type: count-of
   count: all
   of:
-    - requirement: Foundation
-    - requirement: Core
-    - requirement: Economic Analysis
+    - {type: requirement, name: Foundation}
+    - {type: requirement, name: Core}
+    - {type: requirement, name: Economic Analysis}
 
 attributes:
   multicountable:
@@ -38,16 +39,19 @@ attributes:
 requirements:
   - name: Core
     result:
+      type: count-of
       count: all
       of:
         - ECON 261
         - ECON 262
-        - either:
-          - ECON 263
-          - both: [STAT 272, ECON 385]
+        - type: either
+          either:
+            - ECON 263
+            - {type: both, both: [STAT 272, ECON 385]}
 
   - name: Foundation
     result:
+      type: count-of
       count: any
       of:
         - MATH 120
@@ -55,21 +59,24 @@ requirements:
 
   - name: Economic Analysis
     result:
+      type: count-of
       count: all
       of:
-        - requirement: Level II
-        - requirement: Level III
+        - {type: requirement, name: Level II}
+        - {type: requirement, name: Level III}
 
-        - given: these-requirements
+        - type: given
+          given: these-requirements
           requirements:
-            - requirement: Level II
-            - requirement: Level III
+            - Level II
+            - Level III
           what: courses
           do: count >= 4
 
     requirements:
       - name: Level II
         result:
+          type: given
           given: courses
           where: {attribute: econ_level_2}
           what: courses
@@ -77,6 +84,7 @@ requirements:
 
       - name: Level III
         result:
+          type: given
           given: courses
           where: {attribute: econ_level_3}
           what: courses
@@ -90,13 +98,15 @@ emphases:
   choices:
     - name: International Economic Analysis and Policy
       result:
+        type: both
         both:
-          - requirement: International Economics
-          - requirement: Electives
+          - {type: requirement, name: International Economics}
+          - {type: requirement, name: Electives}
 
       requirements:
         - name: International Economics
           result:
+            type: course
             course: ECON 382
 
         - name: Electives
@@ -104,11 +114,12 @@ emphases:
             You may also choose an course outside of Economics Department that
             relates to international topics.
           result:
+            type: count-of
             count: 2
             of:
               - ECON 218
               - ECON 243
-              - requirement: Non-Econ International Topics
+              - {type: requirement, name: Non-Econ International Topics}
 
           requirements:
             - name: Non-Econ International Topics
@@ -119,17 +130,20 @@ emphases:
 
     - name: Public Policy
       result:
+        type: both
         both:
-          - requirement: Public Policy
-          - requirement: Electives
+          - {type: requirement, name: Public Policy}
+          - {type: requirement, name: Electives}
 
       requirements:
         - name: Public Policy
           result:
+            type: course
             course: ECON 371
 
         - name: Electives
           result:
+            type: count-of
             count: 3
             of:
               - ECON 242
@@ -139,13 +153,15 @@ emphases:
 
     - name: Management
       result:
+        type: both
         both:
-          - requirement: Management
-          - requirement: Electives
+          - {type: requirement, name: Management}
+          - {type: requirement, name: Electives}
 
       requirements:
         - name: Management
           result:
+            type: count-of
             count: all
             of:
               - MGMT 225
@@ -155,13 +171,14 @@ emphases:
 
         - name: Electives
           result:
+            type: count-of
             count: any
             of:
               - MGMT 250
               - MGMT 252
               - MGMT 256
               - MGMT 281
-              - requirement: Other MGMT Course
+              - {type: requirement, name: Other MGMT Course}
 
           requirements:
             - name: Other MGMT Course
@@ -171,13 +188,15 @@ emphases:
 
     - name: Finance
       result:
+        type: both
         both:
-          - requirement: Finance
-          - requirement: Electives
+          - {type: requirement, name: Finance}
+          - {type: requirement, name: Electives}
 
       requirements:
         - name: Finance
           result:
+            type: count-of
             count: all
             of:
               - MGMT 225
@@ -187,9 +206,10 @@ emphases:
 
         - name: Electives
           result:
+            type: count-of
             count: any
             of:
-              - both: [MGMT 250, MGMT 251]
+              - {type: both, both: [MGMT 250, MGMT 251]}
               - MGMT 252
               - MGMT 256
               - ECON 371

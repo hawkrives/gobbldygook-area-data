@@ -4,13 +4,14 @@ degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
+  type: count-of
   count: all
   of:
-    - requirement: Language
-    - requirement: Ancient History
-    - requirement: Classics
-    - requirement: Electives
-    - requirement: Independent Research
+    - {type: requirement, name: Language}
+    - {type: requirement, name: Ancient History}
+    - {type: requirement, name: Classics}
+    - {type: requirement, name: Electives}
+    - {type: requirement, name: Independent Research}
 
 attributes:
   courses:
@@ -65,10 +66,12 @@ attributes:
 requirements:
   - name: Language
     result:
+      type: either
       either: [LATIN 252, GREEK 253]
 
   - name: Ancient History
     result:
+      type: given
       given: courses
       where: { attribute: ancient_history }
       what: courses
@@ -76,6 +79,7 @@ requirements:
 
   - name: Classics
     result:
+      type: given
       given: courses
       where: { attribute: ancient_classics }
       what: courses
@@ -89,6 +93,7 @@ requirements:
       portion of the major with Greek courses.
 
     result:
+      type: given
       given: courses
       where: { attribute: ancient_elective }
       what: courses
@@ -96,6 +101,7 @@ requirements:
 
   - name: Independent Research
     result:
+      type: given
       given: courses
       where: { attribute: ancient_ir }
       what: courses

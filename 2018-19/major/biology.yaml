@@ -4,21 +4,20 @@ degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
+  type: count-of
   count: all
   of:
-    - requirement: Foundation
-    - requirement: Core
-    - requirement: Level III
-    - requirement: Electives
-    - requirement: Chemistry
+    - {type: requirement, name: Foundation}
+    - {type: requirement, name: Core}
+    - {type: requirement, name: Level III}
+    - {type: requirement, name: Electives}
+    - {type: requirement, name: Chemistry}
 
 limiters:
   - where: {level: '100'}
     at_most: 2
   - where: {institution: '! St. Olaf College'}
     at_most: 0
-  # - where: {graded: 'true', grade: '>= C', level: '100'}
-  #   at_most: 2
 
 attributes:
   courses:
@@ -75,26 +74,30 @@ attributes:
 requirements:
   - name: Foundation
     result:
+      type: course
       course: BIO 150
 
   - name: Core
     result:
+      type: count-of
       count: all
       of:
-        - requirement: Genetics
-        - requirement: Cell Biology
-        - requirement: Comparative Organismal Biology
-        - requirement: Ecology
+        - {type: requirement, name: Genetics}
+        - {type: requirement, name: Cell Biology}
+        - {type: requirement, name: Comparative Organismal Biology}
+        - {type: requirement, name: Ecology}
 
     requirements:
       - name: Genetics
         result:
+          type: count-of
           count: 1
           of:
             - BIO 233
 
       - name: Cell Biology
         result:
+          type: count-of
           count: 1
           of:
             - BIO 227
@@ -102,6 +105,7 @@ requirements:
 
       - name: Comparative Organismal Biology
         result:
+          type: count-of
           count: 1
           of:
             - BIO 242
@@ -115,6 +119,7 @@ requirements:
 
       - name: Ecology
         result:
+          type: count-of
           count: 1
           of:
             - BIO 261
@@ -122,6 +127,7 @@ requirements:
 
   - name: Level III
     result:
+      type: count-of
       count: 1
       of:
         - BIO 315
@@ -139,6 +145,7 @@ requirements:
 
   - name: Electives
     result:
+      type: given
       given: courses
       where: {attribute: bio_elective}
       what: courses
@@ -146,8 +153,9 @@ requirements:
 
   - name: Chemistry
     result:
+      type: count-of
       count: any
       of:
-        - {count: all, of: [CHEM 121, CHEM 123, CHEM 126]}
-        - {count: all, of: [CHEM 125, CHEM 126]}
-        - {count: all, of: [CH/BI 125, CH/BI 126]}
+        - {type: count-of, count: all, of: [CHEM 121, CHEM 123, CHEM 126]}
+        - {type: count-of, count: all, of: [CHEM 125, CHEM 126]}
+        - {type: count-of, count: all, of: [CH/BI 125, CH/BI 126]}
