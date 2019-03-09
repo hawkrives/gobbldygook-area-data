@@ -204,7 +204,7 @@ requirements:
       given: courses
       where: {attribute: art_elective}
       what: courses
-      do: count >= 1
+      action: {count: '>= 1'}
 
   - name: Art History
     message:
@@ -216,4 +216,4 @@ requirements:
       given: courses
       where: {attribute: art_history}
       what: courses
-      do: count >= 1
+      action: {count: '>= 1'}

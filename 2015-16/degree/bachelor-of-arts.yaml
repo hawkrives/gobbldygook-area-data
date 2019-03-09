@@ -29,7 +29,7 @@ requirements:
           type: given
           given: courses
           what: credits
-          do: sum >= 35
+          action: {sum: '>= 35'}
 
       - name: Residency
         result:
@@ -37,7 +37,7 @@ requirements:
           given: courses
           where: { institution: St. Olaf College }
           what: credits
-          do: sum >= 17
+          action: {sum: '>= 17'}
 
       - name: Interim
         save:
@@ -48,15 +48,15 @@ requirements:
         result:
           type: both
           both:
-            - { type: given, given: save, save: "Interim Courses", what: credits, do: sum >= 3 }
-            - { type: given, given: save, save: "Interim Courses", what: courses, do: count >= 3 }
+            - { type: given, given: save, save: "Interim Courses", what: credits, action: {sum: '>= 3'} }
+            - { type: given, given: save, save: "Interim Courses", what: courses, action: {count: '>= 3'} }
 
       - name: Grade Point Average
         result:
           type: given
           given: courses
           what: grades
-          do: average >= 2.0
+          action: {average: '>= 2.0'}
 
       - name: Course Level
         result:
@@ -64,7 +64,7 @@ requirements:
           given: courses
           where: { level: '>= 200' }
           what: credits
-          do: sum >= 18
+          action: {sum: '>= 18'}
 
       - name: Graded Courses
         result:
@@ -72,7 +72,7 @@ requirements:
           given: courses
           where: { graded: graded }
           what: credits
-          do: sum >= 24
+          action: {sum: '>= 24'}
 
       - name: Major
         result:
@@ -80,7 +80,7 @@ requirements:
           given: areas
           where: { type: major }
           what: areas
-          do: count >= 1
+          action: {count: '>= 1'}
 
 
   - name: General Education
@@ -112,7 +112,7 @@ requirements:
               given: courses
               where: { gereqs: FYW }
               what: courses
-              do: count >= 1
+              action: {count: '>= 1'}
 
           - name: Writing in Context
             result:
@@ -120,22 +120,22 @@ requirements:
               given: courses
               where: { gereqs: WRI }
               what: courses
-              do: count >= 4
+              action: {count: '>= 4'}
 
           - name: Foreign Language
             result:
               type: count-of
               count: any
               of:
-                - { type: given, given: courses, where: { gereqs: FOL-C }, what: courses, do: count >= 1 }
-                - { type: given, given: courses, where: { gereqs: FOL-F }, what: courses, do: count >= 1 }
-                - { type: given, given: courses, where: { gereqs: FOL-G }, what: courses, do: count >= 1 }
-                - { type: given, given: courses, where: { gereqs: FOL-K }, what: courses, do: count >= 1 }
-                - { type: given, given: courses, where: { gereqs: FOL-J }, what: courses, do: count >= 1 }
-                - { type: given, given: courses, where: { gereqs: FOL-L }, what: courses, do: count >= 1 }
-                - { type: given, given: courses, where: { gereqs: FOL-N }, what: courses, do: count >= 1 }
-                - { type: given, given: courses, where: { gereqs: FOL-R }, what: courses, do: count >= 1 }
-                - { type: given, given: courses, where: { gereqs: FOL-S }, what: courses, do: count >= 1 }
+                - { type: given, given: courses, where: { gereqs: FOL-C }, what: courses, action: {count: '>= 1'} }
+                - { type: given, given: courses, where: { gereqs: FOL-F }, what: courses, action: {count: '>= 1'} }
+                - { type: given, given: courses, where: { gereqs: FOL-G }, what: courses, action: {count: '>= 1'} }
+                - { type: given, given: courses, where: { gereqs: FOL-K }, what: courses, action: {count: '>= 1'} }
+                - { type: given, given: courses, where: { gereqs: FOL-J }, what: courses, action: {count: '>= 1'} }
+                - { type: given, given: courses, where: { gereqs: FOL-L }, what: courses, action: {count: '>= 1'} }
+                - { type: given, given: courses, where: { gereqs: FOL-N }, what: courses, action: {count: '>= 1'} }
+                - { type: given, given: courses, where: { gereqs: FOL-R }, what: courses, action: {count: '>= 1'} }
+                - { type: given, given: courses, where: { gereqs: FOL-S }, what: courses, action: {count: '>= 1'} }
 
           - name: Oral Communication
             result:
@@ -143,7 +143,7 @@ requirements:
               given: courses
               where: { gereqs: ORC }
               what: courses
-              do: count >= 1
+              action: {count: '>= 1'}
 
           - name: Abstract and Quantitative Reasoning
             result:
@@ -151,7 +151,7 @@ requirements:
               given: courses
               where: { gereqs: AQR }
               what: courses
-              do: count >= 1
+              action: {count: '>= 1'}
 
           - name: Studies in Physical Movement
             result:
@@ -159,7 +159,7 @@ requirements:
               given: courses
               where: { gereqs: SPM }
               what: distinct-courses
-              do: count >= 2
+              action: {count: '>= 2'}
 
       - name: Core
         result:
@@ -189,13 +189,13 @@ requirements:
                   given: save
                   save: "Courses with an HWC"
                   what: courses
-                  do: count >= 2
+                  action: {count: '>= 2'}
                 - type: given
                   given: save
                   save: "Courses with an HWC"
                   where: { institution: St. Olaf College }
                   what: courses
-                  do: count >= 1
+                  action: {count: '>= 1'}
 
           - name: Multicultural Studies
             save:
@@ -212,27 +212,27 @@ requirements:
                   given: save
                   save: "Courses with an MCD or MCG"
                   what: courses
-                  do: count >= 2
+                  action: {count: '>= 2'}
 
                 - type: given
                   given: save
                   save: "Courses with an MCD or MCG"
-                  what: departments
-                  do: count >= 2
+                  what: subjects
+                  action: {count: '>= 2'}
 
                 - type: given
                   given: save
                   save: "Courses with an MCD or MCG"
                   where: { gereqs: MCD }
                   what: courses
-                  do: count >= 1
+                  action: {count: '>= 1'}
 
                 - type: given
                   given: save
                   save: "Courses with an MCD or MCG"
                   where: { gereqs: MCG }
                   what: courses
-                  do: count >= 1
+                  action: {count: '>= 1'}
 
           - name: Artistic and Literary Studies
             save:
@@ -249,21 +249,21 @@ requirements:
                   given: save
                   save: "Courses with an ALS-A or ALS-L"
                   what: courses
-                  do: count >= 2
+                  action: {count: '>= 2'}
 
                 - type: given
                   given: save
                   save: "Courses with an ALS-A or ALS-L"
                   where: { gereqs: ALS-A }
                   what: courses
-                  do: count >= 1
+                  action: {count: '>= 1'}
 
                 - type: given
                   given: save
                   save: "Courses with an ALS-A or ALS-L"
                   where: { gereqs: ALS-L }
                   what: courses
-                  do: count >= 1
+                  action: {count: '>= 1'}
 
           - name: Biblical and Theological Studies
             save:
@@ -280,21 +280,21 @@ requirements:
                   given: save
                   save: "Courses with a BTS-B or BTS-T"
                   what: courses
-                  do: count >= 2
+                  action: {count: '>= 2'}
 
                 - type: given
                   given: save
                   save: "Courses with a BTS-B or BTS-T"
                   where: { gereqs: 'BTS-B' }
                   what: courses
-                  do: count >= 1
+                  action: {count: '>= 1'}
 
                 - type: given
                   given: save
                   save: "Courses with a BTS-B or BTS-T"
                   where: { gereqs: 'BTS-T' }
                   what: courses
-                  do: count >= 1
+                  action: {count: '>= 1'}
 
           - name: Studies in Natural Science
             save:
@@ -311,27 +311,27 @@ requirements:
                   given: save
                   save: "Courses with an SED or IST"
                   what: courses
-                  do: count >= 2
+                  action: {count: '>= 2'}
 
                 - type: given
                   given: save
                   save: "Courses with an SED or IST"
-                  what: departments
-                  do: count >= 2
+                  what: subjects
+                  action: {count: '>= 2'}
 
                 - type: given
                   given: save
                   save: "Courses with an SED or IST"
                   where: { gereqs: SED }
                   what: courses
-                  do: count >= 1
+                  action: {count: '>= 1'}
 
                 - type: given
                   given: save
                   save: "Courses with an SED or IST"
                   where: { gereqs: IST }
                   what: courses
-                  do: count >= 1
+                  action: {count: '>= 1'}
 
           - name: Studies in Human Behavior and Society
             save:
@@ -348,20 +348,20 @@ requirements:
                   given: save
                   save: "Courses with an HBS"
                   what: courses
-                  do: count >= 2
+                  action: {count: '>= 2'}
 
                 - type: given
                   given: save
                   save: "Courses with an HBS"
-                  what: departments
-                  do: count >= 2
+                  what: subjects
+                  action: {count: '>= 2'}
 
                 - type: given
                   given: save
                   save: "Courses with an HBS"
                   where: { institution: St. Olaf College }
                   what: courses
-                  do: count >= 1
+                  action: {count: '>= 1'}
 
       - name: Integrative
         result:
@@ -381,7 +381,7 @@ requirements:
               - given: courses
                 where: { gereqs: BTS-T }
                 what: terms
-                do: minimum
+                action: {minimum: ~}
                 name: first BTS-T course
 
               - given: courses
@@ -392,7 +392,7 @@ requirements:
               - given: save
                 save: EIN courses
                 what: terms
-                do: maximum
+                action: {maximum: ~}
                 name: last EIN course
 
             result:
@@ -403,7 +403,7 @@ requirements:
                   given: save
                   save: EIN courses
                   what: courses
-                  do: count >= 1
+                  action: {count: '>= 1'}
 
                 - type: do
                   do:

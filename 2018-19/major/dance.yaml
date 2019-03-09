@@ -37,7 +37,7 @@ requirements:
         - Modern
         - Other Topics
       what: credits
-      do: sum >= 1.5
+      action: {sum: '>= 1.5'}
 
     requirements:
       - name: Ballet
@@ -95,7 +95,7 @@ requirements:
       repeats: last
       where: {year: senior-year, semester: Fall}
       what: courses
-      do: count >= 1
+      action: {count: '>= 1'}
 
 
   - name: Area of Speciality

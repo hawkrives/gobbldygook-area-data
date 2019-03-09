@@ -48,21 +48,21 @@ requirements:
             - given: save
               save: social and arts
               what: courses
-              do: count >= 3
+              action: {count: '>= 3'}
 
         - both:
             - requirement: Social Science
             - given: save
               save: natural and arts
               what: courses
-              do: count >= 3
+              action: {count: '>= 3'}
 
         - both:
             - requirement: Arts and Humanities
             - given: save
               save: natural and social
               what: courses
-              do: count >= 3
+              action: {count: '>= 3'}
 
 
     requirements:
@@ -114,7 +114,7 @@ requirements:
                 - where: {department: '! ENVST'}
                   at_most: 1
               what: courses
-              do: count >= 2
+              action: {count: '>= 2'}
 
           - name: Level III Natural Science
             result:
@@ -154,7 +154,7 @@ requirements:
             result:
               count: all
               of:
-                # todo: ECON 121 Principles of Economics (or ECON 110-ECON 120)  ???
+                # toaction: {ECON: '121 Principles'} of Economics (or ECON 110-ECON 120)  ???
                 # what does it mean?
                 - {count: any, of: [ECON 121, ECON 110, ECON 120]}
                 - ECON 242
@@ -206,4 +206,4 @@ requirements:
           limit:
             - {at_most: 5, where: {level: '200'}}
           what: courses
-          do: count >= 6
+          action: {count: '>= 6'}

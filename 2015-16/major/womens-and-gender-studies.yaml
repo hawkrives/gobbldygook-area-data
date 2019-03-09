@@ -48,14 +48,14 @@ requirements:
           given: save
           save: "Taken Elective Courses"
           what: courses
-          do: count >= 7
+          action: {count: '>= 7'}
 
         - type: given
           given: save
           save: "Taken Elective Courses"
           where: {level: '300'}
           what: courses
-          do: count >= 1
+          action: {count: '>= 1'}
 
     requirements:
       - name: Theory and Methods

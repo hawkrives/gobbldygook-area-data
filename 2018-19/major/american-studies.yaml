@@ -37,26 +37,26 @@ requirements:
           save: Taken Electives
           where: {gereqs: 'MCD'}
           what: courses
-          do: count >= 2
+          action: {count: '>= 2'}
 
         - type: given
           given: save
           save: Taken Electives
           where: {level: '300'}
           what: courses
-          do: count >= 2
+          action: {count: '>= 2'}
 
         - type: given
           given: save
           save: Taken Electives
-          what: departments
-          do: count >= 3
+          what: subjects
+          action: {count: '>= 3'}
 
         - type: given
           given: save
           save: Taken Electives
           what: courses
-          do: count >= 6
+          action: {count: '>= 6'}
 
     requirements:
       - name: Topics
@@ -66,7 +66,7 @@ requirements:
           courses: [AMST 205, AMST 206, AMST 207, AMST 208, AMST 209, AMST 210]
           repeats: all
           what: courses
-          do: count >= 1
+          action: {count: '>= 1'}
 
       - name: Seminar
         result:
@@ -75,7 +75,7 @@ requirements:
           courses: [AMST 301]
           repeats: all
           what: courses
-          do: count >= 1
+          action: {count: '>= 1'}
 
       - name: Disciplinary
         result:
@@ -113,4 +113,4 @@ requirements:
           ]
           repeats: all
           what: courses
-          do: count >= 1
+          action: {count: '>= 1'}

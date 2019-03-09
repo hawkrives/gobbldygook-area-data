@@ -280,7 +280,7 @@ requirements:
       given: courses
       where: {attribute: engl_topic_crosscultural}
       what: courses
-      do: count >= 1
+      action: {count: '>= 1'}
 
   - name: Literary History
     result:
@@ -288,7 +288,7 @@ requirements:
       given: courses
       where: {attribute: engl_topic_literary_history}
       what: courses
-      do: count >= 1
+      action: {count: '>= 1'}
 
   - name: Cross-Disciplinary Studies
     result:
@@ -296,7 +296,7 @@ requirements:
       given: courses
       where: {attribute: engl_topic_crossdisciplinary}
       what: courses
-      do: count >= 1
+      action: {count: '>= 1'}
 
   - name: Genre Studies
     result:
@@ -304,7 +304,7 @@ requirements:
       given: courses
       where: {attribute: engl_topic_genre}
       what: courses
-      do: count >= 1
+      action: {count: '>= 1'}
 
   - name: Electives
     save:
@@ -325,18 +325,18 @@ requirements:
           given: save
           save: electives
           what: courses
-          do: count >= 6
+          action: {count: '>= 6'}
         - type: given
           given: save
           save: level3-courses
           what: courses
-          do: count >= 2
+          action: {count: '>= 2'}
         - type: given
           given: save
           save: level3-courses
           what: courses
           where: {attribute: 'engl_focus_literature | engl_focus_film'}
-          do: count >= 1
+          action: {count: '>= 1'}
   - name: 1800s
     result:
       type: both
@@ -345,10 +345,10 @@ requirements:
           given: courses
           where: {attribute: engl_period_pre1800}
           what: courses
-          do: count >= 1
+          action: {count: '>= 1'}
 
         - type: given
           given: courses
           where: {attribute: engl_period_post1800}
           what: courses
-          do: count >= 1
+          action: {count: '>= 1'}

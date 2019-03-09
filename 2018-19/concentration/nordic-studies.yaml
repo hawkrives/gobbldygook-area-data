@@ -58,4 +58,4 @@ requirements:
         # this addresses the "1-2 and 2-3" part of the major
         - {at_most: 2, where: {subject: 'NORW'}}
       what: courses
-      do: count >= 5
+      action: {count: '>= 5'}

@@ -75,7 +75,7 @@ requirements:
       given: courses
       where: { attribute: ancient_history }
       what: courses
-      do: count >= 1
+      action: {count: '>= 1'}
 
   - name: Classics
     result:
@@ -83,7 +83,7 @@ requirements:
       given: courses
       where: { attribute: ancient_classics }
       what: courses
-      do: count >= 1
+      action: {count: '>= 1'}
 
   - name: Electives
     message:
@@ -97,7 +97,7 @@ requirements:
       given: courses
       where: { attribute: ancient_elective }
       what: courses
-      do: count >= 4
+      action: {count: '>= 4'}
 
   - name: Independent Research
     result:
@@ -105,4 +105,4 @@ requirements:
       given: courses
       where: { attribute: ancient_ir }
       what: courses
-      do: count >= 1
+      action: {count: '>= 1'}

@@ -29,7 +29,7 @@ result:
         - Level III
         - Additional Courses
       what: courses
-      do: count >= 9
+      action: {count: '>= 9'}
 
 limiters:
   - where: {level: '100'}
@@ -91,7 +91,7 @@ requirements:
       given: courses
       where: {attribute: psci_topic_american}
       what: courses
-      do: count >= 1
+      action: {count: '>= 1'}
 
   - name: Comparative Politics
     result:
@@ -99,7 +99,7 @@ requirements:
       given: courses
       where: {attribute: psci_topic_comparative}
       what: courses
-      do: count >= 1
+      action: {count: '>= 1'}
 
   - name: International Relations
     result:
@@ -107,7 +107,7 @@ requirements:
       given: courses
       where: {attribute: psci_topic_international}
       what: courses
-      do: count >= 1
+      action: {count: '>= 1'}
 
   - name: Political Theory
     result:
@@ -115,7 +115,7 @@ requirements:
       given: courses
       where: {attribute: psci_topic_theory}
       what: courses
-      do: count >= 1
+      action: {count: '>= 1'}
 
   - name: Level III
     result:
@@ -123,7 +123,7 @@ requirements:
       given: courses
       where: {attribute: psci_level_3}
       what: courses
-      do: count >= 2
+      action: {count: '>= 2'}
 
   - name: Additional Courses
     result:
@@ -140,7 +140,7 @@ requirements:
           given: courses
           where: {subject: STAT}
           what: courses
-          do: count >= 1
+          action: {count: '>= 1'}
 
       - name: World Langauge
         result:
@@ -158,7 +158,7 @@ requirements:
                 subject: 'FREN | GERM | SPAN'
                 number: '>= 232'
               what: courses
-              do: count >= 1
+              action: {count: '>= 1'}
 
           - name: Chinese, Greek, Latin, Japanese, Norwegian, Russian
             result:
@@ -168,4 +168,4 @@ requirements:
                 subject: 'CHIN | GREEK | LATIN | JAPAN | NORW | RUSSN'
                 number: '>= 231'
               what: courses
-              do: count >= 1
+              action: {count: '>= 1'}

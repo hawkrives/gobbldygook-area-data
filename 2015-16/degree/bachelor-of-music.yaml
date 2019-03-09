@@ -29,7 +29,7 @@ requirements:
           type: given
           given: courses
           what: credits
-          do: sum >= 35
+          action: {sum: '>= 35'}
 
       - name: Residency
         result:
@@ -37,7 +37,7 @@ requirements:
           given: courses
           where: { institution: St. Olaf College }
           what: credits
-          do: sum >= 17
+          action: {sum: '>= 17'}
 
       - name: Interim
         save:
@@ -48,15 +48,15 @@ requirements:
         result:
           type: both
           both:
-            - { type: given, given: save, save: Interim Courses, what: credits, do: sum >= 3 }
-            - { type: given, given: save, save: Interim Courses, what: courses, do: count >= 3 }
+            - { type: given, given: save, save: Interim Courses, what: credits, action: {sum: '>= 3'} }
+            - { type: given, given: save, save: Interim Courses, what: courses, action: {count: '>= 3'} }
 
       - name: Grade Point Average
         result:
           type: given
           given: courses
           what: grades
-          do: average >= 2.0
+          action: {average: '>= 2.0'}
 
       - name: Course Level
         result:
@@ -64,7 +64,7 @@ requirements:
           given: courses
           where: { level: ">= 200" }
           what: credits
-          do: sum >= 18
+          action: {sum: '>= 18'}
 
       - name: Graded Courses
         result:
@@ -72,7 +72,7 @@ requirements:
           given: courses
           where: { graded: graded }
           what: credits
-          do: sum >= 24
+          action: {sum: '>= 24'}
 
       - name: Major
         result:
@@ -80,7 +80,7 @@ requirements:
           given: areas
           where: { type: major }
           what: areas
-          do: count >= 1
+          action: {count: '>= 1'}
 
   - name: General Education
     result:
@@ -111,7 +111,7 @@ requirements:
               given: courses
               where: { gereqs: FYW }
               what: courses
-              do: count >= 1
+              action: {count: '>= 1'}
 
           - name: Writing in Context
             result:
@@ -119,7 +119,7 @@ requirements:
               given: courses
               where: { gereqs: WRI }
               what: courses
-              do: count >= 4
+              action: {count: '>= 4'}
 
           - name: Foreign Language
             result:
@@ -142,7 +142,7 @@ requirements:
               given: courses
               where: { gereqs: ORC }
               what: courses
-              do: count >= 1
+              action: {count: '>= 1'}
 
           - name: Reasoning
             result:
@@ -150,7 +150,7 @@ requirements:
               given: courses
               where: { gereqs: AQR | SED | IST }
               what: courses
-              do: count >= 1
+              action: {count: '>= 1'}
 
           - name: Studies in Physical Movement
             result:
@@ -158,7 +158,7 @@ requirements:
               given: courses
               where: { gereqs: SPM }
               what: distinct-courses
-              do: count >= 2
+              action: {count: '>= 2'}
 
       - name: Core
         result:
@@ -177,7 +177,7 @@ requirements:
               given: courses
               where: { gereqs: HWC | ALS-L }
               what: courses
-              do: count >= 1
+              action: {count: '>= 1'}
 
           - name: Multicultural Studies
             result:
@@ -185,7 +185,7 @@ requirements:
               given: courses
               where: { gereqs: MCD | MCG }
               what: courses
-              do: count >= 1
+              action: {count: '>= 1'}
 
           - name: Biblical and Theological Studies
             save:
@@ -202,21 +202,21 @@ requirements:
                   given: save
                   save: Courses with a BTS-B or BTS-T
                   what: courses
-                  do: count >= 2
+                  action: {count: '>= 2'}
 
                 - type: given
                   given: save
                   save: Courses with a BTS-B or BTS-T
                   where: { gereqs: "BTS-B" }
                   what: courses
-                  do: count >= 1
+                  action: {count: '>= 1'}
 
                 - type: given
                   given: save
                   save: Courses with a BTS-B or BTS-T
                   where: { gereqs: "BTS-T" }
                   what: courses
-                  do: count >= 1
+                  action: {count: '>= 1'}
 
           - name: Studies in Human Behavior and Society
             result:
@@ -224,7 +224,7 @@ requirements:
               given: courses
               where: { gereqs: HBS }
               what: courses
-              do: count >= 1
+              action: {count: '>= 1'}
 
       - name: Integrative
         result:
@@ -240,4 +240,4 @@ requirements:
               given: courses
               where: { gereqs: EIN }
               what: courses
-              do: count >= 1
+              action: {count: '>= 1'}

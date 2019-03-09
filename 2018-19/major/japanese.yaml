@@ -90,14 +90,14 @@ requirements:
           given: save
           save: Allowed Courses
           what: courses
-          do: count >= 4
+          action: {count: '>= 4'}
 
         - type: given
           given: save
           save: Allowed Courses
           what: courses
           where: {level: '300'}
-          do: count >= 1
+          action: {count: '>= 1'}
 
     requirements:
       - name: Japan-focused
@@ -106,7 +106,7 @@ requirements:
           given: courses
           where: {attribute: japan_focused_on_japan}
           what: courses
-          do: count >= 1
+          action: {count: '>= 1'}
 
       - name: Comparative
         result:
@@ -117,4 +117,4 @@ requirements:
             - {at_most: 2, where: {attribute: 'japan_asiancon'}}
             - {at_most: 1, where: {attribute: 'japan_independent_study | japan_seminar'}}
           what: courses
-          do: count >= 1
+          action: {count: '>= 1'}

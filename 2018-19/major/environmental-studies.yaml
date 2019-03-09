@@ -49,7 +49,7 @@ requirements:
                 - Intermediate Ecology
                 - Environmental Science
               what: courses
-              do: count >= 9
+              action: {count: '>= 9'}
 
         requirements:
           - name: Social Sciences for Natural Science
@@ -128,7 +128,7 @@ requirements:
                 - where: { level: "! 300" }
                   at_most: 2
               what: courses
-              do: count >= 3
+              action: {count: '>= 3'}
 
       - name: Social Science
         result:
@@ -152,7 +152,7 @@ requirements:
                 - Environmental Political Policy and Institutions
                 - Social Science Electives
               what: courses
-              do: count >= 9
+              action: {count: '>= 9'}
 
         requirements:
           - name: Natural Science for Social Sciences
@@ -279,7 +279,7 @@ requirements:
                 - Environmental Political Policy and Institutions
                 - Social Science Electives
               what: courses
-              do: count >= 9
+              action: {count: '>= 9'}
 
         requirements:
           - name: Natural Science for Arts and the Humanities
@@ -344,4 +344,4 @@ requirements:
               limit:
                 - { at_most: 5, where: { level: "200" } }
               what: courses
-              do: count >= 6
+              action: {count: '>= 6'}

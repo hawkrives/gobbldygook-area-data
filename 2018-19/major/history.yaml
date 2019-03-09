@@ -26,7 +26,7 @@ result:
         - U.S.
         - Pre-Modern Period
       what: courses
-      do: count >= 9
+      action: {count: '>= 9'}
 
 
 limiters:
@@ -148,7 +148,7 @@ requirements:
       given: courses
       where: {attribute: history_region_europe}
       what: courses
-      do: count >= 1
+      action: {count: '>= 1'}
 
   - name: U.S.
     result:
@@ -156,7 +156,7 @@ requirements:
       given: courses
       where: {attribute: history_region_us}
       what: courses
-      do: count >= 1
+      action: {count: '>= 1'}
 
   - name: Non-Western World
     result:
@@ -164,7 +164,7 @@ requirements:
       given: courses
       where: {attribute: history_region_nonwesternworld}
       what: courses
-      do: count >= 1
+      action: {count: '>= 1'}
 
   - name: Pre-Modern Period
     result:
@@ -172,7 +172,7 @@ requirements:
       given: courses
       where: {attribute: history_era_premodern}
       what: courses
-      do: count >= 2
+      action: {count: '>= 2'}
 
   - name: Major Seminar
     result:
@@ -180,7 +180,7 @@ requirements:
       given: courses
       where: {attribute: history_l2_seminar}
       what: courses
-      do: count >= 1
+      action: {count: '>= 1'}
 
   - name: Level III
     result:
@@ -188,4 +188,4 @@ requirements:
       given: courses
       where: {attribute: history_level_3}
       what: courses
-      do: count >= 3
+      action: {count: '>= 3'}

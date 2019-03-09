@@ -21,13 +21,13 @@ requirements:
           given: courses
           where: { gereqs: BTS-B }
           what: courses
-          do: count >= 1
+          action: {count: '>= 1'}
 
         - type: given
           given: courses
           where: { gereqs: BTS-T }
           what: courses
-          do: count >= 1
+          action: {count: '>= 1'}
 
   - name: What is Religion?
     result:
@@ -54,19 +54,19 @@ requirements:
     #       given: these-courses
     #       courses: []
     #       what: courses
-    #       do: count >= 1
+    #       action: {count: '>= 1'}
     #   Religion in History and Culture:
     #     result:
     #       given: these-courses
     #       courses: []
     #       what: courses
-    #       do: count >= 1
+    #       action: {count: '>= 1'}
     #   Religious Thought:
     #     result:
     #       given: these-courses
     #       courses: []
     #       what: courses
-    #       do: count >= 1
+    #       action: {count: '>= 1'}
 
   - name: Intensive Studies
     result:
@@ -94,4 +94,4 @@ requirements:
             - REL 399
           repeats: all
           what: courses
-          do: count >= 1
+          action: {count: '>= 1'}

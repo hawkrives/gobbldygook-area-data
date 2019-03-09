@@ -811,4 +811,4 @@ requirements:
         - {at_most: 4, where: {institution: '! St. Olaf College'}}
         # and "No language courses may count toward this concentration" is taken care of by not listing them
       what: courses
-      do: count >= 6
+      action: {count: '>= 6'}

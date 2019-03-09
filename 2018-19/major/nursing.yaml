@@ -36,7 +36,7 @@ requirements:
       given: courses
       where: {gereqs: EIN}
       what: courses
-      do: count >= 1
+      action: {count: '>= 1'}
 
   - name: Requirements
     result:

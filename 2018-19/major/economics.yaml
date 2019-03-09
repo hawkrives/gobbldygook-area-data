@@ -71,7 +71,7 @@ requirements:
             - Level II
             - Level III
           what: courses
-          do: count >= 4
+          action: {count: '>= 4'}
 
     requirements:
       - name: Level II
@@ -80,7 +80,7 @@ requirements:
           given: courses
           where: {attribute: econ_level_2}
           what: courses
-          do: count >= 1
+          action: {count: '>= 1'}
 
       - name: Level III
         result:
@@ -88,7 +88,7 @@ requirements:
           given: courses
           where: {attribute: econ_level_3}
           what: courses
-          do: count >= 2
+          action: {count: '>= 2'}
 
 
 emphases:

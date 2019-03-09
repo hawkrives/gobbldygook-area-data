@@ -59,4 +59,4 @@ requirements:
       given: courses
       where: {attribute: physics_elective}
       what: courses
-      do: count >= 1
+      action: {count: '>= 1'}

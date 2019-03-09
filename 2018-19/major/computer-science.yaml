@@ -70,7 +70,7 @@ requirements:
       given: courses
       where: {attribute: csci_elective}
       what: courses
-      do: count >= 2
+      action: {count: '>= 2'}
 
   - name: Capstone
     result:

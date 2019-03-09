@@ -89,7 +89,7 @@ requirements:
       given: courses
       where: {attribute: art_studio_art}
       what: courses
-      do: count >= 1
+      action: {count: '>= 1'}
 
   - name: Distribution
     message:
@@ -117,7 +117,7 @@ requirements:
             - Art created before 1700 CE
             - Art created after 1700 CE
           what: courses
-          do: count >= 6
+          action: {count: '>= 6'}
 
     requirements:
       - name: Asian, African, Indigenous American, or Near Eastern/Islamic Art
@@ -126,7 +126,7 @@ requirements:
           given: courses
           where: {attribute: art_locale_asian | art_locale_african | art_locale_indigenous_american | art_locale_near_eastern}
           what: courses
-          do: count >= 2
+          action: {count: '>= 2'}
 
       - name: European and American Art
         result:
@@ -134,7 +134,7 @@ requirements:
           given: courses
           where: {attribute: art_locale_european | art_locale_american}
           what: courses
-          do: count >= 2
+          action: {count: '>= 2'}
 
       - name: Art created before 1700 CE
         result:
@@ -142,7 +142,7 @@ requirements:
           given: courses
           where: {attribute: art_period_pre1700}
           what: courses
-          do: count >= 1
+          action: {count: '>= 1'}
 
       - name: Art created after 1700 CE
         result:
@@ -150,7 +150,7 @@ requirements:
           given: courses
           where: {attribute: art_period_post1700}
           what: courses
-          do: count >= 1
+          action: {count: '>= 1'}
 
   - name: Lasting Legacy
     department_audited: true

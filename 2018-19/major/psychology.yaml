@@ -92,7 +92,7 @@ requirements:
         # Only one PSYCH 396 or PSYCH 398 may fulfill the level III requirement
         - {at_most: 1, where: {course: 'PSYCH 396 | PSYCH 398'}}
       what: courses
-      do: count >= 2
+      action: {count: '>= 2'}
 
   - name: General Education
     result:
@@ -110,4 +110,4 @@ requirements:
       given: courses
       where: { attribute: psych_elective }
       what: courses
-      do: count >= 2
+      action: {count: '>= 2'}

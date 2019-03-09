@@ -72,7 +72,7 @@ requirements:
       given: courses
       where: {attribute: math_transitions}
       what: courses
-      do: count >= 2
+      action: {count: '>= 2'}
 
   - name: Perspectives
     message: One course from each of three of the four perspectives.
@@ -92,7 +92,7 @@ requirements:
           given: courses
           where: {attribute: math_perspective_a}
           what: courses
-          do: count >= 1
+          action: {count: '>= 1'}
 
       - name: Continuous/Analytic (C)
         result:
@@ -100,7 +100,7 @@ requirements:
           given: courses
           where: {attribute: math_perspective_c}
           what: courses
-          do: count >= 1
+          action: {count: '>= 1'}
 
       - name: Discrete/Combinatorial (D)
         result:
@@ -108,7 +108,7 @@ requirements:
           given: courses
           where: {attribute: math_perspective_d}
           what: courses
-          do: count >= 1
+          action: {count: '>= 1'}
 
       - name: Modeling/Computation (M)
         result:
@@ -116,7 +116,7 @@ requirements:
           given: courses
           where: {attribute: math_perspective_m}
           what: courses
-          do: count >= 1
+          action: {count: '>= 1'}
 
   - name: Interdisciplinary
     result:
@@ -138,7 +138,7 @@ requirements:
               given: areas
               where: {type: major, name: Chemistry}
               what: areas
-              do: count = 1
+              action: {count: '= 1'}
       - name: Economics
         result:
           type: both
@@ -149,7 +149,7 @@ requirements:
               given: areas
               where: {type: major, name: Economics}
               what: areas
-              do: count = 1
+              action: {count: '= 1'}
       - name: Physics
         result:
           type: both
@@ -160,7 +160,7 @@ requirements:
               given: areas
               where: {type: major, name: Physics}
               what: areas
-              do: count = 1
+              action: {count: '= 1'}
 
   - name: Level III
     result:
@@ -170,7 +170,7 @@ requirements:
       limit:
         - {at_most: 1, where: {subject: '! MATH'}}
       what: courses
-      do: count >= 2
+      action: {count: '>= 2'}
 
   - name: Sequence
     result:

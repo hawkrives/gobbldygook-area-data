@@ -96,14 +96,14 @@ requirements:
           given: save
           save: Allowed Courses
           what: courses
-          do: count >= 4
+          action: {count: '>= 4'}
 
         - type: given
           given: save
           save: Allowed Courses
           what: courses
           where: {level: '300'}
-          do: count >= 1
+          action: {count: '>= 1'}
 
     requirements:
       - name: China-focused
@@ -112,7 +112,7 @@ requirements:
           given: courses
           where: {attribute: china_focused_on_china}
           what: courses
-          do: count >= 1
+          action: {count: '>= 1'}
 
       - name: Comparative
         result:
@@ -123,4 +123,4 @@ requirements:
             - {at_most: 2, where: {attribute: 'china_asiancon'}}
             - {at_most: 1, where: {attribute: 'china_independent_study | china_seminar'}}
           what: courses
-          do: count >= 1
+          action: {count: '>= 1'}

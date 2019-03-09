@@ -69,4 +69,4 @@ requirements:
       limit:
         - {at_most: 1, where: {graded: su}}
       what: courses
-      do: count >= 4
+      action: {count: '>= 4'}

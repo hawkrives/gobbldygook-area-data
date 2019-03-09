@@ -27,7 +27,7 @@ requirements:
       limit:
         - {at_most: 0, where: {graded: su}}
       what: courses
-      do: count >= 3
+      action: {count: '>= 3'}
 
   - name: Electives
     result:
@@ -45,4 +45,4 @@ requirements:
       ]
       repeats: first
       what: courses
-      do: count >= 3
+      action: {count: '>= 3'}

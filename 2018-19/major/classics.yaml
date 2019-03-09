@@ -59,24 +59,24 @@ requirements:
               given: save
               save: Latin Courses
               what: courses
-              do: count >= 6
+              action: {count: '>= 6'}
             - type: given
               given: save
               save: Greek Courses
               what: courses
-              do: count >= 3
+              action: {count: '>= 3'}
         - type: both
           both:
             - type: given
               given: save
               save: Greek Courses
               what: courses
-              do: count >= 6
+              action: {count: '>= 6'}
             - type: given
               given: save
               save: Latin Courses
               what: courses
-              do: count >= 3
+              action: {count: '>= 3'}
 
   - name: Classics
     result:
@@ -101,4 +101,4 @@ requirements:
       given: courses
       where: {attribute: classics_ancient_history}
       what: courses
-      do: count >= 1
+      action: {count: '>= 1'}

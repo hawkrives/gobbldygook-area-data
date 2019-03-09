@@ -28,7 +28,7 @@ requirements:
       limit:
         - {at_most: 0, where: {graded: su}}
       what: courses
-      do: count >= 2
+      action: {count: '>= 2'}
 
   - name: Electives
     result:
@@ -45,7 +45,7 @@ requirements:
       ]
       repeats: first
       what: courses
-      do: count >= 2
+      action: {count: '>= 2'}
 
   - name: Complementary Courses
     contract: true

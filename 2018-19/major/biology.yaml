@@ -4,6 +4,7 @@ degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
+  type: both
   both:
     - type: count-of
       count: all
@@ -22,7 +23,8 @@ result:
         - Electives
         - Chemistry
       where: {grade: '>= C', level: '>= 200'}
-      do: count >= 4
+      what: courses
+      action: {count: '>= 4'}
 
 limiters:
   - {at_most: 2, where: {level: '100'}}
@@ -159,7 +161,7 @@ requirements:
       given: courses
       where: {attribute: bio_elective}
       what: courses
-      do: count >= 2
+      action: {count: '>= 2'}
 
   - name: Chemistry
     result:

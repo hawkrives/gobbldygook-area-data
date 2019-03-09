@@ -7,8 +7,8 @@ result:
   type: count-of
   count: all
   of:
-    - {type: requirement, name: Speaking and Writing}
-    - {type: requirement, name: The Francophone World}
+    - {type: requirement, name: Level 250}
+    - {type: requirement, name: Level 270}
     - {type: requirement, name: Level III}
     - {type: requirement, name: Electives}
 
@@ -22,7 +22,7 @@ requirements:
       what: courses
       limit:
         - { at_most: 1, where: { institution: "! St. Olaf College" } }
-      do: count >= 2
+      action: {count: '>= 2'}
 
   - name: Level 270
     result:
@@ -33,7 +33,7 @@ requirements:
       what: courses
       limit:
         - { at_most: 1, where: { institution: "! St. Olaf College" } }
-      do: count >= 2
+      action: {count: '>= 2'}
 
   - name: Level III
     message: This course will preferably be taken in the student's senior year.
@@ -50,7 +50,7 @@ requirements:
         - Interim In German
         - In Translation
       what: courses
-      do: count >= 3
+      action: {count: '>= 3'}
 
     requirements:
       - name: Language
@@ -94,4 +94,4 @@ requirements:
             # because all of these-courses are in english, we can just limit it
             # to at_most:1 here to accomplish this goal
             - { at_most: 1, where: { institution: "St. Olaf College" } }
-          do: count = 1
+          action: {count: '= 1'}

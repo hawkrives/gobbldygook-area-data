@@ -86,7 +86,7 @@ requirements:
       given: courses
       where: {attribute: asian_language_chinese | asian_language_japanese}
       what: courses
-      do: count >= 1
+      action: {count: '>= 1'}
 
   - name: Seminar
     result:
@@ -94,7 +94,7 @@ requirements:
       given: courses
       where: {attribute: asian_seminar}
       what: courses
-      do: count >= 1
+      action: {count: '>= 1'}
 
   - name: Electives
     result:
@@ -113,4 +113,4 @@ requirements:
         # and "No level I or level II language courses may count." is taken care of by not listing them
       repeats: first
       what: courses
-      do: count >= 6
+      action: {count: '>= 6'}

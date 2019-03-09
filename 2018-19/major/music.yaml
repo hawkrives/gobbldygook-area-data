@@ -43,7 +43,7 @@ requirements:
         - where: {level: '200'}
           at_most: 3
       what: courses
-      do: count >= 4
+      action: {count: '>= 4'}
 
   - name: Performance Studies
     message:
@@ -85,12 +85,12 @@ requirements:
           given: these-requirements
           requirements: [Lessons, Other Lessons]
           what: terms
-          do: count >= 6
+          action: {count: '>= 6'}
         requirements:
           - name: Lessons
-            result: {type: given, given: these-courses, courses: [MUSPF 102], repeats: all, what: terms, do: count >= 4}
+            result: {type: given, given: these-courses, courses: [MUSPF 102], repeats: all, what: terms, action: {count: '>= 4'}}
           - name: Other Lessons
-            result: {type: given, given: courses, where: {subject: MUSPF, number: '! 102'}, what: terms, do: count >= 2}
+            result: {type: given, given: courses, where: {subject: MUSPF, number: '! 102'}, what: terms, action: {count: '>= 2'}}
 
       - name: Clarinet
         result:
@@ -98,12 +98,12 @@ requirements:
           given: these-requirements
           requirements: [Lessons, Other Lessons]
           what: terms
-          do: count >= 6
+          action: {count: '>= 6'}
         requirements:
           - name: Lessons
-            result: {type: given, given: these-courses, courses: [MUSPF 104], repeats: all, what: terms, do: count >= 4}
+            result: {type: given, given: these-courses, courses: [MUSPF 104], repeats: all, what: terms, action: {count: '>= 4'}}
           - name: Other Lessons
-            result: {type: given, given: courses, where: {subject: MUSPF, number: '! 104'}, what: terms, do: count >= 2}
+            result: {type: given, given: courses, where: {subject: MUSPF, number: '! 104'}, what: terms, action: {count: '>= 2'}}
 
       - name: Coll Keyboard Perfor
         result:
@@ -111,12 +111,12 @@ requirements:
           given: these-requirements
           requirements: [Lessons, Other Lessons]
           what: terms
-          do: count >= 6
+          action: {count: '>= 6'}
         requirements:
           - name: Lessons
-            result: {type: given, given: these-courses, courses: [MUSPF 106], repeats: all, what: terms, do: count >= 4}
+            result: {type: given, given: these-courses, courses: [MUSPF 106], repeats: all, what: terms, action: {count: '>= 4'}}
           - name: Other Lessons
-            result: {type: given, given: courses, where: {subject: MUSPF, number: '! 106'}, what: terms, do: count >= 2}
+            result: {type: given, given: courses, where: {subject: MUSPF, number: '! 106'}, what: terms, action: {count: '>= 2'}}
 
       - name: Drumset
         result:
@@ -124,12 +124,12 @@ requirements:
           given: these-requirements
           requirements: [Lessons, Other Lessons]
           what: terms
-          do: count >= 6
+          action: {count: '>= 6'}
         requirements:
           - name: Lessons
-            result: {type: given, given: these-courses, courses: [MUSPF 109], repeats: all, what: terms, do: count >= 4}
+            result: {type: given, given: these-courses, courses: [MUSPF 109], repeats: all, what: terms, action: {count: '>= 4'}}
           - name: Other Lessons
-            result: {type: given, given: courses, where: {subject: MUSPF, number: '! 109'}, what: terms, do: count >= 2}
+            result: {type: given, given: courses, where: {subject: MUSPF, number: '! 109'}, what: terms, action: {count: '>= 2'}}
 
       - name: Euphonium
         result:
@@ -137,12 +137,12 @@ requirements:
           given: these-requirements
           requirements: [Lessons, Other Lessons]
           what: terms
-          do: count >= 6
+          action: {count: '>= 6'}
         requirements:
           - name: Lessons
-            result: {type: given, given: these-courses, courses: [MUSPF 112], repeats: all, what: terms, do: count >= 4}
+            result: {type: given, given: these-courses, courses: [MUSPF 112], repeats: all, what: terms, action: {count: '>= 4'}}
           - name: Other Lessons
-            result: {type: given, given: courses, where: {subject: MUSPF, number: '! 112'}, what: terms, do: count >= 2}
+            result: {type: given, given: courses, where: {subject: MUSPF, number: '! 112'}, what: terms, action: {count: '>= 2'}}
 
       - name: Flute
         result:
@@ -150,12 +150,12 @@ requirements:
           given: these-requirements
           requirements: [Lessons, Other Lessons]
           what: terms
-          do: count >= 6
+          action: {count: '>= 6'}
         requirements:
           - name: Lessons
-            result: {type: given, given: these-courses, courses: [MUSPF 114], repeats: all, what: terms, do: count >= 4}
+            result: {type: given, given: these-courses, courses: [MUSPF 114], repeats: all, what: terms, action: {count: '>= 4'}}
           - name: Other Lessons
-            result: {type: given, given: courses, where: {subject: MUSPF, number: '! 114'}, what: terms, do: count >= 2}
+            result: {type: given, given: courses, where: {subject: MUSPF, number: '! 114'}, what: terms, action: {count: '>= 2'}}
 
       - name: French Horn
         result:
@@ -163,12 +163,12 @@ requirements:
           given: these-requirements
           requirements: [Lessons, Other Lessons]
           what: terms
-          do: count >= 6
+          action: {count: '>= 6'}
         requirements:
           - name: Lessons
-            result: {type: given, given: these-courses, courses: [MUSPF 116], repeats: all, what: terms, do: count >= 4}
+            result: {type: given, given: these-courses, courses: [MUSPF 116], repeats: all, what: terms, action: {count: '>= 4'}}
           - name: Other Lessons
-            result: {type: given, given: courses, where: {subject: MUSPF, number: '! 116'}, what: terms, do: count >= 2}
+            result: {type: given, given: courses, where: {subject: MUSPF, number: '! 116'}, what: terms, action: {count: '>= 2'}}
 
       - name: Hardanger Fiddle
         result:
@@ -176,12 +176,12 @@ requirements:
           given: these-requirements
           requirements: [Lessons, Other Lessons]
           what: terms
-          do: count >= 6
+          action: {count: '>= 6'}
         requirements:
           - name: Lessons
-            result: {type: given, given: these-courses, courses: [MUSPF 118], repeats: all, what: terms, do: count >= 4}
+            result: {type: given, given: these-courses, courses: [MUSPF 118], repeats: all, what: terms, action: {count: '>= 4'}}
           - name: Other Lessons
-            result: {type: given, given: courses, where: {subject: MUSPF, number: '! 118'}, what: terms, do: count >= 2}
+            result: {type: given, given: courses, where: {subject: MUSPF, number: '! 118'}, what: terms, action: {count: '>= 2'}}
 
       - name: Harp
         result:
@@ -189,12 +189,12 @@ requirements:
           given: these-requirements
           requirements: [Lessons, Other Lessons]
           what: terms
-          do: count >= 6
+          action: {count: '>= 6'}
         requirements:
           - name: Lessons
-            result: {type: given, given: these-courses, courses: [MUSPF 120], repeats: all, what: terms, do: count >= 4}
+            result: {type: given, given: these-courses, courses: [MUSPF 120], repeats: all, what: terms, action: {count: '>= 4'}}
           - name: Other Lessons
-            result: {type: given, given: courses, where: {subject: MUSPF, number: '! 120'}, what: terms, do: count >= 2}
+            result: {type: given, given: courses, where: {subject: MUSPF, number: '! 120'}, what: terms, action: {count: '>= 2'}}
 
       - name: Harpsichord
         result:
@@ -202,12 +202,12 @@ requirements:
           given: these-requirements
           requirements: [Lessons, Other Lessons]
           what: terms
-          do: count >= 6
+          action: {count: '>= 6'}
         requirements:
           - name: Lessons
-            result: {type: given, given: these-courses, courses: [MUSPF 122], repeats: all, what: terms, do: count >= 4}
+            result: {type: given, given: these-courses, courses: [MUSPF 122], repeats: all, what: terms, action: {count: '>= 4'}}
           - name: Other Lessons
-            result: {type: given, given: courses, where: {subject: MUSPF, number: '! 122'}, what: terms, do: count >= 2}
+            result: {type: given, given: courses, where: {subject: MUSPF, number: '! 122'}, what: terms, action: {count: '>= 2'}}
 
       - name: Jazz Piano
         result:
@@ -215,12 +215,12 @@ requirements:
           given: these-requirements
           requirements: [Lessons, Other Lessons]
           what: terms
-          do: count >= 6
+          action: {count: '>= 6'}
         requirements:
           - name: Lessons
-            result: {type: given, given: these-courses, courses: [MUSPF 124], repeats: all, what: terms, do: count >= 4}
+            result: {type: given, given: these-courses, courses: [MUSPF 124], repeats: all, what: terms, action: {count: '>= 4'}}
           - name: Other Lessons
-            result: {type: given, given: courses, where: {subject: MUSPF, number: '! 124'}, what: terms, do: count >= 2}
+            result: {type: given, given: courses, where: {subject: MUSPF, number: '! 124'}, what: terms, action: {count: '>= 2'}}
 
       - name: Oboe
         result:
@@ -228,12 +228,12 @@ requirements:
           given: these-requirements
           requirements: [Lessons, Other Lessons]
           what: terms
-          do: count >= 6
+          action: {count: '>= 6'}
         requirements:
           - name: Lessons
-            result: {type: given, given: these-courses, courses: [MUSPF 126], repeats: all, what: terms, do: count >= 4}
+            result: {type: given, given: these-courses, courses: [MUSPF 126], repeats: all, what: terms, action: {count: '>= 4'}}
           - name: Other Lessons
-            result: {type: given, given: courses, where: {subject: MUSPF, number: '! 126'}, what: terms, do: count >= 2}
+            result: {type: given, given: courses, where: {subject: MUSPF, number: '! 126'}, what: terms, action: {count: '>= 2'}}
 
       - name: Organ
         result:
@@ -241,12 +241,12 @@ requirements:
           given: these-requirements
           requirements: [Lessons, Other Lessons]
           what: terms
-          do: count >= 6
+          action: {count: '>= 6'}
         requirements:
           - name: Lessons
-            result: {type: given, given: these-courses, courses: [MUSPF 128], repeats: all, what: terms, do: count >= 4}
+            result: {type: given, given: these-courses, courses: [MUSPF 128], repeats: all, what: terms, action: {count: '>= 4'}}
           - name: Other Lessons
-            result: {type: given, given: courses, where: {subject: MUSPF, number: '! 128'}, what: terms, do: count >= 2}
+            result: {type: given, given: courses, where: {subject: MUSPF, number: '! 128'}, what: terms, action: {count: '>= 2'}}
 
       - name: Percussion
         result:
@@ -254,12 +254,12 @@ requirements:
           given: these-requirements
           requirements: [Lessons, Other Lessons]
           what: terms
-          do: count >= 6
+          action: {count: '>= 6'}
         requirements:
           - name: Lessons
-            result: {type: given, given: these-courses, courses: [MUSPF 132], repeats: all, what: terms, do: count >= 4}
+            result: {type: given, given: these-courses, courses: [MUSPF 132], repeats: all, what: terms, action: {count: '>= 4'}}
           - name: Other Lessons
-            result: {type: given, given: courses, where: {subject: MUSPF, number: '! 132'}, what: terms, do: count >= 2}
+            result: {type: given, given: courses, where: {subject: MUSPF, number: '! 132'}, what: terms, action: {count: '>= 2'}}
 
       - name: Piano
         result:
@@ -267,12 +267,12 @@ requirements:
           given: these-requirements
           requirements: [Lessons, Other Lessons]
           what: terms
-          do: count >= 6
+          action: {count: '>= 6'}
         requirements:
           - name: Lessons
-            result: {type: given, given: these-courses, courses: [MUSPF 134], repeats: all, what: terms, do: count >= 4}
+            result: {type: given, given: these-courses, courses: [MUSPF 134], repeats: all, what: terms, action: {count: '>= 4'}}
           - name: Other Lessons
-            result: {type: given, given: courses, where: {subject: MUSPF, number: '! 134'}, what: terms, do: count >= 2}
+            result: {type: given, given: courses, where: {subject: MUSPF, number: '! 134'}, what: terms, action: {count: '>= 2'}}
 
       - name: Jazz Saxophone
         result:
@@ -280,12 +280,12 @@ requirements:
           given: these-requirements
           requirements: [Lessons, Other Lessons]
           what: terms
-          do: count >= 6
+          action: {count: '>= 6'}
         requirements:
           - name: Lessons
-            result: {type: given, given: these-courses, courses: [MUSPF 135], repeats: all, what: terms, do: count >= 4}
+            result: {type: given, given: these-courses, courses: [MUSPF 135], repeats: all, what: terms, action: {count: '>= 4'}}
           - name: Other Lessons
-            result: {type: given, given: courses, where: {subject: MUSPF, number: '! 135'}, what: terms, do: count >= 2}
+            result: {type: given, given: courses, where: {subject: MUSPF, number: '! 135'}, what: terms, action: {count: '>= 2'}}
 
       - name: Saxophone
         result:
@@ -293,12 +293,12 @@ requirements:
           given: these-requirements
           requirements: [Lessons, Other Lessons]
           what: terms
-          do: count >= 6
+          action: {count: '>= 6'}
         requirements:
           - name: Lessons
-            result: {type: given, given: these-courses, courses: [MUSPF 136], repeats: all, what: terms, do: count >= 4}
+            result: {type: given, given: these-courses, courses: [MUSPF 136], repeats: all, what: terms, action: {count: '>= 4'}}
           - name: Other Lessons
-            result: {type: given, given: courses, where: {subject: MUSPF, number: '! 136'}, what: terms, do: count >= 2}
+            result: {type: given, given: courses, where: {subject: MUSPF, number: '! 136'}, what: terms, action: {count: '>= 2'}}
 
       - name: String Bass
         result:
@@ -306,12 +306,12 @@ requirements:
           given: these-requirements
           requirements: [Lessons, Other Lessons]
           what: terms
-          do: count >= 6
+          action: {count: '>= 6'}
         requirements:
           - name: Lessons
-            result: {type: given, given: these-courses, courses: [MUSPF 138], repeats: all, what: terms, do: count >= 4}
+            result: {type: given, given: these-courses, courses: [MUSPF 138], repeats: all, what: terms, action: {count: '>= 4'}}
           - name: Other Lessons
-            result: {type: given, given: courses, where: {subject: MUSPF, number: '! 138'}, what: terms, do: count >= 2}
+            result: {type: given, given: courses, where: {subject: MUSPF, number: '! 138'}, what: terms, action: {count: '>= 2'}}
 
       - name: Trombone
         result:
@@ -319,12 +319,12 @@ requirements:
           given: these-requirements
           requirements: [Lessons, Other Lessons]
           what: terms
-          do: count >= 6
+          action: {count: '>= 6'}
         requirements:
           - name: Lessons
-            result: {type: given, given: these-courses, courses: [MUSPF 140], repeats: all, what: terms, do: count >= 4}
+            result: {type: given, given: these-courses, courses: [MUSPF 140], repeats: all, what: terms, action: {count: '>= 4'}}
           - name: Other Lessons
-            result: {type: given, given: courses, where: {subject: MUSPF, number: '! 140'}, what: terms, do: count >= 2}
+            result: {type: given, given: courses, where: {subject: MUSPF, number: '! 140'}, what: terms, action: {count: '>= 2'}}
 
       - name: Trumpet
         result:
@@ -332,12 +332,12 @@ requirements:
           given: these-requirements
           requirements: [Lessons, Other Lessons]
           what: terms
-          do: count >= 6
+          action: {count: '>= 6'}
         requirements:
           - name: Lessons
-            result: {type: given, given: these-courses, courses: [MUSPF 142], repeats: all, what: terms, do: count >= 4}
+            result: {type: given, given: these-courses, courses: [MUSPF 142], repeats: all, what: terms, action: {count: '>= 4'}}
           - name: Other Lessons
-            result: {type: given, given: courses, where: {subject: MUSPF, number: '! 142'}, what: terms, do: count >= 2}
+            result: {type: given, given: courses, where: {subject: MUSPF, number: '! 142'}, what: terms, action: {count: '>= 2'}}
 
       - name: Tuba
         result:
@@ -345,12 +345,12 @@ requirements:
           given: these-requirements
           requirements: [Lessons, Other Lessons]
           what: terms
-          do: count >= 6
+          action: {count: '>= 6'}
         requirements:
           - name: Lessons
-            result: {type: given, given: these-courses, courses: [MUSPF 144], repeats: all, what: terms, do: count >= 4}
+            result: {type: given, given: these-courses, courses: [MUSPF 144], repeats: all, what: terms, action: {count: '>= 4'}}
           - name: Other Lessons
-            result: {type: given, given: courses, where: {subject: MUSPF, number: '! 144'}, what: terms, do: count >= 2}
+            result: {type: given, given: courses, where: {subject: MUSPF, number: '! 144'}, what: terms, action: {count: '>= 2'}}
 
       - name: Viola
         result:
@@ -358,12 +358,12 @@ requirements:
           given: these-requirements
           requirements: [Lessons, Other Lessons]
           what: terms
-          do: count >= 6
+          action: {count: '>= 6'}
         requirements:
           - name: Lessons
-            result: {type: given, given: these-courses, courses: [MUSPF 146], repeats: all, what: terms, do: count >= 4}
+            result: {type: given, given: these-courses, courses: [MUSPF 146], repeats: all, what: terms, action: {count: '>= 4'}}
           - name: Other Lessons
-            result: {type: given, given: courses, where: {subject: MUSPF, number: '! 146'}, what: terms, do: count >= 2}
+            result: {type: given, given: courses, where: {subject: MUSPF, number: '! 146'}, what: terms, action: {count: '>= 2'}}
 
       - name: Violin
         result:
@@ -371,12 +371,12 @@ requirements:
           given: these-requirements
           requirements: [Lessons, Other Lessons]
           what: terms
-          do: count >= 6
+          action: {count: '>= 6'}
         requirements:
           - name: Lessons
-            result: {type: given, given: these-courses, courses: [MUSPF 148], repeats: all, what: terms, do: count >= 4}
+            result: {type: given, given: these-courses, courses: [MUSPF 148], repeats: all, what: terms, action: {count: '>= 4'}}
           - name: Other Lessons
-            result: {type: given, given: courses, where: {subject: MUSPF, number: '! 148'}, what: terms, do: count >= 2}
+            result: {type: given, given: courses, where: {subject: MUSPF, number: '! 148'}, what: terms, action: {count: '>= 2'}}
 
       - name: Violoncello
         result:
@@ -384,12 +384,12 @@ requirements:
           given: these-requirements
           requirements: [Lessons, Other Lessons]
           what: terms
-          do: count >= 6
+          action: {count: '>= 6'}
         requirements:
           - name: Lessons
-            result: {type: given, given: these-courses, courses: [MUSPF 150], repeats: all, what: terms, do: count >= 4}
+            result: {type: given, given: these-courses, courses: [MUSPF 150], repeats: all, what: terms, action: {count: '>= 4'}}
           - name: Other Lessons
-            result: {type: given, given: courses, where: {subject: MUSPF, number: '! 150'}, what: terms, do: count >= 2}
+            result: {type: given, given: courses, where: {subject: MUSPF, number: '! 150'}, what: terms, action: {count: '>= 2'}}
 
       - name: Voice
         result:
@@ -397,12 +397,12 @@ requirements:
           given: these-requirements
           requirements: [Lessons, Other Lessons]
           what: terms
-          do: count >= 6
+          action: {count: '>= 6'}
         requirements:
           - name: Lessons
-            result: {type: given, given: these-courses, courses: [MUSPF 152], repeats: all, what: terms, do: count >= 4}
+            result: {type: given, given: these-courses, courses: [MUSPF 152], repeats: all, what: terms, action: {count: '>= 4'}}
           - name: Other Lessons
-            result: {type: given, given: courses, where: {subject: MUSPF, number: '! 152'}, what: terms, do: count >= 2}
+            result: {type: given, given: courses, where: {subject: MUSPF, number: '! 152'}, what: terms, action: {count: '>= 2'}}
 
   - name: Official Ensemble Participation
     result:
@@ -410,7 +410,7 @@ requirements:
       given: courses
       where: {subject: 'MUSEN'}
       what: terms
-      do: count >= 4
+      action: {count: '>= 4'}
 
   - name: Performances
     message:
@@ -420,7 +420,7 @@ requirements:
       given: performances
       where: {name: 'Instrumental Student Recital | Vocal Lab Choir Solo'}
       what: performances
-      do: count >= 2
+      action: {count: '>= 2'}
 
   - name: Recital Attendance
     message:
@@ -429,7 +429,7 @@ requirements:
       type: given
       given: attendances
       what: attendances
-      do: count >= 60
+      action: {count: '>= 60'}
 
 
 emphases:
@@ -462,7 +462,7 @@ emphases:
             courses: [MUSPF 326]
             repeats: all
             what: terms
-            do: count >= 4
+            action: {count: '>= 4'}
 
         - name: Performances
           message:
@@ -474,12 +474,12 @@ emphases:
                 given: performances
                 where: {name: 'AAA | BBB'}
                 what: performances
-                do: count >= 2
+                action: {count: '>= 2'}
               - type: given
                 given: performances
                 where: {name: 'AAA | BBB', year: 'senior-year | junior-year'}
                 what: performances
-                do: count >= 1
+                action: {count: '>= 1'}
 
         - name: Portfolio
           message:

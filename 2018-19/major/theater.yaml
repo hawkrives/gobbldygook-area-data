@@ -56,7 +56,7 @@ requirements:
           courses: [THEAT 233, THEAT 253]
           repeats: all
           what: courses
-          do: count >= 4
+          action: {count: '>= 4'}
 
     requirements:
       - name: Acting
@@ -66,7 +66,7 @@ requirements:
           courses: [THEAT 233]
           repeats: all
           what: courses
-          do: count >= 1
+          action: {count: '>= 1'}
 
       - name: Tech
         result:
@@ -75,4 +75,4 @@ requirements:
           courses: [THEAT 253]
           repeats: all
           what: courses
-          do: count >= 2
+          action: {count: '>= 2'}
