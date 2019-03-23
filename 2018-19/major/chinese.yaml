@@ -4,12 +4,20 @@ degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
-  count: all
-  of:
-    - requirement: Core Language
-    - requirement: Upper-Level Language
-    - requirement: Language and Culture
-    - {requirement: FLAC, optional: true}
+  both:
+    - count: all
+      of:
+        - requirement: Core Language
+        - requirement: Upper-Level Language
+        - requirement: Language and Culture
+
+    - given: these-requirements
+      requirements:
+        - Core Language
+        - Upper-Level Language
+        - Language and Culture
+      what: credits
+      do: sum >= 9
 
 attributes:
   courses:
@@ -20,7 +28,6 @@ attributes:
     AS/RE 289: [china_comparative_asia]
     ASIAN 121: [china_comparative_asia]
     ASIAN 123: [china_comparative_asia]
-    ASIAN 156.F: [china_flac]
     ASIAN 156: [china_focused_on_china]
     ASIAN 200: [china_comparative_asia]
     ASIAN 210: [china_comparative_asia, china_asiancon]
@@ -28,10 +35,8 @@ attributes:
     ASIAN 216: [china_comparative_asia, china_asiancon]
     ASIAN 220: [china_comparative_asia, china_asiancon]
     ASIAN 236: [china_focused_on_china]
-    ASIAN 237.F: [china_flac]
     ASIAN 237: [china_focused_on_china]
     ASIAN 268: [china_comparative_asia]
-    ASIAN 270.F: [china_flac]
     ASIAN 270: [china_focused_on_china]
     ASIAN 282: [china_comparative_asia]
     ASIAN 298: [china_independent_study]
@@ -41,9 +46,7 @@ attributes:
     ASIAN 397: [china_comparative_asia, china_senior_seminar]
     ASIAN 398: [china_independent_study]
     ASIAN 399: [china_comparative_asia, china_senior_seminar]
-    HIST 250.F: [china_flac]
     HIST 250: [china_focused_on_china]
-    HIST 251.F: [china_flac]
     HIST 251: [china_focused_on_china]
     HIST 262: [china_focused_on_china]
     HIST 345: [china_comparative_asia]
@@ -54,7 +57,11 @@ requirements:
   - name: Core Language
     result:
       count: all
-      of: [CHIN 231, CHIN 232, CHIN 301, CHIN 302]
+      of:
+        - CHIN 231
+        - CHIN 232
+        - CHIN 301
+        - CHIN 302
 
   - name: Upper-Level Language
     result:
@@ -79,7 +86,7 @@ requirements:
           - requirement: Comparative
         what: courses
         limit:
-          - {at_most: 1, where: {level: '100'}}
+          - {at_most: 1, where: {level: 100}}
         name: Allowed Courses
 
     result:
@@ -96,7 +103,7 @@ requirements:
         - given: save
           save: Allowed Courses
           what: courses
-          where: {level: '300'}
+          where: {level: 300}
           do: count >= 1
 
     requirements:
@@ -113,13 +120,6 @@ requirements:
           where: {attribute: china_comparative_asia}
           limit:
             - {at_most: 2, where: {attribute: 'china_asiancon'}}
-            - {at_most: 1, where: {attribute: 'china_independent_study | china_seminar'}}
+            - {at_most: 1, where: {attribute: 'china_independent_study | china_senior_seminar'}}
           what: courses
           do: count >= 1
-
-  - name: FLAC
-    result:
-      given: courses
-      where: {attribute: china_flac}
-      what: courses
-      do: count >= 1

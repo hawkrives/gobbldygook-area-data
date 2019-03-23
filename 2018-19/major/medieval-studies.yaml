@@ -1,0 +1,74 @@
+name: Medieval Studies
+type: major
+degree: Bachelor of Arts
+catalog: 2018-19
+
+result:
+  count: all
+  of:
+    - requirement: Language
+    - requirement: Medieval History
+    - requirement: Classics
+    - requirement: Electives
+    - requirement: Independent Research
+
+attributes:
+  courses:
+    ART 255: [medieval_elective]
+    ART 263: [medieval_elective]
+    ART 271: [medieval_elective]
+    ART 273: [medieval_elective]
+    ENGL 223: [medieval_elective]
+    ENGL 395: [medieval_elective]
+    GCON 116: [medieval_elective]
+    HIST 190: [medieval_history, medieval_elective]
+    HIST 211: [medieval_history, medieval_elective]
+    HIST 237: [medieval_history, medieval_elective]
+    HIST 310: [medieval_history, medieval_elective]
+    NORW 240: [medieval_elective]
+    REL 246: [medieval_elective]
+    REL 302: [medieval_elective]
+    REL 303: [medieval_elective]
+    THEAT 270: [medieval_elective]
+
+requirements:
+  - name: Language
+    result:
+      type: count-of
+      count: any
+      of:
+        - LATIN 235
+        - LATIN 252
+        - LATIN 370
+        - LATIN 371
+        - LATIN 372
+        - LATIN 373
+        - LATIN 374
+        - LATIN 375
+        - LATIN 377
+
+  - name: Medieval History
+    result:
+      given: courses
+      where: { attribute: medieval_history }
+      what: courses
+      do: count >= 1
+
+  - name: Medieval Literature
+    result:
+      given: courses
+      where: { attribute: medieval_literature }
+      what: courses
+      do: count >= 1
+
+  - name: Electives
+    result:
+      given: courses
+      where: { attribute: medieval_elective }
+      what: courses
+      do: count >= 4
+
+  - name: Independent Research
+    department_audited: true
+    message:
+      Any Independent Research course.

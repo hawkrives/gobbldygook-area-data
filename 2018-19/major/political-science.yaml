@@ -14,7 +14,7 @@ result:
         - requirement: International Relations
         - requirement: Political Theory
         - requirement: Level III
-        - {requirement: Additional Courses, optional: true}
+        - requirement: Additional Courses
 
     - given: these-requirements
       requirements:
@@ -31,11 +31,14 @@ result:
 limiters:
   - where: {level: '100'}
     at_most: 3
-
+  - where: {institution: '! St. Olaf College'}
+    at_most: 2
 
 attributes:
   courses:
     AS/PS 255: [psci_topic_comparative]
+    AS/PS 245: [psci_topic_international]
+    AS/PS 250: [psci_topic_international]
     ES/PS 201: [psci_topic_international]
     ES/PS 225: [psci_topic_theory]
     ES/PS 276: [psci_topic_american]
@@ -48,9 +51,12 @@ attributes:
     PSCI 121: [psci_topic_international]
     PSCI 204: [psci_topic_american]
     PSCI 211: [psci_topic_american]
+    PSCI 222: [psci_topic_international]
     PSCI 232: [psci_topic_theory]
     PSCI 244: [psci_topic_american]
     PSCI 245: [psci_topic_international]
+    PSCI 250: [psci_topic_comparative]
+    PSCI 251: [psci_topic_comparative]
     PSCI 252: [psci_topic_comparative]
     PSCI 255: [psci_topic_american]
     PSCI 257: [psci_topic_international]
@@ -60,12 +66,15 @@ attributes:
     PSCI 262: [psci_topic_theory]
     PSCI 264: [psci_topic_comparative]
     PSCI 272: [psci_topic_american]
+    PSCI 278: [psci_topic_theory]
+    PSCI 280: [psci_topic_comparative]
     PSCI 282: [psci_topic_comparative]
     PSCI 283: [psci_topic_comparative]
     PSCI 284: [psci_topic_theory]
     PSCI 285: [psci_topic_international]
     PSCI 311: [psci_level_3]
     PSCI 321: [psci_level_3]
+    PSCI 322: [psci_level_3]
     PSCI 350: [psci_level_3]
     PSCI 367: [psci_level_3]
     PSCI 370: [psci_level_3]
@@ -113,45 +122,55 @@ requirements:
     result:
       given: courses
       where: {attribute: psci_level_3}
+      limit: {at_most: 0, {where: {institution: '! St. Olaf College'}}}
       what: courses
       do: count >= 2
 
-  - name: Additional Courses
+  - name: Electives
+    saves:
+      - given: courses
+        where: {department: PSCI | AS/PS | ES/PS}
+        limits:
+          - {at_most: 1, where: {course: PSCI 294, credit: '< 1.0'}}
+        what: courses
+        name: Within PSCI
+
+      - given: courses
+        where: {department: STAT}
+        except: [STAT 111] # data science
+        name: Statistics
+
+      - given: courses
+        where:
+          department: 'FREN | GERM | SPAN'
+          number: '>= 232'
+        what: courses
+        name: French / German / Spanish
+
+      - given: courses
+        where:
+          department: 'CHIN | GREEK | LATIN | JAPAN | NORW | RUSSN'
+          number: '>= 231'
+        what: courses
+        name: Chinese / Greek / Latin / Japanese / Norwegian / Russian
+
     result:
-      count: 1
+      count: 0
+      mode: greedy
       of:
-        - requirement: Statistics
-        - requirement: World Langauge
-
-    requirements:
-      - name: Statistics
-        result:
-          given: courses
-          where: {department: STAT}
+        - given: these-saves
+          save: Within PSCI
+          limits:
+            - {at_most: 1}
           what: courses
-          do: count >= 1
+          do: count = 1
 
-      - name: World Langauge
-        result:
-          either:
-            - requirement: French, German, Spanish
-            - requirement: Chinese, Greek, Latin, Japanese, Norwegian, Russian
-
-        requirements:
-          - name: French, German, Spanish
-            result:
-              given: courses
-              where:
-                department: 'FREN | GERM | SPAN'
-                number: '>= 232'
-              what: courses
-              do: count >= 1
-
-          - name: Chinese, Greek, Latin, Japanese, Norwegian, Russian
-            result:
-              given: courses
-              where:
-                department: 'CHIN | GREEK | LATIN | JAPAN | NORW | RUSSN'
-                number: '>= 231'
-              what: courses
-              do: count >= 1
+        - given: these-saves
+          saves:
+            - Statistics
+            - French / German / Spanish
+            - Chinese / Greek / Latin / Japanese / Norwegian / Russian
+          limits:
+            - {at_most: 1}
+          what: courses
+          do: count = 1

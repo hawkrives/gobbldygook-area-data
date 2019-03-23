@@ -14,58 +14,80 @@ result:
 
 attributes:
   courses:
-    ART 161: [ancient_elective]
     ART 267: [ancient_elective]
-    CLASS 126: [ancient_history, ancient_classics, ancient_elective]
+    CLASS 124: [ancient_classics, ancient_elective]
+    CLASS 125: [ancient_classics, ancient_elective]
+    CLASS 126: [ancient_classics, ancient_elective]
     CLASS 129: [ancient_elective]
-    CLASS 240: [ancient_history, ancient_classics, ancient_elective]
+    CLASS 240: [ancient_classics, ancient_elective]
     CLASS 241: [ancient_elective]
-    CLASS 243: [ancient_history, ancient_classics, ancient_elective]
+    CLASS 243: [ancient_classics, ancient_elective]
     CLASS 244: [ancient_elective]
     CLASS 251: [ancient_elective]
-    CLASS 253: [ancient_history, ancient_classics, ancient_elective]
-    CLASS 398: [ancient_ir, ancient_elective]
-    ENGL 255: [ancient_elective]
+    CLASS 253: [ancient_classics, ancient_elective]
     GCON 113: [ancient_elective]
     GCON 115: [ancient_elective]
-    GREEK 111: [ancient_history, ancient_elective]
-    GREEK 112: [ancient_history, ancient_elective]
-    GREEK 231: [ancient_history, ancient_elective]
-    GREEK 253: [ancient_history, ancient_elective]
-    GREEK 374: [ancient_history, ancient_elective]
-    GREEK 375: [ancient_history, ancient_elective]
-    GREEK 398: [ancient_ir, ancient_elective]
+    GREEK 111: [ancient_elective_if_latin_lang]
+    GREEK 112: [ancient_elective_if_latin_lang]
+    GREEK 231: [ancient_elective_if_latin_lang]
+    GREEK 253: [ancient_elective_if_latin_lang]
+    GREEK 374: [ancient_elective_if_latin_lang]
+    GREEK 375: [ancient_elective_if_latin_lang]
+    HIST 101: [ancient_history, ancient_elective]
     HIST 190: [ancient_history, ancient_elective]
     HIST 201: [ancient_history, ancient_elective]
     HIST 203: [ancient_history, ancient_elective]
     HIST 204: [ancient_history, ancient_elective]
-    HIST 205: [ancient_elective]
+    HIST 205: [ancient_history, ancient_elective]
+    HIST 302: [ancient_history, ancient_elective]
     HIST 303: [ancient_history, ancient_elective]
-    HIST 396: [ancient_history, ancient_elective]
-    HIST 398: [ancient_ir, ancient_elective]
-    LATIN 111: [ancient_history, ancient_elective]
-    LATIN 112: [ancient_history, ancient_elective]
-    LATIN 231: [ancient_history, ancient_elective]
-    LATIN 235: [ancient_history, ancient_elective]
-    LATIN 373: [ancient_history, ancient_elective]
-    LATIN 375: [ancient_history, ancient_elective]
-    LATIN 398: [ancient_ir, ancient_elective]
-    PHIL 235: [ancient_history, ancient_elective]
-    REL 221: [ancient_history, ancient_elective]
-    REL 222: [ancient_history, ancient_elective]
+    HIST 306: [ancient_history, ancient_elective]
+    LATIN 111: [ancient_elective_if_greek_lang]
+    LATIN 112: [ancient_elective_if_greek_lang]
+    LATIN 231: [ancient_elective_if_greek_lang]
+    LATIN 235: [ancient_elective_if_greek_lang]
+    LATIN 373: [ancient_elective_if_greek_lang]
+    LATIN 375: [ancient_elective_if_greek_lang]
+    PHIL 235: [ancient_elective]
+    PHIL 374: [ancient_elective]
+    PSCI 259: [ancient_elective]
+    REL 221: [ancient_elective]
+    REL 222: [ancient_elective]
+    REL 223: [ancient_elective]
+    REL 227: [ancient_elective]
     REL 271: [ancient_elective]
-    REL 272: [ancient_history, ancient_elective]
-    REL 273: [ancient_history, ancient_elective]
-    REL 293: [ancient_elective]
-    REL 320: [ancient_history, ancient_elective]
-    REL 391 2016.1: [ancient_elective]
-    REL 393: [ancient_history, ancient_elective]
-    THEAT 270: [ancient_history, ancient_elective]
+    REL 272: [ancient_elective]
+    REL 273: [ancient_elective]
+    REL 276: [ancient_elective]
+    REL 302: [ancient_elective]
+    REL 320: [ancient_elective]
+    REL 391: [ancient_elective]
+    THEAT 270: [ancient_elective]
 
 requirements:
   - name: Language
     result:
-      either: [LATIN 252, GREEK 253]
+      either:
+        - type: count-of
+          count: any
+          of:
+            - LATIN 252
+            - LATIN 370
+            - LATIN 371
+            - LATIN 372
+            - LATIN 373
+            - LATIN 374
+            - LATIN 375
+            - LATIN 377
+        - type: count-of
+          count: any
+          of:
+            - GREEK 253
+            - GREEK 370
+            - GREEK 372
+            - GREEK 373
+            - GREEK 374
+            - GREEK 375
 
   - name: Ancient History
     result:
@@ -77,7 +99,7 @@ requirements:
   - name: Classics
     result:
       given: courses
-      where: { attribute: ancient_classics }
+      where: { subject: CLASS }
       what: courses
       do: count >= 1
 
@@ -89,14 +111,53 @@ requirements:
       portion of the major with Greek courses.
 
     result:
-      given: courses
-      where: { attribute: ancient_elective }
-      what: courses
-      do: count >= 4
+      - count: any
+        of:
+          - both:
+              - {requirement: Took Greek}
+              - type: count-of
+                count: any
+                of:
+                  - {course: GREEK 253, can_match_used: true}
+                  - {course: GREEK 370, can_match_used: true}
+                  - {course: GREEK 372, can_match_used: true}
+                  - {course: GREEK 373, can_match_used: true}
+                  - {course: GREEK 374, can_match_used: true}
+                  - {course: GREEK 375, can_match_used: true}
+          - both:
+              - {requirement: Took Latin}
+              - type: count-of
+                count: any
+                of:
+                  - {course: LATIN 252, can_match_used: true}
+                  - {course: LATIN 370, can_match_used: true}
+                  - {course: LATIN 371, can_match_used: true}
+                  - {course: LATIN 372, can_match_used: true}
+                  - {course: LATIN 373, can_match_used: true}
+                  - {course: LATIN 374, can_match_used: true}
+                  - {course: LATIN 375, can_match_used: true}
+                  - {course: LATIN 377, can_match_used: true}
+
+    requirements:
+      - name: Took Greek
+        result:
+          given: courses
+          where: { attribute: ancient_elective | ancient_elective_if_greek_lang }
+          limits:
+            - {at_most: 1, where: {subject: LATIN}}
+          what: courses
+          do: count >= 4
+
+      - name: Took Latin
+        result:
+          given: courses
+          where: { attribute: ancient_elective | ancient_elective_if_latin_lang }
+          limits:
+            - {at_most: 1, where: {subject: GREEK}}
+          what: courses
+          do: count >= 4
 
   - name: Independent Research
-    result:
-      given: courses
-      where: { attribute: ancient_ir }
-      what: courses
-      do: count >= 1
+    department_audited: true
+    message:
+      Any Independent Research course.

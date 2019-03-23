@@ -18,17 +18,25 @@ requirements:
       - name: Option A
         result:
           count: all
-          of: [CHEM 121, CHEM 123, CHEM 125]
+          of:
+            - CHEM 121
+            - CHEM 123
+            - CHEM 125
 
       - name: Option B
         result:
           count: all
-          of: [CHEM 125, CHEM 126]
+          of:
+            - CHEM 125
+            - CHEM 126
 
       - name: Option C
         result:
           count: all
-          of: [CH/BI 125, CH/BI 126, CH/BI 227]
+          of:
+            - CH/BI 125
+            - CH/BI 126
+            - CH/BI 227
 
     result:
       count: any
@@ -50,17 +58,25 @@ requirements:
       - name: Organic
         result:
           count: all
-          of: [CHEM 247, CHEM 253, CHEM 248, CHEM 254]
+          of:
+            - CHEM 247
+            - CHEM 253
+            - CHEM 248
+            - CHEM 254
 
       - name: Analytical
         result:
           count: all
-          of: [CHEM 255, CHEM 256]
+          of:
+            - CHEM 255
+            - CHEM 256
 
       - name: Physical
         result:
           count: all
-          of: [CHEM 357, CHEM 371]
+          of:
+            - CHEM 357
+            - CHEM 371
 
       - name: Elective
         result:
@@ -83,7 +99,9 @@ requirements:
 
   - name: Mathematics
     result:
-      either: [MATH 126, MATH 128]
+      either:
+        - MATH 126
+        - MATH 128
 
   - name: Seminars
     message:

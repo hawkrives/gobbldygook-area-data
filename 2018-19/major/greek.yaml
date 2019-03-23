@@ -10,6 +10,11 @@ result:
     - requirement: Classics
     - requirement: Ancient Greek History
 
+attributes:
+  courses:
+    HIST 203: [greek_elective]
+    HIST 302: [greek_elective]
+
 requirements:
   - name: Language
     result:
@@ -41,8 +46,8 @@ requirements:
         - CLASS 396
 
   - name: Ancient Greek History
-    message: TODO find out what courses are considered "ancient greek history"
     result:
-      count: 1
-      of:
-        - CLASS 111
+      given: courses
+      where: {attributes: greek_elective}
+      what: courses
+      do: count >= 1
