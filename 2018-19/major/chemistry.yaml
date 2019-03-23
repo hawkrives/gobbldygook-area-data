@@ -36,7 +36,6 @@ requirements:
           of:
             - CH/BI 125
             - CH/BI 126
-            - CH/BI 227
 
     result:
       count: any
