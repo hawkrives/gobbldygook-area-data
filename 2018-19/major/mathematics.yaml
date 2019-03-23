@@ -10,7 +10,7 @@ result:
         - requirement: Basics
         - requirement: Transitions
         - requirement: Perspectives
-        - {requirement: Interdisciplinary, optional: true}
+        - requirement: Interdisciplinary
         - requirement: Sequence
         - requirement: Level III
 
@@ -22,7 +22,7 @@ result:
         - requirement: Interdisciplinary
         - requirement: Sequence
         - requirement: Level III
-      where: {institution: St. Olaf College}
+      where: {year: '>= matriculation'}
       what: courses
       do: count >= 6
 
@@ -126,7 +126,7 @@ requirements:
 
   - name: Interdisciplinary
     result:
-      count: any
+      count: 0
       of:
         - requirement: Chemistry
         - requirement: Economics
