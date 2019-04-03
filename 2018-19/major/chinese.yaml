@@ -82,8 +82,8 @@ requirements:
     save:
       - given: these-requirements
         requirements:
-          - requirement: China-focused
-          - requirement: Comparative
+          - China-focused
+          - Comparative
         what: courses
         limit:
           - {at_most: 1, where: {level: 100}}

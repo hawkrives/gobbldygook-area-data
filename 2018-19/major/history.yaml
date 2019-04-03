@@ -10,18 +10,18 @@ result:
         - requirement: Major Seminar
         - requirement: Level III
         - requirement: Non-Western World
-        - requirement: Europe & Russia
+        - requirement: European
         - requirement: U.S.
         - requirement: Pre-Modern Period
 
     - given: these-requirements
       requirements:
-        - requirement: Major Seminar
-        - requirement: Level III
-        - requirement: Non-Western World
-        - requirement: Europe & Russia
-        - requirement: U.S.
-        - requirement: Pre-Modern Period
+        - Major Seminar
+        - Level III
+        - Non-Western World
+        - European
+        - U.S.
+        - Pre-Modern Period
       what: courses
       do: count >= 9
 

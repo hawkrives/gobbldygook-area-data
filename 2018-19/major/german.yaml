@@ -6,8 +6,8 @@ catalog: 2018-19
 result:
   count: all
   of:
-    - requirement: Speaking and Writing
-    - requirement: The Francophone World
+    - requirement: Level 250
+    - requirement: Level 270
     - requirement: Level III
     - requirement: Electives
 
@@ -59,9 +59,9 @@ requirements:
 
         - given: these-requirements
           requirements:
-            - requirement: Langauge
-            - requirement: Interim In German
-            - requirement: In Translation
+            - Language
+            - Interim In German
+            - In Translation
           what: courses
           do: count >= 3
 

@@ -318,11 +318,11 @@ requirements:
           what: courses
           do: count >= 6
         - given: save
-          save: level3-courses
+          save: level3-electives
           what: courses
           do: count >= 2
         - given: save
-          save: level3-courses
+          save: level3-electives
           what: courses
           where: {attribute: 'engl_focus_literature | engl_focus_film'}
           do: count >= 1

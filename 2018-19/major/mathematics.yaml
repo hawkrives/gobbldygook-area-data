@@ -16,12 +16,12 @@ result:
 
     - given: these-requirements
       requirements:
-        - requirement: Basics
-        - requirement: Transitions
-        - requirement: Perspectives
-        - requirement: Interdisciplinary
-        - requirement: Sequence
-        - requirement: Level III
+        - Basics
+        - Transitions
+        - Perspectives
+        - Interdisciplinary
+        - Sequence
+        - Level III
       where: {year: '>= matriculation'}
       what: courses
       do: count >= 6

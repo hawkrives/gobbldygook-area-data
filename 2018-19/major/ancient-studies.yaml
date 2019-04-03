@@ -111,32 +111,32 @@ requirements:
       portion of the major with Greek courses.
 
     result:
-      - count: any
-        of:
-          - both:
-              - {requirement: Took Greek}
-              - type: count-of
-                count: any
-                of:
-                  - {course: GREEK 253, can_match_used: true}
-                  - {course: GREEK 370, can_match_used: true}
-                  - {course: GREEK 372, can_match_used: true}
-                  - {course: GREEK 373, can_match_used: true}
-                  - {course: GREEK 374, can_match_used: true}
-                  - {course: GREEK 375, can_match_used: true}
-          - both:
-              - {requirement: Took Latin}
-              - type: count-of
-                count: any
-                of:
-                  - {course: LATIN 252, can_match_used: true}
-                  - {course: LATIN 370, can_match_used: true}
-                  - {course: LATIN 371, can_match_used: true}
-                  - {course: LATIN 372, can_match_used: true}
-                  - {course: LATIN 373, can_match_used: true}
-                  - {course: LATIN 374, can_match_used: true}
-                  - {course: LATIN 375, can_match_used: true}
-                  - {course: LATIN 377, can_match_used: true}
+      count: any
+      of:
+        - both:
+            - {requirement: Took Greek}
+            - type: count-of
+              count: any
+              of:
+                - {course: GREEK 253, can_match_used: true}
+                - {course: GREEK 370, can_match_used: true}
+                - {course: GREEK 372, can_match_used: true}
+                - {course: GREEK 373, can_match_used: true}
+                - {course: GREEK 374, can_match_used: true}
+                - {course: GREEK 375, can_match_used: true}
+        - both:
+            - {requirement: Took Latin}
+            - type: count-of
+              count: any
+              of:
+                - {course: LATIN 252, can_match_used: true}
+                - {course: LATIN 370, can_match_used: true}
+                - {course: LATIN 371, can_match_used: true}
+                - {course: LATIN 372, can_match_used: true}
+                - {course: LATIN 373, can_match_used: true}
+                - {course: LATIN 374, can_match_used: true}
+                - {course: LATIN 375, can_match_used: true}
+                - {course: LATIN 377, can_match_used: true}
 
     requirements:
       - name: Took Greek

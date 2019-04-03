@@ -31,9 +31,10 @@ requirements:
 
   - name: Religious Dimensions
     message: TODO. Not yet completed. At all.
-    result:
-      count: 1
-      of: []
+
+    # result:
+    #   count: 1
+    #   of: []
 
     # Courses that focus on three different dimensions of religion (and deal with at least two different religious traditions):
     #   count: all

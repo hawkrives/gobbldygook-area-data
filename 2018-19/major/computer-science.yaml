@@ -39,8 +39,8 @@ requirements:
     result:
       count: all
       of:
-        - CS 253
-        - CS 263
+        - CSCI 253
+        - CSCI 263
         - requirement: Languages
         - requirement: Systems
 

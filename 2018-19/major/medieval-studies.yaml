@@ -8,7 +8,7 @@ result:
   of:
     - requirement: Language
     - requirement: Medieval History
-    - requirement: Classics
+    - requirement: Medieval Literature
     - requirement: Electives
     - requirement: Independent Research
 

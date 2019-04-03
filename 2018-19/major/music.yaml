@@ -77,7 +77,7 @@ requirements:
       - name: Bassoon
         result:
           given: these-requirements
-          requirements: [{requirement: Lessons}, {requirement: Other Lessons}]
+          requirements: [Lessons, Other Lessons]
           what: terms
           do: count >= 6
         requirements:
@@ -89,7 +89,7 @@ requirements:
       - name: Clarinet
         result:
           given: these-requirements
-          requirements: [{requirement: Lessons}, {requirement: Other Lessons}]
+          requirements: [Lessons, Other Lessons]
           what: terms
           do: count >= 6
         requirements:
@@ -101,7 +101,7 @@ requirements:
       - name: Coll Keyboard Perfor
         result:
           given: these-requirements
-          requirements: [{requirement: Lessons}, {requirement: Other Lessons}]
+          requirements: [Lessons, Other Lessons]
           what: terms
           do: count >= 6
         requirements:
@@ -113,7 +113,7 @@ requirements:
       - name: Drumset
         result:
           given: these-requirements
-          requirements: [{requirement: Lessons}, {requirement: Other Lessons}]
+          requirements: [Lessons, Other Lessons]
           what: terms
           do: count >= 6
         requirements:
@@ -125,7 +125,7 @@ requirements:
       - name: Euphonium
         result:
           given: these-requirements
-          requirements: [{requirement: Lessons}, {requirement: Other Lessons}]
+          requirements: [Lessons, Other Lessons]
           what: terms
           do: count >= 6
         requirements:
@@ -137,7 +137,7 @@ requirements:
       - name: Flute
         result:
           given: these-requirements
-          requirements: [{requirement: Lessons}, {requirement: Other Lessons}]
+          requirements: [Lessons, Other Lessons]
           what: terms
           do: count >= 6
         requirements:
@@ -149,7 +149,7 @@ requirements:
       - name: French Horn
         result:
           given: these-requirements
-          requirements: [{requirement: Lessons}, {requirement: Other Lessons}]
+          requirements: [Lessons, Other Lessons]
           what: terms
           do: count >= 6
         requirements:
@@ -161,7 +161,7 @@ requirements:
       - name: Hardanger Fiddle
         result:
           given: these-requirements
-          requirements: [{requirement: Lessons}, {requirement: Other Lessons}]
+          requirements: [Lessons, Other Lessons]
           what: terms
           do: count >= 6
         requirements:
@@ -173,7 +173,7 @@ requirements:
       - name: Harp
         result:
           given: these-requirements
-          requirements: [{requirement: Lessons}, {requirement: Other Lessons}]
+          requirements: [Lessons, Other Lessons]
           what: terms
           do: count >= 6
         requirements:
@@ -185,7 +185,7 @@ requirements:
       - name: Harpsichord
         result:
           given: these-requirements
-          requirements: [{requirement: Lessons}, {requirement: Other Lessons}]
+          requirements: [Lessons, Other Lessons]
           what: terms
           do: count >= 6
         requirements:
@@ -197,7 +197,7 @@ requirements:
       - name: Jazz Piano
         result:
           given: these-requirements
-          requirements: [{requirement: Lessons}, {requirement: Other Lessons}]
+          requirements: [Lessons, Other Lessons]
           what: terms
           do: count >= 6
         requirements:
@@ -209,7 +209,7 @@ requirements:
       - name: Oboe
         result:
           given: these-requirements
-          requirements: [{requirement: Lessons}, {requirement: Other Lessons}]
+          requirements: [Lessons, Other Lessons]
           what: terms
           do: count >= 6
         requirements:
@@ -221,7 +221,7 @@ requirements:
       - name: Organ
         result:
           given: these-requirements
-          requirements: [{requirement: Lessons}, {requirement: Other Lessons}]
+          requirements: [Lessons, Other Lessons]
           what: terms
           do: count >= 6
         requirements:
@@ -233,7 +233,7 @@ requirements:
       - name: Percussion
         result:
           given: these-requirements
-          requirements: [{requirement: Lessons}, {requirement: Other Lessons}]
+          requirements: [Lessons, Other Lessons]
           what: terms
           do: count >= 6
         requirements:
@@ -245,7 +245,7 @@ requirements:
       - name: Piano
         result:
           given: these-requirements
-          requirements: [{requirement: Lessons}, {requirement: Other Lessons}]
+          requirements: [Lessons, Other Lessons]
           what: terms
           do: count >= 6
         requirements:
@@ -257,7 +257,7 @@ requirements:
       - name: Jazz Saxophone
         result:
           given: these-requirements
-          requirements: [{requirement: Lessons}, {requirement: Other Lessons}]
+          requirements: [Lessons, Other Lessons]
           what: terms
           do: count >= 6
         requirements:
@@ -269,7 +269,7 @@ requirements:
       - name: Saxophone
         result:
           given: these-requirements
-          requirements: [{requirement: Lessons}, {requirement: Other Lessons}]
+          requirements: [Lessons, Other Lessons]
           what: terms
           do: count >= 6
         requirements:
@@ -281,7 +281,7 @@ requirements:
       - name: String Bass
         result:
           given: these-requirements
-          requirements: [{requirement: Lessons}, {requirement: Other Lessons}]
+          requirements: [Lessons, Other Lessons]
           what: terms
           do: count >= 6
         requirements:
@@ -293,7 +293,7 @@ requirements:
       - name: Trombone
         result:
           given: these-requirements
-          requirements: [{requirement: Lessons}, {requirement: Other Lessons}]
+          requirements: [Lessons, Other Lessons]
           what: terms
           do: count >= 6
         requirements:
@@ -305,7 +305,7 @@ requirements:
       - name: Trumpet
         result:
           given: these-requirements
-          requirements: [{requirement: Lessons}, {requirement: Other Lessons}]
+          requirements: [Lessons, Other Lessons]
           what: terms
           do: count >= 6
         requirements:
@@ -317,7 +317,7 @@ requirements:
       - name: Tuba
         result:
           given: these-requirements
-          requirements: [{requirement: Lessons}, {requirement: Other Lessons}]
+          requirements: [Lessons, Other Lessons]
           what: terms
           do: count >= 6
         requirements:
@@ -329,7 +329,7 @@ requirements:
       - name: Viola
         result:
           given: these-requirements
-          requirements: [{requirement: Lessons}, {requirement: Other Lessons}]
+          requirements: [Lessons, Other Lessons]
           what: terms
           do: count >= 6
         requirements:
@@ -341,7 +341,7 @@ requirements:
       - name: Violin
         result:
           given: these-requirements
-          requirements: [{requirement: Lessons}, {requirement: Other Lessons}]
+          requirements: [Lessons, Other Lessons]
           what: terms
           do: count >= 6
         requirements:
@@ -353,7 +353,7 @@ requirements:
       - name: Violoncello
         result:
           given: these-requirements
-          requirements: [{requirement: Lessons}, {requirement: Other Lessons}]
+          requirements: [Lessons, Other Lessons]
           what: terms
           do: count >= 6
         requirements:
@@ -365,7 +365,7 @@ requirements:
       - name: Voice
         result:
           given: these-requirements
-          requirements: [{requirement: Lessons}, {requirement: Other Lessons}]
+          requirements: [Lessons, Other Lessons]
           what: terms
           do: count >= 6
         requirements:

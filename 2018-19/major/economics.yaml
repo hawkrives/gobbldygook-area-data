@@ -62,8 +62,8 @@ requirements:
 
         - given: these-requirements
           requirements:
-            - requirement: Level II
-            - requirement: Level III
+            - Level II
+            - Level III
           what: courses
           do: count >= 4
 

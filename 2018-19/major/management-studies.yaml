@@ -42,7 +42,7 @@ requirements:
     result:
       count: any
       of:
-        - American Conversations
+        - AMCON 101
   
   - name: Experiential Learning
     result:

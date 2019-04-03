@@ -19,9 +19,9 @@ requirements:
     save:
       - given: these-requirements
         requirements:
-          - requirement: Topics
-          - requirement: Seminar
-          - requirement: Disciplinary
+          - Topics
+          - Seminar
+          - Disciplinary
         repeats: all
         what: courses
         name: Taken Electives

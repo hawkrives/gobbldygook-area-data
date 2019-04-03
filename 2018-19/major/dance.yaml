@@ -29,10 +29,10 @@ requirements:
     result:
       given: these-requirements
       requirements:
-        - requirement: Ballet
-        - requirement: International and Social
-        - requirement: Modern
-        - requirement: Other Topics
+        - Ballet
+        - International and Social
+        - Modern
+        - Other Topics
       what: credits
       do: sum >= 1.5
 

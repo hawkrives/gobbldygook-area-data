@@ -14,17 +14,17 @@ result:
         - requirement: International Relations
         - requirement: Political Theory
         - requirement: Level III
-        - requirement: Additional Courses
+        - requirement: Electives
 
     - given: these-requirements
       requirements:
-        - requirement: Research Methods
-        - requirement: American Politics and Public Policy
-        - requirement: Comparative Politics
-        - requirement: International Relations
-        - requirement: Political Theory
-        - requirement: Level III
-        - requirement: Additional Courses
+        - Research Methods
+        - American Politics and Public Policy
+        - Comparative Politics
+        - International Relations
+        - Political Theory
+        - Level III
+        - Electives
       what: courses
       do: count >= 9
 
@@ -122,12 +122,13 @@ requirements:
     result:
       given: courses
       where: {attribute: psci_level_3}
-      limit: {at_most: 0, {where: {institution: '! St. Olaf College'}}}
+      limits:
+        - {at_most: 0, where: {institution: '! St. Olaf College'}}
       what: courses
       do: count >= 2
 
   - name: Electives
-    saves:
+    save:
       - given: courses
         where: {department: PSCI | AS/PS | ES/PS}
         limits:
@@ -159,7 +160,8 @@ requirements:
       mode: greedy
       of:
         - given: these-saves
-          save: Within PSCI
+          saves:
+            - Within PSCI
           limits:
             - {at_most: 1}
           what: courses

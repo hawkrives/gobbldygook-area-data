@@ -6,3 +6,13 @@
 # One approved level III seminar or approved advanced study experience  1.00
 # Total Credits 5
 # Students wishing to receive credit toward the concentration through independent study, independent research, or internships should consult with the director of linguistic studies
+
+name: Linguistic Studies
+type: major
+catalog: 2018-19
+degree: Bachelor of Arts
+
+result:
+  course: LNGST 250
+
+requirements: []

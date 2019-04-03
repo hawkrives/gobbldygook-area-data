@@ -6,8 +6,8 @@ catalog: 2018-19
 result:
   count: all
   of:
-    - Major
-    - Areas of Emphasis
+    - requirement: Major
+    - requirement: Areas of Emphasis
 
 requirements:
   - name: Major
@@ -37,12 +37,12 @@ requirements:
 
             - given: these-requirements
               requirements:
-                - requirement: Social Sciences for Natural Science
-                - requirement: Arts and Humanities for Natural Science
-                - requirement: Statistics, Modeling, and Mapping
-                - requirement: Intermediate Chemistry
-                - requirement: Intermediate Ecology
-                - requirement: Environmental Science
+                - Social Sciences for Natural Science
+                - Arts and Humanities for Natural Science
+                - Statistics, Modeling, and Mapping
+                - Intermediate Chemistry
+                - Intermediate Ecology
+                - Environmental Science
               what: courses
               do: count >= 9
 
@@ -132,12 +132,12 @@ requirements:
 
             - given: these-requirements
               requirements:
-                - requirement: Natural Science for Social Sciences
-                - requirement: Arts and Humanities for Social Sciences
-                - requirement: Methodological Analysis
-                - requirement: Economic Analysis
-                - requirement: Environmental Political Policy and Institutions
-                - requirement: Social Science Electives
+                - Natural Science for Social Sciences
+                - Arts and Humanities for Social Sciences
+                - Methodological Analysis
+                - Economic Analysis
+                - Environmental Political Policy and Institutions
+                - Social Science Electives
               what: courses
               do: count >= 9
 
@@ -242,21 +242,15 @@ requirements:
         result:
           count: all
           of:
-            - requirement: Natural Science for Social Sciences
-            - requirement: Arts and Humanities for Social Sciences
-            - requirement: Methodological Analysis
-            - requirement: Economic Analysis
-            - requirement: Environmental Political Policy and Institutions
-            - requirement: Social Science Electives
+            - requirement: Natural Science for Arts and the Humanities
+            - requirement: Social Sciences for Arts and the Humanities
+            - requirement: Courses for Arts and the Humanities
 
             - given: these-requirements
               requirements:
-                - requirement: Natural Science for Social Sciences
-                - requirement: Arts and Humanities for Social Sciences
-                - requirement: Methodological Analysis
-                - requirement: Economic Analysis
-                - requirement: Environmental Political Policy and Institutions
-                - requirement: Social Science Electives
+                - Natural Science for Arts and the Humanities
+                - Social Sciences for Arts and the Humanities
+                - Courses for Arts and the Humanities
               what: courses
               do: count >= 9
 

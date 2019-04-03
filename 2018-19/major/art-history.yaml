@@ -105,10 +105,10 @@ requirements:
 
         - given: these-requirements
           requirements:
-            - requirement: Asian, African, Indigenous American, or Near Eastern/Islamic Art
-            - requirement: European and American Art
-            - requirement: Art created before 1700 CE
-            - requirement: Art created after 1700 CE
+            - Asian, African, Indigenous American, or Near Eastern/Islamic Art
+            - European and American Art
+            - Art created before 1700 CE
+            - Art created after 1700 CE
           what: courses
           do: count >= 6
 

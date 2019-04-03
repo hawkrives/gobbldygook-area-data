@@ -73,8 +73,8 @@ requirements:
     save:
       - given: these-requirements
         requirements:
-          - requirement: Japan-focused
-          - requirement: Comparative
+          - Japan-focused
+          - Comparative
         what: courses
         limit:
           - {at_most: 1, where: {level: 100}}

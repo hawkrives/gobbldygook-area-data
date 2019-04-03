@@ -24,11 +24,11 @@ requirements:
     save:
       - given: these-requirements
         requirements:
-          - requirement: Theory and Methods
-          - requirement: Women and Gender in Historical Context
-          - requirement: Women and Gender in Global/Comparative/Diverse Contexts
-          - requirement: Electives
-          - requirement: Lived Experiences
+          - Theory and Methods
+          - Gender in Historical Context
+          - Gender in Global/Comparative/Diverse Contexts
+          - Electives
+          - Lived Experiences
         what: courses
         name: "Taken Elective Courses"
 
