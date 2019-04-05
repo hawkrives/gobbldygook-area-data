@@ -167,7 +167,7 @@ emphases:
             - name: Other MGMT Course
               contract: true
               message:
-                You may also negotiate some other MGMT course.
+                You may also negotiate another MGMT course.
 
     - name: Finance
       result:
