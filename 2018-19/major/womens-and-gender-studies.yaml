@@ -1,0 +1,137 @@
+name: Women's and Gender Studies
+type: major
+degree: Bachelor of Arts
+catalog: 2018-19
+
+result:
+  count: all
+  of:
+    - requirement: Introduction
+    - requirement: Advanced Topics
+    - requirement: Additional Courses
+
+
+attributes:
+  multicountable:
+    - [{attribute: wmgst_theory}, {attribute: wmgst_elective}]
+    - [{attribute: wmgst_diverse}, {attribute: wmgst_elective}]
+    - [{attribute: wmgst_historical}, {attribute: wmgst_elective}]
+    - [{course: WMGST 121}, {attribute: wmgst_lived}]
+
+  courses:
+    AMST 100: [wmgst_theory, wmgst_elective]
+    ART 277: [wmgst_theory, wmgst_elective]
+    BIO 124: [wmgst_elective]
+    DANCE 246: [wmgst_diverse, wmgst_elective]
+    ENGL 242: [wmgst_theory, wmgst_elective]
+    ENGL 246: [wmgst_diverse, wmgst_elective]
+    ENGL 264: [wmgst_theory, wmgst_elective]
+    ENGL 340.2011.2: [wmgst_diverse, wmgst_elective]
+    ENGL 340.2011.3: [wmgst_diverse, wmgst_elective]
+    ENGL 340.2012.1: [wmgst_diverse, wmgst_elective]
+    ENGL 340.2012.2: [wmgst_diverse, wmgst_elective]
+    ENGL 340.2013.2: [wmgst_diverse, wmgst_elective]
+    ENGL 340.2014.2: [wmgst_diverse, wmgst_elective]
+    ENGL 340.2015.2: [wmgst_diverse, wmgst_elective]
+    ENGL 340: [wmgst_theory, wmgst_elective]
+    FAMST 242: [wmgst_theory, wmgst_elective]
+    FAMST 253: [wmgst_theory, wmgst_diverse, wmgst_elective]
+    FREN 372.2017.1: [wmgst_historical, wmgst_elective]
+    HIST 115: [wmgst_diverse, wmgst_elective]
+    HIST 121: [wmgst_historical, wmgst_elective]
+    HIST 122: [wmgst_diverse, wmgst_elective]
+    HIST 182: [wmgst_diverse, wmgst_elective]
+    HIST 189.2011.1: [wmgst_diverse, wmgst_elective]
+    HIST 189.2012.1: [wmgst_diverse, wmgst_elective]
+    HIST 191: [wmgst_historical, wmgst_elective]
+    HIST 224: [wmgst_historical, wmgst_elective]
+    HIST 231: [wmgst_historical, wmgst_elective]
+    HIST 237: [wmgst_historical, wmgst_elective]
+    HIST 239: [wmgst_historical, wmgst_elective]
+    HIST 272: [wmgst_diverse, wmgst_elective]
+    HIST 320.2011.1: [wmgst_diverse, wmgst_elective]
+    HIST 320.2013.1: [wmgst_diverse, wmgst_elective]
+    HIST 320.2014.3: [wmgst_historical, wmgst_elective]
+    NORW 282: [wmgst_elective]
+    NURS 386: [wmgst_elective]
+    PHIL 245: [wmgst_historical, wmgst_theory, wmgst_elective]
+    PSYCH 223: [wmgst_historical, wmgst_elective]
+    PSYCH 241: [wmgst_historical, wmgst_elective]
+    PSYCH 350: [wmgst_elective]
+    PSYCH 390: [wmgst_theory, wmgst_elective]
+    PSYCH 396.2013.3: [wmgst_theory, wmgst_elective]
+    REL 209: [wmgst_theory, wmgst_diverse, wmgst_historical, wmgst_elective]
+    REL 264: [wmgst_historical, wmgst_diverse, wmgst_elective]
+    REL 344: [wmgst_theory, wmgst_elective]
+    SOAN 128: [wmgst_historical, wmgst_elective]
+    SOAN 235: [wmgst_theory, wmgst_historical, wmgst_elective]
+    SOAN 246: [wmgst_theory, wmgst_diverse, wmgst_elective]
+    SOAN 260: [wmgst_theory, wmgst_elective]
+    SOAN 261: [wmgst_historical, wmgst_elective]
+    SPAN 250: [wmgst_historical, wmgst_elective]
+    WMGST 121: [wmgst_lived]
+
+
+requirements:
+  - name: Introduction
+    result:
+      course: WMGST 121
+
+  - name: Advanced Topics
+    result:
+      course: WMGST 399
+
+  - name: Additional Courses
+    save:
+      - given: courses
+        where: {attribute: wmgst_elective}
+        what: courses
+        name: "Taken Elective Courses"
+
+    result:
+      count: all
+      of:
+        - requirement: Theory and Methods
+        - requirement: Gender in Historical Context
+        - requirement: Gender in Global/Comparative/Diverse Contexts
+        - requirement: Lived Experiences
+
+        - given: save
+          save: "Taken Elective Courses"
+          what: courses
+          do: count >= 7
+
+        - given: save
+          save: "Taken Elective Courses"
+          where: {level: '300'}
+          what: courses
+          do: count >= 1
+
+    requirements:
+      - name: Theory and Methods
+        result:
+          given: courses
+          where: {attribute: wmgst_theory}
+          what: courses
+          do: count >= 1
+
+      - name: Gender in Historical Context
+        result:
+          given: courses
+          where: {attribute: wmgst_historical}
+          what: courses
+          do: count >= 1
+
+      - name: Gender in Global/Comparative/Diverse Contexts
+        result:
+          given: courses
+          where: {attribute: wmgst_diverse}
+          what: courses
+          do: count >= 1
+
+      - name: Lived Experiences
+        result:
+          given: courses
+          where: {attribute: wmgst_lived}
+          what: courses
+          do: count >= 1
