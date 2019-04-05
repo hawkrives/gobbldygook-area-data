@@ -55,9 +55,9 @@ attributes:
     ASIAN 300: [asian_elective]
     ASIAN 384: [asian_elective]
     ASIAN 396: [asian_elective]
-    ASIAN 397: [asian_elective, asian_seminar]
+    ASIAN 397: [asian_elective]
     ASIAN 398: [asian_elective]
-    ASIAN 399: [asian_elective, asian_seminar]
+    ASIAN 399: [asian_elective]
     CHIN 231: [asian_elective, asian_region_china, asian_language_chinese]
     CHIN 232: [asian_elective, asian_region_china, asian_language_chinese]
     CHIN 301: [asian_elective, asian_region_china, asian_language_chinese]
@@ -88,10 +88,9 @@ requirements:
 
   - name: Seminar
     result:
-      given: courses
-      where: {attribute: asian_seminar}
-      what: courses
-      do: count >= 1
+      either:
+        - ASIAN 397
+        - ASIAN 399
 
   - name: Electives
     result:
@@ -104,7 +103,7 @@ requirements:
         - {at_most: 4, where: {attribute: asian_region_china}}
         - {at_most: 4, where: {attribute: asian_region_japan}}
         # "At least two at level II or level III, taken on campus"
-        # aka "no more than 5 may be taken off-campus", since we need six total
+        # aka "no more than 4 may be taken off-campus", since we need six total
         - {at_most: 4, where: {institution: '! St. Olaf College', level: '200 | 300'}}
         # and "No level I or level II language courses may count." is taken care of by not listing them
       repeats: first
