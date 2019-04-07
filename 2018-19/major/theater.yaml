@@ -4,37 +4,35 @@ degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
-  count: all
-  of:
-    - requirement: Part 1
-    - requirement: Part 2
-    - requirement: Practicum
+  all:
+    - reference: Part 1
+    - reference: Part 2
+    - reference: Practicum
 
 limits:
-  - {at_most: 1, where: {s/u: 'true', credits: '1.00'}}
+  - {at most: 1, where: s/u = true and credits = 1.00}
 
 requirements:
   - name: Part 1
     result:
-      count: all
-      of:
-        - THEAT 130
-        - THEAT 140
-        - THEAT 180
-        - THEAT 232
-        - either: [THEAT 240, THEAT 250]
-        - THEAT 270
-        - THEAT 271
+      all:
+        - course: THEAT 130
+        - course: THEAT 140
+        - course: THEAT 180
+        - course: THEAT 232
+        - either: [course: THEAT 240, course: THEAT 250]
+        - course: THEAT 270
+        - course: THEAT 271
 
   - name: Part 2
     result:
       count: 2
       of:
-        - THEAT 338
-        - THEAT 379
-        - THEAT 380
-        - THEAT 394
-        - THEAT 398
+        - course: THEAT 338
+        - course: THEAT 379
+        - course: THEAT 380
+        - course: THEAT 394
+        - course: THEAT 398
 
   - name: Practicum
     message:
@@ -43,29 +41,23 @@ requirements:
       class is then a choice of either 233 or 253.
 
     result:
-      count: all
-      of:
-        - requirement: Acting
-        - requirement: Tech
-        - given: these-courses
-          courses: [THEAT 233, THEAT 253]
-          repeats: all
-          what: courses
-          do: count >= 4
+      all:
+        - reference: Acting
+        - reference: Tech
+
+        - from: {student: courses}
+          where: course = THEAT 233 or course = THEAT 253
+          assert: count(courses) >= 4
 
     requirements:
       - name: Acting
         result:
-          given: these-courses
-          courses: [THEAT 233]
-          repeats: all
-          what: courses
-          do: count >= 1
+          from: {student: courses}
+          where: course = THEAT 233
+          assert: count(courses) >= 1
 
       - name: Tech
         result:
-          given: these-courses
-          courses: [THEAT 253]
-          repeats: all
-          what: courses
-          do: count >= 2
+          from: {student: courses}
+          where: course = THEAT 253
+          assert: count(courses) >= 2

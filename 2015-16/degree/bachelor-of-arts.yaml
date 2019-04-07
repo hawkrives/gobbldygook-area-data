@@ -3,363 +3,283 @@ type: degree
 catalog: 2015-16
 
 result:
-  count: all
-  of:
-    - requirement: Degree Requirements
-    - requirement: General Education
+  all:
+    - reference: Degree Requirements
+    - reference: General Education
 
 requirements:
-  - name: Degree Requirements
+  Degree Requirements:
     result:
-      count: all
-      of:
-        - requirement: Courses
-        - requirement: Residency
-        - requirement: Interim
-        - requirement: Grade Point Average
-        - requirement: Course Level
-        - requirement: Graded Courses
-        - requirement: Major
+      all:
+        - reference: Courses
+        - reference: Residency
+        - reference: Interim
+        - reference: Grade Point Average
+        - reference: Course Level
+        - reference: Graded Courses
+        - reference: Major
 
     requirements:
-      - name: Courses
+      Courses:
         result:
-          given: courses
-          what: credits
-          do: sum >= 35
+          from: {student: courses}
+          assert: sum(credits) >= 35
 
-      - name: Residency
+      Residency:
         result:
-          given: courses
-          where: { institution: St. Olaf College }
-          what: credits
-          do: sum >= 17
+          from: {student: courses}
+          where: institution = St. Olaf College
+          assert: sum(credits) >= 17
 
-      - name: Interim
-        save:
-          - given: courses
-            where: { semester: Interim }
-            what: courses
-            name: "Interim Courses"
+      Interim:
         result:
-          both:
-            - { given: save, save: "Interim Courses", what: credits, do: sum >= 3 }
-            - { given: save, save: "Interim Courses", what: courses, do: count >= 3 }
+          from: {student: courses}
+          where: semester = Interim
+          assert: count(courses) >= 3 and sum(credits) >= 3
 
-      - name: Grade Point Average
+      Grade Point Average:
         result:
-          given: courses
-          what: grades
-          do: average >= 2.0
+          from: {student: courses}
+          assert: average(grades) >= C
 
-      - name: Course Level
+      Course Level:
         result:
-          given: courses
-          where: { level: '>= 200' }
-          what: credits
-          do: sum >= 18
+          from: {student: courses}
+          where: level >= 200
+          assert: sum(credits) >= 18
 
-      - name: Graded Courses
+      Graded Courses:
         result:
-          given: courses
-          where: { graded: 'true' }
-          what: credits
-          do: sum >= 24
+          from: {student: courses}
+          where: graded = true
+          assert: sum(credits) >= 24
 
-      - name: Major
+      Major:
         result:
-          given: areas
-          where: { type: major }
-          what: areas
-          do: count >= 1
+          from: {student: areas}
+          where: type = major
+          assert: count(areas) >= 1
 
 
-  - name: General Education
+  General Education:
     result:
-      count: all
-      of:
-        - requirement: Foundation
-        - requirement: Core
-        - requirement: Integrative
+      all:
+        - reference: Foundation
+        - reference: Core
+        - reference: Integrative
 
     requirements:
-      - name: Foundation
+      Foundation:
         result:
-          count: all
-          of:
-            - requirement: First-Year Writing
-            - requirement: Writing in Context
-            - requirement: Foreign Language
-            - requirement: Oral Communication
-            - requirement: Abstract and Quantitative Reasoning
-            - requirement: Studies in Physical Movement
+          all:
+            - reference: First-Year Writing
+            - reference: Writing in Context
+            - reference: Foreign Language
+            - reference: Oral Communication
+            - reference: Abstract and Quantitative Reasoning
+            - reference: Studies in Physical Movement
 
         requirements:
-          - name: First-Year Writing
+          First-Year Writing:
             result:
-              given: courses
-              where: { gereqs: FYW }
-              what: courses
-              do: count >= 1
+              from: {student: courses}
+              where: gereqs = FYW
+              assert: count(courses) >= 1
 
-          - name: Writing in Context
+          Writing in Context:
             result:
-              given: courses
-              where: { gereqs: WRI }
-              what: courses
-              do: count >= 4
+              from: {student: courses}
+              where: gereqs = WRI
+              assert: count(courses) >= 4
 
-          - name: Foreign Language
+          Foreign Language:
             result:
-              count: any
-              of:
-                - { given: courses, where: { gereqs: FOL-C }, what: courses, do: count >= 1 }
-                - { given: courses, where: { gereqs: FOL-F }, what: courses, do: count >= 1 }
-                - { given: courses, where: { gereqs: FOL-G }, what: courses, do: count >= 1 }
-                - { given: courses, where: { gereqs: FOL-K }, what: courses, do: count >= 1 }
-                - { given: courses, where: { gereqs: FOL-J }, what: courses, do: count >= 1 }
-                - { given: courses, where: { gereqs: FOL-L }, what: courses, do: count >= 1 }
-                - { given: courses, where: { gereqs: FOL-N }, what: courses, do: count >= 1 }
-                - { given: courses, where: { gereqs: FOL-R }, what: courses, do: count >= 1 }
-                - { given: courses, where: { gereqs: FOL-S }, what: courses, do: count >= 1 }
+              from: {student: courses}
+              where:
+                gereqs = FOL-C
+                or gereqs = FOL-F
+                or gereqs = FOL-G
+                or gereqs = FOL-K
+                or gereqs = FOL-J
+                or gereqs = FOL-L
+                or gereqs = FOL-N
+                or gereqs = FOL-R
+                or gereqs = FOL-S
+              assert: count(courses) >= 1
 
-          - name: Oral Communication
+          Oral Communication:
             result:
-              given: courses
-              where: { gereqs: ORC }
-              what: courses
-              do: count >= 1
+              from: {student: courses}
+              where: gereqs = ORC
+              assert: count(courses) >= 1
 
-          - name: Abstract and Quantitative Reasoning
+          Abstract and Quantitative Reasoning:
             result:
-              given: courses
-              where: { gereqs: AQR }
-              what: courses
-              do: count >= 1
+              from: {student: courses}
+              where: gereqs = AQR
+              assert: count(courses) >= 1
 
-          - name: Studies in Physical Movement
+          Studies in Physical Movement:
             result:
-              given: courses
-              where: { gereqs: SPM }
-              what: distinct-courses
-              do: count >= 2
+              from: {student: courses, repeats: first}
+              where: gereqs = SPM
+              assert: count(courses) >= 2
 
-      - name: Core
+      Core:
         result:
-          count: all
-          of:
-            - requirement: Historical Studies in Western Culture
-            - requirement: Multicultural Studies
-            - requirement: Artistic and Literary Studies
-            - requirement: Biblical and Theological Studies
-            - requirement: Studies in Natural Science
-            - requirement: Studies in Human Behavior and Society
+          all:
+            - reference: Historical Studies in Western Culture
+            - reference: Multicultural Studies
+            - reference: Artistic and Literary Studies
+            - reference: Biblical and Theological Studies
+            - reference: Studies in Natural Science
+            - reference: Studies in Human Behavior and Society
 
         requirements:
-          - name: Historical Studies in Western Culture
+          Historical Studies in Western Culture:
             message:
               One course must be taught by a St. Olaf professor.
-            save:
-              - given: courses
-                where: { gereqs: HWC }
-                what: courses
-                name: "Courses with an HWC"
-            result:
-              both:
-                - given: save
-                  save: "Courses with an HWC"
-                  what: courses
-                  do: count >= 2
-                - given: save
-                  save: "Courses with an HWC"
-                  where: { institution: St. Olaf College }
-                  what: courses
-                  do: count >= 1
 
-          - name: Multicultural Studies
-            save:
-              - given: courses
-                where: { gereqs: MCD | MCG }
-                what: courses
-                name: "Courses with an MCD or MCG"
+            saves:
+              Courses with an HWC:
+                from: {student: courses}
+                where: gereqs = HWC
+                store: courses
 
             result:
-              count: all
-              of:
-                - given: save
-                  save: "Courses with an MCD or MCG"
-                  what: courses
-                  do: count >= 2
+              all:
+                - from: {save: Courses with an HWC}
+                  assert: count(courses) >= 2
 
-                - given: save
-                  save: "Courses with an MCD or MCG"
-                  what: departments
-                  do: count >= 2
+                - from: {save: Courses with an HWC}
+                  where: institution = St. Olaf College
+                  assert: count(courses) >= 1
 
-                - given: save
-                  save: "Courses with an MCD or MCG"
-                  where: { gereqs: MCD }
-                  what: courses
-                  do: count >= 1
-
-                - given: save
-                  save: "Courses with an MCD or MCG"
-                  where: { gereqs: MCG }
-                  what: courses
-                  do: count >= 1
-
-          - name: Artistic and Literary Studies
-            save:
-              - given: courses
-                where: { gereqs: ALS-A | ALS-L }
-                what: courses
-                name: "Courses with an ALS-A or ALS-L"
+          Multicultural Studies:
+            saves:
+              Courses with an MCD or MCG:
+                from: {student: courses}
+                where: gereqs = MCD or gereqs = MCG
+                store: courses
 
             result:
-              count: all
-              of:
-                - given: save
-                  save: "Courses with an ALS-A or ALS-L"
-                  what: courses
-                  do: count >= 2
+              all:
+                - from: {save: Courses with an MCD or MCG}
+                  assert: count(courses) >= 2 and count(subjects) >= 2
 
-                - given: save
-                  save: "Courses with an ALS-A or ALS-L"
-                  where: { gereqs: ALS-A }
-                  what: courses
-                  do: count >= 1
+                - from: {save: Courses with an MCD or MCG}
+                  where: gereqs = MCD
+                  assert: count(courses) >= 1
 
-                - given: save
-                  save: "Courses with an ALS-A or ALS-L"
-                  where: { gereqs: ALS-L }
-                  what: courses
-                  do: count >= 1
+                - from: {save: Courses with an MCD or MCG}
+                  where: gereqs = MCG
+                  assert: count(courses) >= 1
 
-          - name: Biblical and Theological Studies
-            save:
-              - given: courses
-                where: { gereqs: BTS-B | BTS-T }
-                what: courses
-                name: "Courses with a BTS-B or BTS-T"
+          Artistic and Literary Studies:
+            saves:
+              Courses with an ALS-A or ALS-L:
+                from: {student: courses}
+                where: gereqs = ALS-A or gereqs = ALS-L
+                store: courses
 
             result:
-              count: all
-              of:
-                - given: save
-                  save: "Courses with a BTS-B or BTS-T"
-                  what: courses
-                  do: count >= 2
+              all:
+                - from: {save: Courses with an ALS-A or ALS-L}
+                  assert: count(courses) >= 2
 
-                - given: save
-                  save: "Courses with a BTS-B or BTS-T"
-                  where: { gereqs: 'BTS-B' }
-                  what: courses
-                  do: count >= 1
+                - from: {save: Courses with an ALS-A or ALS-L}
+                  where: gereqs = ALS-A
+                  assert: count(courses) >= 1
 
-                - given: save
-                  save: "Courses with a BTS-B or BTS-T"
-                  where: { gereqs: 'BTS-T' }
-                  what: courses
-                  do: count >= 1
+                - from: {save: Courses with an ALS-A or ALS-L}
+                  where: gereqs = ALS-L
+                  assert: count(courses) >= 1
 
-          - name: Studies in Natural Science
-            save:
-              - given: courses
-                where: { gereqs: SED | IST }
-                what: courses
-                name: "Courses with an SED or IST"
+          Biblical and Theological Studies:
+            saves:
+              Courses with a BTS-B or BTS-T:
+                from: {student: courses}
+                where: gereqs = BTS-B or gereqs = BTS-T
+                store: courses
 
             result:
-              count: all
-              of:
-                - given: save
-                  save: "Courses with an SED or IST"
-                  what: courses
-                  do: count >= 2
+              all:
+                - from: {save: Courses with a BTS-B or BTS-T}
+                  assert: count(courses) >= 2
 
-                - given: save
-                  save: "Courses with an SED or IST"
-                  what: departments
-                  do: count >= 2
+                - from: {save: Courses with a BTS-B or BTS-T}
+                  where: gereqs = BTS-B
+                  assert: count(courses) >= 1
 
-                - given: save
-                  save: "Courses with an SED or IST"
-                  where: { gereqs: SED }
-                  what: courses
-                  do: count >= 1
+                - from: {save: Courses with a BTS-B or BTS-T}
+                  where: gereqs = BTS-T
+                  assert: count(courses) >= 1
 
-                - given: save
-                  save: "Courses with an SED or IST"
-                  where: { gereqs: IST }
-                  what: courses
-                  do: count >= 1
-
-          - name: Studies in Human Behavior and Society
-            save:
-              - given: courses
-                where: { gereqs: HBS }
-                what: courses
-                name: "Courses with an HBS"
+          Studies in Natural Science:
+            saves:
+              Courses with an SED or IST:
+                from: {student: courses}
+                where: gereqs = SED or gereqs = IST
+                store: courses
 
             result:
-              count: all
-              of:
-                - given: save
-                  save: "Courses with an HBS"
-                  what: courses
-                  do: count >= 2
+              all:
+                - from: {save: Courses with an SED or IST}
+                  assert: count(courses) >= 2 and count(subjects) >= 2
 
-                - given: save
-                  save: "Courses with an HBS"
-                  what: departments
-                  do: count >= 2
+                - from: {save: Courses with an SED or IST}
+                  where: gereqs = SED
+                  assert: count(courses) >= 1
 
-                - given: save
-                  save: "Courses with an HBS"
-                  where: { institution: St. Olaf College }
-                  what: courses
-                  do: count >= 1
+                - from: {save: Courses with an SED or IST}
+                  where: gereqs = IST
+                  assert: count(courses) >= 1
 
-      - name: Integrative
+          Studies in Human Behavior and Society:
+            saves:
+              Courses with an HBS:
+                from: {student: courses}
+                where: gereqs = HBS
+                store: courses
+
+            result:
+              all:
+                - from: {save: Courses with an HBS}
+                  assert: count(courses) >= 2 and count(subjects) >= 2
+
+                - from: {save: Courses with an HBS}
+                  where: institution = St. Olaf College
+                  assert: count(courses) >= 1
+
+      Integrative:
         result:
-          count: all
-          of:
-            - requirement: Ethical Issues and Normative Perspectives
+          reference: Ethical Issues and Normative Perspectives
 
         requirements:
-          - name: Ethical Issues and Normative Perspectives
+          Ethical Issues and Normative Perspectives:
             message:
-              To complete any EIN course, you must have either completed the
-              BTS-T requirement or have obtained permission of the EIN instructor
-              beforehand.
+              To complete any EIN course, you must have either completed your
+              BTS-T general education requirement, or have obtained permission
+              of the EIN instructor beforehand.
 
-            save:
-              - given: courses
-                where: { gereqs: BTS-T }
-                what: terms
-                do: minimum
-                name: first BTS-T course
+            saves:
+              EIN courses:
+                from: {student: courses}
+                where: gereqs = EIN
+                store: courses
 
-              - given: courses
-                where: { gereqs: EIN }
-                what: courses
-                name: EIN courses
+              bts_t:
+                from: {student: courses, including used: true}
+                where: gereqs = BTS-T
+                store: minimum(term)
 
-              - given: save
-                save: EIN courses
-                what: terms
-                do: maximum
-                name: last EIN course
+              ein:
+                from: {save: EIN courses}
+                store: maximum(term)
 
             result:
-              count: all
-              of:
-                - given: save
-                  save: EIN courses
-                  what: courses
-                  do: count >= 1
+              all:
+                - from: {save: EIN courses}
+                  assert: count(courses) >= 1
 
-                - do:
-                    lhs: "first BTS-T course"
-                    op: "<"
-                    rhs: "last EIN course"
+                - assert: stored(bts_t) < stored(ein)

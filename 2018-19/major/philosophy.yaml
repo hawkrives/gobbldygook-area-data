@@ -4,41 +4,62 @@ degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
-  count: all
-  of:
-    - requirement: Core
-    - requirement: Level III Seminars
-    - requirement: Electives
+  all:
+    - reference: Core
+    - reference: Level III Seminars
+    - reference: Electives
 
 requirements:
-  - name: Core
+  Core:
     result:
       count: all
-      of: [PHIL 235, PHIL 236, PHIL 240]
+      of:
+        - course: PHIL 235
+        - course: PHIL 236
+        - course: PHIL 240
 
-  - name: Level III Seminars
+  Level III Seminars:
     result:
-      given: these-courses
-      courses: [PHIL 371, PHIL 372, PHIL 373, PHIL 374, PHIL 375]
-      repeats: first
+      from: {student: courses}
+      where: attribute = phil_l3_seminar
       limit:
-        - {at_most: 0, where: {s/u: 'true'}}
-      what: courses
-      do: count >= 3
+        - {at most: 0, where: taken = s/u}
+      assert: count(courses) >= 3
 
-  - name: Electives
+  Electives:
     result:
-      given: these-courses
-      courses: [
-        PHIL 118, PHIL 119, PHIL 120, PHIL 147,
-        PHIL 233, PHIL 235, PHIL 236, PHIL 240,
-        PHIL 241, PHIL 243, PHIL 244, PHIL 245,
-        PHIL 246, PHIL 250, PHIL 251, PHIL 252,
-        PHIL 254, PHIL 255, PHIL 257, PHIL 259,
-        PHIL 260, PHIL 261, PHIL 371, PHIL 372,
-        PHIL 373, PHIL 374, PHIL 375, PHIL 399,
-        GCON 218,
-      ]
-      repeats: first
-      what: courses
-      do: count >= 3
+      from: {student: courses}
+      where: attribute = phil_elective
+      assert: count(courses) >= 3
+
+attributes:
+  courses:
+    GCON 218: [phil_elective]
+    PHIL 118: [phil_elective]
+    PHIL 119: [phil_elective]
+    PHIL 120: [phil_elective]
+    PHIL 147: [phil_elective]
+    PHIL 233: [phil_elective]
+    PHIL 235: [phil_elective]
+    PHIL 236: [phil_elective]
+    PHIL 240: [phil_elective]
+    PHIL 241: [phil_elective]
+    PHIL 243: [phil_elective]
+    PHIL 244: [phil_elective]
+    PHIL 245: [phil_elective]
+    PHIL 246: [phil_elective]
+    PHIL 250: [phil_elective]
+    PHIL 251: [phil_elective]
+    PHIL 252: [phil_elective]
+    PHIL 254: [phil_elective]
+    PHIL 255: [phil_elective]
+    PHIL 257: [phil_elective]
+    PHIL 259: [phil_elective]
+    PHIL 260: [phil_elective]
+    PHIL 261: [phil_elective]
+    PHIL 371: [phil_elective, phil_l3_seminar]
+    PHIL 372: [phil_elective, phil_l3_seminar]
+    PHIL 373: [phil_elective, phil_l3_seminar]
+    PHIL 374: [phil_elective, phil_l3_seminar]
+    PHIL 375: [phil_elective, phil_l3_seminar]
+    PHIL 399: [phil_elective]

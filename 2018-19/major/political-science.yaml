@@ -4,35 +4,113 @@ degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
-  count: all
-  of:
-    - count: all
+  all:
+    - reference: Research Methods
+    - reference: American Politics and Public Policy
+    - reference: Comparative Politics
+    - reference: International Relations
+    - reference: Political Theory
+    - reference: Level III
+    - reference: Electives
+
+    - from:
+        requirement results:
+          - Research Methods
+          - American Politics and Public Policy
+          - Comparative Politics
+          - International Relations
+          - Political Theory
+          - Level III
+          - Electives
+        take: courses
+      assert: count(courses) >= 9
+
+limit:
+  - {at most: 3, where: level = 100}
+  - {at most: 2, where: institution != St. Olaf College}
+
+requirements:
+  Research Methods:
+    result:
+      course: PSCI 220
+
+  American Politics and Public Policy:
+    result:
+      from: {student: courses}
+      where: attribute = psci_topic_american
+      assert: count(courses) >= 1
+
+  Comparative Politics:
+    result:
+      from: {student: courses}
+      where: attribute = psci_topic_comparative
+      assert: count(courses) >= 1
+
+  International Relations:
+    result:
+      from: {student: courses}
+      where: attribute = psci_topic_international
+      assert: count(courses) >= 1
+
+  Political Theory:
+    result:
+      from: {student: courses}
+      where: attribute = psci_topic_theory
+      assert: count(courses) >= 1
+
+  Level III:
+    result:
+      from: {student: courses}
+      where: attribute = psci_level_3
+      limit:
+        - {at most: 0, where: institution != St. Olaf College}
+      assert: count(courses) >= 2
+
+  Electives:
+    saves:
+      Within PSCI:
+        from: {student: courses}
+        where: subject = PSCI or subject = AS/PS or subject = ES/PS
+        limit:
+          - {at most: 1, where: course = PSCI 294 and credit < 1.0}
+        store: courses
+
+      Statistics:
+        from: {student: courses}
+        where: subject = STAT and course != STAT 111
+        store: courses
+
+      French / German / Spanish:
+        from: {student: courses}
+        where:
+          (subject = FREN or subject = GERM or subject = SPAN)
+          and number >= 232
+        store: courses
+
+      Chinese / Greek / Latin / Japanese / Norwegian / Russian:
+        from: {student: courses}
+        where:
+          (subject = CHIN or subject = GREEK or subject = LATIN or subject = JAPAN or subject = NORW or subject = RUSSN)
+          and number >= 231
+        store: courses
+
+    result:
+      count: 0
       of:
-        - requirement: Research Methods
-        - requirement: American Politics and Public Policy
-        - requirement: Comparative Politics
-        - requirement: International Relations
-        - requirement: Political Theory
-        - requirement: Level III
-        - requirement: Electives
+        - from: {save: Within PSCI}
+          limit:
+            - {at most: 1, where: course is not None}
+          assert: count(courses) = 1
 
-    - given: these-requirements
-      requirements:
-        - Research Methods
-        - American Politics and Public Policy
-        - Comparative Politics
-        - International Relations
-        - Political Theory
-        - Level III
-        - Electives
-      what: courses
-      do: count >= 9
+        - from:
+            saves:
+              - Statistics
+              - French / German / Spanish
+              - Chinese / Greek / Latin / Japanese / Norwegian / Russian
+          limit:
+            - {at most: 1, where: course is not None}
+          assert: count(courses) = 1
 
-limiters:
-  - where: {level: '100'}
-    at_most: 3
-  - where: {institution: '! St. Olaf College'}
-    at_most: 2
 
 attributes:
   courses:
@@ -82,97 +160,4 @@ attributes:
     PSCI 384: [psci_level_3]
     PSCI 385: [psci_level_3]
     # 2000-01 Fall
-    PSCI 299 2000-1: [psci_topic_theory]
-
-
-requirements:
-  - name: Research Methods
-    result:
-      course: PSCI 220
-
-  - name: American Politics and Public Policy
-    result:
-      given: courses
-      where: {attribute: psci_topic_american}
-      what: courses
-      do: count >= 1
-
-  - name: Comparative Politics
-    result:
-      given: courses
-      where: {attribute: psci_topic_comparative}
-      what: courses
-      do: count >= 1
-
-  - name: International Relations
-    result:
-      given: courses
-      where: {attribute: psci_topic_international}
-      what: courses
-      do: count >= 1
-
-  - name: Political Theory
-    result:
-      given: courses
-      where: {attribute: psci_topic_theory}
-      what: courses
-      do: count >= 1
-
-  - name: Level III
-    result:
-      given: courses
-      where: {attribute: psci_level_3}
-      limits:
-        - {at_most: 0, where: {institution: '! St. Olaf College'}}
-      what: courses
-      do: count >= 2
-
-  - name: Electives
-    save:
-      - given: courses
-        where: {department: PSCI | AS/PS | ES/PS}
-        limits:
-          - {at_most: 1, where: {course: PSCI 294, credit: '< 1.0'}}
-        what: courses
-        name: Within PSCI
-
-      - given: courses
-        where: {department: STAT}
-        except: [STAT 111] # data science
-        name: Statistics
-
-      - given: courses
-        where:
-          department: 'FREN | GERM | SPAN'
-          number: '>= 232'
-        what: courses
-        name: French / German / Spanish
-
-      - given: courses
-        where:
-          department: 'CHIN | GREEK | LATIN | JAPAN | NORW | RUSSN'
-          number: '>= 231'
-        what: courses
-        name: Chinese / Greek / Latin / Japanese / Norwegian / Russian
-
-    result:
-      count: 0
-      mode: greedy
-      of:
-        - given: these-saves
-          saves:
-            - Within PSCI
-          limits:
-            - {at_most: 1}
-          what: courses
-          do: count = 1
-
-        - given: these-saves
-          saves:
-            - Statistics
-            - French / German / Spanish
-            - Chinese / Greek / Latin / Japanese / Norwegian / Russian
-          limits:
-            - {at_most: 1}
-          what: courses
-          do: count = 1
+    PSCI 299.2000.1: [psci_topic_theory]

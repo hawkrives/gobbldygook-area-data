@@ -4,14 +4,13 @@ degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
-  count: all
-  of:
-    - requirement: Foundations
-    - requirement: Juried Show
-    - requirement: Senior Studies in Studio Art
-    - requirement: Electives
-    - requirement: Areas
-    - requirement: Art History
+  all:
+    - reference: Foundations
+    - reference: Juried Show
+    - reference: Senior Studies in Studio Art
+    - reference: Electives
+    - reference: Areas
+    - reference: Art History
 
 attributes:
   courses:
@@ -67,110 +66,112 @@ attributes:
     PHIL 243: [art_history]
 
 requirements:
-  - name: Foundations
+  Foundations:
     result:
-      count: all
-      of:
-        - either: [ART 102, ART 106]
-        - ART 103
-        - ART 104
+      all:
+        - either:
+          - course: ART 102
+          - course: ART 106
+        - course: ART 103
+        - course: ART 104
 
-  - name: Areas
+  Areas:
     result:
-      count: all
-      of:
-        - requirement: 2D Media
-        - requirement: 3D Media
-        - requirement: New Media
+      all:
+        - reference: 2D Media
+        - reference: 3D Media
+        - reference: New Media
 
     requirements:
-      - name: 2D Media
+      2D Media:
         result:
-          count: any
-          of:
-            - requirement: Drawing
-            - requirement: Painting
-            - requirement: Printmaking
-            - requirement: Graphic Design
+          any:
+            - reference: Drawing
+            - reference: Painting
+            - reference: Printmaking
+            - reference: Graphic Design
 
         requirements:
-          - name: Drawing
+          Drawing:
             result:
-              count: any
-              of: [ART 225, ART 232, ART 233]
+              any:
+                - course: ART 225
+                - course: ART 232
+                - course: ART 233
 
-          - name: Painting
+          Painting:
             result:
-              count: any
-              of: [ART 221, ART 222]
+              any:
+                - course: ART 221
+                - course: ART 222
 
-          - name: Printmaking
+          Printmaking:
             result:
-              count: any
-              of: [ART 226, ART 227]
+              any:
+                - course: ART 226
+                - course: ART 227
 
-          - name: Graphic Design
+          Graphic Design:
             result:
-              count: any
-              of:
-                - {course: ART 236, year: 2000, semester: Fall}
+              any:
+                - course: ART 236
 
-      - name: 3D Media
+      3D Media:
         result:
-          count: any
-          of:
-            - requirement: Ceramics
-            - requirement: Sculpture
+          any:
+            - reference: Ceramics
+            - reference: Sculpture
 
         requirements:
-          - name: Ceramics
+          Ceramics:
             result:
-              count: any
-              of: [ART 207, ART 234]
+              any:
+                - course: ART 207
+                - course: ART 234
 
-          - name: Sculpture
+          Sculpture:
             result:
-              count: any
-              of: [ART 223, ART 224]
+              any:
+                - course: ART 223
+                - course: ART 224
 
-      - name: New Media
+      New Media:
         result:
-          count: any
-          of:
-            - requirement: Photography
-            - requirement: Interactive Image
-            - requirement: Digital Video
-            - requirement: Performance
-            - requirement: Graphic Design
+          any:
+            - reference: Photography
+            - reference: Interactive Image
+            - reference: Digital Video
+            - reference: Performance
+            - reference: Graphic Design
 
         requirements:
-          - name: Photography
+          Photography:
             result:
-              count: any
-              of: [ART 205, ART 238]
+              any:
+                - course: ART 205
+                - course: ART 238
 
-          - name: Interactive Image
+          Interactive Image:
             result:
-              count: any
-              of: [ART 228]
+              any:
+                - course: ART 228
 
-          - name: Digital Video
+          Digital Video:
             result:
-              count: any
-              of: [ART 229]
+              any:
+                - course: ART 229
 
-          - name: Performance
+          Performance:
             result:
-              count: any
-              of: [ART 240]
+              any:
+                - course: ART 240
 
-          - name: Graphic Design
+          Graphic Design:
             result:
-              count: any
-              of:
-                - {course: ART 236, year: 2000, semester: Fall}
+              any:
+                - course: ART 236
 
-  - name: Juried Show
+  Juried Show:
     department_audited: true
     message:
       Majors must participate in two juried shows. To fulfill the the
@@ -178,24 +179,22 @@ requirements:
       juried show in spring semester twice, or enter our student juried show
       once and one other non-class related exhibition on or off campus.
 
-  - name: Senior Studies in Studio Art
+  Senior Studies in Studio Art:
     result:
       course: ART 343
 
-  - name: Electives
+  Electives:
     result:
-      given: courses
-      where: {attribute: art_elective}
-      what: courses
-      do: count >= 1
+      from: {student: courses}
+      where: attribute = art_elective
+      assert: count(courses) >= 1
 
-  - name: Art History
+  Art History:
     message:
       The department strongly recommends that you take
       ART 252 or 253 as one of your art history courses.
 
     result:
-      given: courses
-      where: {attribute: art_history}
-      what: courses
-      do: count >= 1
+      from: {student: courses}
+      where: attribute = art_history
+      do: count(courses) >= 1

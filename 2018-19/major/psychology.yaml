@@ -4,16 +4,15 @@ degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
-  count: all
-  of:
-    - requirement: Foundation
-    - requirement: Content Core
-    - requirement: Level III Capstone
-    - requirement: General Education
-    - requirement: Electives
+  all:
+    - reference: Foundation
+    - reference: Content Core
+    - reference: Level III Capstone
+    - reference: General Education
+    - reference: Electives
 
 limits:
-  - {at_most: 2, where: {institution: '! STO', course: '! PSYCH 125'}}
+  - {at most: 2, where: institution != St. Olaf College and course != PSYCH 125}
 
 attributes:
   courses:
@@ -52,52 +51,55 @@ attributes:
     PSYCH 398: [psych_elective, psych_level_3]
 
 requirements:
-  - name: Foundation
+  Foundation:
     result:
       both:
-        - PSYCH 125
-        - PSYCH 230
+        - course: PSYCH 125
+        - course: PSYCH 230
 
-  - name: Content Core
+  Content Core:
     result:
-      count: all
-      of:
-        - requirement: Natural Science
-        - requirement: Social Science
+      all:
+        - reference: Natural Science
+        - reference: Social Science
 
     requirements:
-      - name: Natural Science
+      Natural Science:
         result:
           count: 2
-          of: [PSYCH 235, PSYCH 236, PSYCH 237, PSYCH 238]
+          of:
+            - course: PSYCH 235
+            - course: PSYCH 236
+            - course: PSYCH 237
+            - course: PSYCH 238
 
-      - name: Social Science
+      Social Science:
         result:
           count: 2
-          of: [PSYCH 241, PSYCH 244, PSYCH 247, PSYCH 249]
+          of:
+            - course: PSYCH 241
+            - course: PSYCH 244
+            - course: PSYCH 247
+            - course: PSYCH 249
 
-  - name: Level III Capstone
+  Level III Capstone:
     result:
-      given: courses
-      where: { attribute: psych_level_3 }
+      from: {student: courses}
+      where: attribute = psych_level_3
       limit:
-        # Only one PSYCH 396 or PSYCH 398 may fulfill the level III requirement
-        - {at_most: 1, where: {course: 'PSYCH 396 | PSYCH 398'}}
-      what: courses
-      do: count >= 2
+        - {at most: 1, where: course = PSYCH 396 or course = PSYCH 398}
+      assert: count(courses) >= 2
 
-  - name: General Education
+  General Education:
     result:
-      count: any
-      of:
-        - STAT 110
-        - STAT 212
-        - STAT 214
-        - ECON 263
+      any:
+        - course: STAT 110
+        - course: STAT 212
+        - course: STAT 214
+        - course: ECON 263
 
-  - name: Electives
+  Electives:
     result:
-      given: courses
-      where: { attribute: psych_elective }
-      what: courses
-      do: count >= 2
+      from: {student: courses}
+      where: attribute = psych_elective
+      assert: count(courses) >= 2

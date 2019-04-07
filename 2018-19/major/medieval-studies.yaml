@@ -4,13 +4,49 @@ degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
-  count: all
-  of:
-    - requirement: Language
-    - requirement: Medieval History
-    - requirement: Medieval Literature
-    - requirement: Electives
-    - requirement: Independent Research
+  all:
+    - reference: Language
+    - reference: Medieval History
+    - reference: Medieval Literature
+    - reference: Electives
+    - reference: Independent Research
+
+requirements:
+  Language:
+    result:
+      any:
+        - course: LATIN 235
+        - course: LATIN 252
+        - course: LATIN 370
+        - course: LATIN 371
+        - course: LATIN 372
+        - course: LATIN 373
+        - course: LATIN 374
+        - course: LATIN 375
+        - course: LATIN 377
+
+  Medieval History:
+    result:
+      from: {student: courses}
+      where: attribute = medieval_history
+      assert: count(courses) >= 1
+
+  Medieval Literature:
+    result:
+      from: {student: courses}
+      where: attribute = medieval_literature
+      assert: count(courses) >= 1
+
+  Electives:
+    result:
+      from: {student: courses}
+      where: attribute = medieval_elective
+      assert: count(courses) >= 4
+
+  Independent Research:
+    department_audited: true
+    message:
+      Any Independent Research course.
 
 attributes:
   courses:
@@ -30,45 +66,3 @@ attributes:
     REL 302: [medieval_elective]
     REL 303: [medieval_elective]
     THEAT 270: [medieval_elective]
-
-requirements:
-  - name: Language
-    result:
-      type: count-of
-      count: any
-      of:
-        - LATIN 235
-        - LATIN 252
-        - LATIN 370
-        - LATIN 371
-        - LATIN 372
-        - LATIN 373
-        - LATIN 374
-        - LATIN 375
-        - LATIN 377
-
-  - name: Medieval History
-    result:
-      given: courses
-      where: { attribute: medieval_history }
-      what: courses
-      do: count >= 1
-
-  - name: Medieval Literature
-    result:
-      given: courses
-      where: { attribute: medieval_literature }
-      what: courses
-      do: count >= 1
-
-  - name: Electives
-    result:
-      given: courses
-      where: { attribute: medieval_elective }
-      what: courses
-      do: count >= 4
-
-  - name: Independent Research
-    department_audited: true
-    message:
-      Any Independent Research course.

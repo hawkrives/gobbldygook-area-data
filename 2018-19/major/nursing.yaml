@@ -4,49 +4,52 @@ degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
-  count: all
-  of:
-    - requirement: Prerequisites
-    - requirement: Requirements
-    - requirement: Ethics
+  all:
+    - reference: Prerequisites
+    - reference: Requirements
+    - reference: Ethics
 
 requirements:
-  - name: Prerequisites
+  Prerequisites:
     message:
-      These courses must be completed before beginning level III nursing courses.
+      These courses must be completed before beginning any level III nursing courses.
     result:
-      count: all
-      of:
-        - BIO 143
-        - BIO 243
-        - ID 210
-        - NURS 110
-        - PSYCH 125
-        - PSYCH 241
-        - {count: 1, of: [BIO 121, BIO 231]}
-        - {count: 1, of: [SOAN 121, SOAN 128, SOAN 260, SOAN 264, SOAN 267]}
+      all:
+        - course: BIO 143
+        - course: BIO 243
+        - course: ID 210
+        - course: NURS 110
+        - course: PSYCH 125
+        - course: PSYCH 241
+        - either:
+            - course: BIO 121
+            - course: BIO 231
+        - any:
+            - course: SOAN 121
+            - course: SOAN 128
+            - course: SOAN 260
+            - course: SOAN 264
+            - course: SOAN 267
 
-  - name: Ethics
+  Ethics:
     message:
-      Nursing recommends taking the Biomedical Ethics (PHIL 250) course for this requirement
+      The Nursing department recommends taking the Biomedical Ethics (PHIL 250) course for this requirement
     result:
-      given: courses
-      where: {gereqs: EIN}
-      what: courses
-      do: count >= 1
+      from: {student: courses}
+      where: gereqs = EIN
+      assert: count(courses) >= 1
 
-  - name: Requirements
+  Requirements:
     result:
-      count: all
-      of:
-        - NURS 211
-        - NURS 311
-        - NURS 312
-        - NURS 313
-        - NURS 314
-        - NURS 315
-        - NURS 316
-        - NURS 317
-        - NURS 318
-        - NURS 319
-        - NURS 399
+      all:
+        - course: NURS 211
+        - course: NURS 311
+        - course: NURS 312
+        - course: NURS 313
+        - course: NURS 314
+        - course: NURS 315
+        - course: NURS 316
+        - course: NURS 317
+        - course: NURS 318
+        - course: NURS 319
+        - course: NURS 399

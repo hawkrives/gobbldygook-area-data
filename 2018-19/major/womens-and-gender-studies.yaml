@@ -4,11 +4,10 @@ degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
-  count: all
-  of:
-    - requirement: Introduction
-    - requirement: Advanced Topics
-    - requirement: Additional Courses
+  all:
+    - reference: Introduction
+    - reference: Advanced Topics
+    - reference: Additional Courses
 
 
 attributes:
@@ -73,65 +72,56 @@ attributes:
 
 
 requirements:
-  - name: Introduction
+  Introduction:
     result:
       course: WMGST 121
 
-  - name: Advanced Topics
+  Advanced Topics:
     result:
       course: WMGST 399
 
-  - name: Additional Courses
-    save:
-      - given: courses
-        where: {attribute: wmgst_elective}
-        what: courses
-        name: "Taken Elective Courses"
+  Additional Courses:
+    saves:
+      Taken Electives:
+        from: {student: courses}
+        where: attribute = wmgst_elective
+        store: courses
 
     result:
-      count: all
-      of:
-        - requirement: Theory and Methods
-        - requirement: Gender in Historical Context
-        - requirement: Gender in Global/Comparative/Diverse Contexts
-        - requirement: Lived Experiences
+      all:
+        - reference: Theory and Methods
+        - reference: Gender in Historical Context
+        - reference: Gender in Global/Comparative/Diverse Contexts
+        - reference: Lived Experiences
 
-        - given: save
-          save: "Taken Elective Courses"
-          what: courses
-          do: count >= 7
+        - from: {save: Taken Electives}
+          assert: count(courses) >= 7
 
-        - given: save
-          save: "Taken Elective Courses"
-          where: {level: '300'}
-          what: courses
-          do: count >= 1
+        - from: {save: Taken Electives}
+          where: level = 300
+          assert: count(courses) >= 1
 
     requirements:
-      - name: Theory and Methods
+      Theory and Methods:
         result:
-          given: courses
-          where: {attribute: wmgst_theory}
-          what: courses
-          do: count >= 1
+          from: {student: courses}
+          where: attribute = wmgst_theory
+          assert: count(courses) >= 1
 
-      - name: Gender in Historical Context
+      Gender in Historical Context:
         result:
-          given: courses
-          where: {attribute: wmgst_historical}
-          what: courses
-          do: count >= 1
+          from: {student: courses}
+          where: attribute = wmgst_historical
+          assert: count(courses) >= 1
 
-      - name: Gender in Global/Comparative/Diverse Contexts
+      Gender in Global/Comparative/Diverse Contexts:
         result:
-          given: courses
-          where: {attribute: wmgst_diverse}
-          what: courses
-          do: count >= 1
+          from: {student: courses}
+          where: attribute = wmgst_diverse
+          assert: count(courses) >= 1
 
-      - name: Lived Experiences
+      Lived Experiences:
         result:
-          given: courses
-          where: {attribute: wmgst_lived}
-          what: courses
-          do: count >= 1
+          from: {student: courses}
+          where: attribute = wmgst_lived
+          assert: count(courses) >= 1

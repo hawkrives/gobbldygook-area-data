@@ -4,31 +4,130 @@ degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
-  both:
-    - count: all
+  all:
+    - reference: Basics
+    - reference: Transitions
+    - reference: Perspectives
+    - reference: Interdisciplinary
+    - reference: Sequence
+    - reference: Level III
+
+    - from:
+        requirement results:
+          - Basics
+          - Transitions
+          - Perspectives
+          - Interdisciplinary
+          - Sequence
+          - Level III
+        take: courses
+      where: year >= $matriculation-year
+      assert: count(courses) >= 6
+
+limit:
+  - {at most: 2, where: subject != MATH}
+
+requirements:
+  Basics:
+    result:
+      all:
+        - course: MATH 120
+        - either: [course: MATH 126, course: MATH 128]
+        - course: MATH 220
+
+  Transitions:
+    result:
+      from: {student: courses}
+      where: attribute = math_transitions
+      assert: count(courses) >= 2
+
+  Perspectives:
+    message: One course from each of three of the four perspectives.
+
+    result:
+      count: 3
       of:
-        - requirement: Basics
-        - requirement: Transitions
-        - requirement: Perspectives
-        - requirement: Interdisciplinary
-        - requirement: Sequence
-        - requirement: Level III
+        - reference: Axiomatic/Algebraic (A)
+        - reference: Continuous/Analytic (C)
+        - reference: Discrete/Combinatorial (D)
+        - reference: Modeling/Computation (M)
 
-    - given: these-requirements
-      requirements:
-        - Basics
-        - Transitions
-        - Perspectives
-        - Interdisciplinary
-        - Sequence
-        - Level III
-      where: {year: '>= matriculation'}
-      what: courses
-      do: count >= 6
+    requirements:
+      Axiomatic/Algebraic (A):
+        result:
+          from: {student: courses}
+          where: attribute = math_perspective_a
+          assert: count(courses) >= 1
 
-limiters:
-  - where: {department: '! MATH'}
-    at_most: 2
+      Continuous/Analytic (C):
+        result:
+          from: {student: courses}
+          where: attribute = math_perspective_c
+          assert: count(courses) >= 1
+
+      Discrete/Combinatorial (D):
+        result:
+          from: {student: courses}
+          where: attribute = math_perspective_d
+          assert: count(courses) >= 1
+
+      Modeling/Computation (M):
+        result:
+          from: {student: courses}
+          where: attribute = math_perspective_m
+          assert: count(courses) >= 1
+
+  Interdisciplinary:
+    result:
+      count: 0
+      of:
+        - reference: Chemistry
+        - reference: Economics
+        - reference: Physics
+
+    requirements:
+      Chemistry:
+        result:
+          both:
+            - course: CHEM 371
+            - from: {student: areas}
+              where: type = major and name = Chemistry
+              assert: count(areas) = 1
+      Economics:
+        result:
+          both:
+            - course: ECON 385
+            - from: {student: areas}
+              where: type = major and name = Economics
+              assert: count(areas) = 1
+      Physics:
+        result:
+          both:
+            - course: PHYS 375
+            - from: {student: areas}
+              where: type = major and name = Physics
+              assert: count(areas) = 1
+
+  Level III:
+    result:
+      from: {student: courses}
+      where: attribute = math_level_3
+      limit:
+        - {at most: 1, where: subject != MATH}
+      assert: count(courses) >= 2
+
+  Sequence:
+    result:
+      any:
+        - both: [{course: MATH 220, including used: true}, {course: MATH 356, including used: true}]
+        - both: [{course: MATH 220, including used: true}, {course: MSCS 341, including used: true}]
+        - both: [{course: MATH 224, including used: true}, {course: MATH 348, including used: true}]
+        - both: [{course: MATH 226, including used: true}, {course: MATH 340, including used: true}]
+        - both: [{course: MATH 230, including used: true}, {course: MATH 330, including used: true}]
+        - both: [{course: MATH 232, including used: true}, {course: MATH 364, including used: true}]
+        - both: [{course: MATH 244, including used: true}, {course: MATH 344, including used: true}]
+        - both: [{course: MATH 252, including used: true}, {course: MATH 352, including used: true}]
+        - both: [{course: MATH 262, including used: true}, {course: STAT 322, including used: true}]
 
 attributes:
   multicountable:
@@ -67,116 +166,3 @@ attributes:
     STAT 272: [math_perspective_m]
     STAT 316: [math_perspective_m]
     STAT 322: [math_level_3]
-
-requirements:
-  - name: Basics
-    result:
-      count: all
-      of:
-        - MATH 120
-        - either: [MATH 126, MATH 128]
-        - MATH 220
-
-  - name: Transitions
-    result:
-      given: courses
-      where: {attribute: math_transitions}
-      what: courses
-      do: count >= 2
-
-  - name: Perspectives
-    message: One course from each of three of the four perspectives.
-
-    result:
-      count: 3
-      of:
-        - requirement: Axiomatic/Algebraic (A)
-        - requirement: Continuous/Analytic (C)
-        - requirement: Discrete/Combinatorial (D)
-        - requirement: Modeling/Computation (M)
-
-    requirements:
-      - name: Axiomatic/Algebraic (A)
-        result:
-          given: courses
-          where: {attribute: math_perspective_a}
-          what: courses
-          do: count >= 1
-
-      - name: Continuous/Analytic (C)
-        result:
-          given: courses
-          where: {attribute: math_perspective_c}
-          what: courses
-          do: count >= 1
-
-      - name: Discrete/Combinatorial (D)
-        result:
-          given: courses
-          where: {attribute: math_perspective_d}
-          what: courses
-          do: count >= 1
-
-      - name: Modeling/Computation (M)
-        result:
-          given: courses
-          where: {attribute: math_perspective_m}
-          what: courses
-          do: count >= 1
-
-  - name: Interdisciplinary
-    result:
-      count: 0
-      of:
-        - requirement: Chemistry
-        - requirement: Economics
-        - requirement: Physics
-
-    requirements:
-      - name: Chemistry
-        result:
-          both:
-            - course: CHEM 371
-            - given: areas
-              where: {type: major, name: Chemistry}
-              what: areas
-              do: count = 1
-      - name: Economics
-        result:
-          both:
-            - course: ECON 385
-            - given: areas
-              where: {type: major, name: Economics}
-              what: areas
-              do: count = 1
-      - name: Physics
-        result:
-          both:
-            - course: PHYS 375
-            - given: areas
-              where: {type: major, name: Physics}
-              what: areas
-              do: count = 1
-
-  - name: Level III
-    result:
-      given: courses
-      where: {attribute: math_level_3}
-      limit:
-        - {at_most: 1, where: {department: '! MATH'}}
-      what: courses
-      do: count >= 2
-
-  - name: Sequence
-    result:
-      count: 1
-      of:
-        - both: [{course: MATH 220, can_match_used: true}, {course: MATH 356, can_match_used: true}]
-        - both: [{course: MATH 220, can_match_used: true}, {course: MSCS 341, can_match_used: true}]
-        - both: [{course: MATH 224, can_match_used: true}, {course: MATH 348, can_match_used: true}]
-        - both: [{course: MATH 226, can_match_used: true}, {course: MATH 340, can_match_used: true}]
-        - both: [{course: MATH 230, can_match_used: true}, {course: MATH 330, can_match_used: true}]
-        - both: [{course: MATH 232, can_match_used: true}, {course: MATH 364, can_match_used: true}]
-        - both: [{course: MATH 244, can_match_used: true}, {course: MATH 344, can_match_used: true}]
-        - both: [{course: MATH 252, can_match_used: true}, {course: MATH 352, can_match_used: true}]
-        - both: [{course: MATH 262, can_match_used: true}, {course: STAT 322, can_match_used: true}]

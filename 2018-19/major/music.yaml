@@ -4,446 +4,398 @@ degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
-  count: all
-  of:
-    - requirement: Core
-    - requirement: Musicology
-    - requirement: Electives
-    - requirement: Performance Studies
-    - requirement: Official Ensemble Participation
-    - requirement: Performances
-    - requirement: Recital Attendance
+  all:
+    - reference: Core
+    - reference: Musicology
+    - reference: Electives
+    - reference: Performance Studies
+    - reference: Official Ensemble Participation
+    - reference: Performances
+    - reference: Recital Attendance
 
 requirements:
-  - name: Core
+  Core:
     result:
-      count: all
-      of:
-        - MUSIC 114
-        - MUSIC 141
-        - {course: MUSIC 161, grade: B-}
-        - {course: MUSIC 162, grade: B-}
-        - either: [MUSIC 212, MUSIC 214]
+      all:
+        - course: MUSIC 114
+        - course: MUSIC 141
+        - {course: MUSIC 161, where: grade >= B-}
+        - {course: MUSIC 162, where: grade >= B-}
+        - either:
+          - course: MUSIC 212
+          - course: MUSIC 214
 
-  - name: Musicology
+  Musicology:
     result:
       count: 1
-      of: [MUSIC 340, MUSIC 341, MUSIC 342, MUSIC 343, MUSIC 344,
-           MUSIC 345, MUSIC 346, MUSIC 347, MUSIC 348, MUSIC 349]
+      of:
+        - course: MUSIC 340
+        - course: MUSIC 341
+        - course: MUSIC 342
+        - course: MUSIC 343
+        - course: MUSIC 344
+        - course: MUSIC 345
+        - course: MUSIC 346
+        - course: MUSIC 347
+        - course: MUSIC 348
+        - course: MUSIC 349
 
-  - name: Electives
+  Electives:
     result:
-      given: courses
-      where: {department: MUSIC, level: '200 | 300'}
+      from: {student: courses}
+      where: subject = MUSIC and (level = 200 or level = 300)
       limit:
-        - where: {level: '200'}
-          at_most: 3
-      what: courses
-      do: count >= 4
+        - {at most: 3, where: level = 200}
+      assert: count(courses) >= 4
 
-  - name: Performance Studies
+  Performance Studies:
     message:
       6 semesters; 4 in the same instrument/voice
 
     result:
-      count: 1
-      of:
-        - requirement: Bassoon
-        - requirement: Clarinet
-        - requirement: Drumset
-        - requirement: Euphonium
-        - requirement: Flute
-        - requirement: French Horn
-        - requirement: Hardanger Fiddle
-        - requirement: Harp
-        - requirement: Harpsichord
-        - requirement: Jazz Piano
-        - requirement: Jazz Saxophone
-        - requirement: Oboe
-        - requirement: Organ
-        - requirement: Percussion
-        - requirement: Piano
-        - requirement: Saxophone
-        - requirement: String Bass
-        - requirement: Trombone
-        - requirement: Trumpet
-        - requirement: Tuba
-        - requirement: Viola
-        - requirement: Violin
-        - requirement: Violoncello
-        - requirement: Voice
+      any:
+        - reference: Bassoon
+        - reference: Clarinet
+        - reference: Drumset
+        - reference: Euphonium
+        - reference: Flute
+        - reference: French Horn
+        - reference: Hardanger Fiddle
+        - reference: Harp
+        - reference: Harpsichord
+        - reference: Jazz Piano
+        - reference: Jazz Saxophone
+        - reference: Oboe
+        - reference: Organ
+        - reference: Percussion
+        - reference: Piano
+        - reference: Saxophone
+        - reference: String Bass
+        - reference: Trombone
+        - reference: Trumpet
+        - reference: Tuba
+        - reference: Viola
+        - reference: Violin
+        - reference: Violoncello
+        - reference: Voice
 
     requirements:
-      - name: Bassoon
+      Bassoon:
         result:
-          given: these-requirements
-          requirements: [Lessons, Other Lessons]
-          what: terms
-          do: count >= 6
+          from: {requirement results: [Lessons, Other Lessons], take: courses}
+          assert: count(terms) >= 6
         requirements:
-          - name: Lessons
-            result: {given: these-courses, courses: [MUSPF 102], repeats: all, what: terms, do: count >= 4}
-          - name: Other Lessons
-            result: {given: courses, where: {department: MUSPF, number: '! 102'}, what: terms, do: count >= 2}
+          Lessons:
+            result: {from: {student: courses}, where: course = MUSPF 102, assert: count(terms) >= 4}
+          Other Lessons:
+            result: {from: {student: courses}, where: subject = MUSPF and number != 102, assert: count(terms) >= 2}
 
-      - name: Clarinet
+      Clarinet:
         result:
-          given: these-requirements
-          requirements: [Lessons, Other Lessons]
-          what: terms
-          do: count >= 6
+          from: {requirement results: [Lessons, Other Lessons], take: courses}
+          assert: count(terms) >= 6
         requirements:
-          - name: Lessons
-            result: {given: these-courses, courses: [MUSPF 104], repeats: all, what: terms, do: count >= 4}
-          - name: Other Lessons
-            result: {given: courses, where: {department: MUSPF, number: '! 104'}, what: terms, do: count >= 2}
+          Lessons:
+            result: {from: {student: courses}, where: course = MUSPF 104, assert: count(terms) >= 4}
+          Other Lessons:
+            result: {from: {student: courses}, where: subject = MUSPF and number != 104, assert: count(terms) >= 2}
 
-      - name: Coll Keyboard Perfor
+      Coll Keyboard Perfor:
         result:
-          given: these-requirements
-          requirements: [Lessons, Other Lessons]
-          what: terms
-          do: count >= 6
+          from: {requirement results: [Lessons, Other Lessons], take: courses}
+          assert: count(terms) >= 6
         requirements:
-          - name: Lessons
-            result: {given: these-courses, courses: [MUSPF 106], repeats: all, what: terms, do: count >= 4}
-          - name: Other Lessons
-            result: {given: courses, where: {department: MUSPF, number: '! 106'}, what: terms, do: count >= 2}
+          Lessons:
+            result: {from: {student: courses}, where: course = MUSPF 106, assert: count(terms) >= 4}
+          Other Lessons:
+            result: {from: {student: courses}, where: subject = MUSPF and number != 106, assert: count(terms) >= 2}
 
-      - name: Drumset
+      Drumset:
         result:
-          given: these-requirements
-          requirements: [Lessons, Other Lessons]
-          what: terms
-          do: count >= 6
+          from: {requirement results: [Lessons, Other Lessons], take: courses}
+          assert: count(terms) >= 6
         requirements:
-          - name: Lessons
-            result: {given: these-courses, courses: [MUSPF 109], repeats: all, what: terms, do: count >= 4}
-          - name: Other Lessons
-            result: {given: courses, where: {department: MUSPF, number: '! 109'}, what: terms, do: count >= 2}
+          Lessons:
+            result: {from: {student: courses}, where: course = MUSPF 109, assert: count(terms) >= 4}
+          Other Lessons:
+            result: {from: {student: courses}, where: subject = MUSPF and number != 109, assert: count(terms) >= 2}
 
-      - name: Euphonium
+      Euphonium:
         result:
-          given: these-requirements
-          requirements: [Lessons, Other Lessons]
-          what: terms
-          do: count >= 6
+          from: {requirement results: [Lessons, Other Lessons], take: courses}
+          assert: count(terms) >= 6
         requirements:
-          - name: Lessons
-            result: {given: these-courses, courses: [MUSPF 112], repeats: all, what: terms, do: count >= 4}
-          - name: Other Lessons
-            result: {given: courses, where: {department: MUSPF, number: '! 112'}, what: terms, do: count >= 2}
+          Lessons:
+            result: {from: {student: courses}, where: course = MUSPF 112, assert: count(terms) >= 4}
+          Other Lessons:
+            result: {from: {student: courses}, where: subject = MUSPF and number != 112, assert: count(terms) >= 2}
 
-      - name: Flute
+      Flute:
         result:
-          given: these-requirements
-          requirements: [Lessons, Other Lessons]
-          what: terms
-          do: count >= 6
+          from: {requirement results: [Lessons, Other Lessons], take: courses}
+          assert: count(terms) >= 6
         requirements:
-          - name: Lessons
-            result: {given: these-courses, courses: [MUSPF 114], repeats: all, what: terms, do: count >= 4}
-          - name: Other Lessons
-            result: {given: courses, where: {department: MUSPF, number: '! 114'}, what: terms, do: count >= 2}
+          Lessons:
+            result: {from: {student: courses}, where: course = MUSPF 114, assert: count(terms) >= 4}
+          Other Lessons:
+            result: {from: {student: courses}, where: subject = MUSPF and number != 114, assert: count(terms) >= 2}
 
-      - name: French Horn
+      French Horn:
         result:
-          given: these-requirements
-          requirements: [Lessons, Other Lessons]
-          what: terms
-          do: count >= 6
+          from: {requirement results: [Lessons, Other Lessons], take: courses}
+          assert: count(terms) >= 6
         requirements:
-          - name: Lessons
-            result: {given: these-courses, courses: [MUSPF 116], repeats: all, what: terms, do: count >= 4}
-          - name: Other Lessons
-            result: {given: courses, where: {department: MUSPF, number: '! 116'}, what: terms, do: count >= 2}
+          Lessons:
+            result: {from: {student: courses}, where: course = MUSPF 116, assert: count(terms) >= 4}
+          Other Lessons:
+            result: {from: {student: courses}, where: subject = MUSPF and number != 116, assert: count(terms) >= 2}
 
-      - name: Hardanger Fiddle
+      Hardanger Fiddle:
         result:
-          given: these-requirements
-          requirements: [Lessons, Other Lessons]
-          what: terms
-          do: count >= 6
+          from: {requirement results: [Lessons, Other Lessons], take: courses}
+          assert: count(terms) >= 6
         requirements:
-          - name: Lessons
-            result: {given: these-courses, courses: [MUSPF 118], repeats: all, what: terms, do: count >= 4}
-          - name: Other Lessons
-            result: {given: courses, where: {department: MUSPF, number: '! 118'}, what: terms, do: count >= 2}
+          Lessons:
+            result: {from: {student: courses}, where: course = MUSPF 118, assert: count(terms) >= 4}
+          Other Lessons:
+            result: {from: {student: courses}, where: subject = MUSPF and number != 118, assert: count(terms) >= 2}
 
-      - name: Harp
+      Harp:
         result:
-          given: these-requirements
-          requirements: [Lessons, Other Lessons]
-          what: terms
-          do: count >= 6
+          from: {requirement results: [Lessons, Other Lessons], take: courses}
+          assert: count(terms) >= 6
         requirements:
-          - name: Lessons
-            result: {given: these-courses, courses: [MUSPF 120], repeats: all, what: terms, do: count >= 4}
-          - name: Other Lessons
-            result: {given: courses, where: {department: MUSPF, number: '! 120'}, what: terms, do: count >= 2}
+          Lessons:
+            result: {from: {student: courses}, where: course = MUSPF 120, assert: count(terms) >= 4}
+          Other Lessons:
+            result: {from: {student: courses}, where: subject = MUSPF and number != 120, assert: count(terms) >= 2}
 
-      - name: Harpsichord
+      Harpsichord:
         result:
-          given: these-requirements
-          requirements: [Lessons, Other Lessons]
-          what: terms
-          do: count >= 6
+          from: {requirement results: [Lessons, Other Lessons], take: courses}
+          assert: count(terms) >= 6
         requirements:
-          - name: Lessons
-            result: {given: these-courses, courses: [MUSPF 122], repeats: all, what: terms, do: count >= 4}
-          - name: Other Lessons
-            result: {given: courses, where: {department: MUSPF, number: '! 122'}, what: terms, do: count >= 2}
+          Lessons:
+            result: {from: {student: courses}, where: course = MUSPF 122, assert: count(terms) >= 4}
+          Other Lessons:
+            result: {from: {student: courses}, where: subject = MUSPF and number != 122, assert: count(terms) >= 2}
 
-      - name: Jazz Piano
+      Jazz Piano:
         result:
-          given: these-requirements
-          requirements: [Lessons, Other Lessons]
-          what: terms
-          do: count >= 6
+          from: {requirement results: [Lessons, Other Lessons], take: courses}
+          assert: count(terms) >= 6
         requirements:
-          - name: Lessons
-            result: {given: these-courses, courses: [MUSPF 124], repeats: all, what: terms, do: count >= 4}
-          - name: Other Lessons
-            result: {given: courses, where: {department: MUSPF, number: '! 124'}, what: terms, do: count >= 2}
+          Lessons:
+            result: {from: {student: courses}, where: course = MUSPF 124, assert: count(terms) >= 4}
+          Other Lessons:
+            result: {from: {student: courses}, where: subject = MUSPF and number != 124, assert: count(terms) >= 2}
 
-      - name: Oboe
+      Oboe:
         result:
-          given: these-requirements
-          requirements: [Lessons, Other Lessons]
-          what: terms
-          do: count >= 6
+          from: {requirement results: [Lessons, Other Lessons], take: courses}
+          assert: count(terms) >= 6
         requirements:
-          - name: Lessons
-            result: {given: these-courses, courses: [MUSPF 126], repeats: all, what: terms, do: count >= 4}
-          - name: Other Lessons
-            result: {given: courses, where: {department: MUSPF, number: '! 126'}, what: terms, do: count >= 2}
+          Lessons:
+            result: {from: {student: courses}, where: course = MUSPF 126, assert: count(terms) >= 4}
+          Other Lessons:
+            result: {from: {student: courses}, where: subject = MUSPF and number != 126, assert: count(terms) >= 2}
 
-      - name: Organ
+      Organ:
         result:
-          given: these-requirements
-          requirements: [Lessons, Other Lessons]
-          what: terms
-          do: count >= 6
+          from: {requirement results: [Lessons, Other Lessons], take: courses}
+          assert: count(terms) >= 6
         requirements:
-          - name: Lessons
-            result: {given: these-courses, courses: [MUSPF 128], repeats: all, what: terms, do: count >= 4}
-          - name: Other Lessons
-            result: {given: courses, where: {department: MUSPF, number: '! 128'}, what: terms, do: count >= 2}
+          Lessons:
+            result: {from: {student: courses}, where: course = MUSPF 128, assert: count(terms) >= 4}
+          Other Lessons:
+            result: {from: {student: courses}, where: subject = MUSPF and number != 128, assert: count(terms) >= 2}
 
-      - name: Percussion
+      Percussion:
         result:
-          given: these-requirements
-          requirements: [Lessons, Other Lessons]
-          what: terms
-          do: count >= 6
+          from: {requirement results: [Lessons, Other Lessons], take: courses}
+          assert: count(terms) >= 6
         requirements:
-          - name: Lessons
-            result: {given: these-courses, courses: [MUSPF 132], repeats: all, what: terms, do: count >= 4}
-          - name: Other Lessons
-            result: {given: courses, where: {department: MUSPF, number: '! 132'}, what: terms, do: count >= 2}
+          Lessons:
+            result: {from: {student: courses}, where: course = MUSPF 132, assert: count(terms) >= 4}
+          Other Lessons:
+            result: {from: {student: courses}, where: subject = MUSPF and number != 132, assert: count(terms) >= 2}
 
-      - name: Piano
+      Piano:
         result:
-          given: these-requirements
-          requirements: [Lessons, Other Lessons]
-          what: terms
-          do: count >= 6
+          from: {requirement results: [Lessons, Other Lessons], take: courses}
+          assert: count(terms) >= 6
         requirements:
-          - name: Lessons
-            result: {given: these-courses, courses: [MUSPF 134], repeats: all, what: terms, do: count >= 4}
-          - name: Other Lessons
-            result: {given: courses, where: {department: MUSPF, number: '! 134'}, what: terms, do: count >= 2}
+          Lessons:
+            result: {from: {student: courses}, where: course = MUSPF 134, assert: count(terms) >= 4}
+          Other Lessons:
+            result: {from: {student: courses}, where: subject = MUSPF and number != 134, assert: count(terms) >= 2}
 
-      - name: Jazz Saxophone
+      Jazz Saxophone:
         result:
-          given: these-requirements
-          requirements: [Lessons, Other Lessons]
-          what: terms
-          do: count >= 6
+          from: {requirement results: [Lessons, Other Lessons], take: courses}
+          assert: count(terms) >= 6
         requirements:
-          - name: Lessons
-            result: {given: these-courses, courses: [MUSPF 135], repeats: all, what: terms, do: count >= 4}
-          - name: Other Lessons
-            result: {given: courses, where: {department: MUSPF, number: '! 135'}, what: terms, do: count >= 2}
+          Lessons:
+            result: {from: {student: courses}, where: course = MUSPF 135, assert: count(terms) >= 4}
+          Other Lessons:
+            result: {from: {student: courses}, where: subject = MUSPF and number != 135, assert: count(terms) >= 2}
 
-      - name: Saxophone
+      Saxophone:
         result:
-          given: these-requirements
-          requirements: [Lessons, Other Lessons]
-          what: terms
-          do: count >= 6
+          from: {requirement results: [Lessons, Other Lessons], take: courses}
+          assert: count(terms) >= 6
         requirements:
-          - name: Lessons
-            result: {given: these-courses, courses: [MUSPF 136], repeats: all, what: terms, do: count >= 4}
-          - name: Other Lessons
-            result: {given: courses, where: {department: MUSPF, number: '! 136'}, what: terms, do: count >= 2}
+          Lessons:
+            result: {from: {student: courses}, where: course = MUSPF 136, assert: count(terms) >= 4}
+          Other Lessons:
+            result: {from: {student: courses}, where: subject = MUSPF and number != 136, assert: count(terms) >= 2}
 
-      - name: String Bass
+      String Bass:
         result:
-          given: these-requirements
-          requirements: [Lessons, Other Lessons]
-          what: terms
-          do: count >= 6
+          from: {requirement results: [Lessons, Other Lessons], take: courses}
+          assert: count(terms) >= 6
         requirements:
-          - name: Lessons
-            result: {given: these-courses, courses: [MUSPF 138], repeats: all, what: terms, do: count >= 4}
-          - name: Other Lessons
-            result: {given: courses, where: {department: MUSPF, number: '! 138'}, what: terms, do: count >= 2}
+          Lessons:
+            result: {from: {student: courses}, where: course = MUSPF 138, assert: count(terms) >= 4}
+          Other Lessons:
+            result: {from: {student: courses}, where: subject = MUSPF and number != 138, assert: count(terms) >= 2}
 
-      - name: Trombone
+      Trombone:
         result:
-          given: these-requirements
-          requirements: [Lessons, Other Lessons]
-          what: terms
-          do: count >= 6
+          from: {requirement results: [Lessons, Other Lessons], take: courses}
+          assert: count(terms) >= 6
         requirements:
-          - name: Lessons
-            result: {given: these-courses, courses: [MUSPF 140], repeats: all, what: terms, do: count >= 4}
-          - name: Other Lessons
-            result: {given: courses, where: {department: MUSPF, number: '! 140'}, what: terms, do: count >= 2}
+          Lessons:
+            result: {from: {student: courses}, where: course = MUSPF 140, assert: count(terms) >= 4}
+          Other Lessons:
+            result: {from: {student: courses}, where: subject = MUSPF and number != 140, assert: count(terms) >= 2}
 
-      - name: Trumpet
+      Trumpet:
         result:
-          given: these-requirements
-          requirements: [Lessons, Other Lessons]
-          what: terms
-          do: count >= 6
+          from: {requirement results: [Lessons, Other Lessons], take: courses}
+          assert: count(terms) >= 6
         requirements:
-          - name: Lessons
-            result: {given: these-courses, courses: [MUSPF 142], repeats: all, what: terms, do: count >= 4}
-          - name: Other Lessons
-            result: {given: courses, where: {department: MUSPF, number: '! 142'}, what: terms, do: count >= 2}
+          Lessons:
+            result: {from: {student: courses}, where: course = MUSPF 142, assert: count(terms) >= 4}
+          Other Lessons:
+            result: {from: {student: courses}, where: subject = MUSPF and number != 142, assert: count(terms) >= 2}
 
-      - name: Tuba
+      Tuba:
         result:
-          given: these-requirements
-          requirements: [Lessons, Other Lessons]
-          what: terms
-          do: count >= 6
+          from: {requirement results: [Lessons, Other Lessons], take: courses}
+          assert: count(terms) >= 6
         requirements:
-          - name: Lessons
-            result: {given: these-courses, courses: [MUSPF 144], repeats: all, what: terms, do: count >= 4}
-          - name: Other Lessons
-            result: {given: courses, where: {department: MUSPF, number: '! 144'}, what: terms, do: count >= 2}
+          Lessons:
+            result: {from: {student: courses}, where: course = MUSPF 144, assert: count(terms) >= 4}
+          Other Lessons:
+            result: {from: {student: courses}, where: subject = MUSPF and number != 144, assert: count(terms) >= 2}
 
-      - name: Viola
+      Viola:
         result:
-          given: these-requirements
-          requirements: [Lessons, Other Lessons]
-          what: terms
-          do: count >= 6
+          from: {requirement results: [Lessons, Other Lessons], take: courses}
+          assert: count(terms) >= 6
         requirements:
-          - name: Lessons
-            result: {given: these-courses, courses: [MUSPF 146], repeats: all, what: terms, do: count >= 4}
-          - name: Other Lessons
-            result: {given: courses, where: {department: MUSPF, number: '! 146'}, what: terms, do: count >= 2}
+          Lessons:
+            result: {from: {student: courses}, where: course = MUSPF 146, assert: count(terms) >= 4}
+          Other Lessons:
+            result: {from: {student: courses}, where: subject = MUSPF and number != 146, assert: count(terms) >= 2}
 
-      - name: Violin
+      Violin:
         result:
-          given: these-requirements
-          requirements: [Lessons, Other Lessons]
-          what: terms
-          do: count >= 6
+          from: {requirement results: [Lessons, Other Lessons], take: courses}
+          assert: count(terms) >= 6
         requirements:
-          - name: Lessons
-            result: {given: these-courses, courses: [MUSPF 148], repeats: all, what: terms, do: count >= 4}
-          - name: Other Lessons
-            result: {given: courses, where: {department: MUSPF, number: '! 148'}, what: terms, do: count >= 2}
+          Lessons:
+            result: {from: {student: courses}, where: course = MUSPF 148, assert: count(terms) >= 4}
+          Other Lessons:
+            result: {from: {student: courses}, where: subject = MUSPF and number != 148, assert: count(terms) >= 2}
 
-      - name: Violoncello
+      Violoncello:
         result:
-          given: these-requirements
-          requirements: [Lessons, Other Lessons]
-          what: terms
-          do: count >= 6
+          from: {requirement results: [Lessons, Other Lessons], take: courses}
+          assert: count(terms) >= 6
         requirements:
-          - name: Lessons
-            result: {given: these-courses, courses: [MUSPF 150], repeats: all, what: terms, do: count >= 4}
-          - name: Other Lessons
-            result: {given: courses, where: {department: MUSPF, number: '! 150'}, what: terms, do: count >= 2}
+          Lessons:
+            result: {from: {student: courses}, where: course = MUSPF 150, assert: count(terms) >= 4}
+          Other Lessons:
+            result: {from: {student: courses}, where: subject = MUSPF and number != 150, assert: count(terms) >= 2}
 
-      - name: Voice
+      Voice:
         result:
-          given: these-requirements
-          requirements: [Lessons, Other Lessons]
-          what: terms
-          do: count >= 6
+          from: {requirement results: [Lessons, Other Lessons], take: courses}
+          assert: count(terms) >= 6
         requirements:
-          - name: Lessons
-            result: {given: these-courses, courses: [MUSPF 152], repeats: all, what: terms, do: count >= 4}
-          - name: Other Lessons
-            result: {given: courses, where: {department: MUSPF, number: '! 152'}, what: terms, do: count >= 2}
+          Lessons:
+            result: {from: {student: courses}, where: course = MUSPF 152, assert: count(terms) >= 4}
+          Other Lessons:
+            result: {from: {student: courses}, where: subject = MUSPF and number != 152, assert: count(terms) >= 2}
 
 
-  - name: Official Ensemble Participation
+  Official Ensemble Participation:
     result:
-      given: courses
-      where: {department: 'MUSEN'}
-      what: terms
-      do: count >= 4
+      from: {student: courses}
+      where: subject = MUSEN
+      assert: count(terms) >= 4
 
-  - name: Performances
+  Performances:
     message:
       Two solo performances on a St. Olaf Student Recital.
     result:
-      given: performances
-      where: {performance: 'Instrumental Student Recital | Vocal Lab Choir Solo'}
-      what: performances
-      do: count >= 2
+      from: {student: music performances}
+      where: solo = true
+      assert: count(performances) >= 2
 
-  - name: Recital Attendance
+  Recital Attendance:
     message:
       You must attend 10 recitals per semester on campus, with a minimum of 60 overall.
     result:
-      given: attendances
-      what: attendances
-      do: count >= 60
+      from: {student: music performances}
+      where: attended = true
+      assert: count(performances) >= 60
 
 
 emphases:
   limits: []
 
   choices:
-    - name: Composition
+    Composition:
       result:
-        count: all
-        of:
-          - requirement: Courses
-          - requirement: Lessons
-          - requirement: Performances
-          - requirement: Portfolio
+        all:
+          - reference: Courses
+          - reference: Lessons
+          - reference: Performances
+          - reference: Portfolio
 
       requirements:
-        - name: Courses
+        Courses:
           result:
-            count: all
-            of:
-              - MUSIC 225
-              - MUSIC 324
+            all:
+              - course: MUSIC 225
+              - course: MUSIC 324
 
-        - name: Lessons
+        Lessons:
           result:
-            given: these-courses
-            courses: [MUSPF 326]
-            repeats: all
-            what: terms
-            do: count >= 4
+            from: {student: courses}
+            where: course = MUSPF 326
+            assert: count(terms) >= 4
 
-        - name: Performances
+        Performances:
           message:
             2 composition performances, at least 1 in junior or senior year
+          saves:
+            All Performances:
+              from: {student: music performances}
+              where: performed = true and (type = AAA or type = BBB)
+              store: performances
           result:
             both:
-              - given: performances
-                where: {performance: 'AAA | BBB'}
-                what: performances
-                do: count >= 2
-              - given: performances
-                where: {performance: 'AAA | BBB', year: '$senior-year | $junior-year'}
-                what: performances
-                do: count >= 1
+              - from: {save: All Performances}
+                assert: count(performances) >= 2
+              - from: {save: All Performances}
+                where: year = $senior-year or year = $junior-year
+                assert: count(performances) >= 1
 
-        - name: Portfolio
+        Portfolio:
           message:
             With approval of the composition faculty, the student submits a
             portfolio of at least 3 compositions previously submitted for Level
@@ -451,42 +403,47 @@ emphases:
             year
           department_audited: true
 
-    - name: Musicology
+    Musicology:
       result:
-        count: all
-        of:
-          - requirement: Courses
-          - requirement: More Courses
-          - requirement: Portfolio
+        all:
+          - reference: Courses
+          - reference: More Courses
+          - reference: Portfolio
 
       requirements:
-        - name: Courses
+        Courses:
           result:
             count: 2
-            of: [
-              MUSIC 340, MUSIC 341, MUSIC 342, MUSIC 343, MUSIC 344,
-              MUSIC 345, MUSIC 346, MUSIC 347, MUSIC 348, MUSIC 349,
-            ]
-
-        - name: More Courses
-          result:
-            count: 1
             of:
-              - MUSIC 312
-              - MUSIC 313
-              - MUSIC 314
-              - MUSIC 340
-              - MUSIC 341
-              - MUSIC 342
-              - MUSIC 343
-              - MUSIC 344
-              - MUSIC 345
-              - MUSIC 346
-              - MUSIC 347
-              - MUSIC 348
-              - MUSIC 349
+              - course: MUSIC 340
+              - course: MUSIC 341
+              - course: MUSIC 342
+              - course: MUSIC 343
+              - course: MUSIC 344
+              - course: MUSIC 345
+              - course: MUSIC 346
+              - course: MUSIC 347
+              - course: MUSIC 348
+              - course: MUSIC 349
 
-        - name: Portfolio
+        More Courses:
+          result:
+            any:
+              - course: MUSIC 312
+              - course: MUSIC 313
+              - course: MUSIC 314
+              - course: MUSIC 340
+              - course: MUSIC 341
+              - course: MUSIC 342
+              - course: MUSIC 343
+              - course: MUSIC 344
+              - course: MUSIC 345
+              - course: MUSIC 346
+              - course: MUSIC 347
+              - course: MUSIC 348
+              - course: MUSIC 349
+
+        Portfolio:
           message:
             With approval of the musicology faculty, the student submits a
             portfolio of at least 3 papers previously submitted for Level III
@@ -495,23 +452,21 @@ emphases:
             the student's best work in musiciology
           department_audited: true
 
-    - name: Theory
+    Theory:
       result:
-        count: all
-        of:
-          - requirement: Courses
-          - requirement: Portfolio
+        all:
+          - reference: Courses
+          - reference: Portfolio
 
       requirements:
-        - name: Courses
+        Courses:
           result:
-            count: all
-            of:
+            all:
               - MUSIC 312
               - MUSIC 313
               - MUSIC 314
 
-        - name: Portfolio
+        Portfolio:
           message:
             With approval of the theory faculty, the student submits a portfolio
             of at least 3 papers previously submitted for Level III theory

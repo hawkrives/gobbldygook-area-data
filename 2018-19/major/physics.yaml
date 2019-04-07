@@ -4,13 +4,49 @@ degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
-  count: all
-  of:
-    - requirement: Analytics
-    - requirement: Modern Physics
-    - requirement: Upper-Level
-    - requirement: Upper-Level Elective
-    - requirement: Elective
+  all:
+    - reference: Analytics
+    - reference: Modern Physics
+    - reference: Upper-Level
+    - reference: Upper-Level Elective
+    - reference: Elective
+
+requirements:
+  Analytics:
+    result:
+      all:
+        - course: PHYS 130
+        - course: PHYS 131
+        - course: PHYS 232
+
+  Modern Physics:
+    result:
+      all:
+        - course: PHYS 244
+        - course: PHYS 245
+
+  Upper-Level:
+    result:
+      all:
+        - course: PHYS 374
+        - course: PHYS 375
+        - course: PHYS 385
+        - course: PHYS 386
+
+  Upper-Level Elective:
+    result:
+      any:
+        - course: PHYS 360
+        - course: PHYS 362
+        - course: PHYS 376
+        - course: PHYS 379
+        - course: PHYS 390
+
+  Elective:
+    result:
+      from: {student: courses}
+      where: attribute = physics_elective
+      assert: count(courses) >= 1
 
 attributes:
   courses:
@@ -26,31 +62,3 @@ attributes:
     PHYS 379: [physics_elective]
     PHYS 390: [physics_elective]
     PHYS 396: [physics_elective]
-
-requirements:
-  - name: Analytics
-    result:
-      count: all
-      of: [PHYS 130, PHYS 131, PHYS 232]
-
-  - name: Modern Physics
-    result:
-      count: all
-      of: [PHYS 244, PHYS 245]
-
-  - name: Upper-Level
-    result:
-      count: all
-      of: [PHYS 374, PHYS 375, PHYS 385, PHYS 386]
-
-  - name: Upper-Level Elective
-    result:
-      count: 1
-      of: [PHYS 360, PHYS 362, PHYS 376, PHYS 379, PHYS 390]
-
-  - name: Elective
-    result:
-      given: courses
-      where: {attribute: physics_elective}
-      what: courses
-      do: count >= 1

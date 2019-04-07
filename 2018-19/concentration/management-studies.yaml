@@ -4,18 +4,70 @@ degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
-  count: all
-  of:
-    - requirement: Core Courses
-    - requirement: Management Electives
-    - requirement: Experiential Learning
-    - requirement: Capstone
+  all:
+    - reference: Core Courses
+    - reference: Management Electives
+    - reference: Experiential Learning
+    - reference: Capstone
 
+limit:
+  - {at most: 0, where: grade <= C or taken = s/u}
 
-limits:
-  - at_most: 0
-    where: {grade: <= C}
+requirements:
+  Core Courses:
+    result:
+      all:
+        - course: ECON 121
+        - course: MGMT 225
+        - course: MGMT 251
 
+  Management Elective:
+    result:
+      from: {student: courses}
+      where: attribute = mgmt_elective
+      do: count(courses) >= 1
+
+  Distributed Elective:
+    result:
+      from: {student: courses}
+      where: attribute = mgmt_dist_elective
+      do: count(courses) >= 1
+
+  Experiential Learning:
+    message: >
+      This requirement is satisfied by completing two approved experiences in which
+      the student applies management or financial principles to real world problems.
+
+    result:
+      both:
+        - reference: Internship / Work Experience
+        - reference: Leadership Experience
+
+    requirements:
+      Internship / Work Experience:
+        department_audited: true
+        message: >
+          One of the activities must be an academic internship or an approved work
+          experience.
+
+      Leadership Experience:
+        department_audited: true
+        message: >
+          The other activity can be a volunteer, leadership, entrepreneurial,
+          or related work experience. The Piper Center for Vocation and Career and
+          other organizations help students with this requirement.
+
+  Capstone:
+    department_audited: true
+    message: >
+      The capstone project introduces students to the career planning process, helping
+      them to identify career options and assess opportunities. This project includes
+      career exploration activities, a description of future goals, and an academic
+      and experiential action plan, as well as projects, papers, and other work that
+      demonstrate specific skill development. The students will enter their materials
+      using Moodle and developing a LinkedIn site. By interconnecting important facets
+      of their education and experiential learning, students can demonstrate the
+      relationships between their varied learning experiences.
 
 attributes:
   courses:
@@ -156,62 +208,3 @@ attributes:
     THEAT 232: [mgmt_dist_elective]
     THEAT 338: [mgmt_dist_elective]
     THEAT 380: [mgmt_dist_elective]
-
-requirements:
-  - name: Core Courses
-    result:
-      count: all
-      of:
-        - ECON 121
-        - MGMT 225
-        - MGMT 251
-
-  - name: Management Elective
-    result:
-      given: courses
-      where: {attribute: mgmt_elective}
-      what: courses
-      do: count >= 1
-
-  - name: Distributed Elective
-    result:
-      given: courses
-      where: {attribute: mgmt_dist_elective}
-      what: courses
-      do: count >= 1
-
-  - name: Experiential Learning
-    message: >
-      This requirement is satisfied by completing two approved experiences in which
-      the student applies management or financial principles to real world problems.
-
-    result:
-      both:
-        - requirement: Internship / Work Experience
-        - requirement: Leadership Experience
-
-    requirements:
-      - name: Internship / Work Experience
-        department_audited: true
-        message: >
-          One of the activities must be an academic internship or an approved work
-          experience.
-
-      - name: Leadership Experience
-        department_audited: true
-        message: >
-          The other activity can be a volunteer, leadership, entrepreneurial,
-          or related work experience. The Piper Center for Vocation and Career and
-          other organizations help students with this requirement.
-
-  - name: Capstone
-    department_audited: true
-    message: >
-      The capstone project introduces students to the career planning process, helping
-      them to identify career options and assess opportunities. This project includes
-      career exploration activities, a description of future goals, and an academic
-      and experiential action plan, as well as projects, papers, and other work that
-      demonstrate specific skill development. The students will enter their materials
-      using Moodle and developing a LinkedIn site. By interconnecting important facets
-      of their education and experiential learning, students can demonstrate the
-      relationships between their varied learning experiences.

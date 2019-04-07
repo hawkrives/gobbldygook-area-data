@@ -4,62 +4,76 @@ degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
-  count: all
-  of:
-    - requirement: History of Sociological Theory
-    - requirement: Anthropological Theory
-    - requirement: Foundations of Social Science Research
-    - requirement: Ethnographic Research Methods
-    - requirement: Senior Seminar
-    - requirement: Principles of Statistics
-    - requirement: Electives
+  all:
+    - reference: History of Sociological Theory
+    - reference: Anthropological Theory
+    - reference: Foundations of Social Science Research
+    - reference: Ethnographic Research Methods
+    - reference: Senior Seminar
+    - reference: Principles of Statistics
+    - reference: Electives
 
+
+attributes:
+  courses:
+    SOAN 121: [soan_elective]
+    SOAN 128: [soan_elective]
+    SOAN 232: [soan_elective]
+    SOAN 233: [soan_elective]
+    SOAN 234: [soan_elective]
+    SOAN 235: [soan_elective]
+    SOAN 236: [soan_elective]
+    SOAN 237: [soan_elective]
+    SOAN 242: [soan_elective]
+    SOAN 244: [soan_elective]
+    SOAN 246: [soan_elective]
+    SOAN 247: [soan_elective]
+    SOAN 248: [soan_elective]
+    SOAN 250: [soan_elective]
+    SOAN 260: [soan_elective]
+    SOAN 261: [soan_elective]
+    SOAN 262: [soan_elective]
+    SOAN 264: [soan_elective]
+    SOAN 265: [soan_elective]
+    SOAN 266: [soan_elective]
+    SOAN 267: [soan_elective]
+    SOAN 268: [soan_elective]
+    AS/SA 239: [soan_elective]
 
 requirements:
-  - name: History of Sociological Theory
+  History of Sociological Theory:
     result:
       course: SOAN 291
 
-  - name: Anthropological Theory
+  Anthropological Theory:
     result:
       course: SOAN 292
 
-  - name: Foundations of Social Science Research
+  Foundations of Social Science Research:
     message: STAT 110 must be taken before SOAN 371.
     result:
       course: SOAN 371
 
-  - name: Ethnographic Research Methods
+  Ethnographic Research Methods:
     result:
       course: SOAN 373
 
-  - name: Senior Seminar
+  Senior Seminar:
     result:
       course: SOAN 399
 
-  - name: Principles of Statistics
+  Principles of Statistics:
     result:
       course: STAT 110
 
-  - name: Electives
+  Electives:
     message:
       Students are permitted to take one of the four elective courses, but
       not a core course, S/U.
 
     result:
-      given: these-courses
-      courses: [
-        SOAN 121, SOAN 128, SOAN 232, SOAN 233,
-        SOAN 234, SOAN 235, SOAN 236, SOAN 237,
-        SOAN 242, SOAN 244, SOAN 246, SOAN 247,
-        SOAN 248, SOAN 250, SOAN 260, SOAN 261,
-        SOAN 262, SOAN 264, SOAN 265, SOAN 266,
-        SOAN 267, SOAN 268,
-        AS/SA 239,
-      ]
-      repeats: first
+      from: {student: courses}
+      where: attribute = soan_elective
       limit:
-        - where: {su: 'true'}
-          at_most: 1
-      what: courses
-      do: count >= 4
+        - {at most: 1, where: s/u = true}
+      assert: count(courses) >= 4

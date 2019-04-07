@@ -4,15 +4,48 @@ degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
-  count: all
-  of:
-    - requirement: Language
-    - requirement: Culture & Writing
-    - requirement: History & Culture
-    - requirement: Upper-Level Elective
+  all:
+    - reference: Language
+    - reference: Culture & Writing
+    - reference: History & Culture
+    - reference: Upper-Level Elective
 
-limits:
-  - {at_most: 1, where: {s/u: 'true'}}
+limit:
+  - {at most: 1, where: taken = s/u}
+
+requirements:
+  - name: Language
+    result:
+      all:
+        - course: NORW 111
+        - course: NORW 112
+        - course: NORW 231
+        - course: NORW 232
+
+  - name: Culture & Writing
+    result:
+      all:
+        - course: NORW 253
+        - course: NORW 371
+        - course: NORW 372
+
+  - name: History & Culture
+    result:
+      from: {student: courses}
+      where: attribute = norw_history_culture
+      assert: count(courses) >= 1
+
+  - name: Upper-Level Elective
+    result:
+      any:
+        - course: NORW 224
+        - course: NORW 240
+        - course: NORW 244
+        - course: NORW 246
+        - course: NORW 282
+        - course: NORW 296
+        - course: HIST 211
+        - course: HIST 222
 
 attributes:
   courses:
@@ -20,42 +53,3 @@ attributes:
     NORW 140: [norw_history_culture]
     NORW 244: [norw_history_culture]
     HIST 222: [norw_history_culture]
-
-
-requirements:
-  - name: Language
-    result:
-      count: all
-      of:
-        - NORW 111
-        - NORW 112
-        - NORW 231
-        - NORW 232
-
-  - name: Culture & Writing
-    result:
-      count: all
-      of:
-        - NORW 253
-        - NORW 371
-        - NORW 372
-
-  - name: History & Culture
-    result:
-      given: courses
-      where: {attribute: norw_history_culture}
-      what: courses
-      do: count >= 1
-
-  - name: Upper-Level Elective
-    result:
-      count: any
-      of:
-        - NORW 224
-        - NORW 240
-        - NORW 244
-        - NORW 246
-        - NORW 282
-        - NORW 296
-        - HIST 211
-        - HIST 222
