@@ -1,3 +1,4 @@
+---
 name: Women's and Gender Studies
 type: major
 degree: Bachelor of Arts
@@ -8,7 +9,6 @@ result:
     - reference: Introduction
     - reference: Advanced Topics
     - reference: Additional Courses
-
 
 attributes:
   multicountable:
@@ -84,7 +84,7 @@ requirements:
     saves:
       Taken Electives:
         from: {student: courses}
-        where: attribute = wmgst_elective
+        where: {attributes: {$eq: wmgst_elective}}
         store: courses
 
     result:
@@ -95,33 +95,33 @@ requirements:
         - reference: Lived Experiences
 
         - from: {save: Taken Electives}
-          assert: count(courses) >= 7
+          assert: {count(courses): {$gte: 7}}
 
         - from: {save: Taken Electives}
-          where: level = 300
-          assert: count(courses) >= 1
+          where: {level: {$eq: 300}}
+          assert: {count(courses): {$gte: 1}}
 
     requirements:
       Theory and Methods:
         result:
           from: {student: courses}
-          where: attribute = wmgst_theory
-          assert: count(courses) >= 1
+          where: {attributes: {$eq: wmgst_theory}}
+          assert: {count(courses): {$gte: 1}}
 
       Gender in Historical Context:
         result:
           from: {student: courses}
-          where: attribute = wmgst_historical
-          assert: count(courses) >= 1
+          where: {attributes: {$eq: wmgst_historical}}
+          assert: {count(courses): {$gte: 1}}
 
       Gender in Global/Comparative/Diverse Contexts:
         result:
           from: {student: courses}
-          where: attribute = wmgst_diverse
-          assert: count(courses) >= 1
+          where: {attributes: {$eq: wmgst_diverse}}
+          assert: {count(courses): {$gte: 1}}
 
       Lived Experiences:
         result:
           from: {student: courses}
-          where: attribute = wmgst_lived
-          assert: count(courses) >= 1
+          where: {attributes: {$eq: wmgst_lived}}
+          assert: {count(courses): {$gte: 1}}

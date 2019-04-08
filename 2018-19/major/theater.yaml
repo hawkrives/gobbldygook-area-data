@@ -20,7 +20,9 @@ requirements:
         - course: THEAT 140
         - course: THEAT 180
         - course: THEAT 232
-        - either: [course: THEAT 240, course: THEAT 250]
+        - either:
+            - course: THEAT 240
+            - course: THEAT 250
         - course: THEAT 270
         - course: THEAT 271
 

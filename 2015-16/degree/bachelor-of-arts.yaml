@@ -35,7 +35,7 @@ requirements:
         result:
           from: {student: courses}
           where: {semester: {$eq: Interim}}
-          assert: count(courses) >= 3 and sum(credits) >= 3
+          assert: {$and: [{count(courses): {$gte: 3}}, {sum(credits): {$gte: 3}}]}
 
       Grade Point Average:
         result:
