@@ -26,8 +26,8 @@ result:
       assert: count(courses) >= 9
 
 limit:
-  - {at most: 3, where: level = 100}
-  - {at most: 2, where: institution != St. Olaf College}
+  - {at most: 3, where: {level: {$eq: 100}}}
+  - {at most: 2, where: {institution: {$neq: St. Olaf College}}}
 
 requirements:
   Research Methods:
@@ -37,31 +37,31 @@ requirements:
   American Politics and Public Policy:
     result:
       from: {student: courses}
-      where: attribute = psci_topic_american
+      where: {attribute: {$eq: psci_topic_american}}
       assert: count(courses) >= 1
 
   Comparative Politics:
     result:
       from: {student: courses}
-      where: attribute = psci_topic_comparative
+      where: {attribute: {$eq: psci_topic_comparative}}
       assert: count(courses) >= 1
 
   International Relations:
     result:
       from: {student: courses}
-      where: attribute = psci_topic_international
+      where: {attribute: {$eq: psci_topic_international}}
       assert: count(courses) >= 1
 
   Political Theory:
     result:
       from: {student: courses}
-      where: attribute = psci_topic_theory
+      where: {attribute: {$eq: psci_topic_theory}}
       assert: count(courses) >= 1
 
   Level III:
     result:
       from: {student: courses}
-      where: attribute = psci_level_3
+      where: {attribute: {$eq: psci_level_3}}
       limit:
         - {at most: 0, where: institution != St. Olaf College}
       assert: count(courses) >= 2
@@ -70,28 +70,30 @@ requirements:
     saves:
       Within PSCI:
         from: {student: courses}
-        where: subject = PSCI or subject = AS/PS or subject = ES/PS
+        where: {$or: [{subject: {$in: [PSCI, AS/PS, ES/PS]}}]}
         limit:
-          - {at most: 1, where: course = PSCI 294 and credit < 1.0}
+          - {at most: 1, where: {and: [{course: {$eq: PSCI 294}}, {credit: {$lt: 1.0}}]}}
         store: courses
 
       Statistics:
         from: {student: courses}
-        where: subject = STAT and course != STAT 111
+        where: {and: [{subject: {$eq: STAT}}, {course: {$neq: STAT 111}}]}
         store: courses
 
       French / German / Spanish:
         from: {student: courses}
         where:
-          (subject = FREN or subject = GERM or subject = SPAN)
-          and number >= 232
+          $and:
+            - subject: {$in: [FREN, GERM, SPAN]}
+            - number: {$gte: 232}
         store: courses
 
       Chinese / Greek / Latin / Japanese / Norwegian / Russian:
         from: {student: courses}
         where:
-          (subject = CHIN or subject = GREEK or subject = LATIN or subject = JAPAN or subject = NORW or subject = RUSSN)
-          and number >= 231
+          $and:
+            - subject: {$in: [CHIN, GREEK, LATIN, JAPAN, NORW, RUSSN]}
+            - number: {$gte: 231}
         store: courses
 
     result:
@@ -99,7 +101,7 @@ requirements:
       of:
         - from: {save: Within PSCI}
           limit:
-            - {at most: 1, where: course is not None}
+            - {at most: 1, where: {course: {$exists: true}}}
           assert: count(courses) = 1
 
         - from:

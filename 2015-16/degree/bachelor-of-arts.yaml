@@ -28,13 +28,13 @@ requirements:
       Residency:
         result:
           from: {student: courses}
-          where: institution = St. Olaf College
+          where: {institution: {$eq: St. Olaf College}}
           assert: sum(credits) >= 17
 
       Interim:
         result:
           from: {student: courses}
-          where: semester = Interim
+          where: {semester: {$eq: Interim}}
           assert: count(courses) >= 3 and sum(credits) >= 3
 
       Grade Point Average:
@@ -45,19 +45,19 @@ requirements:
       Course Level:
         result:
           from: {student: courses}
-          where: level >= 200
+          where: {level: {$gte: 200}}
           assert: sum(credits) >= 18
 
       Graded Courses:
         result:
           from: {student: courses}
-          where: graded = true
+          where: {graded: {$eq: true}}
           assert: sum(credits) >= 24
 
       Major:
         result:
           from: {student: areas}
-          where: type = major
+          where: {type: {$eq: major}}
           assert: count(areas) >= 1
 
 
@@ -83,46 +83,37 @@ requirements:
           First-Year Writing:
             result:
               from: {student: courses}
-              where: gereqs = FYW
+              where: {gereqs: {$eq: FYW}}
               assert: count(courses) >= 1
 
           Writing in Context:
             result:
               from: {student: courses}
-              where: gereqs = WRI
+              where: {gereqs: {$eq: WRI}}
               assert: count(courses) >= 4
 
           Foreign Language:
             result:
               from: {student: courses}
-              where:
-                gereqs = FOL-C
-                or gereqs = FOL-F
-                or gereqs = FOL-G
-                or gereqs = FOL-K
-                or gereqs = FOL-J
-                or gereqs = FOL-L
-                or gereqs = FOL-N
-                or gereqs = FOL-R
-                or gereqs = FOL-S
+              where: {gereqs: {$in: [FOL-C, FOL-F, FOL-G, FOL-K, FOL-J, FOL-L, FOL-N, FOL-R, FOL-S]}}
               assert: count(courses) >= 1
 
           Oral Communication:
             result:
               from: {student: courses}
-              where: gereqs = ORC
+              where: {gereqs: {$eq: ORC}}
               assert: count(courses) >= 1
 
           Abstract and Quantitative Reasoning:
             result:
               from: {student: courses}
-              where: gereqs = AQR
+              where: {gereqs: {$eq: AQR}}
               assert: count(courses) >= 1
 
           Studies in Physical Movement:
             result:
               from: {student: courses, repeats: first}
-              where: gereqs = SPM
+              where: {gereqs: {$eq: SPM}}
               assert: count(courses) >= 2
 
       Core:
@@ -143,7 +134,7 @@ requirements:
             saves:
               Courses with an HWC:
                 from: {student: courses}
-                where: gereqs = HWC
+                where: {gereqs: {$eq: HWC}}
                 store: courses
 
             result:
@@ -152,14 +143,14 @@ requirements:
                   assert: count(courses) >= 2
 
                 - from: {save: Courses with an HWC}
-                  where: institution = St. Olaf College
+                  where: {institution: {$eq: St. Olaf College}}
                   assert: count(courses) >= 1
 
           Multicultural Studies:
             saves:
               Courses with an MCD or MCG:
                 from: {student: courses}
-                where: gereqs = MCD or gereqs = MCG
+                where: {$or: [{gereqs: {$eq: MCD}}, {gereqs: {$eq: MCG}}]}
                 store: courses
 
             result:
@@ -168,11 +159,11 @@ requirements:
                   assert: count(courses) >= 2 and count(subjects) >= 2
 
                 - from: {save: Courses with an MCD or MCG}
-                  where: gereqs = MCD
+                  where: {gereqs: {$eq: MCD}}
                   assert: count(courses) >= 1
 
                 - from: {save: Courses with an MCD or MCG}
-                  where: gereqs = MCG
+                  where: {gereqs: {$eq: MCG}}
                   assert: count(courses) >= 1
 
           Artistic and Literary Studies:

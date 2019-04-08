@@ -10,7 +10,7 @@ result:
     - reference: Practicum
 
 limits:
-  - {at most: 1, where: s/u = true and credits = 1.00}
+  - {at most: 1, where: {$and: [{s/u: {$eq: true}}, {credits: {$eq: 1.00}}]}}
 
 requirements:
   - name: Part 1
@@ -46,18 +46,18 @@ requirements:
         - reference: Tech
 
         - from: {student: courses}
-          where: course = THEAT 233 or course = THEAT 253
+          where: {course: {$in: [THEAT 233, THEAT 253]}}
           assert: count(courses) >= 4
 
     requirements:
       - name: Acting
         result:
           from: {student: courses}
-          where: course = THEAT 233
+          where: {course: {$eq: THEAT 233}}
           assert: count(courses) >= 1
 
       - name: Tech
         result:
           from: {student: courses}
-          where: course = THEAT 253
+          where: {course: {$eq: THEAT 253}}
           assert: count(courses) >= 2

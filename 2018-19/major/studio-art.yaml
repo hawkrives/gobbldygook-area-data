@@ -186,7 +186,7 @@ requirements:
   Electives:
     result:
       from: {student: courses}
-      where: attribute = art_elective
+      where: {attribute: {$eq: art_elective}}
       assert: count(courses) >= 1
 
   Art History:
@@ -196,5 +196,5 @@ requirements:
 
     result:
       from: {student: courses}
-      where: attribute = art_history
+      where: {attribute: {$eq: art_history}}
       do: count(courses) >= 1
