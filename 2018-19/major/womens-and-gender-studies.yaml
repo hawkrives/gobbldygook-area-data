@@ -6,9 +6,9 @@ catalog: 2018-19
 
 result:
   all:
-    - reference: Introduction
-    - reference: Advanced Topics
-    - reference: Additional Courses
+    - requirement: Introduction
+    - requirement: Advanced Topics
+    - requirement: Additional Courses
 
 attributes:
   multicountable:
@@ -89,10 +89,10 @@ requirements:
 
     result:
       all:
-        - reference: Theory and Methods
-        - reference: Gender in Historical Context
-        - reference: Gender in Global/Comparative/Diverse Contexts
-        - reference: Lived Experiences
+        - requirement: Theory and Methods
+        - requirement: Gender in Historical Context
+        - requirement: Gender in Global/Comparative/Diverse Contexts
+        - requirement: Lived Experiences
 
         - from: {save: Taken Electives}
           assert: {count(courses): {$gte: 7}}

@@ -1,0 +1,37 @@
+---
+name: Social Work
+type: major
+degree: Bachelor of Arts
+catalog: 2018-19
+requires approval: true
+
+limit:
+  - at most: 0
+    where: {grade: {$lt: C}}
+
+result:
+  all:
+    - requirement: Prerequisites
+    - requirement: Foundation
+
+requirements:
+  Prerequisites:
+    all:
+      - course: SOAN 121
+      - course: PSYCH 125
+      - course: PSYCH 241
+      - either:
+          - course: BIO 123
+          - course: BIO 243
+
+  Foundation:
+    all:
+      - course: SWRK 221
+      - course: SWRK 246
+      - course: SWRK 254
+      - course: SWRK 258
+      - course: SWRK 261
+      - course: SWRK 274
+      - course: SWRK 373
+      - course: SWRK 380
+      - course: SWRK 381
