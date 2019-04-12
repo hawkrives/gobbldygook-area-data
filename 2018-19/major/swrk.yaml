@@ -1,0 +1,27 @@
+---
+name: Social Work
+type: major
+degree: Bachelor of Arts
+catalog: 2018-19
+
+result:
+  all:
+    - all:
+        - either: [{course: SOAN 121}, {course: SOAN 264}]
+        - course: PSYCH 125
+        - course: PSYCH 241
+        - any:
+            - course: BIO 123
+            - {course: BIO 143, hidden: true}
+            - course: BIO 243
+
+    - all:
+        - course: SWRK 221
+        - course: SWRK 246
+        - course: SWRK 254
+        - course: SWRK 258
+        - course: SWRK 261
+        - course: SWRK 274
+        - course: SWRK 373
+        - course: SWRK 380
+        - course: SWRK 381

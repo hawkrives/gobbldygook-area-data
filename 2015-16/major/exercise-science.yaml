@@ -4,22 +4,22 @@ type: major
 degree: Bachelor of Arts
 catalog: 2015-16
 
-# result:
-#   all:
-    # - either:
-    #     - course: DEPT 111
-    #     - course: DEPT 112
-    # - both:
-    #     - course: DEPT 111
-    #     - course: DEPT 113
+# # result:
+# #   all:
+#     # - either:
+#     #     - course: DEPT 111
+#     #     - course: DEPT 112
+#     # - both:
+#     #     - course: DEPT 111
+#     #     - course: DEPT 113
 
-    # - count: 2
-    #   of:
-    #     - course: DEPT 111
-    #     - course: DEPT 112
-    #     - course: DEPT 113
-    #     - course: DEPT 114
-    #     - course: DEPT 115
+#     # - count: 2
+#     #   of:
+#     #     - course: DEPT 111
+#     #     - course: DEPT 112
+#     #     - course: DEPT 113
+#     #     - course: DEPT 114
+#     #     - course: DEPT 115
 
 result:
     all:

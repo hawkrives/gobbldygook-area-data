@@ -1,0 +1,25 @@
+---
+name: Family Studies
+type: concentration
+degree: Bachelor of Arts
+catalog: 2018-19
+
+result:
+  all:
+    - all:
+        - course: FAMST 232
+        - course: FAMST 242
+        - course: FAMST 391
+    - count: 2
+      of:
+        - course: ENGL 203
+        - course: FAMST 253
+        - course: HIST 272
+        - course: NURS 312
+        - course: PSYCH 223
+        - course: PSYCH 241
+        - course: RACE 121
+        - course: RACE 250
+        - course: SOAN 248
+        - course: SOAN 260
+        - course: SPAN 250

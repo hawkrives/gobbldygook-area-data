@@ -4,8 +4,7 @@ degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
-  count: all
-  of:
+  all:
     - requirement: Language
     - requirement: Classics
     - requirement: Ancient Roman History
@@ -16,41 +15,46 @@ attributes:
     HIST 303: [latin_elective]
 
 requirements:
-  - name: Language
+  Language:
     result:
       count: 7
       of:
-        - LATIN 111
-        - LATIN 112
-        - LATIN 231
-        - LATIN 235
-        - LATIN 252
-        - LATIN 370
-        - LATIN 371
-        - LATIN 372
-        - LATIN 373
-        - LATIN 374
-        - LATIN 375
-        - LATIN 377
+        - course: LATIN 111
+        - course: LATIN 112
+        - course: LATIN 231
+        - course: LATIN 235
+        - course: LATIN 252
+        - course: LATIN 370
+        - course: LATIN 371
+        - course: LATIN 372
+        - course: LATIN 373
+        - course: LATIN 374
+        - course: LATIN 375
+        - course: LATIN 377
 
-  - name: Classics
+  Classics:
     result:
       count: 1
       of:
-        - CLASS 121
-        - CLASS 123
-        - CLASS 126
-        - CLASS 129
-        - CLASS 241
-        - CLASS 243
-        - CLASS 244
-        - CLASS 251
-        - CLASS 253
-        - CLASS 396
+        - course: CLASS 121
+        - course: CLASS 123
+        - course: CLASS 126
+        - course: CLASS 129
+        - course: CLASS 241
+        - course: CLASS 243
+        - course: CLASS 244
+        - course: CLASS 251
+        - course: CLASS 253
+        - course: CLASS 396
 
-  - name: Ancient Roman History
+  Ancient Roman History:
     result:
-      given: courses
-      where: {attributes: latin_elective}
-      what: courses
-      do: count >= 1
+      # given: courses
+      # where: {attributes: latin_elective}
+      # what: courses
+      # do: count >= 1
+      any:
+        - course: HIST 204
+        - course: HIST 303
+        - {course: CLASS 253, hidden: true}
+        - {course: CLASS 244, hidden: true}
