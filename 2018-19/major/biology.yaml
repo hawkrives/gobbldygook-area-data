@@ -4,21 +4,27 @@ degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
-  count: all
-  of:
-    - requirement: Foundation
-    - requirement: Core
-    - requirement: Level III
-    - requirement: Electives
-    - requirement: Chemistry
+  all:
+    - all:
+        - requirement: Foundation
+        - requirement: Core
+        - requirement: Level III
+        - requirement: Electives
+        - requirement: Chemistry
+    - from:
+        requirements:
+          - Foundation
+          - Core
+          - Level III
+          - Electives
+          - Chemistry
+      where: {grade: {$gte: C}, level: {$gte: 200}}
+      assert: {count(courses): {$gte: 4}}
+
 
 limiters:
-  - where: {level: '100'}
-    at_most: 2
-  - where: {institution: '! St. Olaf College'}
-    at_most: 0
-  # - where: {graded: 'true', grade: '>= C', level: '100'}
-  #   at_most: 2
+  - {at-most: 2, where: {level: {$eq: 100}}}
+  - {at-most: 2, where: {grade: {$lt: C}}}
 
 attributes:
   courses:
@@ -32,6 +38,7 @@ attributes:
     BIO 135: [bio_elective]
     BIO 143: [bio_elective]
     BIO 150: [bio_elective]
+    BIO 224: [bio_elective]
     BIO 226: [bio_elective]
     BIO 227: [bio_elective]
     BIO 231: [bio_elective]
@@ -104,6 +111,7 @@ requirements:
         result:
           count: 1
           of:
+            - BIO 224
             - BIO 242
             - BIO 247
             - BIO 248
@@ -111,14 +119,13 @@ requirements:
             - BIO 252
             - BIO 266
             - BIO 275
-            - BIO 226
 
       - name: Ecology
         result:
           count: 1
           of:
-            - BIO 261
             - BIO 226
+            - BIO 261
 
   - name: Level III
     result:
