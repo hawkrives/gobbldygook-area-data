@@ -21,40 +21,40 @@ result:
 
 attributes:
   courses:
-    ART 259: [china_focused_on_china]
-    AS/PS 255: [china_comparative_asia]
-    AS/RE 256: [china_comparative_asia]
-    AS/RE 257: [china_comparative_asia]
-    AS/RE 289: [china_comparative_asia]
-    ASIAN 121: [china_comparative_asia]
-    ASIAN 123: [china_comparative_asia]
-    ASIAN 156: [china_focused_on_china]
-    ASIAN 200: [china_comparative_asia]
-    ASIAN 210: [china_comparative_asia, china_asiancon]
-    ASIAN 215: [china_comparative_asia, china_asiancon]
-    ASIAN 216: [china_comparative_asia, china_asiancon]
-    ASIAN 220: [china_comparative_asia, china_asiancon]
-    ASIAN 236: [china_focused_on_china]
-    ASIAN 237: [china_focused_on_china]
-    ASIAN 268: [china_comparative_asia]
-    ASIAN 270: [china_focused_on_china]
-    ASIAN 282: [china_comparative_asia]
-    ASIAN 298: [china_independent_study]
-    ASIAN 300: [china_comparative_asia]
-    ASIAN 310: [china_comparative_asia]
-    ASIAN 333: [china_comparative_asia]
-    ASIAN 397: [china_comparative_asia, china_senior_seminar]
-    ASIAN 398: [china_independent_study]
-    ASIAN 399: [china_comparative_asia, china_senior_seminar]
-    HIST 250: [china_focused_on_china]
-    HIST 251: [china_focused_on_china]
-    HIST 262: [china_focused_on_china]
-    HIST 345: [china_comparative_asia]
-    PHIL 251: [china_comparative_asia]
-    PSCI 245: [china_comparative_asia]
+    ART 259: [china_elective]
+    AS/PS 255: [china_elective]
+    AS/RE 256: [china_elective]
+    AS/RE 257: [china_elective]
+    AS/RE 289: [china_elective]
+    ASIAN 121: [china_elective]
+    ASIAN 123: [china_elective]
+    ASIAN 156: [china_elective]
+    ASIAN 200: [china_elective]
+    ASIAN 210: [china_elective, china_asiancon]
+    ASIAN 215: [china_elective, china_asiancon]
+    ASIAN 216: [china_elective, china_asiancon]
+    ASIAN 220: [china_elective, china_asiancon]
+    ASIAN 236: [china_elective]
+    ASIAN 237: [china_elective]
+    ASIAN 268: [china_elective]
+    ASIAN 270: [china_elective]
+    ASIAN 282: [china_elective]
+    ASIAN 298: [china_is]
+    ASIAN 300: [china_elective]
+    ASIAN 310: [china_elective]
+    ASIAN 333: [china_elective]
+    ASIAN 397: [china_elective, china_senior_seminar]
+    ASIAN 398: [china_is]
+    ASIAN 399: [china_elective, china_senior_seminar]
+    HIST 250: [china_elective]
+    HIST 251: [china_elective]
+    HIST 262: [china_elective]
+    HIST 345: [china_elective]
+    PHIL 251: [china_elective]
+    PSCI 245: [china_elective]
 
 requirements:
-  - name: Core Language
+  Core Language:
     result:
       count: all
       of:
@@ -63,7 +63,7 @@ requirements:
         - CHIN 301
         - CHIN 302
 
-  - name: Upper-Level Language
+  Upper-Level Language:
     result:
       count: any
       of:
@@ -71,7 +71,7 @@ requirements:
         - CHIN 351
         - CHIN 360
 
-  - name: Language and Culture
+  Language and Culture:
     message: >
       The Asian Conversation sequence (ASIAN 210, ASIAN 215 or ASIAN 216, ASIAN
       220) will count for no more than two courses.
@@ -80,21 +80,17 @@ requirements:
       Asian Studies senior seminars (ASIAN 397 and ASIAN 399).
 
     save:
-      - given: these-requirements
-        requirements:
-          - China-focused
-          - Comparative
-        what: courses
+      - given: courses
+        where: {attribute: china_elective}
         limit:
+          - {at_most: 2, where: {attribute: 'china_asiancon'}}
+          - {at_most: 1, where: {attribute: 'china_is | china_senior_seminar'}}
           - {at_most: 1, where: {level: 100}}
         name: Allowed Courses
 
     result:
       count: all
       of:
-        - requirement: China-focused
-        - requirement: Comparative
-
         - given: save
           save: Allowed Courses
           what: courses
@@ -104,22 +100,4 @@ requirements:
           save: Allowed Courses
           what: courses
           where: {level: 300}
-          do: count >= 1
-
-    requirements:
-      - name: China-focused
-        result:
-          given: courses
-          where: {attribute: china_focused_on_china}
-          what: courses
-          do: count >= 1
-
-      - name: Comparative
-        result:
-          given: courses
-          where: {attribute: china_comparative_asia}
-          limit:
-            - {at_most: 2, where: {attribute: 'china_asiancon'}}
-            - {at_most: 1, where: {attribute: 'china_independent_study | china_senior_seminar'}}
-          what: courses
           do: count >= 1

@@ -1,0 +1,28 @@
+---
+name: Russian Language
+type: major
+degree: Bachelor of Arts
+catalog: 2018-19
+
+result:
+  all:
+    - course: RUSSN 111
+    - course: RUSSN 112
+    - course: RUSSN 231
+    - course: RUSSN 232
+    - course: RUSSN 251
+    - course: RUSSN 254
+    - course: RUSSN 372
+
+    - requirement: Study Abroad
+
+requirements:
+  Study Abroad:
+    result:
+      department-audited: true
+      message: >
+        Two additional courses taught in Russian, taken in Russia during senior
+        year.
+
+attributes:
+  courses: []

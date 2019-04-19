@@ -1,0 +1,84 @@
+---
+name: Spanish
+type: major
+degree: Bachelor of Arts
+catalog: 2018-19
+
+result:
+  count: all
+  of:
+    - requirement: Core
+    - requirement: Electives
+
+limit:
+  - {at-most: 2, where: {institution: {$neq: 'St. Olaf College'}}}
+
+requirements:
+  Core:
+    result:
+      all:
+        - course: SPAN 250
+        - course: SPAN 275
+        - course: SPAN 276
+        - either:
+            - {course: SPAN 313}
+            - {course: SPAN 314}
+
+  Electives:
+    save:
+      Taken Electives:
+        from:
+          requirements:
+            - Focused Courses
+            - Other Elective
+
+    result:
+      all:
+        - from: {save: Taken Electives}
+          assert: {count(courses): {$gte: 4}}
+
+        - from: {save: Taken Electives}
+          where:
+            level: {$eq: 300}
+            institution: {$eq: 'St. Olaf College'}
+          assert: {count(courses): {$gte: 1}}
+
+    requirements:
+      Focused Courses:
+        all:
+          - from: {student: courses}
+            where: {attribute: {$eq: spanish_focus_spain}}
+            assert: {count(courses): {$gte: 1}}
+
+          - from: {student: courses}
+            where: {attribute: {$eq: spanish_focus_latinamerica}}
+            assert: {count(courses): {$gte: 1}}
+
+      Other Elective:
+        result:
+          from: {student: courses}
+          where: {attribute: {$eq: spanish_elective}}
+          assert: {count(courses): {$gte: 1}}
+
+attributes:
+  multicountable:
+    - [{course: SPAN 313}, {attribute: spanish_elective}]
+    - [{course: SPAN 313}, {attribute: spanish_focus_spain}]
+
+    - [{course: SPAN 314}, {attribute: spanish_elective}]
+    - [{course: SPAN 314}, {attribute: spanish_focus_latinamerica}]
+
+  courses:
+    SPAN 270: [spanish_elective, spanish_focus_spain]
+    SPAN 271: [spanish_elective, spanish_focus_spain]
+    SPAN 272: [spanish_elective, spanish_focus_latinamerica]
+    SPAN 273: [spanish_elective, spanish_focus_latinx_in_us]
+    SPAN 274: [spanish_elective]  # focus depends on topic
+    SPAN 275: [spanish_elective]
+    SPAN 276: [spanish_elective]
+    SPAN 311: [spanish_elective]  # focus depends on topic
+    SPAN 312: [spanish_elective]  # focus depends on topic
+    SPAN 313: [spanish_elective, spanish_focus_spain]
+    SPAN 314: [spanish_elective, spanish_focus_latinamerica]
+    SPAN 315: [spanish_elective, spanish_focus_spain]
+    SPAN 399: [spanish_elective]  # focus depends on topic

@@ -5,16 +5,16 @@ catalog: 2018-19
 
 result:
   all:
-    - reference: Research Methods
-    - reference: American Politics and Public Policy
-    - reference: Comparative Politics
-    - reference: International Relations
-    - reference: Political Theory
-    - reference: Level III
-    - reference: Electives
+    - requirement: Research Methods
+    - requirement: American Politics and Public Policy
+    - requirement: Comparative Politics
+    - requirement: International Relations
+    - requirement: Political Theory
+    - requirement: Level III
+    - requirement: Electives
 
     - from:
-        requirement results:
+        requirements:
           - Research Methods
           - American Politics and Public Policy
           - Comparative Politics

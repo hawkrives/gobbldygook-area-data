@@ -1,0 +1,124 @@
+---
+name: Race and Ethnic Studies
+type: major
+degree: Bachelor of Arts
+catalog: 2018-19
+
+result:
+  all:
+    - either:
+        - course: RACE 121
+        - course: RACE 122
+    - requirement: Electives
+
+requirements:
+  Electives:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: race_elective}}
+      limit:
+        - {at-most: 1, where: {number: {$in: [296, 298, 396, 398]}}}
+        - {at-most: 1, where: {institution: {$neq: 'St. Olaf College'}}}
+        - {at-most: 1, where: {attribute: {$eq: race_outside_usa}}}
+      assert: {count(course): {$gte: 7}}
+
+attributes:
+  courses:
+    RACE 250: [race_elective]
+
+    AFAM 231: [race_elective]
+    AMCON 202: [race_elective]
+    # completion of American Conversations counts for one course for
+    # Race and Ethnic Studies
+
+    # AMST 205: [race_elective]
+    # when the final research project focuses on race/ethnicity,
+    # director approval required
+    ART 265: [race_elective]
+    ASIAN 123: [race_elective]
+    ASIAN 223: [race_elective]
+    DANCE 108: [race_elective]
+    DANCE 246: [race_elective]
+    EDUC 170: [race_elective]
+    EDUC 260: [race_elective]
+    EDUC 347: [race_elective]
+    EDUC 378: [race_elective]
+    EDUC 379: [race_elective]
+    ENGL 108: [race_elective]
+    ENGL 200: [race_elective]
+    ENGL 201: [race_elective]
+    ENGL 203: [race_elective]
+    ENGL 205: [race_elective]
+    ENGL 207: [race_elective]
+    ENGL 209: [race_elective]
+    ENGL 210: [race_elective]
+    # ENGL 220: [race_elective]
+    # when taught with the topic: Literature of American Slavery
+    ENGL 251: [race_elective]
+    # ENGL 280: [race_elective]
+    # when taught with the topic: Muslim Women Writers
+    ENGL 345: [race_elective]
+    ENGL 347: [race_elective]
+    # FREN 373: [race_elective]
+    # for majors
+    HIST 151: [race_elective]
+    HIST 165: [race_elective]
+    HIST 181: [race_elective]
+    HIST 199: [race_elective]
+    HIST 256: [race_elective]
+    HIST 270: [race_elective]
+    HIST 277: [race_elective]
+    HIST 278: [race_elective]
+    HIST 282: [race_elective]
+    HIST 288: [race_elective]
+    HIST 290: [race_elective]
+    # HIST 320: [race_elective]
+    # when taught with the topic: Holocaust and History
+    # HIST 370: [race_elective]
+    # when taught with the topic: Capitalism and Slavery
+    # HIST 395: [race_elective]
+    # when the final research project focuses on race/ethnicity,
+    # director approval required
+    MUSIC 136: [race_elective]
+    MUSIC 231: [race_elective]
+    MUSIC 237: [race_elective]
+    # MUSIC 345: [race_elective]
+    # when taught with the topic: Music and Race
+    # when taught with the topic: Music of African Christianities, for majors
+    # NORW 244: [race_elective]
+    # for NORW majors only
+    # TODO: really? norwegian majors only? is that also a prereq
+    # for taking the class?
+    PHIL 255: [race_elective]
+    PSCI 244: [race_elective]
+    # PSCI 350: [race_elective]
+    # when the final paper and RIN projects focus on race/ethnicity;
+    # director approval required
+    # REL 121: [race_elective]
+    # when taught with the topic: Belonging as Blessing and Challenge
+    REL 267: [race_elective]
+    SOAN 128: [race_elective]
+    SOAN 234: [race_elective]
+    SOAN 242: [race_elective]
+    SOAN 261: [race_elective]
+    SOAN 264: [race_elective]
+    SOAN 266: [race_elective]
+    SOAN 269: [race_elective]
+    # SOAN 299: [race_elective]
+    # when taught with the topic: Sociology of Music
+    SPAN 273: [race_elective]
+    SPAN 276: [race_elective]
+    SPAN 311: [race_elective]
+    SWRK 221: [race_elective]
+    SWRK 280: [race_elective]
+    SWRK 373: [race_elective]
+    THEAT 180: [race_elective]
+    # THEAT 379: [race_elective]
+    # when taught with the topic: Staging Faith: Religion and Spiritualism in
+    # Early 20th Century American Theater
+
+    WRIT 111D.2018.1: [race_elective]
+    WRIT 111H.2018.1: [race_elective]
+    # WRIT 111
+    # when taught with the topic: "Race and Power" or "Seeing Race in the
+    # Twenty-First Century"

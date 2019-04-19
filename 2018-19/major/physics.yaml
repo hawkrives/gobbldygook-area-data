@@ -1,3 +1,4 @@
+---
 name: Physics
 type: major
 degree: Bachelor of Arts
@@ -5,60 +6,44 @@ catalog: 2018-19
 
 result:
   all:
-    - reference: Analytics
-    - reference: Modern Physics
-    - reference: Upper-Level
-    - reference: Upper-Level Elective
-    - reference: Elective
+    - requirement: Core
+    - requirement: Elective
+    - requirement: Upper-Level Elective
 
 requirements:
-  Analytics:
+  Core:
     result:
       all:
         - course: PHYS 130
         - course: PHYS 131
         - course: PHYS 232
-
-  Modern Physics:
-    result:
-      all:
         - course: PHYS 244
         - course: PHYS 245
-
-  Upper-Level:
-    result:
-      all:
         - course: PHYS 374
         - course: PHYS 375
         - course: PHYS 385
         - course: PHYS 386
 
-  Upper-Level Elective:
-    result:
-      any:
-        - course: PHYS 360
-        - course: PHYS 362
-        - course: PHYS 376
-        - course: PHYS 379
-        - course: PHYS 390
-
   Elective:
     result:
       from: {student: courses}
-      where: attribute = physics_elective
-      assert: count(courses) >= 1
+      where: {attribute: {$eq: phys_elective}}
+      assert: {count(courses): {$gte: 1}}
+
+  Upper-Level Elective:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: phys_upper_elective}}
+      assert: {count(courses): {$gte: 1}}
 
 attributes:
   courses:
-    PHYS 112: [physics_elective]
-    PHYS 124: [physics_elective]
-    PHYS 125: [physics_elective]
-    PHYS 154: [physics_elective]
-    PHYS 246: [physics_elective]
-    PHYS 252: [physics_elective]
-    PHYS 360: [physics_elective]
-    PHYS 362: [physics_elective]
-    PHYS 376: [physics_elective]
-    PHYS 379: [physics_elective]
-    PHYS 390: [physics_elective]
-    PHYS 396: [physics_elective]
+    PHYS 154: [phys_elective]
+    PHYS 246: [phys_elective]
+    PHYS 252: [phys_elective]
+    PHYS 360: [phys_elective, phys_upper_elective]
+    PHYS 362: [phys_elective, phys_upper_elective]
+    PHYS 376: [phys_elective, phys_upper_elective]
+    PHYS 379: [phys_elective, phys_upper_elective]
+    PHYS 390: [phys_elective, phys_upper_elective]
+    PHYS 396: [phys_elective]

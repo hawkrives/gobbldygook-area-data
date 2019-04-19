@@ -1,0 +1,66 @@
+name: Social Studies Education
+type: major
+degree: Bachelor of Arts
+catalog: 2018-19
+
+# Students may graduate with a social studies education major without
+# completing requirements leading to a license to teach (see the following
+# additional requirements).
+# TODO: what "following additional requirements"?
+
+result:
+  all:
+    - course: HIST 191
+    - course: HIST 199
+    - from: {student: courses}
+      where: {attribute: {$eq: ss_hist_africa_asia_latin_america}}
+      assert: {count(courses): {$gte: 1}}
+    - course: ECON 121
+    - course: ID 234
+    - course: PSCI 111
+    - course: PSYCH 125
+    - either:
+        - course: SOAN 128
+        - course: SOAN 264
+    - course: EDUC 290
+    - course: EDUC 334
+    - from: {student: courses}
+      where: {attribute: {$eq: ss_critical_studies}}
+      assert: {count(courses): {$gte: 1}}
+    - from: {student: courses}
+      where: {attribute: {$eq: ss_multicultural_studies}}
+      assert: {count(courses): {$gte: 1}}
+
+limit:
+  - {at-most: 1, where: {s/u: {$eq: true}}}
+  # Up to a maximum of two courses either taken off-campus with non St. Olaf
+  # faculty or transferred from other institutions may be included in the
+  # major.
+  # TODO: do off-campus courses taken _with_ Olaf faculty count?
+  - {at-most: 2, where: {institution: {$neq: St. Olaf College}}}
+
+attributes:
+  courses:
+    BIO 228: [ss_critical_studies]
+    ECON 218: [ss_multicultural_studies]
+    ECON 220: [ss_multicultural_studies]
+    ECON 242: [ss_critical_studies]
+    ECON 243: [ss_multicultural_studies]
+    ENVST 201: [ss_critical_studies]
+    ENVST 225: [ss_critical_studies]
+    ENVST 245: [ss_critical_studies]
+    HIST 241: [ss_multicultural_studies]
+    HIST 275: [ss_critical_studies]
+    HIST 277: [ss_multicultural_studies]
+    HIST 280: [ss_multicultural_studies]
+    HIST 282: [ss_multicultural_studies]
+    PSCI 215: [ss_multicultural_studies]
+    PSCI 249: [ss_multicultural_studies]
+    PSCI 276: [ss_critical_studies]
+    PSYCH 241: [ss_multicultural_studies]
+    SOAN 234: [ss_multicultural_studies]
+    SOAN 242: [ss_multicultural_studies]
+    SOAN 262: [ss_multicultural_studies]
+    SOAN 264: [ss_multicultural_studies]
+    SOAN 266: [ss_multicultural_studies]
+    SOAN 268: [ss_multicultural_studies]

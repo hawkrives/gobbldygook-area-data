@@ -119,15 +119,15 @@ requirements:
   Sequence:
     result:
       any:
-        - both: [{course: MATH 220, including used: true}, {course: MATH 356, including used: true}]
-        - both: [{course: MATH 220, including used: true}, {course: MSCS 341, including used: true}]
-        - both: [{course: MATH 224, including used: true}, {course: MATH 348, including used: true}]
-        - both: [{course: MATH 226, including used: true}, {course: MATH 340, including used: true}]
-        - both: [{course: MATH 230, including used: true}, {course: MATH 330, including used: true}]
-        - both: [{course: MATH 232, including used: true}, {course: MATH 364, including used: true}]
-        - both: [{course: MATH 244, including used: true}, {course: MATH 344, including used: true}]
-        - both: [{course: MATH 252, including used: true}, {course: MATH 352, including used: true}]
-        - both: [{course: MATH 262, including used: true}, {course: STAT 322, including used: true}]
+        - both: [{course: MATH 220, including claimed: true}, {course: MATH 356, including claimed: true}]
+        - both: [{course: MATH 220, including claimed: true}, {course: MSCS 341, including claimed: true}]
+        - both: [{course: MATH 224, including claimed: true}, {course: MATH 348, including claimed: true}]
+        - both: [{course: MATH 226, including claimed: true}, {course: MATH 340, including claimed: true}]
+        - both: [{course: MATH 230, including claimed: true}, {course: MATH 330, including claimed: true}]
+        - both: [{course: MATH 232, including claimed: true}, {course: MATH 364, including claimed: true}]
+        - both: [{course: MATH 244, including claimed: true}, {course: MATH 344, including claimed: true}]
+        - both: [{course: MATH 252, including claimed: true}, {course: MATH 352, including claimed: true}]
+        - both: [{course: MATH 262, including claimed: true}, {course: STAT 322, including claimed: true}]
 
 attributes:
   multicountable:

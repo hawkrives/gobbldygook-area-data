@@ -4,69 +4,40 @@ type: major
 degree: Bachelor of Arts
 catalog: 2015-16
 
-# # result:
-# #   all:
-#     # - either:
-#     #     - course: DEPT 111
-#     #     - course: DEPT 112
-#     # - both:
-#     #     - course: DEPT 111
-#     #     - course: DEPT 113
-
-#     # - count: 2
-#     #   of:
-#     #     - course: DEPT 111
-#     #     - course: DEPT 112
-#     #     - course: DEPT 113
-#     #     - course: DEPT 114
-#     #     - course: DEPT 115
-
 result:
-    all:
-        - requirement: Foo
-        - requirement: Foo
+  all:
+    - requirement: Core
+    - requirement: Electives
 
 requirements:
-    Foo:
-        result:
-            count: 2
-            of:
-                - course: BIO 247
-                - course: BIO 243
-                - course: ESTH 255
-                - course: ESTH 375
+  Core:
+    result:
+      count: 2
+      of:
+        - course: BIO 247
+        - course: ESTH 290  # removed
+        - course: ESTH 295
+        - course: ESTH 373
+        - course: ESTH 376
+        - course: NEURO 239
+        - course: PSYCH 230  # removed
+        - course: PSYCH 241
+        - course: PSYCH 247
+        - count: 1
+          of:
+            - course: STAT 110
+            - course: STAT 212
+            - course: STAT 214
 
-# ---
-# name: Exercise Science
-# type: major
-# degree: Bachelor of Arts
-# catalog: 2015-16
-
-# result:
-#   all:
-#     - count: 2
-#       of:
-#         - course: BIO 247
-#         - course: ESTH 290  # removed
-#         - course: ESTH 295
-#         - course: ESTH 373
-#         - course: ESTH 376
-#         - course: NEURO 239
-#         - course: PSYCH 230  # removed
-#         - course: PSYCH 241
-#         - course: PSYCH 247
-#         - count: 1
-#           of:
-#             - course: STAT 110
-#             - course: STAT 212
-#             - course: STAT 214
-#     - all:
-#         - course: BIO 243
-#         - course: ESTH 255
-#         # - course: ESTH 374
-#         - course: ESTH 375
-#         - course: ESTH 390
-#         - course: PSYCH 125
-#         - either: [{course: BIO 143}, {course: BIO 227, hidden: true}]
-#         - either: [{course: ESTH 374}, {course: DANCE 270, hidden: true}]
-#         - any: [{course: ESTH 110}, {course: NURS 110}, {course: ID 110}]
+  Electives:
+    result:
+      all:
+        - course: BIO 243
+        - course: ESTH 255
+        # - course: ESTH 374
+        - course: ESTH 375
+        - course: ESTH 390
+        - course: PSYCH 125
+        - either: [{course: BIO 143}, {course: BIO 227, hidden: true}]
+        - either: [{course: ESTH 374}, {course: DANCE 270, hidden: true}]
+        - any: [{course: ESTH 110}, {course: NURS 110}, {course: ID 110}]

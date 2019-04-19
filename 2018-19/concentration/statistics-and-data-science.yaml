@@ -1,0 +1,45 @@
+---
+name: Statistics and Data Science
+type: major
+degree: Bachelor of Arts
+catalog: 2018-19
+
+result:
+  all:
+    - requirement: Core
+    - requirement: Level III
+    - requirement: Electives
+
+requirements:
+  Core:
+    result:
+      all:
+        - course: STAT 272
+        - course: MSCS 264
+
+  Level III:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: stat_level3}}
+      assert: {count(courses): {$gte: 1}}
+
+  Electives:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: stat_elective}}
+      assert: {count(courses): {$gte: 1}}
+
+attributes:
+  courses:
+    CSCI 125: [stat_elective]
+    ECON 385: [stat_elective, stat_level3]
+    MATH 262: [stat_elective]
+    MSCS 341: [stat_elective, stat_level3]
+    PSCI 220: [stat_elective]
+    PSYCH 230: [stat_elective]
+    SOAN 371: [stat_elective]
+    STAT 270: [stat_elective]
+    STAT 282: [stat_elective]
+    STAT 284: [stat_elective]
+    STAT 316: [stat_elective, stat_level3]
+    STAT 322: [stat_elective, stat_level3]
