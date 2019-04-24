@@ -1,3 +1,4 @@
+---
 name: Philosophy
 type: major
 degree: Bachelor of Arts
@@ -12,8 +13,7 @@ result:
 requirements:
   Core:
     result:
-      count: all
-      of:
+      all:
         - course: PHIL 235
         - course: PHIL 236
         - course: PHIL 240
@@ -21,45 +21,25 @@ requirements:
   Level III Seminars:
     result:
       from: {student: courses}
-      where: attribute = phil_l3_seminar
+      where: {attribute: {$eq: phil_l3_seminar}}
       limit:
-        - {at most: 0, where: taken = s/u}
-      assert: count(courses) >= 3
+        - {at most: 0, where: {s/u: {$eq: true}}}
+      assert: {count(courses): {$gte: 3}}
 
   Electives:
     result:
       from: {student: courses}
-      where: attribute = phil_elective
-      assert: count(courses) >= 3
+      where:
+        $or:
+          - subject: {$eq: PHIL}
+          - attribute: {$eq: phil_elective}
+      assert: {count(courses): {$gte: 3}}
 
 attributes:
   courses:
     GCON 218: [phil_elective]
-    PHIL 118: [phil_elective]
-    PHIL 119: [phil_elective]
-    PHIL 120: [phil_elective]
-    PHIL 147: [phil_elective]
-    PHIL 233: [phil_elective]
-    PHIL 235: [phil_elective]
-    PHIL 236: [phil_elective]
-    PHIL 240: [phil_elective]
-    PHIL 241: [phil_elective]
-    PHIL 243: [phil_elective]
-    PHIL 244: [phil_elective]
-    PHIL 245: [phil_elective]
-    PHIL 246: [phil_elective]
-    PHIL 250: [phil_elective]
-    PHIL 251: [phil_elective]
-    PHIL 252: [phil_elective]
-    PHIL 254: [phil_elective]
-    PHIL 255: [phil_elective]
-    PHIL 257: [phil_elective]
-    PHIL 259: [phil_elective]
-    PHIL 260: [phil_elective]
-    PHIL 261: [phil_elective]
-    PHIL 371: [phil_elective, phil_l3_seminar]
-    PHIL 372: [phil_elective, phil_l3_seminar]
-    PHIL 373: [phil_elective, phil_l3_seminar]
-    PHIL 374: [phil_elective, phil_l3_seminar]
-    PHIL 375: [phil_elective, phil_l3_seminar]
-    PHIL 399: [phil_elective]
+    PHIL 371: [phil_l3_seminar]
+    PHIL 372: [phil_l3_seminar]
+    PHIL 373: [phil_l3_seminar]
+    PHIL 374: [phil_l3_seminar]
+    PHIL 375: [phil_l3_seminar]

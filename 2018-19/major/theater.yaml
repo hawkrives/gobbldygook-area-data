@@ -10,7 +10,11 @@ result:
     - reference: Practicum
 
 limits:
-  - {at most: 1, where: {$and: [{s/u: {$eq: true}}, {credits: {$eq: 1.00}}]}}
+  - at-most: 1
+    where:
+      $and:
+        - s/u: {$eq: true}
+        - credits: {$eq: 1.00}
 
 requirements:
   - name: Part 1

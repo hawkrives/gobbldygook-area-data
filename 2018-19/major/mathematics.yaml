@@ -5,22 +5,21 @@ catalog: 2018-19
 
 result:
   all:
-    - reference: Basics
-    - reference: Transitions
-    - reference: Perspectives
-    - reference: Interdisciplinary
-    - reference: Sequence
-    - reference: Level III
+    - requirement: Basics
+    - requirement: Transitions
+    - requirement: Perspectives
+    - requirement: Interdisciplinary
+    - requirement: Sequence
+    - requirement: Level III
 
     - from:
-        requirement results:
+        requirements:
           - Basics
           - Transitions
           - Perspectives
           - Interdisciplinary
           - Sequence
           - Level III
-        take: courses
       where: year >= $matriculation-year
       assert: count(courses) >= 6
 
@@ -47,10 +46,10 @@ requirements:
     result:
       count: 3
       of:
-        - reference: Axiomatic/Algebraic (A)
-        - reference: Continuous/Analytic (C)
-        - reference: Discrete/Combinatorial (D)
-        - reference: Modeling/Computation (M)
+        - requirement: Axiomatic/Algebraic (A)
+        - requirement: Continuous/Analytic (C)
+        - requirement: Discrete/Combinatorial (D)
+        - requirement: Modeling/Computation (M)
 
     requirements:
       Axiomatic/Algebraic (A):
@@ -81,9 +80,9 @@ requirements:
     result:
       count: 0
       of:
-        - reference: Chemistry
-        - reference: Economics
-        - reference: Physics
+        - requirement: Chemistry
+        - requirement: Economics
+        - requirement: Physics
 
     requirements:
       Chemistry:

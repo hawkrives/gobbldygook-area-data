@@ -1,0 +1,56 @@
+name: Mathematical Biology
+type: concentration
+degree: Bachelor of Arts
+catalog: 2018-19
+
+result:
+  all:
+    - requirement: Core
+    - requirement: MSCS Electives
+    - requirement: BIO Electives
+
+requirements:
+  Core:
+    result:
+      course: MATH 236
+
+  MSCS Electives:
+    result:
+      count: 2
+      of:
+        - either:
+            - course: CSCI 125
+            - course: CSCI 251
+        - course: CSCI 315
+        - course: MATH 230
+        - course: MATH 242
+        - course: MATH 330
+        - either:
+            - course: STAT 212
+            - course: STAT 272
+        - course: STAT 302
+
+  BIO Electives:
+    result:
+      count: 2
+      of:
+        - course: BIO 233
+        - course: BIO 247
+        - course: BIO 261
+        - course: BIO 315
+        - course: BIO 371
+        - course: BIO 383
+        - course: BI/ES 350
+        - course: NEURO 239
+
+  Integrative Project:
+    message: >
+      Students are required to work on an independent project that integrates
+      mathematics, computer science, and/or statistics with biology.
+    department-audited: true
+
+  Senior Math Biology Symposium:
+    message: >
+      Seniors present their independent project in the form of a poster in a
+      Mathematical Biology Symposium held at St. Olaf in the spring.
+    department-audited: true

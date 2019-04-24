@@ -1,6 +1,6 @@
 ---
 name: Race and Ethnic Studies
-type: major
+type: concentration
 degree: Bachelor of Arts
 catalog: 2018-19
 
@@ -8,7 +8,6 @@ result:
   all:
     - requirement: Core
     - requirement: Electives
-    - requirement: Senior Project
 
 requirements:
   Core:
@@ -25,15 +24,8 @@ requirements:
         - {at-most: 1, where: {institution: {$neq: 'St. Olaf College'}}}
       assert:
         $and:
-          - count(courses): {$gte: 7}
-          - count(subjects): {$gte: 3}
-
-  Senior Project:
-    message: >
-      Race and ethnic studies majors are required to complete a senior project
-      and to give an oral presentation of their findings before the program
-      faculty in early May of their senior year.
-    department-audited: true
+          - count(courses): {$gte: 4}
+          - count(subjects): {$gte: 2}
 
 attributes:
   courses:

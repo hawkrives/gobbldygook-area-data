@@ -11,24 +11,10 @@ result:
     - requirement: Electives
     - requirement: Capstone
 
-attributes:
-  courses:
-    CSCI 273: [csci_elective]
-    CSCI 276: [csci_elective]
-    CSCI 284: [csci_elective]
-    CSCI 300: [csci_elective]
-    CSCI 315: [csci_elective]
-    CSCI 316: [csci_elective]
-    CSCI 333: [csci_elective]
-    CSCI 336: [csci_elective]
-    CSCI 350: [csci_elective]
-    ID 259 2000.1: [csci_elective]
-
 requirements:
   Foundation:
     result:
-      count: all
-      of:
+      all:
         - either:
             - course: CSCI 121
             - course: CSCI 125
@@ -39,31 +25,20 @@ requirements:
         - count: 1
           of:
             - course: MATH 232
-            - course: MATH 252
             - course: MATH 244
+            - course: MATH 252
 
   Core:
     result:
       all:
         - course: CSCI 253
         - course: CSCI 263
-        - requirement: Languages
-        - requirement: Systems
-
-    requirements:
-      Languages:
-        result:
-          any:
-            - course: CSCI 276
-            - course: CSCI 333
-            - course: CSCI 336
-
-      Systems:
-        result:
-          any:
-            - course: CSCI 273
-            - course: CSCI 284
-            - {course: CSCI 300, year: 2000, semester: Fall}
+        - from: {student: courses}
+          where: {attribute: {$eq: csci_language}}
+          assert: {count(courses): {$gte: 1}}
+        - from: {student: courses}
+          where: {attribute: {$eq: csci_systems}}
+          assert: {count(courses): {$gte: 1}}
 
   Electives:
     result:
@@ -74,3 +49,17 @@ requirements:
   Capstone:
     result:
       course: CSCI 390
+
+attributes:
+  courses:
+    CSCI 273: [csci_elective, csci_systems]
+    CSCI 276: [csci_elective, csci_language]
+    CSCI 284: [csci_elective, csci_systems]
+    CSCI 300: [csci_elective]
+    CSCI 300.200.1: [csci_elective, csci_systems]
+    CSCI 315: [csci_elective]
+    CSCI 316: [csci_elective]
+    CSCI 333: [csci_elective, csci_language]
+    CSCI 336: [csci_elective, csci_language]
+    CSCI 350: [csci_elective]
+    ID 259 2000.1: [csci_elective]

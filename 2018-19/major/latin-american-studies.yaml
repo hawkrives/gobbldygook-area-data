@@ -1,0 +1,99 @@
+---
+name: Latin American Studies
+type: major
+degree: Bachelor of Arts
+catalog: 2018-19
+
+limit:
+  - {at-most: 3, where: {institution: {$neq: 'St. Olaf College'}}}
+  - {at-most: 1, where: {number: {$in: [398]}}}
+  - {at-most: 3, where: {attribute: {$eq: 'lamst_latinos_in_usa'}}}
+  # these are the "at most 2 from any one discipline"
+  - {at-most: 2, where: {subject: {$eq: ART}}}
+  - {at-most: 2, where: {subject: {$eq: ECON}}}
+  - {at-most: 2, where: {subject: {$eq: EDUC}}}
+  - {at-most: 2, where: {subject: {$eq: ENGL}}}
+  - {at-most: 2, where: {subject: {$eq: HIST}}}
+  - {at-most: 2, where: {subject: {$eq: PSCI}}}
+  - {at-most: 2, where: {subject: {$eq: RACE}}}
+  - {at-most: 2, where: {subject: {$eq: REL}}}
+  - {at-most: 2, where: {subject: {$eq: SOAN}}}
+  - {at-most: 4, where: {subject: {$eq: SPAN}}}
+
+result:
+  all:
+    - reference: Core
+    - reference: Spanish
+    - reference: Interdisciplinary Seminar
+    - reference: Electives
+
+requirements:
+  Core:
+    result:
+      either:
+        - course: HIST 193
+        - course: PSCI 264
+
+  Spanish:
+    result:
+      all:
+        - course: SPAN 250
+        - from: {student: courses}
+          where: {attribute: {$eq: lamst_spanish_culture}}
+          assert: {count(courses): {$gte: 1}}
+        - from: {student: courses}
+          where: {attribute: {$eq: lamst_latinamerican_culture}}
+          assert: {count(courses): {$gte: 1}}
+
+  Interdisciplinary Seminar:
+    message: >
+      LAMST 333 is taught in *alternate* years, and is ideally taken in the
+      junior or senior year. Students planning to study abroad during the
+      semester in which the course is taught should in their junior year
+      petition the Latin American studies director to take an alternative
+      course or independent study to fulfill this requirement during their
+      senior year.
+    result:
+      course: LAMST 333
+
+  Electives:
+    message: >
+      Choose four electives from among approved courses dealing with Latin
+      America, Spain, or U.S. Latinos from disciplines including, but not
+      limited to: anthropology, art, economics, education, English, history,
+      political science, religion, and sociology with no more than two courses
+      in any one discipline (including the discipline of the core course)
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: lamst_elective}}
+      limits:
+        - at-most: 1
+          where:
+            $or:
+              - course: {$eq: RACE 121}
+              - course: {$eq: SOAN 264}
+      assert: {count(courses): {$gte: 4}}
+
+attributes:
+  courses:
+    ECON 243: [lamst_elective]
+    ENGL 251: [lamst_elective, lamst_latinos_in_usa]
+    HIST 126: [lamst_elective]
+    HIST 193: [lamst_elective]
+    HIST 240.2000.1: [lamst_elective]
+    HIST 243: [lamst_elective]
+    HIST 244: [lamst_elective]
+    HIST 245: [lamst_elective]
+    HIST 397.2000.1: [lamst_elective]
+    PSCI 252.2000.1: [lamst_elective]
+    PSCI 257: [lamst_elective]
+    PSCI 264: [lamst_elective]
+    PSCI 367: [lamst_elective]
+    RACE 121: [lamst_elective]
+    SOAN 237: [lamst_elective]
+    SPAN 270: [lamst_spanish_culture]
+    SPAN 271: [lamst_spanish_culture]
+    SPAN 273: [lamst_latinos_in_usa]
+    SPAN 272: [lamst_latinamerican_culture]
+    SPAN 274.2000.1: [lamst_spanish_culture]  # depending on topic
+    SPAN 274.2001.1: [lamst_latinamerican_culture]  # depending on topic

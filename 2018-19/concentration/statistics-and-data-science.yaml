@@ -11,11 +11,24 @@ result:
     - requirement: Electives
 
 requirements:
+  Introductory:
+    result:
+      any:
+        - course: STAT 110
+        - course: STAT 212
+        - course: ECON 263
+
   Core:
     result:
       all:
         - course: STAT 272
         - course: MSCS 264
+        - {course: CSCI 125, year: 2015, term: 1, hidden: true}
+        - {course: CSCI 125, year: 2015, term: 3, hidden: true}
+        - {course: CSCI 125, year: 2016, term: 1, hidden: true}
+        - {course: CSCI 125, year: 2016, term: 3, hidden: true}
+        - {course: CSCI 125, year: 2017, term: 1, hidden: true}
+        - {course: CSCI 125, year: 2017, term: 3, hidden: true}
 
   Level III:
     result:

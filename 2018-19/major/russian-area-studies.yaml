@@ -7,6 +7,8 @@ catalog: 2018-19
 result:
   all:
     - requirement: Language
+    - requirement: Electives
+    - requirement: Senior Project
 
 requirements:
   Language:
@@ -20,7 +22,13 @@ requirements:
   Electives:
     result:
       either:
-        - both:
+        - requirement: If Not a Russian Language Major
+        - requirement: If Also a Russian Language Major
+
+    requirements:
+      If Not a Russian Language Major:
+        result:
+          both:
             - from: {student: areas}
               where:
                 type: {$eq: major}
@@ -32,18 +40,19 @@ requirements:
                   - attribute: {$eq: russian_area_elective}
               assert: {count(courses): {$gte: 5}}
 
-        - both:
-            - from: {student: areas}
-              where:
-                type: {$eq: major}
-                name: {$eq: 'Russian Language'}
-              assert: {count(areas): {$eq: 1}}
-            - from: {student: courses}
-              where:
-                $and:
-                  - attribute: {$eq: russian_area_elective}
-                  - attribute: {$neq: russian_area_elective_if_not_rusn_lang}
-              assert: {count(courses): {$gte: 5}}
+      If Also a Russian Language Major:
+        both:
+          - from: {student: areas}
+            where:
+              type: {$eq: major}
+              name: {$eq: 'Russian Language'}
+            assert: {count(areas): {$eq: 1}}
+          - from: {student: courses}
+            where:
+              $and:
+                - attribute: {$eq: russian_area_elective}
+                - attribute: {$neq: russian_area_elective_if_not_rusn_lang}
+            assert: {count(courses): {$gte: 5}}
 
   Senior Project:
     department-audited: true
