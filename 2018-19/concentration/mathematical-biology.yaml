@@ -1,3 +1,4 @@
+---
 name: Mathematical Biology
 type: concentration
 degree: Bachelor of Arts
@@ -5,43 +6,40 @@ catalog: 2018-19
 
 result:
   all:
-    - requirement: Core
+    - requirement: Mathematical Biology Core
+    - requirement: Exploring Biomathematics
     - requirement: MSCS Electives
     - requirement: BIO Electives
 
 requirements:
-  Core:
+  Mathematical Biology Core:
     result:
       course: MATH 236
 
+  Exploring Biomathematics:
+    result:
+      course: MABIO 130
+
   MSCS Electives:
     result:
-      count: 2
-      of:
-        - either:
-            - course: CSCI 125
-            - course: CSCI 251
-        - course: CSCI 315
-        - course: MATH 230
-        - course: MATH 242
-        - course: MATH 330
-        - either:
-            - course: STAT 212
-            - course: STAT 272
-        - course: STAT 302
+      from: {student: courses}
+      where: {attribute: {$eq: mabio_mscs_elective}}
+      limit:
+        - at-most: 1
+          where:
+            course:
+              $in: [CSCI 125, CSCI 251]
+        - at-most: 1
+          where:
+            course:
+              $in: [STAT 212, STAT 272]
+      assert: {count(courses): {$gte: 2}}
 
   BIO Electives:
     result:
-      count: 2
-      of:
-        - course: BIO 233
-        - course: BIO 247
-        - course: BIO 261
-        - course: BIO 315
-        - course: BIO 371
-        - course: BIO 383
-        - course: BI/ES 350
-        - course: NEURO 239
+      from: {student: courses}
+      where: {attribute: {$eq: mabio_bio_elective}}
+      assert: {count(courses): {$gte: 2}}
 
   Integrative Project:
     message: >
@@ -54,3 +52,25 @@ requirements:
       Seniors present their independent project in the form of a poster in a
       Mathematical Biology Symposium held at St. Olaf in the spring.
     department-audited: true
+
+attributes:
+  courses:
+    CSCI 125: [mabio_mscs_elective]
+    CSCI 251: [mabio_mscs_elective]
+    CSCI 315: [mabio_mscs_elective]
+    MATH 230: [mabio_mscs_elective]
+    MATH 242: [mabio_mscs_elective]
+    MATH 330: [mabio_mscs_elective]
+    STAT 212: [mabio_mscs_elective]
+    STAT 272: [mabio_mscs_elective]
+    STAT 302: [mabio_mscs_elective]
+    STAT 284: [mabio_mscs_elective]
+
+    BIO 233: [mabio_bio_elective]
+    BIO 247: [mabio_bio_elective]
+    BIO 261: [mabio_bio_elective]
+    BIO 315: [mabio_bio_elective]
+    BIO 371: [mabio_bio_elective]
+    BIO 383: [mabio_bio_elective]
+    BI/ES 350: [mabio_bio_elective]
+    NEURO 239: [mabio_bio_elective]
