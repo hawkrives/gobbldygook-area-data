@@ -1,35 +1,13 @@
+---
 name: Social Studies Education
 type: major
 degree: Bachelor of Arts
 catalog: 2018-19
 
-# Students may graduate with a social studies education major without
-# completing requirements leading to a license to teach (see the following
-# additional requirements).
-# TODO: what "following additional requirements"?
-
 result:
   all:
-    - course: HIST 191
-    - course: HIST 199
-    - from: {student: courses}
-      where: {attribute: {$eq: ss_hist_africa_asia_latin_america}}
-      assert: {count(courses): {$gte: 1}}
-    - course: ECON 121
-    - course: ID 234
-    - course: PSCI 111
-    - course: PSYCH 125
-    - either:
-        - course: SOAN 128
-        - course: SOAN 264
-    - course: EDUC 290
-    - course: EDUC 334
-    - from: {student: courses}
-      where: {attribute: {$eq: ss_critical_studies}}
-      assert: {count(courses): {$gte: 1}}
-    - from: {student: courses}
-      where: {attribute: {$eq: ss_multicultural_studies}}
-      assert: {count(courses): {$gte: 1}}
+    - requirement: Prescribed Courses
+    - requirement: Electives
 
 limit:
   - {at-most: 1, where: {s/u: {$eq: true}}}
@@ -39,28 +17,141 @@ limit:
   # TODO: do off-campus courses taken _with_ Olaf faculty count?
   - {at-most: 2, where: {institution: {$neq: St. Olaf College}}}
 
+requirements:
+  Prescribed Courses:
+    result:
+      all:
+        - either:
+            - course: HIST 191
+            - both:
+                - course: AMCON 201
+                - course: AMCON 202
+              hidden: true
+        - either:
+            - course: HIST 199
+            - both:
+                - course: GCON 217
+                - course: GCON 218
+              hidden: true
+        - from: {student: courses}
+          where: {attribute: {$eq: history_region_nonwesternworld}}
+          assert: {count(courses): {$gte: 1}}
+        - course: ECON 121
+        - course: ID 234
+        - course: PSCI 111
+        - course: PSYCH 125
+        - either:
+            - course: SOAN 128
+            - course: SOAN 264
+        - course: EDUC 290
+        - course: EDUC 334
+
+  Electives:
+    result:
+      all:
+        - requirement: Critical Global/Environmental Studies
+        - requirement: Multicultural Studies
+
+    requirements:
+      Critical Global/Environmental Studies:
+        message: >
+          The following courses have been pre-approved for this requirement;
+          however, if you feel that you have taken a course that also covers
+          critical global or environmental issues extensively, please chat with
+          the program chair to discuss approving that course as well.
+        result:
+          from: {student: courses}
+          where: {attribute: {$eq: ss_critical_studies}}
+          assert: {count(courses): {$gte: 1}}
+
+      Multicultural Studies:
+        message: >
+          The following courses have been pre-approved for this requirement;
+          however, if you feel that you have taken a course that also covers
+          multiculutral topics extensively, please chat with the program chair
+          to discuss approving that course as well.
+        result:
+          from: {student: courses}
+          where: {attribute: {$eq: ss_multicultural_studies}}
+          assert: {count(courses): {$gte: 1}}
+
 attributes:
   courses:
+    AFAD 231: [ss_multicultural_studies]
+    AFAM 213: [ss_multicultural_studies]
+    ART 161: [ss_multicultural_studies]
+    ART 270: [ss_multicultural_studies]
     BIO 228: [ss_critical_studies]
+    BIO 261: [ss_critical_studies]
+    BIO 282: [ss_critical_studies]
+    BIO 285: [ss_critical_studies]
+    BIO 288: [ss_critical_studies]
+    CHEM 124: [ss_critical_studies]
     ECON 218: [ss_multicultural_studies]
     ECON 220: [ss_multicultural_studies]
+    ECON 238: [ss_multicultural_studies]
     ECON 242: [ss_critical_studies]
     ECON 243: [ss_multicultural_studies]
+    ECON 249: [ss_multicultural_studies]
+    EDUC 246: [ss_multicultural_studies]
+    ENGL 206: [ss_multicultural_studies]
+    ENGL 276: [ss_critical_studies]
+    ENGL 280: [ss_multicultural_studies]
+    ENVST 137: [ss_critical_studies]
     ENVST 201: [ss_critical_studies]
     ENVST 225: [ss_critical_studies]
     ENVST 245: [ss_critical_studies]
-    HIST 241: [ss_multicultural_studies]
+    FAMST 263: [ss_multicultural_studies]
+    HIST 125: [history_region_nonwesternworld]
+    HIST 126: [history_region_nonwesternworld]
+    HIST 135: [history_region_nonwesternworld]
+    HIST 151: [history_region_nonwesternworld]
+    HIST 189: [history_region_nonwesternworld]
+    HIST 194: [history_region_nonwesternworld]
+    HIST 195: [history_region_nonwesternworld]
+    HIST 201: [history_region_nonwesternworld]
+    HIST 230: [ss_multicultural_studies]
+    HIST 240: [history_region_nonwesternworld]
+    HIST 241: [history_region_nonwesternworld, ss_multicultural_studies]
+    HIST 242: [history_region_nonwesternworld, ss_multicultural_studies]
+    HIST 243: [history_region_nonwesternworld, ss_multicultural_studies]
+    HIST 244: [history_region_nonwesternworld]
+    HIST 245: [history_region_nonwesternworld]
+    HIST 250: [history_region_nonwesternworld, ss_multicultural_studies]
+    HIST 251: [history_region_nonwesternworld, ss_multicultural_studies]
+    HIST 252: [history_region_nonwesternworld]
+    HIST 253: [history_region_nonwesternworld, ss_multicultural_studies]
+    HIST 260: [history_region_nonwesternworld]
+    HIST 262: [history_region_nonwesternworld]
     HIST 275: [ss_critical_studies]
     HIST 277: [ss_multicultural_studies]
     HIST 280: [ss_multicultural_studies]
     HIST 282: [ss_multicultural_studies]
+    HIST 289: [history_region_nonwesternworld]
+    HIST 291: [ss_multicultural_studies]
+    HIST 292: [history_region_nonwesternworld]
+    HIST 295: [history_region_nonwesternworld]
+    ID 235: [ss_multicultural_studies]
+    MUSIC 237: [ss_multicultural_studies]
+    PHIL 257: [ss_critical_studies]
+    PHIL 259: [ss_multicultural_studies]
     PSCI 215: [ss_multicultural_studies]
+    PSCI 244: [ss_multicultural_studies]
+    PSCI 245: [ss_multicultural_studies]
     PSCI 249: [ss_multicultural_studies]
-    PSCI 276: [ss_critical_studies]
+    PSCI 254: [ss_multicultural_studies]
+    PSYCH 227: [ss_critical_studies]
     PSYCH 241: [ss_multicultural_studies]
+    PSYCH 249: [ss_multicultural_studies]
+    RACE 121: [ss_multicultural_studies]
+    REL 246: [ss_multicultural_studies]
+    REL 249: [ss_multicultural_studies]
+    REL 289: [ss_multicultural_studies]
+    REL 296: [ss_multicultural_studies]
+    SOAN 232: [ss_multicultural_studies]
     SOAN 234: [ss_multicultural_studies]
-    SOAN 242: [ss_multicultural_studies]
-    SOAN 262: [ss_multicultural_studies]
-    SOAN 264: [ss_multicultural_studies]
-    SOAN 266: [ss_multicultural_studies]
-    SOAN 268: [ss_multicultural_studies]
+    SOAN 235: [ss_multicultural_studies]
+    SOAN 236: [ss_multicultural_studies]
+    SWRK 256: [ss_multicultural_studies]
+    SWRK 280: [ss_multicultural_studies]
+    WMGST 121: [ss_multicultural_studies]
