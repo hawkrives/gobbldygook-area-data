@@ -15,7 +15,7 @@ requirements:
     result:
       all:
         - course: BIO 150
-        - course: BIO 223
+        - course: BIO 233
         - course: BMOLS 201
         - any:
             - all: [course: CHEM 125, course: CHEM 126, course: BIO 227]
