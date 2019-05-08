@@ -31,6 +31,7 @@ requirements:
         - course: STAT 110
         - course: STAT 212
         - {course: ECON 263, hidden: true}
+        - {course: PSCI 220, hidden: true}
 
   Electives:
     message: >
