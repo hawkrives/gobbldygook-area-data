@@ -34,16 +34,13 @@ limiters:
 
 
 attributes:
-  multicountable: [
-    [
-      {attribute: history_era_premodern},
-      {attribute: history_l2_seminar},
-      {attribute: history_level_3},
-      {attribute: history_region_europe},
-      {attribute: history_region_nonwesternworld},
-      {attribute: history_region_us},
-    ],
-  ]
+  multicountable:
+    - - {attribute: history_era_premodern}
+      - {attribute: history_l2_seminar}
+      - {attribute: history_level_3}
+      - {attribute: history_region_europe}
+      - {attribute: history_region_nonwesternworld}
+      - {attribute: history_region_us}
 
   courses:
     ASIAN 399: [history_level_3]
