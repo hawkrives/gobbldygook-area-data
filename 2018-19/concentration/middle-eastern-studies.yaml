@@ -1,0 +1,74 @@
+---
+name: Middle Eastern Studies
+type: concentration
+degree: Bachelor of Arts
+catalog: 2018-19
+
+result:
+  from: {student: courses}
+  where: {attribute: {$eq: mest_elective}}
+  assert: {count(courses): {$gte: 5}}
+
+attributes:
+  courses:
+    HIST 189.2018.3: [mest_elective]
+    MEST 202.2018.3: [mest_elective]
+    REL 217.2018.3: [mest_elective]
+    REL 248.2018.3: [mest_elective]
+
+    BIO 253.2018.2: [mest_elective]
+    FREN 235.2018.2: [mest_elective]
+    REL 271.2018.2: [mest_elective]
+
+    ENGL 209.2018.1: [mest_elective]
+    HIST 291.2018.1: [mest_elective]
+    ID 234.2018.1: [mest_elective]
+    REL 246.2018.1: [mest_elective]
+
+    # 2016
+    # ENGL 280 Muslim Women Writers (Mbele)
+    # ID 234 Human Geography of the Middle East (McClure)
+    # ID 235 Introduction to Modern Middle Eastern Studies (Al-Atiyat)
+    # REL 248 Judaism (Benjamin)
+    # SOAN 235 A Introduction to Islamic Feminisms (Al-Atiyat)
+    # SOAN 235 B Introduction to Islamic Feminisms (Al-Atiyat)
+    # BIO 253 Water in Morocco (abroad) (Walter & Swift)
+    # FREN 235 French Language and Moroccan Culture in Fes (abroad) (Vendetti)
+    # REL 271 The Bible in Context: Jerusalem (abroad) (Hanson)
+    # FREN 271 Francophone World: The Maghreb (Vendetti)
+    # HIST 292 Muslims in Sub-Saharan Africa (Idrissu)
+    # REL NNN Religion and Violence (Schillinger/Rambachan)
+    # REL 246 Islam: Religion and Community (Schillinger)
+
+    # 2015
+    # ALSO 100: Beginning Arabic
+    # ALSO 200: Intermediate Arabic
+    # ID 234: Human Geography of the Middle East
+    # ENGL 209:  Arab American Literature and Film
+    # HIST 188: Jihad and the Crusades
+    # PSCI 251
+    # REL 248:  Judaism
+    # French 235: French Lang/Moroccan Culture
+    # ALSO 100: Beginning Arabic
+    # ALSO 200: Intermediate Arabic
+    # French 373: The Algerian Novel
+    # HIST 188: Jihad and the Crusades
+    # PSCI 251: Mid-East Politics and Identity
+    # REL 246: Islam-Religion and Community
+
+    # 2014
+    # ALSO 100: Beginning Arabic
+    # ALSO 200: Intermediate Arabic
+    # French 271: Francophone World: the Maghreb
+    # French 235: French Lang/Moroccan Culture
+    # MATH 218: Geometry and Decorative Art in Morocco
+    # REL 248:Judaism
+    # REL 271: Bible in Context
+    # ALSO 100: Beginning Arabic
+    # ALSO 200: Intermediate Arabic
+    # HIST 292: Muslim Societies in Sub-Saharan Africa
+    # ID 234: Human Geography of the Middle East
+    # ID 235: Introduction to Modern Middle Eastern Studies
+    # REL 217: Christian and Islamic Ethics
+    # REL 246: Islam-Religion and Community
+    # SOAN 235: Introduction to Islamic Feminisms
