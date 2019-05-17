@@ -6,21 +6,27 @@ catalog: 2018-19
 
 result:
   all:
+    - requirement: Prerequisites
     - requirement: Core
     - requirement: Experiential Learning
     - requirement: Electives
 
 requirements:
-  Core:
+  Prerequisites:
     result:
       all:
         - course: BIO 150
-        - course: BIO 233
-        - course: BMOLS 201
         - any:
             - all: [course: CHEM 125, course: CHEM 126, course: BIO 227]
+            - all: [course: CHEM 122, course: CHEM 126, course: BIO 227]
             - all: [course: CHEM 121, course: CHEM 123, course: CHEM 126, course: BIO 227]
             - all: [course: CH/BI 125, course: CH/BI 126, course: CH/BI 227]
+
+  Core:
+    result:
+      all:
+        - course: BMOLS 201
+        - course: BIO 233
         - both: [course: CHEM 247, course: CHEM 253]
         - both: [course: CHEM 248, course: CHEM 254]
         - both: [course: CHEM 379, course: CHEM 373]

@@ -11,7 +11,7 @@ result:
 
 limit:
   - at-most: 1
-    where: {number: {$in: [296, 298, 396, 398]}}
+    where: {number: {$in: [298, 396, 398]}}
 
 requirements:
   Interdisciplinary Seminar:
@@ -21,6 +21,12 @@ requirements:
         - {course: AFAM 231, hidden: true}
 
   Electives:
+    message: >
+      Elective courses must be relevant to the focus of the concentration. For
+      some electives, students may be required to negotiate specific
+      assignments with the instructor and the director of the concentration.
+      Other courses not identified in this list may also be acceptable,
+      depending on the relevance of their content to the concentration.
     result:
       from: {student: courses}
       where: {attribute: {$eq: afad_elective}}
@@ -60,8 +66,8 @@ attributes:
     BIO 287: [afad_elective]
     DANCE 107: [afad_elective]
     DANCE 141.2016.3.A: [afad_elective]
-    DANCE 141.2017.3.A: [afad_elective]
     DANCE 141.2016.3.B: [afad_elective]
+    DANCE 141.2017.3.A: [afad_elective]
     DANCE 246: [afad_elective]
     ENGL 206: [afad_elective]
     ENGL 212: [afad_elective]
