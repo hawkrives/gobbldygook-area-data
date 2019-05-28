@@ -13,57 +13,82 @@ result:
 
 attributes:
   courses:
-    CSCI 273: [csci_elective]
-    CSCI 276: [csci_elective]
-    CSCI 284: [csci_elective]
+    CSCI 273: [csci_elective, csci_systems]
+    CSCI 276: [csci_elective, csci_languages]
+    CSCI 284: [csci_elective, csci_systems]
     CSCI 300: [csci_elective]
     CSCI 315: [csci_elective]
-    CSCI 316: [csci_elective]
-    CSCI 333: [csci_elective]
-    CSCI 336: [csci_elective]
+    CSCI 333: [csci_elective, csci_languages]
+    CSCI 336: [csci_elective, csci_languages]
+    MSCS 341: [csci_elective]
     CSCI 350: [csci_elective]
-    ID 259 2000.1: [csci_elective]
+    MSCS 389: [csci_elective]
+    ID 259: [csci_elective]
+    CSCI 300 2000.1: [csci_systems]
 
 requirements:
-  - name: Foundation
+  Foundation:
     result:
-      count: all
-      of:
-        - either: [CSCI 121, CSCI 125]
-        - CSCI 241
-        - both: [CSCI 251, CSCI 252]
-        - count: 1
-          of: [MATH 232, MATH 252, MATH 244]
+      all:
+        - requirement: Principles
+        - requirement: Hardware
+        - requirement: Software
+        - requirement: Mathematics
+
+    requirements:
+      Principles:
+        result:
+          any:
+            - course: CSCI 121
+            - course: CSCI 125
+            - course: PHYS 130
+
+      Hardware:
+        result:
+          course: CSCI 241
+
+      Software:
+        result:
+          both: 
+            - course: CSCI 251
+            - course: CSCI 252
+
+      Mathematics:
+        result:
+          both:
+            - course: MATH 220
+            - count: 1
+              of: 
+                - course: MATH 244
+                - course: MATH 252
+
 
   - name: Core
     result:
-      count: all
-      of:
-        - CSCI 253
-        - CSCI 263
+      all:
+        - course: CSCI 253
+        - course: CSCI 263
         - requirement: Languages
         - requirement: Systems
 
     requirements:
       - name: Languages
         result:
-          count: any
-          of: [CSCI 276, CSCI 333, CSCI 336]
+          from: {student: courses}
+          where: {attribute: {$eq: csci_languages}}
+          assert: {count(courses): {$gte: 1}}
 
       - name: Systems
         result:
-          count: any
-          of:
-            - CSCI 273
-            - CSCI 284
-            - {course: CSCI 300, year: 2000, semester: Fall}
+          from: {student: courses}
+          where: {attribute: {$eq: csci_systems}}
+          assert: {count(courses): {$gte: 1}}
 
   - name: Electives
     result:
-      given: courses
-      where: {attribute: csci_elective}
-      what: courses
-      do: count >= 2
+      from: {student: courses}
+      where: {attribute: {$eq: csci_electives}}
+      assert: {count(courses): {$gte: 2}}
 
   - name: Capstone
     result:
