@@ -1,52 +1,57 @@
+---
 name: Biomolecular Science
 type: concentration
 degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
-  count: all
-  of:
+  all:
+    - requirement: Prerequisites
     - requirement: Core
     - requirement: Experiential Learning
     - requirement: Electives
 
 requirements:
-  - name: Core
+  Prerequisites:
     result:
-      count: all
-      of:
-        - BIO 150
-        - count: any
-          of:
-          - {count: all, of: [CHEM 125, CHEM 126, BIO 227]}
-          - {count: all, of: [CHEM 121, CHEM 123, CHEM 126, BIO 227]}
-          - {count: all, of: [CH/BI 125, CH/BI 126, CH/BI 227]}
-        - BIO 223
-        - BMOLS 201
-        - both: [CHEM 247, CHEM 253]
-        - both: [CHEM 248, CHEM 254]
-        - both: [CHEM 379, CHEM 373]
+      all:
+        - course: BIO 150
+        - any:
+            - all: [course: CHEM 125, course: CHEM 126, course: BIO 227]
+            - all: [course: CHEM 122, course: CHEM 126, course: BIO 227]
+            - all: [course: CHEM 121, course: CHEM 123, course: CHEM 126, course: BIO 227]
+            - all: [course: CH/BI 125, course: CH/BI 126, course: CH/BI 227]
 
-  - name: Experiential Learning
-    department_audited: true
+  Core:
+    result:
+      all:
+        - course: BMOLS 201
+        - course: BIO 233
+        - both: [course: CHEM 247, course: CHEM 253]
+        - both: [course: CHEM 248, course: CHEM 254]
+        - both: [course: CHEM 379, course: CHEM 373]
+
+  Experiential Learning:
+    department-audited: true
     message:
-      Participation in an experimentally based research experience or employment
-      that takes biomolecular sciences beyond the traditional classroom is
-      required of each concentrator. This can occur either on- or off-campus.
-      This activity must be pre-approved by the Biomolecular Science Committee
-      and be supported after the fact by a letter from a supervisor.
+      Participation in an experimentally based research experience or
+      employment that takes biomolecular sciences beyond the traditional
+      classroom is required of each concentrator. This can occur either on- or
+      off-campus. This activity must be pre-approved by the Biomolecular
+      Science Committee and be supported after the fact by a letter from a
+      supervisor.
 
-  - name: Electives
+  Electives:
     result:
       count: 2
       of:
-        - BIO 315
-        - BIO 341
-        - BIO 364
-        - BIO 372
-        - BIO 382
-        - BIO 383
-        - CHEM 384
-        - CHEM 385
-        - CHEM 391
-        - CSCI 315
+        - course: BIO 315
+        - course: BIO 341
+        - course: BIO 364
+        - course: BIO 372
+        - course: BIO 382
+        - course: BIO 383
+        - course: CHEM 384
+        - course: CHEM 385
+        - course: CHEM 391
+        - course: CSCI 315

@@ -1,0 +1,235 @@
+---
+name: Race and Ethnic Studies
+type: major
+degree: Bachelor of Arts
+catalog: 2018-19
+
+result:
+  all:
+    - requirement: Core
+    - requirement: Electives
+    - requirement: Senior Project
+
+requirements:
+  Core:
+    either:
+      - course: RACE 121
+      - course: RACE 122
+
+  Electives:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: race_elective}}
+      limit:
+        - {at-most: 1, where: {number: {$in: [296, 298, 396, 398]}}}
+        - {at-most: 1, where: {institution: {$neq: 'St. Olaf College'}}}
+      assert:
+        $and:
+          - count(courses): {$gte: 7}
+          - count(subjects): {$gte: 3}
+
+  Senior Project:
+    message: >
+      Race and ethnic studies majors are required to complete a senior project
+      and to give an oral presentation of their findings before the program
+      faculty in early May of their senior year.
+    department-audited: true
+
+attributes:
+  courses:
+    RACE 250: [race_elective]
+
+    RACE 296: [race_elective]
+    RACE 298: [race_elective]
+    RACE 396: [race_elective]
+    RACE 398: [race_elective]
+
+    AFAM 231: [race_elective]
+
+    AMCON 202: [race_elective]
+    # completion of American Conversations counts for one course for
+    # Race and Ethnic Studies
+
+    ART 261: [race_elective]
+    ART 265: [race_elective]
+    ART 278: [race_elective]
+
+    ASIAN 123: [race_elective]
+    ASIAN 223: [race_elective]
+    ASIAN 371: [race_elective]
+
+    DANCE 107: [race_elective]
+    DANCE 108: [race_elective]
+    DANCE 246: [race_elective]
+
+    EDUC 170: [race_elective]
+    EDUC 246: [race_elective]
+    EDUC 260: [race_elective]
+    EDUC 347: [race_elective]
+    EDUC 378: [race_elective]
+    EDUC 379: [race_elective]
+
+    ENGL 108: [race_elective]
+    ENGL 200: [race_elective]
+    ENGL 201: [race_elective]
+    ENGL 202: [race_elective]
+    ENGL 203: [race_elective]
+    ENGL 205: [race_elective]
+    ENGL 207: [race_elective]
+    ENGL 209: [race_elective]
+    ENGL 210: [race_elective]
+    # ENGL 220: [race_elective]
+    # when taught with the topic: Literature of American Slavery
+    ENGL 251: [race_elective]
+    # ENGL 280: [race_elective]
+    # when taught with the topic: Muslim Women Writers
+
+    # ENGL 340: [race_elective]
+    # when taught with the topic: 21st Century Ethnic American Poetry
+    ENGL 345: [race_elective]
+    ENGL 347: [race_elective]
+
+    # FREN 271: [race_elective]
+    # when taught with the topic: Les Antilles/The Caribbean
+
+    FREN 373: [race_elective]
+
+    GERM 274: [race_elective]
+
+    HIST 151: [race_elective]
+    HIST 165: [race_elective]
+    HIST 167: [race_elective]
+    HIST 181: [race_elective]
+    HIST 195: [race_elective]
+    HIST 199: [race_elective]
+    HIST 256: [race_elective]
+    HIST 270: [race_elective]
+    HIST 277: [race_elective]
+    HIST 278: [race_elective]
+    HIST 282: [race_elective]
+    HIST 288: [race_elective]
+    HIST 290: [race_elective]
+    HIST 291: [race_elective]
+    HIST 297: [race_elective]
+    # HIST 320: [race_elective]
+    # when taught with the topic: Holocaust and History
+    # HIST 370: [race_elective]
+    # when taught with the topic: Capitalism and Slavery
+    # HIST 395: [race_elective]
+    # when the final research project focuses on race/ethnicity,
+    # director approval required
+
+    MUSIC 136: [race_elective]
+    MUSIC 231: [race_elective]
+    MUSIC 237: [race_elective]
+    # MUSIC 345: [race_elective]
+    # when taught with the topic: Music and Race
+    # when taught with the topic: Music of African Christianities, for majors
+
+    NORW 224: [race_elective]
+    NORW 244: [race_elective]
+
+    PHIL 255: [race_elective]
+
+    PSCI 244: [race_elective]
+    PSCI 258: [race_elective]
+    # PSCI 350: [race_elective]
+    # when the final paper and RIN projects focus on race/ethnicity;
+    # director approval required
+
+    PSYCH 390: [race_elective]
+    # when taught with the topic: Issues in Diversity
+
+    # REL 121: [race_elective]
+    # when taught as: Belonging as Blessing and Challenge
+    # when taught as: Politics in the Bible and the Bible in Politics
+    REL 231: [race_elective]
+    REL 232: [race_elective]
+    REL 267: [race_elective]
+
+    SOAN 120: [race_elective]
+    SOAN 128: [race_elective]
+    SOAN 234: [race_elective]
+    SOAN 237: [race_elective]
+    SOAN 242: [race_elective]
+    SOAN 247: [race_elective]
+    SOAN 261: [race_elective]
+    SOAN 264: [race_elective]
+    SOAN 266: [race_elective]
+    SOAN 269: [race_elective]
+    # SOAN 299: [race_elective]
+    # when taught with the topic: Sociology of Music
+
+    SPAN 273: [race_elective]
+    SPAN 276: [race_elective]
+    SPAN 311: [race_elective]
+
+    SWRK 221: [race_elective]
+    SWRK 280: [race_elective]
+    SWRK 373: [race_elective]
+
+    THEAT 180: [race_elective]
+    # THEAT 379: [race_elective]
+    # when taught with the topic: Staging Faith: Religion and Spiritualism in
+    # Early 20th Century American Theater
+
+    WRIT 111D.2018.1: [race_elective]
+    WRIT 111H.2018.1: [race_elective]
+    # WRIT 111
+    # when taught with the topic: "Race and Power"
+    # when taught with the topic: "Seeing Race in the Twenty-First Century"
+
+    #
+    # Fall 2017
+    #
+    SOAN 371.2017.1: [race_elective]
+
+    #
+    # Summer 2019
+    #
+    HIST 199.2018.4: [race_elective]
+    MUSIC 231.2018.4: [race_elective]
+    REL 293.2018.4: [race_elective]
+
+    #
+    # Fall 2019
+    #
+
+    ART 278.2019.1: [race_elective]
+    AS/RE 254.2019.1: [race_elective]
+    DANCE 112.2019.1: [race_elective]
+    DANCE 260.2019.1: [race_elective]
+    DANCE 261.2019.1: [race_elective]
+    EDUC 250.2019.1: [race_elective]
+    EDUC 346.2019.1: [race_elective]
+    ENGL 205.2019.1: [race_elective]
+    HIST 126.2019.1: [race_elective]
+    HIST 151.2019.1: [race_elective]
+    HIST 195.2019.1: [race_elective]
+    HIST 291.2019.1: [race_elective]
+    HIST 290.2019.1: [race_elective]
+    HIST 297.2019.1: [race_elective]
+    MUSIC 141.2019.1: [race_elective]
+    MUSIC 231.2019.1: [race_elective]
+    MUSIC 237.2019.1: [race_elective]
+    MUSIC 345A.2019.1: [race_elective]
+    PSCI 264.2019.1: [race_elective]
+    PSCI 350.2019.1: [race_elective]
+    RACE 121.2019.1: [race_elective]
+    RACE 252.2019.1: [race_elective]
+    SOAN 128.2019.1: [race_elective]
+    SOAN 237.2019.1: [race_elective]
+    SOAN 247.2019.1: [race_elective]
+    SOAN 264.2019.1: [race_elective]
+    SOAN 269.2019.1: [race_elective]
+    SPAN 231.2019.1: [race_elective]
+    SPAN 232.2019.1: [race_elective]
+    SPAN 276.2019.1: [race_elective]
+    SPAN 312.2019.1: [race_elective]
+    SWRK 221.2019.1: [race_elective]
+    SWRK 373.2019.1: [race_elective]
+    THEAT 180.2019.1: [race_elective]
+    THEAT 379.2019.1: [race_elective]
+
+    # TODO: what section or term is this
+    WRIT 111?.2019.1: [race_elective]

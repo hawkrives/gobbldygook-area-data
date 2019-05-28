@@ -1,0 +1,53 @@
+---
+name: Family Studies
+type: concentration
+degree: Bachelor of Arts
+catalog: 2018-19
+
+result:
+  all:
+    - requirement: Required
+    - requirement: Electives
+    - requirement: Experiential
+
+requirements:
+  Required:
+    all:
+      - course: FAMST 232
+      - course: FAMST 242
+      - course: FAMST 391
+
+  Electives:
+    from: {student: courses}
+    where: {attribute: {$eq: famst_elective}}
+    assert: {count(courses): {$gte: 2}}
+
+  Experiential:
+    message: >
+      This requirement is usually an academic, credit-bearing experience
+      completed during the senior year (including the previous summer.) It is
+      designed to ensure that concentrators participate in an experience that
+      applies basic family knowledge (theories, frameworks, concepts) to real
+      families in a setting beyond the classroom. It must be approved by a
+      faculty member in the Department of Social Work and Family Studies prior
+      to enrollment and entered into the Department GoogleDoc. The experience
+      and concomitant learning is presented as a graded assignment for a
+      public audience in the senior seminar FAMST 391. Through the experience,
+      students demonstrate attainment of intended learning outcomes for family
+      studies.
+
+    department_audited: true
+
+attributes:
+  courses:
+    ENGL 203: [famst_elective]
+    FAMST 253: [famst_elective]
+    HIST 272: [famst_elective]
+    NURS 312: [famst_elective]
+    PSYCH 223: [famst_elective]
+    PSYCH 241: [famst_elective]
+    RACE 121: [famst_elective]
+    RACE 250: [famst_elective]
+    SOAN 248: [famst_elective]
+    SOAN 260: [famst_elective]
+    SPAN 250: [famst_elective]

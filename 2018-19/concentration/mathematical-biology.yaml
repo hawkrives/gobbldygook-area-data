@@ -1,0 +1,76 @@
+---
+name: Mathematical Biology
+type: concentration
+degree: Bachelor of Arts
+catalog: 2018-19
+
+result:
+  all:
+    - requirement: Mathematical Biology Core
+    - requirement: Exploring Biomathematics
+    - requirement: MSCS Electives
+    - requirement: BIO Electives
+
+requirements:
+  Mathematical Biology Core:
+    result:
+      course: MATH 236
+
+  Exploring Biomathematics:
+    result:
+      course: MABIO 130
+
+  MSCS Electives:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: mabio_mscs_elective}}
+      limit:
+        - at-most: 1
+          where:
+            course:
+              $in: [CSCI 125, CSCI 251]
+        - at-most: 1
+          where:
+            course:
+              $in: [STAT 212, STAT 272]
+      assert: {count(courses): {$gte: 2}}
+
+  BIO Electives:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: mabio_bio_elective}}
+      assert: {count(courses): {$gte: 2}}
+
+  Integrative Project:
+    message: >
+      Students are required to work on an independent project that integrates
+      mathematics, computer science, and/or statistics with biology.
+    department-audited: true
+
+  Senior Math Biology Symposium:
+    message: >
+      Seniors present their independent project in the form of a poster in a
+      Mathematical Biology Symposium held at St. Olaf in the spring.
+    department-audited: true
+
+attributes:
+  courses:
+    CSCI 125: [mabio_mscs_elective]
+    CSCI 251: [mabio_mscs_elective]
+    CSCI 315: [mabio_mscs_elective]
+    MATH 230: [mabio_mscs_elective]
+    MATH 242: [mabio_mscs_elective]
+    MATH 330: [mabio_mscs_elective]
+    STAT 212: [mabio_mscs_elective]
+    STAT 272: [mabio_mscs_elective]
+    STAT 302: [mabio_mscs_elective]
+    STAT 284: [mabio_mscs_elective]
+
+    BIO 233: [mabio_bio_elective]
+    BIO 247: [mabio_bio_elective]
+    BIO 261: [mabio_bio_elective]
+    BIO 315: [mabio_bio_elective]
+    BIO 371: [mabio_bio_elective]
+    BIO 383: [mabio_bio_elective]
+    BI/ES 350: [mabio_bio_elective]
+    NEURO 239: [mabio_bio_elective]

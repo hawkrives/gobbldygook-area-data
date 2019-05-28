@@ -62,8 +62,7 @@ requirements:
                 - course: MATH 244
                 - course: MATH 252
 
-
-  - name: Core
+  Core:
     result:
       all:
         - course: CSCI 253
@@ -72,24 +71,24 @@ requirements:
         - requirement: Systems
 
     requirements:
-      - name: Languages
+      Languages:
         result:
           from: {student: courses}
           where: {attribute: {$eq: csci_languages}}
           assert: {count(courses): {$gte: 1}}
 
-      - name: Systems
+      Systems:
         result:
           from: {student: courses}
           where: {attribute: {$eq: csci_systems}}
           assert: {count(courses): {$gte: 1}}
 
-  - name: Electives
+  Electives:
     result:
       from: {student: courses}
       where: {attribute: {$eq: csci_electives}}
       assert: {count(courses): {$gte: 2}}
 
-  - name: Capstone
+  Capstone:
     result:
       course: CSCI 390

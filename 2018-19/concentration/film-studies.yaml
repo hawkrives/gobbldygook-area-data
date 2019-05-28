@@ -1,0 +1,97 @@
+---
+name: Film Studies
+type: concentration
+degree: Bachelor of Arts
+catalog: 2018-19
+
+result:
+  all:
+    - requirement: Intro to Film Studies
+    - requirement: History, Theory, or Cultural Meaning of Film
+    - requirement: Practical Film Studies
+    - requirement: Integrative Film Studies
+
+limit:
+  - at-most: 1
+    where: {institution: {$neq: St. Olaf College}}
+  - at-most: 2
+    where: {level: {$eq: 100}}
+
+requirements:
+  Intro to Film Studies:
+    result:
+      course: FILM 101
+
+  History, Theory, or Cultural Meaning of Film:
+    message: >
+      Two elective courses that focus on the history, theory, or cultural
+      expression of film within the United States or in a global context.
+      These courses examine the production, critical evaluation, cultural
+      history, and reception of film. Students take two courses to develop
+      fluency with the critical and theoretical methods of the discipline (see
+      list below).
+
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: film_meaning}}
+      assert: {count(courses): {$gte: 2}}
+
+  Practical Film Studies:
+    message: >
+      One elective course that focuses on practical aspects of film creation
+      or criticism. These courses emphasize modern film as professional
+      practice, asking students to master at least one of the main creative or
+      technical skill sets used in film-making (see list below).
+
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: film_practical}}
+      assert: {count(courses): {$gte: 1}}
+
+  Integrative Film Studies:
+    message: >
+      One more elective drawn from the above categories, or an integrative
+      film topics course approved by the program (see list below), or a
+      contract course worked out in consultation with the program director and
+      the instructor. This course challenges students to synthesize their
+      previous study of film in ways consistent with their own needs and
+      interests, emphasizing the interdisciplinary nature of film studies.
+      Students must present to the program director a brief explanation of how
+      their work in this course synthesizes previous interests.
+
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: film_integrative}}
+      assert: {count(courses): {$gte: 1}}
+
+attributes:
+  courses:
+    ART 104: [film_practical]
+    ART 228: [film_practical]
+    ART 229: [film_practical]
+    ASIAN 156: [film_integrative]
+    ASIAN 230: [film_integrative]
+    DANCE 150: [film_practical]
+    ENGL 275: [film_meaning]
+    ENGL 296: [film_practical]
+    FILM 201: [film_meaning]
+    FREN 250: [film_integrative]
+    GERM 249: [film_meaning]
+    HIST 290: [film_integrative]
+    MEDIA 160: [film_integrative]
+    MEDIA 260: [film_integrative]
+    NORW 130: [film_meaning]
+    PHIL 260: [film_integrative]
+    REL 121.2016.1.K: [film_integrative]
+    REL 121.2017.1.E: [film_integrative]
+    REL 121.2017.1.H: [film_integrative]
+    REL 121.2017.3.P: [film_integrative]
+    REL 121.2018.1.F: [film_integrative]
+    REL 121.2018.1.I: [film_integrative]
+    REL 121.2018.3.O: [film_integrative]
+    RUSSN 265: [film_meaning]
+    THEAT 130: [film_practical]
+    THEAT 275: [film_practical]
+    WRIT 111.2016.3.E: [film_integrative]
+    WRIT 111.2017.1.J: [film_integrative]
+    WRIT 111.2017.3.N: [film_integrative]

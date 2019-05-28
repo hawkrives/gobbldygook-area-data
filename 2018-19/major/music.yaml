@@ -5,13 +5,13 @@ catalog: 2018-19
 
 result:
   all:
-    - reference: Core
-    - reference: Musicology
-    - reference: Electives
-    - reference: Performance Studies
-    - reference: Official Ensemble Participation
-    - reference: Performances
-    - reference: Recital Attendance
+    - requirement: Core
+    - requirement: Musicology
+    - requirement: Electives
+    - requirement: Performance Studies
+    - requirement: Official Ensemble Participation
+    - requirement: Performances
+    - requirement: Recital Attendance
 
 requirements:
   Core:
@@ -19,8 +19,8 @@ requirements:
       all:
         - course: MUSIC 114
         - course: MUSIC 141
-        - {course: MUSIC 161, where: grade >= B-}
-        - {course: MUSIC 162, where: grade >= B-}
+        - {course: MUSIC 161, grade: B-}
+        - {course: MUSIC 162, grade: B-}
         - either:
           - course: MUSIC 212
           - course: MUSIC 214
@@ -54,35 +54,35 @@ requirements:
 
     result:
       any:
-        - reference: Bassoon
-        - reference: Clarinet
-        - reference: Drumset
-        - reference: Euphonium
-        - reference: Flute
-        - reference: French Horn
-        - reference: Hardanger Fiddle
-        - reference: Harp
-        - reference: Harpsichord
-        - reference: Jazz Piano
-        - reference: Jazz Saxophone
-        - reference: Oboe
-        - reference: Organ
-        - reference: Percussion
-        - reference: Piano
-        - reference: Saxophone
-        - reference: String Bass
-        - reference: Trombone
-        - reference: Trumpet
-        - reference: Tuba
-        - reference: Viola
-        - reference: Violin
-        - reference: Violoncello
-        - reference: Voice
+        - requirement: Bassoon
+        - requirement: Clarinet
+        - requirement: Drumset
+        - requirement: Euphonium
+        - requirement: Flute
+        - requirement: French Horn
+        - requirement: Hardanger Fiddle
+        - requirement: Harp
+        - requirement: Harpsichord
+        - requirement: Jazz Piano
+        - requirement: Jazz Saxophone
+        - requirement: Oboe
+        - requirement: Organ
+        - requirement: Percussion
+        - requirement: Piano
+        - requirement: Saxophone
+        - requirement: String Bass
+        - requirement: Trombone
+        - requirement: Trumpet
+        - requirement: Tuba
+        - requirement: Viola
+        - requirement: Violin
+        - requirement: Violoncello
+        - requirement: Voice
 
     requirements:
       Bassoon:
         result:
-          from: {requirement results: [Lessons, Other Lessons], take: courses}
+          from: {requirements: [Lessons, Other Lessons]}
           assert: count(terms) >= 6
         requirements:
           Lessons:
@@ -92,7 +92,7 @@ requirements:
 
       Clarinet:
         result:
-          from: {requirement results: [Lessons, Other Lessons], take: courses}
+          from: {requirements: [Lessons, Other Lessons]}
           assert: count(terms) >= 6
         requirements:
           Lessons:
@@ -102,7 +102,7 @@ requirements:
 
       Coll Keyboard Perfor:
         result:
-          from: {requirement results: [Lessons, Other Lessons], take: courses}
+          from: {requirements: [Lessons, Other Lessons]}
           assert: count(terms) >= 6
         requirements:
           Lessons:
@@ -112,7 +112,7 @@ requirements:
 
       Drumset:
         result:
-          from: {requirement results: [Lessons, Other Lessons], take: courses}
+          from: {requirements: [Lessons, Other Lessons]}
           assert: count(terms) >= 6
         requirements:
           Lessons:
@@ -122,7 +122,7 @@ requirements:
 
       Euphonium:
         result:
-          from: {requirement results: [Lessons, Other Lessons], take: courses}
+          from: {requirements: [Lessons, Other Lessons]}
           assert: count(terms) >= 6
         requirements:
           Lessons:
@@ -132,7 +132,7 @@ requirements:
 
       Flute:
         result:
-          from: {requirement results: [Lessons, Other Lessons], take: courses}
+          from: {requirements: [Lessons, Other Lessons]}
           assert: count(terms) >= 6
         requirements:
           Lessons:
@@ -142,7 +142,7 @@ requirements:
 
       French Horn:
         result:
-          from: {requirement results: [Lessons, Other Lessons], take: courses}
+          from: {requirements: [Lessons, Other Lessons]}
           assert: count(terms) >= 6
         requirements:
           Lessons:
@@ -152,7 +152,7 @@ requirements:
 
       Hardanger Fiddle:
         result:
-          from: {requirement results: [Lessons, Other Lessons], take: courses}
+          from: {requirements: [Lessons, Other Lessons]}
           assert: count(terms) >= 6
         requirements:
           Lessons:
@@ -162,7 +162,7 @@ requirements:
 
       Harp:
         result:
-          from: {requirement results: [Lessons, Other Lessons], take: courses}
+          from: {requirements: [Lessons, Other Lessons]}
           assert: count(terms) >= 6
         requirements:
           Lessons:
@@ -172,7 +172,7 @@ requirements:
 
       Harpsichord:
         result:
-          from: {requirement results: [Lessons, Other Lessons], take: courses}
+          from: {requirements: [Lessons, Other Lessons]}
           assert: count(terms) >= 6
         requirements:
           Lessons:
@@ -182,7 +182,7 @@ requirements:
 
       Jazz Piano:
         result:
-          from: {requirement results: [Lessons, Other Lessons], take: courses}
+          from: {requirements: [Lessons, Other Lessons]}
           assert: count(terms) >= 6
         requirements:
           Lessons:
@@ -192,7 +192,7 @@ requirements:
 
       Oboe:
         result:
-          from: {requirement results: [Lessons, Other Lessons], take: courses}
+          from: {requirements: [Lessons, Other Lessons]}
           assert: count(terms) >= 6
         requirements:
           Lessons:
@@ -202,7 +202,7 @@ requirements:
 
       Organ:
         result:
-          from: {requirement results: [Lessons, Other Lessons], take: courses}
+          from: {requirements: [Lessons, Other Lessons]}
           assert: count(terms) >= 6
         requirements:
           Lessons:
@@ -212,7 +212,7 @@ requirements:
 
       Percussion:
         result:
-          from: {requirement results: [Lessons, Other Lessons], take: courses}
+          from: {requirements: [Lessons, Other Lessons]}
           assert: count(terms) >= 6
         requirements:
           Lessons:
@@ -222,7 +222,7 @@ requirements:
 
       Piano:
         result:
-          from: {requirement results: [Lessons, Other Lessons], take: courses}
+          from: {requirements: [Lessons, Other Lessons]}
           assert: count(terms) >= 6
         requirements:
           Lessons:
@@ -232,7 +232,7 @@ requirements:
 
       Jazz Saxophone:
         result:
-          from: {requirement results: [Lessons, Other Lessons], take: courses}
+          from: {requirements: [Lessons, Other Lessons]}
           assert: count(terms) >= 6
         requirements:
           Lessons:
@@ -242,7 +242,7 @@ requirements:
 
       Saxophone:
         result:
-          from: {requirement results: [Lessons, Other Lessons], take: courses}
+          from: {requirements: [Lessons, Other Lessons]}
           assert: count(terms) >= 6
         requirements:
           Lessons:
@@ -252,7 +252,7 @@ requirements:
 
       String Bass:
         result:
-          from: {requirement results: [Lessons, Other Lessons], take: courses}
+          from: {requirements: [Lessons, Other Lessons]}
           assert: count(terms) >= 6
         requirements:
           Lessons:
@@ -262,7 +262,7 @@ requirements:
 
       Trombone:
         result:
-          from: {requirement results: [Lessons, Other Lessons], take: courses}
+          from: {requirements: [Lessons, Other Lessons]}
           assert: count(terms) >= 6
         requirements:
           Lessons:
@@ -272,7 +272,7 @@ requirements:
 
       Trumpet:
         result:
-          from: {requirement results: [Lessons, Other Lessons], take: courses}
+          from: {requirements: [Lessons, Other Lessons]}
           assert: count(terms) >= 6
         requirements:
           Lessons:
@@ -282,7 +282,7 @@ requirements:
 
       Tuba:
         result:
-          from: {requirement results: [Lessons, Other Lessons], take: courses}
+          from: {requirements: [Lessons, Other Lessons]}
           assert: count(terms) >= 6
         requirements:
           Lessons:
@@ -292,7 +292,7 @@ requirements:
 
       Viola:
         result:
-          from: {requirement results: [Lessons, Other Lessons], take: courses}
+          from: {requirements: [Lessons, Other Lessons]}
           assert: count(terms) >= 6
         requirements:
           Lessons:
@@ -302,7 +302,7 @@ requirements:
 
       Violin:
         result:
-          from: {requirement results: [Lessons, Other Lessons], take: courses}
+          from: {requirements: [Lessons, Other Lessons]}
           assert: count(terms) >= 6
         requirements:
           Lessons:
@@ -312,7 +312,7 @@ requirements:
 
       Violoncello:
         result:
-          from: {requirement results: [Lessons, Other Lessons], take: courses}
+          from: {requirements: [Lessons, Other Lessons]}
           assert: count(terms) >= 6
         requirements:
           Lessons:
@@ -322,7 +322,7 @@ requirements:
 
       Voice:
         result:
-          from: {requirement results: [Lessons, Other Lessons], take: courses}
+          from: {requirements: [Lessons, Other Lessons]}
           assert: count(terms) >= 6
         requirements:
           Lessons:
@@ -361,10 +361,10 @@ emphases:
     Composition:
       result:
         all:
-          - reference: Courses
-          - reference: Lessons
-          - reference: Performances
-          - reference: Portfolio
+          - requirement: Courses
+          - requirement: Lessons
+          - requirement: Performances
+          - requirement: Portfolio
 
       requirements:
         Courses:
@@ -406,9 +406,9 @@ emphases:
     Musicology:
       result:
         all:
-          - reference: Courses
-          - reference: More Courses
-          - reference: Portfolio
+          - requirement: Courses
+          - requirement: More Courses
+          - requirement: Portfolio
 
       requirements:
         Courses:
@@ -455,8 +455,8 @@ emphases:
     Theory:
       result:
         all:
-          - reference: Courses
-          - reference: Portfolio
+          - requirement: Courses
+          - requirement: Portfolio
 
       requirements:
         Courses:

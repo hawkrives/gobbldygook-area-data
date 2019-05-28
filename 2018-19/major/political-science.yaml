@@ -5,16 +5,16 @@ catalog: 2018-19
 
 result:
   all:
-    - reference: Research Methods
-    - reference: American Politics and Public Policy
-    - reference: Comparative Politics
-    - reference: International Relations
-    - reference: Political Theory
-    - reference: Level III
-    - reference: Electives
+    - requirement: Research Methods
+    - requirement: American Politics and Public Policy
+    - requirement: Comparative Politics
+    - requirement: International Relations
+    - requirement: Political Theory
+    - requirement: Level III
+    - requirement: Electives
 
     - from:
-        requirement results:
+        requirements:
           - Research Methods
           - American Politics and Public Policy
           - Comparative Politics
@@ -26,8 +26,8 @@ result:
       assert: count(courses) >= 9
 
 limit:
-  - {at most: 3, where: {level: {$eq: 100}}}
-  - {at most: 2, where: {institution: {$neq: St. Olaf College}}}
+  - {at-most: 3, where: {level: {$eq: 100}}}
+  - {at-most: 2, where: {institution: {$neq: St. Olaf College}}}
 
 requirements:
   Research Methods:
@@ -63,21 +63,28 @@ requirements:
       from: {student: courses}
       where: {attribute: {$eq: psci_level_3}}
       limit:
-        - {at most: 0, where: institution != St. Olaf College}
+        - {at-most: 0, where: institution != St. Olaf College}
       assert: count(courses) >= 2
 
   Electives:
     saves:
       Within PSCI:
         from: {student: courses}
-        where: {$or: [{subject: {$in: [PSCI, AS/PS, ES/PS]}}]}
+        where:
+          $and:
+            - {subject: {$in: [PSCI, AS/PS, ES/PS]}}
+            - {institution: {$eq: 'St. Olaf College'}}
         limit:
-          - {at most: 1, where: {and: [{course: {$eq: PSCI 294}}, {credit: {$lt: 1.0}}]}}
+          - {at-most: 1, where: {$and: [{course: {$eq: PSCI 294}}, {credit: {$lt: 1.0}}]}}
         store: courses
 
       Statistics:
         from: {student: courses}
-        where: {and: [{subject: {$eq: STAT}}, {course: {$neq: STAT 111}}]}
+        where:
+          $and:
+            - {subject: {$eq: STAT}}
+            - {course: {$neq: STAT 111}}
+            - {institution: {$eq: 'St. Olaf College'}}
         store: courses
 
       French / German / Spanish:
@@ -101,7 +108,7 @@ requirements:
       of:
         - from: {save: Within PSCI}
           limit:
-            - {at most: 1, where: {course: {$exists: true}}}
+            - {at-most: 1, where: {course: {$exists: true}}}
           assert: count(courses) = 1
 
         - from:
@@ -110,7 +117,7 @@ requirements:
               - French / German / Spanish
               - Chinese / Greek / Latin / Japanese / Norwegian / Russian
           limit:
-            - {at most: 1, where: course is not None}
+            - {at-most: 1, where: course is not None}
           assert: count(courses) = 1
 
 

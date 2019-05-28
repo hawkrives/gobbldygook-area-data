@@ -1,3 +1,4 @@
+---
 name: Sociology/Anthropology
 type: major
 degree: Bachelor of Arts
@@ -5,75 +6,79 @@ catalog: 2018-19
 
 result:
   all:
-    - reference: History of Sociological Theory
-    - reference: Anthropological Theory
-    - reference: Foundations of Social Science Research
-    - reference: Ethnographic Research Methods
-    - reference: Senior Seminar
-    - reference: Principles of Statistics
-    - reference: Electives
+    - requirement: Core
+    - requirement: Principles of Statistics
+    - requirement: Electives
 
+limit:
+  - {at-most: 1, where: {institution: {$neq: 'St. Olaf College'}}}
+
+requirements:
+  Core:
+    result:
+      all:
+        - course: SOAN 291
+        - course: SOAN 292
+        - course: SOAN 371
+        - course: SOAN 373
+        - course: SOAN 399
+
+  Principles of Statistics:
+    message:
+      Or any other higher-level statistics course
+    result:
+      either:
+        - course: STAT 110
+        - course: STAT 212
+        - {course: ECON 263, hidden: true}
+        - {course: PSCI 220, hidden: true}
+
+  Electives:
+    message: >
+      Students are permitted to take one of the four elective courses, but not
+      a core course, S/U.
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: soan_elective}}
+      limit:
+        - {at-most: 1, where: {s/u: {$eq: true}}}
+        - {at-most: 1, where: {number: {$in: [294, 394]}}}
+        - {at-most: 1, where: {number: {$in: [298, 398]}}}
+        - {at-most: 1, where: {number: {$in: [396]}}}
+      assert: {count(courses): {$gte: 4}}
 
 attributes:
   courses:
     SOAN 121: [soan_elective]
     SOAN 128: [soan_elective]
-    SOAN 232: [soan_elective]
+    SOAN 232: [soan_elective]  # may not be offered again
     SOAN 233: [soan_elective]
-    SOAN 234: [soan_elective]
+    SOAN 234: [soan_elective]  # remove as faculty has retired
     SOAN 235: [soan_elective]
     SOAN 236: [soan_elective]
     SOAN 237: [soan_elective]
-    SOAN 242: [soan_elective]
-    SOAN 244: [soan_elective]
-    SOAN 246: [soan_elective]
+    SOAN 242: [soan_elective]  # remove as faculty has retired
+    SOAN 244: [soan_elective]  # may not be offered again
+    SOAN 246: [soan_elective]  # remove as faculty has retired
     SOAN 247: [soan_elective]
     SOAN 248: [soan_elective]
     SOAN 250: [soan_elective]
     SOAN 260: [soan_elective]
     SOAN 261: [soan_elective]
     SOAN 262: [soan_elective]
+    SOAN 263: [soan_elective]
     SOAN 264: [soan_elective]
     SOAN 265: [soan_elective]
-    SOAN 266: [soan_elective]
+    SOAN 266: [soan_elective]  # remove as faculty has retired
     SOAN 267: [soan_elective]
-    SOAN 268: [soan_elective]
+    SOAN 269: [soan_elective]
+    SOAN 294: [soan_elective]
+    SOAN 296: [soan_elective]
+    SOAN 297: [soan_elective]
+    SOAN 299: [soan_elective]
+    SOAN 394: [soan_elective]
+    SOAN 298: [soan_elective]
+    SOAN 398: [soan_elective]
+    SOAN 396: [soan_elective]
+    ID 245: [soan_elective]
     AS/SA 239: [soan_elective]
-
-requirements:
-  History of Sociological Theory:
-    result:
-      course: SOAN 291
-
-  Anthropological Theory:
-    result:
-      course: SOAN 292
-
-  Foundations of Social Science Research:
-    message: STAT 110 must be taken before SOAN 371.
-    result:
-      course: SOAN 371
-
-  Ethnographic Research Methods:
-    result:
-      course: SOAN 373
-
-  Senior Seminar:
-    result:
-      course: SOAN 399
-
-  Principles of Statistics:
-    result:
-      course: STAT 110
-
-  Electives:
-    message:
-      Students are permitted to take one of the four elective courses, but
-      not a core course, S/U.
-
-    result:
-      from: {student: courses}
-      where: attribute = soan_elective
-      limit:
-        - {at most: 1, where: s/u = true}
-      assert: count(courses) >= 4

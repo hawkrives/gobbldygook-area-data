@@ -4,34 +4,28 @@ degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
-  count: all
-  of:
-    - requirement: Core
-    - requirement: Electives
+  all:
+    - all:
+        - course: BIO 143
+        - course: BIO 243
+        - course: ESTH 255
+        - course: ESTH 374
+        - course: ESTH 375
+        - course: ESTH 390
+        - course: NURS 110
+        - course: PSYCH 125
 
-requirements:
-  - name: Core
-    result:
-      count: all
+    - count: 2
       of:
-        - BIO 143
-        - BIO 243
-        - NURS 110
-        - ESTH 255
-        - ESTH 374
-        - ESTH 375
-        - ESTH 390
-        - PSYCH 125
-
-  - name: Electives
-    result:
-      count: 2
-      of:
-        - BIO 247
-        - ESTH 295
-        - ESTH 373
-        - ESTH 376
-        - NEURO 239
-        - PSYCH 241
-        - PSYCH 247
-        - {count: 1, of: [STAT 110, STAT 212, STAT 214]}
+        - course: BIO 247
+        - course: ESTH 295
+        - course: ESTH 373
+        - course: ESTH 376
+        - course: NEURO 239
+        - course: PSYCH 241
+        - course: PSYCH 247
+        - count: 1
+          of:
+            - course: STAT 110
+            - course: STAT 212
+            - course: STAT 214

@@ -1,0 +1,33 @@
+---
+name: Middle Eastern Studies
+type: concentration
+degree: Bachelor of Arts
+catalog: 2018-19
+
+result:
+  from: {student: courses}
+  where: {attribute: {$eq: mest_elective}}
+  assert: {count(courses): {$gte: 5}}
+
+attributes:
+  courses:
+    BIO 253: [mest_elective]
+    ENGL 209: [mest_elective]
+    ENGL 280: [mest_elective]
+    FREN 235: [mest_elective]
+    HIST 189.2018.3: [mest_elective]
+    HIST 291.2018.1: [mest_elective]
+    HIST 292: [mest_elective]
+    ID 234: [mest_elective]
+    ID 235: [mest_elective]
+    IGS 101: [mest_elective]  # carleton, arabic 1 - 3
+    IGS 102: [mest_elective]
+    IGS 103: [mest_elective]
+    MATH 218: [mest_elective]
+    MEST 202: [mest_elective]
+    PSCI 251: [mest_elective]
+    REL 217: [mest_elective]
+    REL 246: [mest_elective]
+    REL 248.2018.3: [mest_elective]
+    REL 271: [mest_elective]
+    SOAN 235: [mest_elective]

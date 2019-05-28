@@ -1,0 +1,77 @@
+---
+name: Media Studies
+type: concentration
+degree: Bachelor of Arts
+catalog: 2018-19
+
+result:
+  all:
+    - requirement: Introduction to Media Studies
+    - requirement: Electives
+    - requirement: Academic Internship
+    - requirement: Digital Portfolio
+
+requirements:
+  Introduction to Media Studies:
+    result:
+      course: MEDIA 160
+
+  Electives:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: media_elective}}
+      assert: {count(courses): {$gte: 3}}
+
+  Academic Internship:
+    message: >
+      Students pursuing the media studies concentration enroll in and complete
+      a **credit-bearing**, academic internship in a media-related field, e.g.,
+      film, television, video, radio, Internet, newspaper, magazine, book
+      publishing, journalism, public relations, marketing, advertising, or
+      graphic design. The internship may be undertaken at any time during a
+      program of study.
+
+    result:
+      any:
+        - course: MEDIA 294
+        - course: MEDIA 394
+
+  Digital Portfolio:
+    message: >
+      Requirements and plans for individual portfolios are discussed at a
+      mandatory meeting for all junior and senior media studies concentrators,
+      in the fall semester. Graduating concentrators submit their portfolios
+      to the program director when completed.
+    department-audited: true
+
+attributes:
+  courses:
+    MEDIA 260: [media_elective]
+
+    AMST 100: [media_elective]
+    ART 205: [media_elective]
+    ART 228: [media_elective]
+    ART 229: [media_elective]
+    ART 236: [media_elective]
+    ART 256: [media_elective]
+    ASIAN 156: [media_elective]
+    ASIAN 230: [media_elective]
+    ASIAN 270: [media_elective]
+    DANCE 150: [media_elective]
+    ENGL 275: [media_elective]
+    ENGL 280: [media_elective]
+    ENGL 285: [media_elective]
+    ENGL 289: [media_elective]
+    ENGL 291: [media_elective]
+    ENGL 296: [media_elective]
+    FILM 101: [media_elective]
+    FILM 201: [media_elective]
+    GERM 249: [media_elective]
+    HIST 182: [media_elective]
+    HIST 290: [media_elective]
+    MGMT 229: [media_elective]
+    MGMT 250: [media_elective]
+    MUSIC 225: [media_elective]
+    PHYS 252: [media_elective]
+    PSCI 211: [media_elective]
+    THEAT 275: [media_elective]

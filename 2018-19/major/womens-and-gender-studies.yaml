@@ -1,3 +1,4 @@
+---
 name: Women's and Gender Studies
 type: major
 degree: Bachelor of Arts
@@ -5,10 +6,9 @@ catalog: 2018-19
 
 result:
   all:
-    - reference: Introduction
-    - reference: Advanced Topics
-    - reference: Additional Courses
-
+    - requirement: Introduction
+    - requirement: Advanced Topics
+    - requirement: Additional Courses
 
 attributes:
   multicountable:
@@ -19,55 +19,79 @@ attributes:
 
   courses:
     AMST 100: [wmgst_theory, wmgst_elective]
+    AMCON 202: [wmgst_elective]
     ART 277: [wmgst_theory, wmgst_elective]
     BIO 124: [wmgst_elective]
-    DANCE 246: [wmgst_diverse, wmgst_elective]
+    CLASS 240: [wmgst_historical, wmgst_elective]
+    DANCE 246: [wmgst_historical, wmgst_elective]
+    DANCE 290: [wmgst_historical, wmgst_elective]  # Dance and Gender
+    ENGL 207: [wmgst_diverse, wmgst_elective]
+    ENGL 220: [wmgst_historical, wmgst_elective]  # The Literatur of American Slavery
     ENGL 242: [wmgst_theory, wmgst_elective]
     ENGL 246: [wmgst_diverse, wmgst_elective]
+    ENGL 251: [wmgst_diverse, wmgst_elective]
+    ENGL 253: [wmgst_historical, wmgst_elective]  # southern women writers
     ENGL 264: [wmgst_theory, wmgst_elective]
-    ENGL 340.2011.2: [wmgst_diverse, wmgst_elective]
-    ENGL 340.2011.3: [wmgst_diverse, wmgst_elective]
-    ENGL 340.2012.1: [wmgst_diverse, wmgst_elective]
-    ENGL 340.2012.2: [wmgst_diverse, wmgst_elective]
-    ENGL 340.2013.2: [wmgst_diverse, wmgst_elective]
-    ENGL 340.2014.2: [wmgst_diverse, wmgst_elective]
-    ENGL 340.2015.2: [wmgst_diverse, wmgst_elective]
-    ENGL 340: [wmgst_theory, wmgst_elective]
+    ENGL 280.2000.1: [wmgst_diverse, wmgst_elective]  # Muslim Women Writers
+    ENGL 280.2001.1: [wmgst_theory, wmgst_elective]  # Queer Literature and Theory
+    ENGL 340:
+      - wmgst_theory  # always?
+      - wmgst_historical  # Money and American Literature
+                          # or Sex, Madness, and Marriage
+      - wmgst_elective
     FAMST 242: [wmgst_theory, wmgst_elective]
-    FAMST 253: [wmgst_theory, wmgst_diverse, wmgst_elective]
-    FREN 372.2017.1: [wmgst_historical, wmgst_elective]
-    HIST 115: [wmgst_diverse, wmgst_elective]
-    HIST 121: [wmgst_historical, wmgst_elective]
-    HIST 122: [wmgst_diverse, wmgst_elective]
-    HIST 182: [wmgst_diverse, wmgst_elective]
-    HIST 189.2011.1: [wmgst_diverse, wmgst_elective]
-    HIST 189.2012.1: [wmgst_diverse, wmgst_elective]
-    HIST 191: [wmgst_historical, wmgst_elective]
-    HIST 224: [wmgst_historical, wmgst_elective]
-    HIST 231: [wmgst_historical, wmgst_elective]
-    HIST 237: [wmgst_historical, wmgst_elective]
-    HIST 239: [wmgst_historical, wmgst_elective]
-    HIST 272: [wmgst_diverse, wmgst_elective]
+    FAMST 253: [wmgst_theory, wmgst_diverse, wmgst_historical, wmgst_elective]
+    FREN 273.2000.1: [wmgst_diverse, wmgst_elective]  # French Women Writers
+    FREN 372.2017.1: [wmgst_diverse, wmgst_historical, wmgst_elective]  # Women in Identity
+    HIST 121: [wmgst_diverse, wmgst_historical, wmgst_elective]
+    HIST 122: [wmgst_historical, wmgst_elective]
+    HIST 182: [wmgst_historical, wmgst_elective]
+    HIST 189.2000.1: [wmgst_historical, wmgst_diverse, wmgst_elective]  # Women in African Colonial History
+    HIST 201: [wmgst_historical, wmgst_elective]  # Alexander + Kleopatra
+    HIST 224: [wmgst_diverse, wmgst_elective]
+    HIST 231: [wmgst_diverse, wmgst_elective]
+    HIST 237: [wmgst_diverse, wmgst_elective]
+    HIST 272: [wmgst_diverse, wmgst_historical, wmgst_elective]
+    HIST 297: [wmgst_elective]
     HIST 320.2011.1: [wmgst_diverse, wmgst_elective]
     HIST 320.2013.1: [wmgst_diverse, wmgst_elective]
     HIST 320.2014.3: [wmgst_historical, wmgst_elective]
+    HIST 320.2000.1:
+      - wmgst_elective
+      # when Race, Gender, Medicine
+      - wmgst_historical
+      - wmgst_theory
+      # when Nation and Empire in Russian History
+      - wmgst_diverse
+    HIST 395: [wmgst_theory, wmgst_elective]
+    MUSIC 136: [wmgst_theory, wmgst_elective]
+    MUSIC 345:
+      # when Gender in Opera
+      # or Women in Classical Music
+      # or Music, Gender, and Sexuality
+      - wmgst_diverse
+      - wmgst_historical
+      - wmgst_elective
     NORW 282: [wmgst_elective]
     NURS 386: [wmgst_elective]
-    PHIL 245: [wmgst_historical, wmgst_theory, wmgst_elective]
-    PSYCH 223: [wmgst_historical, wmgst_elective]
-    PSYCH 241: [wmgst_historical, wmgst_elective]
+    PHIL 245: [wmgst_theory, wmgst_diverse, wmgst_elective]
+    PSCI 251: [wmgst_diverse, wmgst_elective]
+    PSYCH 223: [wmgst_diverse, wmgst_elective]
+    PSYCH 241: [wmgst_diverse, wmgst_elective]
     PSYCH 350: [wmgst_elective]
-    PSYCH 390: [wmgst_theory, wmgst_elective]
+    PSYCH 390.2000.1: [wmgst_theory, wmgst_elective]  # Intimate Relationships
     PSYCH 396.2013.3: [wmgst_theory, wmgst_elective]
+    RACE 250.2000.1: [wmgst_theory, wmgst_elective]
     REL 209: [wmgst_theory, wmgst_diverse, wmgst_historical, wmgst_elective]
     REL 264: [wmgst_historical, wmgst_diverse, wmgst_elective]
     REL 344: [wmgst_theory, wmgst_elective]
-    SOAN 128: [wmgst_historical, wmgst_elective]
-    SOAN 235: [wmgst_theory, wmgst_historical, wmgst_elective]
-    SOAN 246: [wmgst_theory, wmgst_diverse, wmgst_elective]
+    SOAN 128: [wmgst_diverse, wmgst_elective]
+    SOAN 235: [wmgst_theory, wmgst_diverse, wmgst_elective]
+    SOAN 246: [wmgst_theory, wmgst_historical, wmgst_elective]
     SOAN 260: [wmgst_theory, wmgst_elective]
-    SOAN 261: [wmgst_historical, wmgst_elective]
-    SPAN 250: [wmgst_historical, wmgst_elective]
+    SOAN 261: [wmgst_diverse, wmgst_elective]
+    SPAN 250: [wmgst_diverse, wmgst_elective]
+    SPAN 312: [wmgst_diverse, wmgst_elective]
     WMGST 121: [wmgst_lived]
 
 
@@ -84,44 +108,44 @@ requirements:
     saves:
       Taken Electives:
         from: {student: courses}
-        where: attribute = wmgst_elective
+        where: {attributes: {$eq: wmgst_elective}}
         store: courses
 
     result:
       all:
-        - reference: Theory and Methods
-        - reference: Gender in Historical Context
-        - reference: Gender in Global/Comparative/Diverse Contexts
-        - reference: Lived Experiences
+        - requirement: Theory and Methods
+        - requirement: Gender in Historical Context
+        - requirement: Gender in Global/Comparative/Diverse Contexts
+        - requirement: Lived Experiences
 
         - from: {save: Taken Electives}
-          assert: count(courses) >= 7
+          assert: {count(courses): {$gte: 7}}
 
         - from: {save: Taken Electives}
-          where: level = 300
-          assert: count(courses) >= 1
+          where: {level: {$eq: 300}}
+          assert: {count(courses): {$gte: 1}}
 
     requirements:
       Theory and Methods:
         result:
           from: {student: courses}
-          where: attribute = wmgst_theory
-          assert: count(courses) >= 1
+          where: {attributes: {$eq: wmgst_theory}}
+          assert: {count(courses): {$gte: 1}}
 
       Gender in Historical Context:
         result:
           from: {student: courses}
-          where: attribute = wmgst_historical
-          assert: count(courses) >= 1
+          where: {attributes: {$eq: wmgst_historical}}
+          assert: {count(courses): {$gte: 1}}
 
       Gender in Global/Comparative/Diverse Contexts:
         result:
           from: {student: courses}
-          where: attribute = wmgst_diverse
-          assert: count(courses) >= 1
+          where: {attributes: {$eq: wmgst_diverse}}
+          assert: {count(courses): {$gte: 1}}
 
       Lived Experiences:
         result:
           from: {student: courses}
-          where: attribute = wmgst_lived
-          assert: count(courses) >= 1
+          where: {attributes: {$eq: wmgst_lived}}
+          assert: {count(courses): {$gte: 1}}

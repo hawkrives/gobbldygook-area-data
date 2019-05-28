@@ -1,50 +1,52 @@
+---
 name: Philosophy (Contract Major)
 type: major
 degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
-  count: all
-  of:
+  all:
     - requirement: Core
     - requirement: Level III Seminars
-    - requirement: Complementary Courses
     - requirement: Electives
+    - requirement: Complementary Courses
 
 requirements:
-  - name: Core
+  Core:
     result:
-      count: all
-      of: [PHIL 235, PHIL 236, PHIL 240]
+      all:
+        - course: PHIL 235
+        - course: PHIL 236
+        - course: PHIL 240
 
-  - name: Level III Seminars
+  Level III Seminars:
     result:
-      given: these-courses
-      courses: [PHIL 371, PHIL 372, PHIL 373, PHIL 374, PHIL 375]
-      repeats: first
+      from: {student: courses}
+      where: {attribute: {$eq: phil_l3_seminar}}
       limit:
-        - {at_most: 0, where: {s/u: 'true'}}
-      what: courses
-      do: count >= 2
+        - {at most: 0, where: {s/u: {$eq: true}}}
+      assert: {count(courses): {$gte: 2}}
 
-  - name: Electives
+  Electives:
     result:
-      given: these-courses
-      courses: [
-        PHIL 118, PHIL 119, PHIL 120, PHIL 147,
-        PHIL 233, PHIL 235, PHIL 236, PHIL 240,
-        PHIL 241, PHIL 243, PHIL 244, PHIL 245,
-        PHIL 246, PHIL 250, PHIL 251, PHIL 252,
-        PHIL 254, PHIL 255, PHIL 257, PHIL 259,
-        PHIL 260, PHIL 261, PHIL 371, PHIL 372,
-        PHIL 373, PHIL 374, PHIL 375, PHIL 399,
-      ]
-      repeats: first
-      what: courses
-      do: count >= 2
+      from: {student: courses}
+      where:
+        $or:
+          - subject: {$eq: PHIL}
+          - attribute: {$eq: phil_elective}
+      assert: {count(courses): {$gte: 2}}
 
-  - name: Complementary Courses
+  Complementary Courses:
     contract: true
     message:
       Three level II or III courses in another department chosen to complement
       the work in philosophy.
+
+attributes:
+  courses:
+    GCON 218: [phil_elective]
+    PHIL 371: [phil_l3_seminar]
+    PHIL 372: [phil_l3_seminar]
+    PHIL 373: [phil_l3_seminar]
+    PHIL 374: [phil_l3_seminar]
+    PHIL 375: [phil_l3_seminar]

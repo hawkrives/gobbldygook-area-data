@@ -1,0 +1,94 @@
+---
+name: Africa and the African Diaspora
+type: concentration
+degree: Bachelor of Arts
+catalog: 2018-19
+
+result:
+  all:
+    - requirement: Interdisciplinary Seminar
+    - requirement: Electives
+
+limit:
+  - at-most: 1
+    where: {number: {$in: [298, 396, 398]}}
+
+requirements:
+  Interdisciplinary Seminar:
+    result:
+      any:
+        - course: AFAD 231
+        - {course: AFAM 231, hidden: true}
+
+  Electives:
+    message: >
+      Elective courses must be relevant to the focus of the concentration. For
+      some electives, students may be required to negotiate specific
+      assignments with the instructor and the director of the concentration.
+      Other courses not identified in this list may also be acceptable,
+      depending on the relevance of their content to the concentration.
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: afad_elective}}
+      assert: {count(courses): {$gte: 4}}
+
+attributes:
+  courses:
+    ART 269: [afad_elective]
+    ENGL 108: [afad_elective]
+    ENGL 205: [afad_elective]
+    ENGL 207: [afad_elective]
+    # ENGL 210: [afad_elective] # topic
+    # ENGL 399: [afad_elective] # topic
+    FREN 271: [afad_elective]
+    # FREN 372: [afad_elective]
+    # FREN 373: [afad_elective]
+    HIST 151: [afad_elective]
+    HIST 165: [afad_elective]
+    HIST 181: [afad_elective]
+    HIST 256: [afad_elective]
+    HIST 277: [afad_elective]
+    HIST 288: [afad_elective]
+    HIST 291: [afad_elective]
+    HIST 292: [afad_elective]
+    # HIST 370: [afad_elective] # topic
+    RACE 122: [afad_elective]
+    # SOAN 128: [afad_elective] # topic
+    SOAN 261: [afad_elective]
+    SOAN 264: [afad_elective]
+    # SOAN 266: [afad_elective] # topic
+    SWRK 280: [afad_elective]
+
+    # from the website
+    ARMS 121: [afad_elective]
+    ART 206: [afad_elective]
+    ART 265: [afad_elective]
+    BIO 287: [afad_elective]
+    DANCE 107: [afad_elective]
+    DANCE 141.2016.3.A: [afad_elective]
+    DANCE 141.2016.3.B: [afad_elective]
+    DANCE 141.2017.3.A: [afad_elective]
+    DANCE 246: [afad_elective]
+    ENGL 206: [afad_elective]
+    ENGL 212: [afad_elective]
+    ENGL 245: [afad_elective]
+    ENGL 247: [afad_elective]
+    ENGL 280.2016.1.B: [afad_elective]
+    FREN 233: [afad_elective]
+    HIST 128: [afad_elective]
+    HIST 195: [afad_elective]
+    HIST 260: [afad_elective]
+    HIST 289: [afad_elective]
+    ID 260: [afad_elective]
+    MUSIC 229: [afad_elective]
+    MUSIC 231: [afad_elective]
+    MUSIC 237: [afad_elective]
+    MUSIC 345: [afad_elective]
+    MUSIC 345.2016.1.B: [afad_elective]
+    PHIL 255: [afad_elective]
+    PHIL 259.2016.3: [afad_elective]
+    RACE 121: [afad_elective]
+    SOAN 120: [afad_elective]
+    SOAN 268: [afad_elective]
+    SWRK 221: [afad_elective]
+    THEAT 379: [afad_elective]

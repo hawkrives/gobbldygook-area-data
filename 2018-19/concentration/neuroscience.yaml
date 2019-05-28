@@ -1,0 +1,119 @@
+---
+name: Neuroscience
+type: concentration
+degree: Bachelor of Arts
+catalog: 2018-19
+
+result:
+  all:
+    - requirement: Core
+    - requirement: Lab Electives
+    - requirement: Interdisciplinary Elective
+    - requirement: Capstone Seminar
+
+requirements:
+  Core:
+    result:
+      all:
+        - course: PSYCH 238
+        - course: NEURO 239
+
+  Lab Electives:
+    result:
+      all:
+        - requirement: Level II Foundation Lab Elective
+        - requirement: Level III Advanced Science Lab Elective
+        - given:
+            requirements:
+              - Level II Foundation Lab Elective
+              - Level III Advanced Science Lab Elective
+          assert: {count(subjects): {$gte: 2}}
+
+    requirements:
+      Level II Foundation Lab Elective:
+        message: >
+          Another appropriate biology or psychology course (e.g., Topics
+          courses) may be eligible with prior permission of the program
+          director.
+        result:
+          from: {student: courses}
+          where: {attribute: neuro_foundation_lab}
+          assert: {count(courses): {$gte: 1}}
+
+      Level III Advanced Science Lab Elective:
+        message: >
+          Another appropriate advanced science course with advanced laboratory
+          experience (e.g., Topics courses) may be eligible with prior
+          permission of the program director.
+
+          Directed Undergraduate Research (BIO 396, PSYCH 396, or NEURO 396)
+          on a neuroscience topic with permission of the program director.
+
+          Independent Research (BIO 398, PSYCH 398, or NEURO 398) on a
+          neuroscience topic with permission of the program director.
+        result:
+          from: {student: courses}
+          where: {attribute: neuro_adv_lab}
+          assert: {count(courses): {$gte: 1}}
+
+  Interdisciplinary Elective:
+    result:
+      from: {student: courses}
+      where: {attribute: neuro_interdisciplinary_elective}
+      assert: {count(courses): {$gte: 1}}
+
+  Interdisciplinary Reflection:
+    message: >
+      A short, 1-2 page reflective piece relating this course to your
+      neuroscience studies must be submitted to the program director in order
+      to receive credit for this course toward your concentration.
+    department-audited: true
+
+  Capstone Seminar:
+    result:
+      from: {student: courses}
+      where: {attribute: neuro_capstone}
+      assert: {count(courses): {$gte: 1}}
+
+attributes:
+  courses:
+    BIO 227: [neuro_foundation_lab]
+    BIO 233: [neuro_foundation_lab]
+    BIO 243: [neuro_foundation_lab]
+    BIO 247: [neuro_foundation_lab]
+    BIO 248: [neuro_foundation_lab]
+    MATH 236: [neuro_foundation_lab, neuro_interdisciplinary_elective]
+    PHYS 246: [neuro_foundation_lab]
+    PSYCH 235: [neuro_foundation_lab]
+    PSYCH 236: [neuro_foundation_lab]
+    PSYCH 237: [neuro_foundation_lab]
+
+    BIO 341: [neuro_adv_lab]
+    BIO 364: [neuro_adv_lab]
+    BIO 372: [neuro_adv_lab]
+    BIO 386: [neuro_adv_lab]
+    CHEM 373: [neuro_adv_lab]
+    PHYS 390: [neuro_adv_lab]
+    PSYCH 395: [neuro_adv_lab]
+
+    CSCI 253: [neuro_interdisciplinary_elective]
+    CSCI 315: [neuro_interdisciplinary_elective]
+    CSCI 333: [neuro_interdisciplinary_elective]
+    ESTH 373: [neuro_interdisciplinary_elective]
+    ESTH 374: [neuro_interdisciplinary_elective]
+    ESTH 375: [neuro_interdisciplinary_elective]
+    MATH 230: [neuro_interdisciplinary_elective]
+    MATH 330: [neuro_interdisciplinary_elective]
+    PHIL 231: [neuro_interdisciplinary_elective]
+    PHIL 244: [neuro_interdisciplinary_elective]
+    PHIL 250: [neuro_interdisciplinary_elective]
+    PHIL 251: [neuro_interdisciplinary_elective]
+    STAT 272: [neuro_interdisciplinary_elective]
+    STAT 316: [neuro_interdisciplinary_elective]
+    STAT 322: [neuro_interdisciplinary_elective]
+
+    BIO 385: [neuro_capstone]
+    PSYCH 336: [neuro_capstone]
+    PSYCH 337: [neuro_capstone]
+    PSYCH 338: [neuro_capstone]
+    PSYCH 339: [neuro_capstone]

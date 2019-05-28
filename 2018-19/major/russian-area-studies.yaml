@@ -1,0 +1,80 @@
+---
+name: Russian Area Studies
+type: major
+degree: Bachelor of Arts
+catalog: 2018-19
+
+result:
+  all:
+    - requirement: Language
+    - requirement: Electives
+    - requirement: Senior Project
+
+requirements:
+  Language:
+    result:
+      all:
+        - course: RUSSN 111
+        - course: RUSSN 112
+        - course: RUSSN 231
+        - course: RUSSN 232
+
+  Electives:
+    result:
+      either:
+        - requirement: If Not a Russian Language Major
+        - requirement: If Also a Russian Language Major
+
+    requirements:
+      If Not a Russian Language Major:
+        result:
+          both:
+            - from: {student: areas}
+              where:
+                type: {$eq: major}
+                name: {$eq: 'Russian Language'}
+              assert: {count(areas): {$eq: 0}}
+            - from: {student: courses}
+              where:
+                $and:
+                  - attribute: {$eq: russian_area_elective}
+              assert: {count(courses): {$gte: 5}}
+
+      If Also a Russian Language Major:
+        both:
+          - from: {student: areas}
+            where:
+              type: {$eq: major}
+              name: {$eq: 'Russian Language'}
+            assert: {count(areas): {$eq: 1}}
+          - from: {student: courses}
+            where:
+              $and:
+                - attribute: {$eq: russian_area_elective}
+                - attribute: {$neq: russian_area_elective_if_not_rusn_lang}
+            assert: {count(courses): {$gte: 5}}
+
+  Senior Project:
+    department-audited: true
+    message: >
+      This may be taken for course credit as RUSSN 398 (Independent Research).
+      Guidelines are available from the department chair. The project is due
+      on April 15.
+
+attributes:
+  courses:
+    HIST 230: [russian_area_elective]
+    HIST 231: [russian_area_elective]
+    PSCI 282: [russian_area_elective]
+    RUSSN 250: [russian_area_elective]
+    RUSSN 256: [russian_area_elective]
+    RUSSN 261: [russian_area_elective]
+    RUSSN 262: [russian_area_elective]
+    RUSSN 265: [russian_area_elective]
+    RUSSN 371: [russian_area_elective]
+    RUSSN 372: [russian_area_elective]
+    RUSSN 398: [russian_area_elective]
+
+    # these only count if not also taking Russian Language major
+    RUSSN 251: [russian_area_elective, russian_area_elective_if_not_rusn_lang]
+    RUSSN 254: [russian_area_elective, russian_area_elective_if_not_rusn_lang]

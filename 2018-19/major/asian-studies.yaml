@@ -1,3 +1,4 @@
+---
 name: Asian Studies
 type: major
 degree: Bachelor of Arts
@@ -79,33 +80,44 @@ attributes:
     PHIL 127: [asian_elective]
 
 requirements:
-  - name: Language
+  Language:
     result:
-      given: courses
-      where: {attribute: asian_language_chinese | asian_language_japanese}
-      what: courses
-      do: count >= 1
+      from: {student: courses}
+      where:
+        $or:
+          - {attributes: {$eq: asian_language_chinese}}
+          - {attributes: {$eq: asian_language_japanese}}
+      assert: {count(courses): {$gte: 1}}
 
-  - name: Seminar
+  Seminar:
     result:
       either:
-        - ASIAN 397
-        - ASIAN 399
+        - course: ASIAN 397
+        - course: ASIAN 399
 
-  - name: Electives
+  Electives:
     result:
-      given: courses
-      where: {attribute: asian_elective}
+      from: {student: courses}
+      where: {attributes: {$eq: asian_elective}}
       limit:
+        # and "No level I or level II language courses may count." is taken
+        # care of by not listing them
+
         # "No more than two at level I"
-        - {at_most: 2, where: {level: '100'}}
+        - at_most: 2
+          where: {level: {$eq: 100}}
         # "No more than four elective courses about any one country"
-        - {at_most: 4, where: {attribute: asian_region_china}}
-        - {at_most: 4, where: {attribute: asian_region_japan}}
+        - at_most: 4
+          where: {attributes: {$eq: asian_region_china}}
+        - at_most: 4
+          where: {attributes: {$eq: asian_region_japan}}
         # "At least two at level II or level III, taken on campus"
         # aka "no more than 4 may be taken off-campus", since we need six total
-        - {at_most: 4, where: {institution: '! St. Olaf College', level: '200 | 300'}}
-        # and "No level I or level II language courses may count." is taken care of by not listing them
-      repeats: first
-      what: courses
-      do: count >= 6
+        - at_most: 4
+          where:
+            $and:
+              - institution: {$neq: 'St. Olaf College'}
+              - $or:
+                  - level: {$eq: 200}
+                  - level: {$eq: 300}
+      assert: {count(courses): {$gte: 6}}

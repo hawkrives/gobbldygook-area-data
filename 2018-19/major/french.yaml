@@ -1,15 +1,50 @@
+---
 name: French
 type: major
 degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
-  count: all
-  of:
+  all:
     - requirement: Speaking and Writing
     - requirement: The Francophone World
     - requirement: Level III
     - requirement: Electives
+
+requirements:
+  Speaking and Writing:
+    result:
+      count: 2
+      of:
+        - course: FREN 250
+        - course: FREN 251
+        - course: FREN 253
+
+  The Francophone World:
+    result:
+      count: 2
+      of:
+        - course: FREN 271
+        - course: FREN 272
+        - course: FREN 273
+        - course: FREN 275
+
+  Level III:
+    result:
+      count: 2
+      of:
+        - course: FREN 372
+        - course: FREN 373
+        - course: FREN 397
+        - course: FREN 399
+
+  Electives:
+    result:
+      from: {student: courses}
+      where: {attribute: french_elective}
+      limit:
+        - {at-most: 1, where: {department: '! FREN'}}
+      assert: {count(courses): {$gte: 2}}
 
 attributes:
   courses:
@@ -39,39 +74,3 @@ attributes:
     PSCI 260: [french_elective]
     PSCI 283: [french_elective]
     THEAT 270: [french_elective]
-
-requirements:
-  - name: Speaking and Writing
-    result:
-      count: 2
-      of:
-        - FREN 250
-        - FREN 251
-        - FREN 253
-
-  - name: The Francophone World
-    result:
-      count: 2
-      of:
-        - FREN 271
-        - FREN 272
-        - FREN 273
-        - FREN 275
-
-  - name: Level III
-    result:
-      count: 2
-      of:
-        - FREN 372
-        - FREN 373
-        - FREN 397
-        - FREN 399
-
-  - name: Electives
-    result:
-      given: courses
-      where: {attribute: french_elective}
-      what: courses
-      limit:
-        - {at_most: 1, where: {department: '! FREN'}}
-      do: count >= 2

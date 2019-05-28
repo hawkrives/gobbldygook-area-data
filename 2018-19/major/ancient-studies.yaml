@@ -65,58 +65,49 @@ attributes:
     THEAT 270: [ancient_elective]
 
 requirements:
-  - name: Language
+  Language:
     result:
-      either:
-        - type: count-of
-          count: any
-          of:
-            - LATIN 252
-            - LATIN 370
-            - LATIN 371
-            - LATIN 372
-            - LATIN 373
-            - LATIN 374
-            - LATIN 375
-            - LATIN 377
-        - type: count-of
-          count: any
-          of:
-            - GREEK 253
-            - GREEK 370
-            - GREEK 372
-            - GREEK 373
-            - GREEK 374
-            - GREEK 375
+      any:
+        - GREEK 253
+        - GREEK 370
+        - GREEK 372
+        - GREEK 373
+        - GREEK 374
+        - GREEK 375
+        - LATIN 252
+        - LATIN 370
+        - LATIN 371
+        - LATIN 372
+        - LATIN 373
+        - LATIN 374
+        - LATIN 375
+        - LATIN 377
 
-  - name: Ancient History
+  Ancient History:
     result:
-      given: courses
-      where: { attribute: ancient_history }
-      what: courses
-      do: count >= 1
+      froom: {student: courses}
+      where: {attribute: {$eq: ancient_history}}
+      do: {count(courses): {$gte: 1}}
 
-  - name: Classics
+  Classics:
     result:
-      given: courses
-      where: { subject: CLASS }
-      what: courses
-      do: count >= 1
+      froom: {student: courses}
+      where: {subject: {$eq: CLASS}}
+      do: {count(courses): {$gte: 1}}
 
-  - name: Electives
+  Electives:
     message:
-      1 course in Greek may be used as an elective if the student satisfies the
-      required language portion of the major with Latin courses. 1 course in Latin
-      may be used as an elective if the student satisfies the required language
-      portion of the major with Greek courses.
+      1 course in Greek may be used as an elective if the student satisfies
+      the required language portion of the major with Latin courses. 1 course
+      in Latin may be used as an elective if the student satisfies the
+      required language portion of the major with Greek courses.
 
     result:
       count: any
       of:
         - both:
-            - {requirement: Took Greek}
-            - type: count-of
-              count: any
+            - requirement: Took Greek
+            - count: 0
               of:
                 - {course: GREEK 253, can_match_used: true}
                 - {course: GREEK 370, can_match_used: true}
@@ -125,9 +116,8 @@ requirements:
                 - {course: GREEK 374, can_match_used: true}
                 - {course: GREEK 375, can_match_used: true}
         - both:
-            - {requirement: Took Latin}
-            - type: count-of
-              count: any
+            - requirement: Took Latin
+            - count: 0
               of:
                 - {course: LATIN 252, can_match_used: true}
                 - {course: LATIN 370, can_match_used: true}
@@ -139,25 +129,25 @@ requirements:
                 - {course: LATIN 377, can_match_used: true}
 
     requirements:
-      - name: Took Greek
+      Took Greek:
         result:
           given: courses
-          where: { attribute: ancient_elective | ancient_elective_if_greek_lang }
+          where: {attribute: ancient_elective | ancient_elective_if_greek_lang}
           limits:
             - {at_most: 1, where: {subject: LATIN}}
           what: courses
           do: count >= 4
 
-      - name: Took Latin
+      Took Latin:
         result:
           given: courses
-          where: { attribute: ancient_elective | ancient_elective_if_latin_lang }
+          where: {attribute: ancient_elective | ancient_elective_if_latin_lang}
           limits:
             - {at_most: 1, where: {subject: GREEK}}
           what: courses
           do: count >= 4
 
-  - name: Independent Research
+  Independent Research:
     department_audited: true
     message:
       Any Independent Research course.

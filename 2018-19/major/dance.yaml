@@ -1,11 +1,11 @@
+---
 name: Dance
 type: major
 degree: Bachelor of Arts
-catalog: 2014-15
+catalog: 2018-19
 
 result:
-  count: all
-  of:
+  all:
     - requirement: Language-Intensive Courses (Theory)
     - requirement: Movement-Intensive Courses (Technique)
     - requirement: Senior Dance Seminar
@@ -14,100 +14,119 @@ result:
     - requirement: Productions
 
 requirements:
-  - name: Language-Intensive Courses (Theory)
+  Language-Intensive Courses (Theory):
     result:
-      count: all
-      of:
-        - DANCE 100
-        - DANCE 124
-        - DANCE 150
-        - DANCE 231
-        - DANCE 246
-        - DANCE 270
+      all:
+        - course: DANCE 100
+        - course: DANCE 124
+        - course: DANCE 150
+        - course: DANCE 231
+        - course: DANCE 246
+        - course: DANCE 270
 
-  - name: Movement-Intensive Courses (Technique)
+  Movement-Intensive Courses (Technique):
+    message:
+      These will be selected in consultation with dance faculty.
+
     result:
-      given: these-requirements
-      requirements:
-        - Ballet
-        - International and Social
-        - Modern
-        - Other Topics
-      what: credits
-      do: sum >= 1.5
+      all:
+        - count: 2
+          of:
+            - requirement: Ballet
+            - requirement: International and Social
+            - requirement: Modern
+            - requirement: Other Topics
+
+        - from:
+            requirements:
+              - Ballet
+              - International and Social
+              - Modern
+              - Other Topics
+          assert: {sum(credits): {$gte: 1.5}}
 
     requirements:
-      - name: Ballet
+      Ballet:
         result:
-          count: any
-          of:
-            - DANCE 121
-            - either: [DANCE 130, DANCE 131]
-            - either: [DANCE 220, DANCE 221]
-            - either: [DANCE 320, DANCE 321]
+          given: {student: courses}
+          where:
+            course:
+              $in:
+                - DANCE 121
+                - DANCE 130
+                - DANCE 131
+                - DANCE 220
+                - DANCE 221
+                - DANCE 320
+                - DANCE 321
+          assert: {count(courses): {$gte: 1}}
 
-      - name: International and Social
+      International and Social:
         result:
-          count: any
-          of:
-            - DANCE 106
-            - DANCE 108
-            - DANCE 109
-            - DANCE 206
-            - DANCE 207
-            - DANCE 209
+          given: {student: courses}
+          where:
+            course:
+              $in:
+                - DANCE 106
+                - DANCE 108
+                - DANCE 109
+                - DANCE 206
+                - DANCE 207
+                - DANCE 209
+          assert: {count(courses): {$gte: 1}}
 
-      - name: Modern
+      Modern:
         result:
-          count: any
-          of:
-            - DANCE 111
-            - either: [DANCE 210, DANCE 211]
-            - either: [DANCE 250, DANCE 251]
-            - either: [DANCE 310, DANCE 311]
+          given: {student: courses}
+          where:
+            course:
+              $in:
+                - DANCE 111
+                - DANCE 210
+                - DANCE 211
+                - DANCE 250
+                - DANCE 251
+                - DANCE 310
+                - DANCE 311
+          assert: {count(courses): {$gte: 1}}
 
-      - name: Other Topics
+      Other Topics:
         result:
-          count: any
-          of:
-            - DANCE 107
-            - DANCE 112
-            - DANCE 113
-            - DANCE 141
-            - DANCE 160
+          given: {student: courses}
+          where:
+            course:
+              $in:
+                - DANCE 107
+                - DANCE 112
+                - DANCE 113
+                - DANCE 141
+                - DANCE 160
+          assert: {count(courses): {$gte: 1}}
 
-  - name: Senior Dance Seminar
+  Senior Dance Seminar:
     message:
       Must be taken fall of senior year. Final projects may take the
       form of a research paper, performance, choreography, or blended
       project.
     result:
-      given: these-courses
-      courses: [DANCE 399]
-      repeats: last
-      where: {year: $senior-year, semester: Fall}
-      what: courses
-      do: count >= 1
+      course: DANCE 399
 
-
-  - name: Area of Speciality
+  Area of Speciality:
     contract: true
     message:
       Each student designs an individualized area of specialty derived
       from their own interests and investigation. Select at least two
       credits from within or outside the department.
 
-
-  - name: Dance Companies
-    department_audited: true
+  Dance Companies:
+    department-audited: true
     message:
       Majors are required to participate in one of the dance companies
       (Companydance™ or Veselica™ International Dance Ensemble) for a
       minimum of three semesters.
 
-
-  - name: Productions
-    department_audited: true
+  Productions:
+    department-audited: true
     message:
       Majors are required to contribute in managing a dance production
       for a minimum of one semester.
