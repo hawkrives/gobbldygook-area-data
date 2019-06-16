@@ -13,17 +13,17 @@ result:
 
 attributes:
   courses:
-    CSCI 273: [csci_elective, csci_systems]
-    CSCI 276: [csci_elective, csci_languages]
-    CSCI 284: [csci_elective, csci_systems]
-    CSCI 300: [csci_elective]
-    CSCI 315: [csci_elective]
-    CSCI 333: [csci_elective, csci_languages]
-    CSCI 336: [csci_elective, csci_languages]
-    MSCS 341: [csci_elective]
-    CSCI 350: [csci_elective]
-    MSCS 389: [csci_elective]
-    ID 259: [csci_elective]
+    CSCI 273: [csci_electives, csci_systems]
+    CSCI 276: [csci_electives, csci_languages]
+    CSCI 284: [csci_electives, csci_systems]
+    CSCI 300: [csci_electives]
+    CSCI 315: [csci_electives]
+    CSCI 333: [csci_electives, csci_languages]
+    CSCI 336: [csci_electives, csci_languages]
+    MSCS 341: [csci_electives]
+    CSCI 350: [csci_electives]
+    MSCS 389: [csci_electives]
+    ID 259: [csci_electives]
     CSCI 300 2000.1: [csci_systems]
 
 requirements:
@@ -74,19 +74,19 @@ requirements:
       Languages:
         result:
           from: {student: courses}
-          where: {attribute: {$eq: csci_languages}}
+          where: {attributes: {$eq: csci_languages}}
           assert: {count(courses): {$gte: 1}}
 
       Systems:
         result:
           from: {student: courses}
-          where: {attribute: {$eq: csci_systems}}
+          where: {attributes: {$eq: csci_systems}}
           assert: {count(courses): {$gte: 1}}
 
   Electives:
     result:
       from: {student: courses}
-      where: {attribute: {$eq: csci_electives}}
+      where: {attributes: {$eq: csci_electives}}
       assert: {count(courses): {$gte: 2}}
 
   Capstone:
