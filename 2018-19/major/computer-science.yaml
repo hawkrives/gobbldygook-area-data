@@ -51,7 +51,7 @@ requirements:
         result:
           both: 
             - course: CSCI 251
-            - course: CSCI 252
+            - course: CSCI 252.L
 
       Mathematics:
         result:
