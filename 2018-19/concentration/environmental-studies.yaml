@@ -1,0 +1,97 @@
+---
+name: Environmental Studies
+type: concentration
+degree: Bachelor of Arts
+catalog: 2018-19
+
+result:
+  all:
+    - course: ENVST 137
+    - course: ENVST 237
+    - requirement: Natural Science
+    - requirement: Social Science
+    - requirement: Arts and Humanities
+    - requirement: Elective
+
+limit:
+  - at-most: 1
+    where:
+      course:
+        $in:
+          - REL 278
+          - PHIL 257
+
+requirements:
+  Natural Science:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: envst_natural}}
+      assert: {count(courses): {$gte: 1}}
+    limit:
+      - at-most: 1
+        where:
+          course:
+            $in:
+              - BIO 226
+              - BIO 261
+
+  Social Science:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: envst_social}}
+      assert: {count(courses): {$gte: 1}}
+
+  Arts and Humanities:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: envst_arts}}
+      assert: {count(courses): {$gte: 1}}
+
+  Elective:
+    result:
+      from: {student: courses}
+      where: {attribute: {$in: [envst_natural, envst_social, envst_arts]}}
+      assert: {count(courses): {$gte: 1}}
+
+attributes:
+  courses:
+    BI/ES 226: [envst_natural]
+    BI/ES 228: [envst_natural]
+    BI/ES 286: [envst_natural]
+    BI/ES 350: [envst_natural]
+    BIO 224: [envst_natural]
+    BIO 226: [envst_natural]
+    BIO 261: [envst_natural]
+    BIO 391 2000.1: [envst_natural]  # when taught as environmental science
+    CHEM 124: [envst_natural]
+    CHEM 255: [envst_natural]
+    CHEM 391 2000.1: [envst_natural]  # when taught as environmental science
+    ECON 242: [envst_social]
+    ENGL 276: [envst_arts]
+    ENVST 123: [envst_natural]
+    ENVST 202: [envst_arts]
+    ENVST 232: [envst_social]
+    ENVST 235: [envst_social]
+    ENVST 245: [envst_natural]
+    ENVST 255: [envst_natural]
+    ENVST 270: [envst_arts]
+    ENVST 281 2000.1: [envst_natural]  # when taught with natural science focus
+    ENVST 281 2000.3: [envst_social]  # when taught with social science focus
+    ENVST 281: [envst_arts]  # when taught with arts and humanities focus
+    ENVST 381 2000.1: [envst_natural]  # when taught with natural science focus
+    ENVST 381 2000.3: [envst_social]  # when taught with social science focus
+    ENVST 381: [envst_arts]  # when taught with arts and humanities focus
+    ES/PS 201: [envst_social]
+    ES/PS 276: [envst_social]
+    FILM 230: [envst_arts]
+    GERM 276: [envst_arts]
+    HIST 245: [envst_arts]
+    HIST 275: [envst_arts]
+    NORW 224: [envst_arts]  # when taught with environmental science focus
+    PHIL 257: [envst_arts]
+    PSCI 221: [envst_social]
+    PSYCH 227: [envst_social]
+    REL 278: [envst_arts]
+    SOAN 222: [envst_social]
+    SOAN 247: [envst_social]
+    SOAN 297 2000.1: [envst_social]  # when taught as Environmental Anthropology
