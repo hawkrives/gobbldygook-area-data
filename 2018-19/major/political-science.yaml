@@ -22,7 +22,6 @@ result:
           - Political Theory
           - Level III
           - Electives
-        take: courses
       assert: count(courses) >= 9
 
 limit:
