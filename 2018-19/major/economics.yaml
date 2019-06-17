@@ -12,7 +12,8 @@ result:
 
 attributes:
   multicountable:
-    - [{course: ECON 385}, {attribute: econ_level_3}]
+    - - {course: ECON 385}
+      - {attribute: econ_level_3}
 
   courses:
     ECON 200: [econ_level_2]
@@ -36,24 +37,24 @@ attributes:
 
 
 requirements:
-  - name: Core
+  Core:
     result:
       count: all
       of:
-        - ECON 261
-        - ECON 262
+        - course: ECON 261
+        - course: ECON 262
         - either:
-          - ECON 263
-          - both: [STAT 272, ECON 385]
+            - course: ECON 263
+            - both: [{course: STAT 272}, {course: ECON 385}]
 
-  - name: Foundation
+  Foundation:
     result:
       count: any
       of:
-        - MATH 120
-        - MATH 119
+        - course: MATH 120
+        - course: MATH 119
 
-  - name: Economic Analysis
+  Economic Analysis:
     result:
       count: all
       of:
@@ -68,14 +69,14 @@ requirements:
           do: count >= 4
 
     requirements:
-      - name: Level II
+      Level II:
         result:
           given: courses
           where: {attribute: econ_level_2}
           what: courses
           do: count >= 1
 
-      - name: Level III
+      Level III:
         result:
           given: courses
           where: {attribute: econ_level_3}
@@ -88,111 +89,111 @@ emphases:
     - {at_most: 0, where: {grade: '< 2.0'}}
 
   choices:
-    - name: International Economic Analysis and Policy
+    International Economic Analysis and Policy:
       result:
         both:
           - requirement: International Economics
           - requirement: Electives
 
       requirements:
-        - name: International Economics
+        International Economics:
           result:
             course: ECON 382
 
-        - name: Electives
+        Electives:
           message:
             You may also choose an course outside of Economics Department that
             relates to international topics.
           result:
             count: 2
             of:
-              - ECON 218
-              - ECON 243
+              - course: ECON 218
+              - course: ECON 243
               - requirement: Non-Econ International Topics
 
           requirements:
-            - name: Non-Econ International Topics
+            Non-Econ International Topics:
               contract: true
               message:
                 You may also choose an course outside of Economics Department that
                 relates to international topics.
 
-    - name: Public Policy
+    Public Policy:
       result:
         both:
           - requirement: Public Policy
           - requirement: Electives
 
       requirements:
-        - name: Public Policy
+        Public Policy:
           result:
             course: ECON 371
 
-        - name: Electives
+        Electives:
           result:
             count: 3
             of:
-              - ECON 242
-              - ECON 245
-              - ECON 249
-              - ECON 385
+              - course: ECON 242
+              - course: ECON 245
+              - course: ECON 249
+              - course: ECON 385
 
-    - name: Management
+    Management:
       result:
         both:
           - requirement: Management
           - requirement: Electives
 
       requirements:
-        - name: Management
+        Management:
           result:
             count: all
             of:
-              - MGMT 225
-              - MGMT 237
-              - MGMT 251
-              - MGMT 383
+              - course: MGMT 225
+              - course: MGMT 237
+              - course: MGMT 251
+              - course: MGMT 383
 
-        - name: Electives
+        Electives:
           result:
             count: any
             of:
-              - MGMT 250
-              - MGMT 252
-              - MGMT 256
-              - MGMT 281
+              - course: MGMT 250
+              - course: MGMT 252
+              - course: MGMT 256
+              - course: MGMT 281
               - requirement: Other MGMT Course
 
           requirements:
-            - name: Other MGMT Course
+            Other MGMT Course:
               contract: true
               message:
                 You may also negotiate another MGMT course.
 
-    - name: Finance
+    Finance:
       result:
         both:
           - requirement: Finance
           - requirement: Electives
 
       requirements:
-        - name: Finance
+        Finance:
           result:
             count: all
             of:
-              - MGMT 225
-              - MGMT 237
-              - MGMT 281
-              - MGMT 380
+              - course: MGMT 225
+              - course: MGMT 237
+              - course: MGMT 281
+              - course: MGMT 380
 
-        - name: Electives
+        Electives:
           result:
             count: any
             of:
-              - both: [MGMT 250, MGMT 251]
-              - MGMT 252
-              - MGMT 256
-              - ECON 371
-              - ECON 374
-              - ECON 382
-              - ECON 385
+              - both: [{course: MGMT 250}, {course: MGMT 251}]
+              - course: MGMT 252
+              - course: MGMT 256
+              - course: ECON 371
+              - course: ECON 374
+              - course: ECON 382
+              - course: ECON 385
