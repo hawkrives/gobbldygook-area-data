@@ -59,6 +59,7 @@ requirements:
             - course: MATH 220
             - count: 1
               of: 
+                - {course: MATH 232, hidden: true}
                 - course: MATH 244
                 - course: MATH 252
 
