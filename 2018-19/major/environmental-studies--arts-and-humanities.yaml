@@ -1,0 +1,133 @@
+---
+name: Environmental Studies - Arts and Humanities
+type: major
+degree: Bachelor of Arts
+catalog: 2018-19
+
+result:
+  all:
+    - requirement: Environmental Studies
+    - requirement: Outside your Emphasis
+    - requirement: Arts and Humanities - Level II
+    - requirement: Arts and Humanities - Level III
+    - from:
+        requirements:
+          # we explicitly leave out the Environmental Studies requirement here
+          - Outside your Emphasis
+          - Environmental Science - Level II
+          - Arts and Humanities - Level III
+      assert: {count(courses): {$gte: 9}}
+
+requirements:
+  Environmental Studies:
+    result:
+      all:
+        - ENVST 137
+        - ENVST 237
+        - ENVST 399
+
+  Outside your Emphasis:
+    result:
+      all:
+        - requirement: Natural Science
+        - requirement: Social Sciences
+        - from:
+            requirements:
+              - Natural Science
+              - Social Sciences
+          assert: {count(courses): {$gte: 3}}
+
+    requirements:
+      Natural Sciences:
+        result:
+          from: {student: courses}
+          where: {attribute: {$eq: envst_natural}}
+          limit:
+            - at-most: 1
+              where: {course: {$in: [BIO 226, BIO 261]}}
+              label: Either BIO 226 or BIO 261 may count, but not both
+          assert: {count(courses): {$gte: 1}}
+
+      Social Sciences:
+        result:
+          from: {student: courses}
+          where: {attribute: {$eq: envst_social}}
+          limit:
+            - at-most: 1
+              where: {course: {$in: [ENVST 281, ENVST 381]}}
+              label: Either ENVST 281 or ENVST 381 may count, but not both
+          assert: {count(courses): {$gte: 1}}
+
+  Arts and Humanities - Level II:
+    result:
+      from: {student: courses}
+      where:
+        attribute:
+          $in:
+            - envst_humanities
+            - envst_humanities_level_3
+      assert: {count(courses): {$gte: 5}}
+
+  Arts and Humanities - Level III:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: envst_humanities_level_3}}
+      assert: {count(courses): {$gte: 1}}
+
+
+attributes:
+  courses:
+    ENVST 281.2000.1:
+      # when taught with natural science focus
+      - envst_natural
+      # when taught with social science focus
+      - envst_social
+      # when arts/humanities focus
+      - envst_humanities
+    ENVST 381.2000.1:
+      # when taught with natural science focus
+      - envst_natural
+      # when taught with social science focus
+      - envst_social
+      # when arts/humanities focus
+      - envst_humanities_level_3
+
+    ENVST 123: [envst_natural]
+    ENVST 245: [envst_natural]
+    ENVST 255: [envst_natural]
+    BI/ES 226: [envst_natural]
+    BI/ES 228: [envst_natural]
+    BI/ES 286: [envst_natural]
+    BI/ES 350: [envst_natural]
+    BIO 224: [envst_natural]
+    BIO 226: [envst_natural]
+    BIO 261: [envst_natural]
+    CHEM 124: [envst_natural]
+    CHEM 255: [envst_natural]
+    # when taught with envst focus
+    BIO 391.2000.1: [envst_natural]
+    # when taught with envst focus
+    CHEM 391.2000.1: [envst_natural]
+
+    ENVST 232: [envst_social]
+    ENVST 235: [envst_social]
+    ES/PS 201: [envst_social]
+    ES/PS 276: [envst_social]
+    ECON 242: [envst_social]
+    PSCI 221: [envst_social]
+    PSYCH 227: [envst_social]
+    SOAN 222: [envst_social]
+    SOAN 247: [envst_social]
+    AS/ES 277: [envst_social]
+
+    ENVST 202: [envst_humanities]
+    ENVST 270: [envst_humanities]
+    FILM 230: [envst_humanities]
+    GERM 276: [envst_humanities]
+    HIST 245: [envst_humanities]
+    HIST 275: [envst_humanities]
+    # when taught with ENVST focus
+    NORW 224.2000.1: [envst_humanities]
+    PHIL 257: [envst_humanities]
+    ENGL 276: [envst_humanities]
+    REL 278: [envst_humanities]

@@ -1,0 +1,152 @@
+---
+name: Environmental Studies - Social Science
+type: major
+degree: Bachelor of Arts
+catalog: 2018-19
+
+result:
+  all:
+    - requirement: Environmental Studies
+    - requirement: Outside your Emphasis
+    - requirement: Methodological Analysis
+    - requirement: Economic Analysis
+    - requirement: Environmental Political Policy and Institutions
+    - requirement: Social Science Electives
+    - from:
+        requirements:
+          # we explicitly leave out the Environmental Studies requirement here
+          - Outside your Emphasis
+          - Methodological Analysis
+          - Economic Analysis
+          - Environmental Political Policy and Institutions
+          - Social Science Electives
+      assert: {count(courses): {$gte: 9}}
+
+requirements:
+  Environmental Studies:
+    result:
+      all:
+        - ENVST 137
+        - ENVST 237
+        - ENVST 399
+
+  Outside your Emphasis:
+    result:
+      all:
+        - requirement: Natural Sciences
+        - requirement: Arts and Humanities
+        - from:
+            requirements:
+              - Natural Sciences
+              - Arts and Humanities
+          assert: {count(courses): {$gte: 3}}
+
+    requirements:
+      Natural Sciences:
+        result:
+          from: {student: courses}
+          where: {attribute: {$eq: envst_natural}}
+          limit:
+            - at_most: 1
+              where: {course: {$in: [BIO 226, BIO 261]}}
+              label: Either BIO 226 or BIO 261 may count, but not both
+          assert: {count(courses): {$gte: 1}}
+
+      Arts and Humanities:
+        result:
+          from: {student: courses}
+          where: {attribute: {$eq: envst_humanities}}
+          limit:
+            - at_most: 1
+              where: {course: {$in: [PHIL 257, REL 278]}}
+              label: Either PHIL 257 or REL 278 may count, but not both
+          assert: {count(courses): {$gte: 1}}
+
+  Methodological Analysis:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: envst_methods}}
+      assert: {count(courses): {$gte: 1}}
+
+  Economic Analysis:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: envst_econ_analysis}}
+      assert: {count(courses): {$gte: 1}}
+
+  Environmental Political Policy and Institutions:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: envst_policy}}
+      assert: {count(courses): {$gte: 1}}
+
+  Social Science Electives:
+    result:
+      from: {student: courses}
+      where: {attribute:: {$eq: envst_social_elective}}
+      assert: {count(courses): {$gte: 2}}
+
+attributes:
+  courses:
+    ENVST 123: [envst_natural]
+    ENVST 245: [envst_natural]
+    ENVST 255: [envst_natural, envst_methods]
+    ENVST 281 2000.1:
+      - envst_natural  # when natural science
+      - envst_humanities  # when arts and humanities
+      - envst_social_elective  # when social science
+    ENVST 381 2000.1:
+      - envst_natural  # when natural science
+      - envst_humanities  # when arts and humanities
+      - envst_social_elective  # when social science
+    BI/ES 226: [envst_natural]
+    BI/ES 228: [envst_natural]
+    BI/ES 286: [envst_natural]
+    BI/ES 350: [envst_natural]
+    BIO 224: [envst_natural]
+    BIO 226: [envst_natural]
+    BIO 261: [envst_natural]
+    CHEM 124: [envst_natural]
+    CHEM 255: [envst_natural]
+    BIO 391 2000.1: [envst_natural]  # when environmental studies
+    CHEM 391 2000.1: [envst_natural]  # when environmental science
+
+    ENVST 202: [envst_humanities]
+    ENVST 270: [envst_humanities]
+    FILM 230: [envst_humanities]
+    GERM 276: [envst_humanities]
+    HIST 245: [envst_humanities]
+    HIST 275: [envst_humanities]
+    NORW 224 2000.1:
+      - envst_humanities  # when taught with ENVST focus
+    PHIL 257: [envst_humanities]
+    REL 278: [envst_humanities]
+    ENGL 276: [envst_humanities]
+
+    STAT 110: [envst_methods]
+    STAT 212: [envst_methods]
+    STAT 214: [envst_methods]
+    STAT 272: [envst_methods]
+    ECON 263: [envst_methods]
+    SOAN 371: [envst_methods]
+    PSYCH 230: [envst_methods]
+    PSCI 220: [envst_methods]
+
+    ECON 121: [envst_econ_analysis]
+    ECON 242: [envst_econ_analysis]
+
+    ES/PS 201: [envst_policy, envst_social_elective]
+    ENVST 232: [envst_policy, envst_social_elective]
+    ENVST 235: [envst_social_elective]
+    ES/PS 276: [envst_policy, envst_social_elective]
+    ENVST 396 2000.1:
+      - envst_social_elective  # when social science
+    ECON 243: [envst_social_elective]
+    PSYCH 227: [envst_social_elective]
+    SOAN 247: [envst_social_elective]
+    SOAN 297:
+      - envst_social_elective  # when environmental anthropology
+    PSCI 221: [envst_social_elective]
+    SOAN 222: [envst_social_elective]
+    ID 234: [envst_social_elective]
+    AS/ES 277: [envst_social_elective]

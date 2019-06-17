@@ -1,0 +1,165 @@
+---
+name: Environmental Studies - Natural Science
+type: major
+degree: Bachelor of Arts
+catalog: 2018-19
+
+result:
+  all:
+    - requirement: Environmental Studies
+    - requirement: Outside your Emphasis
+    - requirement: Statistics, Modeling, and Mapping
+    - requirement: Intermediate Chemistry
+    - requirement: Intermediate Ecology
+    - requirement: Environmental Science - Level II
+    - requirement: Environmental Science - Level III
+    - from:
+        requirements:
+          # we explicitly leave out the Environmental Studies requirement here
+          - Outside your Emphasis
+          - Statistics, Modeling, and Mapping
+          - Intermediate Chemistry
+          - Intermediate Ecology
+          - Environmental Science - Level II
+          - Environmental Science - Level III
+      assert: {count(courses): {$gte: 9}}
+
+requirements:
+  Environmental Studies:
+    result:
+      all:
+        - ENVST 137
+        - ENVST 237
+        - ENVST 399
+
+  Outside your Emphasis:
+    result:
+      all:
+        - requirement: Social Sciences
+        - requirement: Arts and Humanities
+        - from:
+            requirements:
+              - Social Sciences
+              - Arts and Humanities
+          assert: {count(courses): {$gte: 3}}
+
+    requirements:
+      Social Sciences:
+        result:
+          from: {student: courses}
+          where: {attribute: {$eq: envst_social}}
+          limit:
+            - at_most: 1
+              where: {course: {$in: [ENVST 281, ENVST 381]}}
+              label: Either ENVST 281 or ENVST 381 may count, but not both
+          assert: {count(courses): {$gte: 1}}
+
+      Arts and Humanities:
+        result:
+          from: {student: courses}
+          where: {attribute: {$eq: envst_humanities}}
+          limit:
+            - at_most: 1
+              where: {course: {$in: [ENVST 281, ENVST 381]}}
+              label: Either ENVST 281 or ENVST 381 may count, but not both
+            - at_most: 1
+              where: {course: {$in: [PHIL 257, REL 278]}}
+              label: Either PHIL 257 or REL 278 may count, but not both
+          assert: {count(courses): {$gte: 1}}
+
+  Statistics, Modeling, and Mapping:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: envst_stats}}
+      assert: {count(courses): {$gte: 1}}
+
+  Intermediate Chemistry:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: envst_intermediate_chem}}
+      assert: {count(courses): {$gte: 1}}
+
+  Intermediate Ecology:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: envst_intermediate_ecology}}
+      assert: {count(courses): {$gte: 1}}
+
+  Environmental Science - Level II:
+    result:
+      from: {student: courses}
+      where:
+        attribute:
+          $in:
+            - envst_envsci
+            - envst_envsci_level_3
+      limit:
+        - at_most: 1
+          where: {subject: {$neq: ENVST}}
+          label: At least one course must be in the ENVST subject code
+      assert: {count(courses): {$gte: 2}}
+
+  Environmental Science - Level III:
+    result:
+      from: {student: courses}
+      where: {attribute: {$eq: envst_envsci_level_3}}
+      assert: {count(courses): {$gte: 1}}
+
+attributes:
+  courses:
+    ES/PS 201: [envst_social]
+    ENVST 232: [envst_social]
+    ENVST 235: [envst_social]
+    ES/PS 276: [envst_social]
+    AS/ES 277: [envst_social]
+    # when taught with social science focus and approved by the chair
+    ENVST 281 2014.5: [envst_social]
+    ENVST 381: [envst_social, envst_humanities]
+    ECON 242: [envst_social]
+    ID 234: [envst_social]
+    PSCI 221: [envst_social]
+    PSYCH 227: [envst_social]
+    SOAN 222: [envst_social]
+    SOAN 247: [envst_social]
+    # when taught as Environmental Anthropology
+    SOAN 297 2015.3: [envst_social]
+    ENVST 202: [envst_humanities]
+    ENVST 270: [envst_humanities]
+    # when taught with arts and humanities focus and approved by the chair
+    ENVST 281 2000.1: [envst_humanities]
+    FILM 230: [envst_humanities]
+    GERM 276: [envst_humanities]
+    HIST 245: [envst_humanities]
+    HIST 275: [envst_humanities]
+    # when taught with ENVST focus
+    NORW 224 2000.1: [envst_humanities]
+    PHIL 257: [envst_humanities]
+    REL 278: [envst_humanities]
+    ENGL 276: [envst_humanities]
+    ENVST 255: [envst_stats, envst_envsci]
+    STAT 212: [envst_stats]
+    STAT 272: [envst_stats]
+    CHEM 248: [envst_intermediate_chem]
+    CHEM 255: [envst_intermediate_chem]
+    BIO 261: [envst_intermediate_ecology]
+    BIO 226: [envst_intermediate_ecology]
+    ENVST 123: [envst_envsci]
+    BI/ES 226: [envst_envsci]
+    BI/ES 228: [envst_envsci]
+    ENVST 245: [envst_envsci]
+    # when taught with natural science focus and approved by the chair
+    ENVST 281 2000.3: [envst_envsci]
+    BI/ES 286: [envst_envsci]
+    BI/ES 250: [envst_envsci]
+    # when taught with environmental science focus and approved by the chair
+    ENVST 381 2000.1: [envst_envsci]
+    ENVST 397: [envst_envsci]
+    BIO 224: [envst_envsci]
+    BI/ES 350: [envst_envsci_level_3]
+    BIO 371: [envst_envsci_level_3]
+    # when taught with environmental studies focus and approved by the chair
+    BIO 391 2000.1: [envst_envsci_level_3]
+    # when taught with environmental science focus and approved by the chair
+    CHEM 391 2000.1: [envst_envsci_level_3]
+    # when taught with natural science focus and approved by the chair
+    ENVST 391 2000.1: [envst_envsci_level_3]
