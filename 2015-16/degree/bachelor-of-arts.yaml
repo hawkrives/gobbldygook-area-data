@@ -1,3 +1,4 @@
+---
 name: Bachelor of Arts
 type: degree
 catalog: 2015-16
@@ -22,43 +23,46 @@ requirements:
     requirements:
       Courses:
         result:
-          from: {student: courses}
-          assert: sum(credits) >= 35
+          given: {student: courses}
+          assert: {sum(credits): {$gte: 35}}
 
       Residency:
         result:
-          from: {student: courses}
+          given: {student: courses}
           where: {institution: {$eq: St. Olaf College}}
-          assert: sum(credits) >= 17
+          assert: {sum(credits): {$gte: 17}}
 
       Interim:
         result:
-          from: {student: courses}
+          given: {student: courses}
           where: {semester: {$eq: Interim}}
-          assert: {$and: [{count(courses): {$gte: 3}}, {sum(credits): {$gte: 3}}]}
+          assert:
+            $and:
+              - {count(courses): {$gte: 3}}
+              - {sum(credits): {$gte: 3}}
 
       Grade Point Average:
         result:
-          from: {student: courses}
-          assert: average(grades) >= C
+          given: {student: courses}
+          assert: {average(grades): {$gte: C}}
 
       Course Level:
         result:
-          from: {student: courses}
+          given: {student: courses}
           where: {level: {$gte: 200}}
-          assert: sum(credits) >= 18
+          assert: {sum(credits): {$gte: 18}}
 
       Graded Courses:
         result:
-          from: {student: courses}
+          given: {student: courses}
           where: {graded: {$eq: true}}
-          assert: sum(credits) >= 24
+          assert: {sum(credits): {$gte: 24}}
 
       Major:
         result:
-          from: {student: areas}
+          given: {student: areas}
           where: {type: {$eq: major}}
-          assert: count(areas) >= 1
+          assert: {count(areas): {$gte: 1}}
 
 
   General Education:
@@ -82,39 +86,50 @@ requirements:
         requirements:
           First-Year Writing:
             result:
-              from: {student: courses}
+              given: {student: courses}
               where: {gereqs: {$eq: FYW}}
-              assert: count(courses) >= 1
+              assert: {count(courses): {$gte: 1}}
 
           Writing in Context:
             result:
-              from: {student: courses}
+              given: {student: courses}
               where: {gereqs: {$eq: WRI}}
-              assert: count(courses) >= 4
+              assert: {count(courses): {$gte: 4}}
 
           Foreign Language:
             result:
-              from: {student: courses}
-              where: {gereqs: {$in: [FOL-C, FOL-F, FOL-G, FOL-K, FOL-J, FOL-L, FOL-N, FOL-R, FOL-S]}}
-              assert: count(courses) >= 1
+              given: {student: courses}
+              where:
+                gereqs:
+                  $in:
+                    - FOL-C
+                    - FOL-F
+                    - FOL-G
+                    - FOL-K
+                    - FOL-J
+                    - FOL-L
+                    - FOL-N
+                    - FOL-R
+                    - FOL-S
+              assert: {count(courses): {$gte: 1}}
 
           Oral Communication:
             result:
-              from: {student: courses}
+              given: {student: courses}
               where: {gereqs: {$eq: ORC}}
-              assert: count(courses) >= 1
+              assert: {count(courses): {$gte: 1}}
 
           Abstract and Quantitative Reasoning:
             result:
-              from: {student: courses}
+              given: {student: courses}
               where: {gereqs: {$eq: AQR}}
-              assert: count(courses) >= 1
+              assert: {count(courses): {$gte: 1}}
 
           Studies in Physical Movement:
             result:
-              from: {student: courses, repeats: first}
+              given: {student: courses, repeats: first}
               where: {gereqs: {$eq: SPM}}
-              assert: count(courses) >= 2
+              assert: {count(courses): {$gte: 2}}
 
       Core:
         result:
@@ -133,114 +148,126 @@ requirements:
 
             saves:
               Courses with an HWC:
-                from: {student: courses}
+                given: {student: courses}
                 where: {gereqs: {$eq: HWC}}
-                store: courses
 
             result:
               all:
-                - from: {save: Courses with an HWC}
-                  assert: count(courses) >= 2
+                - given: {save: Courses with an HWC}
+                  assert: {count(courses): {$gte: 2}}
 
-                - from: {save: Courses with an HWC}
+                - given: {save: Courses with an HWC}
                   where: {institution: {$eq: St. Olaf College}}
-                  assert: count(courses) >= 1
+                  assert: {count(courses): {$gte: 1}}
 
           Multicultural Studies:
             saves:
               Courses with an MCD or MCG:
-                from: {student: courses}
+                given: {student: courses}
                 where: {$or: [{gereqs: {$eq: MCD}}, {gereqs: {$eq: MCG}}]}
-                store: courses
 
             result:
               all:
-                - from: {save: Courses with an MCD or MCG}
-                  assert: count(courses) >= 2 and count(subjects) >= 2
+                - given: {save: Courses with an MCD or MCG}
+                  assert:
+                    $and:
+                      - {count(courses): {$gte: 2}}
+                      - {count(subjects): {$gte: 2}}
 
-                - from: {save: Courses with an MCD or MCG}
+                - given: {save: Courses with an MCD or MCG}
                   where: {gereqs: {$eq: MCD}}
-                  assert: count(courses) >= 1
+                  assert: {count(courses): {$gte: 1}}
 
-                - from: {save: Courses with an MCD or MCG}
+                - given: {save: Courses with an MCD or MCG}
                   where: {gereqs: {$eq: MCG}}
-                  assert: count(courses) >= 1
+                  assert: {count(courses): {$gte: 1}}
 
           Artistic and Literary Studies:
             saves:
               Courses with an ALS-A or ALS-L:
-                from: {student: courses}
-                where: gereqs = ALS-A or gereqs = ALS-L
-                store: courses
+                given: {student: courses}
+                where:
+                  $or:
+                    - {gereqs: {$eq: ALS-A}}
+                    - {gereqs: {$eq: ALS-L}}
 
             result:
               all:
-                - from: {save: Courses with an ALS-A or ALS-L}
-                  assert: count(courses) >= 2
+                - given: {save: Courses with an ALS-A or ALS-L}
+                  assert: {count(courses): {$gte: 2}}
 
-                - from: {save: Courses with an ALS-A or ALS-L}
-                  where: gereqs = ALS-A
-                  assert: count(courses) >= 1
+                - given: {save: Courses with an ALS-A or ALS-L}
+                  where: {gereqs: {$eq: ALS-A}}
+                  assert: {count(courses): {$gte: 1}}
 
-                - from: {save: Courses with an ALS-A or ALS-L}
-                  where: gereqs = ALS-L
-                  assert: count(courses) >= 1
+                - given: {save: Courses with an ALS-A or ALS-L}
+                  where: {gereqs: {$eq: ALS-L}}
+                  assert: {count(courses): {$gte: 1}}
 
           Biblical and Theological Studies:
             saves:
               Courses with a BTS-B or BTS-T:
-                from: {student: courses}
-                where: gereqs = BTS-B or gereqs = BTS-T
-                store: courses
+                given: {student: courses}
+                where:
+                  $or:
+                    - {gereqs: {$eq: BTS-B}}
+                    - {gereqs: {$eq: BTS-T}}
 
             result:
               all:
-                - from: {save: Courses with a BTS-B or BTS-T}
-                  assert: count(courses) >= 2
+                - given: {save: Courses with a BTS-B or BTS-T}
+                  assert: {count(courses): {$gte: 2}}
 
-                - from: {save: Courses with a BTS-B or BTS-T}
-                  where: gereqs = BTS-B
-                  assert: count(courses) >= 1
+                - given: {save: Courses with a BTS-B or BTS-T}
+                  where: {gereqs: {$eq: BTS-B}}
+                  assert: {count(courses): {$gte: 1}}
 
-                - from: {save: Courses with a BTS-B or BTS-T}
-                  where: gereqs = BTS-T
-                  assert: count(courses) >= 1
+                - given: {save: Courses with a BTS-B or BTS-T}
+                  where: {gereqs: {$eq: BTS-T}}
+                  assert: {count(courses): {$gte: 1}}
 
           Studies in Natural Science:
             saves:
               Courses with an SED or IST:
-                from: {student: courses}
-                where: gereqs = SED or gereqs = IST
-                store: courses
+                given: {student: courses}
+                where:
+                  $or:
+                    - {gereqs: {$eq: SED}}
+                    - {gereqs: {$eq: IST}}
 
             result:
               all:
-                - from: {save: Courses with an SED or IST}
-                  assert: count(courses) >= 2 and count(subjects) >= 2
+                - given: {save: Courses with an SED or IST}
+                  assert:
+                    $and:
+                      - {count(courses): {$gte: 2}}
+                      - {count(subjects): {$gte: 2}}
 
-                - from: {save: Courses with an SED or IST}
-                  where: gereqs = SED
-                  assert: count(courses) >= 1
+                - given: {save: Courses with an SED or IST}
+                  where: {gereqs: {$eq: SED}}
+                  assert: {count(courses): {$gte: 1}}
 
-                - from: {save: Courses with an SED or IST}
-                  where: gereqs = IST
-                  assert: count(courses) >= 1
+                - given: {save: Courses with an SED or IST}
+                  where: {gereqs: {$eq: IST}}
+                  assert: {count(courses): {$gte: 1}}
 
           Studies in Human Behavior and Society:
             saves:
               Courses with an HBS:
-                from: {student: courses}
-                where: gereqs = HBS
-                store: courses
+                given: {student: courses}
+                where: {gereqs: {$eq: HBS}}
 
             result:
               all:
-                - from: {save: Courses with an HBS}
-                  assert: count(courses) >= 2 and count(subjects) >= 2
+                - given: {save: Courses with an HBS}
+                  assert:
+                    $and:
+                      - {count(courses): {$gte: 2}}
+                      - {count(subjects): {$gte: 2}}
 
-                - from: {save: Courses with an HBS}
+                - given: {save: Courses with an HBS}
                   where: institution = St. Olaf College
-                  assert: count(courses) >= 1
+                  assert: {count(courses): {$gte: 1}}
 
       Integrative:
         result:
@@ -255,22 +282,21 @@ requirements:
 
             saves:
               EIN courses:
-                from: {student: courses}
-                where: gereqs = EIN
-                store: courses
+                given: {student: courses}
+                where: {gereqs: {$eq: EIN}}
 
               bts_t:
-                from: {student: courses, including used: true}
-                where: gereqs = BTS-T
+                given: {student: courses, including used: true}
+                where: {gereqs: {$eq: BTS-T}}
                 store: minimum(term)
 
               ein:
-                from: {save: EIN courses}
+                given: {save: EIN courses}
                 store: maximum(term)
 
             result:
               all:
-                - from: {save: EIN courses}
-                  assert: count(courses) >= 1
+                - given: {save: EIN courses}
+                  assert: {count(courses): {$gte: 1}}
 
                 - assert: stored(bts_t) < stored(ein)
