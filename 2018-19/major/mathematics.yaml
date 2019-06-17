@@ -20,25 +20,27 @@ result:
           - Interdisciplinary
           - Sequence
           - Level III
-      where: year >= $matriculation-year
-      assert: count(courses) >= 6
+      where: {year: {$gte: $matriculation-year}}
+      assert: {count(courses): {$gte: 6}}
 
 limit:
-  - {at most: 2, where: subject != MATH}
+  - {at_most: 2, where: {subject: {$neq: MATH}}}
 
 requirements:
   Basics:
     result:
       all:
         - course: MATH 120
-        - either: [course: MATH 126, course: MATH 128]
+        - either: 
+            - course: MATH 126
+            - course: MATH 128
         - course: MATH 220
 
   Transitions:
     result:
       from: {student: courses}
-      where: attribute = math_transitions
-      assert: count(courses) >= 2
+      where: {attribute: {$eq: math_transitions}}
+      assert: {count(courses): {$gte: 2}}
 
   Perspectives:
     message: One course from each of three of the four perspectives.
@@ -55,26 +57,26 @@ requirements:
       Axiomatic/Algebraic (A):
         result:
           from: {student: courses}
-          where: attribute = math_perspective_a
-          assert: count(courses) >= 1
+          where: {attribute: {$eq: math_perspective_a}}
+          assert: {count(courses): {$gte: 1}}
 
       Continuous/Analytic (C):
         result:
           from: {student: courses}
-          where: attribute = math_perspective_c
-          assert: count(courses) >= 1
+          where: {attribute: {$eq: math_perspective_c}}
+          assert: {count(courses): {$gte: 1}}
 
       Discrete/Combinatorial (D):
         result:
           from: {student: courses}
-          where: attribute = math_perspective_d
-          assert: count(courses) >= 1
+          where: {attribute: {$eq: math_perspective_d}}
+          assert: {count(courses): {$gte: 1}}
 
       Modeling/Computation (M):
         result:
           from: {student: courses}
-          where: attribute = math_perspective_m
-          assert: count(courses) >= 1
+          where: {attribute: {$eq: math_perspective_m}}
+          assert: {count(courses): {$gte: 1}}
 
   Interdisciplinary:
     result:
@@ -90,50 +92,79 @@ requirements:
           both:
             - course: CHEM 371
             - from: {student: areas}
-              where: type = major and name = Chemistry
-              assert: count(areas) = 1
+              where: {$and: [ {type: {$eq: major}}, {name: {$eq: Chemistry}} ]}
+              assert: {count(areas): {$eq: 1}}
       Economics:
         result:
           both:
             - course: ECON 385
             - from: {student: areas}
-              where: type = major and name = Economics
-              assert: count(areas) = 1
+              where: {$and: [ {type: {$eq: major}}, {name: {$eq: Economics}} ]}
+              assert: {count(areas): {$eq: 1}}
       Physics:
         result:
           both:
             - course: PHYS 375
             - from: {student: areas}
-              where: type = major and name = Physics
-              assert: count(areas) = 1
+              where: {$and: [ {type: {$eq: major}}, {name: {$eq: Physics}} ]}
+              assert: {count(areas): {$eq: 1}}
 
   Level III:
     result:
       from: {student: courses}
-      where: attribute = math_level_3
+      where: {attribute: {$eq: math_level_3}}
       limit:
-        - {at most: 1, where: subject != MATH}
-      assert: count(courses) >= 2
+        - {at_most: 1, where: {subject: {$neq: MATH}}}
+      assert: {count(courses): {$gte: 2}}
 
   Sequence:
     result:
       any:
-        - both: [{course: MATH 220, including claimed: true}, {course: MATH 356, including claimed: true}]
-        - both: [{course: MATH 220, including claimed: true}, {course: MSCS 341, including claimed: true}]
-        - both: [{course: MATH 224, including claimed: true}, {course: MATH 348, including claimed: true}]
-        - both: [{course: MATH 226, including claimed: true}, {course: MATH 340, including claimed: true}]
-        - both: [{course: MATH 230, including claimed: true}, {course: MATH 330, including claimed: true}]
-        - both: [{course: MATH 232, including claimed: true}, {course: MATH 364, including claimed: true}]
-        - both: [{course: MATH 244, including claimed: true}, {course: MATH 344, including claimed: true}]
-        - both: [{course: MATH 252, including claimed: true}, {course: MATH 352, including claimed: true}]
-        - both: [{course: MATH 262, including claimed: true}, {course: STAT 322, including claimed: true}]
+        - both: 
+            - {course: MATH 220, including claimed: true}
+            - {course: MATH 356, including claimed: true}
+        - both: 
+            - {course: MATH 220, including claimed: true}
+            - {course: MSCS 341, including claimed: true}
+        - both: 
+            - {course: MATH 224, including claimed: true}
+            - {course: MATH 348, including claimed: true}
+        - both: 
+            - {course: MATH 226, including claimed: true}
+            - {course: MATH 340, including claimed: true}
+        - both: 
+            - {course: MATH 230, including claimed: true}
+            - {course: MATH 330, including claimed: true}
+        - both: 
+            - {course: MATH 232, including claimed: true}
+            - {course: MATH 364, including claimed: true}
+        - both: 
+            - {course: MATH 244, including claimed: true}
+            - {course: MATH 344, including claimed: true}
+        - both: 
+            - {course: MATH 252, including claimed: true}
+            - {course: MATH 352, including claimed: true}
+        - both: 
+            - {course: MATH 262, including claimed: true}
+            - {course: STAT 322, including claimed: true}
 
 attributes:
   multicountable:
-    - [{attribute: math_perspective_a}, {attribute: math_level_3}, {attribute: math_transitions}]
-    - [{attribute: math_perspective_c}, {attribute: math_level_3}, {attribute: math_transitions}]
-    - [{attribute: math_perspective_d}, {attribute: math_level_3}, {attribute: math_transitions}]
-    - [{attribute: math_perspective_m}, {attribute: math_level_3}, {attribute: math_transitions}]
+    - - {attribute: math_perspective_a}
+      - {attribute: math_level_3}
+      - {attribute: math_transitions}
+
+    - - {attribute: math_perspective_c}
+      - {attribute: math_level_3}
+      - {attribute: math_transitions}
+
+    - - {attribute: math_perspective_d}
+      - {attribute: math_level_3}
+      - {attribute: math_transitions}
+
+    - - {attribute: math_perspective_m}
+      - {attribute: math_level_3}
+      - {attribute: math_transitions}
 
   courses:
     CSCI 315: [math_level_3]
