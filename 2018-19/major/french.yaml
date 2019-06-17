@@ -41,9 +41,9 @@ requirements:
   Electives:
     result:
       from: {student: courses}
-      where: {attribute: french_elective}
+      where: {attribute: {$eq: french_elective}}
       limit:
-        - {at-most: 1, where: {department: '! FREN'}}
+        - {at-most: 1, where: {department: {$neq: FREN}}}
       assert: {count(courses): {$gte: 2}}
 
 attributes:
