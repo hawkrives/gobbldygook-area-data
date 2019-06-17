@@ -36,8 +36,8 @@ requirements:
       The Nursing department recommends taking the Biomedical Ethics (PHIL 250) course for this requirement
     result:
       from: {student: courses}
-      where: gereqs = EIN
-      assert: count(courses) >= 1
+      where: {gereqs: {$eq: EIN}}
+      assert: {count(courses): {$gte: 1}}
 
   Requirements:
     result:
