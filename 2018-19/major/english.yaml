@@ -10,39 +10,32 @@ result:
     - requirement: Cross-Cultural Studies
     - requirement: Literary History
     - either:
-      - requirement: Cross-Disciplinary Studies
-      - requirement: Genre Studies
+        - requirement: Cross-Disciplinary Studies
+        - requirement: Genre Studies
     - requirement: Electives
     - requirement: 1800s
 
 attributes:
-  multicountable: [
-    [
-      {attribute: engl_elective},
-      {attribute: engl_period_post1800},
-      {attribute: engl_period_pre1800},
-    ],
-    [
-      {attribute: engl_topic_crosscultural},
-      {attribute: engl_period_post1800},
-      {attribute: engl_period_pre1800},
-    ],
-    [
-      {attribute: engl_topic_crossdisciplinary},
-      {attribute: engl_period_post1800},
-      {attribute: engl_period_pre1800},
-    ],
-    [
-      {attribute: engl_topic_genre},
-      {attribute: engl_period_post1800},
-      {attribute: engl_period_pre1800},
-    ],
-    [
-      {attribute: engl_topic_literary_history},
-      {attribute: engl_period_post1800},
-      {attribute: engl_period_pre1800},
-    ],
-  ]
+  multicountable:
+    - - {attribute: engl_elective}
+      - {attribute: engl_period_post1800}
+      - {attribute: engl_period_pre1800}
+
+    - - {attribute: engl_topic_crosscultural}
+      - {attribute: engl_period_post1800}
+      - {attribute: engl_period_pre1800}
+
+    - - {attribute: engl_topic_crossdisciplinary}
+      - {attribute: engl_period_post1800}
+      - {attribute: engl_period_pre1800}
+
+    - - {attribute: engl_topic_genre}
+      - {attribute: engl_period_post1800}
+      - {attribute: engl_period_pre1800}
+
+    - - {attribute: engl_topic_literary_history}
+      - {attribute: engl_period_post1800}
+      - {attribute: engl_period_pre1800}
 
   courses:
     # 2018-19 Fall
@@ -267,74 +260,73 @@ attributes:
     # ENGL 291 genre-studies
 
 requirements:
-  - name: Literary Studies
+  Literary Studies:
     result:
       course: ENGL 185
 
-  - name: Cross-Cultural Studies
+  Cross-Cultural Studies:
     result:
-      given: courses
-      where: {attribute: engl_topic_crosscultural}
-      what: courses
-      do: count >= 1
+      from: {student: courses}
+      where: {attribute: {$eq: engl_topic_crosscultural}}
+      assert: {count(courses): {$gte: 1}}
 
-  - name: Literary History
+  Literary History:
     result:
-      given: courses
-      where: {attribute: engl_topic_literary_history}
-      what: courses
-      do: count >= 1
+      from: {student: courses}
+      where: {attribute: {$eq: engl_topic_literary_history}}
+      assert: {count(courses): {$gte: 1}}
 
-  - name: Cross-Disciplinary Studies
+  Cross-Disciplinary Studies:
     result:
-      given: courses
-      where: {attribute: engl_topic_crossdisciplinary}
-      what: courses
-      do: count >= 1
+      from: {student: courses}
+      where: {attribute: {$eq: engl_topic_crossdisciplinary}}
+      assert: {count(courses): {$gte: 1}}
 
-  - name: Genre Studies
+  Genre Studies:
     result:
-      given: courses
-      where: {attribute: engl_topic_genre}
-      what: courses
-      do: count >= 1
+      from: {student: courses}
+      where: {attribute: {$eq: engl_topic_genre}}
+      assert: {count(courses): {$gte: 1}}
 
-  - name: Electives
+  Electives:
     save:
-      - given: courses
-        where: {attribute: 'engl_elective | engl_topic_genre | engl_topic_crosscultural | engl_topic_literary_history | engl_topic_crossdisciplinary'}
-        what: courses
+      - from: {student: courses}
+        where:
+          $or:
+            - {attribute: {$eq: engl_elective}}
+            - {attribute: {$eq: engl_topic_genre}}
+            - {attribute: {$eq: engl_topic_crosscultural}}
+            - {attribute: {$eq: engl_topic_literary_history}}
+            - {attribute: {$eq: engl_topic_crossdisciplinary}}
         name: electives
-      - given: save
-        save: electives
+
+      - from: {save: [electives]}
         name: level3-electives
-        where: {level: '300'}
-        what: courses
+        where: {level: {$eq: 300}}
+        
     result:
       count: all
       of:
-        - given: save
-          save: electives
-          what: courses
-          do: count >= 6
-        - given: save
-          save: level3-electives
-          what: courses
-          do: count >= 2
-        - given: save
-          save: level3-electives
-          what: courses
-          where: {attribute: 'engl_focus_literature | engl_focus_film'}
-          do: count >= 1
-  - name: 1800s
+        - from: {save: [electives]}
+          assert: {count(courses): {$gte: 6}}
+
+        - from: {save: [level3-electives]}
+          assert: {count(courses): {$gte: 2}}
+
+        - from: {save: [level3-electives]}
+          where:
+            $or:
+              - {attribute: {$eq: engl_focus_literature}}
+              - {attribute: {$eq: engl_focus_film}}
+          assert: {count(courses): {$gte: 1}}
+
+  1800s:
     result:
       both:
-        - given: courses
-          where: {attribute: engl_period_pre1800}
-          what: courses
-          do: count >= 1
+        - from: {student: courses}
+          where: {attribute: {$eq: engl_period_pre1800}}
+          do: {count(courses): {$gte: 1}}
 
-        - given: courses
-          where: {attribute: engl_period_post1800}
-          what: courses
-          do: count >= 1
+        - from: {student: courses}
+          where: {attribute: {$eq: engl_period_post1800}}
+          do: {count(courses): {$gte: 1}}
