@@ -45,6 +45,11 @@ attributes:
     ASIAN 215: [asian_elective]
     ASIAN 216: [asian_elective]
     ASIAN 220: [asian_elective]
+    ASCON 210: [asian_elective]
+    ASCON 215: [asian_elective]
+    ASCON 216: [asian_elective]
+    ASCON 220: [asian_elective]
+    ASIAN 223: [asian_elective]
     ASIAN 230: [asian_elective]
     ASIAN 235: [asian_elective]
     ASIAN 236: [asian_elective]
@@ -59,8 +64,8 @@ attributes:
     ASIAN 397: [asian_elective]
     ASIAN 398: [asian_elective]
     ASIAN 399: [asian_elective]
-    CHIN 231: [asian_elective, asian_region_china, asian_language_chinese]
-    CHIN 232: [asian_elective, asian_region_china, asian_language_chinese]
+    CHIN 231: [asian_language_chinese]
+    CHIN 232: [asian_language_chinese]
     CHIN 301: [asian_elective, asian_region_china, asian_language_chinese]
     CHIN 302: [asian_elective, asian_region_china, asian_language_chinese]
     CHIN 320: [asian_elective, asian_region_china, asian_language_chinese]
@@ -70,8 +75,8 @@ attributes:
     ECON 218: [asian_elective]
     ECON 238: [asian_elective]
     HIST 240: [asian_elective]
-    JAPAN 231: [asian_elective, asian_region_japan, asian_language_japanese]
-    JAPAN 232: [asian_elective, asian_region_japan, asian_language_japanese]
+    JAPAN 231: [asian_language_japanese]
+    JAPAN 232: [asian_language_japanese]
     JAPAN 301: [asian_elective, asian_region_japan, asian_language_japanese]
     JAPAN 302: [asian_elective, asian_region_japan, asian_language_japanese]
     JAPAN 320: [asian_elective, asian_region_japan, asian_language_japanese]
@@ -101,7 +106,7 @@ requirements:
       where: {attributes: {$eq: asian_elective}}
       limit:
         # and "No level I or level II language courses may count." is taken
-        # care of by not listing them
+        # care of by not listing them as electives
 
         # "No more than two at level I"
         - at_most: 2
