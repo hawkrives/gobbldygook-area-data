@@ -4,8 +4,7 @@ degree: Bachelor of Arts
 catalog: 2018-19
 
 result:
-  count: all
-  of:
+  all:
     - requirement: Introductory Sequence
     - requirement: Upper-Level Core
     - requirement: Physics
@@ -13,98 +12,97 @@ result:
     - requirement: Seminars
 
 requirements:
-  - name: Introductory Sequence
+  Introductory Sequence:
     requirements:
-      - name: Option A
+      Option A:
         result:
-          count: all
-          of:
-            - CHEM 121
-            - CHEM 123
-            - CHEM 125
+          all:
+            - course: CHEM 121
+            - course: CHEM 123
+            - course: CHEM 125
 
-      - name: Option B
+      Option B:
         result:
-          count: all
-          of:
-            - CHEM 125
-            - CHEM 126
+          all:
+            - course: CHEM 125
+            - course: CHEM 126
 
-      - name: Option C
+      Option C:
         result:
-          count: all
-          of:
-            - CH/BI 125
-            - CH/BI 126
+          all:
+            - course: CH/BI 125
+            - course: CH/BI 126
+            - course: CH/BI 227
 
     result:
-      count: any
-      of:
+      any:
         - requirement: Option A
         - requirement: Option B
         - requirement: Option C
 
-  - name: Upper-Level Core
+  Upper-Level Core:
     result:
-      count: all
-      of:
+      all:
         - requirement: Organic
         - requirement: Analytical
         - requirement: Physical
         - requirement: Elective
 
     requirements:
-      - name: Organic
+      Organic:
         result:
-          count: all
-          of:
-            - CHEM 247
-            - CHEM 253
-            - CHEM 248
-            - CHEM 254
+          all:
+            - course: CHEM 247
+            - course: CHEM 253.L
+            - course: CHEM 248
+            - course: CHEM 254.L
 
-      - name: Analytical
+      Analytical:
         result:
-          count: all
-          of:
-            - CHEM 255
-            - CHEM 256
+          all:
+            - course: CHEM 255
+            - course: CHEM 256.L
 
-      - name: Physical
+      Physical:
         result:
-          count: all
-          of:
-            - CHEM 357
-            - CHEM 371
+          all:
+            - course: CHEM 371
+            - course: CHEM 357.L
 
-      - name: Elective
+      Elective:
         result:
-          count: any
-          of:
-            - CHEM 252
-            - CHEM 280
-            - CHEM 379
-            - CHEM 382
-            - CHEM 384
-            - CHEM 386
-            - CHEM 388
-            - CHEM 391
+          from: {student: courses}
+          where: {attribute: {$eq: chem_elective}}
+          assert: {count(courses): {$gte: 1}}
 
-  - name: Physics
+  Physics:
     result:
       either:
-        - PHYS 125
-        - PHYS 232
+        - course: PHYS 125
+        - course: PHYS 232
 
-  - name: Mathematics
+  Mathematics:
     result:
       either:
-        - MATH 126
-        - MATH 128
+        - course: MATH 126
+        - course: MATH 128
 
-  - name: Seminars
+  Seminars:
     message:
       Attendance is required at 12 departmental seminars after declaration of major.
     given: chemistry-seminars
     where: {date: '>= major-declaration'}
     action: {count: '>= 12'}
+
+attributes:
+  courses:
+    CHEM 252: [chem_elective]
+    CHEM 280: [chem_elective]
+    CHEM 360: [chem_elective]
+    CHEM 379: [chem_elective]
+    CHEM 382: [chem_elective]
+    CHEM 384: [chem_elective]
+    CHEM 386: [chem_elective]
+    CHEM 388: [chem_elective]
+    CHEM 391: [chem_elective]
+    CHEM 396: [chem_elective]
