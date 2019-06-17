@@ -80,11 +80,11 @@ attributes:
     PSYCH 238: [bio_elective]
 
 requirements:
-  - name: Foundation
+  Foundation:
     result:
       course: BIO 150
 
-  - name: Core
+  Core:
     result:
       count: all
       of:
@@ -94,67 +94,72 @@ requirements:
         - requirement: Ecology
 
     requirements:
-      - name: Genetics
+      Genetics:
         result:
           count: 1
           of:
-            - BIO 233
+            - course: BIO 233
 
-      - name: Cell Biology
+      Cell Biology:
         result:
           count: 1
           of:
-            - BIO 227
-            - CH/BI 227
+            - course: BIO 227
+            - course: CH/BI 227
 
-      - name: Comparative Organismal Biology
+      Comparative Organismal Biology:
         result:
           count: 1
           of:
-            - BIO 224
-            - BIO 242
-            - BIO 247
-            - BIO 248
-            - BIO 251
-            - BIO 252
-            - BIO 266
-            - BIO 275
+            - course: BIO 224
+            - course: BIO 242
+            - course: BIO 247
+            - course: BIO 248
+            - course: BIO 251
+            - course: BIO 252
+            - course: BIO 266
+            - course: BIO 275
 
-      - name: Ecology
+      Ecology:
         result:
           count: 1
           of:
-            - BIO 226
-            - BIO 261
+            - course: BIO 226
+            - course: BIO 261
 
-  - name: Level III
+  Level III:
     result:
       count: 1
       of:
-        - BIO 315
-        - BIO 341
-        - BIO 348
-        - BIO 363
-        - BIO 364
-        - BIO 371
-        - BIO 372
-        - BIO 382
-        - BIO 383
-        - BIO 385
-        - BIO 386
-        - BIO 391
+        - course: BIO 315
+        - course: BIO 341
+        - course: BIO 348
+        - course: BIO 363
+        - course: BIO 364
+        - course: BIO 371
+        - course: BIO 372
+        - course: BIO 382
+        - course: BIO 383
+        - course: BIO 385
+        - course: BIO 386
+        - course: BIO 391
 
-  - name: Electives
+  Electives:
     result:
-      given: courses
-      where: {attribute: bio_elective}
-      what: courses
-      do: count >= 2
+      from: {student: courses}
+      where: {attribute: {$eq: bio_elective}}
+      assert: {count(courses): {$gte: 2}}
 
-  - name: Chemistry
+  Chemistry:
     result:
-      count: any
-      of:
-        - {count: all, of: [CHEM 121, CHEM 123, CHEM 126]}
-        - {count: all, of: [CHEM 125, CHEM 126]}
-        - {count: all, of: [CH/BI 125, CH/BI 126]}
+      any:
+        - all:
+            - course: CHEM 121
+            - course: CHEM 123
+            - course: CHEM 126
+        - all:
+            - course: CHEM 125
+            - course: CHEM 126
+        - all:
+            - course: CH/BI 125
+            - course: CH/BI 126
