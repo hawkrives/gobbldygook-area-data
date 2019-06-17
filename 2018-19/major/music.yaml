@@ -43,9 +43,14 @@ requirements:
   Electives:
     result:
       from: {student: courses}
-      where: subject = MUSIC and (level = 200 or level = 300)
+      where:
+        $and:
+          - {subject: {$eq: MUSIC}}
+          - $or:
+              - {level: {$eq: 200}}
+              - {level: {$eq: 300}}
       limit:
-        - {at most: 3, where: level = 200}
+        - {at most: 3, where: {level: {$eq: 200}}}
       assert: count(courses) >= 4
 
   Performance Studies:
@@ -86,9 +91,9 @@ requirements:
           assert: count(terms) >= 6
         requirements:
           Lessons:
-            result: {from: {student: courses}, where: course = MUSPF 102, assert: count(terms) >= 4}
+            result: {from: {student: courses}, where: {course: {$eq: MUSPF 102}}, assert: {count(terms): {$gte: 4}}}
           Other Lessons:
-            result: {from: {student: courses}, where: subject = MUSPF and number != 102, assert: count(terms) >= 2}
+            result: {from: {student: courses}, where: {$and: [{subject: {$eq: MUSPF}}, {number: {$neq: 102}}]}, assert: {count(terms): {$gte: 2}}}
 
       Clarinet:
         result:
@@ -96,9 +101,9 @@ requirements:
           assert: count(terms) >= 6
         requirements:
           Lessons:
-            result: {from: {student: courses}, where: course = MUSPF 104, assert: count(terms) >= 4}
+            result: {from: {student: courses}, where: {course: {$eq: MUSPF 104}}, assert: {count(terms): {$gte: 4}}}
           Other Lessons:
-            result: {from: {student: courses}, where: subject = MUSPF and number != 104, assert: count(terms) >= 2}
+            result: {from: {student: courses}, where: {$and: [{subject: {$eq: MUSPF}}, {number: {$neq: 104}}]}, assert: {count(terms): {$gte: 2}}}
 
       Coll Keyboard Perfor:
         result:
@@ -106,9 +111,9 @@ requirements:
           assert: count(terms) >= 6
         requirements:
           Lessons:
-            result: {from: {student: courses}, where: course = MUSPF 106, assert: count(terms) >= 4}
+            result: {from: {student: courses}, where: {course: {$eq: MUSPF 106}}, assert: {count(terms): {$gte: 4}}}
           Other Lessons:
-            result: {from: {student: courses}, where: subject = MUSPF and number != 106, assert: count(terms) >= 2}
+            result: {from: {student: courses}, where: {$and: [{subject: {$eq: MUSPF}}, {number: {$neq: 106}}]}, assert: {count(terms): {$gte: 2}}}
 
       Drumset:
         result:
@@ -116,9 +121,9 @@ requirements:
           assert: count(terms) >= 6
         requirements:
           Lessons:
-            result: {from: {student: courses}, where: course = MUSPF 109, assert: count(terms) >= 4}
+            result: {from: {student: courses}, where: {course: {$eq: MUSPF 109}}, assert: {count(terms): {$gte: 4}}}
           Other Lessons:
-            result: {from: {student: courses}, where: subject = MUSPF and number != 109, assert: count(terms) >= 2}
+            result: {from: {student: courses}, where: {$and: [{subject: {$eq: MUSPF}}, {number: {$neq: 109}}]}, assert: {count(terms): {$gte: 2}}}
 
       Euphonium:
         result:
@@ -126,9 +131,9 @@ requirements:
           assert: count(terms) >= 6
         requirements:
           Lessons:
-            result: {from: {student: courses}, where: course = MUSPF 112, assert: count(terms) >= 4}
+            result: {from: {student: courses}, where: {course: {$eq: MUSPF 112}}, assert: {count(terms): {$gte: 4}}}
           Other Lessons:
-            result: {from: {student: courses}, where: subject = MUSPF and number != 112, assert: count(terms) >= 2}
+            result: {from: {student: courses}, where: {$and: [{subject: {$eq: MUSPF}}, {number: {$neq: 112}}]}, assert: {count(terms): {$gte: 2}}}
 
       Flute:
         result:
@@ -136,9 +141,9 @@ requirements:
           assert: count(terms) >= 6
         requirements:
           Lessons:
-            result: {from: {student: courses}, where: course = MUSPF 114, assert: count(terms) >= 4}
+            result: {from: {student: courses}, where: {course: {$eq: MUSPF 114}}, assert: {count(terms): {$gte: 4}}}
           Other Lessons:
-            result: {from: {student: courses}, where: subject = MUSPF and number != 114, assert: count(terms) >= 2}
+            result: {from: {student: courses}, where: {$and: [{subject: {$eq: MUSPF}}, {number: {$neq: 114}}]}, assert: {count(terms): {$gte: 2}}}
 
       French Horn:
         result:
@@ -146,9 +151,9 @@ requirements:
           assert: count(terms) >= 6
         requirements:
           Lessons:
-            result: {from: {student: courses}, where: course = MUSPF 116, assert: count(terms) >= 4}
+            result: {from: {student: courses}, where: {course: {$eq: MUSPF 116}}, assert: {count(terms): {$gte: 4}}}
           Other Lessons:
-            result: {from: {student: courses}, where: subject = MUSPF and number != 116, assert: count(terms) >= 2}
+            result: {from: {student: courses}, where: {$and: [{subject: {$eq: MUSPF}}, {number: {$neq: 116}}]}, assert: {count(terms): {$gte: 2}}}
 
       Hardanger Fiddle:
         result:
@@ -156,9 +161,9 @@ requirements:
           assert: count(terms) >= 6
         requirements:
           Lessons:
-            result: {from: {student: courses}, where: course = MUSPF 118, assert: count(terms) >= 4}
+            result: {from: {student: courses}, where: {course: {$eq: MUSPF 118}}, assert: {count(terms): {$gte: 4}}}
           Other Lessons:
-            result: {from: {student: courses}, where: subject = MUSPF and number != 118, assert: count(terms) >= 2}
+            result: {from: {student: courses}, where: {$and: [{subject: {$eq: MUSPF}}, {number: {$neq: 118}}]}, assert: {count(terms): {$gte: 2}}}
 
       Harp:
         result:
@@ -166,9 +171,9 @@ requirements:
           assert: count(terms) >= 6
         requirements:
           Lessons:
-            result: {from: {student: courses}, where: course = MUSPF 120, assert: count(terms) >= 4}
+            result: {from: {student: courses}, where: {course: {$eq: MUSPF 120}}, assert: {count(terms): {$gte: 4}}}
           Other Lessons:
-            result: {from: {student: courses}, where: subject = MUSPF and number != 120, assert: count(terms) >= 2}
+            result: {from: {student: courses}, where: {$and: [{subject: {$eq: MUSPF}}, {number: {$neq: 120}}]}, assert: {count(terms): {$gte: 2}}}
 
       Harpsichord:
         result:
@@ -176,9 +181,9 @@ requirements:
           assert: count(terms) >= 6
         requirements:
           Lessons:
-            result: {from: {student: courses}, where: course = MUSPF 122, assert: count(terms) >= 4}
+            result: {from: {student: courses}, where: {course: {$eq: MUSPF 122}}, assert: {count(terms): {$gte: 4}}}
           Other Lessons:
-            result: {from: {student: courses}, where: subject = MUSPF and number != 122, assert: count(terms) >= 2}
+            result: {from: {student: courses}, where: {$and: [{subject: {$eq: MUSPF}}, {number: {$neq: 122}}]}, assert: {count(terms): {$gte: 2}}}
 
       Jazz Piano:
         result:
@@ -186,9 +191,9 @@ requirements:
           assert: count(terms) >= 6
         requirements:
           Lessons:
-            result: {from: {student: courses}, where: course = MUSPF 124, assert: count(terms) >= 4}
+            result: {from: {student: courses}, where: {course: {$eq: MUSPF 124}}, assert: {count(terms): {$gte: 4}}}
           Other Lessons:
-            result: {from: {student: courses}, where: subject = MUSPF and number != 124, assert: count(terms) >= 2}
+            result: {from: {student: courses}, where: {$and: [{subject: {$eq: MUSPF}}, {number: {$neq: 124}}]}, assert: {count(terms): {$gte: 2}}}
 
       Oboe:
         result:
@@ -196,9 +201,9 @@ requirements:
           assert: count(terms) >= 6
         requirements:
           Lessons:
-            result: {from: {student: courses}, where: course = MUSPF 126, assert: count(terms) >= 4}
+            result: {from: {student: courses}, where: {course: {$eq: MUSPF 126}}, assert: {count(terms): {$gte: 4}}}
           Other Lessons:
-            result: {from: {student: courses}, where: subject = MUSPF and number != 126, assert: count(terms) >= 2}
+            result: {from: {student: courses}, where: {$and: [{subject: {$eq: MUSPF}}, {number: {$neq: 126}}]}, assert: {count(terms): {$gte: 2}}}
 
       Organ:
         result:
@@ -206,9 +211,9 @@ requirements:
           assert: count(terms) >= 6
         requirements:
           Lessons:
-            result: {from: {student: courses}, where: course = MUSPF 128, assert: count(terms) >= 4}
+            result: {from: {student: courses}, where: {course: {$eq: MUSPF 128}}, assert: {count(terms): {$gte: 4}}}
           Other Lessons:
-            result: {from: {student: courses}, where: subject = MUSPF and number != 128, assert: count(terms) >= 2}
+            result: {from: {student: courses}, where: {$and: [{subject: {$eq: MUSPF}}, {number: {$neq: 128}}]}, assert: {count(terms): {$gte: 2}}}
 
       Percussion:
         result:
@@ -216,9 +221,9 @@ requirements:
           assert: count(terms) >= 6
         requirements:
           Lessons:
-            result: {from: {student: courses}, where: course = MUSPF 132, assert: count(terms) >= 4}
+            result: {from: {student: courses}, where: {course: {$eq: MUSPF 132}}, assert: {count(terms): {$gte: 4}}}
           Other Lessons:
-            result: {from: {student: courses}, where: subject = MUSPF and number != 132, assert: count(terms) >= 2}
+            result: {from: {student: courses}, where: {$and: [{subject: {$eq: MUSPF}}, {number: {$neq: 132}}]}, assert: {count(terms): {$gte: 2}}}
 
       Piano:
         result:
@@ -226,9 +231,9 @@ requirements:
           assert: count(terms) >= 6
         requirements:
           Lessons:
-            result: {from: {student: courses}, where: course = MUSPF 134, assert: count(terms) >= 4}
+            result: {from: {student: courses}, where: {course: {$eq: MUSPF 134}}, assert: {count(terms): {$gte: 4}}}
           Other Lessons:
-            result: {from: {student: courses}, where: subject = MUSPF and number != 134, assert: count(terms) >= 2}
+            result: {from: {student: courses}, where: {$and: [{subject: {$eq: MUSPF}}, {number: {$neq: 134}}]}, assert: {count(terms): {$gte: 2}}}
 
       Jazz Saxophone:
         result:
@@ -236,9 +241,9 @@ requirements:
           assert: count(terms) >= 6
         requirements:
           Lessons:
-            result: {from: {student: courses}, where: course = MUSPF 135, assert: count(terms) >= 4}
+            result: {from: {student: courses}, where: {course: {$eq: MUSPF 135}}, assert: {count(terms): {$gte: 4}}}
           Other Lessons:
-            result: {from: {student: courses}, where: subject = MUSPF and number != 135, assert: count(terms) >= 2}
+            result: {from: {student: courses}, where: {$and: [{subject: {$eq: MUSPF}}, {number: {$neq: 135}}]}, assert: {count(terms): {$gte: 2}}}
 
       Saxophone:
         result:
@@ -246,9 +251,9 @@ requirements:
           assert: count(terms) >= 6
         requirements:
           Lessons:
-            result: {from: {student: courses}, where: course = MUSPF 136, assert: count(terms) >= 4}
+            result: {from: {student: courses}, where: {course: {$eq: MUSPF 136}}, assert: {count(terms): {$gte: 4}}}
           Other Lessons:
-            result: {from: {student: courses}, where: subject = MUSPF and number != 136, assert: count(terms) >= 2}
+            result: {from: {student: courses}, where: {$and: [{subject: {$eq: MUSPF}}, {number: {$neq: 136}}]}, assert: {count(terms): {$gte: 2}}}
 
       String Bass:
         result:
@@ -256,9 +261,9 @@ requirements:
           assert: count(terms) >= 6
         requirements:
           Lessons:
-            result: {from: {student: courses}, where: course = MUSPF 138, assert: count(terms) >= 4}
+            result: {from: {student: courses}, where: {course: {$eq: MUSPF 138}}, assert: {count(terms): {$gte: 4}}}
           Other Lessons:
-            result: {from: {student: courses}, where: subject = MUSPF and number != 138, assert: count(terms) >= 2}
+            result: {from: {student: courses}, where: {$and: [{subject: {$eq: MUSPF}}, {number: {$neq: 138}}]}, assert: {count(terms): {$gte: 2}}}
 
       Trombone:
         result:
@@ -266,9 +271,9 @@ requirements:
           assert: count(terms) >= 6
         requirements:
           Lessons:
-            result: {from: {student: courses}, where: course = MUSPF 140, assert: count(terms) >= 4}
+            result: {from: {student: courses}, where: {course: {$eq: MUSPF 140}}, assert: {count(terms): {$gte: 4}}}
           Other Lessons:
-            result: {from: {student: courses}, where: subject = MUSPF and number != 140, assert: count(terms) >= 2}
+            result: {from: {student: courses}, where: {$and: [{subject: {$eq: MUSPF}}, {number: {$neq: 140}}]}, assert: {count(terms): {$gte: 2}}}
 
       Trumpet:
         result:
@@ -276,9 +281,9 @@ requirements:
           assert: count(terms) >= 6
         requirements:
           Lessons:
-            result: {from: {student: courses}, where: course = MUSPF 142, assert: count(terms) >= 4}
+            result: {from: {student: courses}, where: {course: {$eq: MUSPF 142}}, assert: {count(terms): {$gte: 4}}}
           Other Lessons:
-            result: {from: {student: courses}, where: subject = MUSPF and number != 142, assert: count(terms) >= 2}
+            result: {from: {student: courses}, where: {$and: [{subject: {$eq: MUSPF}}, {number: {$neq: 142}}]}, assert: {count(terms): {$gte: 2}}}
 
       Tuba:
         result:
@@ -286,9 +291,9 @@ requirements:
           assert: count(terms) >= 6
         requirements:
           Lessons:
-            result: {from: {student: courses}, where: course = MUSPF 144, assert: count(terms) >= 4}
+            result: {from: {student: courses}, where: {course: {$eq: MUSPF 144}}, assert: {count(terms): {$gte: 4}}}
           Other Lessons:
-            result: {from: {student: courses}, where: subject = MUSPF and number != 144, assert: count(terms) >= 2}
+            result: {from: {student: courses}, where: {$and: [{subject: {$eq: MUSPF}}, {number: {$neq: 144}}]}, assert: {count(terms): {$gte: 2}}}
 
       Viola:
         result:
@@ -296,9 +301,9 @@ requirements:
           assert: count(terms) >= 6
         requirements:
           Lessons:
-            result: {from: {student: courses}, where: course = MUSPF 146, assert: count(terms) >= 4}
+            result: {from: {student: courses}, where: {course: {$eq: MUSPF 146}}, assert: {count(terms): {$gte: 4}}}
           Other Lessons:
-            result: {from: {student: courses}, where: subject = MUSPF and number != 146, assert: count(terms) >= 2}
+            result: {from: {student: courses}, where: {$and: [{subject: {$eq: MUSPF}}, {number: {$neq: 146}}]}, assert: {count(terms): {$gte: 2}}}
 
       Violin:
         result:
@@ -306,9 +311,9 @@ requirements:
           assert: count(terms) >= 6
         requirements:
           Lessons:
-            result: {from: {student: courses}, where: course = MUSPF 148, assert: count(terms) >= 4}
+            result: {from: {student: courses}, where: {course: {$eq: MUSPF 148}}, assert: {count(terms): {$gte: 4}}}
           Other Lessons:
-            result: {from: {student: courses}, where: subject = MUSPF and number != 148, assert: count(terms) >= 2}
+            result: {from: {student: courses}, where: {$and: [{subject: {$eq: MUSPF}}, {number: {$neq: 148}}]}, assert: {count(terms): {$gte: 2}}}
 
       Violoncello:
         result:
@@ -316,9 +321,9 @@ requirements:
           assert: count(terms) >= 6
         requirements:
           Lessons:
-            result: {from: {student: courses}, where: course = MUSPF 150, assert: count(terms) >= 4}
+            result: {from: {student: courses}, where: {course: {$eq: MUSPF 150}}, assert: {count(terms): {$gte: 4}}}
           Other Lessons:
-            result: {from: {student: courses}, where: subject = MUSPF and number != 150, assert: count(terms) >= 2}
+            result: {from: {student: courses}, where: {$and: [{subject: {$eq: MUSPF}}, {number: {$neq: 150}}]}, assert: {count(terms): {$gte: 2}}}
 
       Voice:
         result:
@@ -326,9 +331,9 @@ requirements:
           assert: count(terms) >= 6
         requirements:
           Lessons:
-            result: {from: {student: courses}, where: course = MUSPF 152, assert: count(terms) >= 4}
+            result: {from: {student: courses}, where: {course: {$eq: MUSPF 152}}, assert: {count(terms): {$gte: 4}}}
           Other Lessons:
-            result: {from: {student: courses}, where: subject = MUSPF and number != 152, assert: count(terms) >= 2}
+            result: {from: {student: courses}, where: {$and: [{subject: {$eq: MUSPF}}, {number: {$neq: 152}}]}, assert: {count(terms): {$gte: 2}}}
 
 
   Official Ensemble Participation:
